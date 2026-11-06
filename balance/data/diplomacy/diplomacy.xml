@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnterStageModifiers>
+        <Delete ModifierId="PLAYER_DIPLOMACY_MILITARY_AID_COMPLETE"/>
+		<Row StageType="DIPLOMACY_MILITARY_AID_COMPLETE" ModifierId="MPT_BALANCE_PLAYER_DIPLOMACY_MILITARY_AID_COMPLETE" />
+        <!-- <Delete ModifierId="PLAYER_DIPLOMACY_LOCAL_FESTIVALS_COMPLETE"/>
+		<Row StageType="DIPLOMACY_LOCAL_FESTIVALS_COMPLETE" ModifierId="MPT_BALANCE_PLAYER_DIPLOMACY_LOCAL_FESTIVALS_COMPLETE" /> -->
+	</EnterStageModifiers>
+</Database>

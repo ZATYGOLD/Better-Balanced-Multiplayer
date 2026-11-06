@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-		<Row Tag="LOC_MOD_MPT_NAME">
-			<Text>Multiplayer Toolkit</Text>
-		</Row>
-		<Row Tag="LOC_MOD_MPT_DESCRIPTION">
-			<Text>A toolkit of multiplayer quality-of-life features for Civilization VII: a fully synchronized pause (any player pauses, everyone readies or the host resumes for all, with a countdown and an automatic pause when a player disconnects), a Competitive turn timer that scales with each empire, competitive Multiplayer Balance changes, new multiplayer maps with East vs West player placement and a custom resource system, and lobby tooltip fixes.</Text>
-		</Row>
+	<!-- Mod Info -->
+		<Row Tag="LOC_MODULE_MPT_NAME"><Text>Multiplayer Toolkit</Text></Row>
+		<Row Tag="LOC_MODULE_MPT_DESCRIPTION"><Text>A toolkit of multiplayer quality-of-life features for Civilization VII: a fully synchronized pause (any player pauses, everyone readies or the host resumes for all, with a countdown and an automatic pause when a player disconnects), a Competitive turn timer that scales with each empire, competitive Multiplayer Balance changes, new multiplayer maps with East vs West player placement and a custom resource system, and lobby tooltip fixes.</Text></Row>
 	</EnglishText>
-</Database> 
+</Database>

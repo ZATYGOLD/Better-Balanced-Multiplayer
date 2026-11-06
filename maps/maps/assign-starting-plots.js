@@ -1233,7 +1233,7 @@ function pickStartPlotByTile(tiles, continentId, numFoundEarlier, playerId, igno
       const lakeFallbackIndex = chooseBestPlot(true, true);
       if (lakeFallbackIndex >= 0) {
         clearStrictStartBiasFailure(playerId);
-        console.log(`EVW STRICT START BIASES: player=${playerId} used lake fallback after no coastal tile qualified`);
+        console.log(`MPT MAPS STRICT START BIASES: player=${playerId} used lake fallback after no coastal tile qualified`);
         return lakeFallbackIndex;
       }
     }
@@ -1299,7 +1299,7 @@ function pickStrictStartPlotByTile(tiles, playerId, otherStartPositions, originP
   if (strictBias.rules.some((rule) => rule.id === "ocean-coast")) {
     const lakeFallbackIndex = chooseBestStrictPlot(true);
     if (lakeFallbackIndex >= 0) {
-      console.log(`EVW STRICT START BIASES: player=${playerId} used lake fallback after no coastal tile qualified`);
+      console.log(`MPT MAPS STRICT START BIASES: player=${playerId} used lake fallback after no coastal tile qualified`);
     }
     return lakeFallbackIndex;
   }

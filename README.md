@@ -26,8 +26,6 @@ this mod).
 2. Enable **Multiplayer Toolkit** in **Main Menu → Additional Content**.
 3. **Every player needs the mod** (it changes game data, and menus and timer
    enforcement run per client). Saves made with it need it to load.
-4. Disable the old **Multiplayer Balance Mod** and **Multiplayer Map Mod**:
-   their content is now part of this mod and would load twice.
 
 ---
 
@@ -83,8 +81,8 @@ Settings: `ui/mp-pause/mp-pause-config.js`. The engine exposes only a total
 
 ## Multiplayer Balance
 
-Multiplayer only. Lobby option **Multiplayer Balance** (Game Options, On by
-default). Off gives the game's own balance; every balance file loads only when
+Multiplayer only. Lobby option **Multiplayer Balance** (its own **Balance Settings**
+group, On by default). Off gives the game's own balance; every balance file loads only when
 it is On, so single-player games always use the game's own balance.
 
 - Balance changes for civilizations, leaders, units, governments, policies,
@@ -92,8 +90,6 @@ it is On, so single-player games always use the game's own balance.
   mementos, Triumphs, diplomacy, happiness, razing and victories, per Age.
 - **One technology per turn** — research completes at most one technology a
   turn (overflow waits), queued paths still work.
-- **Commander training** — commanders on a military building earn bonus XP
-  each turn.
 - **Victory Threshold Scaling** (Advanced Victory Options): Standard, Low or
   Very Low (default) for Culture, Economic and Military victories.
 
@@ -137,6 +133,8 @@ Everything lives in `maps/` (see Project structure).
   Toolkit's own are switched off. Its settings (pacing, triumph sets, units...)
   apply on top of the balance changes. Its lobby memento slots show the first
   two slots; the second minor slot is set with Choose Mementos.
+  The Map Options appear on its Map tab and Balance Settings on its General
+  tab; both mods share the same setup-database conventions.
 - **Zatygold's Spectator** — the Observer adds no time to the Competitive timer
   and never pauses the game by disconnecting; the Spectator keeps the Observer
   out of Player Placement and off the start-bias warning.
@@ -159,22 +157,24 @@ Multiplayer-Toolkit/
 │  └─ mp-timer/                  # Competitive timer
 ├─ balance/                      # Multiplayer Balance (everything balance)
 │  ├─ config/                    # Balance option, turn-phase presets, memento slot, victory thresholds
-│  ├─ data/                      # balance changes (always / per Age)
+│  ├─ data/                      # one folder per subject (civilizations, leaders, units, policies,
+│  │                             #   religion, resources, victories...): common and per-Age files
 │  ├─ text/en_us/                # balance strings
-│  └─ ui/                        # one tech per turn, commander training
+│  └─ ui/                        # balance settings, one technology per turn
 └─ maps/                         # Maps (everything map)
    ├─ config/                    # map list, Map Options, multiplayer-only filter, compatibility
    ├─ data/                      # custom resource system (per Age)
-   ├─ maps/                      # map scripts (Pangaea Ultima, start placement)
-   ├─ scripts/                   # Voronoi map generator, global team starts
+   ├─ maps/                      # map scripts (Pangaea Ultima, start placement, resources)
+   ├─ scripts/                   # Voronoi map generator, multiplayer placement pass
    ├─ text/en_us/                # map strings
-   └─ ui/                        # multiplayer defaults, strict start bias warning
+   └─ ui/                        # multiplayer defaults, turn-1 start warning
 ```
 
 Each Toolkit feature has a `*-config.js` for settings, and modules patch the
-base UI at runtime (no base-game files are replaced). Balance and Maps keep
-their original identifiers (`MBM_`, `EVW_`), so existing lobby settings carry
-over. Diagnostics go to `UI.log`.
+base UI at runtime (no base-game files are replaced). Identifiers follow the
+Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
+`MPT` for Maps (lobby options such as `MPTPlayerPlacement`), `MPT_TURNPHASE_`
+for the Dynamic timer presets. Diagnostics go to `UI.log`.
 
 ---
 
@@ -182,22 +182,18 @@ over. Diagnostics go to `UI.log`.
 
 ### 0.6.2
 
-- **Multiplayer Balance Mod merged in** (Gohei427, v0.5) — behind the new
-  **Multiplayer Balance** lobby option (On by default); its victory
-  thresholds follow the option too. The turn-phase presets and second memento
-  slot stay always available. A stray line after the end of its turn-phase
-  data file was removed, and the Casual preset's description now matches its
-  numbers (35s + 4s per city + 2s per unit).
-- **Multiplayer Map Mod merged in** (Gohei427, v1.7.1) — Pangaea Ultima,
-  Player Placement, Strict Start Biases and the Custom Resource System, with
-  their own lobby options as before.
+- **New: Multiplayer Balance** (with Gohei427) — competitive balance changes
+  behind the new **Multiplayer Balance** lobby option (On by default), plus
+  one technology per turn, Victory Threshold Scaling, Dynamic timer presets
+  (Standard, Competitive, Blitz, Casual) and a second minor memento slot.
+- **New: Maps** (with Gohei427) — Pangaea Ultima, Player Placement (Base,
+  Duel, 2v2, 3v3, 4v4), Strict Start Biases and the Custom Resource System.
 - **Multiplayer only** — every Balance and Maps option exists only in
   multiplayer setup; Pangaea Ultima is listed only there; single-player map
   generation is left untouched.
 - **Compatible with Advanced Settings Pro and Zatygold's Spectator** (see
   Compatibility).
-- Balance and Maps each live in their own folder (`balance/`, `maps/`).
-- The mod now affects saved games, and Gohei427 is credited as co-author.
+- The mod now affects saved games. Gohei427 joins as co-author.
 
 ### 0.6.1
 
@@ -266,7 +262,6 @@ over. Diagnostics go to `UI.log`.
 
 ## License
 
-Copyright (C) 2026 Zatygold and Gohei427 (Multiplayer Balance and Maps,
-included with permission). Free software under the **GNU General Public
+Copyright (C) 2026 Zatygold and Gohei427. Free software under the **GNU General Public
 License v3 or later**, without any warranty. See [`LICENSE`](LICENSE) or
 <https://www.gnu.org/licenses/>.

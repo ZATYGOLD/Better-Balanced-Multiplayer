@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- NOTE PUT ALL CHANGES FOR THIS AGE ONLY -->
+<Database>
+
+	<GameModifiers>
+		<!-- Majapahit-->
+		<Delete ModifierId="MOD_MAJAPAHIT_PURA_RELIC"/>
+	</GameModifiers>
+
+	<ConstructibleModifiers>
+	<!-- Wonders -->
+		<!-- Muzibu -->
+		<Row ConstructibleType="WONDER_MUZIBU_AZAALA_MPANGA" ModifierId="MPT_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM"/>
+		<!-- Doi Suthep -->
+		<Row ConstructibleType="WONDER_DOI_SUTHEP" ModifierId="MPT_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE"/>
+		<!-- Nirayama -->
+		<Row ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" ModifierId="MPT_BALANCE_MOD_NIRAYAMA_REVERBERATORY_FURNACE_MINE_SCIENCE"/>
+		<!-- HErmitage -->
+		<Row ConstructibleType="WONDER_HERMITAGE" ModifierId="MPT_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM"/>
+	</ConstructibleModifiers>
+
+	<Constructible_WarehouseYields>
+		<Delete ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" YieldChangeId="NirayamaReverberatoryFurnaceMineResourceScience"/>
+		<Delete ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" YieldChangeId="NirayamaReverberatoryFurnaceRoughTerrainScience"/>
+	</Constructible_WarehouseYields>	
+
+	<Constructible_GreatWorks>
+		<Row ConstructibleType="BUILDING_ROYAL_LIBRARY" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="2"/>
+	</Constructible_GreatWorks>
+	
+	<WorkerYields_AgeModifier>
+		<Delete YieldType="YIELD_FOOD"/>
+		<Delete YieldType="YIELD_HAPPINESS"/>
+		<Row YieldType="YIELD_FOOD" Amount="-3"/>
+		<Row YieldType="YIELD_HAPPINESS" Amount="-3"/>
+	</WorkerYields_AgeModifier>
+
+	<Constructible_ValidTerrains>
+		<Row ConstructibleType="IMPROVEMENT_TERRACE_FARM" TerrainType="TERRAIN_MOUNTAIN"/>
+	</Constructible_ValidTerrains>
+</Database>

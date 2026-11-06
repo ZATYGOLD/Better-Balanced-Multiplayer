@@ -99,19 +99,19 @@ INSERT INTO Resource_YieldChanges(ResourceType, YieldType, YieldChange)
 VALUES ('RESOURCE_SILK','YIELD_CULTURE',1);
 
 -- Preserve each resource's normal terrain/feature rules while replacing only
--- its biome list with the MMM specification.
-CREATE TEMP TABLE EvW_OriginalResourceBiomes AS
+-- its biome list with the Maps specification.
+CREATE TEMP TABLE MPT_OriginalResourceBiomes AS
 SELECT ResourceType, TerrainType, FeatureType, Weight
 FROM Resource_ValidBiomes;
 
-CREATE TEMP TABLE EvW_ResourceBiomeTargets(
+CREATE TEMP TABLE MPT_ResourceBiomeTargets(
   ResourceType TEXT NOT NULL,
   BiomeType TEXT NOT NULL,
   PRIMARY KEY(ResourceType, BiomeType)
 );
 
 -- All ordinary land biomes.
-INSERT INTO EvW_ResourceBiomeTargets(ResourceType, BiomeType)
+INSERT INTO MPT_ResourceBiomeTargets(ResourceType, BiomeType)
 SELECT ResourceType, BiomeType
 FROM (
   SELECT 'RESOURCE_CLAY' ResourceType UNION ALL SELECT 'RESOURCE_LIMESTONE' UNION ALL
@@ -124,7 +124,7 @@ CROSS JOIN (
   SELECT 'BIOME_PLAINS' UNION ALL SELECT 'BIOME_TROPICAL' UNION ALL SELECT 'BIOME_DESERT'
 );
 
-INSERT OR IGNORE INTO EvW_ResourceBiomeTargets VALUES
+INSERT OR IGNORE INTO MPT_ResourceBiomeTargets VALUES
   ('RESOURCE_CAMELS','BIOME_PLAINS'),('RESOURCE_CAMELS','BIOME_DESERT'),
   ('RESOURCE_COTTON','BIOME_DESERT'),('RESOURCE_COTTON','BIOME_PLAINS'),('RESOURCE_COTTON','BIOME_GRASSLAND'),
   ('RESOURCE_HARDWOOD','BIOME_TUNDRA'),('RESOURCE_HARDWOOD','BIOME_TROPICAL'),
@@ -163,12 +163,12 @@ INSERT OR IGNORE INTO EvW_ResourceBiomeTargets VALUES
   ('RESOURCE_WHALES','BIOME_MARINE'),('RESOURCE_TURTLES','BIOME_MARINE'),('RESOURCE_DYES','BIOME_MARINE');
 
 DELETE FROM Resource_ValidBiomes
-WHERE ResourceType IN (SELECT DISTINCT ResourceType FROM EvW_ResourceBiomeTargets);
+WHERE ResourceType IN (SELECT DISTINCT ResourceType FROM MPT_ResourceBiomeTargets);
 
 INSERT OR IGNORE INTO Resource_ValidBiomes(ResourceType, BiomeType, TerrainType, FeatureType, Weight)
 SELECT targets.ResourceType, targets.BiomeType, original.TerrainType, original.FeatureType, original.Weight
-FROM EvW_ResourceBiomeTargets targets
-JOIN EvW_OriginalResourceBiomes original ON original.ResourceType = targets.ResourceType
+FROM MPT_ResourceBiomeTargets targets
+JOIN MPT_OriginalResourceBiomes original ON original.ResourceType = targets.ResourceType
 WHERE (targets.BiomeType = 'BIOME_MARINE') = (original.TerrainType IN ('TERRAIN_COAST','TERRAIN_OCEAN'));
 
 -- Crabs and Oil explicitly support ordinary Marine coast tiles. Crabs retain
@@ -212,5 +212,5 @@ INSERT OR IGNORE INTO TypeTags(Type, Tag) VALUES
   ('RESOURCE_FISH','NAVIGABLE_RIVERS_ELIGIBLE'),
   ('RESOURCE_FISH','IGNORES_WEIGHT_FOR_NAVIGABLE_RIVER_PLACEMENT');
 
-DROP TABLE EvW_ResourceBiomeTargets;
-DROP TABLE EvW_OriginalResourceBiomes;
+DROP TABLE MPT_ResourceBiomeTargets;
+DROP TABLE MPT_OriginalResourceBiomes;

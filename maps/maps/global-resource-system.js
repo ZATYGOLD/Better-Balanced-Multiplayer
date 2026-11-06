@@ -62,7 +62,7 @@ function resolveResourceTypes(typeNames) {
   for (const typeName of typeNames) {
     const definition = GameInfo.Resources.lookup(typeName);
     if (definition == null) {
-      console.log(`EVW RESOURCES: ${typeName} is unavailable and will be skipped`);
+      console.log(`MPT MAPS RESOURCES: ${typeName} is unavailable and will be skipped`);
       continue;
     }
     result.push(definition.$index);
@@ -105,17 +105,17 @@ function drawFromPoolBag(bag, label) {
 
 function chooseContinentResources(continents) {
   const selections = new Map();
-  const poolBags = CONTINENT_POOLS.map((pool, index) => makePoolBag(pool, `EVW continent pool ${index + 1}`));
+  const poolBags = CONTINENT_POOLS.map((pool, index) => makePoolBag(pool, `MPT MAPS continent pool ${index + 1}`));
   for (const continent of [...continents.keys()].sort((a, b) => a - b)) {
     const selected = new Set();
     for (let poolIndex = 0; poolIndex < poolBags.length; poolIndex++) {
-      selected.add(drawFromPoolBag(poolBags[poolIndex], `EVW continent pool ${poolIndex + 1} refill`));
+      selected.add(drawFromPoolBag(poolBags[poolIndex], `MPT MAPS continent pool ${poolIndex + 1} refill`));
     }
-    const other = shuffleInPlace([...OTHER_CONTINENT_RESOURCES], `EVW continent ${continent} other resources`);
+    const other = shuffleInPlace([...OTHER_CONTINENT_RESOURCES], `MPT MAPS continent ${continent} other resources`);
     for (let i = 0; i < 3 && i < other.length; i++) selected.add(other[i]);
     selections.set(continent, resolveResourceTypes([...selected]));
     console.log(
-      `EVW RESOURCES: continent=${continent} selected=${[...selected].join(",")}`
+      `MPT MAPS RESOURCES: continent=${continent} selected=${[...selected].join(",")}`
     );
   }
   return selections;
@@ -152,7 +152,7 @@ function pickCandidate(candidates, placedCounts, eligibleCounts) {
   let bestScore = Number.POSITIVE_INFINITY;
   for (const resourceIndex of candidates) {
     const eligible = Math.max(1, eligibleCounts[resourceIndex]);
-    const score = placedCounts[resourceIndex] / eligible + TerrainBuilder.getRandomNumber(1000, "EVW resource balance") / 100000000;
+    const score = placedCounts[resourceIndex] / eligible + TerrainBuilder.getRandomNumber(1000, "MPT MAPS resource balance") / 100000000;
     if (score < bestScore) {
       bestScore = score;
       best = resourceIndex;
@@ -220,10 +220,10 @@ function generateGlobalResources() {
   const placedCounts = new Uint16Array(GameInfo.Resources.length);
   let placedTotal = 0;
   for (const resourceIndex of generalResources) {
-    if (placeGuaranteedResource(resourceIndex, candidatesByResource, placedCounts, 0, "EVW guaranteed general resource")) {
+    if (placeGuaranteedResource(resourceIndex, candidatesByResource, placedCounts, 0, "MPT MAPS guaranteed general resource")) {
       placedTotal++;
     } else {
-      console.log(`EVW RESOURCES: no valid tile for general resource ${GameInfo.Resources[resourceIndex]?.ResourceType}`);
+      console.log(`MPT MAPS RESOURCES: no valid tile for general resource ${GameInfo.Resources[resourceIndex]?.ResourceType}`);
     }
   }
   for (const [continent, resources] of selectedByContinent) {
@@ -233,18 +233,18 @@ function generateGlobalResources() {
         return getLandContinent(location.x, location.y) === continent;
       });
       const temporaryMap = new Map([[resourceIndex, continentCandidates]]);
-      if (placeGuaranteedResource(resourceIndex, temporaryMap, placedCounts, 0, "EVW guaranteed continent resource")) {
+      if (placeGuaranteedResource(resourceIndex, temporaryMap, placedCounts, 0, "MPT MAPS guaranteed continent resource")) {
         placedTotal++;
       } else {
         console.log(
-          `EVW RESOURCES: continent=${continent} has no valid tile for ${GameInfo.Resources[resourceIndex]?.ResourceType}`
+          `MPT MAPS RESOURCES: continent=${continent} has no valid tile for ${GameInfo.Resources[resourceIndex]?.ResourceType}`
         );
       }
     }
   }
 
   const target = Math.max(placedTotal, Math.round(placeablePlots.length * density.fraction));
-  shuffleInPlace(placeablePlots, "EVW resource plot order");
+  shuffleInPlace(placeablePlots, "MPT MAPS resource plot order");
   for (let pass = 0; pass < 3 && placedTotal < target; pass++) {
     const maximumAdjacent = pass === 0 ? 0 : pass;
     for (const plotIndex of placeablePlots) {
@@ -261,7 +261,7 @@ function generateGlobalResources() {
   }
 
   console.log(
-    `EVW RESOURCES: density=${density.label} candidates=${placeablePlots.length} target=${target} placed=${placedTotal} replaced=${removed}`
+    `MPT MAPS RESOURCES: density=${density.label} candidates=${placeablePlots.length} target=${target} placed=${placedTotal} replaced=${removed}`
   );
 }
 

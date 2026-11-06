@@ -1,0 +1,40 @@
+--*******************************************************
+--***************** MAP LIST ****************************
+--*******************************************************
+-- Pangaea Ultima, listed in multiplayer setup only (multiplayer-only.sql).
+INSERT OR IGNORE INTO Maps (File, Name, Description, SortIndex)
+    VALUES
+        ('{multiplayer-toolkit}maps/maps/pangaea-ultima.js', 'LOC_MPT_MAPS_PANGAEA_ULTIMA_NAME', 'LOC_MPT_MAPS_PANGAEA_ULTIMA_DESC', 110);
+
+--*******************************************************
+--***************** MULTIPLAYER DEFAULTS ****************
+--*******************************************************
+-- Online speed, Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size.
+-- Settings shared with single player are set by ui/multiplayer-defaults.js instead.
+UPDATE Parameters SET DefaultValue = 'GAMESPEED_ONLINE' WHERE ParameterID = 'GameSpeeds' AND SupportsSinglePlayer = 0;
+UPDATE Parameters SET DefaultValue = 'AGE_LENGTH_ABBREVIATED' WHERE ParameterID = 'AgeLength' AND SupportsSinglePlayer = 0;
+UPDATE Parameters SET DefaultValue = 'AGE_COUNTDOWN_LENGTH_NONE' WHERE ParameterID = 'AgeCountdownTimer' AND SupportsSinglePlayer = 0;
+UPDATE Parameters SET DefaultValue = '{multiplayer-toolkit}maps/maps/pangaea-ultima.js' WHERE ParameterID = 'Map' AND SupportsSinglePlayer = 0;
+UPDATE Parameters SET DefaultValue = 'MAPSIZE_STANDARD' WHERE ParameterID = 'MapSize' AND SupportsSinglePlayer = 0;
+
+--*******************************************************
+--***************** MAP SETTINGS ************************
+--*******************************************************
+-- Map Settings join the base Map Options group, so Advanced Settings' Map tab shows them.
+INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, Hash, SupportsSinglePlayer, SortIndex)
+    VALUES
+        ('MPTPlayerPlacement', 'LOC_MPT_MAPS_PLAYER_PLACEMENT_NAME', 'LOC_MPT_MAPS_PLAYER_PLACEMENT_DESC', 'MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_BASE', 'Map', 'MPTPlayerPlacement', 'MapOptions', 'SimpleSelectWindow', 0, 0, 125),
+        ('MPTStrictStartBiases', 'LOC_MPT_MAPS_STRICT_BIASES_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_DESC', 'MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'Map', 'MPTStrictStartBiases', 'MapOptions', 'SimpleSelectWindow', 0, 0, 126),
+        ('MPTResourceSystem', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC', 'MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_ON', 'Map', 'MPTResourceSystem', 'MapOptions', 'SimpleSelectWindow', 0, 0, 127);
+
+INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
+    VALUES
+        ('MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_BASE', 'LOC_MPT_MAPS_PLACEMENT_BASE_NAME', 'LOC_MPT_MAPS_PLACEMENT_BASE_DESC', 10),
+        ('MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_DUEL', 'LOC_MPT_MAPS_PLACEMENT_DUEL_NAME', 'LOC_MPT_MAPS_PLACEMENT_DUEL_DESC', 20),
+        ('MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_2V2', 'LOC_MPT_MAPS_PLACEMENT_2V2_NAME', 'LOC_MPT_MAPS_PLACEMENT_2V2_DESC', 30),
+        ('MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_3V3', 'LOC_MPT_MAPS_PLACEMENT_3V3_NAME', 'LOC_MPT_MAPS_PLACEMENT_3V3_DESC', 40),
+        ('MPTPlayerPlacements', 'MPT_MAPS_PLACEMENT_4V4', 'LOC_MPT_MAPS_PLACEMENT_4V4_NAME', 'LOC_MPT_MAPS_PLACEMENT_4V4_DESC', 50),
+        ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'LOC_MPT_MAPS_STRICT_BIASES_ON_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_ON_DESC', 10),
+        ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_OFF', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC', 20),
+        ('MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_ON', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC', 10),
+        ('MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_OFF', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC', 20);

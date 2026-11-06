@@ -24,7 +24,7 @@ function guaranteeModernResource(resourceType) {
       candidates.push(GameplayMap.getIndexFromXY(x, y));
     }
   }
-  shuffle(candidates, `EVW ${resourceType} transition candidates`);
+  shuffle(candidates, `MPT MAPS ${resourceType} transition candidates`);
   for (const plotIndex of candidates) {
     if (needed <= 0) break;
     const location = GameplayMap.getLocationFromIndex(plotIndex);
@@ -32,7 +32,7 @@ function guaranteeModernResource(resourceType) {
     ResourceBuilder.setResourceType(location.x, location.y, resource.$index);
     needed--;
   }
-  console.log(`EVW RESOURCES: transition guarantee ${resourceType}, target=${target}, remaining=${needed}`);
+  console.log(`MPT MAPS RESOURCES: transition guarantee ${resourceType}, target=${target}, remaining=${needed}`);
 }
 
 function guaranteeModernStrategics() {
@@ -42,6 +42,6 @@ function guaranteeModernStrategics() {
 }
 
 engine.on("GenerateAgeTransition", guaranteeModernStrategics);
-console.log("EVW RESOURCES: Modern Oil/Rubber transition guarantee loaded");
+console.log("MPT MAPS RESOURCES: Modern Oil/Rubber transition guarantee loaded");
 
 export { guaranteeModernStrategics };

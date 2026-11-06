@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_CULTURAL_FREE_GREAT_WORK_EXPLORATION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_COMPLETED_PROGRESSION_TREE_NODE">
+				<Argument name="ProgressionTreeNodeType">NODE_ATTRIBUTE_CULTURAL_06</Argument>
+				<Argument name="MinDepth">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ObjectType">GREATWORKOBJECT_RELIC</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_CULTURE_EXPLORATION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL" permanent="false">
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+		<String context="Description">LOC_MOD_ATTRIBUTE_MILITARISTIC_06_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_SCIENCE_EXPLORATION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL" permanent="false">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+</GameEffects>

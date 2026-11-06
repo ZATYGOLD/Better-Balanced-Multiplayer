@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Global Commander training on Military Buildings -->
+	<Modifier id="MPT_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP_WRAPPER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+		<Argument name="ModifierId">MPT_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_GRANT_UNIT_EXPERIENCE" run-once="false" permanent="true">
+		<OwnerRequirements>
+			<!-- Re-evaluate and grant XP when this Commander's owner starts their turn. -->
+			<Requirement type="REQUIREMENT_PLAYER_TURN_STARTED"/>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="Tag">MILITARY</Argument>
+				<Argument name="CurrentAgeOnly">false</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS">
+				<Argument name="DistrictClass">CITYCENTER, URBAN</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_IS_OWNER"/>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+<!-- Wonders -->
+<!-- Antiquity -->
+	<!-- Angkor Wat -->
+	<Modifier id="MPT_BALANCE_MOD_ANGKOR_WAT_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_ANGKOR_WAT</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Tooltip">LOC_ANGKOR_WAT_NAME</Argument>
+	</Modifier>
+	<!-- Mausoleum at Halicarnassus -->
+	<Modifier id="MPT_BALANCE_MOD_MAUSOLEUM_AT_HALICARNASSUS_CAVALRY_HEAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_POST_COMBAT_HEAL">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_MAUSOLEUM_AT_HALICARNASSUS</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_CAVALRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="AttackAmount">15</Argument>
+		<Argument name="Tooltip">LOC_WONDER_MAUSOLEUM_AT_HALICARNASSUS_NAME</Argument>
+	</Modifier>
+<!-- Exploration -->
+	<!-- Thanh Hue -->
+	<Modifier id="MPT_BALANCE_MOD_THANH_HUE_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_THANH_HUE</Argument>
+			</Requirement>
+            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+				<Argument name="Tag">FORTIFICATION</Argument>
+				<Argument name="Amount">3</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Tooltip">LOC_THANH_HUE_NAME</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_MOD_THANH_HUE_SPECIALIST_LIMIT" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_CAP">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_THANH_HUE</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+				<Argument name="Tag">FORTIFICATION</Argument>
+				<Argument name="Amount">3</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+<!-- Modern -->
+    <!-- Buganda wonder -->
+	<Modifier id="MPT_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" run-once="true" permanent="true">
+		<Argument name="TrackerName">VICTORY_TRACKER_MUZIBU_AZAALA_MPANGA_LAKES</Argument>
+	</Modifier>
+
+    <!-- Doi Suthep -->
+	<Modifier id="MPT_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_SUZERAIN">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_DOI_SUTHEP</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount">10</Argument>
+		<Argument name="Tooltip">LOC_WONDER_DOI_SUTHEP_NAME</Argument>
+	</Modifier>
+
+	<!-- Eram Garden -->
+	<Modifier id="MPT_BALANCE_MOD_ERAM_GARDEN_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_ERAM_GARDEN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">2</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Tooltip">LOC_ERAM_GARDEN_NAME</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_MOD_ERAM_GARDEN_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_ERAM_GARDEN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">2</Argument>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Tooltip">LOC_ERAM_GARDEN_NAME</Argument>
+	</Modifier>
+
+	<!-- Statue of Liberty -->
+	<Modifier id="MPT_BALANCE_MOD_STATUE_OF_LIBERTY_DIPLOMACY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
+				<Argument name="ConstructibleType">WONDER_STATUE_OF_LIBERTY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Tooltip">LOC_STATUE_OF_LIBERTY_NAME</Argument>
+	</Modifier>
+
+	<!-- Nirayama Reverberatory Furnace -->
+	<Modifier id="MPT_BALANCE_MOD_NIRAYAMA_REVERBERATORY_FURNACE_MINE_SCIENCE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="ConstructibleType">IMPROVEMENT_MINE</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="ConstructibleType">IMPROVEMENT_MINE_RESOURCE</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Tooltip">LOC_WONDER_NIRAYAMA_REVERBERATORY_FURNACE_NAME</Argument>
+	</Modifier>
+
+	<!-- Hermitage -->
+	<Modifier id="MPT_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" run-once="true" permanent="true">
+		<Argument name="TrackerName">VICTORY_TRACKER_HERMITAGE_ARTIFACTS</Argument>
+	</Modifier>
+
+
+	
+</GameEffects>

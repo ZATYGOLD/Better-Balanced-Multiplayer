@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- First file: TurnPhases.xml -->
+<Database>
+    <Types>
+        <Row Type="MPT_TURNPHASE_COP" Kind="KIND_TURNSEGMENT"/>
+
+        <Row Type="MPT_TURNPHASE_STANDARD" Kind="KIND_TURNSEGMENT"/>
+    
+        <Row Type="MPT_TURNPHASE_BLITZ" Kind="KIND_TURNSEGMENT"/>
+
+        <Row Type="MPT_TURNPHASE_CASUAL" Kind="KIND_TURNSEGMENT"/>
+    
+    </Types>
+
+    <!-- Define the turn segments with the specific time parameters -->
+    <TurnSegments>
+        <!-- 45 seconds base, 5 seconds per settlement, 1 seconds per unit -->
+        <Row TurnSegmentType="MPT_TURNPHASE_STANDARD_SINGLEPHASE" Name="" Sound="Play_MP_Strategic_Turn_Start" AllowStrategicCommands="true" AllowTacticalCommands="true" TimeLimit_Base="45" TimeLimit_PerCity="5" TimeLimit_PerUnit="1"/>
+        <!-- 35 seconds base, 4 seconds per settlement, 1 seconds per unit -->
+        <Row TurnSegmentType="MPT_TURNPHASE_COP_SINGLEPHASE" Name="" Sound="Play_MP_Strategic_Turn_Start" AllowStrategicCommands="true" AllowTacticalCommands="true" TimeLimit_Base="35" TimeLimit_PerCity="4" TimeLimit_PerUnit="1"/>
+        <!-- 30 seconds base, 3 seconds per settlement, 1 second per unit -->
+        <Row TurnSegmentType="MPT_TURNPHASE_BLITZ_SINGLEPHASE" Name="" Sound="Play_MP_Strategic_Turn_Start" AllowStrategicCommands="true" AllowTacticalCommands="true" TimeLimit_Base="30" TimeLimit_PerCity="3" TimeLimit_PerUnit="1"/>
+        <!-- 35 seconds base, 4 seconds per settlement, 2 seconds per unit -->
+        <Row TurnSegmentType="MPT_TURNPHASE_CASUAL_SINGLEPHASE" Name="" Sound="Play_MP_Strategic_Turn_Start" AllowStrategicCommands="true" AllowTacticalCommands="true" TimeLimit_Base="35" TimeLimit_PerCity="4" TimeLimit_PerUnit="2"/>
+    
+    
+    </TurnSegments>
+
+    <!-- Define the turn phases that combine the segments -->
+    <TurnPhases>
+        <Row TurnPhaseType="MPT_TURNPHASE_COP" PhaseOrder="0" TurnMode="TURNMODE_SIMULTANEOUS" ActiveSegmentType="MPT_TURNPHASE_COP_SINGLEPHASE"/>
+
+        <Row TurnPhaseType="MPT_TURNPHASE_STANDARD" PhaseOrder="0" TurnMode="TURNMODE_SIMULTANEOUS" ActiveSegmentType="MPT_TURNPHASE_STANDARD_SINGLEPHASE"/>
+    
+        <Row TurnPhaseType="MPT_TURNPHASE_BLITZ" PhaseOrder="0" TurnMode="TURNMODE_SIMULTANEOUS" ActiveSegmentType="MPT_TURNPHASE_BLITZ_SINGLEPHASE"/>
+
+        <Row TurnPhaseType="MPT_TURNPHASE_CASUAL" PhaseOrder="0" TurnMode="TURNMODE_SIMULTANEOUS" ActiveSegmentType="MPT_TURNPHASE_CASUAL_SINGLEPHASE"/>
+    
+    </TurnPhases>
+</Database>

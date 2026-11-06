@@ -40,7 +40,7 @@ const strictBiasFailures = new Map();
 
 function isStrictStartBiasEnabled() {
   // MPT: On only when chosen; the option exists only in multiplayer setup.
-  return Configuration.getMapValue("EvWStrictStartBiases") === "EVW_STRICT_BIASES_ON";
+  return Configuration.getMapValue("MPTStrictStartBiases") === "MPT_MAPS_STRICT_BIASES_ON";
 }
 
 function lookupTypeName(table, value, propertyName) {
@@ -187,7 +187,7 @@ function recordStrictStartBiasFailure(playerId, reason) {
     strictBiasFailures.set(playerId, { playerId, reason, requirement: describePlayerStrictStartBias(playerId) });
   }
   console.log(
-    `EVW STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`
+    `MPT MAPS STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`
   );
 }
 

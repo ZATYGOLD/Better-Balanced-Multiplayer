@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Classical Republic passive: exact, non-stacking Happiness tiers. -->
+	<Modifier id="MPT_BALANCE_CLASSICAL_REPUBLIC_CULTURE_HAPPY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_GOVERNMENT"><Argument name="GovernmentType">GOVERNMENT_CLASSICAL_REPUBLIC</Argument></Requirement>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES"><Argument name="IsExact">true</Argument><Argument name="HappinessStage">HAPPINESS_STAGE_HAPPY</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument><Argument name="Amount">1</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_CLASSICAL_REPUBLIC_CULTURE_JOYOUS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_GOVERNMENT"><Argument name="GovernmentType">GOVERNMENT_CLASSICAL_REPUBLIC</Argument></Requirement>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES"><Argument name="IsExact">true</Argument><Argument name="HappinessStage">HAPPINESS_STAGE_JOYOUS</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument><Argument name="Amount">2</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_CLASSICAL_REPUBLIC_CULTURE_ECSTATIC" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_GOVERNMENT"><Argument name="GovernmentType">GOVERNMENT_CLASSICAL_REPUBLIC</Argument></Requirement>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES"><Argument name="IsExact">true</Argument><Argument name="HappinessStage">HAPPINESS_STAGE_ECSTATIC</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument><Argument name="Amount">4</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_CLASSICAL_REPUBLIC_WONDER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WONDER_PRODUCTION"><Argument name="Percent">15</Argument></Modifier>
+	<Modifier id="MPT_BALANCE_CLASSICAL_REPUBLIC_WONDER_PRODUCTION_JOYOUS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WONDER_PRODUCTION">
+		<SubjectRequirements><Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES"><Argument name="IsGreaterThanOrEquals">true</Argument><Argument name="HappinessStage">HAPPINESS_STAGE_JOYOUS</Argument></Requirement></SubjectRequirements>
+		<Argument name="Percent">15</Argument>
+	</Modifier>
+
+	<!-- Despotism passive and Celebrations. -->
+	<Modifier id="MPT_BALANCE_DESPOTISM_PRODUCTION_BUILDING_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_GOVERNMENT"><Argument name="GovernmentType">GOVERNMENT_DESPOTISM</Argument></Requirement></SubjectRequirements>
+		<Argument name="Tag">PRODUCTION</Argument><Argument name="YieldType">YIELD_SCIENCE</Argument><Argument name="Amount">1</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_DESPOTISM_PRODUCTION_WAREHOUSE_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_GOVERNMENT"><Argument name="GovernmentType">GOVERNMENT_DESPOTISM</Argument></Requirement></SubjectRequirements>
+		<Argument name="Tag">PRODUCTION_WAREHOUSE</Argument><Argument name="YieldType">YIELD_SCIENCE</Argument><Argument name="Amount">1</Argument>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_DESPOTISM_CELEBRATION_PRODUCTION_BUILDINGS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION"><Argument name="Tag">PRODUCTION</Argument><Argument name="Percent">20</Argument></Modifier>
+	<Modifier id="MPT_BALANCE_DESPOTISM_CELEBRATION_PRODUCTION_WAREHOUSES" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION"><Argument name="Tag">PRODUCTION_WAREHOUSE</Argument><Argument name="Percent">20</Argument></Modifier>
+	<Modifier id="MPT_BALANCE_DESPOTISM_CELEBRATION_UNIT_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION"><Argument name="UnitClass">UNIT_CLASS_COMBAT</Argument><Argument name="Percent">20</Argument></Modifier>
+	<Modifier id="MPT_BALANCE_DESPOTISM_CELEBRATION_UNIT_PURCHASING" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_PLAYER_OR_CITY_UNIT_PURCHASE_EFFICIENCY"><Argument name="UnitTag">UNIT_CLASS_COMBAT</Argument><Argument name="Percent">20</Argument></Modifier>
+
+</GameEffects>
