@@ -1,0 +1,26 @@
+<Database>
+    <ProgressionTreeNodeUnlocks>
+        <Delete TargetType="TRADITION_NGATU_II"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_MAIN_NATURAL_HISTORY" TargetKind="KIND_TRADITION" TargetType="TRADITION_EXPEDITIONS" UnlockDepth="2"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_TONGA_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="TRADITION_TAKUAKA_II" UnlockDepth="1"/>        
+    </ProgressionTreeNodeUnlocks>
+
+    <ProgressionTreePrereqs>
+        <!-- Tech -->
+        <Delete Node="NODE_TECH_MO_NUCLEAR_FISSION"/>
+        <Row Node="NODE_TECH_MO_NUCLEAR_FISSION" PrereqNode="NODE_TECH_MO_COMPUTATION"/>
+		<Row Node="NODE_TECH_MO_NUCLEAR_FISSION" PrereqNode="NODE_TECH_MO_MOBILIZATION"/>
+		<Row Node="NODE_TECH_MO_NUCLEAR_FISSION" PrereqNode="NODE_TECH_MO_ARMOR"/>
+        <Row Node="NODE_TECH_MO_ROCKETRY" PrereqNode="NODE_TECH_MO_NUCLEAR_FISSION"/>
+        <Delete Node="NODE_TECH_MO_FUTURE_TECH"/>
+        <Row Node="NODE_TECH_MO_FUTURE_TECH" PrereqNode="NODE_TECH_MO_ROCKETRY"/>
+        <!-- Culture -->
+        <Delete Node="NODE_CIVIC_MO_BRANCH_LIBERALISM"/>
+        <Row Node="NODE_CIVIC_MO_BRANCH_PROGRESSIVISM" PrereqNode="NODE_CIVIC_MO_BRANCH_DEMOCRACY"/>
+        <Delete Node="NODE_CIVIC_MO_BRANCH_RADICALISM"/>
+        <Row Node="NODE_CIVIC_MO_BRANCH_AUTHORITARIANISM" PrereqNode="NODE_CIVIC_MO_BRANCH_FASCISM"/>
+        <Delete Node="NODE_CIVIC_MO_BRANCH_CENTRALISM"/>
+        <Row Node="NODE_CIVIC_MO_BRANCH_SOCIALISM" PrereqNode="NODE_CIVIC_MO_BRANCH_COMMUNISM"/>
+    </ProgressionTreePrereqs>
+
+</Database>

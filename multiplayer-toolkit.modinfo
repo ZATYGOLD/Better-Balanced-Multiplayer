@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="multiplayer-toolkit" version="00610" xmlns="ModInfo">
+<Mod id="multiplayer-toolkit" version="00620" xmlns="ModInfo">
     <Properties>
         <Name>LOC_MOD_MPT_NAME</Name>
         <Description>LOC_MOD_MPT_DESCRIPTION</Description>
-        <Authors>Zatygold</Authors>
+        <Authors>Zatygold, Gohei427</Authors>
         <Package>Mod</Package>
-        <AffectsSavedGames>0</AffectsSavedGames>
-        <Version>0.6.1</Version>
-        <LastUpdated>2026-10-04</LastUpdated>
+        <AffectsSavedGames>1</AffectsSavedGames>
+        <Version>0.6.2</Version>
+        <LastUpdated>2026-11-07</LastUpdated>
         <ShowInBrowser>1</ShowInBrowser>
     </Properties>
 
@@ -31,6 +31,52 @@
         </Criteria>
         <Criteria id="modern-age-current">
             <AgeInUse>AGE_MODERN</AgeInUse>
+        </Criteria>
+
+<!--*************************** CRITERIA: BALANCE *************************************************-->
+
+        <!-- The Multiplayer Balance lobby option, alone, per Age and with its victory threshold option. -->
+        <Criteria id="balance-on">
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="balance-antiquity">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="balance-exploration">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="balance-modern">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="balance-victory-threshold-low">
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MBMVictoryThresholdScale</ConfigurationId><Value>MBM_VICTORY_THRESHOLD_LOW</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="balance-victory-threshold-very-low">
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_ON</Value></ConfigurationValueMatches>
+            <ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MBMVictoryThresholdScale</ConfigurationId><Value>MBM_VICTORY_THRESHOLD_VERY_LOW</Value></ConfigurationValueMatches>
+        </Criteria>
+
+<!--*************************** CRITERIA: MAPS ****************************************************-->
+
+        <!-- The Custom Resource System lobby option (Map Options), alone and per Age. -->
+        <Criteria id="maps-resource-system-on">
+            <ConfigurationValueMatches><Group>Map</Group><ConfigurationId>EvWResourceSystem</ConfigurationId><Value>EVW_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="maps-resources-antiquity">
+            <AgeInUse>AGE_ANTIQUITY</AgeInUse>
+            <ConfigurationValueMatches><Group>Map</Group><ConfigurationId>EvWResourceSystem</ConfigurationId><Value>EVW_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="maps-resources-exploration">
+            <AgeInUse>AGE_EXPLORATION</AgeInUse>
+            <ConfigurationValueMatches><Group>Map</Group><ConfigurationId>EvWResourceSystem</ConfigurationId><Value>EVW_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
+        </Criteria>
+        <Criteria id="maps-resources-modern">
+            <AgeInUse>AGE_MODERN</AgeInUse>
+            <ConfigurationValueMatches><Group>Map</Group><ConfigurationId>EvWResourceSystem</ConfigurationId><Value>EVW_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
         </Criteria>
     </ActionCriteria>
 
@@ -137,11 +183,335 @@
                 </UpdateDatabase>
             </Actions>
         </ActionGroup>
+
+<!--*************************** BALANCE (from Multiplayer Balance Mod) ***************************-->
+
+        <!-- Lobby options and text: always (the shell loads before any game option is known). -->
+        <ActionGroup id="mpt-balance-shell" scope="shell" criteria="always">
+            <Properties><LoadOrder>200</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/config/setup-parameters.xml</Item>
+                    <Item>balance/config/policies.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>balance/text/en_us/text.sql</Item>
+                    <Item>balance/text/en_us/modern-text.sql</Item>
+                    <Item>balance/text/en_us/exploration-text.sql</Item>
+                    <Item>balance/text/en_us/antiquity-text.sql</Item>
+                    <Item>balance/data/mementos/mementos-text.sql</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+
+        <!-- Turn-phase presets: always, they back the lobby's default turn phase. -->
+        <ActionGroup id="mpt-balance-turn-phases" scope="game" criteria="always">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/xml/turnphases.xml</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+
+        <!-- Everything below loads only with the Multiplayer Balance lobby option On. -->
+        <ActionGroup id="mpt-balance-game" scope="game" criteria="balance-on">
+            <Properties><LoadOrder>201</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/mementos/mementos-gameeffects.xml</Item>
+                    <Item>balance/data/mementos/mementos.sql</Item>
+                    <Item>balance/data/xml/city-states-gameeffects.xml</Item>
+                    <Item>balance/data/xml/raze-rules-gameeffects.xml</Item>
+                    <Item>balance/data/xml/raze-rules.xml</Item>
+                    <Item>balance/data/xml/raze-dominion-gameeffects.xml</Item>
+                    <Item>balance/data/xml/raze-dominion.xml</Item>
+                    <Item>balance/data/xml/leaders-gameeffects.xml</Item>
+                    <Item>balance/data/xml/leaders.xml</Item>
+                    <Item>balance/data/xml/diplomacy.xml</Item>
+                    <Item>balance/data/xml/diplomacy-gameeffects.xml</Item>
+                    <Item>balance/data/sql/leaders.sql</Item>
+                    <Item>balance/data/sql/units.sql</Item>
+                    <Item>balance/data/xml/victoris.xml</Item>
+                    <Item>balance/data/xml/happiness.xml</Item>
+                    <Item>balance/data/sql/archaeology.sql</Item>
+                    <Item>balance/data/sql/victory-thresholds-standard.sql</Item>
+                    <Item>balance/data/pantheon/altar.sql</Item>
+                    <Item>balance/data/pantheon/carryover-tags.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>balance/text/en_us/text.sql</Item>
+                    <Item>balance/text/en_us/modern-text.sql</Item>
+                    <Item>balance/text/en_us/exploration-text.sql</Item>
+                    <Item>balance/text/en_us/antiquity-text.sql</Item>
+                    <Item>balance/data/mementos/mementos-text.sql</Item>
+                </UpdateText>
+                <UIScripts>
+                    <Item>balance/ui/commander-military-training.js</Item>
+                    <Item>balance/ui/one-tech-per-turn.js</Item>
+                </UIScripts>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-balance-victory-threshold-low" scope="game" criteria="balance-victory-threshold-low">
+            <Properties><LoadOrder>205</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/sql/victory-thresholds-low.sql</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-balance-victory-threshold-very-low" scope="game" criteria="balance-victory-threshold-very-low">
+            <Properties><LoadOrder>205</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/sql/victory-thresholds-very-low.sql</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-balance-antiquity" scope="game" criteria="balance-antiquity">
+            <Properties><LoadOrder>210</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/sql/antiquity/civilizations.sql</Item>
+                    <Item>balance/data/sql/exploration/civilizations.sql</Item>
+                    <Item>balance/data/sql/modern/civilizations.sql</Item>
+                    <Item>balance/data/sql/wonders.sql</Item>
+                    <Item>balance/data/sql/buildings.sql</Item>
+                    <Item>balance/data/sql/city-states.sql</Item>
+                    <Item>balance/data/xml/triumphs-gameeffects.xml</Item>
+                    <Item>balance/data/sql/triumphs.sql</Item>
+                    <Item>balance/data/sql/progression-trees.sql</Item>
+                    <Item>balance/data/xml/traditions-gameeffects.xml</Item>
+                    <Item>balance/data/xml/traditions.xml</Item>
+                    <Item>balance/data/xml/civilizations-gameeffects.xml</Item>
+                    <Item>balance/data/xml/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/xml/constructibles.xml</Item>
+                    <Item>balance/data/xml/constructibles-gameeffects.xml</Item>
+                    <Item>balance/data/xml/antiquity/civilizations.xml</Item>
+                    <Item>balance/data/xml/antiquity/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/sql/attributes.sql</Item>
+                    <Item>balance/data/xml/antiquity/governments-gameeffects.xml</Item>
+                    <Item>balance/data/xml/antiquity/governments.xml</Item>
+                    <Item>balance/data/sql/antiquity/units.sql</Item>
+                    <Item>balance/data/xml/antiquity/units-tier3.xml</Item>
+                    <Item>balance/data/xml/antiquity/progression-trees.xml</Item>
+                    <Item>balance/data/xml/antiquity/resources.xml</Item>
+                    <Item>balance/data/xml/antiquity/resources-gameeffects.xml</Item>
+                    <Item>balance/data/xml/antiquity/policies.xml</Item>
+                    <Item>balance/data/pantheon/balance.xml</Item>
+                    <Item>balance/data/pantheon/balance-gameeffects.xml</Item>
+                    <Item>balance/data/pantheon/antiquity-record.xml</Item>
+                    <Item>balance/data/pantheon/antiquity-record-gameeffects.xml</Item>
+                    <Item>balance/data/xml/warwarry.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>balance/text/en_us/modern-text.sql</Item>
+                    <Item>balance/text/en_us/exploration-text.sql</Item>
+                    <Item>balance/text/en_us/antiquity-text.sql</Item>
+                    <Item>balance/text/en_us/resources/antiquity.sql</Item>
+                </UpdateText>
+                <UpdateIcons>
+                    <Item>balance/data/icons/antiquity-unit-icons.xml</Item>
+                    <Item>balance/data/icons/pantheon-icons.xml</Item>
+                </UpdateIcons>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-balance-exploration" scope="game" criteria="balance-exploration">
+            <Properties><LoadOrder>220</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/sql/antiquity/civilizations.sql</Item>
+                    <Item>balance/data/sql/exploration/civilizations.sql</Item>
+                    <Item>balance/data/sql/modern/civilizations.sql</Item>
+                    <Item>balance/data/sql/wonders.sql</Item>
+                    <Item>balance/data/sql/buildings.sql</Item>
+                    <Item>balance/data/sql/city-states.sql</Item>
+                    <Item>balance/data/xml/triumphs-gameeffects.xml</Item>
+                    <Item>balance/data/sql/triumphs.sql</Item>
+                    <Item>balance/data/sql/progression-trees.sql</Item>
+                    <Item>balance/data/xml/traditions-gameeffects.xml</Item>
+                    <Item>balance/data/xml/traditions.xml</Item>
+                    <Item>balance/data/xml/civilizations-gameeffects.xml</Item>
+                    <Item>balance/data/xml/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/xml/constructibles.xml</Item>
+                    <Item>balance/data/xml/constructibles-gameeffects.xml</Item>
+                    <Item>balance/data/sql/units.sql</Item>
+                    <Item>balance/data/xml/exploration/civilizations.xml</Item>
+                    <Item>balance/data/xml/exploration/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/sql/attributes.sql</Item>
+                    <Item>balance/data/xml/exploration/governments-gameeffects.xml</Item>
+                    <Item>balance/data/xml/exploration/governments.xml</Item>
+                    <Item>balance/data/xml/exploration/constructibles.xml</Item>
+                    <Item>balance/data/xml/exploration/resources.xml</Item>
+                    <Item>balance/data/xml/exploration/resources-gameeffects.xml</Item>
+                    <Item>balance/data/sql/exploration/resources.sql</Item>
+                    <Item>balance/data/xml/exploration/progression-trees.xml</Item>
+                    <Item>balance/data/xml/exploration/policies.xml</Item>
+                    <Item>balance/data/sql/exploration/units.sql</Item>
+                    <Item>balance/data/pantheon/carryover.xml</Item>
+                    <Item>balance/data/pantheon/carryover-gameeffects.xml</Item>
+                    <Item>balance/data/xml/warwarry.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>balance/text/en_us/modern-text.sql</Item>
+                    <Item>balance/text/en_us/exploration-text.sql</Item>
+                    <Item>balance/text/en_us/antiquity-text.sql</Item>
+                    <Item>balance/text/en_us/resources/exploration.sql</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-balance-modern" scope="game" criteria="balance-modern">
+            <Properties><LoadOrder>230</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>balance/data/sql/antiquity/civilizations.sql</Item>
+                    <Item>balance/data/sql/exploration/civilizations.sql</Item>
+                    <Item>balance/data/sql/modern/civilizations.sql</Item>
+                    <Item>balance/data/sql/wonders.sql</Item>
+                    <Item>balance/data/sql/buildings.sql</Item>
+                    <Item>balance/data/sql/city-states.sql</Item>
+                    <Item>balance/data/xml/triumphs-gameeffects.xml</Item>
+                    <Item>balance/data/sql/triumphs.sql</Item>
+                    <Item>balance/data/sql/progression-trees.sql</Item>
+                    <Item>balance/data/xml/traditions-gameeffects.xml</Item>
+                    <Item>balance/data/xml/traditions.xml</Item>
+                    <Item>balance/data/xml/civilizations-gameeffects.xml</Item>
+                    <Item>balance/data/xml/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/xml/constructibles.xml</Item>
+                    <Item>balance/data/xml/constructibles-gameeffects.xml</Item>
+                    <Item>balance/data/xml/modern/civilizations.xml</Item>
+                    <Item>balance/data/xml/modern/attributes-gameeffects.xml</Item>
+                    <Item>balance/data/sql/attributes.sql</Item>
+                    <Item>balance/data/xml/modern/governments-gameeffects.xml</Item>
+                    <Item>balance/data/xml/modern/governments.xml</Item>
+                    <Item>balance/data/xml/modern/constructibles.xml</Item>
+                    <Item>balance/data/xml/modern/progression-trees.xml</Item>
+                    <Item>balance/data/xml/modern/resources.xml</Item>
+                    <Item>balance/data/xml/modern/resources-gameeffects.xml</Item>
+                    <Item>balance/data/xml/modern/policies.xml</Item>
+                    <Item>balance/data/sql/modern/units.sql</Item>
+                    <Item>balance/data/pantheon/carryover.xml</Item>
+                    <Item>balance/data/pantheon/carryover-gameeffects.xml</Item>
+                    <Item>balance/data/xml/warwarry.xml</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>balance/text/en_us/modern-text.sql</Item>
+                    <Item>balance/text/en_us/exploration-text.sql</Item>
+                    <Item>balance/text/en_us/antiquity-text.sql</Item>
+                    <Item>balance/text/en_us/resources/modern.sql</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+
+<!--*************************** MAPS (from Multiplayer Map Mod) ***********************************-->
+
+        <ActionGroup id="mpt-maps-shell" scope="shell" criteria="always">
+            <Properties><LoadOrder>300</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>maps/config/map-options.xml</Item>
+                    <Item>maps/config/multiplayer-only.sql</Item>
+                    <Item>maps/config/compatibility.sql</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>maps/text/en_us/MapText.xml</Item>
+                </UpdateText>
+                <UIScripts>
+                    <Item>maps/ui/multiplayer-defaults.js</Item>
+                </UIScripts>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-maps-game" scope="game" criteria="always">
+            <Properties><LoadOrder>300</LoadOrder></Properties>
+            <Actions>
+                <MapGenScripts>
+                    <Item>{multiplayer-toolkit}maps/scripts/global-team-starts.js</Item>
+                </MapGenScripts>
+                <UIScripts>
+                    <Item>maps/ui/strict-start-bias-notification.js</Item>
+                </UIScripts>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-maps-resource-system" scope="game" criteria="maps-resource-system-on">
+            <Properties><LoadOrder>310</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>maps/data/resource-system.sql</Item>
+                    <Item>maps/data/density-standard.sql</Item>
+                </UpdateDatabase>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-maps-resources-antiquity" scope="game" criteria="maps-resources-antiquity">
+            <Properties><LoadOrder>350</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>maps/data/effects-reset.sql</Item>
+                    <Item>maps/data/effects-common.xml</Item>
+                    <Item>maps/data/effects-antiquity.sql</Item>
+                    <Item>maps/data/effects-antiquity.xml</Item>
+                    <Item>maps/data/classes-antiquity.sql</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>maps/text/en_us/ResourceText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-maps-resources-exploration" scope="game" criteria="maps-resources-exploration">
+            <Properties><LoadOrder>350</LoadOrder></Properties>
+            <Actions>
+                <UpdateDatabase>
+                    <Item>maps/data/effects-reset.sql</Item>
+                    <Item>maps/data/effects-common.xml</Item>
+                    <Item>maps/data/effects-exploration.sql</Item>
+                    <Item>maps/data/effects-exploration.xml</Item>
+                    <Item>maps/data/classes-exploration.sql</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>maps/text/en_us/ResourceText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
+
+        <ActionGroup id="mpt-maps-resources-modern" scope="game" criteria="maps-resources-modern">
+            <Properties><LoadOrder>350</LoadOrder></Properties>
+            <Actions>
+                <ImportFiles>
+                    <Item>maps/scripts/modern-resource-guarantee.js</Item>
+                </ImportFiles>
+                <UpdateDatabase>
+                    <Item>maps/data/effects-reset.sql</Item>
+                    <Item>maps/data/effects-common.xml</Item>
+                    <Item>maps/data/effects-modern.sql</Item>
+                    <Item>maps/data/effects-modern.xml</Item>
+                    <Item>maps/data/classes-modern.sql</Item>
+                </UpdateDatabase>
+                <UpdateText>
+                    <Item>maps/text/en_us/ResourceText.xml</Item>
+                </UpdateText>
+            </Actions>
+        </ActionGroup>
     </ActionGroups>
 
 <!--************************* LOCALIZED TEXT ************************************************-->
 
     <LocalizedText>
         <File>text/en_us/mod-info-text.xml</File>
+        <File>maps/text/en_us/MapText.xml</File>
+        <File>balance/text/en_us/text.sql</File>
+        <File>balance/text/en_us/antiquity-text.sql</File>
+        <File>balance/text/en_us/exploration-text.sql</File>
+        <File>balance/text/en_us/modern-text.sql</File>
+        <File>balance/text/en_us/resources/antiquity.sql</File>
+        <File>balance/text/en_us/resources/exploration.sql</File>
+        <File>balance/text/en_us/resources/modern.sql</File>
     </LocalizedText>
 </Mod>

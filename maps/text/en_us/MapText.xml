@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <LocalizedText>
+        <Row Tag="LOC_EVW_PLAYER_PLACEMENT_NAME" Language="en_US">
+            <Text>Player Placement</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLAYER_PLACEMENT_DESC" Language="en_US">
+            <Text>Choose whole-map placement or an East vs West competitive layout. Every solved start requires Fresh Water and 12 tiles of separation.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_BASE_NAME" Language="en_US">
+            <Text>Base</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_BASE_DESC" Language="en_US">
+            <Text>Search the whole eligible map for Fresh Water starts at least 12 tiles apart; retain all original starts if no complete solution exists.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_DUEL_NAME" Language="en_US">
+            <Text>Duel</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_DUEL_DESC" Language="en_US">
+            <Text>Two-player East vs West placement: Slot 1 starts anywhere across the western side and Slot 2 anywhere across the eastern side.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_2V2_NAME" Language="en_US">
+            <Text>2v2</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_2V2_DESC" Language="en_US">
+            <Text>Four-player East vs West placement: Slots 1/2 backline and Slots 3/4 frontline.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_3V3_NAME" Language="en_US">
+            <Text>3v3</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_3V3_DESC" Language="en_US">
+            <Text>Six-player East vs West placement: Slots 1-4 backline and Slots 5/6 frontline.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_4V4_NAME" Language="en_US">
+            <Text>4v4</Text>
+        </Row>
+        <Row Tag="LOC_EVW_PLACEMENT_4V4_DESC" Language="en_US">
+            <Text>Eight-player East vs West placement: Slots 1-4 backline and Slots 5-8 frontline.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_NAME" Language="en_US">
+            <Text>Strict Start Biases</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_DESC" Language="en_US">
+            <Text>Require supported leaders and civilizations to start on or near their specified terrain. Normal weighted start biases still rank all qualifying tiles. All players receive a warning if a requirement cannot be met.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_ON_NAME" Language="en_US">
+            <Text>On</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_ON_DESC" Language="en_US">
+            <Text>Enforce the mod's strict leader and civilization start requirements.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_OFF_NAME" Language="en_US">
+            <Text>Off</Text>
+        </Row>
+        <Row Tag="LOC_EVW_STRICT_BIASES_OFF_DESC" Language="en_US">
+            <Text>Use only the game's normal weighted biases; Fresh Water and 12-tile separation remain required.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_NAME" Language="en_US">
+            <Text>Custom Resource System</Text>
+        </Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_DESC" Language="en_US">
+            <Text>Controls the Multiplayer Map Mod resource pools, persistent resources, custom placement rules, classes, yields, tooltips, and age-specific effects.</Text>
+        </Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_ON_NAME" Language="en_US"><Text>On</Text></Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_ON_DESC" Language="en_US"><Text>Use the mod's complete resource system at Standard density.</Text></Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_OFF_NAME" Language="en_US"><Text>Off</Text></Row>
+        <Row Tag="LOC_EVW_RESOURCE_SYSTEM_OFF_DESC" Language="en_US"><Text>Use Civilization VII's normal resources, placement, and effects.</Text></Row>
+        <Row Tag="LOC_MAP_EVW_BALANCED_FFA_PANGAEA_NAME" Language="en_US">
+            <Text>Pangaea Ultima</Text>
+        </Row>
+        <Row Tag="LOC_MAP_EVW_BALANCED_FFA_PANGAEA_DESC" Language="en_US">
+            <Text>one large central Pangaea, with islands in the surrounding ocean.</Text>
+        </Row>
+        <Row Tag="LOC_MPT_MAPS_MULTIPLAYER_SETUP" Language="en_US"><Text>Multiplayer setup</Text></Row>
+    </LocalizedText>
+</Database>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+<!-- Exploration Trade Outposts -->
+	<Modifier id="MBM_TOWN_TRADE_PROJECT" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_UNLOCK_PROJECT">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="ProjectType">PROJECT_TOWN_TRADE</Argument>
+	</Modifier>
+
+
+
+<!-- Greece -->
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_ENDEAVOR_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ENDEAVOR</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_SANCTION_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_SANCTION</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_PROJECT_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_PROJECT</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_ESPIONAGE_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ESPIONAGE</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument> 
+	</Modifier>
+
+	<!-- - - - - - - -->
+
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_TREATY</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+
+	<!-- - - - - - - -->
+
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT_EX" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_TREATY</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">3</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_TREATY</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
+	</Modifier>
+
+<!-- Rome -->
+	<!-- Legion: +1 Combat Strength per slotted Tradition, capped at +4. -->
+	<Modifier id="MBM_LEGION_TRADITION_COMBAT_1" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">1</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_ABILITY_LEGION_PREVIEW</String>
+	</Modifier>
+	<Modifier id="MBM_LEGION_TRADITION_COMBAT_2" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">2</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_ABILITY_LEGION_PREVIEW</String>
+	</Modifier>
+	<Modifier id="MBM_LEGION_TRADITION_COMBAT_3" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">3</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_ABILITY_LEGION_PREVIEW</String>
+	</Modifier>
+	<Modifier id="MBM_LEGION_TRADITION_COMBAT_4" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">4</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_ABILITY_LEGION_PREVIEW</String>
+	</Modifier>
+	
+<!-- Iceland -->
+	<Modifier id="MBM_ICELAND_MO_MOD_NATURAL_WONDER_CULTURE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET">
+				<Argument name="RequirementSetId">REQSET_ICELAND_MO_MOD</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_ICELAND_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_ICELAND_EX_MOD_NATURAL_WONDER_CULTURE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET">
+				<Argument name="RequirementSetId">REQSET_ICELAND_MO_MOD</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">3</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_ICELAND_ABILITY_NAME</Argument>
+	</Modifier>
+<!-- Sengoku -->
+	<Modifier id="MBM_SENGOKU_MOD_COMMANDER_XP_CULTURE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
+		 <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+	</Modifier>
+	<Modifier id="MBM_SENGOKU_MOD_COMMANDER_XP_SCIENCE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
+		 <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+	</Modifier>
+	<Modifier id="MBM_SENGOKU_MOD_COMMANDER_XP_INFLUENCE_MO" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
+		 <SubjectRequirements>
+            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+            </Requirement>
+        </SubjectRequirements>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+<!-- Great Britan -->
+	<Modifier id="MBM_GB_MODERN_COASTAL_BUILDING_SCIENCE_A" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_COAST"/>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS">
+				<Argument name="DistrictClass">CITYCENTER, URBAN</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="CurrentAgeOnly">true</Argument>
+				<Argument name="ExcludeTag">DISTRICT_WALL</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREAT_BRITAIN_ABILITY_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="MBM_GB_MODERN_COASTAL_BUILDING_SCIENCE_B" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_COAST"/>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS">
+				<Argument name="DistrictClass">CITYCENTER, URBAN</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="CurrentAgeOnly">true</Argument>
+				<Argument name="ExcludeTag">DISTRICT_WALL</Argument>
+				<Argument name="Count">2</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_GREAT_BRITAIN_ABILITY_NAME</Argument>
+	</Modifier>
+
+<!-- Joseon -->
+	<Modifier id="MBM_JOSEON_EXPLORATION_STARTING_CITY_LIMIT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_CITY_LIMIT" permanent="true">
+		<Argument name="Amount">3</Argument>
+	</Modifier>
+	<Modifier id="MBM_JOSEON_MODERN_STARTING_CITY_LIMIT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_CITY_LIMIT" permanent="true">
+		<Argument name="Amount">4</Argument>
+	</Modifier>
+	
+<!-- Qajar -->
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ_CAPITAL" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_EX" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">3</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_EX_CAPITAL" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">3</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_MO" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">5</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_MO_CAPITAL" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
+		<Argument name="Amount">5</Argument>
+		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+	</Modifier>
+<!-- Russia -->
+	<Modifier id="MBM_PROSVESHCHENIE_TOWN_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<Argument name="WarehouseYieldChange">Prosveshchenie_DesertFloodplainFeatureFood,Prosveshchenie_GrasslandFloodplainFeatureFood,Prosveshchenie_PlainsFloodplainFeatureFood,Prosveshchenie_TropicalFloodplainFeatureFood,Prosveshchenie_TundraFloodplainFeatureFood,Prosveshchenie_FlatTerrainFood</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_TOWN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_TUNDRA</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="WarehouseYieldChange">Prosveshchenie_DesertFloodplainFeatureProduction,Prosveshchenie_GrasslandFloodplainFeatureProduction,Prosveshchenie_PlainsFloodplainFeatureProduction,Prosveshchenie_TropicalFloodplainFeatureProduction,Prosveshchenie_TundraFloodplainFeatureProduction,Prosveshchenie_FlatTerrainProduction</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+
+	<!-- Russia: Base-game Quarter effect expanded from Cities to all Settlements. Modern uses +2 versions. -->
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<Argument name="ModifierId">MBM_PROSVESHCHENIE_QUARTER_CULTURE,MBM_PROSVESHCHENIE_QUARTER_SCIENCE</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_CULTURE" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_QUARTER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_SCIENCE" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<!-- Matches the base-game Tundra settlement requirement, without restricting the Settlement to a City. -->
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_TUNDRA</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_QUARTER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_YIELDS_MODERN" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<Argument name="ModifierId">MBM_PROSVESHCHENIE_QUARTER_CULTURE_MODERN,MBM_PROSVESHCHENIE_QUARTER_SCIENCE_MODERN</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_CULTURE_MODERN" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_QUARTER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_PROSVESHCHENIE_QUARTER_SCIENCE_MODERN" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<!-- Matches the base-game Tundra settlement requirement, without restricting the Settlement to a City. -->
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_TUNDRA</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_QUARTER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
+	</Modifier>
+
+</GameEffects>
+

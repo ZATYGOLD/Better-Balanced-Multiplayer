@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Offset the Settlement Limit by one for every Settlement currently being razed. -->
+	<Modifier id="MBM_MOD_RAZING_SETTLEMENT_CAP_OFFSET" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_PLAYER_ADJUST_SETTLEMENT_CAP">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_RAZED"/>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+</GameEffects>

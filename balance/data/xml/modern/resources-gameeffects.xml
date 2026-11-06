@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<Modifier id="MBM_MOD_NITER_RANGED_SIEGE_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_RANGED, UNIT_CLASS_SIEGE</Argument>
+		<Argument name="ResourceType">RESOURCE_NITER</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_OIL_CAVALRY_HEAVY_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_CAVALRY, UNIT_CLASS_HEAVY</Argument>
+		<Argument name="ResourceType">RESOURCE_OIL</Argument>
+	</Modifier>
+	<Modifier id="MBM_MOD_RUBBER_INFANTRY_AIR_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_INFANTRY, UNIT_CLASS_AIRCRAFT</Argument>
+		<Argument name="ResourceType">RESOURCE_RUBBER</Argument>
+	</Modifier>
+</GameEffects>

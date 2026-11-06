@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<HappinessStages>
+		<Update><Where Age="AGE_EXPLORATION" HappinessStageType="HAPPINESS_STAGE_HAPPY"/><Set StageMaxThreshold="20"/></Update>
+		<Update><Where Age="AGE_EXPLORATION" HappinessStageType="HAPPINESS_STAGE_JOYOUS"/><Set StageMinThreshold="20" StageMaxThreshold="40"/></Update>
+		<Update><Where Age="AGE_EXPLORATION" HappinessStageType="HAPPINESS_STAGE_ECSTATIC"/><Set StageMinThreshold="40"/></Update>
+	</HappinessStages>
+	<GovernmentModifiers>
+		<Delete GovernmentType="GOVERNMENT_PLUTOCRACY" ModifierId="MOD_PLUTOCRACY_PASSIVE_OVERBUILDING"/>
+		<Row GovernmentType="GOVERNMENT_PLUTOCRACY" ModifierId="MBM_PLUTOCRACY_OVERBUILDING"/>
+		<Delete GovernmentType="GOVERNMENT_THEOCRACY"/>
+		<Row GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="MBM_THEOCRACY_TEMPLE_PRODUCTION"/>
+		<Row GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="MBM_THEOCRACY_TEMPLE_PURCHASING"/>
+		<Row GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="MBM_THEOCRACY_MISSIONARY_PRODUCTION"/>
+		<Row GovernmentType="GOVERNMENT_THEOCRACY" ModifierId="MBM_THEOCRACY_MISSIONARY_PURCHASING"/>
+	</GovernmentModifiers>
+	<ModifierStrings>
+		<Row ModifierId="MBM_PLUTOCRACY_OVERBUILDING" Context="Description" Text="LOC_GOVERNMENT_PLUTOCRACY_PASSIVE_DESCRIPTION"/>
+		<Row ModifierId="MBM_THEOCRACY_TEMPLE_PRODUCTION" Context="Description" Text="LOC_GOVERNMENT_THEOCRACY_PASSIVE_DESCRIPTION"/>
+	</ModifierStrings>
+	<GoldenAgeModifiers>
+		<Delete GoldenAgeType="GOLDEN_AGE_PLUTOCRACY_2"/>
+		<Row GoldenAgeType="GOLDEN_AGE_PLUTOCRACY_2" ModifierID="MBM_PLUTOCRACY_CELEBRATION_MIGRANT"/>
+		<Delete GoldenAgeType="GOLDEN_AGE_THEOCRACY_2"/>
+		<Row GoldenAgeType="GOLDEN_AGE_THEOCRACY_2" ModifierID="MBM_THEOCRACY_CELEBRATION_MISSIONARY_MOVEMENT"/>
+		<Row GoldenAgeType="GOLDEN_AGE_THEOCRACY_2" ModifierID="MBM_THEOCRACY_CELEBRATION_MISSIONARY_IGNORE_ROUGH"/>
+		<Row GoldenAgeType="GOLDEN_AGE_THEOCRACY_2" ModifierID="MBM_THEOCRACY_CELEBRATION_MISSIONARY_IGNORE_VEGETATION"/>
+	</GoldenAgeModifiers>
+</Database>

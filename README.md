@@ -1,13 +1,19 @@
 # Multiplayer Toolkit
 
 Multiplayer quality-of-life features for **Sid Meier's Civilization VII**,
-built on the game's own UI components. Current version: **0.6.1**.
+built on the game's own UI components. Current version: **0.6.2**.
+By Zatygold and Gohei427.
 
 - **Competitive turn timer** — a Turn Timer option that scales with cities,
   units, human players and the turn number, with urgency tiers and sounds.
 - **Synchronized pause** — anyone can pause; everyone readies up (or the host
   resumes) and a shared countdown restarts the game. Disconnects, host
   changes and rejoins pause automatically.
+- **Multiplayer Balance** — competitive balance changes for civilizations,
+  leaders, units, governments, wonders, resources, pantheons, mementos and
+  victories (lobby option, On by default).
+- **Maps** — the Pangaea Ultima map, East vs West player placement, strict
+  start biases and a custom resource system.
 - **Lobby fixes** — ability names in civ / leader tooltips; a 5-second start
   countdown.
 
@@ -18,8 +24,10 @@ this mod).
 
 1. Copy the folder to `…\Sid Meier's Civilization VII\Mods\Multiplayer-Toolkit\`.
 2. Enable **Multiplayer Toolkit** in **Main Menu → Additional Content**.
-3. **Every player needs the mod** (menus and timer enforcement run per
-   client). It is dormant in single-player.
+3. **Every player needs the mod** (it changes game data, and menus and timer
+   enforcement run per client). Saves made with it need it to load.
+4. Disable the old **Multiplayer Balance Mod** and **Multiplayer Map Mod**:
+   their content is now part of this mod and would load twice.
 
 ---
 
@@ -73,28 +81,123 @@ Settings: `ui/mp-pause/mp-pause-config.js`. The engine exposes only a total
 
 ---
 
+## Multiplayer Balance
+
+Multiplayer only. Lobby option **Multiplayer Balance** (Game Options, On by
+default). Off gives the game's own balance; every balance file loads only when
+it is On, so single-player games always use the game's own balance.
+
+- Balance changes for civilizations, leaders, units, governments, policies,
+  traditions, wonders, buildings, resources, city-states, pantheons,
+  mementos, Triumphs, diplomacy, happiness, razing and victories, per Age.
+- **One technology per turn** — research completes at most one technology a
+  turn (overflow waits), queued paths still work.
+- **Commander training** — commanders on a military building earn bonus XP
+  each turn.
+- **Victory Threshold Scaling** (Advanced Victory Options): Standard, Low or
+  Very Low (default) for Culture, Economic and Military victories.
+
+Always available in multiplayer setup, whatever the option:
+
+- **Advanced Turn Timer Options** — presets for the game's Dynamic timer:
+  Standard, Competitive, Blitz and Casual (base / per city / per unit seconds).
+- A second minor memento slot.
+
+Everything lives in `balance/` (see Project structure).
+
+---
+
+## Maps
+
+Multiplayer only: the options below exist only in multiplayer setup, Pangaea
+Ultima is listed only there, and single-player maps are generated untouched.
+
+- **Pangaea Ultima** — one large central Pangaea with islands, in the Map list.
+- **Player Placement** (Map Options) — Base, Duel, 2v2, 3v3 or 4v4 East vs
+  West layouts for any map. Every start needs Fresh Water and 12 tiles of
+  separation; the most constrained player is placed first.
+- **Strict Start Biases** (Map Options) — leaders and civilizations start on
+  their terrain; everyone is warned on the first turn if one could not.
+- **Custom Resource System** (Map Options, On by default) — continent resource
+  identities, persistent resources across Ages, custom yields, classes,
+  tooltips and per-Age effects; Off keeps the game's resources.
+- **Multiplayer defaults** — new multiplayer games start on Online speed,
+  Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size
+  (the host can change them).
+
+Everything lives in `maps/` (see Project structure).
+
+---
+
+## Compatibility
+
+- **Zatygold's Advanced Settings Pro** — its Resources setting is used: with
+  it enabled the Custom Resource System option is removed and Pangaea Ultima
+  keeps the game's resources. Its lobby tooltips add the ability names, so the
+  Toolkit's own are switched off. Its settings (pacing, triumph sets, units...)
+  apply on top of the balance changes. Its lobby memento slots show the first
+  two slots; the second minor slot is set with Choose Mementos.
+- **Zatygold's Spectator** — the Observer adds no time to the Competitive timer
+  and never pauses the game by disconnecting; the Spectator keeps the Observer
+  out of Player Placement and off the start-bias warning.
+
+---
+
 ## Project structure
 
 ```
 Multiplayer-Toolkit/
-├─ multiplayer-toolkit.modinfo   # manifest, per-Age timer data
+├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
 ├─ config/                       # lobby DB: Competitive option, pause keybind
 ├─ data/timers/                  # Competitive timer numbers (default + per Age)
-├─ text/en_us/                   # mod info and in-game strings
-└─ ui/
-   ├─ mpt-shared/                # logger, method wrapping, deferred patching
-   ├─ mp-keybind/                # pause action in keyboard mapping
-   ├─ mp-lobby/                  # tooltips, countdown
-   ├─ mp-pause/                  # pause manager, overlay, chat commands
-   └─ mp-timer/                  # Competitive timer
+├─ text/en_us/                   # mod info and Toolkit strings
+├─ ui/
+│  ├─ mpt-shared/                # logger, method wrapping, deferred patching, companion mods
+│  ├─ mp-keybind/                # pause action in keyboard mapping
+│  ├─ mp-lobby/                  # tooltips, countdown
+│  ├─ mp-pause/                  # pause manager, overlay, chat commands
+│  └─ mp-timer/                  # Competitive timer
+├─ balance/                      # Multiplayer Balance (everything balance)
+│  ├─ config/                    # Balance option, turn-phase presets, memento slot, victory thresholds
+│  ├─ data/                      # balance changes (always / per Age)
+│  ├─ text/en_us/                # balance strings
+│  └─ ui/                        # one tech per turn, commander training
+└─ maps/                         # Maps (everything map)
+   ├─ config/                    # map list, Map Options, multiplayer-only filter, compatibility
+   ├─ data/                      # custom resource system (per Age)
+   ├─ maps/                      # map scripts (Pangaea Ultima, start placement)
+   ├─ scripts/                   # Voronoi map generator, global team starts
+   ├─ text/en_us/                # map strings
+   └─ ui/                        # multiplayer defaults, strict start bias warning
 ```
 
-Each feature has a `*-config.js` for settings, and modules patch the base UI at
-runtime (no base-game files are replaced). Diagnostics go to `UI.log`.
+Each Toolkit feature has a `*-config.js` for settings, and modules patch the
+base UI at runtime (no base-game files are replaced). Balance and Maps keep
+their original identifiers (`MBM_`, `EVW_`), so existing lobby settings carry
+over. Diagnostics go to `UI.log`.
 
 ---
 
 ## Changelog
+
+### 0.6.2
+
+- **Multiplayer Balance Mod merged in** (Gohei427, v0.5) — behind the new
+  **Multiplayer Balance** lobby option (On by default); its victory
+  thresholds follow the option too. The turn-phase presets and second memento
+  slot stay always available. A stray line after the end of its turn-phase
+  data file was removed, and the Casual preset's description now matches its
+  numbers (35s + 4s per city + 2s per unit).
+- **Multiplayer Map Mod merged in** (Gohei427, v1.7.1) — Pangaea Ultima,
+  Player Placement, Strict Start Biases and the Custom Resource System, with
+  their own lobby options as before.
+- **Multiplayer only** — every Balance and Maps option exists only in
+  multiplayer setup; Pangaea Ultima is listed only there; single-player map
+  generation is left untouched.
+- **Compatible with Advanced Settings Pro and Zatygold's Spectator** (see
+  Compatibility).
+- Balance and Maps each live in their own folder (`balance/`, `maps/`).
+- The mod now affects saved games, and Gohei427 is credited as co-author.
 
 ### 0.6.1
 
@@ -163,6 +266,7 @@ runtime (no base-game files are replaced). Diagnostics go to `UI.log`.
 
 ## License
 
-Copyright (C) 2026 Zatygold. Free software under the **GNU General Public
+Copyright (C) 2026 Zatygold and Gohei427 (Multiplayer Balance and Maps,
+included with permission). Free software under the **GNU General Public
 License v3 or later**, without any warranty. See [`LICENSE`](LICENSE) or
 <https://www.gnu.org/licenses/>.

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Traditions>
+		<!-- Reclassify the requested Antiquity cards as Exploration cards after transition. -->
+		<Update>
+			<Where TraditionType="TRADITION_DRILLS"/>
+			<Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_ETHICS"/>
+			<Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_SCHOLARS"/>
+			<Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_COINAGE"/>
+			<Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/>
+		</Update>
+
+		<!-- Exploration cards that remain available in Modern. -->
+		<Update><Where TraditionType="TRADITION_ENLIGHTENMENT"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_PATRONAGE"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_COLONIAL_SURPLUS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_TRADE_WINDS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_MARITIME_LAW"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_CHIVALRY"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_REGULARS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_CHARTERS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_UPOSATHA"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_INDENTURE"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+
+		<!-- Exploration replacement chain. -->
+		<Update>
+			<Where TraditionType="TRADITION_ENLIGHTENMENT"/>
+			<Set ObsoletesTraditionType="TRADITION_SCHOLARS"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_PATRONAGE"/>
+			<Set ObsoletesTraditionType="TRADITION_ETHICS"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_TRADE_WINDS"/>
+			<Set ObsoletesTraditionType="TRADITION_COINAGE"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_REGULARS"/>
+			<Set ObsoletesTraditionType="TRADITION_DRILLS"/>
+		</Update>
+
+		<!-- Commanderies was converted to a Policy Card by the Antiquity government changes. -->
+		<Update>
+			<Where TraditionType="TRADITION_COMMANDERIES"/>
+			<Set AgeType="AGE_EXPLORATION" CultureSlotType="POLICY_CULTURE_SLOT" IgnoreInitializeUnlock="true"/>
+		</Update>
+	</Traditions>
+
+	<ProgressionTreeNodeUnlocks>
+		<!-- Move Chivalry from Social Class to Authority. -->
+		<Delete TargetType="TRADITION_CHIVALRY"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_EX_MAIN_AUTHORITY" TargetKind="KIND_TRADITION" TargetType="TRADITION_CHIVALRY" UnlockDepth="1"/>
+	</ProgressionTreeNodeUnlocks>
+</Database>

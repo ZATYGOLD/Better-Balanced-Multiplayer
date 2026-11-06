@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Database>
+	<GameModifiers>
+		<Row ModifierId="MBM_MOD_COMMANDER_MILITARY_BUILDING_XP_WRAPPER"/>
+	</GameModifiers>
+
+    <ConstructibleModifiers>
+    <!-- Wonders -->
+        <!-- Angkor Wat -->
+        <Row ConstructibleType="WONDER_ANGKOR_WAT" ModifierId="MBM_MOD_ANGKOR_WAT_SCIENCE"/>
+        <!-- Mausoleum at Halicarnassus -->
+        <Delete ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MOD_MAUSOLEUM_AT_HALICARNASSUS_RESPAWN"/>
+        <Row ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MBM_MOD_MAUSOLEUM_AT_HALICARNASSUS_CAVALRY_HEAL"/>
+		<!-- Thanh Hue -->
+		<Row ConstructibleType="WONDER_THANH_HUE" ModifierId="MBM_MOD_THANH_HUE_CULTURE"/>
+        <Delete ModifierId="MOD_THANH_HUE_SPECIALIST_LIMIT"/>
+        <Row ConstructibleType="WONDER_THANH_HUE" ModifierId="MBM_MOD_THANH_HUE_SPECIALIST_LIMIT"/>		
+		<!-- Eram Garden -->
+		<Row ConstructibleType="WONDER_ERAM_GARDEN" ModifierId="MBM_MOD_ERAM_GARDEN_CULTURE"/>
+		<Row ConstructibleType="WONDER_ERAM_GARDEN" ModifierId="MBM_MOD_ERAM_GARDEN_HAPPINESS"/>
+		<!-- Statue of Liberty -->
+		<Row ConstructibleType="WONDER_STATUE_OF_LIBERTY" ModifierId="MBM_MOD_STATUE_OF_LIBERTY_DIPLOMACY"/>
+	</ConstructibleModifiers>
+
+	<UnitAbilityModifiers>
+		<!-- Disable the Mausoleum's former respawn-charge ability. -->
+		<Delete UnitAbilityType="ABILITY_HALICARNASSUS" ModifierId="MOD_HALICARNASSUS_RESPAWN"/>
+	</UnitAbilityModifiers>
+
+	<Constructible_Adjacencies>
+        <Row ConstructibleType="IMPROVEMENT_POTKOP" YieldChangeId="PotkopResourceGold"/>
+	</Constructible_Adjacencies>
+    <Warehouse_YieldChanges>
+		<Row ID="MBMTakuakaIIFishingBoatProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE"/>
+		<Row ID="MBMTakuakaIIAtollProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_ATOLL"/>
+		<Row ID="MBMTakuakaIILotusProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_LOTUS"/>
+		<Row ID="MBMTakuakaIIReefProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_REEF"/>
+		<Row ID="MBMTakuakaIIColdReefProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_COLD_REEF"/>
+		<Row ID="MBMTakuakaIICoastProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" TerrainInCity="TERRAIN_COAST"/>
+		<Row ID="MBMTakuakaIINavigableRiverProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" NavigableRiverInCity="true"/>
+    </Warehouse_YieldChanges>
+    <Adjacency_YieldChanges>
+		<!-- Mississippi -->
+        <Row ID="PotkopResourceGold" YieldType="YIELD_GOLD" YieldChange="1" TilesRequired="1" AdjacentResource="true"/>
+		<!-- Hawai'i Ahupua'a traditions -->
+		<Row ID="MBMAhupuaaICoastFood" Age="AGE_EXPLORATION" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
+		<Row ID="MBMAhupuaaIICoastFood" Age="AGE_MODERN" YieldType="YIELD_FOOD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
+		<!-- Iceland -->
+		<Row ID="MBMReidiGudannaVolcanoCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentFeature="FEATURE_VOLCANO"/>
+		<Row ID="MBMReidiGudannaNWCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true"/>
+		<!-- Prussia Coking traditions -->
+		<Row ID="MBMCokingINavigableRiverProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="2" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
+		<Row ID="MBMCokingIINavigableRiverProduction" Age="AGE_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
+		<!-- Ashoka, World Renouncer -->
+		<Row ID="MBMAshokaAllBuildingHappinessAdjacencyToImprovements" YieldType="YIELD_HAPPINESS" YieldChange="1" TilesRequired="2" AdjacentConstructibleClass="IMPROVEMENT"/>
+		<!-- Meiji Shusei Kokubo II -->
+		<Row ID="MBMShuseiKokuboProductionBuildingCoast" Age="AGE_MODERN" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
+		<!-- Russia Skazki: TilesRequired 2 represents +0.5 adjacency. -->
+		<Row ID="MBMSkazkiIWonderCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="2" ProjectMaxYield="true" AdjacentDistrict="DISTRICT_WONDER"/>
+		<Row ID="MBMSkazkiIWonderScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="2" ProjectMaxYield="true" AdjacentDistrict="DISTRICT_WONDER"/>
+		<Row ID="MBMSkazkiIIWonderCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentDistrict="DISTRICT_WONDER"/>
+		<Row ID="MBMSkazkiIIWonderScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentDistrict="DISTRICT_WONDER"/>
+		<!-- Inca Tirakuna II: +2 adjacency from Mountains. -->
+		<Row ID="MBMTirakunaIIMountainFood" YieldType="YIELD_FOOD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
+		<Row ID="MBMTirakunaIIMountainGold" YieldType="YIELD_GOLD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
+    </Adjacency_YieldChanges>
+	<Constructible_WildcardAdjacencies>
+		<Row YieldChangeId="MBMCokingINavigableRiverProduction" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MBMCokingIINavigableRiverProduction" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MBMAhupuaaICoastFood" RequiresActivation="true" ConstructibleTag="CULTURE"/>
+		<Row YieldChangeId="MBMAhupuaaIICoastFood" RequiresActivation="true" ConstructibleTag="CULTURE"/>
+		<Row YieldChangeId="MBMAshokaAllBuildingHappinessAdjacencyToImprovements" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MBMShuseiKokuboProductionBuildingCoast" RequiresActivation="true" ConstructibleTag="PRODUCTION" CurrentAgeConstructiblesOnly="true"/>
+		<Row YieldChangeId="MBMSkazkiIWonderCulture" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MBMSkazkiIWonderScience" RequiresActivation="true" ConstructibleClass="BUILDING" HasBiome="BIOME_TUNDRA"/>
+		<Row YieldChangeId="MBMSkazkiIIWonderCulture" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MBMSkazkiIIWonderScience" RequiresActivation="true" ConstructibleClass="BUILDING" HasBiome="BIOME_TUNDRA"/>
+		<Row YieldChangeId="MBMTirakunaIIMountainFood" RequiresActivation="true" ConstructibleTag="FOOD"/>
+		<Row YieldChangeId="MBMTirakunaIIMountainGold" RequiresActivation="true" ConstructibleTag="GOLD"/>
+	</Constructible_WildcardAdjacencies>
+</Database>

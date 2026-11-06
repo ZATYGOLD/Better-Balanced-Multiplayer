@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Database>
+	<IconDefinitions>
+		<Row>
+			<ID>UNIT_ARCHER_2</ID>
+			<Path>blp:unitflag_archer</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_BURNING_ARROW_3</ID>
+			<Path>blp:unitflag_burningarrow</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_NU_3</ID>
+			<Path>blp:unitflag_nu</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_YUMI_3</ID>
+			<Path>blp:unitflag_yumi</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_HWARANG_3</ID>
+			<Path>blp:unitflag_hwarang</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_QASTI_3</ID>
+			<Path>blp:unitflag_qasti</Path>
+		</Row>
+		<Row>
+			<ID>UNIT_BALLISTA_2</ID>
+			<Path>blp:unitflag_ballista</Path>
+		</Row>
+	</IconDefinitions>
+</Database>

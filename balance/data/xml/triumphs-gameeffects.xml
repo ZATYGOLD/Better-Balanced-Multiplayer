@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects>
+	<!-- Abundance: activate GDP scoring for Bonus Resources assigned to Towns. -->
+	<Modifier id="MBM_CARD_MOD_AT_EX_ECONOMIC_1_TOWN_GDP" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" permanent="true">
+		<Argument name="TrackerName">MBM_VICTORY_TRACKER_ABUNDANCE_TOWNS</Argument>
+	</Modifier>
+	<!-- Offset the all-settlement tracker's City point, leaving Cities unchanged. -->
+	<Modifier id="MBM_CARD_MOD_AT_EX_ECONOMIC_1_CITY_OFFSET" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" permanent="true">
+		<Argument name="TrackerName">MBM_VICTORY_TRACKER_ABUNDANCE_CITY_OFFSET</Argument>
+	</Modifier>
+</GameEffects>

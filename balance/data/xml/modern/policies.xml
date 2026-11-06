@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Traditions>
+		<!-- Reclassify the requested Exploration cards as Modern cards after transition. -->
+		<Update>
+			<Where TraditionType="TRADITION_ENLIGHTENMENT"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_PATRONAGE"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_COLONIAL_SURPLUS"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_TRADE_WINDS"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_MARITIME_LAW"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_CHIVALRY"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_REGULARS"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_CHARTERS"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_UPOSATHA"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_INDENTURE"/>
+			<Set AgeType="AGE_MODERN" IgnoreInitializeUnlock="true"/>
+		</Update>
+
+		<Update>
+			<Where TraditionType="TRADITION_HUMANISM"/>
+			<Set ObsoletesTraditionType="TRADITION_PATRONAGE"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_SOCIAL_SCIENCE"/>
+			<Set ObsoletesTraditionType="TRADITION_ENLIGHTENMENT"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_LAISSEZ_FAIRE"/>
+			<Set ObsoletesTraditionType="TRADITION_TRADE_WINDS"/>
+		</Update>
+		<Update>
+			<Where TraditionType="TRADITION_COMMANDERIES"/>
+			<Set AgeType="AGE_MODERN" CultureSlotType="POLICY_CULTURE_SLOT" IgnoreInitializeUnlock="true"/>
+		</Update>
+	</Traditions>
+
+</Database>

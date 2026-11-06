@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<HappinessStages>
+		<Update><Where Age="AGE_MODERN" HappinessStageType="HAPPINESS_STAGE_HAPPY"/><Set StageMaxThreshold="20"/></Update>
+		<Update><Where Age="AGE_MODERN" HappinessStageType="HAPPINESS_STAGE_JOYOUS"/><Set StageMinThreshold="20" StageMaxThreshold="40"/></Update>
+		<Update><Where Age="AGE_MODERN" HappinessStageType="HAPPINESS_STAGE_ECSTATIC"/><Set StageMinThreshold="40"/></Update>
+	</HappinessStages>
+	<GovernmentModifiers>
+		<Delete GovernmentType="GOVERNMENT_AUTHORITARIANISM" ModifierId="MOD_AUTHORITARIANISM_PASSIVE_CONQUEST_YIELDS"/>
+		<Row GovernmentType="GOVERNMENT_AUTHORITARIANISM" ModifierId="MBM_AUTHORITARIANISM_CONQUEST_YIELDS"/>
+		<Delete GovernmentType="GOVERNMENT_ELECTIVE_REPUBLIC" ModifierId="MOD_ELECTIVE_REPUBLIC_PASSIVE_MAINTENANCE_PER_SPECIALIST"/>
+	</GovernmentModifiers>
+	<GoldenAgeModifiers>
+		<Delete GoldenAgeType="GOLDEN_AGE_AUTHORITARIANISM_1"/>
+		<Row GoldenAgeType="GOLDEN_AGE_AUTHORITARIANISM_1" ModifierID="MBM_AUTHORITARIANISM_CELEBRATION_UNIT_PRODUCTION"/>
+		<Row GoldenAgeType="GOLDEN_AGE_AUTHORITARIANISM_1" ModifierID="MBM_AUTHORITARIANISM_CELEBRATION_WALL_PRODUCTION"/>
+		<Delete GoldenAgeType="GOLDEN_AGE_AUTHORITARIANISM_2"/>
+		<Row GoldenAgeType="GOLDEN_AGE_AUTHORITARIANISM_2" ModifierID="MBM_AUTHORITARIANISM_CELEBRATION_SETTLEMENT_CAP"/>
+		<Delete GoldenAgeType="GOLDEN_AGE_BUREAUCRATIC_MONARCHY_2"/>
+		<Row GoldenAgeType="GOLDEN_AGE_BUREAUCRATIC_MONARCHY_2" ModifierID="MBM_BUREAUCRATIC_MONARCHY_ALL_DIPLOMACY"/>
+	</GoldenAgeModifiers>
+</Database>

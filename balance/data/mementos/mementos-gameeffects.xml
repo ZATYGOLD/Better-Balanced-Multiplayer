@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Garuda Statue: direct the celebration population to the Capital. -->
+	<Modifier id="MBM_MEMENTO_GARUDA_STATUE_CAPITAL" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="TRIGGER_CITY_ADJUST_POPULATION_ON_GOLDEN_AGE" run-once="false" permanent="true">
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+	<!-- Takoba: the existing modifier supplies Combat Strength; this adds Movement. -->
+	<Modifier id="MBM_MEMENTO_TAKOBA_MOVEMENT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_MOVEMENT">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_PLAINS</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_DESERT</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Description">LOC_MEMENTO_AMINA_TAKOBA_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- False Beard: Happiness on Wonders, matching the scaled Culture modifier. -->
+	<Modifier id="MBM_MEMENTO_FALSE_BEARD_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD" permanent="true">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="ConstructibleClass">WONDER</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">2</Argument>
+	</Modifier>
+
+	<!-- Yasakani no Magatama: use Ada Lovelace's supported per-Mastery
+	     City yield effect, switched to Technology Masteries and +1 Science. -->
+	<Modifier id="MBM_MEMENTO_YASAKANI_CITY_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNLOCKED_PROGRESSION_TREE_NODE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="SystemType">SYSTEM_TECH</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<String context="Description">LOC_MEMENTO_HIMIKO_QUEEN_YASAKANI_NO_MAGATAMA_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+	<!-- Merchant's Saddle: Scouts, Settlers, and Explorers ignore rough terrain,
+	     vegetation, and both river movement obstacles. -->
+	<Modifier id="MBM_MEMENTO_MERCHANTS_SADDLE_IGNORE_ROUGH_RIVERS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SCOUT</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SETTLER</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_EXPLORER</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="Obstacle">TERRAIN_HILL, RIVER_MINOR, RIVER_NAVIGABLE</Argument>
+		<String context="Description">LOC_MEMENTO_BATTUTA_MERCHANTS_SADDLE_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_MERCHANTS_SADDLE_IGNORE_VEGETATION" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SCOUT</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SETTLER</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_EXPLORER</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="FeatureClassTypes">FEATURE_CLASS_VEGETATED</Argument>
+		<String context="Description">LOC_MEMENTO_BATTUTA_MERCHANTS_SADDLE_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Letter to Adrienne: Social Policies yield Happiness in every City. -->
+	<Modifier id="MBM_MEMENTO_LETTER_ADRIENNE_CITY_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_ACTIVE_TRADITION">
+		<Argument name="CivUnique">true</Argument>
+		<Argument name="Invert">true</Argument>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_LAFAYETTE_LETTER_ADRIENNE_NAME</Argument>
+		<String context="Description">LOC_MEMENTO_LAFAYETTE_LETTER_ADRIENNE_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- All-T'oqapu Tunic: unconditional sight and mountain movement for Scouts
+	     and Settlers. -->
+	<Modifier id="MBM_MEMENTO_ALL_TOQAPU_SCOUT_SETTLER_SIGHT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_SIGHT">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SCOUT</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SETTLER</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_ALL_TOQAPU_SCOUT_SETTLER_MOUNTAINS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SCOUT</Argument></Requirement>
+			<Requirement type="REQUIREMENT_UNIT_TYPE_MATCHES"><Argument name="UnitType">UNIT_SETTLER</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="Obstacle">TERRAIN_MOUNTAIN</Argument>
+		<String context="Description">LOC_MEMENTO_PACHACUTI_ALL_TOQAPU_TUNIC_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Sakaki Branch: Happiness on Happiness Buildings. -->
+	<Modifier id="MBM_MEMENTO_SAKAKI_BRANCH_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Tag">HAPPINESS</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_HIMIKO_SHAMAN_SAKAKI_BRANCH_NAME</Argument>
+		<String context="Description">LOC_MEMENTO_HIMIKO_SHAMAN_SAKAKI_BRANCH_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Davalos Medal: add Production Warehouse Buildings alongside the base
+	     modifier, which is retargeted to Production Buildings in SQL. -->
+	<Modifier id="MBM_MEMENTO_DAVALOS_PRODUCTION_WAREHOUSE_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Tag">PRODUCTION_WAREHOUSE</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_BOLIVAR_DAVALOS_MEDAL_NAME</Argument>
+		<String context="Description">LOC_MEMENTO_BOLIVAR_DAVALOS_MEDAL_FUNCTIONAL_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Tea Ceremony Kit: targeted Gold purchase discounts. -->
+	<Modifier id="MBM_MEMENTO_TEA_CEREMONY_ALTAR_PURCHASE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+		<Argument name="BuildingType">BUILDING_ALTAR</Argument>
+		<Argument name="Percent">20</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_TOYOTOMI_HIDEYOSHI_TEA_CEREMONY_KIT_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_TEA_CEREMONY_TEMPLE_PURCHASE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+		<Argument name="BuildingType">BUILDING_TEMPLE</Argument>
+		<Argument name="Percent">20</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_TOYOTOMI_HIDEYOSHI_TEA_CEREMONY_KIT_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_TEA_CEREMONY_MUSEUM_PURCHASE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ADJUST_PLAYER_OR_CITY_BUILDING_PURCHASE_EFFICIENCY">
+		<Argument name="BuildingType">BUILDING_MUSEUM</Argument>
+		<Argument name="Percent">20</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_TOYOTOMI_HIDEYOSHI_TEA_CEREMONY_KIT_NAME</Argument>
+	</Modifier>
+
+	<!-- Silk Uttariya: the base modifier supplies +2 Production in Happy or
+	     better Cities. These two cumulative tiers raise that to +4/+6. -->
+	<Modifier id="MBM_MEMENTO_SILK_UTTARIYA_JOYOUS_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_JOYOUS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">2</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ASHOKA_CONQUEROR_SILK_UTTARIYA_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_SILK_UTTARIYA_ECSTATIC_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_ECSTATIC</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">2</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ASHOKA_CONQUEROR_SILK_UTTARIYA_NAME</Argument>
+	</Modifier>
+
+	<!-- Golden Sceptre: Science and Culture accompany the updated base Gold. -->
+	<Modifier id="MBM_MEMENTO_GOLDEN_SCEPTRE_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_CONQUERED_SETTLEMENT">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">10</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_XERXES_KING_GOLDEN_SCEPTRE_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_GOLDEN_SCEPTRE_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_CONQUERED_SETTLEMENT">
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">10</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_XERXES_KING_GOLDEN_SCEPTRE_NAME</Argument>
+	</Modifier>
+
+	<!-- Portrait of Josephine: add Influence for both qualifying relationship states. -->
+	<Modifier id="MBM_MEMENTO_JOSEPHINE_UNFRIENDLY_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_RELATIONSHIP">
+		<Argument name="RelationshipType">PLAYER_RELATIONSHIP_UNFRIENDLY</Argument>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">2</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_JOSEPHINE_HOSTILE_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_RELATIONSHIP">
+		<Argument name="RelationshipType">PLAYER_RELATIONSHIP_HOSTILE</Argument>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">2</Argument>
+	</Modifier>
+
+	<!-- Queen's Jewelry and Padron Real: Breathtaking tiles receive the base
+	     yield, while Natural Wonders receive exactly double. -->
+	<Modifier id="MBM_MEMENTO_QUEENS_JEWELRY_BREATHTAKING" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+			<Requirement type="REQUIREMENT_PLOT_HAS_APPEAL">
+				<Argument name="UseAppealDoubleHappinessThreshold">true</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_IS_NATURAL_WONDER" inverse="true"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ISABELLA_QUEENS_JEWELRY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_QUEENS_JEWELRY_NATURAL_WONDER" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_NATURAL_WONDER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ISABELLA_QUEENS_JEWELRY_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_PADRON_REAL_BREATHTAKING" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+			<Requirement type="REQUIREMENT_PLOT_HAS_APPEAL">
+				<Argument name="UseAppealDoubleHappinessThreshold">true</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_IS_NATURAL_WONDER" inverse="true"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ISABELLA_PADRON_REAL_NAME</Argument>
+	</Modifier>
+	<Modifier id="MBM_MEMENTO_PADRON_REAL_NATURAL_WONDER" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IS_NATURAL_WONDER"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_ISABELLA_PADRON_REAL_NAME</Argument>
+	</Modifier>
+
+	<!-- Royal Mace: add Happiness alongside the base imported-resource Gold. -->
+	<Modifier id="MBM_MEMENTO_ROYAL_MACE_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_RESOURCE">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
+		<Argument name="Imported">true</Argument>
+		<Argument name="Tooltip">LOC_MEMENTO_HATSHEPSUT_ROYAL_MACE_NAME</Argument>
+	</Modifier>
+
+	<!-- Pochteca Backpack: grant a Merchant when a new Settlement is founded.
+	     The explicit founder list prevents captured Settlements from qualifying. -->
+	<Modifier id="MBM_MEMENTO_POCHTECA_FREE_MERCHANT" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_UNIT" new-only="true" permanent="true">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_FOUNDER</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_SETTLER</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_NAGARIKA</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_SOKEMAN</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_ZAMINDAR</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_COLONIST</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_DRUID</Argument></Requirement>
+			<Requirement type="REQUIREMENT_CITY_FOUNDED_BY_UNIT_TYPE"><Argument name="UnitType">UNIT_VIET_KIEU</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="UnitType">UNIT_MERCHANT</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+</GameEffects>

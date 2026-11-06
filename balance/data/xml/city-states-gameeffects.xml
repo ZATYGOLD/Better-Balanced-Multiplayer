@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Yakhchal: +1% Growth Rate in its settlement. -->
+	<Modifier id="MBM_MOD_ICE_HOUSE_GROWTH" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_GROWTH">
+		<Argument name="Percent">1</Argument>
+	</Modifier>
+
+	<!-- Abattoir: +1 Production for each Abattoir in its settlement. -->
+	<Modifier id="MBM_MOD_ABATTOIR_PRODUCTION" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD">
+		<Argument name="ConstructibleType">IMPROVEMENT_ABATTOIR</Argument>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+</GameEffects>

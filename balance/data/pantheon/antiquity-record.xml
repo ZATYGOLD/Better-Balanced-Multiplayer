@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<!-- Every major player watches their own Pantheon-founding record. -->
+	<TraitModifiers>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_1"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_2"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_3"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_4"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_5"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_6"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_7"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_8"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_9"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_10"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_11"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_12"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_13"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_14"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_15"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_16"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_17"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_18"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_19"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MBM_RECORD_PANTHEON_20"/>
+	</TraitModifiers>
+</Database>
+
+

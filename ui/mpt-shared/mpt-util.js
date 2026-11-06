@@ -84,4 +84,12 @@ function isObserverPlayer(playerId) {
   } catch (e) { return false; }
 }
 
-export { createLogger, isAgeEnding, isObserverPlayer, whenDefined, wrapMethod };
+/** Mod ids of companion mods this one adapts to. */
+const COMPANION_MODS = { advancedSettingsPro: 'AdvancedSettingsPro' };
+
+/** True while the mod with this .modinfo id is enabled (shell scope). */
+function isModEnabled(modId) {
+  try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
+}
+
+export { COMPANION_MODS, createLogger, isAgeEnding, isModEnabled, isObserverPlayer, whenDefined, wrapMethod };

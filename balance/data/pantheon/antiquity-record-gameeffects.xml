@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Current official content uses this gossip requirement to identify a player's chosen Pantheon. -->
+	<Modifier id="MBM_RECORD_PANTHEON_1" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_1</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_1</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_2" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_2</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_2</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_3" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_3</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_3</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_4" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_4</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_4</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_5" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_5</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_5</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_6" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_6</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_6</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_7" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_7</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_7</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_8" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_8</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_8</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_9" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_9</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_9</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_10" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_10</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_10</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_11" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_11</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_11</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_12" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_12</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_12</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_13" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_13</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_13</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_14" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_14</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_14</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_15" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_15</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_15</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_16" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_16</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_16</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_17" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_17</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_17</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_18" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_18</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_18</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_19" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_19</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_19</Argument>
+	</Modifier>
+	<Modifier id="MBM_RECORD_PANTHEON_20" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_NARRATIVE_TAG" run-once="false" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_20</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="NarrativeTagType">MBM_NARRATIVE_TAG_PANTHEON_20</Argument>
+	</Modifier>
+</GameEffects>
+

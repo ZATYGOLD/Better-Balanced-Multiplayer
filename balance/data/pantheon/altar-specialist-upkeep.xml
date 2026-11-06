@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<!-- Apply the Altar's warehouse-level Specialist upkeep in every Age. -->
+	<GameModifiers>
+		<Row ModifierId="MBM_ALTAR_SPECIALIST_UPKEEP_ANTIQUITY"/>
+		<Row ModifierId="MBM_ALTAR_SPECIALIST_UPKEEP_EXPLORATION"/>
+		<Row ModifierId="MBM_ALTAR_SPECIALIST_UPKEEP_MODERN"/>
+	</GameModifiers>
+</Database>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+    <WarWearinessEffects>
+        <Update>
+            <Where WarWearinessType="WAR_WEARINESS_FOUNDED_SELF"/>
+            <Set YieldReductionPerLevel="3"/>
+        </Update>
+        <Update>
+            <Where WarWearinessType="WAR_WEARINESS_FOUNDED_OTHER"/>
+            <Set YieldReductionPerLevel="5"/>
+        </Update>
+        <Update>
+            <Where WarWearinessType="WAR_WEARINESS_FOUNDED_WAR_OPPONENT"/>
+            <Set YieldReductionPerLevel="7"/>
+        </Update>
+    </WarWearinessEffects>
+</Database>

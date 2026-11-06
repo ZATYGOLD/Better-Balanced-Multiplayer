@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<!-- Reworked Pantheons. Custom modifier IDs keep the base effects from also applying. -->
+	<BeliefModifiers>
+		<Delete BeliefType="PANTHEON_BONUS_2"/>
+		<Delete BeliefType="PANTHEON_BONUS_14"/>
+		<Delete BeliefType="PANTHEON_BONUS_15"/>
+		<Row BeliefType="PANTHEON_BONUS_2" ModifierID="MBM_MOD_PANTHEON_EARTH_GODDESS"/>
+		<Row BeliefType="PANTHEON_BONUS_14" ModifierID="MBM_MOD_PANTHEON_ORAL_TRADITION"/>
+		<Row BeliefType="PANTHEON_BONUS_15" ModifierID="MBM_MOD_PANTHEON_SACRED_WATERS"/>
+	</BeliefModifiers>
+
+	<!-- New Pantheons. -->
+	<Types>
+		<Row Type="PANTHEON_BONUS_19" Kind="KIND_BELIEF"/>
+		<Row Type="PANTHEON_BONUS_20" Kind="KIND_BELIEF"/>
+	</Types>
+	<Beliefs>
+		<Row BeliefType="PANTHEON_BONUS_19" Name="LOC_PANTHEON_BONUS_19_NAME" Description="LOC_PANTHEON_BONUS_19_DESCRIPTION" BeliefClassType="BELIEF_CLASS_PANTHEON" AISelectionBin="3"/>
+		<Row BeliefType="PANTHEON_BONUS_20" Name="LOC_PANTHEON_BONUS_20_NAME" Description="LOC_PANTHEON_BONUS_20_DESCRIPTION" BeliefClassType="BELIEF_CLASS_PANTHEON" AISelectionBin="3"/>
+	</Beliefs>
+	<BeliefModifiers>
+		<Row BeliefType="PANTHEON_BONUS_19" ModifierID="MBM_MOD_PANTHEON_GODDESS_OF_TIDES"/>
+		<Row BeliefType="PANTHEON_BONUS_20" ModifierID="MBM_MOD_PANTHEON_GOD_OF_CRAFTSMEN"/>
+	</BeliefModifiers>
+
+	<!-- Altar activation data used by the changed and new Pantheons. -->
+	<Constructible_Adjacencies>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarMountainScience" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarNaturalWonderScience" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarCoastCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarLakeCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarRiverCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMAltarResourceProduction" RequiresActivation="true"/>
+	</Constructible_Adjacencies>
+	<Adjacency_YieldChanges>
+		<Row ID="MBMAltarMountainScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
+		<Row ID="MBMAltarNaturalWonderScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true"/>
+		<Row ID="MBMAltarCoastCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
+		<Row ID="MBMAltarLakeCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true"/>
+		<Row ID="MBMAltarRiverCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
+		<Row ID="MBMAltarResourceProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true"/>
+	</Adjacency_YieldChanges>
+	<!-- Goddess of Tides clones God of the Sea's Fishing Boat warehouse bonus, using Food. -->
+	<Constructible_WarehouseYields>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMPantheonAltarFishingBoatResourceFood" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMPantheonAltarFishingBoatFood" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MBMPantheonAltarOceanTerrainFood" RequiresActivation="true"/>
+	</Constructible_WarehouseYields>
+	<Warehouse_YieldChanges>
+		<Row ID="MBMPantheonAltarFishingBoatResourceFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE"/>
+		<Row ID="MBMPantheonAltarFishingBoatFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT"/>
+		<Row ID="MBMPantheonAltarOceanTerrainFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TerrainInCity="TERRAIN_OCEAN"/>
+	</Warehouse_YieldChanges>
+</Database>

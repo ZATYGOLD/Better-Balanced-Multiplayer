@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Traditions>
+		<!-- Antiquity Policy Cards retained when the next age initializes. -->
+		<Update><Where TraditionType="TRADITION_DRILLS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_COMMANDERIES"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true" CultureSlotType="POLICY_CULTURE_SLOT"/></Update>
+		<Update><Where TraditionType="TRADITION_ETHICS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_SCHOLARS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_COINAGE"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+
+		<!-- Exploration Policy Cards retained when Modern initializes. -->
+		<Update><Where TraditionType="TRADITION_ENLIGHTENMENT"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_PATRONAGE"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_COLONIAL_SURPLUS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_TRADE_WINDS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_MARITIME_LAW"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_CHIVALRY"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_REGULARS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_CHARTERS"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_UPOSATHA"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_INDENTURE"/><Set AgeType="AGE_EXPLORATION" IgnoreInitializeUnlock="true"/></Update>
+	</Traditions>
+</Database>
