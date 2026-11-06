@@ -35,7 +35,7 @@
 		</SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<Argument name="YieldType">YIELD_SCIENCE</Argument>
-		<Argument name="Tooltip">LOC_ANGKOR_WAT_NAME</Argument>
+		<Argument name="Tooltip">LOC_WONDER_ANGKOR_WAT_NAME</Argument>
 	</Modifier>
 	<!-- Mausoleum at Halicarnassus -->
 	<Modifier id="MPT_BALANCE_MOD_MAUSOLEUM_AT_HALICARNASSUS_CAVALRY_HEAL" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_POST_COMBAT_HEAL">
@@ -64,7 +64,7 @@
 		</SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
-		<Argument name="Tooltip">LOC_THANH_HUE_NAME</Argument>
+		<Argument name="Tooltip">LOC_WONDER_THANH_HUE_NAME</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_MOD_THANH_HUE_SPECIALIST_LIMIT" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_CAP">
 		<SubjectRequirements>
@@ -107,7 +107,7 @@
 		</SubjectRequirements>
 		<Argument name="Amount">2</Argument>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
-		<Argument name="Tooltip">LOC_ERAM_GARDEN_NAME</Argument>
+		<Argument name="Tooltip">LOC_WONDER_ERAM_GARDEN_NAME</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_MOD_ERAM_GARDEN_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
 		<SubjectRequirements>
@@ -117,7 +117,7 @@
 		</SubjectRequirements>
 		<Argument name="Amount">2</Argument>
 		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
-		<Argument name="Tooltip">LOC_ERAM_GARDEN_NAME</Argument>
+		<Argument name="Tooltip">LOC_WONDER_ERAM_GARDEN_NAME</Argument>
 	</Modifier>
 
 	<!-- Statue of Liberty -->
@@ -129,7 +129,7 @@
 		</SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
-		<Argument name="Tooltip">LOC_STATUE_OF_LIBERTY_NAME</Argument>
+		<Argument name="Tooltip">LOC_WONDER_STATUE_OF_LIBERTY_NAME</Argument>
 	</Modifier>
 
 	<!-- Nirayama Reverberatory Furnace -->

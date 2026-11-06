@@ -36,11 +36,22 @@ const STRICT_CIVILIZATION_RULES = new Map([
   ["CIVILIZATION_RUSSIA", { id: "tundra", label: "Tundra" }]
 ]);
 
-const strictBiasFailures = new Map();
+const STRICT_BIASES_ON = "MPT_MAPS_STRICT_BIASES_ON";
 
+let strictEnabled;
+const biasByPlayer = new Map();
+let volcanoIndex;
+
+/** On only when chosen; the option exists only in multiplayer setup. */
 function isStrictStartBiasEnabled() {
-  // MPT: On only when chosen; the option exists only in multiplayer setup.
-  return Configuration.getMapValue("MPTStrictStartBiases") === "MPT_MAPS_STRICT_BIASES_ON";
+  strictEnabled ??= Configuration.getMapValue("MPTStrictStartBiases") === STRICT_BIASES_ON;
+  return strictEnabled;
+}
+
+/** Forget cached rules (a new map is being generated). */
+function resetStrictStartBiases() {
+  strictEnabled = undefined;
+  biasByPlayer.clear();
 }
 
 function lookupTypeName(table, value, propertyName) {
@@ -48,7 +59,9 @@ function lookupTypeName(table, value, propertyName) {
   return entry ? entry[propertyName] : null;
 }
 
+/** The player's leader and civilization rules (null when neither has one); cached per player. */
 function getPlayerStrictStartBias(playerId) {
+  if (biasByPlayer.has(playerId)) return biasByPlayer.get(playerId);
   const player = Players.get(playerId);
   if (player == null) return null;
   const leaderType = lookupTypeName(GameInfo.Leaders, player.leaderType, "LeaderType");
@@ -56,14 +69,15 @@ function getPlayerStrictStartBias(playerId) {
   const rules = [];
   const leaderRule = STRICT_LEADER_RULES.get(leaderType);
   const civilizationRule = STRICT_CIVILIZATION_RULES.get(civilizationType);
-  if (leaderRule) rules.push({ ...leaderRule, source: leaderType });
-  if (civilizationRule) rules.push({ ...civilizationRule, source: civilizationType });
-  if (rules.length === 0) return null;
-  return { playerId, leaderType, civilizationType, rules };
+  if (leaderRule) rules.push({ ...leaderRule, kind: "Leader", source: leaderType });
+  if (civilizationRule) rules.push({ ...civilizationRule, kind: "Civilization", source: civilizationType });
+  const bias = rules.length > 0 ? { playerId, leaderType, civilizationType, rules } : null;
+  biasByPlayer.set(playerId, bias);
+  return bias;
 }
 
 function adjacentLocations(iX, iY) {
-  const origin = GameplayMap.getLocationFromIndex(GameplayMap.getIndexFromXY(iX, iY));
+  const origin = { x: iX, y: iY };
   const locations = [];
   for (let direction = 0; direction < 6; direction++) {
     const adjacent = GameplayMap.getAdjacentPlotLocation(origin, direction);
@@ -72,20 +86,15 @@ function adjacentLocations(iX, iY) {
   return locations;
 }
 
+/** Adjacent ocean-connected water; navigable rivers and lakes do not count. */
 function isOceanAccess(iX, iY) {
   return adjacentLocations(iX, iY).some((location) => {
-    const terrain = GameInfo.Terrains.lookup(GameplayMap.getTerrainType(location.x, location.y));
-    // Coast-biased starts must touch actual ocean-connected coastal water.
-    // Navigable rivers do not qualify, even when the river reaches the ocean.
-    if (terrain?.TerrainType === "TERRAIN_NAVIGABLE_RIVER") return false;
+    if (GameplayMap.isNavigableRiver(location.x, location.y)) return false;
     if (!GameplayMap.getAreaIsWater(location.x, location.y)) return false;
     const areaId = GameplayMap.getAreaId(location.x, location.y);
     if (areaId < 0) return false;
-    if (typeof AreaBuilder !== "undefined") {
-      return AreaBuilder.isAreaConnectedToOcean(areaId);
-    }
-    // UI validation does not expose AreaBuilder on every game version. In
-    // that context, reject lakes and navigable rivers, and accept other water.
+    // AreaBuilder exists during map generation only; the UI rejects lakes instead.
+    if (typeof AreaBuilder !== "undefined") return AreaBuilder.isAreaConnectedToOcean(areaId);
     return !GameplayMap.isLake(location.x, location.y);
   });
 }
@@ -108,22 +117,17 @@ function adjacentToMountain(iX, iY) {
 }
 
 function adjacentToVolcano(iX, iY) {
-  const volcano = GameInfo.Features.lookup("FEATURE_VOLCANO");
-  if (volcano == null) return false;
-  return adjacentLocations(iX, iY).some(
-    (location) => GameplayMap.getFeatureType(location.x, location.y) === volcano.$index
-  );
+  volcanoIndex ??= GameInfo.Features.lookup("FEATURE_VOLCANO")?.$index ?? -1;
+  if (volcanoIndex < 0) return false;
+  return adjacentLocations(iX, iY).some((location) => GameplayMap.getFeatureType(location.x, location.y) === volcanoIndex);
 }
 
 function adjacentToNaturalWonder(iX, iY) {
-  return adjacentLocations(iX, iY).some(
-    (location) => GameplayMap.isNaturalWonder(location.x, location.y)
-  );
+  return adjacentLocations(iX, iY).some((location) => GameplayMap.isNaturalWonder(location.x, location.y));
 }
 
 function withinFloodplains(iX, iY, radius) {
-  const plots = GameplayMap.getPlotIndicesInRadius(iX, iY, radius);
-  for (const plotIndex of plots) {
+  for (const plotIndex of GameplayMap.getPlotIndicesInRadius(iX, iY, radius)) {
     const location = GameplayMap.getLocationFromIndex(plotIndex);
     const featureClass = GameInfo.FeatureClasses.lookup(GameplayMap.getFeatureClassType(location.x, location.y));
     if (featureClass?.FeatureClassType === "FEATURE_CLASS_FLOODPLAIN") return true;
@@ -133,32 +137,26 @@ function withinFloodplains(iX, iY, radius) {
 
 function matchesRule(ruleId, iX, iY) {
   switch (ruleId) {
-    case "desert-or-plains":
-      return biomeIs(iX, iY, ["BIOME_DESERT", "BIOME_PLAINS"]);
-    case "tundra":
-      return biomeIs(iX, iY, ["BIOME_TUNDRA"]);
-    case "tropical":
-      return biomeIs(iX, iY, ["BIOME_TROPICAL"]);
-    case "navigable-river":
-      return adjacentToNavigableRiver(iX, iY);
-    case "ocean-coast":
-      return isOceanAccess(iX, iY);
-    case "floodplains-two":
-      return withinFloodplains(iX, iY, 2);
-    case "mountain":
-      return adjacentToMountain(iX, iY);
-    case "lake":
-      return adjacentToLake(iX, iY);
+    case "desert-or-plains": return biomeIs(iX, iY, ["BIOME_DESERT", "BIOME_PLAINS"]);
+    case "tundra": return biomeIs(iX, iY, ["BIOME_TUNDRA"]);
+    case "tropical": return biomeIs(iX, iY, ["BIOME_TROPICAL"]);
+    case "navigable-river": return adjacentToNavigableRiver(iX, iY);
+    case "ocean-coast": return isOceanAccess(iX, iY);
+    case "floodplains-two": return withinFloodplains(iX, iY, 2);
+    case "mountain": return adjacentToMountain(iX, iY);
+    case "lake": return adjacentToLake(iX, iY);
     case "iceland":
-      return (
-        (adjacentToVolcano(iX, iY) || adjacentToNaturalWonder(iX, iY)) &&
-        biomeIs(iX, iY, ["BIOME_TUNDRA", "BIOME_GRASSLAND"])
-      );
+      return (adjacentToVolcano(iX, iY) || adjacentToNaturalWonder(iX, iY)) &&
+        biomeIs(iX, iY, ["BIOME_TUNDRA", "BIOME_GRASSLAND"]);
     case "songhai":
       return adjacentToNavigableRiver(iX, iY) && biomeIs(iX, iY, ["BIOME_PLAINS", "BIOME_DESERT"]);
-    default:
-      return true;
+    default: return true;
   }
+}
+
+/** A coast rule falls back to an adjacent lake when no ocean start exists. */
+function matchesRuleWithLakeFallback(ruleId, iX, iY) {
+  return ruleId === "ocean-coast" ? adjacentToLake(iX, iY) : matchesRule(ruleId, iX, iY);
 }
 
 function matchesPlayerStrictStartBias(iX, iY, playerId) {
@@ -170,47 +168,25 @@ function matchesPlayerStrictStartBias(iX, iY, playerId) {
 function matchesPlayerStrictStartBiasWithLakeFallback(iX, iY, playerId) {
   if (!isStrictStartBiasEnabled()) return true;
   const bias = getPlayerStrictStartBias(playerId);
-  if (bias == null) return true;
-  return bias.rules.every((rule) =>
-    rule.id === "ocean-coast" ? adjacentToLake(iX, iY) : matchesRule(rule.id, iX, iY)
-  );
+  return bias == null || bias.rules.every((rule) => matchesRuleWithLakeFallback(rule.id, iX, iY));
 }
 
 function describePlayerStrictStartBias(playerId) {
   const bias = getPlayerStrictStartBias(playerId);
-  if (bias == null) return "none";
-  return bias.rules.map((rule) => `${rule.source}: ${rule.label}`).join("; ");
+  return bias == null ? "none" : bias.rules.map((rule) => `${rule.source}: ${rule.label}`).join("; ");
 }
 
 function recordStrictStartBiasFailure(playerId, reason) {
-  if (!strictBiasFailures.has(playerId)) {
-    strictBiasFailures.set(playerId, { playerId, reason, requirement: describePlayerStrictStartBias(playerId) });
-  }
-  console.log(
-    `MPT MAPS STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`
-  );
-}
-
-function clearStrictStartBiasFailure(playerId) {
-  strictBiasFailures.delete(playerId);
-}
-
-function clearStrictStartBiasFailures() {
-  strictBiasFailures.clear();
-}
-
-function getStrictStartBiasFailures() {
-  return [...strictBiasFailures.values()];
+  console.log(`MPT MAPS STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`);
 }
 
 export {
-  clearStrictStartBiasFailure,
-  clearStrictStartBiasFailures,
-  describePlayerStrictStartBias,
   getPlayerStrictStartBias,
-  getStrictStartBiasFailures,
   isStrictStartBiasEnabled,
   matchesPlayerStrictStartBias,
   matchesPlayerStrictStartBiasWithLakeFallback,
-  recordStrictStartBiasFailure
+  matchesRule,
+  matchesRuleWithLakeFallback,
+  recordStrictStartBiasFailure,
+  resetStrictStartBiases
 };

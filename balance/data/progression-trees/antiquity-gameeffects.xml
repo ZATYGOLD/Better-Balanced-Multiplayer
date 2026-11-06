@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Iron Working mastery grants a Codex, like the other Antiquity masteries (the game's own Codex modifier is renamed by DLC). -->
+	<Modifier id="MPT_BALANCE_AQ_CODEX" collection="COLLECTION_OWNER" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="ObjectType">GREATWORKOBJECT_WRITING</Argument>
+		<String context="Description">LOC_MOD_AQ_CODEX_DESCRIPTION</String>
+	</Modifier>
+</GameEffects>

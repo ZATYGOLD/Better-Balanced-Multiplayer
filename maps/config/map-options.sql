@@ -9,13 +9,10 @@ INSERT OR IGNORE INTO Maps (File, Name, Description, SortIndex)
 --*******************************************************
 --***************** MULTIPLAYER DEFAULTS ****************
 --*******************************************************
--- Online speed, Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size.
--- Settings shared with single player are set by ui/multiplayer-defaults.js instead.
-UPDATE Parameters SET DefaultValue = 'GAMESPEED_ONLINE' WHERE ParameterID = 'GameSpeeds' AND SupportsSinglePlayer = 0;
-UPDATE Parameters SET DefaultValue = 'AGE_LENGTH_ABBREVIATED' WHERE ParameterID = 'AgeLength' AND SupportsSinglePlayer = 0;
-UPDATE Parameters SET DefaultValue = 'AGE_COUNTDOWN_LENGTH_NONE' WHERE ParameterID = 'AgeCountdownTimer' AND SupportsSinglePlayer = 0;
+-- Pangaea Ultima is the default multiplayer map (the multiplayer-only Map row). Settings
+-- shared with single player (speed, Age length, countdown, size) are set by
+-- ui/multiplayer-defaults.js on the multiplayer setup screen.
 UPDATE Parameters SET DefaultValue = '{multiplayer-toolkit}maps/maps/pangaea-ultima.js' WHERE ParameterID = 'Map' AND SupportsSinglePlayer = 0;
-UPDATE Parameters SET DefaultValue = 'MAPSIZE_STANDARD' WHERE ParameterID = 'MapSize' AND SupportsSinglePlayer = 0;
 
 --*******************************************************
 --***************** MAP SETTINGS ************************

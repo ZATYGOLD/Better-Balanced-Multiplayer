@@ -31,6 +31,16 @@
 		<Argument name="ModifierId">ATTACH_KABUNAKAMA_MOD_MELEE_COMBAT_STRENGTH, ATTACH_KABUNAKAMA_MOD_RANGED_COMBAT_STRENGTH</Argument>
 	</Modifier>
 
+	<!-- Sengoku: Daimyo keeps full Combat Strength when damaged for Infantry only. -->
+	<Modifier id="MPT_BALANCE_DAIMYO_MOD_INFANTRY_NO_REDUCTION_DAMAGE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_NO_REDUCTION_DAMAGE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<String context="Description">LOC_TRADITION_DAIMYO_DESCRIPTION</String>
+	</Modifier>
+
 	<!-- Shawnee: Bread Dance changes both Farms and Fishing Boats in Farming and Fishing Towns. -->
 	<Modifier id="MPT_BALANCE_BREAD_DANCE_I_FARM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
 		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_GRANARY</Argument></Requirement></SubjectRequirements>

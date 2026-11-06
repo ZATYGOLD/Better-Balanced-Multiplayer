@@ -36,12 +36,13 @@
  *  - Blocks game-advancing input while paused (engine InputFilterManager).
  *  - Keeps the game paused through a synchronized "UNPAUSING..." countdown.
  *  - Pauses immediately on a player disconnect, before the AI can take over.
- *  - Suppresses the stock "Game Paused" popup (shared DialogBoxManager).
  *  - Host "Resume (All Players)" over the chat channel (mp-pause-net.js).
  */
+import InputFilterManager from 'fs://game/core/ui/input/input-filter.js';
+import { InterfaceMode, InterfaceModeChangedEventName } from 'fs://game/core/ui/interface-modes/interface-modes.js';
 import { createLogger, isObserverPlayer } from '../mpt-shared/mpt-util.js';
 import { PAUSE_ACTION_ID } from '../mp-keybind/mp-keybind.js';
-import { FILTER_SOURCE, PAUSE_MENU_MODE, NATIVE_PAUSE_DIALOG_TITLE, CONFIG, PROGRESS_ACTIONS, LOC, coreCandidates } from './mp-pause-config.js';
+import { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC } from './mp-pause-config.js';
 import styles from './mp-pause.scss.js';
 import PauseCountdownOverlay from './mp-pause-overlay.js';
 import MPTNet from './mp-pause-net.js';
@@ -109,11 +110,6 @@ class MultiplayerPauseManager {
   disconnectNotices = [];     // { id, name } per currently-disconnected player (menu display)
   viewHiddenForcedEl = null;  // production chooser element we forced "View Hidden" on
 
-  // --- core singletons (resolved lazily in loadCoreSingletons) ---
-  inputFilter = null;
-  interfaceMode = null;
-  dialogBox = null;
-
   // --- reusable components ---
   overlay = new PauseCountdownOverlay();
 
@@ -148,81 +144,35 @@ class MultiplayerPauseManager {
   totalPlayers() { return Math.max(humanParticipantIds(true).filter(isConnected).length, 1); }
   converged() { return (Date.now() - this.pauseStart) >= CONFIG.convergenceDelayMs; }
 
-  // ===================== Core singletons (dynamic import) =====================
-  async importFirst(candidates) {
-    for (const path of candidates) {
-      try { const m = await import(path); if (m) return m; } catch (e) { /* next */ }
-    }
-    return null;
-  }
-  async loadCoreSingletons() {
-    const inputMod = await this.importFirst(coreCandidates("input/input-filter.js"));
-    this.inputFilter = inputMod ? (inputMod.default || inputMod) : null;
-    if (this.inputFilter) { try { this.inputFilter.allowFilters = true; } catch (e) {} }
-
-    const imMod = await this.importFirst(coreCandidates("interface-modes/interface-modes.js"));
-    this.interfaceMode = imMod ? (imMod.InterfaceMode || imMod.default || null) : null;
-
-    const dbMod = await this.importFirst(coreCandidates("dialog-box/manager-dialog-box.js"));
-    this.dialogBox = dbMod ? (dbMod.DialogBoxManager || dbMod.default || null) : null;
-
-    this.suppressNativePausePopup();
-    if (!this.inputFilter || !this.interfaceMode || !this.dialogBox) {
-      log("missing core singletons: inputFilter=" + !!this.inputFilter + " interfaceMode=" + !!this.interfaceMode + " dialogBox=" + !!this.dialogBox);
-    }
-  }
-
-  // Wrap the shared DialogBoxManager so the stock multiplayer "Game Paused"
-  // popup is never created; our own menu + overlay replace it. Everything else
-  // passes through untouched. No base-game files are modified.
-  suppressNativePausePopup() {
-    const mgr = this.dialogBox;
-    if (!mgr || typeof mgr.createDialog_MultiOption !== "function" || mgr.__mptPatched) return;
-    const original = mgr.createDialog_MultiOption.bind(mgr);
-    mgr.createDialog_MultiOption = function (params) {
-      if (params && params.title === NATIVE_PAUSE_DIALOG_TITLE) {
-        return "mpt-suppressed-pause-dialog";
-      }
-      return original(params);
-    };
-    mgr.__mptPatched = true;
-  }
-
   // ============================= Input filtering =============================
   applyProgressFilters() {
-    if (this.progressFiltersActive || !this.inputFilter) return;
+    if (this.progressFiltersActive) return;
     for (const name of PROGRESS_ACTIONS) {
-      try { this.inputFilter.addInputFilter({ inputName: name, filterSource: FILTER_SOURCE }); } catch (e) {}
+      try { InputFilterManager.addInputFilter({ inputName: name, filterSource: FILTER_SOURCE }); } catch (e) {}
     }
     this.progressFiltersActive = true;
   }
   clearProgressFilters() {
     if (!this.progressFiltersActive) return;
-    if (this.inputFilter) {
-      for (const name of PROGRESS_ACTIONS) {
-        try { this.inputFilter.removeInputFilter({ inputName: name, filterSource: FILTER_SOURCE }); } catch (e) {}
-      }
+    for (const name of PROGRESS_ACTIONS) {
+      try { InputFilterManager.removeInputFilter({ inputName: name, filterSource: FILTER_SOURCE }); } catch (e) {}
     }
     this.progressFiltersActive = false;
   }
 
   // ===================== Interface mode (built-in pause menu) =================
   pauseMenuIsOpen() {
-    try {
-      if (this.interfaceMode && typeof this.interfaceMode.isInInterfaceMode === "function") {
-        return this.interfaceMode.isInInterfaceMode(PAUSE_MENU_MODE);
-      }
-    } catch (e) { /* fall through */ }
-    return !!document.querySelector("#screen-pause-menu");
+    try { return InterfaceMode.isInInterfaceMode(PAUSE_MENU_MODE); }
+    catch (e) { return !!document.querySelector("#screen-pause-menu"); }
   }
   openPauseMenu() {
     if (this.pauseMenuIsOpen()) return;
-    try { this.interfaceMode?.switchTo?.(PAUSE_MENU_MODE); }
+    try { InterfaceMode.switchTo(PAUSE_MENU_MODE); }
     catch (e) { log("openPauseMenu failed: " + e); }
   }
   closePauseMenu() {
     if (!this.pauseMenuIsOpen()) return;
-    try { this.interfaceMode?.switchToDefault?.(); }
+    try { InterfaceMode.switchToDefault(); }
     catch (e) { log("closePauseMenu failed: " + e); }
   }
 
@@ -239,11 +189,10 @@ class MultiplayerPauseManager {
   onInterfaceModeChanged() {
     if (this.pauseMenuIsOpen()) this.tryInjectWhenMenuReady(0);
   }
-  // Hook the lightweight "interface-mode-changed" event (not a DOM observer) so
-  // injection only runs when the pause menu actually opens.
+  // Injection runs only when the pause menu opens (interface-mode event, no DOM observer).
   startMenuListener() {
     if (!this.menuListenerBound) {
-      window.addEventListener("interface-mode-changed", this.interfaceModeChangedListener);
+      window.addEventListener(InterfaceModeChangedEventName, this.interfaceModeChangedListener);
       this.menuListenerBound = true;
     }
     if (this.pauseMenuIsOpen()) this.tryInjectWhenMenuReady(0);
@@ -761,11 +710,11 @@ class MultiplayerPauseManager {
     try { const c = Configuration.getGame(); return !!(c && c.isAnyMultiplayer); }
     catch (e) { return false; }
   }
-  async onReady() {
+  onReady() {
     if (CONFIG.enabled === false) return;
     this.isMultiplayer = this.isMultiplayerGame();
     if (!this.isMultiplayer) return;
-    await this.loadCoreSingletons();
+    InputFilterManager.allowFilters = true;
     this.injectStyles();
     this.overlay.build();
     engine.on("GamePauseStateChanged", this.gamePauseStateChangedListener);

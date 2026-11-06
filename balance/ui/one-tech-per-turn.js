@@ -44,6 +44,7 @@ const state = {
   limitTurn: -1,       // turn on which a normal research completed
   pendingTurn: -1,     // a completion is being classified (normal or free)
   startedTurn: -1,     // turn on which this module started the next queued node
+  begunTurn: -1,       // turn whose start was handled (two engine events announce it)
   researching: undefined,
   target: undefined,   // the queued target, kept here rather than by the engine
   freeTechAt: { turn: -1, time: 0 }
@@ -180,6 +181,8 @@ function patchOperations() {
 // ============================ Events ============================
 
 function onTurnBegin() {
+  if (state.begunTurn === currentTurn()) return;
+  state.begunTurn = currentTurn();
   state.pendingTurn = -1;
   state.startedTurn = -1;
   patchTargetDisplay();

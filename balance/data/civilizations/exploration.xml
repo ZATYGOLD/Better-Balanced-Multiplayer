@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- NOTE PUT ALL CIV CHANGES FOR THIS AGE IN HERE (NOT JUST ANTIQUITY CIVS)-->
+<!-- Civilization changes loaded in this Age (every civilization, not only this Age's). -->
 <Database>
 	<TraitModifiers>
 		<!-- Khmer: remove the Happiness penalty from non-Capital Cities. -->

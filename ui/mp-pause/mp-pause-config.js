@@ -28,9 +28,6 @@ const FILTER_SOURCE = "MultiplayerToolkit";
 /** Interface mode that shows the built-in pause menu. */
 const PAUSE_MENU_MODE = "INTERFACEMODE_PAUSE_MENU";
 
-/** Title of the stock multiplayer "Game Paused" popup we suppress. */
-const NATIVE_PAUSE_DIALOG_TITLE = "LOC_MP_PAUSE_POPUP_TITLE";
-
 /** Tunable timings / thresholds. */
 const CONFIG = {
   enabled: true,               // master switch (set false to fully disable the pause feature)
@@ -77,13 +74,4 @@ const LOC = {
   unpausing: "LOC_MPT_PAUSE_UNPAUSING"
 };
 
-/** Candidate import paths for a core singleton (mod is not co-located w/ core). */
-function coreCandidates(relPath) {
-  return [
-    "fs://game/core/ui/" + relPath,
-    "/core/ui/" + relPath,
-    "../../../core/ui/" + relPath
-  ];
-}
-
-export { FILTER_SOURCE, PAUSE_MENU_MODE, NATIVE_PAUSE_DIALOG_TITLE, CONFIG, PROGRESS_ACTIONS, LOC, coreCandidates };
+export { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC };

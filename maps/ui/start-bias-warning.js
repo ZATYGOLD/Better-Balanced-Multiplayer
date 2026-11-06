@@ -1,47 +1,20 @@
-// This UI validator is intentionally self-contained. MapGenScripts unload
-// after generation, so the warning must not depend on a map-generation module.
-const LEADER_RULES = new Map([
-  ["LEADER_AMINA", { id: "desert-or-plains", label: "Desert or Plains" }],
-  ["LEADER_CATHERINE", { id: "tundra", label: "Tundra" }],
-  ["LEADER_HATSHEPSUT", { id: "navigable-river", label: "adjacent to a Navigable River" }],
-  ["LEADER_TRUNG_TRAC", { id: "tropical", label: "Tropical" }],
-  ["LEADER_PACHACUTI", { id: "mountain", label: "adjacent to a Mountain" }],
-  ["LEADER_EDWARD_TEACH", { id: "ocean-coast", label: "ocean coast" }],
-  ["LEADER_LAFAYETTE", { id: "ocean-coast", label: "ocean coast" }],
-  ["LEADER_SAYYIDA_AL_HURRA", { id: "ocean-coast", label: "ocean coast" }],
-  ["LEADER_YI_SUN_SIN", { id: "ocean-coast", label: "ocean coast" }],
-  ["LEADER_ELIZABETH", { id: "ocean-coast", label: "ocean coast" }]
-]);
+import { createLogger } from '../../ui/mpt-shared/mpt-util.js';
+import { getPlayerStrictStartBias, isStrictStartBiasEnabled, matchesRule, matchesRuleWithLakeFallback } from '../maps/strict-start-biases.js';
 
-const CIVILIZATION_RULES = new Map([
-  ["CIVILIZATION_AKSUM", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_CARTHAGE", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_EGYPT", { id: "navigable-river", label: "adjacent to a Navigable River" }],
-  ["CIVILIZATION_KHMER", { id: "floodplains-two", label: "within 2 tiles of Floodplains" }],
-  ["CIVILIZATION_MAYA", { id: "tropical", label: "Tropical" }],
-  ["CIVILIZATION_TONGA", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_CHOLA", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_DAI_VIET", { id: "tropical", label: "Tropical" }],
-  ["CIVILIZATION_HAWAII", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_ICELAND", { id: "iceland", label: "adjacent to a Volcano or Natural Wonder and on Tundra or Grassland" }],
-  ["CIVILIZATION_INCA", { id: "mountain", label: "adjacent to a Mountain" }],
-  ["CIVILIZATION_MAJAPAHIT", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_PIRATE_REPUBLIC", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_SONGHAI", { id: "songhai", label: "adjacent to a Navigable River and on Plains or Desert" }],
-  ["CIVILIZATION_SPAIN", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_BUGANDA", { id: "lake", label: "adjacent to a Lake" }],
-  ["CIVILIZATION_GREAT_BRITAIN", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_ENGLAND", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_MEIJI", { id: "ocean-coast", label: "ocean coast" }],
-  ["CIVILIZATION_NEPAL", { id: "mountain", label: "adjacent to a Mountain" }],
-  ["CIVILIZATION_PRUSSIA", { id: "navigable-river", label: "adjacent to a Navigable River" }],
-  ["CIVILIZATION_RUSSIA", { id: "tundra", label: "Tundra" }]
-]);
+// Turn-1 check of the multiplayer Player Placement pass: Fresh Water, spacing and strict start biases.
+const log = createLogger('maps start check');
+const MINIMUM_START_DISTANCE = 12;
+const RETRY_MS = 1000;
+const MAX_ATTEMPTS = 15;
 
 let warningCreated = false;
 let validationAttempts = 0;
 let trainAttempts = 0;
-const MINIMUM_START_DISTANCE = 12;
+
+/** The placement pass runs only when the Map Options exist (multiplayer setup). */
+function placementApplied() {
+  try { return Configuration.getMapValue("MPTPlayerPlacement") != null; } catch (_) { return false; }
+}
 
 function getValidationStorageKey() {
   try {
@@ -56,139 +29,18 @@ function getValidationStorageKey() {
 function validationAlreadyCompleted() {
   const key = getValidationStorageKey();
   if (key == null) return false;
-  try {
-    return localStorage.getItem(key) === "1";
-  } catch (_) {
-    return false;
-  }
+  try { return localStorage.getItem(key) === "1"; } catch (_) { return false; }
 }
 
 function markValidationCompleted() {
   const key = getValidationStorageKey();
   if (key == null) return;
-  try {
-    localStorage.setItem(key, "1");
-  } catch (_) {
-    // Storage may be unavailable in restricted UI contexts; the turn gate
-    // still prevents warnings during ordinary later-turn reloads.
-  }
+  try { localStorage.setItem(key, "1"); } catch (_) { /* storage unavailable: the turn gate still applies */ }
 }
 
-function strictBiasesEnabled() {
-  if (typeof Configuration !== "undefined" && typeof Configuration.getMapValue === "function") {
-    return Configuration.getMapValue("MPTStrictStartBiases") !== "MPT_MAPS_STRICT_BIASES_OFF";
-  }
-  if (typeof GameSetup !== "undefined" && typeof GameSetup.findGameParameter === "function") {
-    const parameter = GameSetup.findGameParameter("MPTStrictStartBiases");
-    const rawValue = parameter?.value?.value ?? parameter?.value;
-    const resolvedValue = typeof rawValue === "number" && typeof GameSetup.resolveString === "function"
-      ? GameSetup.resolveString(rawValue)
-      : rawValue;
-    return resolvedValue !== "MPT_MAPS_STRICT_BIASES_OFF";
-  }
-  // Strict biases default to On. Gameplay UI may omit both setup interfaces,
-  // so validation must still run without throwing during normal games.
-  return true;
-}
-
-function lookupTypeName(table, value, propertyName) {
-  const entry = table.lookup(value);
-  return entry ? entry[propertyName] : null;
-}
-
-function getPlayerRules(playerId) {
-  const player = Players.get(playerId);
-  if (player == null) return null;
-  const leaderType = lookupTypeName(GameInfo.Leaders, player.leaderType, "LeaderType");
-  const civilizationType = lookupTypeName(GameInfo.Civilizations, player.civilizationType, "CivilizationType");
-  const rules = [];
-  const leaderRule = LEADER_RULES.get(leaderType);
-  const civilizationRule = CIVILIZATION_RULES.get(civilizationType);
-  if (leaderRule) rules.push({ ...leaderRule, source: "Leader requirement" });
-  if (civilizationRule) rules.push({ ...civilizationRule, source: "Civilization requirement" });
-  return rules.length > 0 ? { leaderType, civilizationType, rules } : null;
-}
-
-function adjacentLocations(iX, iY) {
-  const origin = GameplayMap.getLocationFromIndex(GameplayMap.getIndexFromXY(iX, iY));
-  const locations = [];
-  for (let direction = 0; direction < 6; direction++) {
-    const adjacent = GameplayMap.getAdjacentPlotLocation(origin, direction);
-    if (adjacent != null && adjacent.x >= 0 && adjacent.y >= 0) locations.push(adjacent);
-  }
-  return locations;
-}
-
-function biomeIs(iX, iY, biomeTypes) {
-  const biome = GameInfo.Biomes.lookup(GameplayMap.getBiomeType(iX, iY));
-  return biome != null && biomeTypes.includes(biome.BiomeType);
-}
-
-function adjacentToNavigableRiver(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isNavigableRiver(location.x, location.y));
-}
-
-function adjacentToLake(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isLake(location.x, location.y));
-}
-
-function adjacentToMountain(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isMountain(location.x, location.y));
-}
-
-function adjacentToVolcano(iX, iY) {
-  const volcano = GameInfo.Features.lookup("FEATURE_VOLCANO");
-  return volcano != null && adjacentLocations(iX, iY).some(
-    (location) => GameplayMap.getFeatureType(location.x, location.y) === volcano.$index
-  );
-}
-
-function adjacentToNaturalWonder(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isNaturalWonder(location.x, location.y));
-}
-
-function withinFloodplains(iX, iY, radius) {
-  for (const plotIndex of GameplayMap.getPlotIndicesInRadius(iX, iY, radius)) {
-    const location = GameplayMap.getLocationFromIndex(plotIndex);
-    const featureClass = GameInfo.FeatureClasses.lookup(GameplayMap.getFeatureClassType(location.x, location.y));
-    if (featureClass?.FeatureClassType === "FEATURE_CLASS_FLOODPLAIN") return true;
-  }
-  return false;
-}
-
-function oceanCoast(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => {
-    if (!GameplayMap.getAreaIsWater(location.x, location.y)) return false;
-    const terrain = GameInfo.Terrains.lookup(GameplayMap.getTerrainType(location.x, location.y));
-    if (terrain?.TerrainType === "TERRAIN_NAVIGABLE_RIVER") return false;
-    const areaId = GameplayMap.getAreaId(location.x, location.y);
-    if (areaId < 0) return false;
-    return typeof AreaBuilder !== "undefined"
-      ? AreaBuilder.isAreaConnectedToOcean(areaId)
-      : !GameplayMap.isLake(location.x, location.y);
-  });
-}
-
-function matchesRule(ruleId, iX, iY) {
-  switch (ruleId) {
-    case "desert-or-plains": return biomeIs(iX, iY, ["BIOME_DESERT", "BIOME_PLAINS"]);
-    case "tundra": return biomeIs(iX, iY, ["BIOME_TUNDRA"]);
-    case "tropical": return biomeIs(iX, iY, ["BIOME_TROPICAL"]);
-    case "navigable-river": return adjacentToNavigableRiver(iX, iY);
-    // Map generation prefers a true ocean coast, but accepts an adjacent lake
-    // when no valid coastal start exists. Final UI validation must recognize
-    // both accepted outcomes or it will announce a false placement failure.
-    case "ocean-coast": return oceanCoast(iX, iY) || adjacentToLake(iX, iY);
-    case "floodplains-two": return withinFloodplains(iX, iY, 2);
-    case "mountain": return adjacentToMountain(iX, iY);
-    case "lake": return adjacentToLake(iX, iY);
-    case "iceland":
-      return (adjacentToVolcano(iX, iY) || adjacentToNaturalWonder(iX, iY)) &&
-        biomeIs(iX, iY, ["BIOME_TUNDRA", "BIOME_GRASSLAND"]);
-    case "songhai":
-      return adjacentToNavigableRiver(iX, iY) && biomeIs(iX, iY, ["BIOME_PLAINS", "BIOME_DESERT"]);
-    default: return true;
-  }
+/** Generation accepts an adjacent lake when no ocean-coast start exists. */
+function ruleMet(rule, x, y) {
+  return matchesRule(rule.id, x, y) || matchesRuleWithLakeFallback(rule.id, x, y);
 }
 
 function getFinalStartLocation(playerId) {
@@ -198,7 +50,7 @@ function getFinalStartLocation(playerId) {
       if (plotIndex != null && plotIndex >= 0) return GameplayMap.getLocationFromIndex(plotIndex);
     }
   } catch (error) {
-    console.log(`MPT MAPS STRICT START BIAS: StartPositioner unavailable in gameplay UI; using player objects (${error})`);
+    log(`StartPositioner unavailable; using player objects (${error})`);
   }
   const player = Players.get(playerId);
   const capital = player?.Cities?.getCapital();
@@ -241,7 +93,7 @@ function addNotificationRailIcon(summary, failureCount) {
   const train = document.querySelector("panel-notification-train");
   const list = train?.querySelector(".notification-train__list");
   if (list == null) {
-    if (trainAttempts++ < 15) setTimeout(() => addNotificationRailIcon(summary, failureCount), 1000);
+    if (trainAttempts++ < MAX_ATTEMPTS) setTimeout(() => addNotificationRailIcon(summary, failureCount), RETRY_MS);
     return;
   }
   const typeContainer = document.createElement("div");
@@ -278,23 +130,23 @@ function createFailureNotification(failures) {
   createVisibleBanner(summary);
   addNotificationRailIcon(summary, failures.length);
   UI.sendAudioEvent("notif-Wonder_Failed");
-  console.log(`MPT MAPS STRICT START BIAS NOTIFICATION: displayed ${failures.length} failure(s)`);
+  log(`displayed ${failures.length} failure(s)`);
+}
+
+function retryValidation() {
+  if (validationAttempts++ >= MAX_ATTEMPTS) return false;
+  setTimeout(runValidationSafely, RETRY_MS);
+  return true;
 }
 
 function validateStrictBiases() {
-  if (warningCreated) return;
-  if (typeof Game === "undefined" || Game.turn == null) {
-    if (validationAttempts++ < 15) setTimeout(runValidationSafely, 1000);
-    return;
-  }
-  // This validator is only for a newly generated game's opening turn. The
-  // seed marker prevents it from replaying after a turn-one desync/UI reload.
+  if (warningCreated || !placementApplied()) return;
+  if (typeof Game === "undefined" || Game.turn == null) { retryValidation(); return; }
+  // Only a newly generated game's opening turn; the seed marker stops replays after a reload.
   if (Game.turn !== 1 || validationAlreadyCompleted()) return;
   const aliveMajorIds = Players.getAliveMajorIds();
-  if (aliveMajorIds.length === 0 && validationAttempts++ < 15) {
-    setTimeout(runValidationSafely, 1000);
-    return;
-  }
+  if (aliveMajorIds.length === 0 && retryValidation()) return;
+  const strict = isStrictStartBiasEnabled();
   const failures = [];
   const locations = new Map();
   let unresolvedStarts = 0;
@@ -305,29 +157,23 @@ function validateStrictBiases() {
     if (!GameplayMap.isFreshWater(location.x, location.y)) {
       failures.push(`${getPlayerLabel(playerId)}: starting tile does not have Fresh Water`);
     }
-    if (strictBiasesEnabled()) {
-      const bias = getPlayerRules(playerId);
-      const failedRules = bias?.rules.filter((rule) => !matchesRule(rule.id, location.x, location.y)) ?? [];
+    if (strict) {
+      const failedRules = getPlayerStrictStartBias(playerId)?.rules.filter((rule) => !ruleMet(rule, location.x, location.y)) ?? [];
       if (failedRules.length > 0) {
-        failures.push(`${getPlayerLabel(playerId)}: ${failedRules.map((rule) => `${rule.source}: ${rule.label}`).join("; ")}`);
+        failures.push(`${getPlayerLabel(playerId)}: ${failedRules.map((rule) => `${rule.kind} requirement: ${rule.label}`).join("; ")}`);
       }
     }
   }
-  if (unresolvedStarts > 0 && validationAttempts++ < 15) {
-    setTimeout(runValidationSafely, 1000);
-    return;
-  }
+  if (unresolvedStarts > 0 && retryValidation()) return;
   for (let i = 0; i < aliveMajorIds.length; i++) {
     for (let j = i + 1; j < aliveMajorIds.length; j++) {
-      const firstId = aliveMajorIds[i];
-      const secondId = aliveMajorIds[j];
-      const first = locations.get(firstId);
-      const second = locations.get(secondId);
+      const first = locations.get(aliveMajorIds[i]);
+      const second = locations.get(aliveMajorIds[j]);
       if (first == null || second == null) continue;
       const distance = GameplayMap.getPlotDistance(first.x, first.y, second.x, second.y);
       if (distance < MINIMUM_START_DISTANCE) {
         failures.push(
-          `${getPlayerLabel(firstId)} and ${getPlayerLabel(secondId)}: only ${distance} tiles apart; ` +
+          `${getPlayerLabel(aliveMajorIds[i])} and ${getPlayerLabel(aliveMajorIds[j])}: only ${distance} tiles apart; ` +
           `${MINIMUM_START_DISTANCE} required`
         );
       }
@@ -339,27 +185,11 @@ function validateStrictBiases() {
   createFailureNotification(failures);
 }
 
-function scheduleValidation() {
-  setTimeout(runValidationSafely, 3000);
-}
-
+/** Never present an internal validator problem as a failed start; only confirmed rule failures notify. */
 function runValidationSafely() {
-  try {
-    validateStrictBiases();
-  } catch (error) {
-    console.error(`MPT MAPS STRICT START BIAS NOTIFICATION: validation error: ${error?.stack ?? error}`);
-    // Never present an internal validator problem as a failed civilization
-    // start. Only confirmed rule failures create player-facing notifications.
-  }
+  try { validateStrictBiases(); }
+  catch (error) { log(`validation error: ${error?.stack ?? error}`); }
 }
 
-window.addEventListener("user-interface-loaded-and-ready", scheduleValidation, { once: true });
-// MPT: the start check follows the multiplayer Player Placement pass, which
-// runs only when the Map Options exist (multiplayer setup).
-engine.whenReady.then(() => {
-  if (typeof Configuration !== "undefined" && Configuration.getMapValue?.("MPTPlayerPlacement") == null) return;
-  scheduleValidation();
-});
-setTimeout(runValidationSafely, 7000);
-
-console.log("MPT MAPS START PLACEMENT NOTIFICATION v3: loaded");
+window.addEventListener("user-interface-loaded-and-ready", () => setTimeout(runValidationSafely, 3000), { once: true });
+engine.whenReady.then(() => setTimeout(runValidationSafely, 3000));

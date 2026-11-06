@@ -192,7 +192,6 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>balance/config/setup-parameters.sql</Item>
-					<Item>balance/config/traditions.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
 					<Item>balance/text/en_us/general.xml</Item>
@@ -278,12 +277,11 @@
 					<Item>balance/data/civilizations/antiquity.sql</Item>
 					<Item>balance/data/civilizations/exploration.sql</Item>
 					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/wonders.sql</Item>
+					<Item>balance/data/constructibles/antiquity.sql</Item>
 					<Item>balance/data/constructibles/buildings.sql</Item>
 					<Item>balance/data/city-states/city-states.sql</Item>
 					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
 					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/progression-trees/progression-trees.sql</Item>
 					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
 					<Item>balance/data/policies/traditions.xml</Item>
 					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
@@ -297,6 +295,7 @@
 					<Item>balance/data/governments/antiquity.xml</Item>
 					<Item>balance/data/units/antiquity.sql</Item>
 					<Item>balance/data/units/antiquity-tier3.xml</Item>
+					<Item>balance/data/progression-trees/antiquity-gameeffects.xml</Item>
 					<Item>balance/data/progression-trees/antiquity.xml</Item>
 					<Item>balance/data/resources/antiquity.xml</Item>
 					<Item>balance/data/resources/antiquity-gameeffects.xml</Item>
@@ -305,12 +304,8 @@
 					<Item>balance/data/religion/pantheons-gameeffects.xml</Item>
 					<Item>balance/data/religion/pantheon-records.xml</Item>
 					<Item>balance/data/religion/pantheon-records-gameeffects.xml</Item>
-					<Item>balance/data/diplomacy/war-weariness.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/modern.xml</Item>
-					<Item>balance/text/en_us/exploration.xml</Item>
-					<Item>balance/text/en_us/antiquity.xml</Item>
 					<Item>balance/text/en_us/resources-antiquity.xml</Item>
 				</UpdateText>
 				<UpdateIcons>
@@ -328,18 +323,17 @@
 					<Item>balance/data/civilizations/exploration.sql</Item>
 					<Item>balance/data/civilizations/modern.sql</Item>
 					<Item>balance/data/constructibles/wonders.sql</Item>
+					<Item>balance/data/constructibles/exploration.sql</Item>
 					<Item>balance/data/constructibles/buildings.sql</Item>
 					<Item>balance/data/city-states/city-states.sql</Item>
 					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
 					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/progression-trees/progression-trees.sql</Item>
 					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
 					<Item>balance/data/policies/traditions.xml</Item>
 					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
 					<Item>balance/data/attributes/attributes-gameeffects.xml</Item>
 					<Item>balance/data/constructibles/constructibles.xml</Item>
 					<Item>balance/data/constructibles/constructibles-gameeffects.xml</Item>
-					<Item>balance/data/units/units.sql</Item>
 					<Item>balance/data/civilizations/exploration.xml</Item>
 					<Item>balance/data/attributes/exploration-gameeffects.xml</Item>
 					<Item>balance/data/attributes/attributes.sql</Item>
@@ -357,9 +351,6 @@
 					<Item>balance/data/diplomacy/war-weariness.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/modern.xml</Item>
-					<Item>balance/text/en_us/exploration.xml</Item>
-					<Item>balance/text/en_us/antiquity.xml</Item>
 					<Item>balance/text/en_us/resources-exploration.xml</Item>
 				</UpdateText>
 			</Actions>
@@ -373,11 +364,12 @@
 					<Item>balance/data/civilizations/exploration.sql</Item>
 					<Item>balance/data/civilizations/modern.sql</Item>
 					<Item>balance/data/constructibles/wonders.sql</Item>
+					<Item>balance/data/constructibles/modern.sql</Item>
 					<Item>balance/data/constructibles/buildings.sql</Item>
 					<Item>balance/data/city-states/city-states.sql</Item>
 					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
 					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/progression-trees/progression-trees.sql</Item>
+					<Item>balance/data/progression-trees/modern.sql</Item>
 					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
 					<Item>balance/data/policies/traditions.xml</Item>
 					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
@@ -400,9 +392,6 @@
 					<Item>balance/data/diplomacy/war-weariness.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/modern.xml</Item>
-					<Item>balance/text/en_us/exploration.xml</Item>
-					<Item>balance/text/en_us/antiquity.xml</Item>
 					<Item>balance/text/en_us/resources-modern.xml</Item>
 				</UpdateText>
 			</Actions>
@@ -436,6 +425,9 @@
 				<UIScripts>
 					<Item>maps/ui/start-bias-warning.js</Item>
 				</UIScripts>
+				<UpdateDatabase>
+					<Item>maps/data/islands.xml</Item>
+				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
 
@@ -484,9 +476,6 @@
 		<ActionGroup id="mpt-maps-resources-modern" scope="game" criteria="maps-resources-modern">
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
-				<ImportFiles>
-					<Item>maps/scripts/modern-resource-guarantee.js</Item>
-				</ImportFiles>
 				<UpdateDatabase>
 					<Item>maps/data/effects-reset.sql</Item>
 					<Item>maps/data/effects-common.xml</Item>
@@ -505,13 +494,5 @@
 
 	<LocalizedText>
 		<File>text/en_us/mod-info-text.xml</File>
-		<File>maps/text/en_us/map-options.xml</File>
-		<File>balance/text/en_us/general.xml</File>
-		<File>balance/text/en_us/antiquity.xml</File>
-		<File>balance/text/en_us/exploration.xml</File>
-		<File>balance/text/en_us/modern.xml</File>
-		<File>balance/text/en_us/resources-antiquity.xml</File>
-		<File>balance/text/en_us/resources-exploration.xml</File>
-		<File>balance/text/en_us/resources-modern.xml</File>
 	</LocalizedText>
 </Mod>

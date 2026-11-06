@@ -108,7 +108,9 @@ Everything lives in `balance/` (see Project structure).
 Multiplayer only: the options below exist only in multiplayer setup, Pangaea
 Ultima is listed only there, and single-player maps are generated untouched.
 
-- **Pangaea Ultima** — one large central Pangaea with islands, in the Map list.
+- **Pangaea Ultima** — one large central Pangaea with islands, in the Map list,
+  built on the game's own Voronoi map generation (islands turn to Treasure in
+  Exploration, like the game's Pangaea).
 - **Player Placement** (Map Options) — Base, Duel, 2v2, 3v3 or 4v4 East vs
   West layouts for any map. Every start needs Fresh Water and 12 tiles of
   separation; the most constrained player is placed first.
@@ -163,9 +165,9 @@ Multiplayer-Toolkit/
 │  └─ ui/                        # balance settings, one technology per turn
 └─ maps/                         # Maps (everything map)
    ├─ config/                    # map list, Map Options, multiplayer-only filter, compatibility
-   ├─ data/                      # custom resource system (per Age)
-   ├─ maps/                      # map scripts (Pangaea Ultima, start placement, resources)
-   ├─ scripts/                   # Voronoi map generator, multiplayer placement pass
+   ├─ data/                      # custom resource system (per Age), Pangaea Ultima islands
+   ├─ maps/                      # Pangaea Ultima, strict start biases, start-bias scoring, resources
+   ├─ scripts/                   # multiplayer placement pass, Pangaea Ultima Voronoi settings
    ├─ text/en_us/                # map strings
    └─ ui/                        # multiplayer defaults, turn-1 start warning
 ```
@@ -193,6 +195,18 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
   generation is left untouched.
 - **Compatible with Advanced Settings Pro and Zatygold's Spectator** (see
   Compatibility).
+- **Cleanup:** balance fixes (Bulgaria's Stratagems no longer stacks, Maurya's
+  Matha and the Empire style apply their values, tooltip names resolve), per-Age
+  building data, no-op and dead code removed; lighter timer, pause and
+  start-check code built on the game's own modules.
+- **Maps on the game's current scripts:** Pangaea Ultima and Player Placement
+  now use the installed game's map generation instead of older copies (start
+  biases include island biases again); placement solves several times faster
+  with time limits; Reefs are added once, after placement; the Oil/Rubber
+  guarantee is left to the game's own Age transition (minimum 2 each).
+- **Balance:** Daimyo applies to Infantry only, Iron Working's Codex works with
+  or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
+  place of Drottkvætt I) and upgrades to Reiði Guðanna.
 - The mod now affects saved games. Gohei427 joins as co-author.
 
 ### 0.6.1

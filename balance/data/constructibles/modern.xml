@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- NOTE PUT ALL CHANGES FOR THIS AGE ONLY -->
+<!-- Changes loaded in this Age only. -->
 <Database>
 
 	<GameModifiers>
@@ -16,7 +16,7 @@
 		<Row ConstructibleType="WONDER_DOI_SUTHEP" ModifierId="MPT_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE"/>
 		<!-- Nirayama -->
 		<Row ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" ModifierId="MPT_BALANCE_MOD_NIRAYAMA_REVERBERATORY_FURNACE_MINE_SCIENCE"/>
-		<!-- HErmitage -->
+		<!-- Hermitage -->
 		<Row ConstructibleType="WONDER_HERMITAGE" ModifierId="MPT_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM"/>
 	</ConstructibleModifiers>
 

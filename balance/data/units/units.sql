@@ -1,11 +1,11 @@
--- camanders splash
+-- Commander splash damage
 UPDATE ModifierArguments
 SET Value=5
-WHERE Name="Percent" AND ModifierId="MOD_PROMOTION_FLEET_GUNFIRE_SUPPORT";
+WHERE Name='Percent' AND ModifierId='MOD_PROMOTION_FLEET_GUNFIRE_SUPPORT';
 
 UPDATE ModifierArguments
 SET Value=5
-WHERE Name="Percent" AND ModifierId="MOD_PROMOTION_SQUADRON_OBLITERATION";
+WHERE Name='Percent' AND ModifierId='MOD_PROMOTION_SQUADRON_OBLITERATION';
 
 -- Merchant.
 UPDATE Units

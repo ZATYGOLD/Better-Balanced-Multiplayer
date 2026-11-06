@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- First file: TurnPhases.xml -->
 <Database>
     <Types>
         <Row Type="MPT_TURNPHASE_COP" Kind="KIND_TURNSEGMENT"/>

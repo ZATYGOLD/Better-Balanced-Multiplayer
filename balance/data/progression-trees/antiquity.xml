@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Database>
     <ProgressionTreeNodeUnlocks>
         <!-- Pirates -->
@@ -7,9 +8,9 @@
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_SKILLED_TRADES" TargetKind="KIND_MODIFIER" TargetType="PIRATE_AQ_MOD_FREE_SETTLER" UnlockDepth="1" RequiredTraitType="TRAIT_PIRATE_REPUBLIC"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_COMMERCE" TargetKind="KIND_MODIFIER" TargetType="PIRATE_AQ_MOD_FREE_SETTLER" UnlockDepth="1" RequiredTraitType="TRAIT_PIRATE_REPUBLIC"/>
         <Row ProgressionTreeNodeType="NODE_TECH_AQ_CURRENCY" TargetKind="KIND_MODIFIER" TargetType="PIRATE_AQ_MOD_FREE_SETTLER" UnlockDepth="1" RequiredTraitType="TRAIT_PIRATE_REPUBLIC"/>
-        <!-- Iceland -->
-        <!-- <Delete TargetType="TRADITION_DROTTKVAETT_I"/>
-		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_REIDI_GUDANNA_I" UnlockDepth="1"/> -->
+        <!-- Iceland: Origins grants Reiði Guðanna I instead of Drottkvætt I -->
+        <Delete ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetType="TRADITION_DROTTKVAETT_I"/>
+        <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_REIDI_GUDANNA_I" UnlockDepth="1"/>
         <!-- Shawnee -->
         <Delete TargetType="TRADITION_HELIKHILENAWEWIPE_I"/>
         <Row ProgressionTreeNodeType="NODE_CIVIC_AQ_SHAWNEE_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_TAKESIYAKE_YEPEPOKI_I" />
@@ -24,7 +25,7 @@
         <Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_HWARANG_3" UnlockDepth="2" RequiredTraitType="TRAIT_SILLA"/>
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_QASTI_3" UnlockDepth="2" RequiredTraitType="TRAIT_BABYLON"/>
         <Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_BALLISTA_2" UnlockDepth="2"/>
-        <Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_MODIFIER" TargetType="MOD_AQ_CODEX" UnlockDepth="2"/>
+        <Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_MODIFIER" TargetType="MPT_BALANCE_AQ_CODEX" UnlockDepth="2"/>
         <!-- Navigation -->
         <Row ProgressionTreeNodeType="NODE_TECH_AQ_NAVIGATION" TargetKind="KIND_UNIT" TargetType="UNIT_FLEET_COMMANDER" UnlockDepth="1"/>
     </ProgressionTreeNodeUnlocks>

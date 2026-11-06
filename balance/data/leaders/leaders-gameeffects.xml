@@ -233,7 +233,7 @@
 	<Modifier id="MPT_BALANCE_MACHIAVELLI_MOD_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
-		<Argument name="Tooltip">LOC_TRAIT_LEADER_RIZAL_ABILITY_NAME</Argument>
+		<Argument name="Tooltip">LOC_TRAIT_LEADER_MACHIAVELLI_ABILITY_NAME</Argument>
 	</Modifier>
 
 	<!-- Simon Bolivar -->

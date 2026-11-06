@@ -1,4 +1,4 @@
-const ffaPangaeaSettings = {
+const pangaeaUltimaSettings = {
   "generatorKey": 0,
   "mapConfig": {},
   "generatorConfig": {
@@ -289,5 +289,4 @@ const ffaPangaeaSettings = {
   }
 };
 
-export { ffaPangaeaSettings as default };
-//# sourceMappingURL=pangaea.mapconfig.js.map
+export { pangaeaUltimaSettings as default };

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- NOTE PUT ALL CHANGES FOR THIS AGE ONLY -->
+<!-- Changes loaded in this Age only. -->
 <Database>
 	<Constructible_GreatWorks>
 		<Row ConstructibleType="BUILDING_ROYAL_LIBRARY" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="2"/>

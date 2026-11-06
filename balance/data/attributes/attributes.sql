@@ -6,14 +6,8 @@ SET Value = 2
 WHERE ModifierId = 'MOD_ATTRIBUTE_CULTURAL_06'
   AND Name = 'Amount';
 
--- Grant one current-Age Great Work when the Attribute is completed. These are
--- game-level modifiers rather than node unlocks because completed node unlocks
--- are not re-fired during an Age transition.
-DELETE FROM ProgressionTreeNodeUnlocks
-WHERE ProgressionTreeNodeType = 'NODE_ATTRIBUTE_CULTURAL_06'
-  AND TargetKind = 'KIND_MODIFIER'
-  AND TargetType LIKE 'MPT_BALANCE_MOD_ATTRIBUTE_CULTURAL_FREE_GREAT_WORK%';
-
+-- Grant one current-Age Great Work when the Attribute is completed (game-level
+-- modifiers: completed node unlocks are not re-fired during an Age transition).
 INSERT OR IGNORE INTO GameModifiers (ModifierId)
 SELECT ModifierId
 FROM Modifiers

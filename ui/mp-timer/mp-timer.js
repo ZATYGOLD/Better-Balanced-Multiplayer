@@ -53,7 +53,7 @@
  *   orangeStart..flashStart+1  orange text, urgency beep every warnEverySeconds
  *   flashStart..0              engine's red flash + per-second beeps
  */
-import { createLogger, isAgeEnding, isObserverPlayer } from '../mpt-shared/mpt-util.js';
+import { createLogger, isAgeEnding, isObserverPlayer, whenDefined } from '../mpt-shared/mpt-util.js';
 import { TIMER_TYPE, CONFIG, ENGINE } from './mp-timer-config.js';
 
 const COMPETITIVE_HASH = Database.makeHash(TIMER_TYPE);
@@ -251,7 +251,9 @@ function clockFrozen() {
 
 /** Read the paused / transition state directly (a missed pause event can no longer leave the clock running). */
 function syncClockFrozen() {
-  CLOCK.setPaused(clockFrozen());
+  const frozen = clockFrozen();
+  CLOCK.setPaused(frozen);
+  return frozen;
 }
 
 /**
@@ -352,10 +354,9 @@ function mptBeepFromClock() {
  * capital late never lands on an already-expired clock.
  */
 function mptEnforceTick() {
-  syncClockFrozen();
-  if (!localPlayerTurnActive() || inGrace()) return;
+  if (syncClockFrozen() || !localPlayerTurnActive() || inGrace()) return;
   CLOCK.syncTurn();
-  if (CLOCK.participants < CONFIG.minPlayersToEnforce || clockFrozen()) return;
+  if (CLOCK.participants < CONFIG.minPlayersToEnforce) return;
   if (clockHeld()) { CLOCK.restart(); return; }
   if (Date.now() - mptLastEventMs > CONFIG.staleEventMs) mptBeepFromClock();
   if (!CLOCK.expired()) return;
@@ -412,47 +413,24 @@ function injectRingKeyframes() {
 
 // ====================== Component redefinition ========================
 
-/**
- * Retrieve the base game's PanelAction class and register a subclass in its
- * place. Everything the base panel does is inherited; only the turn timer
- * path is extended.
- */
-function defineMptPanelAction(attempts) {
-  // Only take over the panel when OUR timer is the chosen setting; with any
-  // other timer the game runs its genuine, untouched component. The lobby
-  // choice is fixed before the game UI boots, so a load-time check suffices.
-  // (undefined = configuration not readable yet - keep retrying.)
+/** Calls back with the configured timer type once the game configuration is readable. */
+function whenConfigured(callback, attempts = DEFINE_RETRIES) {
   const configured = configuredTimerType();
-  if (configured === undefined) {
-    if (attempts > 0) setTimeout(() => defineMptPanelAction(attempts - 1), DEFINE_RETRY_MS);
-    else log('game configuration never became readable; competitive timer inactive');
-    return;
-  }
-  if (configured !== COMPETITIVE_HASH) return;
-  let base = null;
-  try { base = Controls.getDefinition('panel-action'); } catch (e) { base = null; }
-  if (!base?.createInstance) {
-    if (attempts > 0) setTimeout(() => defineMptPanelAction(attempts - 1), DEFINE_RETRY_MS);
-    else log('panel-action definition never appeared; competitive timer inactive');
-    return;
-  }
+  if (configured !== undefined) { callback(configured); return; }
+  if (attempts > 0) setTimeout(() => whenConfigured(callback, attempts - 1), DEFINE_RETRY_MS);
+  else log('game configuration never became readable; competitive timer inactive');
+}
+
+/**
+ * Register a subclass of the base game's PanelAction in its place. Everything
+ * the base panel does is inherited; only the turn timer path is extended.
+ */
+function defineMptPanelAction(base) {
   const PanelAction = base.createInstance;
   injectRingKeyframes();
   startMptEnforcement();   // wall-clock enforcement runs even while the panel is rebuilt
 
   class MPT_PanelAction extends PanelAction {
-    // --- ring freeze on pause (display-only; the clock itself is CLOCK) ---
-    mptPauseListener = (data) => this.mptOnGamePauseChanged(data);
-
-    onAttach() {
-      super.onAttach();
-      engine.on('GamePauseStateChanged', this.mptPauseListener);
-    }
-    onDetach() {
-      engine.off('GamePauseStateChanged', this.mptPauseListener);
-      super.onDetach();
-    }
-
     /** Single override point: feed the base renderer our clock. */
     onTurnTimerUpdated(data) {
       mptLastEventMs = Date.now();   // events are flowing
@@ -570,12 +548,11 @@ function defineMptPanelAction(attempts) {
     }
 
     /**
-     * The ring animates on wall clock between scrubs, so it would keep moving
-     * while the game is paused even though the phase clock stops. Freeze it
-     * during pause; the first event after unpause scrubs it back into place.
+     * The ring animates on wall clock between scrubs, so it is frozen while
+     * paused; the first event after unpause scrubs it back into place.
      */
-    mptOnGamePauseChanged() {
-      syncClockFrozen();
+    onGamePauseStateChanged(...args) {
+      super.onGamePauseStateChanged(...args);
       this.mptFreezeRing();
     }
 
@@ -596,4 +573,7 @@ function defineMptPanelAction(attempts) {
   if (existing && !(existing instanceof MPT_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
 }
 
-defineMptPanelAction(DEFINE_RETRIES);
+whenConfigured((configured) => {
+  if (configured !== COMPETITIVE_HASH) return;   // any other timer keeps the game's own panel
+  whenDefined('panel-action', defineMptPanelAction, { retries: DEFINE_RETRIES, intervalMs: DEFINE_RETRY_MS, log });
+});

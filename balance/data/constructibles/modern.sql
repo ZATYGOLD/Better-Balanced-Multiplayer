@@ -1,0 +1,209 @@
+-- Modern
+-- Tier 1
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_CANNERY';
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_CITY_PARK';
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_MILITARY_ACADEMY';
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_MUSEUM';
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_PORT';
+UPDATE Constructibles
+SET Cost='320'
+WHERE ConstructibleType='BUILDING_SCHOOLHOUSE';
+-- Tier 2
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_DEPARTMENT_STORE';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_FACTORY';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_LABORATORY';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_OPERA_HOUSE';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_RADIO_STATION';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_STOCK_EXCHANGE';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_TENEMENT';
+-- Wearhouse
+UPDATE Constructibles
+SET Cost='300'
+WHERE ConstructibleType='BUILDING_GROCER';
+UPDATE Constructibles
+SET Cost='300'
+WHERE ConstructibleType='BUILDING_IRONWORKS';
+UPDATE Constructibles
+SET Cost='300'
+WHERE ConstructibleType='BUILDING_MODERN_BRIDGE';
+-- Aerodome and Rail station
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_AIRFIELD';
+UPDATE Buildings
+SET Town='true'
+WHERE ConstructibleType='BUILDING_AIRFIELD';
+UPDATE Constructibles
+SET Cost='520'
+WHERE ConstructibleType='BUILDING_RAIL_STATION';
+-- Civilization unique improvements
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_BANG';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_KABAKAS_LAKE';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_OBSHCHINA';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_STEPWELL';
+-- City-state unique improvements
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_SHORE_BATTERY';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_OPEN_AIR_MUSEUM';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_ENTREPOT';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_INSTITUTE';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_ABATTOIR';
+UPDATE Constructibles
+SET Cost='150'
+WHERE ConstructibleType='IMPROVEMENT_CIRCUS_FAIR';
+-- Unique Buildings
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_RAILYARD';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_STEEL_MILL';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_GINKO';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_JUKOGYO';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_FORMAL_GARDEN';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_SALON';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_CATEDRAL';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_PORTAL_DE_MERCADERES';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_EXAMINATION_HALL';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_MONEY_SHOP';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_ROYAL_EXCHANGE';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_MANUFACTORY';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_CAMII';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_HAMMAM';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_GHAHVE_KHANE';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_TAKYEH';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_CONFUCIAN_ACADEMY';
+UPDATE Constructibles
+SET Cost='450'
+WHERE ConstructibleType='BUILDING_PRINTING_HOUSE';
+-- Town Specializations
+-- Food Towns
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownFishingBoatResourceFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownAtollFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownLotusFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownReefFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownColdReefFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownCoastTerrainFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownNavigableRiverFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownPastureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownPlantationFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownDesertFloodplainFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownGrasslandFloodplainFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownPlainsFloodplainFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownTropicalFloodplainFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownTundraFloodplainFeatureFood';
+UPDATE Warehouse_YieldChanges
+SET YieldChange='2'
+WHERE ID='MOTownFlatTerrainFood';
+
+INSERT OR IGNORE INTO Warehouse_YieldChanges
+    (ID, Age, YieldType, YieldChange, TerrainInCity)
+SELECT
+    'MPTBalanceMOTownOceanTerrainFood', 'AGE_MODERN', 'YIELD_FOOD', 2, 'TERRAIN_OCEAN'
+WHERE EXISTS (SELECT 1 FROM Warehouse_YieldChanges WHERE ID='MOTownCoastTerrainFood');
+
+UPDATE ModifierArguments
+SET Value = Value || ', MPTBalanceMOTownOceanTerrainFood'
+WHERE ModifierId IN ('ATTACH_GRANARY_WAREHOUSE_FOOD_FROM_PROJECT', 'ATTACH_FISHING_WAREHOUSE_FOOD_FROM_PROJECT')
+  AND Name='WarehouseYieldChange'
+  AND EXISTS (SELECT 1 FROM Warehouse_YieldChanges WHERE ID='MOTownCoastTerrainFood')
+  AND instr(Value, 'MPTBalanceMOTownOceanTerrainFood')=0;

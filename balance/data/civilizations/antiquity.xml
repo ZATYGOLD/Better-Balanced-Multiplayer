@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- NOTE PUT ALL CIV CHANGES FOR THIS AGE IN HERE (NOT JUST ANTIQUITY CIVS)-->
+<!-- Civilization changes loaded in this Age (every civilization, not only this Age's). -->
 <Database>
 	<TraitModifiers>
 		<!-- Khmer: remove the Happiness penalty from non-Capital Cities. -->
@@ -15,9 +15,7 @@
         <!-- Exploration -->
                 <!-- Iceland -->
                 <Row TraitType="TRAIT_ICELAND_ABILITY" ModifierId="MPT_BALANCE_ICELAND_MO_MOD_NATURAL_WONDER_CULTURE"/>
-                <!-- Monglia -->
-                <Delete ModifierId="TRAIT_MOD_EXPENSIVE_SETTLER"/>
-                <!-- Monglia -->
+                <!-- Mongolia -->
                 <Delete ModifierId="TRAIT_MOD_EXPENSIVE_SETTLER"/>
                 <!-- Sengoku -->
                 <Delete ModifierId="SENGOKU_MOD_COMMANDER_XP_CULTURE"/>

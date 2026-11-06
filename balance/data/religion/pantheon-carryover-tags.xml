@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<!-- Narrative tags are native player state that Civ VII preserves across Ages. -->
-	<Kinds>
-		<InsertOrIgnore Kind="KIND_NARRATIVE_TAG"/>
-	</Kinds>
 	<Types>
 		<InsertOrIgnore Type="MPT_BALANCE_NARRATIVE_TAG_PANTHEON_1" Kind="KIND_NARRATIVE_TAG"/>
 		<InsertOrIgnore Type="MPT_BALANCE_NARRATIVE_TAG_PANTHEON_2" Kind="KIND_NARRATIVE_TAG"/>
