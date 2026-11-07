@@ -1,0 +1,4 @@
+-- Age Progression Fast: milestones and future techs/civics add 50% more age progress.
+UPDATE AgeProgressionEvents
+SET Points = CAST(ROUND(Points * 1.5) AS INTEGER)
+WHERE AgeProgressionEventType IN ('AGE_PROGRESSION_PLAYER_MILESTONE_1', 'AGE_PROGRESSION_PLAYER_MILESTONE_2', 'AGE_PROGRESSION_PLAYER_MILESTONE_3', 'AGE_PROGRESSION_FUTURE_CIVIC', 'AGE_PROGRESSION_FUTURE_TECH');

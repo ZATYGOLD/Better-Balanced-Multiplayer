@@ -1,9 +1,9 @@
 --*******************************************************
 --***************** KEYBINDS ****************************
 --*******************************************************
--- Toolkit actions in Options -> keyboard mapping (ui/mp-keybind), with Civilization
--- VI's keys where it had the same action. Pause takes P, as in Civilization VI;
--- the game's Attributes move to F10 (below).
+-- Toolkit actions in Options -> keyboard mapping (ui/mp-keybind). They act in
+-- multiplayer games only, and their default keys are ones the game leaves free,
+-- so the game's own keys stay as they are.
 INSERT OR REPLACE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)
     VALUES
         ('mpt-pause-game', 'Keyboard', 'LOC_MPT_PAUSE_KEYBIND', 'LOC_MPT_PAUSE_KEYBIND_TT', 100),
@@ -22,17 +22,18 @@ INSERT OR REPLACE INTO InputActions (ActionId, DeviceType, Name, Description, So
         ('mpt-city-capital', 'Keyboard', 'LOC_MPT_KEYBIND_CITY_CAPITAL', 'LOC_MPT_KEYBIND_CITY_CAPITAL_TT', 113),
         ('mpt-unit-search', 'Keyboard', 'LOC_MPT_KEYBIND_SEARCH', 'LOC_MPT_KEYBIND_SEARCH_TT', 114);
 
--- Lenses 2 (Continent), 3 (Appeal) and 4 (Settler) as in Civilization VI; Trade and
--- Discovery take the free 1 and 5.
+-- Number keys for the lenses, brackets and backslash for settlements, Ctrl with a
+-- letter for Pause and the unit actions (Ctrl+P and Ctrl+B after Civilization VI's
+-- P and B, whose plain keys the game uses).
 INSERT OR REPLACE INTO InputActionDefaultGestures (ActionId, "Index", GestureType, GestureData)
     VALUES
-        ('mpt-pause-game', 0, 'KBMouse', 'KEY_P'),
+        ('mpt-pause-game', 0, 'KBMouse', 'KEY_P+KEY_CONTROL'),
         ('mpt-lens-trade', 0, 'KBMouse', 'KEY_1'),
         ('mpt-lens-continent', 0, 'KBMouse', 'KEY_2'),
         ('mpt-lens-appeal', 0, 'KBMouse', 'KEY_3'),
         ('mpt-lens-settler', 0, 'KBMouse', 'KEY_4'),
         ('mpt-lens-discovery', 0, 'KBMouse', 'KEY_5'),
-        ('mpt-unit-found-city', 0, 'KBMouse', 'KEY_B'),
+        ('mpt-unit-found-city', 0, 'KBMouse', 'KEY_B+KEY_CONTROL'),
         ('mpt-unit-join-commander', 0, 'KBMouse', 'KEY_Z+KEY_CONTROL'),
         ('mpt-unit-leave-commander', 0, 'KBMouse', 'KEY_X+KEY_CONTROL'),
         ('mpt-commander-pack', 0, 'KBMouse', 'KEY_Q+KEY_CONTROL'),
@@ -40,18 +41,4 @@ INSERT OR REPLACE INTO InputActionDefaultGestures (ActionId, "Index", GestureTyp
         ('mpt-city-previous', 0, 'KBMouse', 'KEY_LBRACKET'),
         ('mpt-city-next', 0, 'KBMouse', 'KEY_RBRACKET'),
         ('mpt-city-capital', 0, 'KBMouse', 'KEY_BACKSLASH'),
-        ('mpt-unit-search', 0, 'KBMouse', 'KEY_J');
-
--- Game screens on Civilization VI's keys: Government F7 (was L), Trade Routes F4
--- (was U), Religion L (was J). Keys Civilization VI used for other actions move:
--- Advisors (was B, now Found City) to F8, its Reports key; Attributes (was P, now
--- Pause) to F10, its Governors key.
-UPDATE InputActionDefaultGestures SET GestureData = CASE ActionId
-    WHEN 'open-traditions' THEN 'KEY_F7'
-    WHEN 'open-trade' THEN 'KEY_F4'
-    WHEN 'open-religion' THEN 'KEY_L'
-    WHEN 'open-advisors' THEN 'KEY_F8'
-    WHEN 'open-attributes' THEN 'KEY_F10'
-END
-WHERE ActionId IN ('open-traditions', 'open-trade', 'open-religion', 'open-advisors', 'open-attributes')
-  AND "Index" = 0 AND GestureType = 'KBMouse';
+        ('mpt-unit-search', 0, 'KBMouse', 'KEY_J+KEY_CONTROL');

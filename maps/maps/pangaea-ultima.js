@@ -3,10 +3,11 @@ import { assignStartPositionsFromHexMap } from '../../../base-standard/maps/assi
 import { generateDiscoveries } from '../../../base-standard/maps/discovery-generator.js';
 import { g_CoastTerrain, g_HillTerrain, g_MountainTerrain, g_OceanTerrain, g_PolarWaterRows } from '../../../base-standard/maps/map-globals.js';
 import { generateResources } from '../../../base-standard/maps/resource-generator.js';
-import { generateSnow } from '../../../base-standard/maps/snow-generator.js';
-import { GenerationContext, GenerationPhases, generateMapFeatures } from '../../../base-standard/scripts/common-generation.js';
+import { GenerationContext, GenerationPhases } from '../../../base-standard/scripts/common-generation.js';
 import { FeatureType, TerrainType } from '../../../base-standard/scripts/voronoi-types.js';
 import { VoronoiPangaeaUltima } from '../scripts/voronoi_maps/pangaea-ultima.js';
+import { generateMapFeatures } from './generation/map-features.js';
+import { generateSnow } from './generation/snow.js';
 // Loads the multiplayer Player Placement pass with the map (it arms itself once).
 import '../scripts/global-team-starts.js';
 
@@ -15,6 +16,8 @@ import '../scripts/global-team-starts.js';
 // seas become land, land touching the continent joins it, and other land keeps
 // a clear ocean gap from it. The islands beyond that gap are the Distant Lands:
 // they join the other landmass region, so they host Exploration's Treasure Fleets.
+// The terrain and snow passes apply the Map Settings climate and terrain
+// (./generation/), as on the multiplayer copies of the base maps.
 const CORE_RADIUS_X = 0.43;
 const CORE_RADIUS_Y = 0.38;
 const DISTANT_LAND_GAP = 4;

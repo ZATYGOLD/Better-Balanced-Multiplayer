@@ -1,6 +1,6 @@
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
-import { generateGlobalResources, placeDealtResources } from '../maps/global-resource-system.js';
+import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../maps/global-resource-system.js';
 import { adjustScoreByStartBias, resetStartBiasScores } from '../maps/start-bias-score.js';
 import {
   getPlayerStrictStartBias,
@@ -14,9 +14,9 @@ import {
 // Multiplayer Player Placement: a post-process of every map that places every
 // major player on a Fresh Water start at least JOINT_START_MINIMUM_DISTANCE
 // apart, within East vs West team regions when chosen, honouring strict start
-// biases. With the Custom Resource System the general resources are placed
-// before it and each player region's dealt resources after it; Reefs are then
-// added near coast-biased starts.
+// biases. Before it, Resource List All places the general resources (each
+// player region's dealt resources follow placement) and Standard scales the
+// game's own; Reefs are then added near coast-biased starts.
 const JOINT_START_MINIMUM_DISTANCE = 12;
 const JOINT_START_SEARCH_NODE_LIMIT = 750000;
 const JOINT_START_SEARCH_RESTARTS = 3;
@@ -820,9 +820,12 @@ function applyGlobalTeamStartsSafely() {
   }
 }
 
-// The Map Options exist only in multiplayer setup; a missing Custom Resource System option means Off.
+// The Map Options exist only in multiplayer setup; Resource List All matches the
+// criteria that load its data (any other value is Standard).
 const isMultiplayerMap = () => Configuration.getMapValue("MPTPlayerPlacement") != null;
-const isResourceSystemOn = () => Configuration.getMapValue("MPTResourceSystem") === "MPT_MAPS_RESOURCE_SYSTEM_ON";
+const isResourceListAll = () => Configuration.getMapValue("MPTResourceList") === "MPT_MAPS_RESOURCE_LIST_ALL";
+// Map files (Earth) keep the game's resources.
+const isScriptedMap = () => String(Configuration.getMapValue("Script") ?? "").endsWith(".js");
 
 function armGlobalTeamStartHandler() {
   resetStrictStartBiases();   // a new map: re-read the option and the players
@@ -839,14 +842,13 @@ function armGlobalTeamStartHandler() {
       console.log("MPT MAPS PLAYER PLACEMENT: not a multiplayer setup; map left unchanged");
       return;
     }
-    if (isResourceSystemOn()) {
-      generateGlobalResources();
-      FertilityBuilder.recalculate();   // start scoring reads fertility from the new resources
-    } else {
-      console.log("MPT MAPS RESOURCES: custom resource system disabled; retaining normal map resources");
-    }
+    const scripted = isScriptedMap();
+    const resourceListAll = scripted && isResourceListAll();
+    if (resourceListAll) generateGlobalResources();
+    else if (scripted) scaleGameResources();
+    FertilityBuilder.recalculate();   // start scoring reads fertility from the new resources
     applyGlobalTeamStartsSafely();
-    if (isResourceSystemOn()) {
+    if (resourceListAll) {
       try {
         placeDealtResources();   // player regions follow the final starts
       } catch (error) {

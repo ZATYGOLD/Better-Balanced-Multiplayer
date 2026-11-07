@@ -26,14 +26,14 @@
  * Commander actions) run the same operations and commands as the unit action
  * buttons, through the game's own target selection when one needs a plot.
  * City keys select the previous, next or capital settlement, as the city
- * screen's arrows do.
+ * screen's arrows do. Multiplayer games only.
  */
 import { InterfaceMode } from 'fs://game/core/ui/interface-modes/interface-modes.js';
 import LensManager from 'fs://game/core/ui/lenses/lens-manager.js';
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
 import { UnitActionHandlers } from 'fs://game/base-standard/ui/unit-interact/unit-action-handlers.js';
 import { GetNextCityID, GetPrevCityID } from 'fs://game/base-standard/ui/production-chooser/production-chooser-helpers.js';
-import { createLogger } from '../mpt-shared/mpt-util.js';
+import { createLogger, isMultiplayerGame } from '../mpt-shared/mpt-util.js';
 import { CITY_ACTIONS, DEFAULT_LENS, LENS_ACTIONS, UNIT_ACTIONS } from './mp-keybind-config.js';
 
 const log = createLogger('keybind hotkeys');
@@ -95,4 +95,4 @@ function onEngineInput(event) {
   } catch (e) { log(`${detail.name} failed: ${e}`); }
 }
 
-engine.whenReady.then(() => window.addEventListener("engine-input", onEngineInput, true));
+engine.whenReady.then(() => { if (isMultiplayerGame()) window.addEventListener("engine-input", onEngineInput, true); });

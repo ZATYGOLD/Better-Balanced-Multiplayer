@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+	<!-- Game Balance: the setup option, in the shell and in game -->
+		<Row Tag="LOC_MPT_BALANCE_NAME"><Text>Game Balance</Text></Row>
+		<Row Tag="LOC_MPT_BALANCE_DESC"><Text>Balance changes for competitive multiplayer: civilizations, leaders, units, governments, wonders, resources, pantheons, mementos and victories. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_BALANCE_STANDARD_DESC"><Text>Use Civilization VII's own balance.</Text></Row>
+		<Row Tag="LOC_MPT_BALANCE_MULTIPLAYER_NAME"><Text>Multiplayer</Text></Row>
+		<Row Tag="LOC_MPT_BALANCE_MULTIPLAYER_DESC"><Text>Use the Multiplayer Toolkit's competitive balance changes.</Text></Row>
+	</EnglishText>
+</Database>

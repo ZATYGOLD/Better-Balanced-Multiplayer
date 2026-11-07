@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Multiplayer Balance: Antiquity Age -->
+	<!-- Game Balance: Antiquity Age -->
 		<Replace Tag="LOC_TRADITION_AKSUM_SYNCRETISM_EXPLORATION_DESCRIPTION"><Text>[B]+2 [icon:YIELD_PRODUCTION][/B] in the [icon:NOTIFICATION_SELECT_CAPITAL] [TIP:LOC_PEDIA_CONCEPTS_CAPITAL_TOOLTIP]Capital[/TIP] for every active [icon:TRADE_ROUTE] [TIP:LOC_PEDIA_CONCEPTS_TRADE_ROUTE_TOOLTIP]Trade Route[/TIP]. [icon:TRADE_ROUTE] Trade Routes gain [B]+2 [icon:Action_Showall][/B] [TIP:LOC_PEDIA_CONCEPTS_SIGHT_TOOLTIP]Sight[/TIP] and cannot be Pillaged.</Text></Replace>
 		<Replace Tag="LOC_TRADITION_AKSUM_SYNCRETISM_MODERN_DESCRIPTION"><Text>[B]+3 [icon:YIELD_PRODUCTION][/B] in the [icon:NOTIFICATION_SELECT_CAPITAL] [TIP:LOC_PEDIA_CONCEPTS_CAPITAL_TOOLTIP]Capital[/TIP] for every active [icon:TRADE_ROUTE] [TIP:LOC_PEDIA_CONCEPTS_TRADE_ROUTE_TOOLTIP]Trade Route[/TIP]. [icon:TRADE_ROUTE] Trade Routes gain [B]+2 [icon:Action_Showall][/B] [TIP:LOC_PEDIA_CONCEPTS_SIGHT_TOOLTIP]Sight[/TIP] and cannot be Pillaged.</Text></Replace>
 		<Replace Tag="LOC_TRADITION_GIRRU_I_DESCRIPTION"><Text>+3 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP] for Cavalry Units within an [icon:UNIT_ARMY_COMMANDER] [TIP:LOC_PEDIA_CONCEPTS_COMMANDER_TOOLTIP]Army Commander's[/TIP] Radius. +3 [icon:YIELD_PRODUCTION] Production, [icon:YIELD_SCIENCE] Science, and [icon:YIELD_FOOD] Food in [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Captured Settlements[/TIP] from any Age.</Text></Replace>

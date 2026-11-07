@@ -29,7 +29,7 @@ const spectatorSlots = isModEnabled(COMPANION_MODS.spectator) ? 1 : 0;
 let managed = false;
 let launching = false;
 
-/** The Rule Set's Player Placement (a hidden setting, read from the map configuration). */
+/** The Match Type's Player Placement (a hidden setting, read from the map configuration). */
 function placement() {
   try {
     const raw = Configuration.getMap().getValue(PLACEMENT_PARAMETER);

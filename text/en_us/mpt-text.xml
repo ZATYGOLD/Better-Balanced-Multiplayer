@@ -19,55 +19,58 @@
 		<Row Tag="LOC_MPT_PAUSE_HOST_CHANGED"><Text>The host changed.</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_UNPAUSING"><Text>Unpausing...</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the multiplayer game, or toggles your readiness while it is paused. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 
 	<!-- Keybinds -->
 		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT"><Text>Toggle Continent Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL"><Text>Toggle Appeal Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER"><Text>Toggle Settler Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY"><Text>Found Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS"><Text>Previous Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT"><Text>Next Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL"><Text>Capital</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_SEARCH"><Text>Search (Scout)</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS"><Text>Commander Pack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS"><Text>Commander Unpack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
 
 	<!-- Turn Timers -->
-		<Replace Tag="LOC_GAME_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Replace>
+		<Row Tag="LOC_MPT_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Row>
 		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
 		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
 
-	<!-- Multiplayer Rule Set -->
-		<Row Tag="LOC_MPT_RULESET_NAME"><Text>Multiplayer Rule Set</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Strict Start Biases and Map Size. Free for All places players over the whole map and leaves the other settings to the host.</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_FFA_NAME"><Text>Free for All</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart); choose the other settings yourself.</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_1V1_NAME"><Text>1v1</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Strict Start Biases, Tiny map built as the 36x22 Duel map.</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_2V2_NAME"><Text>2v2</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Strict Start Biases, Tiny map.</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_3V3_NAME"><Text>3v3</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Small map.</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_4V4_NAME"><Text>4v4</Text></Row>
-		<Row Tag="LOC_MPT_RULESET_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Standard map.</Text></Row>
+	<!-- Match Type -->
+		<Row Tag="LOC_MPT_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Strict Start Biases and Map Size.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to Standard, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart). Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Strict Start Biases, Tiny map built as the 36x22 Duel map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Strict Start Biases, Tiny map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Small map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Standard map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+	<!-- Create Game tabs -->
+		<Row Tag="LOC_MPT_SETUP_TAB_PACE"><Text>Pace</Text></Row>
+		<Row Tag="LOC_MPT_SETUP_TAB_MAP"><Text>Map</Text></Row>
 	</EnglishText>
 </Database>

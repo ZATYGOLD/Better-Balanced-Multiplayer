@@ -24,15 +24,14 @@
  * The game-setup civilization and leader tooltips show each ability's text
  * but omit its name; the lobby model's two tooltip builders are wrapped to
  * insert the ability title above the text (a runtime patch rather than a
- * replacement of model-mp-staging-new.js, so it survives game patches). With
- * Advanced Settings Pro enabled its own lobby tooltips add the titles, so they
- * are left to it. The all-ready start countdown is shortened, and its ring
- * rescaled to match.
+ * replacement of model-mp-staging-new.js, so it survives game patches). The
+ * all-ready start countdown is shortened, and its ring rescaled to match. The
+ * lobby is multiplayer only.
  */
 import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
 import { GetCivilizationData } from 'fs://game/core/ui/shell/create-panels/age-civ-select-model.js';
 import { getLeaderData } from 'fs://game/core/ui/shell/create-panels/leader-select-model.js';
-import { COMPANION_MODS, createLogger, isModEnabled, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
+import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
 import { CONFIG } from './mp-lobby-config.js';
 
 const log = createLogger('lobby');
@@ -104,5 +103,5 @@ function patchTooltips() {
 
 try {
   if (CONFIG.startCountdownSeconds > 0) shortenCountdown();
-  if (!isModEnabled(COMPANION_MODS.advancedSettingsPro)) patchTooltips();
+  patchTooltips();
 } catch (e) { log(`lobby patches failed: ${e}`); }

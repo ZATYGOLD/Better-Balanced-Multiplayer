@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Multiplayer Balance: Resources (Exploration Age) -->
+	<!-- Game Balance: Resources (Exploration Age) -->
 		<Replace Tag="LOC_ANT_RESOURCE_HORSES_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Units[/TIP] per Horses resource.</Text></Replace>
 		<Replace Tag="LOC_ANT_RESOURCE_IRON_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_INFANTRY_UNITS_TOOLTIP]Infantry Units[/TIP] per Iron resource.</Text></Replace>
 		<Replace Tag="LOC_EXP_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_SIEGE_UNITS_TOOLTIP]Siege[/TIP] and [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP] per Niter resource.</Text></Replace>

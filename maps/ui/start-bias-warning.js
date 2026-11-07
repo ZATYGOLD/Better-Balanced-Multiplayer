@@ -1,4 +1,4 @@
-import { createLogger } from '../../ui/mpt-shared/mpt-util.js';
+import { createLogger, isMultiplayerGame } from '../../ui/mpt-shared/mpt-util.js';
 import { getPlayerStrictStartBias, isStrictStartBiasEnabled, matchesRule, matchesRuleWithLakeFallback } from '../maps/strict-start-biases.js';
 
 // Turn-1 check of the multiplayer Player Placement pass: Fresh Water, spacing and strict start biases.
@@ -11,9 +11,9 @@ let warningCreated = false;
 let validationAttempts = 0;
 let trainAttempts = 0;
 
-/** The placement pass runs only when the Map Options exist (multiplayer setup). */
+/** The placement pass runs only in multiplayer, where the Map Options exist. */
 function placementApplied() {
-  try { return Configuration.getMapValue("MPTPlayerPlacement") != null; } catch (_) { return false; }
+  try { return isMultiplayerGame() && Configuration.getMapValue("MPTPlayerPlacement") != null; } catch (_) { return false; }
 }
 
 function getValidationStorageKey() {

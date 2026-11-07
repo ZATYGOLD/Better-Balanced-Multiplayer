@@ -24,8 +24,9 @@
  * The keyboard-mapping screen only lists the action IDs in a hard-coded,
  * non-exported array in the game's editor-keyboard-mapping.js, so the actions
  * registered by config/mpt-input.sql would not appear there. The editor is
- * patched to list them, so they can be rebound like any built-in key.
- * Loaded in both scopes: the screen opens from the main menu and in game.
+ * patched to list them, so they can be rebound like any built-in key (they act
+ * in multiplayer games only). Loaded in both scopes: the screen opens from the
+ * main menu and in game.
  */
 import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
 import { KEYBIND_ACTIONS } from './mp-keybind-config.js';

@@ -66,7 +66,7 @@ INSERT INTO Resource_YieldChanges(ResourceType, YieldType, YieldChange) VALUES
 --***************** PLACEMENT ***************************
 --*******************************************************
 -- Preserve each resource's normal terrain/feature rules while replacing only
--- its biome list with the Custom Resource System's.
+-- its biome list with the All resource list's.
 CREATE TEMP TABLE MPT_OriginalResourceBiomes AS
 SELECT ResourceType, TerrainType, FeatureType, Weight
 FROM Resource_ValidBiomes;

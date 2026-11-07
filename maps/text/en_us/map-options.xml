@@ -2,6 +2,7 @@
 <Database>
 	<EnglishText>
 	<!-- Maps: Map List and Map Settings -->
+		<Row Tag="LOC_GROUPID_MPT_SPAWNOPTIONS"><Text>Spawn Settings</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLAYER_PLACEMENT_NAME"><Text>Player Placement</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLAYER_PLACEMENT_DESC"><Text>Choose whole-map placement or an East vs West competitive layout. Every solved start requires Fresh Water and 12 tiles of separation.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_BASE_NAME"><Text>Base</Text></Row>
@@ -20,14 +21,14 @@
 		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_ON_DESC"><Text>Enforce the mod's strict leader and civilization start requirements.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME"><Text>Off</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC"><Text>Use only the game's normal weighted biases; Fresh Water and 12-tile separation remain required.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_NAME"><Text>Custom Resource System</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC"><Text>Controls the resource pools dealt to each player's region, persistent resources, custom placement rules, classes, yields, tooltips, and Age-specific effects.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_NAME"><Text>On</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC"><Text>Use the mod's complete resource system; Resource Amount and Resource Clusters set how its resources are placed.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME"><Text>Off</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC"><Text>Use Civilization VII's normal resources, placement, and effects.</Text></Row>
+		<Row Tag="LOC_GROUPID_MPT_RESOURCEOPTIONS"><Text>Resource Settings</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_NAME"><Text>Resource List</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_DESC"><Text>Which resources the map uses and the rules they follow. Resource Amount and Resource Clusters apply to either list.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_STANDARD_DESC"><Text>The game's own resources for each Age, with their usual placement rules, yields and effects.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_ALL_NAME"><Text>All</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_ALL_DESC"><Text>Every resource in every Age (Oil and Rubber from Modern), kept across Age transitions: matched resource pools dealt to each player's region, even counts of general resources per continent, and the mod's own classes, yields and effects.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_NAME"><Text>Resource Amount</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the Custom Resource System places, as a share of the game's own density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the map places, as a share of the game's own density.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_NAME"><Text>Scarce</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_DESC"><Text>35% of the game's density.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SPARSE_DESC"><Text>50% of the game's density.</Text></Row>

@@ -2,19 +2,20 @@ import { createLogger, whenDefined, wrapMethod } from '../../ui/mpt-shared/mpt-u
 
 // New multiplayer games start on these values (the host can change them). The
 // Create Game screen resets the configuration as it attaches, so they are set
-// right after; a parameter the setup lacks is skipped.
+// right after; a parameter the setup lacks is skipped. Age Length is the Toolkit's
+// multiplayer one (pace/), whose rules then fill its per-Age rows.
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";
 const RETRY_MS = 50;
 const MAX_ATTEMPTS = 20;
-const REQUIRED_PARAMETERS = ["GameSpeeds", "AgeLength", "AgeCountdownTimer", "Map", "MapSize"];
+const REQUIRED_PARAMETERS = ["GameSpeeds", "MPTPaceAgeLength", "AgeCountdownTimer", "Map", "MapSize"];
 const MULTIPLAYER_DEFAULTS = [
   ["GameSpeeds", "GAMESPEED_ONLINE"],
-  ["AgeLength", "AGE_LENGTH_ABBREVIATED"],
+  ["MPTPaceAgeLength", "MPT_PACE_AGE_LENGTH_ABBREVIATED"],
   ["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_NONE"],
   ["Map", "{multiplayer-toolkit}maps/maps/pangaea-ultima.js"],
   ["MapSize", "MAPSIZE_STANDARD"],
-  ["MPTResourceSystem", "MPT_MAPS_RESOURCE_SYSTEM_ON"]
+  ["MPTResourceList", "MPT_MAPS_RESOURCE_LIST_ALL"]
 ];
 
 function applyMultiplayerDefaults(attempt = 0) {

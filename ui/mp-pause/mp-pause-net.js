@@ -33,7 +33,7 @@
  * for one is hidden. The mini-map binds the chat handler it first sees, so the
  * sound can still play until chat is first opened.
  */
-import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
+import { createLogger, isMultiplayerGame, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
 import { CONFIG } from './mp-pause-config.js';
 
 const log = createLogger('pause net');
@@ -88,9 +88,10 @@ function hideCommandsFromChat() {
   }, { retries: 30, intervalMs: 300, log });
 }
 
-// The chat channel only serves host-authoritative resume; with that off the chat screen is untouched.
+// The chat channel only serves host-authoritative resume in multiplayer; otherwise the chat screen is untouched.
 if (CONFIG.hostAuthoritativeResume !== false) {
   engine.whenReady.then(() => {
+    if (!isMultiplayerGame()) return;
     engine.on("MultiplayerChat", onChat);
     hideCommandsFromChat();
   });

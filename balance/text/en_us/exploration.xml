@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Multiplayer Balance: Exploration Age -->
+	<!-- Game Balance: Exploration Age -->
 		<Replace Tag="LOC_BUILDING_MADRASA_DESCRIPTION"><Text>Abbasid [TIP:LOC_PEDIA_CONCEPTS_UNIQUE_BUILDING_TOOLTIP]Unique Science Building[/TIP]. +6[icon:YIELD_SCIENCE] Science. +0.5[icon:YIELD_SCIENCE] Science Adjacency for [TIP:LOC_PEDIA_CONCEPTS_DISTRICT_TOOLTIP]Quarters[/TIP], Science [TIP:LOC_PEDIA_CONCEPTS_BUILDINGS_TOOLTIP]Buildings[/TIP] and +1[icon:YIELD_SCIENCE] Science Adjacency for [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonders[/TIP].</Text></Replace>
 		<Replace Tag="LOC_TRADITION_STRATAGEMS_DESCRIPTION"><Text>+50% Yield and [icon:Action_Heal] HP from [icon:Action_Pillage] Pillaging. [B]+5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP][/B] for [icon:UNIT_CLASS_INFANTRY] Infantry and [icon:UNIT_CLASS_CAVALRY] [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry[/TIP] against other [TIP:LOC_PEDIA_CONCEPTS_LAND_UNITS_TOOLTIP]Land Units[/TIP] when you have at least [B]4 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Works[/TIP][/B] on display.</Text></Replace>
 		<Replace Tag="LOC_TRADITION_STRATAGEMS_COMBAT_DESCRIPTION"><Text>[B]+5 [icon:NAR_REW_COMBAT] [TIP:LOC_PEDIA_CONCEPTS_COMBAT_STRENGTH_TOOLTIP]Combat Strength[/TIP][/B] for Infantry and [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry[/TIP] against other [TIP:LOC_PEDIA_CONCEPTS_LAND_UNITS_TOOLTIP]Land Units[/TIP] when you have at least [B]4 [icon:NAR_REW_GREATWORK] [TIP:LOC_PEDIA_CONCEPTS_GREAT_WORKS_TOOLTIP]Great Works[/TIP][/B] on display.</Text></Replace>

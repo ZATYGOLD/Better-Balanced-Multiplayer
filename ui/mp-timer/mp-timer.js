@@ -61,7 +61,7 @@
  *   flashStart..0              engine's red flash + per-second beeps
  */
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
-import { createLogger, isAgeEnding, isObserverPlayer, whenAvailable, whenDefined } from '../mpt-shared/mpt-util.js';
+import { createLogger, isAgeEnding, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined } from '../mpt-shared/mpt-util.js';
 import { COMPETITIVE_HASH, CONFIG, ENGINE } from './mp-timer-config.js';
 
 let ENGINE_BACKSTOP = 0;   // TurnTimerTime, read once the configuration is readable
@@ -578,7 +578,7 @@ function defineMptPanelAction(base) {
 }
 
 whenAvailable(configuredTimerType, (configured) => {
-  if (configured !== COMPETITIVE_HASH) return;   // any other timer keeps the game's own panel
+  if (configured !== COMPETITIVE_HASH || !isMultiplayerGame()) return;   // any other timer keeps the game's own panel
   ENGINE_BACKSTOP = engineBackstop();
   log(`engine backstop (TurnTimerTime): ${ENGINE_BACKSTOP || 'unset'}s`);
   whenDefined('panel-action', defineMptPanelAction, { log });

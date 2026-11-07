@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Multiplayer Balance: General -->
-		<Row Tag="LOC_GROUPID_MPT_BALANCEOPTIONS"><Text>Balance Settings</Text></Row>
-		<Replace Tag="LOC_MPT_BALANCE_NAME"><Text>Multiplayer Balance</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_DESC"><Text>Balance changes for competitive multiplayer: civilizations, leaders, units, governments, wonders, resources, pantheons, mementos and victories. Added by Multiplayer Toolkit.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_ON_NAME"><Text>On</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_ON_DESC"><Text>Use the Multiplayer Balance changes.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_OFF_NAME"><Text>Off</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_OFF_DESC"><Text>Use Civilization VII's own balance.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_SCALE_NAME"><Text>Victory Threshold Scaling</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_SCALE_DESCRIPTION"><Text>Changes the score multiplier required for Culture, Economic, and Military victories. Science remains fixed at 100 Innovation.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_STANDARD_NAME"><Text>Standard</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_STANDARD_DESCRIPTION"><Text>Uses the standard victory-threshold modifier curve.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_LOW_NAME"><Text>Low</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_LOW_DESCRIPTION"><Text>Multiplies Culture, Economic, and Military victory-threshold modifiers by 0.75.</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_VERY_LOW_NAME"><Text>Very Low</Text></Replace>
-		<Replace Tag="LOC_MPT_BALANCE_VICTORY_THRESHOLD_VERY_LOW_DESCRIPTION"><Text>Multiplies Culture, Economic, and Military victory-threshold modifiers by 0.5.</Text></Replace>
+	<!-- Game Balance: General -->
 		<Replace Tag="LOC_MPT_BALANCE_VICTORY_NAME_OVERWHELMING"><Text>Overwhelming Victory</Text></Replace>
 		<Replace Tag="LOC_MPT_BALANCE_VICTORY_NAME_COMMANDING"><Text>Commanding Victory</Text></Replace>
 		<Replace Tag="LOC_MPT_BALANCE_VICTORY_NAME_DOMINATING"><Text>Dominating Victory</Text></Replace>

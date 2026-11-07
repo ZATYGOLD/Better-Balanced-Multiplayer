@@ -38,8 +38,7 @@ const CONFIG = {
   convergenceDelayMs: 2000,    // wait for all clients to flag in before evaluating readiness
   finalizeBackstopMs: 4000,    // fallback idle if the unpause event is missed
   connectionWatchMs: 500,      // how often to poll player connections for drops
-  hotkeyDebounceMs: 250,       // one press through the keybind and the raw key acts once
-  pauseHotkey: "p"             // raw-key fallback for the rebindable Pause keybind ("" = keybind only)
+  hotkeyDebounceMs: 250        // presses of the Pause keybind closer than this act once
 };
 
 /**

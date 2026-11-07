@@ -21,8 +21,9 @@
 /**
  * Multiplayer Toolkit - shared helpers (shell and game scope).
  *
- * Logging, method wrapping and deferred patching used by every feature,
- * plus the Age-ending check and companion-mod detection (Observer, enabled mods).
+ * Logging, method wrapping, deferred patching and the decorator base used by
+ * every feature, plus the multiplayer and Age-ending checks and companion-mod
+ * detection (Observer, enabled mods).
  */
 
 /** Logger that reaches UI.log (console.log output does not). */
@@ -60,6 +61,11 @@ function whenDefined(tag, callback, { retries = 50, intervalMs = 200, log = null
   whenAvailable(probe, callback, { retries, intervalMs, onGiveUp: () => log?.(`${tag} was never defined`) });
 }
 
+/** True in a multiplayer game or setup (hotseat included); every Toolkit feature acts only then. */
+function isMultiplayerGame() {
+  try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
+}
+
 /**
  * True from the moment a non-final Age is complete (its progress is full, the
  * HUD's action turns into the Age transition) until the next Age loads.
@@ -93,12 +99,20 @@ function isObserverPlayer(playerId) {
   } catch (e) { return false; }
 }
 
+/** Base for Controls.decorate decorators: the panel calls all four hooks, so a decorator overrides only those it uses. */
+class Decorator {
+  beforeAttach() {}
+  afterAttach() {}
+  beforeDetach() {}
+  afterDetach() {}
+}
+
 /** Mod ids of companion mods this one adapts to. */
-const COMPANION_MODS = { advancedSettingsPro: 'AdvancedSettingsPro', spectator: 'zatygolds-observer-mode' };
+const COMPANION_MODS = { spectator: 'zatygolds-observer-mode' };
 
 /** True while the mod with this .modinfo id is enabled (shell scope). */
 function isModEnabled(modId) {
   try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, createLogger, isAgeEnding, isModEnabled, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isModEnabled, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };

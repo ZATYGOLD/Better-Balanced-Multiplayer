@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Maps: Custom Resource System -->
+	<!-- Maps: All resource list -->
 		<Row Tag="LOC_MPT_MAPS_ANT_RESOURCE_CAMELS_TOOLTIP"><Text>+2 [icon:RADIAL_RESOURCES] Resource Capacity.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_ANT_RESOURCE_CLAY_TOOLTIP"><Text>+1 [icon:YIELD_PRODUCTION] Production on [icon:YIELD_WAREHOUSE] Warehouse Buildings.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_ANT_RESOURCE_LIMESTONE_TOOLTIP"><Text>+5% [icon:YIELD_PRODUCTION] Production toward [icon:WONDER] Wonders.</Text></Row>

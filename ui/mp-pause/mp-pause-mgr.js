@@ -40,7 +40,7 @@
  */
 import InputFilterManager from 'fs://game/core/ui/input/input-filter.js';
 import { InterfaceMode, InterfaceModeChangedEventName } from 'fs://game/core/ui/interface-modes/interface-modes.js';
-import { createLogger, isObserverPlayer } from '../mpt-shared/mpt-util.js';
+import { createLogger, isMultiplayerGame, isObserverPlayer } from '../mpt-shared/mpt-util.js';
 import { PAUSE_ACTION_ID } from '../mp-keybind/mp-keybind-config.js';
 import { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC } from './mp-pause-config.js';
 import styles from './mp-pause.scss.js';
@@ -120,7 +120,6 @@ class MultiplayerPauseManager {
   playerTurnActivatedListener = () => this.onTurnActivated();
   playerConnectedListener = (data) => this.onPlayerConnected(data);
   hostMigratedListener = (data) => this.onHostMigrated(data);
-  hotkeyListener = (ev) => this.onHotkey(ev);
   engineInputListener = (ev) => this.onEngineInput(ev);
   hotkeyLastAt = 0;
 
@@ -354,9 +353,8 @@ class MultiplayerPauseManager {
     this.iHoldFlag = true;
     this.toggleEnginePause();
   }
-  // Pause shortcut: pause when running, toggle readiness (a step toward resume)
-  // when already paused. Shared by the rebindable engine action and the raw-key
-  // fallback; debounced so a single press through both paths acts once.
+  // Pause keybind: pause when running, toggle readiness (a step toward resume)
+  // when already paused; debounced so a quick double press acts once.
   triggerPauseToggle() {
     const now = Date.now();
     if (now - this.hotkeyLastAt < CONFIG.hotkeyDebounceMs) return;
@@ -372,19 +370,6 @@ class MultiplayerPauseManager {
       const d = ev?.detail;
       if (!d || d.name !== PAUSE_ACTION_ID) return;
       if (d.status !== InputActionStatuses.FINISH) return;
-      this.triggerPauseToggle();
-    } catch (e) { /* ignore */ }
-  }
-  // Raw-key fallback (guaranteed to work even if the input-DB action does not
-  // dispatch); ignored while typing in a field or with a modifier held.
-  onHotkey(ev) {
-    try {
-      if (!this.isMultiplayer || !CONFIG.pauseHotkey) return;
-      if (ev.ctrlKey || ev.altKey || ev.metaKey || ev.repeat) return;
-      if ((ev.key || "").toLowerCase() !== CONFIG.pauseHotkey.toLowerCase()) return;
-      const t = ev.target;
-      const tag = t?.tagName?.toLowerCase?.();
-      if (tag === "input" || tag === "textarea" || t?.isContentEditable) return;
       this.triggerPauseToggle();
     } catch (e) { /* ignore */ }
   }
@@ -704,13 +689,9 @@ class MultiplayerPauseManager {
   }
 
   // ================================ Lifecycle ================================
-  isMultiplayerGame() {
-    try { const c = Configuration.getGame(); return !!(c && c.isAnyMultiplayer); }
-    catch (e) { return false; }
-  }
   onReady() {
     if (CONFIG.enabled === false) return;
-    this.isMultiplayer = this.isMultiplayerGame();
+    this.isMultiplayer = isMultiplayerGame();
     if (!this.isMultiplayer) return;
     InputFilterManager.allowFilters = true;
     this.injectStyles();
@@ -722,7 +703,6 @@ class MultiplayerPauseManager {
     engine.on("MultiplayerHostMigrated", this.hostMigratedListener);
     engine.on("PlayerTurnActivated", this.playerTurnActivatedListener);
     engine.on("RemotePlayerTurnBegin", this.playerTurnActivatedListener);
-    if (CONFIG.pauseHotkey) window.addEventListener("keydown", this.hotkeyListener, true);
     window.addEventListener("engine-input", this.engineInputListener, true);
     // Host-authoritative resume: honor a RESUME command only when it came from
     // the host, then clear our own flag so the game unpauses in sync.

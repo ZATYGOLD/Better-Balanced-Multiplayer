@@ -54,8 +54,8 @@ const MODERN_AGE = "AGE_MODERN";
 const WATER_REGION = -1;
 const ADJACENCY_PASSES = 3;
 
-// Map Settings (maps/config/map-options.sql). Amount scales the game's density
-// (DENSITY_TARGET of eligible tiles); Clusters grow a share of deposits into
+// Resource Settings (maps/config/map-options.sql), for either Resource List.
+// Amount scales the game's density; Clusters grow a share of deposits into
 // patches, with the seed count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
   MPT_MAPS_RESOURCE_AMOUNT_SCARCE: 0.35,
@@ -95,6 +95,14 @@ function mapSetting(table, key, fallback) {
   return { name: table[value] != null ? value : fallback, value: table[value] ?? table[fallback] };
 }
 
+/** Resource Amount and Resource Clusters as set up. */
+function resourceSettings() {
+  return {
+    amount: mapSetting(RESOURCE_AMOUNTS, "MPTResourceAmount", DEFAULT_AMOUNT),
+    clusters: mapSetting(RESOURCE_CLUSTERS, "MPTResourceClusters", DEFAULT_CLUSTERS)
+  };
+}
+
 function resolveResourceTypes(typeNames) {
   const result = [];
   for (const typeName of typeNames) {
@@ -129,6 +137,8 @@ function adjacentPlots(location) {
   }
   return plots;
 }
+
+const isIslandLand = (x, y) => !GameplayMap.isWater(x, y) && GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND);
 
 /** The continent of a land tile, or the shared water region. */
 function regionOf(x, y) {
@@ -298,25 +308,50 @@ function placeCopies(resourceIndex, plots, copies, counts, seeds, label) {
   return placed;
 }
 
-/** Grow a share of seeds into patches of their resource on empty neighbours in the same region, while its count is within the region's share. */
-function growClusters(seeds, counts, clusters) {
+/**
+ * Grow a share of seeds into patches of their resource on empty neighbours in the
+ * same region, up to `limit` deposits; with evenCounts, only while its count is
+ * within the region's share.
+ */
+function growClusters(seeds, counts, clusters, evenCounts, limit) {
   if (clusters.chance <= 0 || clusters.size <= 1) return 0;
   let grown = 0;
   for (const seed of seeds) {
+    if (grown >= limit) break;
     if (TerrainBuilder.getRandomNumber(100, "MPT MAPS cluster roll") >= clusters.chance) continue;
     const region = regionOf(seed.x, seed.y);
     const start = TerrainBuilder.getRandomNumber(DirectionTypes.NUM_DIRECTION_TYPES, "MPT MAPS cluster direction");
     let size = 1;
-    for (let step = 0; step < DirectionTypes.NUM_DIRECTION_TYPES && size < clusters.size; step++) {
+    for (let step = 0; step < DirectionTypes.NUM_DIRECTION_TYPES && size < clusters.size && grown < limit; step++) {
       const next = adjacentPlot(seed, (start + step) % DirectionTypes.NUM_DIRECTION_TYPES);
       if (next == null) continue;
       if (GameplayMap.getResourceType(next.x, next.y) !== ResourceTypes.NO_RESOURCE || GameplayMap.isNaturalWonder(next.x, next.y)) continue;
       if (regionOf(next.x, next.y) !== region || !ResourceBuilder.canHaveResource(next.x, next.y, seed.resourceIndex, true)) continue;
-      if (counts.get(region, seed.resourceIndex) > counts.average(region)) break;   // keep counts even: no patch past the region's share
+      if (evenCounts && counts.get(region, seed.resourceIndex) > counts.average(region)) break;   // no patch past the region's share
       placeResource(next.x, next.y, seed.resourceIndex, counts, null);
       size++;
       grown++;
     }
+  }
+  return grown;
+}
+
+/**
+ * Grow the placed seeds, then seed and grow in rounds up to `target` deposits:
+ * seedRound(limit, roundSeeds, round) places up to limit seeds (recorded in
+ * roundSeeds), sized by the growth achieved so far. Returns the deposits grown.
+ */
+function fillToTarget(target, seeds, counts, clusters, evenCounts, seedRound) {
+  let perSeed = 1 + (clusters.chance / 100) * (clusters.size - 1) * CLUSTER_SUCCESS_RATE;
+  let grown = growClusters(seeds, counts, clusters, evenCounts, target - seeds.length);
+  for (let round = 0; round < FILL_ROUNDS && seeds.length + grown < target; round++) {
+    const roundSeeds = [];
+    const placed = seedRound(Math.max(1, Math.round((target - seeds.length - grown) / perSeed)), roundSeeds, round);
+    if (placed === 0) break;
+    const roundGrown = growClusters(roundSeeds, counts, clusters, evenCounts, target - seeds.length - grown - placed);
+    seeds.push(...roundSeeds);
+    grown += roundGrown;
+    perSeed = 1 + roundGrown / placed;
   }
   return grown;
 }
@@ -336,10 +371,11 @@ function clearGeneratedResources(width, height) {
 }
 
 /**
- * Replace the map's resources with the general pool (every pooled resource in
- * every Age; Oil and Rubber from Modern): every general resource at least once,
- * then up to the Resource Amount with even counts per region, leaving room for
- * the dealt resources placed after Player Placement (placeDealtResources).
+ * Resource List All: replace the map's resources with the general pool (every
+ * pooled resource in every Age; Oil and Rubber from Modern): every general
+ * resource at least once, then up to the Resource Amount with even counts per
+ * region, leaving room for the dealt resources placed after Player Placement
+ * (placeDealtResources).
  */
 function generateGlobalResources() {
   const width = GameplayMap.getGridWidth();
@@ -371,24 +407,61 @@ function generateGlobalResources() {
   for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "MPT MAPS guaranteed general resource");
   const dealtEstimate = dealtCopies(buildPlayerRegions());   // the map's own starts; placement moves them only a little in size terms
 
-  const amount = mapSetting(RESOURCE_AMOUNTS, "MPTResourceAmount", DEFAULT_AMOUNT);
-  const clusters = mapSetting(RESOURCE_CLUSTERS, "MPTResourceClusters", DEFAULT_CLUSTERS);
+  const { amount, clusters } = resourceSettings();
   // The amount covers every resource; general deposits fill what the dealt copies will take.
   const target = Math.max(0, Math.round(placeablePlots.length * DENSITY_TARGET * amount.value) - dealtEstimate);
-  let perSeed = 1 + (clusters.value.chance / 100) * (clusters.value.size - 1) * CLUSTER_SUCCESS_RATE;
-  let grown = growClusters(seeds, counts, clusters.value);   // the guaranteed deposits may grow too
-  // Seed, grow, and top up with the growth actually achieved until the target is met.
-  for (let round = 0; round < FILL_ROUNDS && seeds.length + grown < target; round++) {
-    const roundSeeds = [];
-    const missing = target - seeds.length - grown;
-    const placed = fillEvenly(placeablePlots, candidatesByPlot, counts, Math.max(1, Math.round(missing / perSeed)), roundSeeds, `MPT MAPS resource plot order ${round + 1}`);
-    if (placed === 0) break;
-    const roundGrown = growClusters(roundSeeds, counts, clusters.value);
-    seeds.push(...roundSeeds);
-    grown += roundGrown;
-    perSeed = 1 + roundGrown / placed;
-  }
+  const grown = fillToTarget(target, seeds, counts, clusters.value, true, (limit, roundSeeds, round) =>
+    fillEvenly(placeablePlots, candidatesByPlot, counts, limit, roundSeeds, `MPT MAPS resource plot order ${round + 1}`));
   console.log(`MPT MAPS RESOURCES: age=${ageType} amount=${amount.name} clusters=${clusters.name} candidates=${placeablePlots.length} dealtEstimate=${dealtEstimate} general=${seeds.length + grown}/${target} (${seeds.length} seeds, ${grown} grown) replaced=${removed}`);
+}
+
+/**
+ * Resource List Standard: the game's own resources (its list, rules and placement)
+ * scaled to the Resource Amount and grown into Resource Clusters. Every deposit
+ * off the islands is lifted; one of each resource per continent (and in the
+ * water) returns, as the game guarantees, then the rest return in random order,
+ * with clusters grown where the game allows the resource, until the amount is met.
+ * Island resources stay as the map placed them.
+ */
+function scaleGameResources() {
+  const { amount, clusters } = resourceSettings();
+  if (amount.value >= 1 && clusters.value.chance <= 0) {
+    console.log(`MPT MAPS RESOURCES: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
+    return;
+  }
+  const deposits = [];
+  for (let y = 0; y < GameplayMap.getGridHeight(); y++) {
+    for (let x = 0; x < GameplayMap.getGridWidth(); x++) {
+      const resourceIndex = GameplayMap.getResourceType(x, y);
+      if (resourceIndex === ResourceTypes.NO_RESOURCE || isIslandLand(x, y)) continue;
+      deposits.push({ x, y, resourceIndex });
+      ResourceBuilder.setResourceType(x, y, ResourceTypes.NO_RESOURCE);
+    }
+  }
+  shuffleInPlace(deposits, "MPT MAPS game resource order");
+  const target = Math.round(deposits.length * amount.value);
+  const counts = new RegionCounts();
+  const seeds = [];
+  const queue = [];
+  const kept = new Set();
+  for (const deposit of deposits) {
+    const key = counts.key(regionOf(deposit.x, deposit.y), deposit.resourceIndex);
+    if (kept.has(key)) { queue.push(deposit); continue; }
+    kept.add(key);
+    placeResource(deposit.x, deposit.y, deposit.resourceIndex, counts, seeds);
+  }
+  let next = 0;
+  const grown = fillToTarget(target, seeds, counts, clusters.value, false, (limit, roundSeeds) => {
+    let placed = 0;
+    while (placed < limit && next < queue.length) {
+      const { x, y, resourceIndex } = queue[next++];
+      if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE) continue;   // taken by a cluster
+      placeResource(x, y, resourceIndex, counts, roundSeeds);
+      placed++;
+    }
+    return placed;
+  });
+  console.log(`MPT MAPS RESOURCES: game resources amount=${amount.name} clusters=${clusters.name} placed=${seeds.length + grown}/${target} of ${deposits.length} (${seeds.length} seeds, ${grown} grown)`);
 }
 
 /**
@@ -419,7 +492,6 @@ function placeDealtResources() {
 function collectIslands() {
   const width = GameplayMap.getGridWidth();
   const height = GameplayMap.getGridHeight();
-  const isIslandLand = (x, y) => !GameplayMap.isWater(x, y) && GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND);
   const seen = new Set();
   const islands = [];
   for (let y = 0; y < height; y++) {
@@ -477,4 +549,4 @@ function stockIslands(startPlots) {
   console.log(`MPT MAPS RESOURCES: islands=${islands} islandResourcesAdded=${added} islandRules=${rules.map((rule) => rule.ResourceClassType).join(",") || "none"}`);
 }
 
-export { generateGlobalResources, placeDealtResources };
+export { generateGlobalResources, placeDealtResources, scaleGameResources };
