@@ -325,7 +325,7 @@ Custom.
 | Setting | Options (default first) | Where |
 |---|---|---|
 | **Settlement Distance** | Standard (3), Less (2), More (4) | Advanced: Settlement Settings |
-| **Settlement Limit** | Standard (3/8/16), Less (1/4/10), More (5/12/20), Custom (1-75 per Age) | Advanced: Settlement Settings |
+| **Settlement Limit** | Standard (3/8/16), Less (1/4/10), More (5/12/20), Custom (1-25 per Age) | Advanced: Settlement Settings |
 | **Independent Amount / Spacing / Aggression** | Standard, None/Less/More, Less/More, Calm/Raging | Advanced: Independent Power Settings, with Initial Independent Hostility |
 | **Trade Range** | Standard, -50% to +100%, Custom (per Age) | Advanced: Trade Settings |
 | **World Wonders** | Standard, Carry Over | Advanced: Wonder Settings |
@@ -455,6 +455,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- **Settlement Limit** Custom values capped at 25 per Age.
 - **Age Length** trimmed to 90-140 points per Age (Standard and shorter); the
   Balanced choice is gone and the Balanced and Multiplayer Pace Sets use
   Standard Age Length.

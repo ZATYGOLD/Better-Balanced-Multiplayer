@@ -20,8 +20,6 @@
 	<Criteria id="always"><AlwaysMet/></Criteria>
 
 <!--*************************** CRITERIA: COMPETITIVE TIMER ***************************************-->
-
-		<!-- The current Age, for the per-Age Competitive timer numbers. -->
 		<Criteria id="timer-antiquity">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 		</Criteria>
@@ -33,8 +31,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: BALANCE *************************************************-->
-
-		<!-- The Game Balance lobby option, alone and per Age. -->
 		<Criteria id="balance-on">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_MULTIPLAYER</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -51,9 +47,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_MULTIPLAYER</Value></ConfigurationValueMatches>
 		</Criteria>
 
-<!--*************************** CRITERIA: MAPS ****************************************************-->
-
-		<!-- Resource List All (Resource Settings): the mod's resource data, alone and per Age. -->
+<!--*************************** CRITERIA: RESOURCES ****************************************************-->
 		<Criteria id="maps-resource-list-all">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceList</ConfigurationId><Value>MPT_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -79,7 +73,7 @@
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceList</ConfigurationId><Value>MPT_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Natural Wonders: count, spawn fixes while the setting exists, and one toggle per wonder. -->
+<!--*************************** CRITERIA: NATURAL WONDERS ****************************************************-->
 		<Criteria id="maps-natural-wonders" any="true">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_NONE</Value></ConfigurationValueMatches>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_HALF</Value></ConfigurationValueMatches>
@@ -166,7 +160,7 @@
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderZhangjiajie</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Lakes. -->
+<!--*************************** CRITERIA: LAKES ****************************************************-->
 		<Criteria id="maps-lakes-less">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTLakes</ConfigurationId><Value>MPT_MAPS_LAKES_LESS</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -175,8 +169,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: ANTIQUITY PACE ****************************************************-->
-
-		<!-- Age Length. -->
 		<Criteria id="pace-age-length-antiquity-90">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_90</Value></ConfigurationValueMatches>
@@ -203,7 +195,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: EXPLORATION PACE ****************************************************-->
-
 		<Criteria id="pace-age-length-exploration-90">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_90</Value></ConfigurationValueMatches>
@@ -230,7 +221,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: MODERN PACE ****************************************************-->
-
 		<Criteria id="pace-age-length-modern-90">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_90</Value></ConfigurationValueMatches>
@@ -257,7 +247,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: AGE PROGRESSION ****************************************************-->
-
 		<Criteria id="pace-age-progression-antiquity-slow">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeProgressionAntiquity</ConfigurationId><Value>MPT_PACE_AGE_PROGRESSION_SLOW</Value></ConfigurationValueMatches>
@@ -296,7 +285,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: TECHNOLOGY COST ****************************************************-->
-
 		<Criteria id="pace-technology-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTechnologyCostAntiquity</ConfigurationId><Value>MPT_PACE_TECHNOLOGY_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -347,7 +335,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: CIVIC COST ****************************************************-->
-
 		<Criteria id="pace-civic-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceCivicCostAntiquity</ConfigurationId><Value>MPT_PACE_CIVIC_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -398,7 +385,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: BUILDING COST ****************************************************-->
-
 		<Criteria id="pace-building-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceBuildingCostAntiquity</ConfigurationId><Value>MPT_PACE_BUILDING_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -449,7 +435,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: VICTORY PROJECT COST ****************************************************-->
-
 		<Criteria id="pace-victory-project-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceVictoryProjectCostAntiquity</ConfigurationId><Value>MPT_PACE_VICTORY_PROJECT_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -500,7 +485,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: SETTLEMENT GROWTH ****************************************************-->
-
 		<Criteria id="pace-settlement-growth-antiquity-plus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceSettlementGrowthAntiquity</ConfigurationId><Value>MPT_PACE_SETTLEMENT_GROWTH_PLUS_25</Value></ConfigurationValueMatches>
@@ -539,7 +523,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: ROAD SPEED ****************************************************-->
-
 		<Criteria id="pace-road-speed-antiquity-plus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRoadSpeedAntiquity</ConfigurationId><Value>MPT_PACE_ROAD_SPEED_PLUS_25</Value></ConfigurationValueMatches>
@@ -578,7 +561,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: TRADE SPEED ****************************************************-->
-
 		<Criteria id="pace-trade-speed-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTradeSpeedAntiquity</ConfigurationId><Value>MPT_PACE_TRADE_SPEED_MINUS_25</Value></ConfigurationValueMatches>
@@ -629,7 +611,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: RAZE SPEED ****************************************************-->
-
 		<Criteria id="pace-raze-speed-antiquity-plus-100">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRazeSpeedAntiquity</ConfigurationId><Value>MPT_PACE_RAZE_SPEED_PLUS_100</Value></ConfigurationValueMatches>
@@ -656,7 +637,6 @@
 		</Criteria>
 
 <!--*************************** CRITERIA: VICTORY THRESHOLD ****************************************************-->
-
 		<Criteria id="pace-victory-threshold-culture-low">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceCultureVictoryThreshold</ConfigurationId><Value>MPT_PACE_VICTORY_THRESHOLD_LOW</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -676,9 +656,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceMilitaryVictoryThreshold</ConfigurationId><Value>MPT_PACE_VICTORY_THRESHOLD_HIGH</Value></ConfigurationValueMatches>
 		</Criteria>
 
-<!--*************************** CRITERIA: GAMEPLAY ************************************************-->
-
-		<!-- Settlement Distance. -->
+<!--*************************** CRITERIA: SETTLEMENT DISTANCE ************************************************-->
 		<Criteria id="gameplay-settlement-distance-less">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementDistance</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_DISTANCE_LESS</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -686,7 +664,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementDistance</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_DISTANCE_MORE</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Settlement Limit, from its per-Age rows (none for each Age's own limit). -->
+<!--*************************** CRITERIA: ANTIQUITY SETTLEMENT LIMIT ************************************************-->
 		<Criteria id="gameplay-settlement-limit-antiquity-1">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_1</Value></ConfigurationValueMatches>
@@ -783,46 +761,8 @@
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_25</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-30">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_30</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-35">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_35</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-40">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_40</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-45">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_45</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-50">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_50</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-55">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_55</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-60">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_60</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-65">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_65</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-70">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_70</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-antiquity-75">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_75</Value></ConfigurationValueMatches>
-		</Criteria>
+
+<!--*************************** CRITERIA: EXPLORATION SETTLEMENT LIMIT ************************************************-->
 		<Criteria id="gameplay-settlement-limit-exploration-1">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_1</Value></ConfigurationValueMatches>
@@ -919,46 +859,8 @@
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_25</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-30">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_30</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-35">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_35</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-40">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_40</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-45">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_45</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-50">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_50</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-55">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_55</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-60">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_60</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-65">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_65</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-70">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_70</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-exploration-75">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitExploration</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_75</Value></ConfigurationValueMatches>
-		</Criteria>
+
+<!--*************************** CRITERIA: MODERN SETTLEMENT LIMIT ************************************************-->
 		<Criteria id="gameplay-settlement-limit-modern-1">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_1</Value></ConfigurationValueMatches>
@@ -1055,48 +957,8 @@
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_25</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-30">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_30</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-35">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_35</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-40">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_40</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-45">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_45</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-50">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_50</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-55">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_55</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-60">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_60</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-65">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_65</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-70">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_70</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="gameplay-settlement-limit-modern-75">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplaySettlementLimitModern</ConfigurationId><Value>MPT_GAMEPLAY_SETTLEMENT_LIMIT_75</Value></ConfigurationValueMatches>
-		</Criteria>
 
-		<!-- Independent Amount. -->
+<!--*************************** CRITERIA: INDEPENDENT AMOUNT ************************************************-->
 		<Criteria id="gameplay-independent-count-none">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentCount</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_COUNT_NONE</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -1107,7 +969,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentCount</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_COUNT_MORE</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Independent Spacing, per Age. -->
+<!--*************************** CRITERIA: INDEPENDENT SPACING ************************************************-->
 		<Criteria id="gameplay-independent-spacing-antiquity-less">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentSpacing</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_SPACING_LESS</Value></ConfigurationValueMatches>
@@ -1133,7 +995,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentSpacing</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_SPACING_MORE</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Independent Aggression, with its defenders per Age. -->
+<!--*************************** CRITERIA: INDEPENDENT AGGRESSION ************************************************-->
 		<Criteria id="gameplay-independent-aggression-antiquity-calm">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentAggression</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_AGGRESSION_CALM</Value></ConfigurationValueMatches>
@@ -1159,7 +1021,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayIndependentAggression</ConfigurationId><Value>MPT_GAMEPLAY_INDEPENDENT_AGGRESSION_RAGING</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Trade Range, from its per-Age rows. -->
+<!--*************************** CRITERIA: ANTIQUITY TRADE RANGE ************************************************-->
 		<Criteria id="gameplay-trade-range-antiquity-minus-50">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_MINUS_50</Value></ConfigurationValueMatches>
@@ -1180,6 +1042,8 @@
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
+
+<!--*************************** CRITERIA: EXPLORATION TRADE RANGE ************************************************-->
 		<Criteria id="gameplay-trade-range-exploration-minus-50">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeExploration</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_MINUS_50</Value></ConfigurationValueMatches>
@@ -1200,6 +1064,8 @@
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeExploration</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
+
+<!--*************************** CRITERIA: MODERN TRADE RANGE ************************************************-->
 		<Criteria id="gameplay-trade-range-modern-minus-50">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeModern</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_MINUS_50</Value></ConfigurationValueMatches>
@@ -1221,12 +1087,12 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeModern</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- World Wonders. -->
+<!--*************************** CRITERIA: WORLD WONDERS ************************************************-->
 		<Criteria id="gameplay-world-wonders-carry-over">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayWorldWonders</ConfigurationId><Value>MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Crisis Timing. -->
+<!--*************************** CRITERIA: CRISIS TIMING ************************************************-->
 		<Criteria id="gameplay-crisis-timing-early">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayCrisisTiming</ConfigurationId><Value>MPT_GAMEPLAY_CRISIS_TIMING_EARLY</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -1234,7 +1100,7 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayCrisisTiming</ConfigurationId><Value>MPT_GAMEPLAY_CRISIS_TIMING_LATE</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Triumph Sets, from the per-Age rows while Triumph Set is Custom. -->
+<!--*************************** CRITERIA: ANTIQUITY TRIUMPH SET ************************************************-->
 		<Criteria id="gameplay-triumph-set-antiquity-default">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>LegacySet</ConfigurationId><Value>MPT_LEGACY_SET_CUSTOM</Value></ConfigurationValueMatches>
@@ -1265,6 +1131,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>LegacySet</ConfigurationId><Value>MPT_LEGACY_SET_CUSTOM</Value></ConfigurationValueMatches>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTriumphSetAntiquity</ConfigurationId><Value>MPT_GAMEPLAY_TRIUMPH_SET_NONE</Value></ConfigurationValueMatches>
 		</Criteria>
+
+<!--*************************** CRITERIA: EXPLORATION TRIUMPH SET ************************************************-->
 		<Criteria id="gameplay-triumph-set-exploration-default">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>LegacySet</ConfigurationId><Value>MPT_LEGACY_SET_CUSTOM</Value></ConfigurationValueMatches>
@@ -1295,6 +1163,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>LegacySet</ConfigurationId><Value>MPT_LEGACY_SET_CUSTOM</Value></ConfigurationValueMatches>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTriumphSetExploration</ConfigurationId><Value>MPT_GAMEPLAY_TRIUMPH_SET_NONE</Value></ConfigurationValueMatches>
 		</Criteria>
+
+<!--*************************** CRITERIA: MODERN TRIUMPH SET ************************************************-->
 		<Criteria id="gameplay-triumph-set-modern-default">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>LegacySet</ConfigurationId><Value>MPT_LEGACY_SET_CUSTOM</Value></ConfigurationValueMatches>
@@ -1328,7 +1198,6 @@
 	</ActionCriteria>
 
 <!--*************************** SHELL: TEXT, SETTINGS, LOBBY UI, SETUP, KEYBINDS ******************-->
-
 	<ActionGroups>
 		<ActionGroup id="mpt-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
@@ -1361,8 +1230,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: TEXT & SHARED HELPERS ***************************************-->
-
+<!--*************************** GAME: TEXT & SHARED HELPERS ************************************************-->
 		<ActionGroup id="mpt-game-text" scope="game" criteria="always">
 			<Properties><LoadOrder>500</LoadOrder></Properties>
 			<Actions>
@@ -1375,8 +1243,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: PAUSE, KEYBINDS *********************************************-->
-
+<!--*************************** GAME: PAUSE, KEYBINDS ************************************************-->
 		<ActionGroup id="mpt-pause-button" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
@@ -1393,8 +1260,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: COMPETITIVE TIMER (ui/timer/) *******************************-->
-
+<!--*************************** GAME: COMPETITIVE TIMER ************************************************-->
 		<ActionGroup id="mpt-competitive-timer-script" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
@@ -1405,8 +1271,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: COMPETITIVE TIMER DATA (data/timers/) ***********************-->
-
+<!--*************************** GAME: COMPETITIVE TIMER DATA ************************************************-->
 		<ActionGroup id="mpt-turn-timer-schema" scope="game" criteria="always">
 			<Properties><LoadOrder>900</LoadOrder></Properties>
 			<Actions>
@@ -1416,7 +1281,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Per-Age numbers over the defaults. -->
+<!--*************************** GAME: ANTIQUITY COMPETITIVE TIMER ************************************************-->
 		<ActionGroup id="mpt-turn-timer-antiquity" scope="game" criteria="timer-antiquity">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
@@ -1426,6 +1291,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: EXPLORATION COMPETITIVE TIMER ************************************************-->
 		<ActionGroup id="mpt-turn-timer-exploration" scope="game" criteria="timer-exploration">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
@@ -1435,6 +1301,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: MODERN COMPETITIVE TIMER ************************************************-->
 		<ActionGroup id="mpt-turn-timer-modern" scope="game" criteria="timer-modern">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
@@ -1444,9 +1311,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME BALANCE (data/balance/) **************************************-->
-
-		<!-- Lobby option and its text: always (the shell loads before any game option is known). -->
+<!--*************************** SHELL: BALANCE ************************************************-->
 		<ActionGroup id="mpt-balance-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>200</LoadOrder></Properties>
 			<Actions>
@@ -1459,7 +1324,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- The option's text in game; the game's own text changes only with Game Balance on Multiplayer (below). -->
+<!--*************************** GAME: BALANCE ************************************************-->
 		<ActionGroup id="mpt-balance-text" scope="game" criteria="always">
 			<Properties><LoadOrder>200</LoadOrder></Properties>
 			<Actions>
@@ -1468,8 +1333,6 @@
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
-
-		<!-- Everything below loads only with the Game Balance setting on Multiplayer. -->
 		<ActionGroup id="mpt-balance-game" scope="game" criteria="balance-on">
 			<Properties><LoadOrder>201</LoadOrder></Properties>
 			<Actions>
@@ -1504,6 +1367,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: ANTIQUITY BALANCE ************************************************-->
 		<ActionGroup id="mpt-balance-antiquity" scope="game" criteria="balance-antiquity">
 			<Properties><LoadOrder>210</LoadOrder></Properties>
 			<Actions>
@@ -1549,6 +1413,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: EXPLORATION BALANCE ************************************************-->
 		<ActionGroup id="mpt-balance-exploration" scope="game" criteria="balance-exploration">
 			<Properties><LoadOrder>220</LoadOrder></Properties>
 			<Actions>
@@ -1589,6 +1454,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: MODERN BALANCE ************************************************-->
 		<ActionGroup id="mpt-balance-modern" scope="game" criteria="balance-modern">
 			<Properties><LoadOrder>230</LoadOrder></Properties>
 			<Actions>
@@ -1629,8 +1495,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** MAPS (maps/, data/maps/) ******************************************-->
-
+<!--*************************** SHELL: MAPS ************************************************-->
 		<ActionGroup id="mpt-maps-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>300</LoadOrder></Properties>
 			<Actions>
@@ -1648,6 +1513,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: MAPS ************************************************-->
 		<ActionGroup id="mpt-maps-game" scope="game" criteria="always">
 			<Properties><LoadOrder>300</LoadOrder></Properties>
 			<Actions>
@@ -1666,7 +1532,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Duel placement: Tiny is built as the 36x22 Duel map. -->
+<!--*************************** GAME: DUEL MAP ************************************************-->
 		<ActionGroup id="mpt-maps-duel-map" scope="game" criteria="maps-duel-placement">
 			<Properties><LoadOrder>304</LoadOrder></Properties>
 			<Actions>
@@ -1676,6 +1542,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: CHOSEN MAP SIZE ************************************************-->
 		<ActionGroup id="mpt-maps-chosen-size-tiny" scope="game" criteria="maps-chosen-size-tiny">
 			<Properties><LoadOrder>305</LoadOrder></Properties>
 			<Actions>
@@ -1693,6 +1560,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: RESOURCES ************************************************-->
 		<ActionGroup id="mpt-maps-resource-list-all" scope="game" criteria="maps-resource-list-all">
 			<Properties><LoadOrder>310</LoadOrder></Properties>
 			<Actions>
@@ -1702,6 +1570,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: ANTIQUITY RESOURCES ************************************************-->
 		<ActionGroup id="mpt-maps-resource-list-all-antiquity" scope="game" criteria="maps-resource-list-all-antiquity">
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
@@ -1718,6 +1587,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: EXPLORATION RESOURCES ************************************************-->
 		<ActionGroup id="mpt-maps-resource-list-all-exploration" scope="game" criteria="maps-resource-list-all-exploration">
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
@@ -1734,6 +1604,7 @@
 			</Actions>
 		</ActionGroup>
 
+<!--*************************** GAME: MODERN RESOURCES ************************************************-->
 		<ActionGroup id="mpt-maps-resource-list-all-modern" scope="game" criteria="maps-resource-list-all-modern">
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
@@ -1750,7 +1621,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Map Settings (config/maps.sql), after the map sizes so counts scale the final values. -->
+<!--*************************** GAME: NATURAL WONDERS ************************************************-->
 		<ActionGroup id="mpt-maps-natural-wonders" scope="game" criteria="maps-natural-wonders">
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
@@ -1967,6 +1838,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: LAKES ************************************************-->
 		<ActionGroup id="mpt-maps-lakes-less" scope="game" criteria="maps-lakes-less">
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
@@ -1984,9 +1857,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** PACE (data/pace/) *************************************************-->
-
-		<!-- Lobby options, text and Pace Set rules: always (the shell loads before any game option is known). -->
+<!--*************************** SHELL: PACE ************************************************-->
 		<ActionGroup id="mpt-pace-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2002,9 +1873,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Game data from each setting's per-Age rows, after Game Balance and Maps. -->
-
-		<!-- Age Length, last: each file sets the same points whatever the base Age Length. -->
+<!--*************************** GAME: ANTIQUITY AGE LENGTH ************************************************-->
 		<ActionGroup id="mpt-pace-age-length-antiquity-90" scope="game" criteria="pace-age-length-antiquity-90">
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
@@ -2053,6 +1922,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: EXPLORATION AGE LENGTH ************************************************-->
 		<ActionGroup id="mpt-pace-age-length-exploration-90" scope="game" criteria="pace-age-length-exploration-90">
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
@@ -2101,6 +1972,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: MODERN AGE LENGTH ************************************************-->
 		<ActionGroup id="mpt-pace-age-length-modern-90" scope="game" criteria="pace-age-length-modern-90">
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
@@ -2150,7 +2023,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Age Progression. -->
+<!--*************************** GAME: AGE PROGRESSION ************************************************-->
 		<ActionGroup id="mpt-pace-age-progression-antiquity-slow" scope="game" criteria="pace-age-progression-antiquity-slow">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2224,7 +2097,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Technology Cost. -->
+<!--*************************** GAME: TECHNOLOGY COST ************************************************-->
 		<ActionGroup id="mpt-pace-technology-cost-antiquity-minus-25" scope="game" criteria="pace-technology-cost-antiquity-minus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2322,7 +2195,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Civic Cost. -->
+<!--*************************** GAME: CIVIC COST ************************************************-->
 		<ActionGroup id="mpt-pace-civic-cost-antiquity-minus-25" scope="game" criteria="pace-civic-cost-antiquity-minus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2420,7 +2293,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Building Cost. -->
+<!--*************************** GAME: BUILDING COST ************************************************-->
 		<ActionGroup id="mpt-pace-building-cost-antiquity-minus-25" scope="game" criteria="pace-building-cost-antiquity-minus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2518,7 +2391,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Victory Project Cost. -->
+<!--*************************** GAME: VICTORY PROJECT COST ************************************************-->
 		<ActionGroup id="mpt-pace-victory-project-cost-antiquity-minus-25" scope="game" criteria="pace-victory-project-cost-antiquity-minus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2616,7 +2489,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Settlement Growth. -->
+<!--*************************** GAME: SETTLEMENT GROWTH ************************************************-->
 		<ActionGroup id="mpt-pace-settlement-growth-antiquity-plus-25" scope="game" criteria="pace-settlement-growth-antiquity-plus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2690,7 +2563,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Road Speed. -->
+<!--*************************** GAME: ROAD SPEED ************************************************-->
 		<ActionGroup id="mpt-pace-road-speed-antiquity-plus-25" scope="game" criteria="pace-road-speed-antiquity-plus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2764,7 +2637,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Trade Speed. -->
+<!--*************************** GAME: TRADE SPEED ************************************************-->
 		<ActionGroup id="mpt-pace-trade-speed-antiquity-minus-25" scope="game" criteria="pace-trade-speed-antiquity-minus-25">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2871,7 +2744,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Raze Speed. -->
+<!--*************************** GAME: RAZE SPEED ************************************************-->
 		<ActionGroup id="mpt-pace-raze-speed-antiquity-plus-100" scope="game" criteria="pace-raze-speed-antiquity-plus-100">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2921,7 +2794,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Victory thresholds, over the curve in use (the game's, or Game Balance's). -->
+<!--*************************** GAME: VICTORY THRESHOLD ************************************************-->
 		<ActionGroup id="mpt-pace-victory-threshold-culture-low" scope="game" criteria="pace-victory-threshold-culture-low">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
@@ -2971,9 +2844,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAMEPLAY (data/gameplay/) *****************************************-->
-
-		<!-- Lobby options, text and setup rules: always (the shell loads before any game option is known). -->
+<!--*************************** SHELL: GAMEPLAY ************************************************-->
 		<ActionGroup id="mpt-gameplay-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -2989,7 +2860,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Text in game, for the Custom Triumph Set. -->
+<!--*************************** GAME: GAMEPLAY ************************************************-->
 		<ActionGroup id="mpt-gameplay-text" scope="game" criteria="always">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -2999,9 +2870,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Game data from each setting's value or per-Age rows, after Game Balance, Maps and Pace. -->
-
-		<!-- Settlement Distance. -->
+<!--*************************** GAME: SETTLEMENT DISTANCE ************************************************-->
 		<ActionGroup id="mpt-gameplay-settlement-distance-less" scope="game" criteria="gameplay-settlement-distance-less">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3019,7 +2888,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Settlement Limit, from its per-Age rows (none for each Age's own limit). -->
+<!--*************************** GAME: ANTIQUITY SETTLEMENT LIMIT ************************************************-->
 		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-1" scope="game" criteria="gameplay-settlement-limit-antiquity-1">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3212,86 +3081,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-30" scope="game" criteria="gameplay-settlement-limit-antiquity-30">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/30.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-35" scope="game" criteria="gameplay-settlement-limit-antiquity-35">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/35.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-40" scope="game" criteria="gameplay-settlement-limit-antiquity-40">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/40.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-45" scope="game" criteria="gameplay-settlement-limit-antiquity-45">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/45.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-50" scope="game" criteria="gameplay-settlement-limit-antiquity-50">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/50.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-55" scope="game" criteria="gameplay-settlement-limit-antiquity-55">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/55.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-60" scope="game" criteria="gameplay-settlement-limit-antiquity-60">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/60.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-65" scope="game" criteria="gameplay-settlement-limit-antiquity-65">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/65.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-70" scope="game" criteria="gameplay-settlement-limit-antiquity-70">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/70.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-antiquity-75" scope="game" criteria="gameplay-settlement-limit-antiquity-75">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/75.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
+
+<!--*************************** GAME: EXPLORATION SETTLEMENT LIMIT ************************************************-->
 		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-1" scope="game" criteria="gameplay-settlement-limit-exploration-1">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3484,86 +3275,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-30" scope="game" criteria="gameplay-settlement-limit-exploration-30">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/30.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-35" scope="game" criteria="gameplay-settlement-limit-exploration-35">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/35.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-40" scope="game" criteria="gameplay-settlement-limit-exploration-40">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/40.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-45" scope="game" criteria="gameplay-settlement-limit-exploration-45">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/45.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-50" scope="game" criteria="gameplay-settlement-limit-exploration-50">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/50.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-55" scope="game" criteria="gameplay-settlement-limit-exploration-55">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/55.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-60" scope="game" criteria="gameplay-settlement-limit-exploration-60">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/60.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-65" scope="game" criteria="gameplay-settlement-limit-exploration-65">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/65.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-70" scope="game" criteria="gameplay-settlement-limit-exploration-70">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/70.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-exploration-75" scope="game" criteria="gameplay-settlement-limit-exploration-75">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/75.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
+
+<!--*************************** GAME: MODERN SETTLEMENT LIMIT ************************************************-->
 		<ActionGroup id="mpt-gameplay-settlement-limit-modern-1" scope="game" criteria="gameplay-settlement-limit-modern-1">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3756,88 +3469,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-30" scope="game" criteria="gameplay-settlement-limit-modern-30">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/30.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-35" scope="game" criteria="gameplay-settlement-limit-modern-35">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/35.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-40" scope="game" criteria="gameplay-settlement-limit-modern-40">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/40.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-45" scope="game" criteria="gameplay-settlement-limit-modern-45">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/45.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-50" scope="game" criteria="gameplay-settlement-limit-modern-50">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/50.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-55" scope="game" criteria="gameplay-settlement-limit-modern-55">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/55.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-60" scope="game" criteria="gameplay-settlement-limit-modern-60">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/60.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-65" scope="game" criteria="gameplay-settlement-limit-modern-65">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/65.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-70" scope="game" criteria="gameplay-settlement-limit-modern-70">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/70.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-gameplay-settlement-limit-modern-75" scope="game" criteria="gameplay-settlement-limit-modern-75">
-			<Properties><LoadOrder>450</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/gameplay/settlement-limit/75.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
 
-		<!-- Independent Amount. -->
+<!--*************************** GAME: INDEPENDENT AMOUNT ************************************************-->
 		<ActionGroup id="mpt-gameplay-independent-count-none" scope="game" criteria="gameplay-independent-count-none">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3863,7 +3496,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Independent Spacing, per Age. -->
+<!--*************************** GAME: INDEPENDENT SPACING ************************************************-->
 		<ActionGroup id="mpt-gameplay-independent-spacing-antiquity-less" scope="game" criteria="gameplay-independent-spacing-antiquity-less">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3913,7 +3546,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Independent Aggression, with its defenders per Age. -->
+<!--*************************** GAME: INDEPENDENT AGGRESSION ************************************************-->
 		<ActionGroup id="mpt-gameplay-independent-aggression-antiquity-calm" scope="game" criteria="gameplay-independent-aggression-antiquity-calm">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -3969,7 +3602,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Trade Range, from its per-Age rows. -->
+<!--*************************** GAME: ANTIQUITY TRADE RANGE ************************************************-->
 		<ActionGroup id="mpt-gameplay-trade-range-antiquity-minus-50" scope="game" criteria="gameplay-trade-range-antiquity-minus-50">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4010,6 +3643,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: EXPLORATION TRADE RANGE ************************************************-->
 		<ActionGroup id="mpt-gameplay-trade-range-exploration-minus-50" scope="game" criteria="gameplay-trade-range-exploration-minus-50">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4050,6 +3685,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: MODERN TRADE RANGE ************************************************-->
 		<ActionGroup id="mpt-gameplay-trade-range-modern-minus-50" scope="game" criteria="gameplay-trade-range-modern-minus-50">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4091,7 +3728,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- World Wonders, in every Age. -->
+<!--*************************** GAME: WORLD WONDERS ************************************************-->
 		<ActionGroup id="mpt-gameplay-world-wonders-carry-over" scope="game" criteria="gameplay-world-wonders-carry-over">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4101,7 +3738,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Crisis Timing. -->
+<!--*************************** GAME: CRISIS TIMING ************************************************-->
 		<ActionGroup id="mpt-gameplay-crisis-timing-early" scope="game" criteria="gameplay-crisis-timing-early">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4119,7 +3756,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Triumph Sets, from the per-Age rows while Triumph Set is Custom. -->
+<!--*************************** GAME: ANTIQUITY TRIUMPH SET ************************************************-->
 		<ActionGroup id="mpt-gameplay-triumph-set-antiquity-default" scope="game" criteria="gameplay-triumph-set-antiquity-default">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4173,6 +3810,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: EXPLORATION TRIUMPH SET ************************************************-->
 		<ActionGroup id="mpt-gameplay-triumph-set-exploration-default" scope="game" criteria="gameplay-triumph-set-exploration-default">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
@@ -4226,6 +3865,8 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
+
+<!--*************************** GAME: MODERN TRIUMPH SET ************************************************-->
 		<ActionGroup id="mpt-gameplay-triumph-set-modern-default" scope="game" criteria="gameplay-triumph-set-modern-default">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>

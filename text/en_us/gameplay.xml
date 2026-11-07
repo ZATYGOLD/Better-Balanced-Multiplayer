@@ -100,15 +100,5 @@
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_23"><Text>23</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_24"><Text>24</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_25"><Text>25</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_30"><Text>30</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_35"><Text>35</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_40"><Text>40</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_45"><Text>45</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_50"><Text>50</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_55"><Text>55</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_60"><Text>60</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_65"><Text>65</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_70"><Text>70</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_NUM_75"><Text>75</Text></Row>
 	</EnglishText>
 </Database>
