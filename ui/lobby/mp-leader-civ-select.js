@@ -77,6 +77,7 @@ const STEP_SCREENS = { "leader-select": LeaderSelectScreen, "civ-select": CivSel
 // Where the screens go after a pick in single player; here the pick is made.
 const FLOW_END_STEPS = ["game-setup", "create-game-hub", "memento-select"];
 const SHELL_TAGS = [LOBBY_TAG, "main-menu"];
+const MOUSE_GUARD_TAG = "mouse-guard";
 const BROWSE_CLASS = "mpt-browse-button";
 const BROWSE_CAPTION = "LOC_MPT_LOBBY_BROWSE";
 const CLOSE_CAPTION = "LOC_GENERIC_CLOSE";
@@ -174,9 +175,16 @@ function addStyles() {
   stylesAdded = true;
 }
 
-/** Hides the lobby and main menu and clears the main menu's 3D scene (as its Create Game does); returns the restore. */
+/** The lobby, the main menu and the dimming mouse guards of the screens under the picker (they darken the 3D stage). */
+function shellElements() {
+  const screens = SHELL_TAGS.map((tag) => document.querySelector(tag)).filter(Boolean);
+  const dimmers = [...document.querySelectorAll(MOUSE_GUARD_TAG)].filter((guard) => !guard.classList.contains("invisible"));
+  return [...screens, ...dimmers];
+}
+
+/** Hides the shell under the picker and clears the main menu's 3D scene (as its Create Game does); returns the restore. */
 function clearShellStage() {
-  const restores = SHELL_TAGS.map((tag) => document.querySelector(tag)).filter(Boolean).map((element) => {
+  const restores = shellElements().map((element) => {
     const visibility = element.style.visibility;
     element.style.visibility = "hidden";
     return () => { element.style.visibility = visibility; };
