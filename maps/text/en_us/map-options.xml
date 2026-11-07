@@ -7,7 +7,7 @@
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_BASE_NAME"><Text>Base</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_BASE_DESC"><Text>Search the whole eligible map for Fresh Water starts at least 12 tiles apart; retain all original starts if no complete solution exists.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_DUEL_NAME"><Text>Duel</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_PLACEMENT_DUEL_DESC"><Text>Two-player East vs West placement: Slot 1 starts anywhere across the western side and Slot 2 anywhere across the eastern side.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_PLACEMENT_DUEL_DESC"><Text>Two-player East vs West placement: Slot 1 starts anywhere across the western side and Slot 2 anywhere across the eastern side. On the Tiny Map Size the map is built as a 36x22 Duel map.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_2V2_NAME"><Text>2v2</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_2V2_DESC"><Text>Four-player East vs West placement: Slots 1/2 backline and Slots 3/4 frontline.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_3V3_NAME"><Text>3v3</Text></Row>
@@ -26,6 +26,10 @@
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC"><Text>Use the mod's complete resource system at Standard density.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME"><Text>Off</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC"><Text>Use Civilization VII's normal resources, placement, and effects.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_MAPSIZE_DUEL_NAME"><Text>Duel</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_MAPSIZE_DUEL_DESC"><Text>A map for 2 players.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_SPECTATOR_SLOT"><Text>Spectator slot</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_CHOSEN_MAP_SIZE"><Text>Chosen map size</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_NAME"><Text>Pangaea Ultima</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_DESC"><Text>one large central Pangaea, with islands in the surrounding ocean.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MULTIPLAYER_SETUP"><Text>Multiplayer setup</Text></Row>

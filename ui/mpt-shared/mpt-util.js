@@ -85,7 +85,7 @@ function isObserverPlayer(playerId) {
 }
 
 /** Mod ids of companion mods this one adapts to. */
-const COMPANION_MODS = { advancedSettingsPro: 'AdvancedSettingsPro' };
+const COMPANION_MODS = { advancedSettingsPro: 'AdvancedSettingsPro', spectator: 'zatygolds-observer-mode' };
 
 /** True while the mod with this .modinfo id is enabled (shell scope). */
 function isModEnabled(modId) {

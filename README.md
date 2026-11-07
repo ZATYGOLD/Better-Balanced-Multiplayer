@@ -14,6 +14,8 @@ By Zatygold and Gohei427.
   victories (lobby option, On by default).
 - **Maps** — the Pangaea Ultima map, East vs West player placement, strict
   start biases and a custom resource system.
+- **Multiplayer Rule Set** — the kind of match (Free for All, 1v1, 2v2, 3v3,
+  4v4): player placement, teams, slots and the matching map settings.
 - **Lobby fixes** — ability names in civ / leader tooltips; a 5-second start
   countdown.
 
@@ -26,6 +28,28 @@ this mod).
 2. Enable **Multiplayer Toolkit** in **Main Menu → Additional Content**.
 3. **Every player needs the mod** (it changes game data, and menus and timer
    enforcement run per client). Saves made with it need it to load.
+
+---
+
+## Multiplayer Rule Set
+
+Multiplayer only. **Multiplayer Rule Set** (Game Settings, Free for All by
+default) is the kind of match; it decides Player Placement (see Maps), and the
+team matches also set the map settings.
+
+| Rule Set | Player Placement | Teams by slot | Start Position | Strict Start Biases | Map Size |
+|---|---|---|---|---|---|
+| Free for All | whole map | — | (host) | (host) | (host) |
+| 1v1 | Duel | 1-2 | Balanced | On | Tiny (built as the 36x22 Duel map) |
+| 2v2 | 2v2 | 1-2-1-2 | Balanced | On | Tiny |
+| 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | On | Small |
+| 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | On | Standard |
+
+The lobby opens exactly the match's slots and closes the rest. Even slots are
+team 1 and start West, odd slots team 2 and start East (in 2v2 the first two
+slots are the backline, the next two the frontline). With Zatygold's
+Spectator a last slot is kept for the Spectator, with no team; the player who
+takes it becomes the Observer. The values live in `config/rule-sets.sql`.
 
 ---
 
@@ -111,14 +135,23 @@ Ultima is listed only there, and single-player maps are generated untouched.
 - **Pangaea Ultima** — one large central Pangaea with islands, in the Map list,
   built on the game's own Voronoi map generation (islands turn to Treasure in
   Exploration, like the game's Pangaea).
-- **Player Placement** (Map Options) — Base, Duel, 2v2, 3v3 or 4v4 East vs
-  West layouts for any map. Every start needs Fresh Water and 12 tiles of
+- **Player Placement** (set by the Multiplayer Rule Set) — whole map, or
+  Duel, 2v2, 3v3 or 4v4 East vs West layouts for any map. Every start needs Fresh Water and 12 tiles of
   separation; the most constrained player is placed first.
 - **Strict Start Biases** (Map Options) — leaders and civilizations start on
   their terrain; everyone is warned on the first turn if one could not.
 - **Custom Resource System** (Map Options, On by default) — continent resource
   identities, persistent resources across Ages, custom yields, classes,
   tooltips and per-Age effects; Off keeps the game's resources.
+- **Duel Map** — Duel placement on the Tiny size builds a 36x22 Duel map
+  (Tiny is 60x38) that shows as Duel. Multiplayer rejects new map sizes, so
+  Duel is Tiny on a smaller grid; other sizes keep their grid.
+- **Match slots** — the lobby opens exactly the players of a team match, on
+  their teams (see Multiplayer Rule Set), plus the Spectator's slot. Tiny and
+  Small also get the Spectator's slot in a Free for All: a 2v2 + Spectator
+  plays on Tiny and a 3v3 + Spectator on Small. The game only allows that many
+  players on the next size up, so the host launches that size and it is built
+  with the chosen size's land and name.
 - **Multiplayer defaults** — new multiplayer games start on Online speed,
   Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size
   (the host can change them).
@@ -137,9 +170,10 @@ Everything lives in `maps/` (see Project structure).
   two slots; the second minor slot is set with Choose Mementos.
   The Map Options appear on its Map tab and Balance Settings on its General
   tab; both mods share the same setup-database conventions.
-- **Zatygold's Spectator** — the Observer adds no time to the Competitive timer
-  and never pauses the game by disconnecting; the Spectator keeps the Observer
-  out of Player Placement and off the start-bias warning.
+- **Zatygold's Spectator** — adds its slot to the match slots on Tiny and
+  Small. The Observer adds no time to the Competitive timer and never pauses
+  the game by disconnecting; the Spectator keeps the Observer out of Player
+  Placement and off the start-bias warning.
 
 ---
 
@@ -148,7 +182,7 @@ Everything lives in `maps/` (see Project structure).
 ```
 Multiplayer-Toolkit/
 ├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
-├─ config/                       # lobby DB: Competitive option, pause keybind
+├─ config/                       # lobby DB: Competitive option, pause keybind, Rule Sets
 ├─ data/timers/                  # Competitive timer numbers (default + per Age)
 ├─ text/en_us/                   # mod info and Toolkit strings
 ├─ ui/
@@ -204,6 +238,12 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
   biases include island biases again); placement solves several times faster
   with time limits; Reefs are added once, after placement; the Oil/Rubber
   guarantee is left to the game's own Age transition (minimum 2 each).
+- **Duel Map** — a 36x22 map for 1v1 (Duel placement on Tiny).
+- **New: Multiplayer Rule Set** — Free for All, 1v1, 2v2, 3v3 and 4v4; it
+  replaces the Player Placement option and sets teams, slots and the map
+  settings.
+- **Match slots** — team matches open exactly their players on their teams
+  (unused slots closed), plus a Spectator slot the Spectator claims.
 - **Balance:** Daimyo applies to Infantry only, Iron Working's Codex works with
   or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
   place of Drottkvætt I) and upgrades to Reiði Guðanna.

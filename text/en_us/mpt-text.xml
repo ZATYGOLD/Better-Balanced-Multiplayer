@@ -32,5 +32,19 @@
 		</Replace>
 		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
 		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age.</Text></Row>
+
+	<!-- Multiplayer Rule Set -->
+		<Row Tag="LOC_MPT_RULESET_NAME"><Text>Multiplayer Rule Set</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Strict Start Biases and Map Size. Free for All places players over the whole map and leaves the other settings to the host.</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_FFA_NAME"><Text>Free for All</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart); choose the other settings yourself.</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_1V1_NAME"><Text>1v1</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Strict Start Biases, Tiny map built as the 36x22 Duel map.</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_2V2_NAME"><Text>2v2</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Strict Start Biases, Tiny map.</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_3V3_NAME"><Text>3v3</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Small map.</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_4V4_NAME"><Text>4v4</Text></Row>
+		<Row Tag="LOC_MPT_RULESET_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Standard map.</Text></Row>
 	</EnglishText>
 </Database>

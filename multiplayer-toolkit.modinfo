@@ -66,6 +66,15 @@
 		<Criteria id="maps-resource-system-on">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceSystem</ConfigurationId><Value>MPT_MAPS_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
 		</Criteria>
+		<Criteria id="maps-duel-placement">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTPlayerPlacement</ConfigurationId><Value>MPT_MAPS_PLACEMENT_DUEL</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-chosen-size-tiny">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTChosenMapSize</ConfigurationId><Value>MAPSIZE_TINY</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-chosen-size-small">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTChosenMapSize</ConfigurationId><Value>MAPSIZE_SMALL</Value></ConfigurationValueMatches>
+		</Criteria>
 		<Criteria id="maps-resources-antiquity">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceSystem</ConfigurationId><Value>MPT_MAPS_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
@@ -92,6 +101,7 @@
 				<UpdateDatabase>
 					<Item>config/SetupParameters.sql</Item>
 					<Item>config/mpt-input.sql</Item>
+					<Item>config/rule-sets.sql</Item>
 				</UpdateDatabase>
 				<UIScripts>
 					<Item>ui/mpt-shared/mpt-util.js</Item>
@@ -412,6 +422,7 @@
 				</UpdateText>
 				<UIScripts>
 					<Item>maps/ui/multiplayer-defaults.js</Item>
+					<Item>maps/ui/match-slots.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -427,6 +438,36 @@
 				</UIScripts>
 				<UpdateDatabase>
 					<Item>maps/data/islands.xml</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+
+		<!-- Duel placement: Tiny is built as the 44x28 Duel map. -->
+		<ActionGroup id="mpt-maps-duel-map" scope="game" criteria="maps-duel-placement">
+			<Properties><LoadOrder>304</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/duel-map.sql</Item>
+				</UpdateDatabase>
+				<UpdateText>
+					<Item>maps/text/en_us/map-options.xml</Item>
+				</UpdateText>
+			</Actions>
+		</ActionGroup>
+
+		<ActionGroup id="mpt-maps-chosen-size-tiny" scope="game" criteria="maps-chosen-size-tiny">
+			<Properties><LoadOrder>305</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/chosen-size-tiny.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-chosen-size-small" scope="game" criteria="maps-chosen-size-small">
+			<Properties><LoadOrder>305</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/chosen-size-small.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
