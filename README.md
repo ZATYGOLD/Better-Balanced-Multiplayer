@@ -289,8 +289,8 @@ Pace tab with the same values and order.
 - **Pace Settings** — each with an All Ages value and a row per Age
   (Antiquity, Exploration, Modern) that follows it, or set on its own with
   Custom:
-  - **Age Length** — Swift, Abbreviated, Standard, Balanced or Custom (90 to
-    300 points per Age); replaces the game's Age Length in multiplayer.
+  - **Age Length** — Swift, Abbreviated, Standard or Custom (90 to 140 points
+    per Age, by 10); replaces the game's Age Length in multiplayer.
   - **Age Progression** — Slow, Standard, Balanced or Fast milestone awards.
   - **Technology, Civic, Building and Victory Project Cost** — Low, Standard,
     Medium, High, Double, or the presets' per-Age curves (-25% to +100%).
@@ -455,6 +455,9 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- **Age Length** trimmed to 90-140 points per Age (Standard and shorter); the
+  Balanced choice is gone and the Balanced and Multiplayer Pace Sets use
+  Standard Age Length.
 - Files reorganized by type: one `config/`, `data/`, `text/` and `ui/` folder,
   with `maps/` for the map scripts only.
 - **Fixes:** start positions are searched with a step limit instead of a time

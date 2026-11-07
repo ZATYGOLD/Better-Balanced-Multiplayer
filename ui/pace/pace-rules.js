@@ -48,7 +48,7 @@ const COST = { LOW: "MINUS_25", MEDIUM: "PLUS_25", HIGH: "PLUS_50", DOUBLE: "PLU
 const SPEED = { SLOW: "PLUS_25", QUICK: "MINUS_25", FAST: "MINUS_50" };
 const SETTINGS = {
   AgeLength: ageSetting("MPTPaceAgeLength", "MPT_PACE_AGE_LENGTH_", {
-    SWIFT: ["90", "100", "110"], ABBREVIATED: "120", STANDARD: "140", BALANCED: ["150", "170", "200"] }),
+    SWIFT: ["90", "100", "110"], ABBREVIATED: "120", STANDARD: "140" }),
   AgeProgression: ageSetting("MPTPaceAgeProgression", "MPT_PACE_AGE_PROGRESSION_"),
   TechnologyCost: ageSetting("MPTPaceTechnologyCost", "MPT_PACE_TECHNOLOGY_COST_", { ...COST,
     BALANCED: ["PLUS_25", STANDARD, "MINUS_25"], SWIFT: ["MINUS_25", "MINUS_25", STANDARD] }),
@@ -79,10 +79,9 @@ const ALL_STANDARD = Object.fromEntries(Object.keys(SETTINGS).map((key) => [key,
 const allOf = (option, except = []) => Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, except.includes(key) ? STANDARD : option]));
 const PRESETS = {
   STANDARD: ALL_STANDARD,
-  BALANCED: allOf("BALANCED"),
+  BALANCED: allOf("BALANCED", ["AgeLength"]),
   MULTIPLAYER: {
     ...ALL_STANDARD,
-    AgeLength: ["140", "160", "180"],
     AgeProgression: "BALANCED",
     TechnologyCost: ["PLUS_25", "PLUS_50", "PLUS_100"],
     CivicCost: ["PLUS_50", "PLUS_50", "PLUS_100"],

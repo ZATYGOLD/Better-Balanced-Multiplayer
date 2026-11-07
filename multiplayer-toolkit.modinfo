@@ -17,9 +17,7 @@
 		<Mod id="age-modern" title="LOC_MODULE_AGE_MODERN_NAME"/>
 	</Dependencies>
 	<ActionCriteria>
-		<Criteria id="always">
-			<AlwaysMet/>
-		</Criteria>
+	<Criteria id="always"><AlwaysMet/></Criteria>
 
 <!--*************************** CRITERIA: COMPETITIVE TIMER ***************************************-->
 
@@ -176,7 +174,7 @@
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTLakes</ConfigurationId><Value>MPT_MAPS_LAKES_MORE</Value></ConfigurationValueMatches>
 		</Criteria>
 
-<!--*************************** CRITERIA: PACE ****************************************************-->
+<!--*************************** CRITERIA: ANTIQUITY PACE ****************************************************-->
 
 		<!-- Age Length. -->
 		<Criteria id="pace-age-length-antiquity-90">
@@ -203,50 +201,9 @@
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_140</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="pace-age-length-antiquity-150">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_150</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-160">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_160</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-170">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_170</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-180">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_180</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-190">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_190</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-200">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_200</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-220">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_220</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-240">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_240</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-260">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_260</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-280">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_280</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-antiquity-300">
-			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthAntiquity</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_300</Value></ConfigurationValueMatches>
-		</Criteria>
+
+<!--*************************** CRITERIA: EXPLORATION PACE ****************************************************-->
+
 		<Criteria id="pace-age-length-exploration-90">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_90</Value></ConfigurationValueMatches>
@@ -271,50 +228,9 @@
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_140</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="pace-age-length-exploration-150">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_150</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-160">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_160</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-170">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_170</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-180">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_180</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-190">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_190</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-200">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_200</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-220">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_220</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-240">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_240</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-260">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_260</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-280">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_280</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-exploration-300">
-			<AgeInUse>AGE_EXPLORATION</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthExploration</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_300</Value></ConfigurationValueMatches>
-		</Criteria>
+
+<!--*************************** CRITERIA: MODERN PACE ****************************************************-->
+
 		<Criteria id="pace-age-length-modern-90">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_90</Value></ConfigurationValueMatches>
@@ -339,52 +255,9 @@
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_140</Value></ConfigurationValueMatches>
 		</Criteria>
-		<Criteria id="pace-age-length-modern-150">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_150</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-160">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_160</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-170">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_170</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-180">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_180</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-190">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_190</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-200">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_200</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-220">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_220</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-240">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_240</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-260">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_260</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-280">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_280</Value></ConfigurationValueMatches>
-		</Criteria>
-		<Criteria id="pace-age-length-modern-300">
-			<AgeInUse>AGE_MODERN</AgeInUse>
-			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeLengthModern</ConfigurationId><Value>MPT_PACE_AGE_LENGTH_300</Value></ConfigurationValueMatches>
-		</Criteria>
 
-		<!-- Age Progression. -->
+<!--*************************** CRITERIA: AGE PROGRESSION ****************************************************-->
+
 		<Criteria id="pace-age-progression-antiquity-slow">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeProgressionAntiquity</ConfigurationId><Value>MPT_PACE_AGE_PROGRESSION_SLOW</Value></ConfigurationValueMatches>
@@ -422,7 +295,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceAgeProgressionModern</ConfigurationId><Value>MPT_PACE_AGE_PROGRESSION_FAST</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Technology Cost. -->
+<!--*************************** CRITERIA: TECHNOLOGY COST ****************************************************-->
+
 		<Criteria id="pace-technology-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTechnologyCostAntiquity</ConfigurationId><Value>MPT_PACE_TECHNOLOGY_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -472,7 +346,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTechnologyCostModern</ConfigurationId><Value>MPT_PACE_TECHNOLOGY_COST_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Civic Cost. -->
+<!--*************************** CRITERIA: CIVIC COST ****************************************************-->
+
 		<Criteria id="pace-civic-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceCivicCostAntiquity</ConfigurationId><Value>MPT_PACE_CIVIC_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -522,7 +397,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceCivicCostModern</ConfigurationId><Value>MPT_PACE_CIVIC_COST_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Building Cost. -->
+<!--*************************** CRITERIA: BUILDING COST ****************************************************-->
+
 		<Criteria id="pace-building-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceBuildingCostAntiquity</ConfigurationId><Value>MPT_PACE_BUILDING_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -572,7 +448,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceBuildingCostModern</ConfigurationId><Value>MPT_PACE_BUILDING_COST_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Victory Project Cost. -->
+<!--*************************** CRITERIA: VICTORY PROJECT COST ****************************************************-->
+
 		<Criteria id="pace-victory-project-cost-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceVictoryProjectCostAntiquity</ConfigurationId><Value>MPT_PACE_VICTORY_PROJECT_COST_MINUS_25</Value></ConfigurationValueMatches>
@@ -622,7 +499,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceVictoryProjectCostModern</ConfigurationId><Value>MPT_PACE_VICTORY_PROJECT_COST_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Settlement Growth. -->
+<!--*************************** CRITERIA: SETTLEMENT GROWTH ****************************************************-->
+
 		<Criteria id="pace-settlement-growth-antiquity-plus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceSettlementGrowthAntiquity</ConfigurationId><Value>MPT_PACE_SETTLEMENT_GROWTH_PLUS_25</Value></ConfigurationValueMatches>
@@ -660,7 +538,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceSettlementGrowthModern</ConfigurationId><Value>MPT_PACE_SETTLEMENT_GROWTH_MINUS_50</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Road Speed. -->
+<!--*************************** CRITERIA: ROAD SPEED ****************************************************-->
+
 		<Criteria id="pace-road-speed-antiquity-plus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRoadSpeedAntiquity</ConfigurationId><Value>MPT_PACE_ROAD_SPEED_PLUS_25</Value></ConfigurationValueMatches>
@@ -698,7 +577,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRoadSpeedModern</ConfigurationId><Value>MPT_PACE_ROAD_SPEED_MINUS_50</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Trade Speed. -->
+<!--*************************** CRITERIA: TRADE SPEED ****************************************************-->
+
 		<Criteria id="pace-trade-speed-antiquity-minus-25">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTradeSpeedAntiquity</ConfigurationId><Value>MPT_PACE_TRADE_SPEED_MINUS_25</Value></ConfigurationValueMatches>
@@ -748,7 +628,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTradeSpeedModern</ConfigurationId><Value>MPT_PACE_TRADE_SPEED_PLUS_50</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Raze Speed. -->
+<!--*************************** CRITERIA: RAZE SPEED ****************************************************-->
+
 		<Criteria id="pace-raze-speed-antiquity-plus-100">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRazeSpeedAntiquity</ConfigurationId><Value>MPT_PACE_RAZE_SPEED_PLUS_100</Value></ConfigurationValueMatches>
@@ -774,7 +655,8 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceRazeSpeedModern</ConfigurationId><Value>MPT_PACE_RAZE_SPEED_INSTANT</Value></ConfigurationValueMatches>
 		</Criteria>
 
-		<!-- Victory thresholds, per victory and scale. -->
+<!--*************************** CRITERIA: VICTORY THRESHOLD ****************************************************-->
+
 		<Criteria id="pace-victory-threshold-culture-low">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceCultureVictoryThreshold</ConfigurationId><Value>MPT_PACE_VICTORY_THRESHOLD_LOW</Value></ConfigurationValueMatches>
 		</Criteria>
@@ -2171,94 +2053,6 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-150" scope="game" criteria="pace-age-length-antiquity-150">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/150.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-160" scope="game" criteria="pace-age-length-antiquity-160">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/160.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-170" scope="game" criteria="pace-age-length-antiquity-170">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/170.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-180" scope="game" criteria="pace-age-length-antiquity-180">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/180.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-190" scope="game" criteria="pace-age-length-antiquity-190">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/190.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-200" scope="game" criteria="pace-age-length-antiquity-200">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/200.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-220" scope="game" criteria="pace-age-length-antiquity-220">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/220.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-240" scope="game" criteria="pace-age-length-antiquity-240">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/240.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-260" scope="game" criteria="pace-age-length-antiquity-260">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/260.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-280" scope="game" criteria="pace-age-length-antiquity-280">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/280.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-antiquity-300" scope="game" criteria="pace-age-length-antiquity-300">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/300.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
 		<ActionGroup id="mpt-pace-age-length-exploration-90" scope="game" criteria="pace-age-length-exploration-90">
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
@@ -2307,94 +2101,6 @@
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-150" scope="game" criteria="pace-age-length-exploration-150">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/150.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-160" scope="game" criteria="pace-age-length-exploration-160">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/160.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-170" scope="game" criteria="pace-age-length-exploration-170">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/170.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-180" scope="game" criteria="pace-age-length-exploration-180">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/180.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-190" scope="game" criteria="pace-age-length-exploration-190">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/190.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-200" scope="game" criteria="pace-age-length-exploration-200">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/200.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-220" scope="game" criteria="pace-age-length-exploration-220">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/220.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-240" scope="game" criteria="pace-age-length-exploration-240">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/240.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-260" scope="game" criteria="pace-age-length-exploration-260">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/260.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-280" scope="game" criteria="pace-age-length-exploration-280">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/280.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-exploration-300" scope="game" criteria="pace-age-length-exploration-300">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/300.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
 		<ActionGroup id="mpt-pace-age-length-modern-90" scope="game" criteria="pace-age-length-modern-90">
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
@@ -2440,94 +2146,6 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>data/pace/age-length/140.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-150" scope="game" criteria="pace-age-length-modern-150">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/150.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-160" scope="game" criteria="pace-age-length-modern-160">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/160.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-170" scope="game" criteria="pace-age-length-modern-170">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/170.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-180" scope="game" criteria="pace-age-length-modern-180">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/180.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-190" scope="game" criteria="pace-age-length-modern-190">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/190.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-200" scope="game" criteria="pace-age-length-modern-200">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/200.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-220" scope="game" criteria="pace-age-length-modern-220">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/220.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-240" scope="game" criteria="pace-age-length-modern-240">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/240.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-260" scope="game" criteria="pace-age-length-modern-260">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/260.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-280" scope="game" criteria="pace-age-length-modern-280">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/280.sql</Item>
-				</UpdateDatabase>
-			</Actions>
-		</ActionGroup>
-		<ActionGroup id="mpt-pace-age-length-modern-300" scope="game" criteria="pace-age-length-modern-300">
-			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>data/pace/age-length/300.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
