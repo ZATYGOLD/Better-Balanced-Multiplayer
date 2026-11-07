@@ -24,8 +24,9 @@
  * The multiplayer Create Game screen gets Pace and Map tabs after Game
  * Settings (Game Settings, Pace, Map, Advanced, Add-Ons), each holding
  * its parameter groups, and every tab shows its sections in the layout's order
- * (ui/setup/setup-layout.js). A Random button sits beside the Game and Map
- * seed fields. The screen is multiplayer only.
+ * (ui/setup/setup-layout.js). The tabs use the game's tab bar, as single player's
+ * Create Game does, and a Random button sits beside the Game and Map seed
+ * fields. The screen is multiplayer only.
  *
  * A decorator runs after the screen's constructor and before onInitialize, which
  * builds the tabs from the index-aligned slotIDs and navControlButtonInfo.
@@ -40,10 +41,6 @@ const FIRST_TAB_INDEX = 1;
 const ADDED_TABS = SETUP_TABS.map((tab) => ({ ...tab, id: `mpt-advanced-setup-mp__${tab.key}`, containerClass: `mpt-advanced-setup__mp-${tab.key}-container` }));
 // The screen's own tabs' containers.
 const BASE_CONTAINER_CLASSES = { game: "advanced-setup__game-options-container", advanced: "advanced-setup__mp-advanced-options-container" };
-// The tab buttons are sized for three tabs (16.7rem each); all of them share that
-// width, and the frame's nine-slice ends (5.33rem at 16.7rem) scale with it.
-const NAV_TOTAL_WIDTH_REM = 50;
-const NAV_END_RATIO = 0.32;
 // A row-height Random button beside each seed field, drawing a new positive seed.
 const SEED_PARAM_IDS = ["GameRandomSeed", "MapRandomSeed"];
 const SEED_BUTTON_STYLE = { width: "7rem", minWidth: "0", minHeight: "2rem", padding: "0", fontSize: "0.75rem", flex: "0 0 auto" };
@@ -116,7 +113,7 @@ class SetupTabs extends Decorator {
     this.component = component;
     this.panels = ADDED_TABS.map(createPanel);
     this.insertTabs();
-    this.fitNavButtons();
+    this.useTabBar();
     this.routeGroups();
     this.orderTabs();
     this.decorateRows();
@@ -137,17 +134,31 @@ class SetupTabs extends Decorator {
     if (addOnsId) afterMethod(component, "createAddOnsPanel", () => { component.addOnsSetupPanel.id = addOnsId; });
   }
 
-  fitNavButtons() {
+  /**
+   * The game's tab bar replaces the screen's tab buttons, which stay hidden for the
+   * screen's own panel bookkeeping. The bar takes the bumpers (it handles them on the
+   * frame first) and follows every panel change.
+   */
+  useTabBar() {
     const component = this.component;
-    afterMethod(component, "createTopNav", () => {
-      const buttons = component.navControlTabs ?? [];
-      const width = NAV_TOTAL_WIDTH_REM / Math.max(buttons.length, 3);
-      const end = (width * NAV_END_RATIO).toFixed(2);
-      for (const button of buttons) {
-        button.style.minWidth = `${width}rem`;
-        button.style.borderImageWidth = `0.8889rem ${end}rem 2rem ${end}rem`;
-      }
-    });
+    const baseTopNav = component.createTopNav.bind(component);
+    component.createTopNav = () => {
+      const buttons = baseTopNav();
+      buttons.classList.add("hidden");
+      const bar = document.createElement("fxs-tab-bar");
+      bar.classList.add("mx-8", "my-4");
+      bar.setAttribute("tab-items", JSON.stringify(component.navControlButtonInfo.map((info) => ({ label: info.category }))));
+      bar.setAttribute("selected-tab-index", String(component.currentSlotIndex));
+      bar.addEventListener("tab-selected", (event) => {
+        const index = event.detail.index;
+        if (index !== component.currentSlotIndex) component.navControlButtonInfo[index].eventHandler();
+      });
+      this.tabBar = bar;
+      const nav = document.createElement("div");
+      nav.append(bar, buttons);
+      return nav;
+    };
+    afterMethod(component, "goToNewPanel", () => this.tabBar?.setAttribute("selected-tab-index", String(component.currentSlotIndex)));
   }
 
   /** The container of an added tab, or null. */

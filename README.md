@@ -455,6 +455,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- **Create Game tabs** use the game's tab bar, as single player does.
 - **Settlement Limit** Custom values capped at 25 per Age.
 - **Age Length** trimmed to 90-140 points per Age (Standard and shorter); the
   Balanced choice is gone and the Balanced and Multiplayer Pace Sets use
