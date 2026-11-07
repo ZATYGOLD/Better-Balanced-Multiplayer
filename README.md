@@ -16,6 +16,7 @@ By Zatygold and Gohei427.
   start biases and a custom resource system.
 - **Multiplayer Rule Set** — the kind of match (Free for All, 1v1, 2v2, 3v3,
   4v4): player placement, teams, slots and the matching map settings.
+- **Keybinds** — rebindable lens and Commander hotkeys, Civilization VI style.
 - **Lobby fixes** — ability names in civ / leader tooltips; a 5-second start
   countdown.
 
@@ -103,6 +104,26 @@ Settings: `ui/mp-pause/mp-pause-config.js`. The engine exposes only a total
 
 ---
 
+## Keybinds
+
+Rebindable in **Options → keyboard mapping**, with Civilization VI's keys where
+it had the same action:
+
+| Action | Default |
+|---|---|
+| Toggle Trade / Continent / Appeal / Settler / Discovery Lens | 1 / 2 / 3 / 4 / 5 |
+| Unit Join / Leave Commander | Ctrl+Z / Ctrl+X |
+| Commander Pack / Unpack Units | Ctrl+Q / Ctrl+W |
+| Pause Game (multiplayer) | P |
+| Government (game action) | F7 (was L) |
+
+A lens key switches to that lens, or back to the default lens if it is
+already active. Commander keys run the same commands as the unit's buttons
+(choosing a plot when the command needs one) and are blocked while paused.
+Actions and keys: `config/mpt-input.sql`, `ui/mp-keybind/`.
+
+---
+
 ## Multiplayer Balance
 
 Multiplayer only. Lobby option **Multiplayer Balance** (its own **Balance Settings**
@@ -185,7 +206,7 @@ Multiplayer-Toolkit/
 ├─ text/en_us/                   # mod info and Toolkit strings
 ├─ ui/
 │  ├─ mpt-shared/                # logger, method wrapping, deferred patching, companion mods
-│  ├─ mp-keybind/                # pause action in keyboard mapping
+│  ├─ mp-keybind/                # Toolkit keybinds: pause, lenses, Commander actions
 │  ├─ mp-lobby/                  # tooltips, countdown
 │  ├─ mp-pause/                  # pause manager, overlay, chat commands
 │  └─ mp-timer/                  # Competitive timer
@@ -241,6 +262,8 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
   settings.
 - **Match slots** — team matches open exactly their players on their teams
   (unused slots closed), plus a Spectator slot the Spectator claims.
+- **New: Keybinds** — lens toggles (1–5), Commander join/leave/pack/unpack
+  (Ctrl+Z/X/Q/W) and Government on F7, all rebindable.
 - **Player feedback:** Militaristic's garrisoned-Commander node keeps its
   Science and Culture after an Age transition; Kiem gives Science again (it
   duplicated the Artilleryman's Gloves); Modern Coal works when slotted in a

@@ -21,6 +21,26 @@
 		<Row Tag="LOC_MPT_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the multiplayer game, or toggles your readiness while it is paused. Added by Multiplayer Toolkit.</Text></Row>
 
+	<!-- Keybinds -->
+		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT"><Text>Toggle Continent Lens</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL"><Text>Toggle Appeal Lens</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER"><Text>Toggle Settler Lens</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS"><Text>Commander Pack Units</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS"><Text>Commander Unpack Units</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Added by Multiplayer Toolkit.</Text></Row>
+
 	<!-- Turn Timers -->
 		<Replace Tag="LOC_GAME_TURNTIMER_DESC">
 			<Text>

@@ -50,7 +50,8 @@ const PROGRESS_ACTIONS = [
   "next-action", "keyboard-enter", "force-end-turn",
   "unit-move", "unit-ranged-attack", "unit-skip-turn", "unit-sleep",
   "unit-fortify", "unit-heal", "unit-alert", "unit-auto-explore",
-  "trigger-accept-dip", "quick-load"
+  "trigger-accept-dip", "quick-load",
+  "mpt-unit-join-commander", "mpt-unit-leave-commander", "mpt-commander-pack", "mpt-commander-unpack"
 ];
 
 /** Localization keys (text/en_us/mpt-text.xml; View Map reuses the base game's string). */

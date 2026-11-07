@@ -19,19 +19,19 @@
  */
 
 /**
- * Multiplayer Toolkit - Pause keybind in the keyboard-mapping options (shell and game scope).
+ * Multiplayer Toolkit - Toolkit keybinds in the keyboard-mapping options (shell and game scope).
  *
  * The keyboard-mapping screen only lists the action IDs in a hard-coded,
- * non-exported array in the game's editor-keyboard-mapping.js, so the pause
- * action registered by config/mpt-input.sql would not appear there. The
- * editor is patched to list it, so it can be rebound like any built-in key.
+ * non-exported array in the game's editor-keyboard-mapping.js, so the actions
+ * registered by config/mpt-input.sql would not appear there. The editor is
+ * patched to list them, so they can be rebound like any built-in key.
  * Loaded in both scopes: the screen opens from the main menu and in game.
  */
 import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
+import { KEYBIND_ACTIONS, PAUSE_ACTION_ID } from './mp-keybind-config.js';
 
 const log = createLogger('keybind');
 const EDITOR_TAG = 'editor-keyboard-mapping';
-const PAUSE_ACTION_ID = 'mpt-pause-game';
 
 whenDefined(EDITOR_TAG, (definition) => {
   const proto = definition.createInstance.prototype;
@@ -39,12 +39,14 @@ whenDefined(EDITOR_TAG, (definition) => {
   proto.mptKeybindPatched = true;
   wrapMethod(proto, 'addActionsForContext', function (base, inputContext, ...rest) {
     const result = base(inputContext, ...rest);
-    try {
-      const actionId = Input.getActionIdByName(PAUSE_ACTION_ID);
-      if (actionId && !this.mappingDataMap.has(actionId) && this.actionContainer) {
-        this.actionContainer.appendChild(this.createActionEntry(actionId, inputContext));
-      }
-    } catch (e) { /* leave the base list intact */ }
+    for (const name of KEYBIND_ACTIONS) {
+      try {
+        const actionId = Input.getActionIdByName(name);
+        if (actionId && !this.mappingDataMap.has(actionId) && this.actionContainer) {
+          this.actionContainer.appendChild(this.createActionEntry(actionId, inputContext));
+        }
+      } catch (e) { /* leave the base list intact */ }
+    }
     return result;
   });
 }, { retries: 50, intervalMs: 300, log });

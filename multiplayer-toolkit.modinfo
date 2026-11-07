@@ -126,7 +126,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: PAUSE BUTTON ***********************************************-->
+<!--*************************** GAME: PAUSE BUTTON, KEYBINDS **************************************-->
 
 		<ActionGroup id="mpt-pause-button" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
@@ -137,7 +137,9 @@
 					<Item>ui/mp-pause/mp-pause-overlay.js</Item>
 					<Item>ui/mp-pause/mp-pause-net.js</Item>
 					<Item>ui/mp-pause/mp-pause-mgr.js</Item>
+					<Item>ui/mp-keybind/mp-keybind-config.js</Item>
 					<Item>ui/mp-keybind/mp-keybind.js</Item>
+					<Item>ui/mp-keybind/mp-hotkeys.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
