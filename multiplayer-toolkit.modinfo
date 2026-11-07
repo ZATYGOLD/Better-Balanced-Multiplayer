@@ -255,10 +255,6 @@
 					<Item>balance/text/en_us/antiquity.xml</Item>
 					<Item>balance/text/en_us/mementos.xml</Item>
 				</UpdateText>
-				<UIScripts>
-					<Item>balance/ui/balance-config.js</Item>
-					<Item>balance/ui/one-tech-per-turn.js</Item>
-				</UIScripts>
 			</Actions>
 		</ActionGroup>
 

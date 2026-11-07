@@ -112,8 +112,6 @@ it is On, so single-player games always use the game's own balance.
 - Balance changes for civilizations, leaders, units, governments, policies,
   traditions, wonders, buildings, resources, city-states, pantheons,
   mementos, Triumphs, diplomacy, happiness, razing and victories, per Age.
-- **One technology per turn** — research completes at most one technology a
-  turn (overflow waits), queued paths still work.
 - **Victory Threshold Scaling** (Advanced Victory Options): Standard, Low or
   Very Low (default) for Culture, Economic and Military victories.
 
@@ -195,8 +193,7 @@ Multiplayer-Toolkit/
 │  ├─ config/                    # Balance option, turn-phase presets, memento slot, victory thresholds
 │  ├─ data/                      # one folder per subject (civilizations, leaders, units, policies,
 │  │                             #   religion, resources, victories...): common and per-Age files
-│  ├─ text/en_us/                # balance strings
-│  └─ ui/                        # balance settings, one technology per turn
+│  └─ text/en_us/                # balance strings
 └─ maps/                         # Maps (everything map)
    ├─ config/                    # map list, Map Options, multiplayer-only filter, compatibility
    ├─ data/                      # custom resource system (per Age), Pangaea Ultima islands
@@ -220,7 +217,7 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
 
 - **New: Multiplayer Balance** (with Gohei427) — competitive balance changes
   behind the new **Multiplayer Balance** lobby option (On by default), plus
-  one technology per turn, Victory Threshold Scaling, Dynamic timer presets
+  Victory Threshold Scaling, Dynamic timer presets
   (Standard, Competitive, Blitz, Casual) and a second minor memento slot.
 - **New: Maps** (with Gohei427) — Pangaea Ultima, Player Placement (Base,
   Duel, 2v2, 3v3, 4v4), Strict Start Biases and the Custom Resource System.
@@ -244,6 +241,12 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
   settings.
 - **Match slots** — team matches open exactly their players on their teams
   (unused slots closed), plus a Spectator slot the Spectator claims.
+- **Player feedback:** Militaristic's garrisoned-Commander node keeps its
+  Science and Culture after an Age transition; Kiem gives Science again (it
+  duplicated the Artilleryman's Gloves); Modern Coal works when slotted in a
+  Factory and Modern Dyes count without a Factory slot; the per-turn Commander
+  XP on Military Buildings (which also triggered XP-based leader and memento
+  bonuses) and the one-technology-per-turn limit are removed.
 - **Balance:** Daimyo applies to Infantry only, Iron Working's Codex works with
   or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
   place of Drottkvætt I) and upgrades to Reiði Guðanna.

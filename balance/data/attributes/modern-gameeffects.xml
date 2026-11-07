@@ -11,15 +11,4 @@
 		<Argument name="Amount">1</Argument>
 	</Modifier>
 
-	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_CULTURE_MODERN" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL" permanent="false">
-		<Argument name="YieldType">YIELD_CULTURE</Argument>
-		<Argument name="Amount">1</Argument>
-		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
-		<String context="Description">LOC_MOD_ATTRIBUTE_MILITARISTIC_06_DESCRIPTION</String>
-	</Modifier>
-	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_SCIENCE_MODERN" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL" permanent="false">
-		<Argument name="YieldType">YIELD_SCIENCE</Argument>
-		<Argument name="Amount">1</Argument>
-		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
-	</Modifier>
 </GameEffects>

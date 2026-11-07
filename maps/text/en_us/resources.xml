@@ -123,7 +123,7 @@
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_SILK_TOOLTIP"><Text>+8 [icon:YIELD_CULTURE] Culture in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital; +4 [icon:YIELD_CULTURE] Culture in any other [icon:YIELD_CITIES] City.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_WILD_GAME_TOOLTIP"><Text>+4 [icon:YIELD_FOOD] Food in [icon:YIELD_CITIES] Cities; +8 [icon:YIELD_FOOD] Food in [icon:YIELD_TOWNS] Towns.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_WOOL_TOOLTIP"><Text>+4 [icon:YIELD_PRODUCTION] Production and +4 [icon:YIELD_HAPPINESS] Happiness.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_COAL_TOOLTIP"><Text>+2% [icon:YIELD_PRODUCTION] Production in [icon:YIELD_CITIES] Cities with a [icon:BUILDING_FACTORY] Factory.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_COAL_TOOLTIP"><Text>+2% [icon:YIELD_PRODUCTION] Production while slotted in a [icon:BUILDING_FACTORY] Factory.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_DYES_TOOLTIP"><Text>+3% [icon:YIELD_GOLD] Gold efficiency toward purchasing units.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_DATES_TOOLTIP"><Text>+4 [icon:YIELD_HAPPINESS] Happiness and +4 [icon:YIELD_CULTURE] Culture.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MOD_RESOURCE_FURS_TOOLTIP"><Text>+8 [icon:YIELD_HAPPINESS] Happiness with a [icon:BUILDING_RAIL_STATION] Rail Station; +4 [icon:YIELD_HAPPINESS] Happiness in any other [icon:YIELD_CITIES] City.</Text></Row>

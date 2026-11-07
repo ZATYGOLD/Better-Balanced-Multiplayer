@@ -17,6 +17,20 @@
 		<Argument name="Percent">25</Argument>
 	</Modifier>
 
+	<!-- Militaristic: garrisoned Commanders' yields per level. One id in every Age, so a
+	     completed node keeps it through Age transitions (unlocks are not re-fired). -->
+	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL">
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+		<String context="Description">LOC_MOD_ATTRIBUTE_MILITARISTIC_06_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+
 	<!-- Militaristic: Gold after defeating an Independent or City-State unit. -->
 	<Modifier id="MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_MINOR_KILL_GOLD" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_POST_COMBAT_YIELD">
 		<SubjectRequirements>

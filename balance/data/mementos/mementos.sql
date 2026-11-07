@@ -65,7 +65,7 @@ SET Value = '1'
 WHERE ModifierId = 'MEMENTO_NAPOLEON_REVOLUTIONARY_ARTILLERYMAN_GLOVES_MODIFIER'
   AND Name = 'Amount';
 
--- Kiem: +1 Culture per promotion across both Army and Fleet Commanders.
+-- Kiem: +1 Science per promotion across both Army and Fleet Commanders.
 UPDATE RequirementArguments
 SET Value = 'UNIT_CLASS_COMMAND'
 WHERE Name = 'Tag'
@@ -79,7 +79,7 @@ WHERE Name = 'Tag'
 
 UPDATE ModifierArguments
 SET Value = CASE Name
-    WHEN 'YieldType' THEN 'YIELD_CULTURE'
+    WHEN 'YieldType' THEN 'YIELD_SCIENCE'
     WHEN 'Amount' THEN '1'
 END
 WHERE ModifierId = 'MEMENTO_TRUNG_KIEM_MODIFIER'
