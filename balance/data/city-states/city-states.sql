@@ -1,6 +1,7 @@
 -- City-State Unique Improvement balance changes.
 
--- Keep city-state Unique Improvement unlocks after they have been earned.
+-- Keep City-State Unique Improvement unlocks (and the bonus modifiers that
+-- reference those improvements) after they have been earned.
 UPDATE Modifiers
 SET Permanent = 1
 WHERE ModifierId IN (
@@ -24,7 +25,8 @@ WHERE ConstructibleType IN (
 );
 
 -- City-State improvements remain usable in later Ages, so their intrinsic
--- adjacency bonuses must not expire with the Age in which they originated.
+-- adjacency bonuses must not expire with the Age in which they originated
+-- (only where the later Age still defines the adjacency row).
 UPDATE Adjacency_YieldChanges
 SET Age = NULL
 WHERE ID IN (

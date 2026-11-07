@@ -22,22 +22,23 @@
  * Multiplayer Toolkit - Competitive timer in the lobby's Game Rules (shell scope).
  *
  * The Game Rules screen only names None, Standard and Dynamic; any other timer
- * shows a debug value. Its Turn Timer row is given the Competitive name.
+ * shows a debug value. With Competitive chosen, its Turn Timer row shows the
+ * Competitive name instead.
  */
 import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
-import { TIMER_TYPE } from './mp-timer-config.js';
+import { COMPETITIVE_HASH } from './mp-timer-config.js';
 
 const log = createLogger('timer lobby');
 const RULES_TAG = 'screen-mp-game-rules';
-const COMPETITIVE_HASH = Database.makeHash(TIMER_TYPE);
 
 function isCompetitive() {
   try { return Configuration.getGame().turnTimerType === COMPETITIVE_HASH; } catch (e) { return false; }
 }
 
 whenDefined(RULES_TAG, (definition) => {
+  const timerLabel = Locale.compose('LOC_UI_MP_GAME_RULE_TURN_TIMER');
   wrapMethod(definition.createInstance.prototype, 'addRule', function (base, parent, label, value, ...rest) {
-    if (label === Locale.compose('LOC_UI_MP_GAME_RULE_TURN_TIMER') && isCompetitive()) {
+    if (label === timerLabel && isCompetitive()) {
       value = Locale.compose('LOC_MPT_TURNTIMER_COMPETITIVE');
     }
     return base(parent, label, value, ...rest);

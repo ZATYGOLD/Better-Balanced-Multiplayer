@@ -61,4 +61,8 @@
 		</Update>
 	</Traditions>
 
+	<TraditionModifiers>
+		<!-- Joseon -->
+		<Delete TraditionType="TRADITION_YANGBEOBMIUI" ModifierId="YANGBEOBMIUI_MOD_NO_SEOWON_CITIES_CULTURE_POP"/>
+	</TraditionModifiers>
 </Database>

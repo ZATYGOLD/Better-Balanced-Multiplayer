@@ -9,7 +9,7 @@
 	</GameModifiers>
 
 	<ConstructibleModifiers>
-	<!-- Wonders -->
+		<!-- Wonders -->
 		<!-- Muzibu -->
 		<Row ConstructibleType="WONDER_MUZIBU_AZAALA_MPANGA" ModifierId="MPT_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM"/>
 		<!-- Doi Suthep -->
@@ -23,12 +23,12 @@
 	<Constructible_WarehouseYields>
 		<Delete ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" YieldChangeId="NirayamaReverberatoryFurnaceMineResourceScience"/>
 		<Delete ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" YieldChangeId="NirayamaReverberatoryFurnaceRoughTerrainScience"/>
-	</Constructible_WarehouseYields>	
+	</Constructible_WarehouseYields>
 
 	<Constructible_GreatWorks>
 		<Row ConstructibleType="BUILDING_ROYAL_LIBRARY" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="2"/>
 	</Constructible_GreatWorks>
-	
+
 	<WorkerYields_AgeModifier>
 		<Delete YieldType="YIELD_FOOD"/>
 		<Delete YieldType="YIELD_HAPPINESS"/>

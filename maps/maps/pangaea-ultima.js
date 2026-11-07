@@ -1,11 +1,11 @@
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { assignStartPositionsFromHexMap } from '../../../base-standard/maps/assign-starting-plots.js';
 import { generateDiscoveries } from '../../../base-standard/maps/discovery-generator.js';
-import { g_CoastTerrain, g_OceanTerrain, g_PolarWaterRows } from '../../../base-standard/maps/map-globals.js';
+import { g_CoastTerrain, g_HillTerrain, g_MountainTerrain, g_OceanTerrain, g_PolarWaterRows } from '../../../base-standard/maps/map-globals.js';
 import { generateResources } from '../../../base-standard/maps/resource-generator.js';
 import { generateSnow } from '../../../base-standard/maps/snow-generator.js';
 import { GenerationContext, GenerationPhases, generateMapFeatures } from '../../../base-standard/scripts/common-generation.js';
-import { TerrainType } from '../../../base-standard/scripts/voronoi-types.js';
+import { FeatureType, TerrainType } from '../../../base-standard/scripts/voronoi-types.js';
 import { VoronoiPangaeaUltima } from '../scripts/voronoi_maps/pangaea-ultima.js';
 // Loads the multiplayer Player Placement pass with the map (it arms itself once).
 import '../scripts/global-team-starts.js';
@@ -13,22 +13,27 @@ import '../scripts/global-team-starts.js';
 // Pangaea Ultima: the game's Voronoi Pangaea pipeline with one solid central
 // continent. After the Voronoi pass the continent's core is filled, enclosed
 // seas become land, land touching the continent joins it, and other land keeps
-// a clear ocean gap from it.
+// a clear ocean gap from it. The islands beyond that gap are the Distant Lands:
+// they join the other landmass region, so they host Exploration's Treasure Fleets.
 const CORE_RADIUS_X = 0.43;
 const CORE_RADIUS_Y = 0.38;
 const DISTANT_LAND_GAP = 4;
+const MOUNTAIN_KEEP_PERCENT = 70;   // island mountains kept; the rest become Rough (Hills)
 
 const isLand = (tile) => tile.terrainType !== TerrainType.Ocean && tile.terrainType !== TerrainType.Coast;
 const isWater = (tile) => !isLand(tile);
 
 function setLand(tile, primaryId) {
   tile.terrainType = TerrainType.Flat;
+  tile.featureType = FeatureType.None;
   tile.playerLandmassId = primaryId;
   tile.majorPlayerRegionId = -1;
 }
 
+/** Sinks the tile, with any volcano the Voronoi pass gave it. */
 function setOcean(tile) {
   tile.terrainType = TerrainType.Ocean;
+  tile.featureType = FeatureType.None;
   tile.playerLandmassId = -1;
   tile.majorPlayerRegionId = -1;
 }
@@ -65,8 +70,8 @@ function findPrimaryLandmass(tiles) {
   return primaryId;
 }
 
-/** Fill water inside a rounded rectangle (fourth-power superellipse) over the continent, so no deep channel cuts its core. */
-function solidifyCore(tiles, primaryId) {
+/** The continent's bounding box (east < west when it has no land). */
+function continentBounds(tiles, primaryId) {
   let west = Infinity, east = -1, south = Infinity, north = -1;
   for (const row of tiles) {
     for (const tile of row) {
@@ -75,6 +80,12 @@ function solidifyCore(tiles, primaryId) {
       south = Math.min(south, tile.coord.y); north = Math.max(north, tile.coord.y);
     }
   }
+  return { west, east, south, north };
+}
+
+/** Fill water inside a rounded rectangle (fourth-power superellipse) over the continent, so no deep channel cuts its core. */
+function solidifyCore(tiles, primaryId) {
+  const { west, east, south, north } = continentBounds(tiles, primaryId);
   if (east < west || north < south) return 0;
   const centerX = (west + east) * 0.5;
   const centerY = (south + north) * 0.5;
@@ -203,7 +214,7 @@ function joinFinalAttachedLand(tiles, primaryId) {
       corrected++;
     }
     TerrainBuilder.removePlotTag(location.x, location.y, PlotTags.PLOT_TAG_ISLAND);
-    for (let direction = 0; direction < 6; direction++) {
+    for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
       const adjacent = GameplayMap.getAdjacentPlotLocation(location, direction);
       if (adjacent == null || adjacent.x < 0 || adjacent.x >= width || adjacent.y < 0 || adjacent.y >= height) continue;
       const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
@@ -214,6 +225,36 @@ function joinFinalAttachedLand(tiles, primaryId) {
     }
   }
   return corrected;
+}
+
+/**
+ * On the final map: every island tile joins the other landmass region (the
+ * Distant Lands to the continent's players). Island mountains stay with
+ * MOUNTAIN_KEEP_PERCENT and otherwise become Rough (Hills).
+ */
+function markDistantIslands(primaryId) {
+  const distantId = primaryId === LandmassRegion.LANDMASS_REGION_EAST ? LandmassRegion.LANDMASS_REGION_WEST
+    : primaryId === LandmassRegion.LANDMASS_REGION_WEST ? LandmassRegion.LANDMASS_REGION_EAST : -1;
+  if (distantId < 0) {
+    console.log(`PANGAEA ULTIMA: continent region ${primaryId} is neither East nor West; islands left unmarked`);
+    return;
+  }
+  let marked = 0;
+  let levelled = 0;
+  for (let y = 0; y < GameplayMap.getGridHeight(); y++) {
+    for (let x = 0; x < GameplayMap.getGridWidth(); x++) {
+      if (!GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND) || GameplayMap.isWater(x, y)) continue;
+      TerrainBuilder.setLandmassRegionId(x, y, distantId);
+      marked++;
+      if (GameplayMap.getTerrainType(x, y) !== g_MountainTerrain || GameplayMap.isNaturalWonder(x, y)) continue;
+      const roll = TerrainBuilder.getRandomNumber(100, "Pangaea Ultima island mountain");
+      if (roll >= MOUNTAIN_KEEP_PERCENT) {
+        TerrainBuilder.setTerrainType(x, y, g_HillTerrain);
+        levelled++;
+      }
+    }
+  }
+  console.log(`PANGAEA ULTIMA: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
 }
 
 function requestMapData(initParams) {
@@ -250,6 +291,7 @@ function generateMap() {
   generateMapFeatures(hexMap, context);
   if (primaryId > 0) {
     console.log(`PANGAEA ULTIMA: final attached-land corrections=${joinFinalAttachedLand(tiles, primaryId)}`);
+    markDistantIslands(primaryId);
     AreaBuilder.recalculateAreas();
   }
   generateSnow(iWidth, iHeight);

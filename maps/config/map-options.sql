@@ -21,7 +21,15 @@ UPDATE Parameters SET DefaultValue = '{multiplayer-toolkit}maps/maps/pangaea-ult
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, Hash, SupportsSinglePlayer, SortIndex)
     VALUES
         ('MPTStrictStartBiases', 'LOC_MPT_MAPS_STRICT_BIASES_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_DESC', 'MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'Map', 'MPTStrictStartBiases', 'MapOptions', 'SimpleSelectWindow', 0, 0, 126),
-        ('MPTResourceSystem', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC', 'MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_ON', 'Map', 'MPTResourceSystem', 'MapOptions', 'SimpleSelectWindow', 0, 0, 127);
+        ('MPTResourceSystem', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC', 'MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_ON', 'Map', 'MPTResourceSystem', 'MapOptions', 'SimpleSelectWindow', 0, 0, 127),
+        ('MPTResourceAmount', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_NAME', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC', 'MPTResourceAmounts', 'MPT_MAPS_RESOURCE_AMOUNT_STANDARD', 'Map', 'MPTResourceAmount', 'MapOptions', 'SimpleSelectWindow', 0, 0, 128),
+        ('MPTResourceClusters', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_NAME', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_DESC', 'MPTResourceClusterOptions', 'MPT_MAPS_RESOURCE_CLUSTERS_OFF', 'Map', 'MPTResourceClusters', 'MapOptions', 'SimpleSelectWindow', 0, 0, 129);
+
+-- Amount and Clusters apply to the Custom Resource System, so they show only while it is On.
+INSERT OR IGNORE INTO ParameterDependencies (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
+    VALUES
+        ('MPTResourceAmount', 'Map', 'MPTResourceSystem', 'Equals', 'MPT_MAPS_RESOURCE_SYSTEM_ON'),
+        ('MPTResourceClusters', 'Map', 'MPTResourceSystem', 'Equals', 'MPT_MAPS_RESOURCE_SYSTEM_ON');
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
@@ -33,7 +41,14 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'LOC_MPT_MAPS_STRICT_BIASES_ON_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_ON_DESC', 10),
         ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_OFF', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC', 20),
         ('MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_ON', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC', 10),
-        ('MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_OFF', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC', 20);
+        ('MPTResourceSystemOptions', 'MPT_MAPS_RESOURCE_SYSTEM_OFF', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME', 'LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC', 20),
+        ('MPTResourceAmounts', 'MPT_MAPS_RESOURCE_AMOUNT_SCARCE', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_NAME', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_DESC', 10),
+        ('MPTResourceAmounts', 'MPT_MAPS_RESOURCE_AMOUNT_SPARSE', 'LOC_ADVANCED_OPTIONS_SPARSE', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_SPARSE_DESC', 20),
+        ('MPTResourceAmounts', 'MPT_MAPS_RESOURCE_AMOUNT_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_STANDARD_DESC', 30),
+        ('MPTResourceAmounts', 'MPT_MAPS_RESOURCE_AMOUNT_ABUNDANT', 'LOC_ADVANCED_OPTIONS_ABUNDANT', 'LOC_MPT_MAPS_RESOURCE_AMOUNT_ABUNDANT_DESC', 40),
+        ('MPTResourceClusterOptions', 'MPT_MAPS_RESOURCE_CLUSTERS_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_OFF_DESC', 10),
+        ('MPTResourceClusterOptions', 'MPT_MAPS_RESOURCE_CLUSTERS_SMALL', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_SMALL_NAME', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_SMALL_DESC', 20),
+        ('MPTResourceClusterOptions', 'MPT_MAPS_RESOURCE_CLUSTERS_LARGE', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_NAME', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_DESC', 30);
 
 --*******************************************************
 --***************** PLAYER PLACEMENT ********************

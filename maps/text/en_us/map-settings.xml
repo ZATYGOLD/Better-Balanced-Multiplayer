@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+	<!-- Maps: Disaster, Natural Wonder and Terrain settings -->
+		<Row Tag="LOC_GROUPID_MPT_TERRAINOPTIONS"><Text>Terrain Settings</Text></Row>
+		<Row Tag="LOC_GROUPID_MPT_NATURALWONDERSELECTIONOPTIONS"><Text>Natural Wonder Selection</Text></Row>
+		<Row Tag="LOC_GROUPID_MPT_CRISISOPTIONS"><Text>Crisis Settings</Text></Row>
+		<Row Tag="LOC_GROUPID_MPT_DISASTEROPTIONS"><Text>Disaster Settings</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LESS_NAME"><Text>Less</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_MORE_NAME"><Text>More</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_HALF_NAME"><Text>Half</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_DOUBLE_NAME"><Text>Double</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_DISASTERS_NAME"><Text>Disasters</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_DISASTERS_DISABLED_DESC"><Text>No natural disasters.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_DISASTERS_CUSTOM_DESC"><Text>Set the disaster frequency for each Age.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_DISASTERS_AGE_DESC"><Text>Sets this Age's disaster frequency.[n]Applies only when Disasters is set to Custom.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_NAME"><Text>Natural Wonders</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_DESC"><Text>Sets the number of [icon:NOTIFICATION_DISCOVER_NATURAL_WONDER] Natural Wonders on the map.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_NONE_DESC"><Text>No Natural Wonders are placed.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_HALF_DESC"><Text>50% fewer Natural Wonders.[nn][BLIST][LI]Tiny: 1[LI]Small: 2[LI]Standard: 2[LI]Large: 3[LI]Huge: 3[/BLIST]</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_STANDARD_DESC"><Text>The standard number of Natural Wonders.[nn][BLIST][LI]Tiny: 3[LI]Small: 4[LI]Standard: 5[LI]Large: 6[LI]Huge: 7[/BLIST]</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_MORE_DESC"><Text>50% more Natural Wonders.[nn][BLIST][LI]Tiny: 4[LI]Small: 6[LI]Standard: 7[LI]Large: 9[LI]Huge: 10[/BLIST]</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDERS_DOUBLE_DESC"><Text>Twice as many Natural Wonders.[nn][BLIST][LI]Tiny: 6[LI]Small: 8[LI]Standard: 10[LI]Large: 12[LI]Huge: 14[/BLIST]</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDER_DESC"><Text>Whether this Natural Wonder can appear on the map.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDER_ON_DESC"><Text>This Natural Wonder can appear on the map.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_NATURAL_WONDER_OFF_DESC"><Text>This Natural Wonder is kept off the map.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LAKES_NAME"><Text>Lakes</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LAKES_DESC"><Text>Sets how many lakes the map generates.[n]Map generation may override this, so results can vary.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LAKES_LESS_DESC"><Text>Generates fewer lakes.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LAKES_STANDARD_DESC"><Text>Standard lake generation for the chosen map type.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_LAKES_MORE_DESC"><Text>Generates more lakes.</Text></Row>
+	<!-- Natural Wonder names for the shell, where the game's feature text is not loaded -->
+		<Replace Tag="LOC_FEATURE_BARRIER_REEF_NAME"><Text>Great Barrier Reef</Text></Replace>
+		<Replace Tag="LOC_FEATURE_BERMUDA_TRIANGLE_NAME"><Text>Bermuda Triangle</Text></Replace>
+		<Replace Tag="LOC_FEATURE_GRAND_CANYON_NAME"><Text>Grand Canyon</Text></Replace>
+		<Replace Tag="LOC_FEATURE_GREAT_BLUE_HOLE_NAME"><Text>Great Blue Hole</Text></Replace>
+		<Replace Tag="LOC_FEATURE_GULLFOSS_NAME"><Text>Gullfoss</Text></Replace>
+		<Replace Tag="LOC_FEATURE_HOERIKWAGGO_NAME"><Text>Hoerikwaggo</Text></Replace>
+		<Replace Tag="LOC_FEATURE_IGUAZU_FALLS_NAME"><Text>Iguazú Falls</Text></Replace>
+		<Replace Tag="LOC_FEATURE_KILIMANJARO_NAME"><Text>Mount Kilimanjaro</Text></Replace>
+		<Replace Tag="LOC_FEATURE_MACHAPUCHARE_NAME"><Text>Machapuchare</Text></Replace>
+		<Replace Tag="LOC_FEATURE_MAPU_A_VAEA_BLOWHOLES_NAME"><Text>Mapu 'a Vaea Blowholes</Text></Replace>
+		<Replace Tag="LOC_FEATURE_MOUNT_EVEREST_NAME"><Text>Mount Everest</Text></Replace>
+		<Replace Tag="LOC_FEATURE_MOUNT_FUJI_NAME"><Text>Mount Fuji</Text></Replace>
+		<Replace Tag="LOC_FEATURE_NACHI_FALLS_NAME"><Text>Nachi Falls</Text></Replace>
+		<Replace Tag="LOC_FEATURE_REDWOOD_FOREST_NAME"><Text>Redwood Forest</Text></Replace>
+		<Replace Tag="LOC_FEATURE_SEONGSAN_ILCHULBONG_NAME"><Text>Seongsan Ilchulbong</Text></Replace>
+		<Replace Tag="LOC_FEATURE_THERA_NAME"><Text>Thera</Text></Replace>
+		<Replace Tag="LOC_FEATURE_TORRES_DEL_PAINE_NAME"><Text>Torres del Paine</Text></Replace>
+		<Replace Tag="LOC_FEATURE_ULURU_NAME"><Text>Uluru</Text></Replace>
+		<Replace Tag="LOC_FEATURE_VALLEY_OF_FLOWERS_NAME"><Text>Valley of Flowers</Text></Replace>
+		<Replace Tag="LOC_FEATURE_VIHREN_NAME"><Text>Vihren</Text></Replace>
+		<Replace Tag="LOC_FEATURE_VINICUNCA_NAME"><Text>Vinicunca</Text></Replace>
+		<Replace Tag="LOC_FEATURE_ZHANGJIAJIE_NAME"><Text>Zhangjiajie</Text></Replace>
+	</EnglishText>
+</Database>

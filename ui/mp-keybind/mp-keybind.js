@@ -28,7 +28,7 @@
  * Loaded in both scopes: the screen opens from the main menu and in game.
  */
 import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
-import { KEYBIND_ACTIONS, PAUSE_ACTION_ID } from './mp-keybind-config.js';
+import { KEYBIND_ACTIONS } from './mp-keybind-config.js';
 
 const log = createLogger('keybind');
 const EDITOR_TAG = 'editor-keyboard-mapping';
@@ -50,5 +50,3 @@ whenDefined(EDITOR_TAG, (definition) => {
     return result;
   });
 }, { retries: 50, intervalMs: 300, log });
-
-export { PAUSE_ACTION_ID };

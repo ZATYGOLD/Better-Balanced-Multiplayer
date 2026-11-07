@@ -31,6 +31,7 @@ const OVERLAY_ID = "mpt-countdown";
 
 class PauseCountdownOverlay {
   element = null;
+  numElement = null;
 
   /** Create the overlay element once and attach it to the document body. */
   build() {
@@ -44,6 +45,7 @@ class PauseCountdownOverlay {
       '<div class="mpt-count-num">' + CONFIG.resumeCountdownSeconds + '</div>';
     document.body.appendChild(el);
     this.element = el;
+    this.numElement = el.querySelector(".mpt-count-num");
   }
 
   /** Show or hide the overlay. */
@@ -55,10 +57,7 @@ class PauseCountdownOverlay {
 
   /** Update the big countdown number and replay its pop animation. */
   setValue(seconds) {
-    if (!this.element) {
-      return;
-    }
-    const num = this.element.querySelector(".mpt-count-num");
+    const num = this.numElement;
     if (!num) {
       return;
     }

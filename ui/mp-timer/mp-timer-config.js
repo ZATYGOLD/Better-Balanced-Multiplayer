@@ -22,8 +22,8 @@
  * Multiplayer Toolkit - Competitive turn timer configuration & constants.
  */
 
-/** TurnTimers row registered by config/SetupParameters.sql. */
-const TIMER_TYPE = "MPT_TURNTIMER_COMPETITIVE";
+/** TurnTimers row registered by config/SetupParameters.sql, as the configuration stores it (hashed). */
+const COMPETITIVE_HASH = Database.makeHash("MPT_TURNTIMER_COMPETITIVE");
 
 /** Tunable timings / thresholds. */
 const CONFIG = {
@@ -40,7 +40,7 @@ const CONFIG = {
   endRetryMs: 1000,         // gap between attempts to end an expired turn
   staleEventMs: 1200,       // timer events silent this long (a panel is open): the sweep takes over the beeps
   maxUnitSkips: 40,         // units skipped per sweep when idle units block the end of the turn
-  maxProxyLimit: 600,       // pass through bigger phases (age transition = 3000s), except the engine backstop
+  maxProxyLimit: 600,       // pass through bigger phases (age transition = 3000s), except the engine backstop (TurnTimerTime)
   debug: true
 };
 
@@ -53,4 +53,4 @@ const ENGINE = {
   audioUrgency: "turn-timer-countdown"
 };
 
-export { TIMER_TYPE, CONFIG, ENGINE };
+export { COMPETITIVE_HASH, CONFIG, ENGINE };

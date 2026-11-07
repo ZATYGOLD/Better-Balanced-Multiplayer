@@ -46,6 +46,7 @@ UPDATE ModifierArguments
 SET value=3
 WHERE name='Amount' AND ModifierId='MOD_GREECE_ACROPOLIS_PARTHENON_GOLD_PER_SUZERAIN';
 
+-- Han
 UPDATE ModifierArguments
 SET value=2
 WHERE name='Amount' AND ModifierId='HAN_SYNCRETISM_EXPLORATION_MOD_SCIENCE_PER_TRADITION';
@@ -81,7 +82,7 @@ UPDATE ModifierArguments
 SET value='YIELD_GOLD, YIELD_SCIENCE'
 WHERE name='YieldType' AND ModifierId='KHMER_SYNCRETISM_WORKER_SCIENCE';
 
--- Sila
+-- Silla
 UPDATE ModifierArguments
 SET value='50'
 WHERE name='SelfPercent' AND ModifierId='STRATEGIC_ALLIES_MOD_ALLIANCE_ROUTE_YIELDS';

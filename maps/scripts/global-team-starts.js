@@ -1,6 +1,6 @@
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
-import { generateGlobalResources } from '../maps/global-resource-system.js';
+import { generateGlobalResources, placeDealtResources } from '../maps/global-resource-system.js';
 import { adjustScoreByStartBias, resetStartBiasScores } from '../maps/start-bias-score.js';
 import {
   getPlayerStrictStartBias,
@@ -14,13 +14,16 @@ import {
 // Multiplayer Player Placement: a post-process of every map that places every
 // major player on a Fresh Water start at least JOINT_START_MINIMUM_DISTANCE
 // apart, within East vs West team regions when chosen, honouring strict start
-// biases; Reefs are then added near coast-biased starts.
+// biases. With the Custom Resource System the general resources are placed
+// before it and each player region's dealt resources after it; Reefs are then
+// added near coast-biased starts.
 const JOINT_START_MINIMUM_DISTANCE = 12;
 const JOINT_START_SEARCH_NODE_LIMIT = 750000;
 const JOINT_START_SEARCH_RESTARTS = 3;
 const SOLVE_TIME_BUDGET_MS = 4000;
 const PLACEMENT_TIME_BUDGET_MS = 20000;
 const COASTAL_REEFS_PER_START = 3;
+const PLAYERS_BY_PLACEMENT = { MPT_MAPS_PLACEMENT_DUEL: 2, MPT_MAPS_PLACEMENT_2V2: 4, MPT_MAPS_PLACEMENT_3V3: 6, MPT_MAPS_PLACEMENT_4V4: 8 };
 
 // ============================ Reefs ============================
 
@@ -100,20 +103,9 @@ function addCoastalStartReefs() {
 
 // ============================ Regions ============================
 
+/** Players of the chosen team placement (0: whole map). */
 function getSelectedPlayerCount() {
-  const value = Configuration.getMapValue("MPTPlayerPlacement");
-  switch (value) {
-    case "MPT_MAPS_PLACEMENT_DUEL":
-      return 2;
-    case "MPT_MAPS_PLACEMENT_2V2":
-      return 4;
-    case "MPT_MAPS_PLACEMENT_3V3":
-      return 6;
-    case "MPT_MAPS_PLACEMENT_4V4":
-      return 8;
-    default:
-      return 0;
-  }
+  return PLAYERS_BY_PLACEMENT[Configuration.getMapValue("MPTPlayerPlacement")] ?? 0;
 }
 
 function buildEastWestTeamRegions(playerCount, primaryLandmass) {
@@ -230,7 +222,7 @@ function getPlayerLandBounds() {
       const location = GameplayMap.getLocationFromIndex(plotIndex);
       plots.push(location);
 
-      for (let direction = 0; direction < 6; direction++) {
+      for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
         const adjacent = GameplayMap.getAdjacentPlotLocation(location, direction);
         if (adjacent == null || adjacent.x < 0 || adjacent.x >= width || adjacent.y < 0 || adjacent.y >= height) {
           continue;
@@ -292,10 +284,23 @@ function getWholeMapTiles() {
 
 // ============================ Scoring ============================
 
+/** The landmass regions the map started players on (homelands): no start moves to any other (Distant Lands). */
+function homelandRegions() {
+  const regions = new Set();
+  for (const playerId of Players.getAliveMajorIds()) {
+    const plotIndex = StartPositioner.getStartPosition(playerId);
+    if (plotIndex < 0) continue;
+    const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+    regions.add(GameplayMap.getLandmassRegionId(x, y));
+  }
+  return regions;
+}
+
 /** Per-pass caches: tile validity and scores are fixed while starts are being solved. */
 function createPlacementContext() {
   return {
     deadline: Date.now() + PLACEMENT_TIME_BUDGET_MS,
+    homelands: homelandRegions(),
     usable: new Map(),
     plotScores: new Map(),
     playerScores: new Map(),
@@ -318,11 +323,19 @@ function memo(map, key, compute) {
 const plotKey = (tile) => GameplayMap.getIndexFromXY(tile.x, tile.y);
 const playerPlotKey = (playerId, plotIndex) => playerId * 1048576 + plotIndex;
 
-/** Land, passable, not a Natural Wonder, with Fresh Water. */
+/** A Discovery (goody hut) or other constructible on the plot: the map places them before starts move. */
+function hasConstructible(x, y) {
+  try { return (MapConstructibles.getConstructibles(x, y)?.length ?? 0) > 0; } catch (e) { return false; }
+}
+
+const isHomeland = (ctx, tile) => ctx.homelands.size === 0 || ctx.homelands.has(GameplayMap.getLandmassRegionId(tile.x, tile.y));
+
+/** Homeland land, passable, not a Natural Wonder or a Discovery, with Fresh Water. */
 function isUsableStart(ctx, tile) {
   return memo(ctx.usable, plotKey(tile), () =>
-    !GameplayMap.isWater(tile.x, tile.y) && !GameplayMap.isMountain(tile.x, tile.y) &&
-    !GameplayMap.isNaturalWonder(tile.x, tile.y) && GameplayMap.isFreshWater(tile.x, tile.y));
+    isHomeland(ctx, tile) && !GameplayMap.isWater(tile.x, tile.y) && !GameplayMap.isMountain(tile.x, tile.y) &&
+    !GameplayMap.isNaturalWonder(tile.x, tile.y) && !hasConstructible(tile.x, tile.y) &&
+    GameplayMap.isFreshWater(tile.x, tile.y));
 }
 
 function matchesExact(ctx, playerId, tile) {
@@ -446,6 +459,8 @@ function solveJointStartPositionsWithRestarts(ctx, playerIds, tileSets, original
 
 // ============================ Validation ============================
 
+const inTileSet = (tiles, candidate) => tiles.some((tile) => tile.x === candidate.x && tile.y === candidate.y);
+
 function validateStartSolution(
   playerIds,
   solution,
@@ -461,10 +476,7 @@ function validateStartSolution(
       failures.push(`player ${playerId}: no assigned tile`);
       continue;
     }
-    if (
-      requiredTileSets != null &&
-      !requiredTileSets[playerIds.indexOf(playerId)].some((tile) => tile.x === candidate.x && tile.y === candidate.y)
-    ) {
+    if (requiredTileSets != null && !inTileSet(requiredTileSets[playerIds.indexOf(playerId)], candidate)) {
       failures.push(`player ${playerId}: outside the assigned competitive region`);
     }
     if (GameplayMap.isWater(candidate.x, candidate.y) || GameplayMap.isMountain(candidate.x, candidate.y)) {
@@ -473,7 +485,7 @@ function validateStartSolution(
       failures.push(`player ${playerId}: assigned without Fresh Water`);
     }
     const strictIsEnforced = enforcedStrictPlayerIds == null || enforcedStrictPlayerIds.has(playerId);
-    if (strictIsEnforced && isStrictStartBiasEnabled() && getPlayerStrictStartBias(playerId) != null) {
+    if (strictIsEnforced && hasStrictBias(playerId)) {
       const exact = matchesPlayerStrictStartBias(candidate.x, candidate.y, playerId);
       const fallback = allowLakeFallback && matchesPlayerStrictStartBiasWithLakeFallback(candidate.x, candidate.y, playerId);
       if (!exact && !fallback) failures.push(`player ${playerId}: strict requirement not met`);
@@ -513,7 +525,7 @@ function buildHardRegionEmergencySolution(ctx, playerIds, tileSets) {
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const tile of tileSets[i]) {
       if (GameplayMap.isWater(tile.x, tile.y) || GameplayMap.isMountain(tile.x, tile.y)) continue;
-      if (GameplayMap.isNaturalWonder(tile.x, tile.y)) continue;
+      if (!isHomeland(ctx, tile) || GameplayMap.isNaturalWonder(tile.x, tile.y) || hasConstructible(tile.x, tile.y)) continue;
       const plotIndex = plotKey(tile);
       if (usedPlots.has(plotIndex)) continue;
       let minimumDistance = 999;
@@ -543,10 +555,7 @@ function validateHardRegionMembership(playerIds, solution, tileSets) {
   for (let i = 0; i < playerIds.length; i++) {
     const playerId = playerIds[i];
     const candidate = solution.get(playerId);
-    if (
-      candidate == null ||
-      !tileSets[i].some((tile) => tile.x === candidate.x && tile.y === candidate.y)
-    ) {
+    if (candidate == null || !inTileSet(tileSets[i], candidate)) {
       failures.push(`player ${playerId}: outside the assigned competitive region`);
     }
   }
@@ -599,9 +608,7 @@ function applyGlobalTeamStarts() {
   }
 
   const wholeMapTileSets = aliveMajorIds.map(() => wholeMapTiles);
-  const allStrictPlayerIds = new Set(
-    aliveMajorIds.filter((playerId) => isStrictStartBiasEnabled() && getPlayerStrictStartBias(playerId) != null)
-  );
+  const allStrictPlayerIds = new Set(aliveMajorIds.filter(hasStrictBias));
   const attempts = [];
   if (playerCount !== 0) {
     attempts.push({ label: placementLabel + " exact", tileSets, allowLakeFallback: false });
@@ -813,6 +820,10 @@ function applyGlobalTeamStartsSafely() {
   }
 }
 
+// The Map Options exist only in multiplayer setup; a missing Custom Resource System option means Off.
+const isMultiplayerMap = () => Configuration.getMapValue("MPTPlayerPlacement") != null;
+const isResourceSystemOn = () => Configuration.getMapValue("MPTResourceSystem") === "MPT_MAPS_RESOURCE_SYSTEM_ON";
+
 function armGlobalTeamStartHandler() {
   resetStrictStartBiases();   // a new map: re-read the option and the players
   resetStartBiasScores();
@@ -824,20 +835,24 @@ function armGlobalTeamStartHandler() {
   // map's GenerateMap listener, so placement is a post-process of every map.
   // Resources, placement and Reefs run in one ordered pass.
   engine.on("GenerateMap", () => {
-    // The Map Options exist only in multiplayer setup; single-player maps are left unchanged.
-    if (Configuration.getMapValue("MPTPlayerPlacement") == null) {
+    if (!isMultiplayerMap()) {
       console.log("MPT MAPS PLAYER PLACEMENT: not a multiplayer setup; map left unchanged");
       return;
     }
-    // A missing option means Off (removed when Advanced Settings supplies resources).
-    const resourceSetting = Configuration.getMapValue("MPTResourceSystem") ?? "MPT_MAPS_RESOURCE_SYSTEM_OFF";
-    if (resourceSetting === "MPT_MAPS_RESOURCE_SYSTEM_ON") {
+    if (isResourceSystemOn()) {
       generateGlobalResources();
       FertilityBuilder.recalculate();   // start scoring reads fertility from the new resources
     } else {
       console.log("MPT MAPS RESOURCES: custom resource system disabled; retaining normal map resources");
     }
     applyGlobalTeamStartsSafely();
+    if (isResourceSystemOn()) {
+      try {
+        placeDealtResources();   // player regions follow the final starts
+      } catch (error) {
+        console.error(`MPT MAPS RESOURCES: dealt resources skipped after unexpected error: ${error?.stack ?? error}`);
+      }
+    }
     try {
       addCoastalStartReefs();
     } catch (error) {
@@ -849,5 +864,3 @@ function armGlobalTeamStartHandler() {
 
 engine.on("RequestMapInitData", armGlobalTeamStartHandler);
 console.log("MPT MAPS PLAYER PLACEMENT: loaded");
-
-export { addCoastalStartReefs };

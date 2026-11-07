@@ -139,7 +139,7 @@ function retryValidation() {
   return true;
 }
 
-function validateStrictBiases() {
+function validateStarts() {
   if (warningCreated || !placementApplied()) return;
   if (typeof Game === "undefined" || Game.turn == null) { retryValidation(); return; }
   // Only a newly generated game's opening turn; the seed marker stops replays after a reload.
@@ -187,7 +187,7 @@ function validateStrictBiases() {
 
 /** Never present an internal validator problem as a failed start; only confirmed rule failures notify. */
 function runValidationSafely() {
-  try { validateStrictBiases(); }
+  try { validateStarts(); }
   catch (error) { log(`validation error: ${error?.stack ?? error}`); }
 }
 

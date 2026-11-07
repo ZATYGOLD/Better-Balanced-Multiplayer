@@ -21,14 +21,21 @@
 /**
  * Multiplayer Toolkit - Competitive turn timer (component subclass).
  *
- * The engine only enforces None/Standard/Dynamic, so the custom "Competitive"
+ * The engine only computes None/Standard/Dynamic, so the custom "Competitive"
  * type is driven here from the mod's MPT_TurnSegments and MPT_TimerScaling
  * tables for the active Age (data/timers/):
  *
  *   seconds = Base + PerCity*cities + PerUnit*units
  *           + PerHuman*humanPlayers + PerTurn*turnNumber
  *
- * Human players never include a companion mod's Observer (isObserverPlayer).
+ * cities/units are the most any living major civ has; human players never
+ * include a companion mod's Observer (isObserverPlayer). The first turn of each
+ * session is untimed (inGrace).
+ *
+ * Engine backstop: the engine times an unknown type by TurnTimerTime, which
+ * config/SetupParameters.sql sets to an hour for Competitive. That phase limit
+ * (ENGINE_BACKSTOP) is proxied like a normal one, and this countdown always
+ * ends the turn first.
  *
  * Architecture: instead of proxying the action panel's event listener, the
  * panel COMPONENT itself is replaced. Controls.define supports priority-based
@@ -53,21 +60,19 @@
  *   orangeStart..flashStart+1  orange text, urgency beep every warnEverySeconds
  *   flashStart..0              engine's red flash + per-second beeps
  */
-import { createLogger, isAgeEnding, isObserverPlayer, whenDefined } from '../mpt-shared/mpt-util.js';
-import { TIMER_TYPE, CONFIG, ENGINE } from './mp-timer-config.js';
+import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
+import { createLogger, isAgeEnding, isObserverPlayer, whenAvailable, whenDefined } from '../mpt-shared/mpt-util.js';
+import { COMPETITIVE_HASH, CONFIG, ENGINE } from './mp-timer-config.js';
 
-const COMPETITIVE_HASH = Database.makeHash(TIMER_TYPE);
-let ENGINE_BACKSTOP = 0;   // read once the configuration is readable
-const DEFINE_RETRY_MS = 200;
-const DEFINE_RETRIES = 50;
+let ENGINE_BACKSTOP = 0;   // TurnTimerTime, read once the configuration is readable
 
 const log = createLogger('timer');
 const debug = CONFIG.debug ? log : () => {};
 
-let mptLastEventMs = 0;    // last time a competitive TurnTimerUpdated was handled
-let mptLastEndAttemptMs = 0;   // last time the sweep tried to end an expired turn
+let lastEventMs = 0;       // last time a competitive TurnTimerUpdated was handled
+let lastEndAttemptMs = 0;  // last time the sweep tried to end an expired turn
 
-// ============================ Pure helpers ============================
+// =============================== Helpers ==============================
 
 /** A living human major player who plays (Observers excluded). */
 function isHumanParticipant(player) {
@@ -95,27 +100,29 @@ function localPlayerTurnActive() {
   } catch (e) { return false; }
 }
 
+/** First row of a gameplay query, cached once found (the Age's database is fixed for the life of the UI). */
+const queryCache = new Map();
+function cachedRow(sql) {
+  if (queryCache.has(sql)) return queryCache.get(sql);
+  let row = null;
+  try { row = Database.query('gameplay', sql)?.[0] ?? null; } catch (e) { row = null; }
+  if (row) queryCache.set(sql, row);
+  return row;
+}
+
 /**
  * TimeLimit_Base/PerCity/PerUnit from the mod-owned MPT_TurnSegments table,
  * keeping the Competitive numbers fully separate from the Dynamic timer's
  * (the game's TurnSegments is never modified).
  */
 function segmentLimits() {
-  try {
-    const rows = Database.query('gameplay',
-      "SELECT TimeLimit_Base AS base, TimeLimit_PerCity AS perCity, TimeLimit_PerUnit AS perUnit " +
-      `FROM MPT_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`) ?? [];
-    return rows[0] ?? null;
-  } catch (e) { return null; }
+  return cachedRow("SELECT TimeLimit_Base AS base, TimeLimit_PerCity AS perCity, TimeLimit_PerUnit AS perUnit " +
+    `FROM MPT_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
 }
 
 /** PerHuman/PerTurn scaling for the active Age; zeros when absent. */
 function scalingValues() {
-  try {
-    const rows = Database.query('gameplay',
-      "SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM MPT_TimerScaling") ?? [];
-    return rows[0] ?? { perHuman: 0, perTurn: 0 };
-  } catch (e) { return { perHuman: 0, perTurn: 0 }; }
+  return cachedRow("SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM MPT_TimerScaling") ?? { perHuman: 0, perTurn: 0 };
 }
 
 /**
@@ -271,7 +278,7 @@ function syncClockFrozen() {
  * nothing but a pause may stall the turn, so this does not spare "not normally
  * user-dismissible" blockers - it clears whatever the API will clear.
  */
-function mptDismissTurnBlockers() {
+function dismissTurnBlockers() {
   let ids = null;
   try { ids = Game.Notifications.getIdsForPlayer(GameContext.localPlayerID); } catch (e) { return; }
   for (const n of ids ?? []) {
@@ -313,15 +320,14 @@ function unitAwaitsOrders(id) {
  * touched, so explorers keep exploring and long moves keep going. The block
  * clears asynchronously, so the sweep repeats over subsequent ticks.
  */
-function mptSkipReadyUnits() {
+function skipReadyUnits() {
   if (!unitsBlockEndTurn()) return;
   const seen = new Set();
   for (let i = 0; i < CONFIG.maxUnitSkips; i++) {
     let id = null;
     try { id = UI.Player.getFirstReadyUnit(); } catch (e) { break; }
-    if (!id) break;
-    try { if (ComponentID && ComponentID.isInvalid && ComponentID.isInvalid(id)) break; } catch (e) {}
-    const key = `${id.owner ?? ''}:${id.id ?? id}`;
+    if (!ComponentID.isValid(id)) break;
+    const key = ComponentID.toBitfield(id);
     if (seen.has(key)) break;   // looped back to an already-visited unit - stop
     seen.add(key);
     if (unitAwaitsOrders(id)) {
@@ -337,7 +343,7 @@ function mptSkipReadyUnits() {
  * tier - mirroring the engine's own sounds so the cue is seamless. Deduped per
  * whole second; silent once expired (the native timer stops beeping there too).
  */
-function mptBeepFromClock() {
+function beepFromClock() {
   if (CLOCK.total <= 0) return;
   const remaining = CLOCK.total - CLOCK.elapsed();
   const n = Math.max(0, Math.round(remaining));
@@ -359,19 +365,19 @@ function mptBeepFromClock() {
  * without a settlement: their countdown is held at full instead, so founding a
  * capital late never lands on an already-expired clock.
  */
-function mptEnforceTick() {
+function enforceTick() {
   if (syncClockFrozen() || !localPlayerTurnActive() || inGrace()) return;
   CLOCK.syncTurn();
   if (CLOCK.participants < CONFIG.minPlayersToEnforce) return;
   if (clockHeld()) { CLOCK.restart(); return; }
-  if (Date.now() - mptLastEventMs > CONFIG.staleEventMs) mptBeepFromClock();
+  if (Date.now() - lastEventMs > CONFIG.staleEventMs) beepFromClock();
   if (!CLOCK.expired()) return;
   try { if (GameContext.hasSentTurnComplete && GameContext.hasSentTurnComplete()) return; } catch (e) {}
   const now = Date.now();
-  if (now - mptLastEndAttemptMs < CONFIG.endRetryMs) return;   // the engine is still processing the last attempt
-  mptLastEndAttemptMs = now;
-  mptSkipReadyUnits();       // only if units genuinely block; automated/queued units untouched
-  mptDismissTurnBlockers();  // clear pending-choice blockers (research/civic/growth/narrative)
+  if (now - lastEndAttemptMs < CONFIG.endRetryMs) return;   // the engine is still processing the last attempt
+  lastEndAttemptMs = now;
+  skipReadyUnits();       // only if units genuinely block; automated/queued units untouched
+  dismissTurnBlockers();  // clear pending-choice blockers (research/civic/growth/narrative)
   debug(`time expired - ending local turn (turn ${CLOCK.turn})`);
   // Mirror the native End Turn button exactly (panel-action sendEndTurn).
   try { UI.Player.deselectAllUnits(); } catch (e) { /* ignore */ }
@@ -379,9 +385,9 @@ function mptEnforceTick() {
 }
 
 /** Start the enforcement sweep and pause accounting (once, when the Competitive timer is selected). */
-function startMptEnforcement() {
+function startEnforcement() {
   engine.on('GamePauseStateChanged', syncClockFrozen);
-  setInterval(mptEnforceTick, CONFIG.guardianMs);
+  setInterval(enforceTick, CONFIG.guardianMs);
 }
 
 // ============================ Render helpers ==========================
@@ -419,14 +425,6 @@ function injectRingKeyframes() {
 
 // ====================== Component redefinition ========================
 
-/** Calls back with the configured timer type once the game configuration is readable. */
-function whenConfigured(callback, attempts = DEFINE_RETRIES) {
-  const configured = configuredTimerType();
-  if (configured !== undefined) { callback(configured); return; }
-  if (attempts > 0) setTimeout(() => whenConfigured(callback, attempts - 1), DEFINE_RETRY_MS);
-  else log('game configuration never became readable; competitive timer inactive');
-}
-
 /**
  * Register a subclass of the base game's PanelAction in its place. Everything
  * the base panel does is inherited; only the turn timer path is extended.
@@ -434,12 +432,12 @@ function whenConfigured(callback, attempts = DEFINE_RETRIES) {
 function defineMptPanelAction(base) {
   const PanelAction = base.createInstance;
   injectRingKeyframes();
-  startMptEnforcement();   // wall-clock enforcement runs even while the panel is rebuilt
+  startEnforcement();   // wall-clock enforcement runs even while the panel is rebuilt
 
   class MPT_PanelAction extends PanelAction {
-    /** Single override point: feed the base renderer our clock. */
+    /** The timer override: feed the base renderer our clock. */
     onTurnTimerUpdated(data) {
-      mptLastEventMs = Date.now();   // events are flowing
+      lastEventMs = Date.now();   // events are flowing
       // Grace turn(s): hide the timer by handing the base renderer a zero limit (its own "no timer" path).
       if (inGrace()) {
         super.onTurnTimerUpdated({ ...data, phaseTimeLimit: 0 });
@@ -579,9 +577,9 @@ function defineMptPanelAction(base) {
   if (existing && !(existing instanceof MPT_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
 }
 
-whenConfigured((configured) => {
+whenAvailable(configuredTimerType, (configured) => {
   if (configured !== COMPETITIVE_HASH) return;   // any other timer keeps the game's own panel
   ENGINE_BACKSTOP = engineBackstop();
   log(`engine backstop (TurnTimerTime): ${ENGINE_BACKSTOP || 'unset'}s`);
-  whenDefined('panel-action', defineMptPanelAction, { retries: DEFINE_RETRIES, intervalMs: DEFINE_RETRY_MS, log });
-});
+  whenDefined('panel-action', defineMptPanelAction, { log });
+}, { onGiveUp: () => log('game configuration never became readable; competitive timer inactive') });

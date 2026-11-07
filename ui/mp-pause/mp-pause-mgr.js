@@ -41,7 +41,7 @@
 import InputFilterManager from 'fs://game/core/ui/input/input-filter.js';
 import { InterfaceMode, InterfaceModeChangedEventName } from 'fs://game/core/ui/interface-modes/interface-modes.js';
 import { createLogger, isObserverPlayer } from '../mpt-shared/mpt-util.js';
-import { PAUSE_ACTION_ID } from '../mp-keybind/mp-keybind.js';
+import { PAUSE_ACTION_ID } from '../mp-keybind/mp-keybind-config.js';
 import { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC } from './mp-pause-config.js';
 import styles from './mp-pause.scss.js';
 import PauseCountdownOverlay from './mp-pause-overlay.js';
@@ -79,7 +79,7 @@ function textDiv(className, text) {
   return div;
 }
 
-const STYLE_ELEMENT_ID = "mpt-styles";
+const STYLE_ELEMENT_ID = "mpt-pause-styles";
 const READY_BUTTON_ID = "mpt-ready-button";
 const VIEW_MAP_BUTTON_ID = "mpt-viewmap-button";
 const PAUSE_BUTTON_ID = "mpt-pause-button";
@@ -246,7 +246,7 @@ class MultiplayerPauseManager {
       // want-pause flag can't be cleared by anyone else, so the game can't reach
       // zero and resume. Offer the host a button to kick the disconnected
       // player(s), which clears the flag and lets the resume complete.
-      if (this.amHost() && this.canHostKick() && this.disconnectedIds().length > 0) {
+      if (isHost && this.canHostKick() && this.disconnectedIds().length > 0) {
         const dropBtn = this.makeButton(DROP_RESUME_BUTTON_ID, LOC.dropResume, (ev) => this.onDropDisconnectedClick(ev));
         container.insertBefore(dropBtn, first);
       }
@@ -280,7 +280,7 @@ class MultiplayerPauseManager {
     el.classList.toggle("mpt-not-enough", !tally.enough);
   }
   injectFooterReady() {
-    let el = document.querySelector("#" + FOOTER_READY_ID);
+    let el = document.getElementById(FOOTER_READY_ID);
     if (!el) {
       const fc = this.footerContainer();
       if (!fc) return;
@@ -292,14 +292,15 @@ class MultiplayerPauseManager {
     this.renderFooter(el);
   }
   removeFooterReady() {
-    const el = document.querySelector("#" + FOOTER_READY_ID);
+    const el = document.getElementById(FOOTER_READY_ID);
     if (el) el.remove();
   }
-  /** Player display name like "Name#12345": gamertag fields first, LOC keys composed. */
+  /** A player name field, composed when it is a LOC key. */
   composePlayerName(raw) {
     if (!raw) return "";
     try { return Locale.compose(raw); } catch (e) { return String(raw); }
   }
+  /** Player display name like "Name#12345": gamertag fields first. */
   playerNameById(id) {
     try {
       const pc = Configuration.getPlayer(id);
@@ -334,15 +335,12 @@ class MultiplayerPauseManager {
     hint.appendChild(document.createTextNode(status));
   }
   refreshStatus() {
-    const hint = document.querySelector("#" + HOST_HINT_ID);
+    const hint = document.getElementById(HOST_HINT_ID);
     if (hint) this.renderHint(hint);
-    let footer = document.querySelector("#" + FOOTER_READY_ID);
-    if (!footer && this.state === STATE.PAUSED) {
-      this.injectFooterReady();
-      footer = document.querySelector("#" + FOOTER_READY_ID);
-    }
+    const footer = document.getElementById(FOOTER_READY_ID);
     if (footer) this.renderFooter(footer);
-    const rb = document.querySelector("#" + READY_BUTTON_ID);
+    else if (this.state === STATE.PAUSED) this.injectFooterReady();
+    const rb = document.getElementById(READY_BUTTON_ID);
     const caption = this.iHoldFlag ? LOC.ready : LOC.cancelReady;
     if (rb && !this.amHost() && rb.getAttribute("caption") !== caption) rb.setAttribute("caption", caption);
   }
@@ -526,7 +524,7 @@ class MultiplayerPauseManager {
     if (this.pauseMenuIsOpen()) {
       const needDrop = this.amHost() && this.canHostKick() && this.disconnectedIds().length > 0;
       const haveDrop = !!document.getElementById(DROP_RESUME_BUTTON_ID);
-      if (!document.querySelector("#" + VIEW_MAP_BUTTON_ID) || needDrop !== haveDrop) {
+      if (!document.getElementById(VIEW_MAP_BUTTON_ID) || needDrop !== haveDrop) {
         const c = document.querySelector(PAUSE_MENU_CONTAINER);
         if (c) this.injectMenuButtons(c);
       }
@@ -689,7 +687,7 @@ class MultiplayerPauseManager {
     const reason = Locale.compose(LOC.hostChanged);
     if (this.state === STATE.IDLE) this.requestDisconnectPause(reason);
     else this.pauseReason = reason;
-    // Captions depend on amHost(); rebuild the injected buttons on next poll.
+    // Captions depend on amHost(): rebuild the injected buttons now if the menu is open.
     document.querySelectorAll(".mpt-injected").forEach((el) => el.remove());
     if (this.pauseMenuIsOpen()) this.tryInjectWhenMenuReady(0);
     this.refreshStatus();

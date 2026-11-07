@@ -2,7 +2,7 @@
 <GameEffects xmlns="GameEffects">
 	<!-- Each milestone needs a unique permanent modifier instance; reusing one
 	     ModifierId causes every reward after the first to be ignored. -->
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_01" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_01" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -12,7 +12,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_02" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_02" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -22,7 +22,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_03" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_03" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -32,7 +32,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_04" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_04" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -42,7 +42,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_05" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_05" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -52,7 +52,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_06" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_06" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -62,7 +62,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_07" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_07" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -72,7 +72,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_08" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_08" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -82,7 +82,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_09" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_09" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -92,7 +92,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_10" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_10" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -102,7 +102,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_11" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_11" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -112,7 +112,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_12" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_12" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -122,7 +122,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_13" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_13" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -132,7 +132,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_14" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_14" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -142,7 +142,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_15" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_15" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -152,7 +152,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_16" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_16" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -162,7 +162,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_17" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_17" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -172,7 +172,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_18" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_18" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -182,7 +182,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_19" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_19" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -192,7 +192,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_20" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_20" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -202,7 +202,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_21" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_21" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -212,7 +212,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_22" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_22" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -222,7 +222,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_23" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_23" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -232,7 +232,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_24" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_24" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -242,7 +242,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_25" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_25" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -252,7 +252,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_26" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_26" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -262,7 +262,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_27" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_27" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -272,7 +272,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_28" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_28" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -282,7 +282,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_29" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_29" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -292,7 +292,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_30" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_30" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -302,7 +302,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_31" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_31" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -312,7 +312,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_32" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_32" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -322,7 +322,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_33" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_33" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -332,7 +332,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_34" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_34" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -342,7 +342,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_35" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_35" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -352,7 +352,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_36" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_36" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -362,7 +362,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_37" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_37" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -372,7 +372,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_38" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_38" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -382,7 +382,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_39" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_39" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -392,7 +392,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_40" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_40" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -402,7 +402,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_41" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_41" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -412,7 +412,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_42" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_42" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -422,7 +422,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_43" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_43" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -432,7 +432,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_44" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_44" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -442,7 +442,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_45" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_45" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -452,7 +452,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_46" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_46" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -462,7 +462,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_47" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_47" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -472,7 +472,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_48" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_48" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -482,7 +482,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_49" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_49" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -492,7 +492,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_50" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_50" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -502,7 +502,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_51" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_51" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -512,7 +512,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_52" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_52" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -522,7 +522,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_53" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_53" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -532,7 +532,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_54" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_54" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -542,7 +542,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_55" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_55" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -552,7 +552,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_56" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_56" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -562,7 +562,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_57" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_57" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -572,7 +572,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_58" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_58" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -582,7 +582,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_59" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_59" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -592,7 +592,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_60" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_60" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -602,7 +602,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_61" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_61" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -612,7 +612,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_62" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_62" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -622,7 +622,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_63" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_63" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -632,7 +632,7 @@
 		<Argument name="TypeData">NARRATIVE</Argument>
 		<Argument name="Description">LOC_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
 	</Modifier>
-	<Modifier id="MOD_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_64" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+	<Modifier id="MPT_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_64" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
 		</SubjectRequirements>
@@ -644,448 +644,448 @@
 	</Modifier>
 
 	<!-- Each cumulative threshold has its own one-shot story. -->
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_01">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_01">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">1</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_02">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_02">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">2</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_03">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_03">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">3</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_04">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_04">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">4</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_05">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_05">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">5</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_06">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_06">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">6</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_07">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_07">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">7</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_08">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_08">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">8</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_09">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_09">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">9</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_10">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_10">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">10</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_11">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_11">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">11</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_12">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_12">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">12</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_13">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_13">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">13</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_14">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_14">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">14</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_15">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_15">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">15</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_16">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_16">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">16</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_17">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_17">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">17</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_18">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_18">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">18</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_19">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_19">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">19</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_20">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_20">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">20</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_21">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_21">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">21</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_22">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_22">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">22</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_23">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_23">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">23</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_24">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_24">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">24</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_25">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_25">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">25</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_26">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_26">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">26</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_27">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_27">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">27</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_28">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_28">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">28</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_29">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_29">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">29</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_30">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_30">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">30</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_31">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_31">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">31</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_32">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_32">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">32</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_33">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_33">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">33</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_34">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_34">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">34</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_35">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_35">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">35</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_36">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_36">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">36</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_37">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_37">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">37</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_38">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_38">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">38</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_39">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_39">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">39</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_40">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_40">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">40</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_41">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_41">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">41</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_42">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_42">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">42</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_43">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_43">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">43</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_44">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_44">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">44</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_45">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_45">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">45</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_46">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_46">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">46</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_47">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_47">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">47</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_48">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_48">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">48</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_49">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_49">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">49</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_50">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_50">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">50</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_51">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_51">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">51</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_52">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_52">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">52</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_53">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_53">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">53</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_54">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_54">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">54</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_55">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_55">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">55</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_56">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_56">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">56</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_57">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_57">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">57</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_58">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_58">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">58</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_59">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_59">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">59</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_60">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_60">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">60</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_61">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_61">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">61</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_62">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_62">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">62</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_63">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_63">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
 			<Argument name="DuplicateCount">63</Argument>
 		</Requirement>
 	</RequirementSet>
-	<RequirementSet id="REQSET_MPT_BALANCE_RAZED_SETTLEMENT_DOMINION_64">
+	<RequirementSet id="MPT_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_64">
 		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
 			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>

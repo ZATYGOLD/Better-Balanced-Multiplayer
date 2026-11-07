@@ -19,10 +19,15 @@ const SCORERS = {
 };
 
 const biasesByPlayer = new Map();
+const featureClassByFeature = new Map();
 
 function featureClassIndex(x, y) {
-  const featureClass = GameInfo.Features.lookup(GameplayMap.getFeatureType(x, y))?.FeatureClassType;
-  return featureClass ? GameInfo.FeatureClasses.lookup(featureClass)?.$index : undefined;
+  const feature = GameplayMap.getFeatureType(x, y);
+  if (!featureClassByFeature.has(feature)) {
+    const featureClass = GameInfo.Features.lookup(feature)?.FeatureClassType;
+    featureClassByFeature.set(feature, featureClass ? GameInfo.FeatureClasses.lookup(featureClass)?.$index : undefined);
+  }
+  return featureClassByFeature.get(feature);
 }
 
 /** Sum of score (divided by distance, at least 1, when scaled) over matching plots within the radius. */
@@ -46,10 +51,10 @@ function playerBiases(playerId) {
   const biases = [];
   for (const [tableName, scorer] of Object.entries(SCORERS)) {
     for (const row of GameInfo[tableName] ?? []) {
-      const typeIndex = scorer.typeColumn ? GameInfo[scorer.table].lookup(row[scorer.typeColumn])?.$index : undefined;
-      if (scorer.typeColumn && !row[scorer.typeColumn]) continue;
       const matches = (row.CivilizationType && row.CivilizationType === civilization ? 1 : 0) +
         (row.LeaderType && row.LeaderType === leader ? 1 : 0);
+      if (matches === 0 || (scorer.typeColumn && !row[scorer.typeColumn])) continue;
+      const typeIndex = scorer.typeColumn ? GameInfo[scorer.table].lookup(row[scorer.typeColumn])?.$index : undefined;
       for (let i = 0; i < matches; i++) biases.push({ scorer, row: { Score: row.Score, typeIndex } });
     }
   }

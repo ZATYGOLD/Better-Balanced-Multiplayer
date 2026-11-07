@@ -1,27 +1,15 @@
 -- Commander splash damage
 UPDATE ModifierArguments
-SET Value=5
-WHERE Name='Percent' AND ModifierId='MOD_PROMOTION_FLEET_GUNFIRE_SUPPORT';
+SET Value = 5
+WHERE Name = 'Percent'
+  AND ModifierId IN ('MOD_PROMOTION_FLEET_GUNFIRE_SUPPORT', 'MOD_PROMOTION_SQUADRON_OBLITERATION');
 
-UPDATE ModifierArguments
-SET Value=5
-WHERE Name='Percent' AND ModifierId='MOD_PROMOTION_SQUADRON_OBLITERATION';
-
--- Merchant.
+-- Merchants
 UPDATE Units
 SET BaseMoves = 1
 WHERE MakeTradeRoute = 1;
 
--- Silla Hwarang: match the Production cost of the standard Ranged Unit at each tier.
-UPDATE Unit_Costs
-SET Cost = CASE UnitType
-    WHEN 'UNIT_HWARANG' THEN 30
-    WHEN 'UNIT_HWARANG_2' THEN 50
-END
-WHERE YieldType = 'YIELD_PRODUCTION'
-  AND UnitType IN ('UNIT_HWARANG', 'UNIT_HWARANG_2');
-
--- Use the Modern Age's remote Trade Route behavior in every Age
+-- Use the Modern Age's remote Trade Route behavior in every Age.
 UPDATE TradeSystemParameterSets
 SET StartRoutesAtDistance = 1
 WHERE Type IN (
@@ -31,7 +19,7 @@ WHERE Type IN (
 );
 
 -- Commander promotion Combat Strength bonuses.
--- Order 
+-- Order
 UPDATE ModifierArguments
 SET Value = 3
 WHERE Name = 'Amount'
@@ -41,7 +29,7 @@ WHERE Name = 'Amount'
     'MOD_ABILITY_SQUADRON_ORDER'
   );
 
--- Shock Tactics Enfilade and Advancement
+-- Shock Tactics, Enfilade and Advancement
 UPDATE ModifierArguments
 SET Value = 2
 WHERE Name = 'Amount'
@@ -50,12 +38,6 @@ WHERE Name = 'Amount'
     'MOD_ABILITY_ARMY_ENFILADE',
     'MOD_ABILITY_ARMY_FIRST_STRIKE'
   );
-
--- Defender of the Faith
-UPDATE ModifierArguments
-SET Value = 3
-WHERE Name = 'Amount'
-  AND ModifierId = 'ATTACH_COMBAT_STRENGTH_FRIENDLY_RELIGIOUS_CITY';
 
 -- Trung Nhi Commander promotion Combat Strength bonuses.
 UPDATE ModifierArguments

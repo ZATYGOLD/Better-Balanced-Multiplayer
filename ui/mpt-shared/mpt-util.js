@@ -21,8 +21,8 @@
 /**
  * Multiplayer Toolkit - shared helpers (shell and game scope).
  *
- * Logging, method wrapping and deferred component patching used
- * by every feature, plus recognising a companion mod's Observer.
+ * Logging, method wrapping and deferred patching used by every feature,
+ * plus the Age-ending check and companion-mod detection (Observer, enabled mods).
  */
 
 /** Logger that reaches UI.log (console.log output does not). */
@@ -42,13 +42,22 @@ function wrapMethod(target, name, wrapper) {
   return true;
 }
 
+/**
+ * Run callback(value) once probe() returns a value other than null/undefined,
+ * retrying a bounded number of times; onGiveUp runs if it never does.
+ */
+function whenAvailable(probe, callback, { retries = 50, intervalMs = 200, onGiveUp = null } = {}) {
+  let value = null;
+  try { value = probe(); } catch (e) { value = null; }
+  if (value != null) { callback(value); return; }
+  if (retries > 0) setTimeout(() => whenAvailable(probe, callback, { retries: retries - 1, intervalMs, onGiveUp }), intervalMs);
+  else onGiveUp?.();
+}
+
 /** Run callback(definition) once the UI component tag is defined, retrying a bounded number of times. */
 function whenDefined(tag, callback, { retries = 50, intervalMs = 200, log = null } = {}) {
-  let definition = null;
-  try { definition = Controls.getDefinition(tag); } catch (e) { definition = null; }
-  if (definition?.createInstance) { callback(definition); return; }
-  if (retries > 0) setTimeout(() => whenDefined(tag, callback, { retries: retries - 1, intervalMs, log }), intervalMs);
-  else log?.(`${tag} was never defined`);
+  const probe = () => { const definition = Controls.getDefinition(tag); return definition?.createInstance ? definition : null; };
+  whenAvailable(probe, callback, { retries, intervalMs, onGiveUp: () => log?.(`${tag} was never defined`) });
 }
 
 /**
@@ -92,4 +101,4 @@ function isModEnabled(modId) {
   try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, createLogger, isAgeEnding, isModEnabled, isObserverPlayer, whenDefined, wrapMethod };
+export { COMPANION_MODS, createLogger, isAgeEnding, isModEnabled, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };

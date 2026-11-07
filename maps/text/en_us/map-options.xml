@@ -21,17 +21,31 @@
 		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME"><Text>Off</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC"><Text>Use only the game's normal weighted biases; Fresh Water and 12-tile separation remain required.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_NAME"><Text>Custom Resource System</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC"><Text>Controls the Maps resource pools, persistent resources, custom placement rules, classes, yields, tooltips, and age-specific effects.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_DESC"><Text>Controls the resource pools dealt to each player's region, persistent resources, custom placement rules, classes, yields, tooltips, and Age-specific effects.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_NAME"><Text>On</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC"><Text>Use the mod's complete resource system at Standard density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_ON_DESC"><Text>Use the mod's complete resource system; Resource Amount and Resource Clusters set how its resources are placed.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_NAME"><Text>Off</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_SYSTEM_OFF_DESC"><Text>Use Civilization VII's normal resources, placement, and effects.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_NAME"><Text>Resource Amount</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the Custom Resource System places, as a share of the game's own density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_NAME"><Text>Scarce</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_DESC"><Text>35% of the game's density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SPARSE_DESC"><Text>50% of the game's density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_STANDARD_DESC"><Text>70% of the game's density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_ABUNDANT_DESC"><Text>The game's density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_NAME"><Text>Resource Clusters</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_DESC"><Text>Whether resources gather into patches of the same resource. The amount stays the same.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_OFF_DESC"><Text>Resources are spread out one by one.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_SMALL_NAME"><Text>Small</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_SMALL_DESC"><Text>Half of the deposits grow into patches of 2.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_NAME"><Text>Large</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_DESC"><Text>Three quarters of the deposits grow into patches of up to 3.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MAPSIZE_DUEL_NAME"><Text>Duel</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MAPSIZE_DUEL_DESC"><Text>A map for 2 players.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_SPECTATOR_SLOT"><Text>Spectator slot</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_CHOSEN_MAP_SIZE"><Text>Chosen map size</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_NAME"><Text>Pangaea Ultima</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_DESC"><Text>one large central Pangaea, with islands in the surrounding ocean.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_DESC"><Text>One large central Pangaea; the islands beyond its coasts are the Distant Lands.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MULTIPLAYER_SETUP"><Text>Multiplayer setup</Text></Row>
 	</EnglishText>
 </Database>

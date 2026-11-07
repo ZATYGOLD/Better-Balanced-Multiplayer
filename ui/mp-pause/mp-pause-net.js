@@ -36,7 +36,7 @@
 import { createLogger, whenDefined, wrapMethod } from '../mpt-shared/mpt-util.js';
 import { CONFIG } from './mp-pause-config.js';
 
-const log = createLogger('net');
+const log = createLogger('pause net');
 const PREFIX = "\u200BMPTNET:";   // leading zero-width space: untypeable and inconspicuous
 const CHAT_TAG = "screen-mp-chat";
 const handlers = {};

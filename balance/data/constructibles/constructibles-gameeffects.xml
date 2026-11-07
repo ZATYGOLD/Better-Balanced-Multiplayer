@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
-<!-- Wonders -->
-<!-- Antiquity -->
+	<!-- Wonders -->
+	<!-- Antiquity -->
 	<!-- Angkor Wat -->
 	<Modifier id="MPT_BALANCE_MOD_ANGKOR_WAT_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
 		<SubjectRequirements>
@@ -26,14 +26,14 @@
 		<Argument name="AttackAmount">15</Argument>
 		<Argument name="Tooltip">LOC_WONDER_MAUSOLEUM_AT_HALICARNASSUS_NAME</Argument>
 	</Modifier>
-<!-- Exploration -->
+	<!-- Exploration -->
 	<!-- Thanh Hue -->
 	<Modifier id="MPT_BALANCE_MOD_THANH_HUE_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
 				<Argument name="ConstructibleType">WONDER_THANH_HUE</Argument>
 			</Requirement>
-            <Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
+			<Requirement type="REQUIREMENT_CITY_HAS_BUILDING">
 				<Argument name="Tag">FORTIFICATION</Argument>
 				<Argument name="Amount">3</Argument>
 			</Requirement>
@@ -56,13 +56,13 @@
 		<Argument name="Amount">1</Argument>
 	</Modifier>
 
-<!-- Modern -->
-    <!-- Buganda wonder -->
+	<!-- Modern -->
+	<!-- Buganda wonder -->
 	<Modifier id="MPT_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" run-once="true" permanent="true">
-		<Argument name="TrackerName">VICTORY_TRACKER_MUZIBU_AZAALA_MPANGA_LAKES</Argument>
+		<Argument name="TrackerName">MPT_BALANCE_VICTORY_TRACKER_MUZIBU_AZAALA_MPANGA_LAKES</Argument>
 	</Modifier>
 
-    <!-- Doi Suthep -->
+	<!-- Doi Suthep -->
 	<Modifier id="MPT_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_SUZERAIN">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_WONDER_IS_ACTIVE">
@@ -125,9 +125,9 @@
 
 	<!-- Hermitage -->
 	<Modifier id="MPT_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ACTIVATE_VICTORY_POINT_TRACKER" run-once="true" permanent="true">
-		<Argument name="TrackerName">VICTORY_TRACKER_HERMITAGE_ARTIFACTS</Argument>
+		<Argument name="TrackerName">MPT_BALANCE_VICTORY_TRACKER_HERMITAGE_ARTIFACTS</Argument>
 	</Modifier>
 
 
-	
+
 </GameEffects>

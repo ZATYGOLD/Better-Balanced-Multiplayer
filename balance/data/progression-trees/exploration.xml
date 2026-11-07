@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
-    <ProgressionTreeNodeUnlocks>
-        <!-- Joseon -->
-        <Row ProgressionTreeNodeType="NODE_CIVIC_EX_JOSEON_RENAISSANCE" TargetKind="KIND_MODIFIER" TargetType="MOD_PROGRESSION_TREE_JOSEON_CITY_LIMIT" UnlockDepth="1"/>
-    </ProgressionTreeNodeUnlocks>
+	<ProgressionTreeNodeUnlocks>
+		<!-- Joseon -->
+		<Row ProgressionTreeNodeType="NODE_CIVIC_EX_JOSEON_RENAISSANCE" TargetKind="KIND_MODIFIER" TargetType="MOD_PROGRESSION_TREE_JOSEON_CITY_LIMIT" UnlockDepth="1"/>
+	</ProgressionTreeNodeUnlocks>
 </Database>

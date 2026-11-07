@@ -36,17 +36,21 @@ import { GetNextCityID, GetPrevCityID } from 'fs://game/base-standard/ui/product
 import { createLogger } from '../mpt-shared/mpt-util.js';
 import { CITY_ACTIONS, DEFAULT_LENS, LENS_ACTIONS, UNIT_ACTIONS } from './mp-keybind-config.js';
 
-const log = createLogger('hotkeys');
+const log = createLogger('keybind hotkeys');
 
 function toggleLens(lens) {
   const target = LensManager.getActiveLens() === lens ? DEFAULT_LENS : lens;
   LensManager.setActiveLens(target);
 }
 
-/** Ability-less first, then each ability that grants the action (Search and the like require one). */
+/** Ability-less first, then each ability that grants the action (Search and the like require one); cached per action. */
+const abilityChoicesByAction = new Map();
 function abilityChoices(actionType) {
-  const abilities = [...GameInfo.UnitAbilities].filter((a) => a.OperationType === actionType || a.CommandType === actionType);
-  return [-1, ...abilities.map((a) => a.$index)];
+  if (!abilityChoicesByAction.has(actionType)) {
+    const abilities = [...GameInfo.UnitAbilities].filter((a) => a.OperationType === actionType || a.CommandType === actionType);
+    abilityChoicesByAction.set(actionType, [-1, ...abilities.map((a) => a.$index)]);
+  }
+  return abilityChoicesByAction.get(actionType);
 }
 
 /** The selected unit's operation (UNITOPERATION_*) or command (UNITCOMMAND_*), as its action button would run it. */

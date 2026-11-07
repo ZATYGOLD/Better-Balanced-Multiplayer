@@ -21,6 +21,7 @@
 /**
  * Multiplayer Toolkit - Pause configuration & constants.
  */
+import { UNIT_ACTIONS } from '../mp-keybind/mp-keybind-config.js';
 
 /** Source tag used when registering/removing engine input filters. */
 const FILTER_SOURCE = "MultiplayerToolkit";
@@ -42,16 +43,17 @@ const CONFIG = {
 };
 
 /**
- * Input actions that advance / commit game state. Blocked while paused.
- * Verified against Base/modules/core/config/Input.xml. Camera, selection,
- * information screens and city/production panels are intentionally NOT listed.
+ * Input actions that advance / commit game state, plus the Toolkit's unit
+ * keybinds. Blocked while paused. Verified against Base/modules/core/config/Input.xml.
+ * Camera, selection, information screens and city/production panels are
+ * intentionally NOT listed.
  */
 const PROGRESS_ACTIONS = [
   "next-action", "keyboard-enter", "force-end-turn",
   "unit-move", "unit-ranged-attack", "unit-skip-turn", "unit-sleep",
   "unit-fortify", "unit-heal", "unit-alert", "unit-auto-explore",
   "trigger-accept-dip", "quick-load",
-  "mpt-unit-found-city", "mpt-unit-search", "mpt-unit-join-commander", "mpt-unit-leave-commander", "mpt-commander-pack", "mpt-commander-unpack"
+  ...Object.keys(UNIT_ACTIONS)
 ];
 
 /** Localization keys (text/en_us/mpt-text.xml; View Map reuses the base game's string). */

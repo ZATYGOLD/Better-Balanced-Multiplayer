@@ -1,60 +1,34 @@
--- Town Specializations
--- Food Towns
+-- Food Towns: +2 Food on every Farming and Fishing Town tile (base +1).
 UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownFishingBoatResourceFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownAtollFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownLotusFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownReefFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownColdReefFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownCoastTerrainFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownNavigableRiverFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownPastureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownPlantationFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownDesertFloodplainFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownGrasslandFloodplainFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownPlainsFloodplainFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownTropicalFloodplainFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownTundraFloodplainFeatureFood';
-UPDATE Warehouse_YieldChanges
-SET YieldChange='2'
-WHERE ID='EXTownFlatTerrainFood';
+SET YieldChange = 2
+WHERE ID IN (
+    'EXTownFishingBoatResourceFood',
+    'EXTownAtollFeatureFood',
+    'EXTownLotusFeatureFood',
+    'EXTownReefFeatureFood',
+    'EXTownColdReefFeatureFood',
+    'EXTownCoastTerrainFood',
+    'EXTownNavigableRiverFood',
+    'EXTownPastureFood',
+    'EXTownPlantationFood',
+    'EXTownDesertFloodplainFeatureFood',
+    'EXTownGrasslandFloodplainFeatureFood',
+    'EXTownPlainsFloodplainFeatureFood',
+    'EXTownTropicalFloodplainFeatureFood',
+    'EXTownTundraFloodplainFeatureFood',
+    'EXTownFlatTerrainFood'
+);
 
-INSERT OR IGNORE INTO Warehouse_YieldChanges
-    (ID, Age, YieldType, YieldChange, TerrainInCity)
-SELECT
-    'MPTBalanceEXTownOceanTerrainFood', 'AGE_EXPLORATION', 'YIELD_FOOD', 2, 'TERRAIN_OCEAN'
-WHERE EXISTS (SELECT 1 FROM Warehouse_YieldChanges WHERE ID='EXTownCoastTerrainFood');
+-- Food Towns: Ocean tiles count for both Farming and Fishing Town bonuses.
+INSERT OR IGNORE INTO Warehouse_YieldChanges (ID, Age, YieldType, YieldChange, TerrainInCity)
+VALUES ('MPTBalanceEXTownOceanTerrainFood', 'AGE_EXPLORATION', 'YIELD_FOOD', 2, 'TERRAIN_OCEAN');
 
 UPDATE ModifierArguments
 SET Value = Value || ', MPTBalanceEXTownOceanTerrainFood'
-WHERE ModifierId IN ('ATTACH_GRANARY_WAREHOUSE_FOOD_FROM_PROJECT', 'ATTACH_FISHING_WAREHOUSE_FROM_PROJECT')
-  AND Name='WarehouseYieldChange'
-  AND EXISTS (SELECT 1 FROM Warehouse_YieldChanges WHERE ID='EXTownCoastTerrainFood')
-  AND instr(Value, 'MPTBalanceEXTownOceanTerrainFood')=0;
+WHERE Name = 'WarehouseYieldChange'
+  AND ModifierId IN ('ATTACH_GRANARY_WAREHOUSE_FOOD_FROM_PROJECT', 'ATTACH_FISHING_WAREHOUSE_FROM_PROJECT');
+
+-- Thanh Hue
+UPDATE Wonders
+SET RequiredConstructibleInSettlementCount = 3
+WHERE ConstructibleType = 'WONDER_THANH_HUE';

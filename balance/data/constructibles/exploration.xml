@@ -5,13 +5,13 @@
 	<Constructible_GreatWorks>
 		<Row ConstructibleType="BUILDING_ROYAL_LIBRARY" GreatWorkSlotType="GREATWORKSLOT_ANY" NumSlots="2"/>
 	</Constructible_GreatWorks>
-	
+
 	<WorkerYields_AgeModifier>
 		<Delete YieldType="YIELD_FOOD"/>
 		<Delete YieldType="YIELD_HAPPINESS"/>
 		<Row YieldType="YIELD_FOOD" Amount="-2"/>
 		<Row YieldType="YIELD_HAPPINESS" Amount="-2"/>
-	</WorkerYields_AgeModifier>	
+	</WorkerYields_AgeModifier>
 
 	<Constructible_ValidTerrains>
 		<Row ConstructibleType="IMPROVEMENT_TERRACE_FARM" TerrainType="TERRAIN_MOUNTAIN"/>

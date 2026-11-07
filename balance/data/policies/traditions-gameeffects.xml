@@ -8,7 +8,7 @@
 				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
 			</Requirement>
 		</SubjectRequirements>
-		<Argument name="AbilityType">ABILITY_MPT_BALANCE_TERROR_CIMBRICUS_FEAR</Argument>
+		<Argument name="AbilityType">MPT_BALANCE_ABILITY_TERROR_CIMBRICUS_FEAR</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_TERROR_CIMBRICUS_FEAR_ATTACH" collection="COLLECTION_ALL_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements>
@@ -290,8 +290,8 @@
 			</Requirement>
 		</SubjectRequirements>
 		<Argument name="Amount">1</Argument>
-		<Argument name="Tooltip">LOC_TRADITION_EXPEDITIONS_NAME</Argument>
-		<String context="Description">LOC_TRADITION_EXPEDITIONS_DESCRIPTION</String>
+		<Argument name="Tooltip">LOC_MPT_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
+		<String context="Description">LOC_MPT_BALANCE_TRADITION_EXPEDITIONS_DESCRIPTION</String>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_EXPEDITIONS_EXPLORER_IGNORE_ROUGH" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
 		<SubjectRequirements>
@@ -300,7 +300,7 @@
 			</Requirement>
 		</SubjectRequirements>
 		<Argument name="Obstacle">TERRAIN_HILL</Argument>
-		<Argument name="Tooltip">LOC_TRADITION_EXPEDITIONS_NAME</Argument>
+		<Argument name="Tooltip">LOC_MPT_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_EXPEDITIONS_EXPLORER_IGNORE_VEGETATION" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
 		<SubjectRequirements>
@@ -309,7 +309,7 @@
 			</Requirement>
 		</SubjectRequirements>
 		<Argument name="FeatureClassTypes">FEATURE_CLASS_VEGETATED</Argument>
-		<Argument name="Tooltip">LOC_TRADITION_EXPEDITIONS_NAME</Argument>
+		<Argument name="Tooltip">LOC_MPT_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
 	</Modifier>
 
 	<Modifier id="MPT_BALANCE_DEMAGOGY_CAPITAL_HAPPINESS" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
@@ -386,13 +386,13 @@
 	<Modifier id="MPT_BALANCE_GIRRU_II_MOD_CAVALRY_ABILITY" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
 		<Argument name="AbilityType">MPT_BALANCE_ABILITY_GIRRU_II</Argument>
 	</Modifier>
-	<Modifier id="BM_GIRRU_II_MOD_COMMAND_RADIUS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+	<Modifier id="MPT_BALANCE_GIRRU_II_MOD_COMMAND_RADIUS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_IN_COMMAND_RADIUS"/>
 		</SubjectRequirements>
 		<Argument name="AbilityType">MPT_BALANCE_ABILITY_GIRRU_II_COMBAT</Argument>
 	</Modifier>
-	<Modifier id="BM_GIRRU_II_MOD_COMBAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="MPT_BALANCE_GIRRU_II_MOD_COMBAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<Argument name="Amount">5</Argument>
 		<String context="Preview">LOC_TRADITION_GIRRU_COMBAT_PREVIEW</String>
 	</Modifier>
@@ -560,8 +560,8 @@
 			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
 		</SubjectRequirements>
 		<Argument name="WarehouseYieldChange">MPTBalanceTakuakaIIFishingBoatProduction, MPTBalanceTakuakaIIAtollProduction, MPTBalanceTakuakaIILotusProduction, MPTBalanceTakuakaIIReefProduction, MPTBalanceTakuakaIIColdReefProduction,MPTBalanceTakuakaIICoastProduction,MPTBalanceTakuakaIINavigableRiverProduction</Argument>
-		<String context="Description">MPT_BALANCE_LOC_TRADITION_TAKUAKA_II_DESCRIPTION</String>
-	</Modifier>	
+		<String context="Description">LOC_MPT_BALANCE_TRADITION_TAKUAKA_II_DESCRIPTION</String>
+	</Modifier>
 
 <!-- Explo -->
 	<!-- Bulgaria -->
@@ -616,7 +616,7 @@
 	<!-- Iceland -->
 	<Modifier id="MPT_BALANCE_REIDI_GUDANNA_MOD_VOLCANO_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
 		<Argument name="ConstructibleAdjacency">MPTBalanceReidiGudannaVolcanoCulture, MPTBalanceReidiGudannaNWCulture</Argument>
-		<String context="Description">MPT_BALANCE_LOC_TRADITION_REIDI_GUDANNA_I_DESCRIPTION</String>
+		<String context="Description">LOC_MPT_BALANCE_TRADITION_REIDI_GUDANNA_I_DESCRIPTION</String>
 	</Modifier>
 
 	<!-- Normans -->
@@ -674,7 +674,7 @@
 	</Modifier>
 
 	<!-- Shawnee -->
-	<Modifier id="MPT_BALANCE_AN_TAKESIYAKE_YEPEPOKI_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="MPT_BALANCE_TAKESIYAKE_YEPEPOKI_I_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
 			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
@@ -691,7 +691,7 @@
 		<Argument name="Amount">1</Argument>
 		<Argument name="Tooltip">LOC_TRADITION_TAKESIYAKE_YEPEPOKI_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_AN_TAKESIYAKE_YEPEPOKI_RIVER_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="MPT_BALANCE_TAKESIYAKE_YEPEPOKI_I_RIVER_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
 			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
@@ -709,13 +709,13 @@
 		<Argument name="Tooltip">LOC_TRADITION_TAKESIYAKE_YEPEPOKI_NAME</Argument>
 	</Modifier>
 
-	<Modifier id="MPT_BALANCE_SHAWNEE_SYNCRETISM_AN" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SUZERAIN">
+	<Modifier id="MPT_BALANCE_SHAWNEE_SYNCRETISM_AQ" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SUZERAIN">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
 		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_GOLD</Argument>
 		<Argument name="Amount">2</Argument>
-		<Argument name="Tooltip">LOC_TRADITION_GREECE_SYNCRETISM_TOOLTIP</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SHAWNEE_SYNCRETISM_TOOLTIP</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_SHAWNEE_SYNCRETISM_MO" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SUZERAIN">
 		<SubjectRequirements>
@@ -723,11 +723,11 @@
 		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_GOLD</Argument>
 		<Argument name="Amount">4</Argument>
-		<Argument name="Tooltip">LOC_TRADITION_GREECE_SYNCRETISM_TOOLTIP</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SHAWNEE_SYNCRETISM_TOOLTIP</Argument>
 	</Modifier>
 
-	<!-- Songhai Syncretism: Antiquity +1 Gold on Improvements on Desert, doubled on Unique Improvements -->
-	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_DESERT_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<!-- Songhai Syncretism: Antiquity +1 Gold on Improvements on Plains (base covers Desert), doubled on Unique Improvements -->
+	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_PLAINS_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
 				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
@@ -740,7 +740,7 @@
 		<Argument name="Amount">1</Argument>
 		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_ANTIQUITY_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_DESERT_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_PLAINS_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
 				<Argument name="Tag">UNIQUE_IMPROVEMENT</Argument>
@@ -753,8 +753,8 @@
 		<Argument name="Amount">1</Argument>
 		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_ANTIQUITY_NAME</Argument>
 	</Modifier>
-	<!-- Songhai Syncretism: Modern +2 Gold on Improvements on Desert, doubled on Unique Improvements -->
-	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_MODERN_DESERT_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<!-- Songhai Syncretism: Modern +2 Gold on Improvements on Plains (base covers Desert), doubled on Unique Improvements -->
+	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_MODERN_PLAINS_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
 				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
@@ -767,7 +767,7 @@
 		<Argument name="Amount">2</Argument>
 		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_MODERN_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_MODERN_DESERT_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="MPT_BALANCE_SONGHAI_SYNCRETISM_MODERN_PLAINS_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
 				<Argument name="Tag">UNIQUE_IMPROVEMENT</Argument>
@@ -828,7 +828,7 @@
 		<Argument name="Tooltip">LOC_TRADITION_JOSEON_SYNCRETISM_EXPLORATION_NAME</Argument>
 		<String context="Description">LOC_TRADITION_JOSEON_SYNCRETISM_EXPLORATION_DESCRIPTION</String>
 	</Modifier>
-		
+
 	<!-- Yangban Bureaucracy scales once for each Specialist threshold reached. -->
 	<Modifier id="MPT_BALANCE_YANGBAN_I_SPECIALIST_1" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements>
@@ -877,7 +877,7 @@
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">4</Argument></Requirement></SubjectRequirements>
 		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_II_NAME</Argument>
 	</Modifier>
-	
+
 	<!-- Mexico -->
 	<RequirementSet id="MPT_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY" type="REQUIREMENTSET_TEST_ANY">
 		<Requirement type="REQUIREMENT_PLOT_IS_OWNER"/>
@@ -1116,5 +1116,5 @@
 		<Argument name="Amount">2</Argument>
 		<Argument name="Tooltip">LOC_TRADITION_INCA_SYNCRETISM_TOOLTIP</Argument>
 	</Modifier>
-	
+
 </GameEffects>

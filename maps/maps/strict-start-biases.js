@@ -41,6 +41,8 @@ const STRICT_BIASES_ON = "MPT_MAPS_STRICT_BIASES_ON";
 let strictEnabled;
 const biasByPlayer = new Map();
 let volcanoIndex;
+const biomeIndices = new Map();        // biome type list -> Set of biome indices
+const floodplainClasses = new Map();   // feature class value -> is Floodplain
 
 /** On only when chosen; the option exists only in multiplayer setup. */
 function isStrictStartBiasEnabled() {
@@ -76,8 +78,8 @@ function getPlayerStrictStartBias(playerId) {
   return bias;
 }
 
-function adjacentLocations(iX, iY) {
-  const origin = { x: iX, y: iY };
+function adjacentLocations(x, y) {
+  const origin = { x: x, y: y };
   const locations = [];
   for (let direction = 0; direction < 6; direction++) {
     const adjacent = GameplayMap.getAdjacentPlotLocation(origin, direction);
@@ -87,8 +89,8 @@ function adjacentLocations(iX, iY) {
 }
 
 /** Adjacent ocean-connected water; navigable rivers and lakes do not count. */
-function isOceanAccess(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => {
+function isOceanAccess(x, y) {
+  return adjacentLocations(x, y).some((location) => {
     if (GameplayMap.isNavigableRiver(location.x, location.y)) return false;
     if (!GameplayMap.getAreaIsWater(location.x, location.y)) return false;
     const areaId = GameplayMap.getAreaId(location.x, location.y);
@@ -99,76 +101,84 @@ function isOceanAccess(iX, iY) {
   });
 }
 
-function biomeIs(iX, iY, biomeTypes) {
-  const biome = GameInfo.Biomes.lookup(GameplayMap.getBiomeType(iX, iY));
-  return biome != null && biomeTypes.includes(biome.BiomeType);
+function biomeIs(x, y, biomeTypes) {
+  const key = biomeTypes.join();
+  if (!biomeIndices.has(key)) biomeIndices.set(key, new Set(biomeTypes.map((type) => GameInfo.Biomes.lookup(type)?.$index)));
+  return biomeIndices.get(key).has(GameplayMap.getBiomeType(x, y));
 }
 
-function adjacentToNavigableRiver(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isNavigableRiver(location.x, location.y));
+function isFloodplain(x, y) {
+  const featureClass = GameplayMap.getFeatureClassType(x, y);
+  if (!floodplainClasses.has(featureClass)) {
+    floodplainClasses.set(featureClass, GameInfo.FeatureClasses.lookup(featureClass)?.FeatureClassType === "FEATURE_CLASS_FLOODPLAIN");
+  }
+  return floodplainClasses.get(featureClass);
 }
 
-function adjacentToLake(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isLake(location.x, location.y));
+function adjacentToNavigableRiver(x, y) {
+  return adjacentLocations(x, y).some((location) => GameplayMap.isNavigableRiver(location.x, location.y));
 }
 
-function adjacentToMountain(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isMountain(location.x, location.y));
+function adjacentToLake(x, y) {
+  return adjacentLocations(x, y).some((location) => GameplayMap.isLake(location.x, location.y));
 }
 
-function adjacentToVolcano(iX, iY) {
+function adjacentToMountain(x, y) {
+  return adjacentLocations(x, y).some((location) => GameplayMap.isMountain(location.x, location.y));
+}
+
+function adjacentToVolcano(x, y) {
   volcanoIndex ??= GameInfo.Features.lookup("FEATURE_VOLCANO")?.$index ?? -1;
   if (volcanoIndex < 0) return false;
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.getFeatureType(location.x, location.y) === volcanoIndex);
+  return adjacentLocations(x, y).some((location) => GameplayMap.getFeatureType(location.x, location.y) === volcanoIndex);
 }
 
-function adjacentToNaturalWonder(iX, iY) {
-  return adjacentLocations(iX, iY).some((location) => GameplayMap.isNaturalWonder(location.x, location.y));
+function adjacentToNaturalWonder(x, y) {
+  return adjacentLocations(x, y).some((location) => GameplayMap.isNaturalWonder(location.x, location.y));
 }
 
-function withinFloodplains(iX, iY, radius) {
-  for (const plotIndex of GameplayMap.getPlotIndicesInRadius(iX, iY, radius)) {
+function withinFloodplains(x, y, radius) {
+  for (const plotIndex of GameplayMap.getPlotIndicesInRadius(x, y, radius)) {
     const location = GameplayMap.getLocationFromIndex(plotIndex);
-    const featureClass = GameInfo.FeatureClasses.lookup(GameplayMap.getFeatureClassType(location.x, location.y));
-    if (featureClass?.FeatureClassType === "FEATURE_CLASS_FLOODPLAIN") return true;
+    if (isFloodplain(location.x, location.y)) return true;
   }
   return false;
 }
 
-function matchesRule(ruleId, iX, iY) {
+function matchesRule(ruleId, x, y) {
   switch (ruleId) {
-    case "desert-or-plains": return biomeIs(iX, iY, ["BIOME_DESERT", "BIOME_PLAINS"]);
-    case "tundra": return biomeIs(iX, iY, ["BIOME_TUNDRA"]);
-    case "tropical": return biomeIs(iX, iY, ["BIOME_TROPICAL"]);
-    case "navigable-river": return adjacentToNavigableRiver(iX, iY);
-    case "ocean-coast": return isOceanAccess(iX, iY);
-    case "floodplains-two": return withinFloodplains(iX, iY, 2);
-    case "mountain": return adjacentToMountain(iX, iY);
-    case "lake": return adjacentToLake(iX, iY);
+    case "desert-or-plains": return biomeIs(x, y, ["BIOME_DESERT", "BIOME_PLAINS"]);
+    case "tundra": return biomeIs(x, y, ["BIOME_TUNDRA"]);
+    case "tropical": return biomeIs(x, y, ["BIOME_TROPICAL"]);
+    case "navigable-river": return adjacentToNavigableRiver(x, y);
+    case "ocean-coast": return isOceanAccess(x, y);
+    case "floodplains-two": return withinFloodplains(x, y, 2);
+    case "mountain": return adjacentToMountain(x, y);
+    case "lake": return adjacentToLake(x, y);
     case "iceland":
-      return (adjacentToVolcano(iX, iY) || adjacentToNaturalWonder(iX, iY)) &&
-        biomeIs(iX, iY, ["BIOME_TUNDRA", "BIOME_GRASSLAND"]);
+      return (adjacentToVolcano(x, y) || adjacentToNaturalWonder(x, y)) &&
+        biomeIs(x, y, ["BIOME_TUNDRA", "BIOME_GRASSLAND"]);
     case "songhai":
-      return adjacentToNavigableRiver(iX, iY) && biomeIs(iX, iY, ["BIOME_PLAINS", "BIOME_DESERT"]);
+      return adjacentToNavigableRiver(x, y) && biomeIs(x, y, ["BIOME_PLAINS", "BIOME_DESERT"]);
     default: return true;
   }
 }
 
 /** A coast rule falls back to an adjacent lake when no ocean start exists. */
-function matchesRuleWithLakeFallback(ruleId, iX, iY) {
-  return ruleId === "ocean-coast" ? adjacentToLake(iX, iY) : matchesRule(ruleId, iX, iY);
+function matchesRuleWithLakeFallback(ruleId, x, y) {
+  return ruleId === "ocean-coast" ? adjacentToLake(x, y) : matchesRule(ruleId, x, y);
 }
 
-function matchesPlayerStrictStartBias(iX, iY, playerId) {
+function matchesPlayerStrictStartBias(x, y, playerId) {
   if (!isStrictStartBiasEnabled()) return true;
   const bias = getPlayerStrictStartBias(playerId);
-  return bias == null || bias.rules.every((rule) => matchesRule(rule.id, iX, iY));
+  return bias == null || bias.rules.every((rule) => matchesRule(rule.id, x, y));
 }
 
-function matchesPlayerStrictStartBiasWithLakeFallback(iX, iY, playerId) {
+function matchesPlayerStrictStartBiasWithLakeFallback(x, y, playerId) {
   if (!isStrictStartBiasEnabled()) return true;
   const bias = getPlayerStrictStartBias(playerId);
-  return bias == null || bias.rules.every((rule) => matchesRuleWithLakeFallback(rule.id, iX, iY));
+  return bias == null || bias.rules.every((rule) => matchesRuleWithLakeFallback(rule.id, x, y));
 }
 
 function describePlayerStrictStartBias(playerId) {

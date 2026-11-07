@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
-    <VictoryScorings>
+	<VictoryScorings>
 		<!-- Remove only the extra Tourism awarded specifically to Great Walls.
-		     The GREAT_WALL and UNIQUE_IMPROVEMENT tags remain intact. -->
+			The GREAT_WALL and UNIQUE_IMPROVEMENT tags remain intact. -->
 		<Delete VictoryType="VICTORY_CULTURE_MODERN" ScoringId="VICTORY_TRACKER_GREAT_WALL_TOURISM"/>
-        <Update>
-            <Where VictoryType="VICTORY_MILITARY_MODERN" ScoringId="VICTORY_TRACKER_SETTLEMENT"/>
-            <Set Points="2"/>
-        </Update>
-        <Update>
-            <Where VictoryType="VICTORY_MILITARY_MODERN" ScoringId="VICTORY_TRACKER_SETTLEMENT_CONQUER"/>
-            <Set Points="2"/>
-        </Update>
-        <Row VictoryType="VICTORY_CULTURE_MODERN" TrackerType="VICTORY_TRACKER_IMPROVED_LAKE" ScoringId="VICTORY_TRACKER_MUZIBU_AZAALA_MPANGA_LAKES" Name="LOC_VICTORY_TRACKER_BUGANDA_LAKE_NAME" Points="1" RequiresActivation="true"/>
-        <Row VictoryType="VICTORY_CULTURE_MODERN" TrackerType="VICTORY_TRACKER_GREAT_WORK" ScoringId="VICTORY_TRACKER_HERMITAGE_ARTIFACTS" Name="LOC_WONDER_HERMITAGE_NAME" Data="GREATWORKOBJECT_ARTIFACT" Points="3" RequiresActivation="true" StaticCarryover="true"/>
-    </VictoryScorings>
+		<Update>
+			<Where VictoryType="VICTORY_MILITARY_MODERN" ScoringId="VICTORY_TRACKER_SETTLEMENT"/>
+			<Set Points="2"/>
+		</Update>
+		<Update>
+			<Where VictoryType="VICTORY_MILITARY_MODERN" ScoringId="VICTORY_TRACKER_SETTLEMENT_CONQUER"/>
+			<Set Points="2"/>
+		</Update>
+		<Row VictoryType="VICTORY_CULTURE_MODERN" TrackerType="VICTORY_TRACKER_IMPROVED_LAKE" ScoringId="MPT_BALANCE_VICTORY_TRACKER_MUZIBU_AZAALA_MPANGA_LAKES" Name="LOC_VICTORY_TRACKER_BUGANDA_LAKE_NAME" Points="1" RequiresActivation="true"/>
+		<Row VictoryType="VICTORY_CULTURE_MODERN" TrackerType="VICTORY_TRACKER_GREAT_WORK" ScoringId="MPT_BALANCE_VICTORY_TRACKER_HERMITAGE_ARTIFACTS" Name="LOC_WONDER_HERMITAGE_NAME" Data="GREATWORKOBJECT_ARTIFACT" Points="3" RequiresActivation="true" StaticCarryover="true"/>
+	</VictoryScorings>
 </Database>

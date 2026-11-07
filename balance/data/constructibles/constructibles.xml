@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <Database>
-    <ConstructibleModifiers>
-    <!-- Wonders -->
-        <!-- Angkor Wat -->
-        <Row ConstructibleType="WONDER_ANGKOR_WAT" ModifierId="MPT_BALANCE_MOD_ANGKOR_WAT_SCIENCE"/>
-        <!-- Mausoleum at Halicarnassus -->
-        <Delete ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MOD_MAUSOLEUM_AT_HALICARNASSUS_RESPAWN"/>
-        <Row ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MPT_BALANCE_MOD_MAUSOLEUM_AT_HALICARNASSUS_CAVALRY_HEAL"/>
+	<ConstructibleModifiers>
+		<!-- Wonders -->
+		<!-- Angkor Wat -->
+		<Row ConstructibleType="WONDER_ANGKOR_WAT" ModifierId="MPT_BALANCE_MOD_ANGKOR_WAT_SCIENCE"/>
+		<!-- Mausoleum at Halicarnassus -->
+		<Delete ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MOD_MAUSOLEUM_AT_HALICARNASSUS_RESPAWN"/>
+		<Row ConstructibleType="WONDER_MAUSOLEUM_AT_HALICARNASSUS" ModifierId="MPT_BALANCE_MOD_MAUSOLEUM_AT_HALICARNASSUS_CAVALRY_HEAL"/>
 		<!-- Thanh Hue -->
 		<Row ConstructibleType="WONDER_THANH_HUE" ModifierId="MPT_BALANCE_MOD_THANH_HUE_CULTURE"/>
-        <Delete ModifierId="MOD_THANH_HUE_SPECIALIST_LIMIT"/>
-        <Row ConstructibleType="WONDER_THANH_HUE" ModifierId="MPT_BALANCE_MOD_THANH_HUE_SPECIALIST_LIMIT"/>		
+		<Delete ModifierId="MOD_THANH_HUE_SPECIALIST_LIMIT"/>
+		<Row ConstructibleType="WONDER_THANH_HUE" ModifierId="MPT_BALANCE_MOD_THANH_HUE_SPECIALIST_LIMIT"/>
 		<!-- Eram Garden -->
 		<Row ConstructibleType="WONDER_ERAM_GARDEN" ModifierId="MPT_BALANCE_MOD_ERAM_GARDEN_CULTURE"/>
 		<Row ConstructibleType="WONDER_ERAM_GARDEN" ModifierId="MPT_BALANCE_MOD_ERAM_GARDEN_HAPPINESS"/>
@@ -25,9 +24,9 @@
 	</UnitAbilityModifiers>
 
 	<Constructible_Adjacencies>
-        <Row ConstructibleType="IMPROVEMENT_POTKOP" YieldChangeId="PotkopResourceGold"/>
+		<Row ConstructibleType="IMPROVEMENT_POTKOP" YieldChangeId="MPTBalancePotkopResourceGold"/>
 	</Constructible_Adjacencies>
-    <Warehouse_YieldChanges>
+	<Warehouse_YieldChanges>
 		<Row ID="MPTBalanceTakuakaIIFishingBoatProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE"/>
 		<Row ID="MPTBalanceTakuakaIIAtollProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_ATOLL"/>
 		<Row ID="MPTBalanceTakuakaIILotusProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_LOTUS"/>
@@ -35,10 +34,10 @@
 		<Row ID="MPTBalanceTakuakaIIColdReefProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" FeatureInCity="FEATURE_COLD_REEF"/>
 		<Row ID="MPTBalanceTakuakaIICoastProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" TerrainInCity="TERRAIN_COAST"/>
 		<Row ID="MPTBalanceTakuakaIINavigableRiverProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="2" NavigableRiverInCity="true"/>
-    </Warehouse_YieldChanges>
-    <Adjacency_YieldChanges>
+	</Warehouse_YieldChanges>
+	<Adjacency_YieldChanges>
 		<!-- Mississippi -->
-        <Row ID="PotkopResourceGold" YieldType="YIELD_GOLD" YieldChange="1" TilesRequired="1" AdjacentResource="true"/>
+		<Row ID="MPTBalancePotkopResourceGold" YieldType="YIELD_GOLD" YieldChange="1" TilesRequired="1" AdjacentResource="true"/>
 		<!-- Hawai'i Ahupua'a traditions -->
 		<Row ID="MPTBalanceAhupuaaICoastFood" Age="AGE_EXPLORATION" YieldType="YIELD_FOOD" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
 		<Row ID="MPTBalanceAhupuaaIICoastFood" Age="AGE_MODERN" YieldType="YIELD_FOOD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
@@ -60,13 +59,15 @@
 		<!-- Inca Tirakuna II: +2 adjacency from Mountains. -->
 		<Row ID="MPTBalanceTirakunaIIMountainFood" YieldType="YIELD_FOOD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
 		<Row ID="MPTBalanceTirakunaIIMountainGold" YieldType="YIELD_GOLD" YieldChange="2" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
-    </Adjacency_YieldChanges>
+	</Adjacency_YieldChanges>
 	<Constructible_WildcardAdjacencies>
 		<Row YieldChangeId="MPTBalanceCokingINavigableRiverProduction" RequiresActivation="true" ConstructibleClass="BUILDING"/>
 		<Row YieldChangeId="MPTBalanceCokingIINavigableRiverProduction" RequiresActivation="true" ConstructibleClass="BUILDING"/>
 		<Row YieldChangeId="MPTBalanceAhupuaaICoastFood" RequiresActivation="true" ConstructibleTag="CULTURE"/>
 		<Row YieldChangeId="MPTBalanceAhupuaaIICoastFood" RequiresActivation="true" ConstructibleTag="CULTURE"/>
 		<Row YieldChangeId="MPTBalanceAshokaAllBuildingHappinessAdjacencyToImprovements" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MPTBalanceReidiGudannaVolcanoCulture" RequiresActivation="true" ConstructibleClass="BUILDING"/>
+		<Row YieldChangeId="MPTBalanceReidiGudannaNWCulture" RequiresActivation="true" ConstructibleClass="BUILDING"/>
 		<Row YieldChangeId="MPTBalanceShuseiKokuboProductionBuildingCoast" RequiresActivation="true" ConstructibleTag="PRODUCTION" CurrentAgeConstructiblesOnly="true"/>
 		<Row YieldChangeId="MPTBalanceSkazkiIWonderCulture" RequiresActivation="true" ConstructibleClass="BUILDING"/>
 		<Row YieldChangeId="MPTBalanceSkazkiIWonderScience" RequiresActivation="true" ConstructibleClass="BUILDING" HasBiome="BIOME_TUNDRA"/>

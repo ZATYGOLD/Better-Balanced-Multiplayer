@@ -21,15 +21,16 @@
 			<AlwaysMet/>
 		</Criteria>
 
-<!--*************************** CRITERIA: COMPETITIVE TIMER ****************************************-->
+<!--*************************** CRITERIA: COMPETITIVE TIMER ***************************************-->
 
-		<Criteria id="antiquity-age-current">
+		<!-- The current Age, for the per-Age Competitive timer numbers. -->
+		<Criteria id="timer-antiquity">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 		</Criteria>
-		<Criteria id="exploration-age-current">
+		<Criteria id="timer-exploration">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 		</Criteria>
-		<Criteria id="modern-age-current">
+		<Criteria id="timer-modern">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 		</Criteria>
 
@@ -87,9 +88,178 @@
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceSystem</ConfigurationId><Value>MPT_MAPS_RESOURCE_SYSTEM_ON</Value></ConfigurationValueMatches>
 		</Criteria>
+
+		<!-- Map Settings carried over from Advanced Settings Pro (maps/config/map-settings.sql): Disasters, per Age when Custom. -->
+		<Criteria id="maps-disasters-disabled">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_DISABLED</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-light">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_LIGHT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-moderate">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_MODERATE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-catastrophic">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CATASTROPHIC</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-antiquity-disabled">
+			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersAntiquity</ConfigurationId><Value>MPT_MAPS_DISASTERS_DISABLED</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-antiquity-light">
+			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersAntiquity</ConfigurationId><Value>MPT_MAPS_DISASTERS_LIGHT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-antiquity-moderate">
+			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersAntiquity</ConfigurationId><Value>MPT_MAPS_DISASTERS_MODERATE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-antiquity-catastrophic">
+			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersAntiquity</ConfigurationId><Value>MPT_MAPS_DISASTERS_CATASTROPHIC</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-exploration-disabled">
+			<AgeInUse>AGE_EXPLORATION</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersExploration</ConfigurationId><Value>MPT_MAPS_DISASTERS_DISABLED</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-exploration-light">
+			<AgeInUse>AGE_EXPLORATION</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersExploration</ConfigurationId><Value>MPT_MAPS_DISASTERS_LIGHT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-exploration-moderate">
+			<AgeInUse>AGE_EXPLORATION</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersExploration</ConfigurationId><Value>MPT_MAPS_DISASTERS_MODERATE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-exploration-catastrophic">
+			<AgeInUse>AGE_EXPLORATION</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersExploration</ConfigurationId><Value>MPT_MAPS_DISASTERS_CATASTROPHIC</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-modern-disabled">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersModern</ConfigurationId><Value>MPT_MAPS_DISASTERS_DISABLED</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-modern-light">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersModern</ConfigurationId><Value>MPT_MAPS_DISASTERS_LIGHT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-modern-moderate">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersModern</ConfigurationId><Value>MPT_MAPS_DISASTERS_MODERATE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-disasters-modern-catastrophic">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisasters</ConfigurationId><Value>MPT_MAPS_DISASTERS_CUSTOM</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTDisastersModern</ConfigurationId><Value>MPT_MAPS_DISASTERS_CATASTROPHIC</Value></ConfigurationValueMatches>
+		</Criteria>
+
+		<!-- Natural Wonders: count, spawn fixes while the setting exists, and one toggle per wonder. -->
+		<Criteria id="maps-natural-wonders" any="true">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_NONE</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_HALF</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_STANDARD</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_MORE</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_DOUBLE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonders-none">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_NONE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonders-half">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_HALF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonders-more">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_MORE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonders-double">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonders</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDERS_DOUBLE</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-barrier-reef">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderBarrierReef</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-bermuda-triangle">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderBermudaTriangle</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-grand-canyon">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderGrandCanyon</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-great-blue-hole">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderGreatBlueHole</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-gullfoss">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderGullfoss</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-hoerikwaggo">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderHoerikwaggo</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-iguazu-falls">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderIguazuFalls</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-kilimanjaro">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderKilimanjaro</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-machapuchare">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderMachapuchare</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-mapu-a-vaea-blowholes">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderMapuAVaeaBlowholes</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-mount-everest">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderMountEverest</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-mount-fuji">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderMountFuji</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-nachi-falls">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderNachiFalls</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-redwood-forest">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderRedwoodForest</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-seongsan-ilchulbong">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderSeongsanIlchulbong</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-thera">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderThera</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-torres-del-paine">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderTorresDelPaine</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-uluru">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderUluru</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-valley-of-flowers">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderValleyOfFlowers</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-vihren">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderVihren</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-vinicunca">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderVinicunca</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-natural-wonder-off-zhangjiajie">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTNaturalWonderZhangjiajie</ConfigurationId><Value>MPT_MAPS_NATURAL_WONDER_OFF</Value></ConfigurationValueMatches>
+		</Criteria>
+
+		<!-- Lakes. -->
+		<Criteria id="maps-lakes-less">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTLakes</ConfigurationId><Value>MPT_MAPS_LAKES_LESS</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-lakes-more">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTLakes</ConfigurationId><Value>MPT_MAPS_LAKES_MORE</Value></ConfigurationValueMatches>
+		</Criteria>
 	</ActionCriteria>
 
-<!--*************************** SHELL: TEXT/SETTINGS ***********************************************-->
+<!--*************************** SHELL: TEXT, SETTINGS, LOBBY UI, KEYBINDS *************************-->
 
 	<ActionGroups>
 		<ActionGroup id="mpt-shell" scope="shell" criteria="always">
@@ -107,13 +277,15 @@
 					<Item>ui/mpt-shared/mpt-util.js</Item>
 					<Item>ui/mp-lobby/mp-lobby-config.js</Item>
 					<Item>ui/mp-lobby/mp-lobby-tooltips.js</Item>
+					<Item>ui/mp-timer/mp-timer-config.js</Item>
 					<Item>ui/mp-timer/mp-timer-lobby.js</Item>
+					<Item>ui/mp-keybind/mp-keybind-config.js</Item>
 					<Item>ui/mp-keybind/mp-keybind.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
 
-<!--***************************** GAME: TEXT & SHARED HELPERS *************************************-->
+<!--*************************** GAME: TEXT & SHARED HELPERS ***************************************-->
 
 		<ActionGroup id="mpt-game-text" scope="game" criteria="always">
 			<Properties><LoadOrder>500</LoadOrder></Properties>
@@ -127,7 +299,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: PAUSE BUTTON, KEYBINDS **************************************-->
+<!--*************************** GAME: PAUSE, KEYBINDS *********************************************-->
 
 		<ActionGroup id="mpt-pause-button" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
@@ -145,7 +317,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*********************** GAME: COMPETITIVE TIMER SCRIPT ***************************************-->
+<!--*************************** GAME: COMPETITIVE TIMER (ui/mp-timer/) ****************************-->
 
 		<ActionGroup id="mpt-competitive-timer-script" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
@@ -157,7 +329,7 @@
 			</Actions>
 		</ActionGroup>
 
-<!--**************************** GAME: TURN TIMER ************************************************-->
+<!--*************************** GAME: COMPETITIVE TIMER DATA (data/timers/) ***********************-->
 
 		<ActionGroup id="mpt-turn-timer-schema" scope="game" criteria="always">
 			<Properties><LoadOrder>900</LoadOrder></Properties>
@@ -168,9 +340,8 @@
 			</Actions>
 		</ActionGroup>
 
-	<!--**************************** TURN TIMER: COMPETITIVE *************************************-->
-
-		<ActionGroup id="mpt-turn-timer-antiquity" scope="game" criteria="antiquity-age-current">
+		<!-- Per-Age numbers over the defaults. -->
+		<ActionGroup id="mpt-turn-timer-antiquity" scope="game" criteria="timer-antiquity">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
@@ -179,7 +350,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<ActionGroup id="mpt-turn-timer-exploration" scope="game" criteria="exploration-age-current">
+		<ActionGroup id="mpt-turn-timer-exploration" scope="game" criteria="timer-exploration">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
@@ -188,7 +359,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<ActionGroup id="mpt-turn-timer-modern" scope="game" criteria="modern-age-current">
+		<ActionGroup id="mpt-turn-timer-modern" scope="game" criteria="timer-modern">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
@@ -321,7 +492,6 @@
 					<Item>balance/data/civilizations/antiquity.sql</Item>
 					<Item>balance/data/civilizations/exploration.sql</Item>
 					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/wonders.sql</Item>
 					<Item>balance/data/constructibles/exploration.sql</Item>
 					<Item>balance/data/constructibles/buildings.sql</Item>
 					<Item>balance/data/city-states/city-states.sql</Item>
@@ -362,7 +532,6 @@
 					<Item>balance/data/civilizations/antiquity.sql</Item>
 					<Item>balance/data/civilizations/exploration.sql</Item>
 					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/wonders.sql</Item>
 					<Item>balance/data/constructibles/modern.sql</Item>
 					<Item>balance/data/constructibles/buildings.sql</Item>
 					<Item>balance/data/city-states/city-states.sql</Item>
@@ -403,15 +572,18 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>maps/config/map-options.sql</Item>
+					<Item>maps/config/map-settings.sql</Item>
 					<Item>maps/config/multiplayer-only.sql</Item>
 					<Item>maps/config/compatibility.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
 					<Item>maps/text/en_us/map-options.xml</Item>
+					<Item>maps/text/en_us/map-settings.xml</Item>
 				</UpdateText>
 				<UIScripts>
 					<Item>maps/ui/multiplayer-defaults.js</Item>
 					<Item>maps/ui/match-slots.js</Item>
+					<Item>maps/ui/map-tab.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -431,7 +603,7 @@
 			</Actions>
 		</ActionGroup>
 
-		<!-- Duel placement: Tiny is built as the 44x28 Duel map. -->
+		<!-- Duel placement: Tiny is built as the 36x22 Duel map. -->
 		<ActionGroup id="mpt-maps-duel-map" scope="game" criteria="maps-duel-placement">
 			<Properties><LoadOrder>304</LoadOrder></Properties>
 			<Actions>
@@ -466,7 +638,6 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>maps/data/resource-system.sql</Item>
-					<Item>maps/data/density-standard.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -518,9 +689,371 @@
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
+
+		<!-- Map Settings (maps/config/map-settings.sql), after the map sizes so counts scale the final values. -->
+		<ActionGroup id="mpt-maps-disasters-disabled" scope="game" criteria="maps-disasters-disabled">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/disabled.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-light" scope="game" criteria="maps-disasters-light">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/light.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-moderate" scope="game" criteria="maps-disasters-moderate">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/moderate.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-catastrophic" scope="game" criteria="maps-disasters-catastrophic">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/catastrophic.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-antiquity-disabled" scope="game" criteria="maps-disasters-antiquity-disabled">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/disabled.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-antiquity-light" scope="game" criteria="maps-disasters-antiquity-light">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/light.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-antiquity-moderate" scope="game" criteria="maps-disasters-antiquity-moderate">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/moderate.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-antiquity-catastrophic" scope="game" criteria="maps-disasters-antiquity-catastrophic">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/catastrophic.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-exploration-disabled" scope="game" criteria="maps-disasters-exploration-disabled">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/disabled.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-exploration-light" scope="game" criteria="maps-disasters-exploration-light">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/light.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-exploration-moderate" scope="game" criteria="maps-disasters-exploration-moderate">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/moderate.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-exploration-catastrophic" scope="game" criteria="maps-disasters-exploration-catastrophic">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/catastrophic.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-modern-disabled" scope="game" criteria="maps-disasters-modern-disabled">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/disabled.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-modern-light" scope="game" criteria="maps-disasters-modern-light">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/light.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-modern-moderate" scope="game" criteria="maps-disasters-modern-moderate">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/moderate.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-disasters-modern-catastrophic" scope="game" criteria="maps-disasters-modern-catastrophic">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/disasters/catastrophic.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonders" scope="game" criteria="maps-natural-wonders">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/spawn-fixes.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonders-none" scope="game" criteria="maps-natural-wonders-none">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/count-none.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonders-half" scope="game" criteria="maps-natural-wonders-half">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/count-half.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonders-more" scope="game" criteria="maps-natural-wonders-more">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/count-more.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonders-double" scope="game" criteria="maps-natural-wonders-double">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/count-double.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-barrier-reef" scope="game" criteria="maps-natural-wonder-off-barrier-reef">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-barrier-reef.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-bermuda-triangle" scope="game" criteria="maps-natural-wonder-off-bermuda-triangle">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-bermuda-triangle.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-grand-canyon" scope="game" criteria="maps-natural-wonder-off-grand-canyon">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-grand-canyon.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-great-blue-hole" scope="game" criteria="maps-natural-wonder-off-great-blue-hole">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-great-blue-hole.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-gullfoss" scope="game" criteria="maps-natural-wonder-off-gullfoss">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-gullfoss.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-hoerikwaggo" scope="game" criteria="maps-natural-wonder-off-hoerikwaggo">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-hoerikwaggo.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-iguazu-falls" scope="game" criteria="maps-natural-wonder-off-iguazu-falls">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-iguazu-falls.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-kilimanjaro" scope="game" criteria="maps-natural-wonder-off-kilimanjaro">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-kilimanjaro.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-machapuchare" scope="game" criteria="maps-natural-wonder-off-machapuchare">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-machapuchare.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-mapu-a-vaea-blowholes" scope="game" criteria="maps-natural-wonder-off-mapu-a-vaea-blowholes">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-mapu-a-vaea-blowholes.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-mount-everest" scope="game" criteria="maps-natural-wonder-off-mount-everest">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-mount-everest.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-mount-fuji" scope="game" criteria="maps-natural-wonder-off-mount-fuji">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-mount-fuji.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-nachi-falls" scope="game" criteria="maps-natural-wonder-off-nachi-falls">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-nachi-falls.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-redwood-forest" scope="game" criteria="maps-natural-wonder-off-redwood-forest">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-redwood-forest.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-seongsan-ilchulbong" scope="game" criteria="maps-natural-wonder-off-seongsan-ilchulbong">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-seongsan-ilchulbong.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-thera" scope="game" criteria="maps-natural-wonder-off-thera">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-thera.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-torres-del-paine" scope="game" criteria="maps-natural-wonder-off-torres-del-paine">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-torres-del-paine.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-uluru" scope="game" criteria="maps-natural-wonder-off-uluru">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-uluru.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-valley-of-flowers" scope="game" criteria="maps-natural-wonder-off-valley-of-flowers">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-valley-of-flowers.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-vihren" scope="game" criteria="maps-natural-wonder-off-vihren">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-vihren.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-vinicunca" scope="game" criteria="maps-natural-wonder-off-vinicunca">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-vinicunca.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-natural-wonder-off-zhangjiajie" scope="game" criteria="maps-natural-wonder-off-zhangjiajie">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/natural-wonders/off-zhangjiajie.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-lakes-less" scope="game" criteria="maps-lakes-less">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/lakes/less.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="mpt-maps-lakes-more" scope="game" criteria="maps-lakes-more">
+			<Properties><LoadOrder>320</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>maps/data/lakes/more.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
 	</ActionGroups>
 
-<!--************************* LOCALIZED TEXT ************************************************-->
+<!--*************************** LOCALIZED TEXT ****************************************************-->
 
 	<LocalizedText>
 		<File>text/en_us/mod-info-text.xml</File>

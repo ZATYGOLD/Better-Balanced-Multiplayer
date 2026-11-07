@@ -36,19 +36,16 @@ WHERE ModifierId IN ('MOD_ATTRIBUTE_POLITICAL_07_A', 'MOD_ATTRIBUTE_POLITICAL_07
 
 -- Militaristic: retain the original +5 Combat Strength against Independent
 -- Powers and City-States, and add Gold for defeating their units.
-
-DELETE FROM ProgressionTreeNodeUnlocks
-WHERE ProgressionTreeNodeType = 'NODE_ATTRIBUTE_MILITARISTIC_06'
-  AND TargetKind = 'KIND_MODIFIER'
-  AND (
-      TargetType = 'MOD_ATTRIBUTE_MILITARISTIC_06'
-      OR TargetType LIKE 'MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_%'
-  );
-
 INSERT OR IGNORE INTO ProgressionTreeNodeUnlocks
     (ProgressionTreeNodeType, TargetKind, TargetType, UnlockDepth)
 VALUES
     ('NODE_ATTRIBUTE_MILITARISTIC_01', 'KIND_MODIFIER', 'MPT_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_MINOR_KILL_GOLD', 1);
+
+-- Militaristic: garrisoned Commanders give Culture and Science per level.
+DELETE FROM ProgressionTreeNodeUnlocks
+WHERE ProgressionTreeNodeType = 'NODE_ATTRIBUTE_MILITARISTIC_06'
+  AND TargetKind = 'KIND_MODIFIER'
+  AND TargetType = 'MOD_ATTRIBUTE_MILITARISTIC_06';
 
 INSERT OR IGNORE INTO ProgressionTreeNodeUnlocks
     (ProgressionTreeNodeType, TargetKind, TargetType, UnlockDepth)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
-<!-- Exploration Trade Outposts -->
+	<!-- Exploration Trade Outposts -->
 	<Modifier id="MPT_BALANCE_TOWN_TRADE_PROJECT" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_UNLOCK_PROJECT">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
@@ -10,7 +10,7 @@
 
 
 
-<!-- Greece -->
+	<!-- Greece -->
 	<Modifier id="MPT_BALANCE_TRAIT_MOD_DEMOKRATIA_CULTURE_ENDEAVOR_TOT_MO" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
 		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ENDEAVOR</Argument>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
@@ -33,12 +33,12 @@
 		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ESPIONAGE</Argument>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
 		<Argument name="Amount">4</Argument>
-		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument> 
+		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
 	</Modifier>
 
 	<!-- - - - - - - -->
 
-	<Modifier id="MPT_BALANCE_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
+	<Modifier id="MPT_BALANCE_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT_AQ" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_YIELD_PER_PLAYER_INVOLVED_ACTION">
 		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_TREATY</Argument>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
 		<Argument name="Amount">2</Argument>
@@ -60,7 +60,7 @@
 		<Argument name="Tooltip">LOC_TRAIT_GREECE_ABILITY_NAME</Argument>
 	</Modifier>
 
-<!-- Rome -->
+	<!-- Rome -->
 	<!-- Legion: +1 Combat Strength per slotted Tradition, capped at +4. -->
 	<Modifier id="MPT_BALANCE_LEGION_TRADITION_COMBAT_1" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">1</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
@@ -78,9 +78,9 @@
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">4</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
 		<Argument name="Amount">1</Argument><String context="Preview">LOC_ABILITY_LEGION_PREVIEW</String>
 	</Modifier>
-	
-<!-- Iceland -->
-	<Modifier id="MPT_BALANCE_ICELAND_MO_MOD_NATURAL_WONDER_CULTURE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+
+	<!-- Iceland -->
+	<Modifier id="MPT_BALANCE_ICELAND_AQ_MOD_NATURAL_WONDER_CULTURE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET">
 				<Argument name="RequirementSetId">REQSET_ICELAND_MO_MOD</Argument>
@@ -100,35 +100,35 @@
 		<Argument name="Amount">3</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_ICELAND_ABILITY_NAME</Argument>
 	</Modifier>
-<!-- Sengoku -->
+	<!-- Sengoku -->
 	<Modifier id="MPT_BALANCE_SENGOKU_MOD_COMMANDER_XP_CULTURE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
-		 <SubjectRequirements>
-            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
-                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
-            </Requirement>
-        </SubjectRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+			</Requirement>
+		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_SENGOKU_MOD_COMMANDER_XP_SCIENCE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
-		 <SubjectRequirements>
-            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
-                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
-            </Requirement>
-        </SubjectRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+			</Requirement>
+		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_SCIENCE</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_SENGOKU_MOD_COMMANDER_XP_INFLUENCE_MO" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_UNIT_LEVEL">
-		 <SubjectRequirements>
-            <Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
-                <Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
-            </Requirement>
-        </SubjectRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_ARMY_COMMANDER</Argument>
+			</Requirement>
+		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
 		<Argument name="Amount">1</Argument>
 	</Modifier>
-<!-- Great Britan -->
+	<!-- Great Britan -->
 	<Modifier id="MPT_BALANCE_GB_MODERN_COASTAL_BUILDING_SCIENCE_A" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_COAST"/>
@@ -162,15 +162,15 @@
 		<Argument name="Tooltip">LOC_TRAIT_GREAT_BRITAIN_ABILITY_NAME</Argument>
 	</Modifier>
 
-<!-- Joseon -->
+	<!-- Joseon -->
 	<Modifier id="MPT_BALANCE_JOSEON_EXPLORATION_STARTING_CITY_LIMIT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_CITY_LIMIT" permanent="true">
 		<Argument name="Amount">3</Argument>
 	</Modifier>
 	<Modifier id="MPT_BALANCE_JOSEON_MODERN_STARTING_CITY_LIMIT" collection="COLLECTION_OWNER" effect="EFFECT_ADJUST_CITY_LIMIT" permanent="true">
 		<Argument name="Amount">4</Argument>
 	</Modifier>
-	
-<!-- Qajar -->
+
+	<!-- Qajar -->
 	<Modifier id="MPT_BALANCE_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_UNDER_SETTLEMENT_CAP">
 		<Argument name="Amount">1</Argument>
 		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
@@ -195,7 +195,7 @@
 		<Argument name="Amount">5</Argument>
 		<Argument name="YieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
 	</Modifier>
-<!-- Russia -->
+	<!-- Russia -->
 	<Modifier id="MPT_BALANCE_PROSVESHCHENIE_TOWN_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
 		<Argument name="WarehouseYieldChange">Prosveshchenie_DesertFloodplainFeatureFood,Prosveshchenie_GrasslandFloodplainFeatureFood,Prosveshchenie_PlainsFloodplainFeatureFood,Prosveshchenie_TropicalFloodplainFeatureFood,Prosveshchenie_TundraFloodplainFeatureFood,Prosveshchenie_FlatTerrainFood</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_RUSSIA_ABILITY_NAME</Argument>
@@ -263,4 +263,3 @@
 	</Modifier>
 
 </GameEffects>
-

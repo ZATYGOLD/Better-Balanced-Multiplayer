@@ -2,7 +2,7 @@
 <Database>
 	<EnglishText>
 	<!-- Multiplayer Balance: Resources (Modern Age) -->
-		<Replace Tag="LOC_EXP_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_SIEGE_UNITS_TOOLTIP]Siege[/TIP], [TIP:LOC_PEDIA_CONCEPTS_RANGED_UNITS_TOOLTIP]Ranged[/TIP], and Heavy [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP] per Niter resource.</Text></Replace>
+		<Replace Tag="LOC_EXP_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_SIEGE_UNITS_TOOLTIP]Siege[/TIP] and [TIP:LOC_PEDIA_CONCEPTS_RANGED_UNITS_TOOLTIP]Ranged Units[/TIP] per Niter resource.</Text></Replace>
 		<Replace Tag="LOC_MOD_RESOURCE_OIL_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry[/TIP] and Heavy [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP] per Oil resource. +10% [icon:YIELD_PRODUCTION] Production toward Factories.</Text></Replace>
 		<Replace Tag="LOC_MOD_RESOURCE_RUBBER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_INFANTRY_UNITS_TOOLTIP]Infantry[/TIP] and [TIP:LOC_PEDIA_CONCEPTS_AIR_UNITS_TOOLTIP]Air Units[/TIP] per Rubber resource.</Text></Replace>
 	</EnglishText>

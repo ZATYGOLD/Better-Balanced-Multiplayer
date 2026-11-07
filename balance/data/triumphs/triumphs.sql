@@ -40,7 +40,7 @@ SET CardEffectType2 = 'MPT_BALANCE_CARD_EFFECT_AT_MO_ECONOMIC_1_TOWN_GDP',
     CardEffectType3 = 'MPT_BALANCE_CARD_EFFECT_AT_MO_ECONOMIC_1_CITY_OFFSET'
 WHERE Age = 'AGE_MODERN'
   AND CardID = 'CARD_AT_MO_ECONOMIC_1';
-  
+
 -- The all-settlement tracker also sees Cities. Cancel that additional City
 -- point so Abundance changes Town scoring without increasing normal City GDP.
 INSERT OR REPLACE INTO VictoryScorings

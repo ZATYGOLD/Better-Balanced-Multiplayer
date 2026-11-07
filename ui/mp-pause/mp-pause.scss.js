@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - styles.
+ * Multiplayer Toolkit - Pause styles.
  *
  * Exported as a string and injected once by the manager, mirroring the base
  * game's `*.scss.js` convention of shipping a component's CSS as a module.

@@ -16,7 +16,8 @@ By Zatygold and Gohei427.
   start biases and a custom resource system.
 - **Multiplayer Rule Set** — the kind of match (Free for All, 1v1, 2v2, 3v3,
   4v4): player placement, teams, slots and the matching map settings.
-- **Keybinds** — rebindable lens and Commander hotkeys, Civilization VI style.
+- **Keybinds** — rebindable pause, lens, unit, Commander and settlement keys,
+  Civilization VI style.
 - **Lobby fixes** — ability names in civ / leader tooltips; a 5-second start
   countdown.
 
@@ -64,22 +65,33 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
         + PerHuman × (living humans, Observers excluded) + PerTurn × (turn number)
 ```
 
-Every player gets the same clock. At zero the turn ends automatically. Below
-30s the display turns orange with warning beeps; below 15s it turns red with a
-beep per second. The clock holds until you found a settlement and stands still
-while paused or while an Age is ending.
+| Age | Base | PerCity | PerUnit | PerHuman | PerTurn |
+|---|---|---|---|---|---|
+| Antiquity | 10 | 1.00 | 1.15 | 1.15 | 1.20 |
+| Exploration | 20 | 1.15 | 1.20 | 1.20 | 1.30 |
+| Modern | 30 | 1.25 | 1.25 | 1.30 | 1.40 |
+
+Every player gets the same clock. At zero the turn ends automatically (idle
+units skip, pending choices are dismissed). From 30s the display turns orange
+with a beep every 5 seconds; from 15s it flashes red with a beep per second.
+The first turn of every session (new game, loaded save, each new Age) is
+untimed; the clock holds until you found a settlement and stands still while
+paused or while an Age is ending. The lobby **Game Rules** popup names the
+timer **Competitive**.
 
 | Tune | Where |
 |---|---|
-| Per-Age `Base` / `PerCity` / `PerUnit` (and overrides) | `data/timers/<age>/CompetitiveTimer.sql` |
-| Default `PerHuman` / `PerTurn` | `data/timers/TimerScaling.sql` |
-| Tiers, colours, sounds, debug | `ui/mp-timer/mp-timer-config.js` |
+| Per-Age values (table above) | `data/timers/<age>/CompetitiveTimer.sql` |
+| Schema and defaults | `data/timers/TimerScaling.sql` |
+| Tiers, colours, sounds, grace turn, debug | `ui/mp-timer/mp-timer-config.js` |
 
-The engine only enforces its built-in timers, so the mod registers a subclass
+The engine only computes its built-in timers, so the mod registers a subclass
 of the game's action panel (only when Competitive is chosen) that draws the
-native text and ring from the synchronized phase clock and ends the turn
-itself. Its numbers live in mod-owned tables; the Dynamic timer is untouched.
-Known cosmetic: the lobby **Rules** popup shows a debug string for the timer.
+native text and ring from its own wall clock and ends the turn itself. The
+engine times the unknown type by Turn Time, which the mod sets to one hour
+for Competitive (`config/SetupParameters.sql`), a backstop the Toolkit's
+clock always beats. Its numbers live in mod-owned tables; the Dynamic timer is
+untouched.
 
 ---
 
@@ -88,9 +100,10 @@ Known cosmetic: the lobby **Rules** popup shows a debug string for the timer.
 - **Pause:** **Pause Game** in the Esc menu, or the **P** key (rebindable in
   keyboard mapping). The pause menu opens for everyone.
 - **While paused:** **Ready** (or **Resume (All Players)** for the host) and
-  **View Map** to look around (Esc returns to the menu). A "Ready X / N" tally
-  counts connected players. Game-advancing actions (end turn, unit orders,
-  quick load) are blocked; camera, selection and panels are not.
+  **View Map** to look around (Esc returns to the menu); the pause key toggles
+  Ready. A "Ready: X / N" tally counts connected players. Game-advancing
+  actions (end turn, unit orders, quick load) are blocked; camera, selection
+  and panels are not (the production list shows hidden items, disabled).
 - **Resume:** when every connected player is ready, or the host resumes for
   all, a 5-second **UNPAUSING…** countdown runs (still paused) and play resumes
   together.
@@ -133,9 +146,10 @@ Actions and keys: `config/mpt-input.sql`, `ui/mp-keybind/`.
 
 ## Multiplayer Balance
 
-Multiplayer only. Lobby option **Multiplayer Balance** (its own **Balance Settings**
-group, On by default). Off gives the game's own balance; every balance file loads only when
-it is On, so single-player games always use the game's own balance.
+Multiplayer only. Lobby option **Multiplayer Balance** (its own **Balance
+Settings** group, On by default). Off gives the game's own balance; every
+balance file loads only when it is On, so single-player games always use the
+game's own balance.
 
 - Balance changes for civilizations, leaders, units, governments, policies,
   traditions, wonders, buildings, resources, city-states, pantheons,
@@ -156,17 +170,31 @@ Everything lives in `balance/` (see Project structure).
 Multiplayer only: the options below exist only in multiplayer setup, Pangaea
 Ultima is listed only there, and single-player maps are generated untouched.
 
-- **Pangaea Ultima** — one large central Pangaea with islands, in the Map list,
-  built on the game's own Voronoi map generation (islands turn to Treasure in
-  Exploration, like the game's Pangaea).
-- **Player Placement** (set by the Multiplayer Rule Set) — whole map, or
-  Duel, 2v2, 3v3 or 4v4 East vs West layouts for any map. Every start needs Fresh Water and 12 tiles of
-  separation; the most constrained player is placed first.
+- **Pangaea Ultima** — one large central Pangaea, in the Map list, built on the
+  game's own Voronoi map generation. Its islands, kept clear of the continent,
+  are the Distant Lands (the other landmass region): no player starts on them,
+  each holds at least 2 resources, which turn to Treasure in Exploration, and
+  30% of their mountains become Rough.
+- **Player Placement** (set by the Multiplayer Rule Set) — whole map, or Duel,
+  2v2, 3v3 or 4v4 East vs West layouts for any map. Every start needs Fresh
+  Water and 12 tiles of separation; the most constrained player is placed
+  first.
 - **Strict Start Biases** (Map Options) — leaders and civilizations start on
   their terrain; everyone is warned on the first turn if one could not.
-- **Custom Resource System** (Map Options, On by default) — continent resource
+- **Custom Resource System** (Map Options, On by default) — player resource
   identities, persistent resources across Ages, custom yields, classes,
-  tooltips and per-Age effects; Off keeps the game's resources.
+  tooltips and per-Age effects. Military and construction resources (Horses,
+  Iron, Niter, Hardwood, Limestone, Marble) are general, with even counts per
+  continent. Each player's region (the land on their continent closest to their
+  start) is dealt one resource from each matched pool, Wealth (Gold, Silver,
+  Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine,
+  Quinine, Cocoa, Furs), different from its neighbours', with 1 copy per 100
+  tiles of the region (up to 3); islands without a start get only general
+  resources. Off keeps the game's resources. While On:
+  - **Resource Amount** — Scarce, Sparse, Standard (default) or Abundant: 35%,
+    50%, 70% or 100% of the game's resource density.
+  - **Resource Clusters** — Off (default), Small or Large: deposits grow into
+    patches of the same resource (2 or up to 3 tiles); the amount stays the same.
 - **Duel Map** — Duel placement on the Tiny size builds a 36x22 Duel map
   (Tiny is 60x38) that shows as Duel. Multiplayer rejects new map sizes, so
   Duel is Tiny on a smaller grid; other sizes keep their grid.
@@ -176,6 +204,16 @@ Ultima is listed only there, and single-player maps are generated untouched.
   plays on Tiny and a 3v3 + Spectator on Small. The game only allows that many
   players on the next size up, so the host launches that size and it is built
   with the chosen size's land and name.
+- **Disasters** — Off, Light, Moderate, Catastrophic or Custom (one setting
+  per Age), replacing Disaster Intensity in multiplayer.
+- **Natural Wonders** — how many a map places (Off, Half, Standard, More,
+  Double), one On/Off toggle per Natural Wonder, and spawn fixes for Gullfoss,
+  Iguazú Falls and Valley of Flowers.
+- **Lakes** — Less, Standard or More, beside Sea Level in Terrain Settings.
+- **Map Settings tab** — the multiplayer Create Game screen gets a Map Settings
+  tab after Game Settings with every map setting (map, size, terrain,
+  disasters, natural wonders and the options above), as in Advanced Settings
+  Pro; Crises stay on the Advanced tab.
 - **Multiplayer defaults** — new multiplayer games start on Online speed,
   Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size
   (the host can change them).
@@ -186,14 +224,16 @@ Everything lives in `maps/` (see Project structure).
 
 ## Compatibility
 
-- **Zatygold's Advanced Settings Pro** — its Resources setting is used: with
-  it enabled the Custom Resource System option is removed and Pangaea Ultima
-  keeps the game's resources. Its lobby tooltips add the ability names, so the
-  Toolkit's own are switched off. Its settings (pacing, triumph sets, units...)
-  apply on top of the balance changes. Its lobby memento slots show the first
-  two slots; the second minor slot is set with Choose Mementos.
-  The Map Options appear on its Map tab and Balance Settings on its General
-  tab; both mods share the same setup-database conventions.
+- **Zatygold's Advanced Settings Pro** — where both mods have a setting
+  (Disasters, Natural Wonders, Lakes, Resources), its own applies in single
+  player and the Toolkit's in multiplayer, where its counterparts are removed
+  (never applied twice). The Custom Resource System stays in multiplayer. Its
+  lobby tooltips add the ability names, so the Toolkit's own are switched off.
+  Its settings (pacing, triumph sets, units...) apply on top of the balance
+  changes. Its lobby memento slots show the first two slots; the second minor
+  slot is set with Choose Mementos. The Map Options appear on its Map tab and
+  Balance Settings on its General tab; both mods share the same setup-database
+  conventions.
 - **Zatygold's Spectator** — adds its slot to the match slots on Tiny and
   Small. The Observer adds no time to the Competitive timer and never pauses
   the game by disconnecting; the Spectator keeps the Observer out of Player
@@ -206,15 +246,15 @@ Everything lives in `maps/` (see Project structure).
 ```
 Multiplayer-Toolkit/
 ├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
-├─ config/                       # lobby DB: Competitive option, pause keybind, Rule Sets
+├─ config/                       # lobby DB: Competitive option, keybinds, Rule Sets
 ├─ data/timers/                  # Competitive timer numbers (default + per Age)
 ├─ text/en_us/                   # mod info and Toolkit strings
 ├─ ui/
 │  ├─ mpt-shared/                # logger, method wrapping, deferred patching, companion mods
-│  ├─ mp-keybind/                # Toolkit keybinds: pause, lenses, Commander actions
+│  ├─ mp-keybind/                # keyboard-mapping entries; lens, unit and settlement keys
 │  ├─ mp-lobby/                  # tooltips, countdown
 │  ├─ mp-pause/                  # pause manager, overlay, chat commands
-│  └─ mp-timer/                  # Competitive timer
+│  └─ mp-timer/                  # Competitive timer, Game Rules label
 ├─ balance/                      # Multiplayer Balance (everything balance)
 │  ├─ config/                    # Balance option, memento slot, victory thresholds
 │  ├─ data/                      # one folder per subject (civilizations, leaders, units, policies,
@@ -226,14 +266,15 @@ Multiplayer-Toolkit/
    ├─ maps/                      # Pangaea Ultima, strict start biases, start-bias scoring, resources
    ├─ scripts/                   # multiplayer placement pass, Pangaea Ultima Voronoi settings
    ├─ text/en_us/                # map strings
-   └─ ui/                        # multiplayer defaults, turn-1 start warning
+   └─ ui/                        # multiplayer defaults, Map Settings tab, match slots, turn-1 start warning
 ```
 
 Each Toolkit feature has a `*-config.js` for settings, and modules patch the
 base UI at runtime (no base-game files are replaced). Identifiers follow the
-Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
-`MPT` for Maps (lobby options such as `MPTPlayerPlacement`). Diagnostics go to
-`UI.log`.
+Toolkit's naming: `LOC_MPT_` for text, `mpt-` for keybind actions and element
+ids, `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` / `MPT` for Maps
+(lobby options such as `MPTPlayerPlacement`). Diagnostics go to `UI.log`,
+tagged `[MPT <feature>]`.
 
 ---
 
@@ -270,6 +311,21 @@ Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
   Previous/Next Settlement and Capital ([ ] \), Commander join/leave/pack/unpack
   (Ctrl+Z/X/Q/W); game screens on Civilization VI's keys (Government F7, Trade
   Routes F4, Religion L), Advisors F8 and Attributes F10. All rebindable.
+- **Pangaea Ultima Distant Lands:** its islands are marked as Distant Lands
+  (never a start) with guaranteed resources, so Treasure Fleets work; games
+  starting in Exploration also get Treasure on islands with the Custom Resource
+  System. Sunk land no longer leaves volcanoes in the ocean.
+- **Empire resources:** matched Wealth, Harvest and Comfort pools dealt per
+  player region (1–3 copies by region size); Gold +2 Happiness; Rubies,
+  Spices, Tea, Citrus and Rice on the "+1 and +1 in all Settlements" template;
+  Wine, Quinine and Cocoa give Capital Happiness and a Celebration yield;
+  Marble is general (+5% toward Buildings); the pooled resources stay Empire
+  in Modern (Treasure in Exploration).
+- **Resources (player feedback):** fewer resources by default (Resource
+  Amount, 70% of the game's density) with optional Resource Clusters; even
+  counts per continent instead of widely-valid resources such as Coal flooding
+  the map; Player Placement no longer puts a start on a Discovery; Crises sit
+  on Game Settings in multiplayer.
 - **Player feedback:** Militaristic's garrisoned-Commander node keeps its
   Science and Culture after an Age transition; Kiem gives Science again (it
   duplicated the Artilleryman's Gloves); Modern Coal works when slotted in a
@@ -280,7 +336,8 @@ Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
   or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
   place of Drottkvætt I) and upgrades to Reiði Guðanna.
 - **Competitive timer** — no longer ends every turn at once when Turn Time was
-  never set (the game's own timer backs it up at one hour); retuned per Age.
+  never set (the game's own timer backs it up at one hour); retuned per Age;
+  the lobby Game Rules popup names it instead of showing a debug string.
 - The mod now affects saved games. Gohei427 joins as co-author.
 
 ### 0.6.1
@@ -350,6 +407,6 @@ Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
 
 ## License
 
-Copyright (C) 2026 Zatygold and Gohei427. Free software under the **GNU General Public
-License v3 or later**, without any warranty. See [`LICENSE`](LICENSE) or
-<https://www.gnu.org/licenses/>.
+Copyright (C) 2026 Zatygold and Gohei427. Free software under the **GNU
+General Public License v3 or later**, without any warranty. See
+[`LICENSE`](LICENSE) or <https://www.gnu.org/licenses/>.

@@ -10,8 +10,8 @@
 		<Row Tag="LOC_MPT_DROP_RESUME"><Text>Drop Disconnected &amp; Resume</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_READY_TALLY"><Text>Ready: {1_Ready} / {2_Total}</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_HINT_HOST"><Text>You are the host. Resume when ready.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HINT_READY"><Text>You are ready. Waiting for the host to resume.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HINT_WAITING"><Text>Waiting for the host to resume.</Text></Row>
+		<Row Tag="LOC_MPT_PAUSE_HINT_READY"><Text>You are ready. Waiting for the other players or the host to resume.</Text></Row>
+		<Row Tag="LOC_MPT_PAUSE_HINT_WAITING"><Text>Press Ready when you are ready to resume, or wait for the host.</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_A_PLAYER"><Text>A player</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_PLAYER_DISCONNECTED"><Text>{1_Name} disconnected.</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_PLAYER_IS_DISCONNECTED"><Text>A player is disconnected.</Text></Row>
@@ -54,7 +54,7 @@
 	<!-- Turn Timers -->
 		<Replace Tag="LOC_GAME_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Replace>
 		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
-		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
+		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
 
 	<!-- Multiplayer Rule Set -->
 		<Row Tag="LOC_MPT_RULESET_NAME"><Text>Multiplayer Rule Set</Text></Row>
