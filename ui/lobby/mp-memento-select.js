@@ -48,14 +48,25 @@ const GAME_EDITOR = "memento-editor";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
 let openingSlot = null;
 
-/** As the lobby's Choose Mementos: only in a new game, while mementos are on and you are not ready. */
-function canEditMementos() {
-  return !!Configuration.getGame()?.isMementosEnabled && !Network.isPlayerStartReady(GameContext.localPlayerID) && MPLobbyDataModel.isNewGame;
+/** The lobby pickers stand in for the game's own in an online or LAN lobby; hotseat keeps the game's. */
+function usesLobbyPickers() {
+  return isMultiplayerGame() && !Configuration.getGame()?.isHotseat;
 }
 
-function close() {
-  if (ContextManager.hasInstanceOf(SCREEN_NAME)) ContextManager.pop(SCREEN_NAME);
+/** Your own row is still yours to change: a new game's lobby while you are not ready. */
+function canEditOwnSlot() {
+  return MPLobbyDataModel.isNewGame && !Network.isPlayerStartReady(GameContext.localPlayerID);
 }
+
+/** As the lobby's Choose Mementos: only in a new game, while mementos are on and you are not ready. */
+function canEditMementos() {
+  return !!Configuration.getGame()?.isMementosEnabled && canEditOwnSlot();
+}
+
+function closeScreen(name) {
+  if (ContextManager.hasInstanceOf(name)) ContextManager.pop(name);
+}
+const close = () => closeScreen(SCREEN_NAME);
 
 // Only what the picker and its stage header read from a flow.
 const standaloneFlow = {
@@ -80,7 +91,7 @@ function backdrop() {
   return element;
 }
 
-defineLegacyComponent(SCREEN_NAME, { classNames: ["fullscreen"] }, () => {
+const MementoPicker = () => {
   const model = createLobbyMementoModel(openingSlot);
   onCleanup(onSetupRevision("memento picker", () => (canEditMementos() ? model.refresh() : close())));
   return [backdrop(), createComponent(Panel, {
@@ -100,11 +111,14 @@ defineLegacyComponent(SCREEN_NAME, { classNames: ["fullscreen"] }, () => {
       });
     }
   })];
-});
+};
+
+// The adapter renders inside a tracked scope; createComponent runs the picker untracked.
+defineLegacyComponent(SCREEN_NAME, { classNames: ["fullscreen"] }, () => createComponent(MementoPicker, {}));
 
 /** Opens the local player's mementos, on the slot of a slot parameter when given. */
 function openMementoPicker(slotParam = null) {
-  if (!isMultiplayerGame() || Configuration.getGame()?.isHotseat) {
+  if (!usesLobbyPickers()) {
     ContextManager.push(GAME_EDITOR, { singleton: true, createMouseGuard: true, attributes: { blackOut: true } });
     return;
   }
@@ -112,4 +126,4 @@ function openMementoPicker(slotParam = null) {
   ContextManager.push(SCREEN_NAME, { singleton: true, createMouseGuard: true });
 }
 
-export { canEditMementos, openMementoPicker };
+export { canEditMementos, canEditOwnSlot, closeScreen, openMementoPicker, usesLobbyPickers };

@@ -73,5 +73,9 @@
 	<!-- Create Game tabs -->
 		<Row Tag="LOC_MPT_SETUP_TAB_PACE"><Text>Pace</Text></Row>
 		<Row Tag="LOC_MPT_SETUP_TAB_MAP"><Text>Map</Text></Row>
+
+	<!-- Lobby (LOC_UI_MP_MEMENTO is the multiplayer lobby's alone) -->
+		<Row Tag="LOC_MPT_LOBBY_BROWSE"><Text>Browse</Text></Row>
+		<Replace Tag="LOC_UI_MP_MEMENTO"><Text>Mementos</Text></Replace>
 	</EnglishText>
 </Database>

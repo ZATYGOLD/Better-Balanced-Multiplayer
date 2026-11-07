@@ -104,6 +104,13 @@ function isObserverPlayer(playerId) {
   } catch (e) { return false; }
 }
 
+const OBSERVER_CIV_PREFIX = 'CIVILIZATION_ZOM_OBSERVER_';
+
+/** True for a companion mod's Observer leader or civilization as a setup value. */
+function isObserverValue(value) {
+  return OBSERVER_LEADERS.has(value) || (typeof value === 'string' && value.startsWith(OBSERVER_CIV_PREFIX));
+}
+
 /** Base for Controls.decorate decorators: the panel calls all four hooks, so a decorator overrides only those it uses. */
 class Decorator {
   beforeAttach() {}
@@ -120,4 +127,4 @@ function isModEnabled(modId) {
   try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isModEnabled, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };

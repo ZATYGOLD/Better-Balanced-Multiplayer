@@ -1219,6 +1219,7 @@
 					<Item>ui/lobby/mp-memento-select-model.js</Item>
 					<Item>ui/lobby/mp-memento-select.js</Item>
 					<Item>ui/lobby/mp-lobby-mementos.js</Item>
+					<Item>ui/lobby/mp-leader-civ-select.js</Item>
 					<Item>ui/setup/setup-layout.js</Item>
 					<Item>ui/setup/setup-tabs.js</Item>
 					<Item>ui/setup/match-type-rules.js</Item>

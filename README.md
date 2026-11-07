@@ -27,7 +27,7 @@ By Zatygold and Gohei427.
 - **Keybinds** — rebindable pause, lens, unit, Commander and settlement keys on
   keys the game leaves free.
 - **Lobby** — the host's settings shown to everyone, memento slots under each
-  leader, the single-player memento picker, Random buttons for the seeds, ability names in civ / leader tooltips
+  leader, the single-player memento and leader / civilization pickers, Random buttons for the seeds, ability names in civ / leader tooltips
   and a 5-second start countdown.
 
 **Multiplayer only:** every feature acts in multiplayer games and setups only;
@@ -376,10 +376,19 @@ rules in `ui/gameplay/` (see Project structure).
   setting is Custom, and switched-off Natural Wonders as a count. The Game Options box shows Match Type, Game Balance and Pace Set.
 - **Memento slots** — each leader in the lobby shows its memento slots, with
   each memento's art, name and effect.
-- **Memento picker** — Choose Mementos and your own lobby memento slots open
-  the single-player memento picker (search and attribute filter); a slot
+- **Memento picker** — Mementos (the lobby's Choose Mementos, renamed) and
+  your own lobby memento slots open the single-player memento picker (search and attribute filter); a slot
   opens the picker on that slot. You edit only your own mementos, while mementos are on and you are not
   ready. Hotseat keeps the game's memento editor.
+- **Leader and civilization picker** (prototype) — **Browse**, beside
+  Mementos, opens the single-player leader, civilization and civilization
+  details screens in one pass (Leader, Civilization, then Details), with the
+  3D leader as in single player (its voice does not play in the lobby); Close,
+  or Back from Leader,
+  leaves without a change. It is enabled while you can still change your
+  leader and civilization (a new game, not ready, not the Spectator) and offers
+  only what the setup allows. Your row's dropdowns stay as in the base game;
+  hotseat has no Browse.
 - **Seed buttons** — Random beside the Game and Map seed fields on the Create
   Game screen.
 
@@ -433,7 +442,8 @@ Multiplayer-Toolkit/
    │                             #   companion mods, setup poll, defaults and per-Age rows
    ├─ gameplay/                  # Gameplay per-Age and crisis rules
    ├─ keybind/                   # keyboard-mapping entries; lens, unit and settlement keys
-   ├─ lobby/                     # tooltips, countdown, Game Rules summary, memento slots and picker
+   ├─ lobby/                     # tooltips, countdown, Game Rules summary, memento slots and picker,
+   │                             #   leader / civ picker
    ├─ maps/                      # multiplayer defaults, match slots, turn-1 start warning
    ├─ pace/                      # Pace Set, Victory Threshold Set and per-Age rules
    ├─ pause/                     # pause manager, overlay, chat commands
@@ -456,6 +466,12 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 ### 0.6.2
 
 - **Create Game tabs** use the game's tab bar, as single player does.
+- **Leader and civilization picker** (prototype) — the lobby's **Browse**
+  button opens the single-player leader, civilization and civilization
+  details screens in one pass, with the 3D leader (silent in the lobby) and a
+  Close button; the lobby's leader and civilization dropdowns
+  stay as in the base game.
+- The lobby's **Choose Mementos** button reads **Mementos**.
 - **Settlement Limit** Custom values capped at 25 per Age.
 - **Age Length** trimmed to 90-140 points per Age (Standard and shorter); the
   Balanced choice is gone and the Balanced and Multiplayer Pace Sets use
