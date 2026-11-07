@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Competitive turn timer (component subclass).
+ * Better Balanced Multiplayer - Competitive turn timer (component subclass).
  *
  * The engine only computes None/Standard/Dynamic, so the custom "Competitive"
  * type is driven here from the mod's MPT_TurnSegments and MPT_TimerScaling
@@ -569,7 +569,7 @@ function defineMptPanelAction(base) {
   Controls.define('panel-action', {
     ...base,
     createInstance: MPT_PanelAction,
-    description: (base.description ?? '') + ' (Multiplayer Toolkit competitive timer)',
+    description: (base.description ?? '') + ' (Better Balanced Multiplayer competitive timer)',
     priority: (base.priority ?? 0) + 1
   });
   // The subclass only applies to panels created from now on.

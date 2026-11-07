@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - shared helpers (shell and game scope).
+ * Better Balanced Multiplayer - shared helpers (shell and game scope).
  *
  * Logging, method wrapping, deferred patching and the decorator base used by
  * every feature, plus the multiplayer and Age-ending checks and companion-mod
@@ -61,7 +61,7 @@ function whenDefined(tag, callback, { retries = 50, intervalMs = 200, log = null
   whenAvailable(probe, callback, { retries, intervalMs, onGiveUp: () => log?.(`${tag} was never defined`) });
 }
 
-/** True in a multiplayer game or setup (hotseat included); every Toolkit feature acts only then. */
+/** True in a multiplayer game or setup (hotseat included); every mod feature acts only then. */
 function isMultiplayerGame() {
   try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
 }

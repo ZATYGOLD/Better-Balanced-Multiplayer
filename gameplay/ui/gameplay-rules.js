@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Gameplay settings rules (shell scope).
+ * Better Balanced Multiplayer - Gameplay settings rules (shell scope).
  *
  * Keeps the multiplayer Gameplay settings (gameplay/config/gameplay-settings.sql)
  * consistent, as Advanced Settings Pro does in single player:
@@ -49,7 +49,7 @@ const AGE_SETTINGS = [
   ageSetting("MPTGameplaySettlementLimit", "MPT_GAMEPLAY_SETTLEMENT_LIMIT_", {
     LESS: ["1", "4", "10"], STANDARD: ["3", "8", "16"], MORE: ["5", "12", "20"] }),
   ageSetting("MPTGameplayTradeRange", "MPT_GAMEPLAY_TRADE_RANGE_"),
-  // The game's Triumph Set, with the Toolkit's Custom; its rows name each set.
+  // The game's Triumph Set, with the mod's Custom; its rows name each set.
   ageSetting("LegacySets", "", Object.fromEntries(TRIUMPH_SETS.map((set) => [`LEGACY_SET_${set}`, set])), {
     ageIds: AGES.map((age) => `MPTGameplayTriumphSet${age}`), agePrefix: "MPT_GAMEPLAY_TRIUMPH_SET_", custom: "MPT_LEGACY_SET_CUSTOM" })
 ];

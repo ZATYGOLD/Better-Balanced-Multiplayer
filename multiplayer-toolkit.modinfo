@@ -55,7 +55,7 @@
 
 <!--*************************** CRITERIA: MAPS ****************************************************-->
 
-		<!-- Resource List All (Resource Settings): the Toolkit's resource data, alone and per Age. -->
+		<!-- Resource List All (Resource Settings): the mod's resource data, alone and per Age. -->
 		<Criteria id="maps-resource-list-all">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>MPTResourceList</ConfigurationId><Value>MPT_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
 		</Criteria>

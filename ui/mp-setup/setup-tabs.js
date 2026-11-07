@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Create Game tabs and seed buttons (shell scope).
+ * Better Balanced Multiplayer - Create Game tabs and seed buttons (shell scope).
  *
  * The multiplayer Create Game screen gets Pace and Map tabs after Game
  * Settings (Game Settings, Pace, Map, Advanced, Add-Ons), each holding

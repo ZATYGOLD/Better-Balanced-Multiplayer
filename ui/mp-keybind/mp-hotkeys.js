@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Lens, unit and city hotkeys (game scope).
+ * Better Balanced Multiplayer - Lens, unit and city hotkeys (game scope).
  *
  * Lens keys switch the map lens like the mini-map's lens panel (pressing the
  * key of the active lens returns to the default lens). Unit keys (Found City,

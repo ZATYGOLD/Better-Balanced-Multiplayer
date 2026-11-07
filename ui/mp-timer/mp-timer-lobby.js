@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Competitive timer in the lobby's Game Rules (shell scope).
+ * Better Balanced Multiplayer - Competitive timer in the lobby's Game Rules (shell scope).
  *
  * The Game Rules screen only names None, Standard and Dynamic; any other timer
  * shows a debug value. With Competitive chosen, its Turn Timer row shows the

@@ -1,7 +1,7 @@
 --*******************************************************
 --***************** KEYBINDS ****************************
 --*******************************************************
--- Toolkit actions in Options -> keyboard mapping (ui/mp-keybind). They act in
+-- The mod's actions in Options -> keyboard mapping (ui/mp-keybind). They act in
 -- multiplayer games only, and their default keys are ones the game leaves free,
 -- so the game's own keys stay as they are.
 INSERT OR REPLACE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)

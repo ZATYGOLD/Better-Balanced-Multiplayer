@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Pause configuration & constants.
+ * Better Balanced Multiplayer - Pause configuration & constants.
  */
 import { UNIT_ACTIONS } from '../mp-keybind/mp-keybind-config.js';
 
@@ -42,7 +42,7 @@ const CONFIG = {
 };
 
 /**
- * Input actions that advance / commit game state, plus the Toolkit's unit
+ * Input actions that advance / commit game state, plus the mod's unit
  * keybinds. Blocked while paused. Verified against Base/modules/core/config/Input.xml.
  * Camera, selection, information screens and city/production panels are
  * intentionally NOT listed.

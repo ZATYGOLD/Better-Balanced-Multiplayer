@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Pause styles.
+ * Better Balanced Multiplayer - Pause styles.
  *
  * Exported as a string and injected once by the manager, mirroring the base
  * game's `*.scss.js` convention of shipping a component's CSS as a module.

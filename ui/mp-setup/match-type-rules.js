@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Match Type rules (shell scope).
+ * Better Balanced Multiplayer - Match Type rules (shell scope).
  *
  * Choosing a Match Type (config/match-types.sql) starts the match from Standard:
  * every game setting the Create Game tabs show returns to its multiplayer default
@@ -27,7 +27,7 @@
  * Kept: the settings the Match Type (or the speed and timer) sets through its
  * configuration updates, the Multiplayer Settings section (game name, Hidden
  * Game, Game Balance, Kick Vote), the seeds, the map, the ruleset and
- * starting Age, and hidden settings the Toolkit manages. Player slots, leaders,
+ * starting Age, and hidden settings the mod manages. Player slots, leaders,
  * civilizations and mementos are player settings and stay as they are.
  * Settings a dependency hides reset too, so they are Standard when they show again.
  * Only a change by the host applies it; a setup's first pass (a new setup, a

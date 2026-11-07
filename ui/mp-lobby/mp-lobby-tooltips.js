@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Lobby tooltips and start countdown (shell scope).
+ * Better Balanced Multiplayer - Lobby tooltips and start countdown (shell scope).
  *
  * The game-setup civilization and leader tooltips show each ability's text
  * but omit its name; the lobby model's two tooltip builders are wrapped to

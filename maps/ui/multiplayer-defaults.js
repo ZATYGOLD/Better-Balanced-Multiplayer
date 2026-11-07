@@ -2,7 +2,7 @@ import { createLogger, whenDefined, wrapMethod } from '../../ui/mpt-shared/mpt-u
 
 // New multiplayer games start on these values (the host can change them). The
 // Create Game screen resets the configuration as it attaches, so they are set
-// right after; a parameter the setup lacks is skipped. Age Length is the Toolkit's
+// right after; a parameter the setup lacks is skipped. Age Length is the mod's
 // multiplayer one (pace/), whose rules then fill its per-Age rows.
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";

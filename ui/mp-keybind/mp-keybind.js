@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Toolkit keybinds in the keyboard-mapping options (shell and game scope).
+ * Better Balanced Multiplayer - keybinds in the keyboard-mapping options (shell and game scope).
  *
  * The keyboard-mapping screen only lists the action IDs in a hard-coded,
  * non-exported array in the game's editor-keyboard-mapping.js, so the actions

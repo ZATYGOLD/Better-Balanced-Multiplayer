@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - setup helpers (shell scope).
+ * Better Balanced Multiplayer - setup helpers (shell scope).
  *
  * Reading and writing setup parameters, their multiplayer defaults, one shared
  * poll of the setup (multiplayer setups only), and the rule that keeps a

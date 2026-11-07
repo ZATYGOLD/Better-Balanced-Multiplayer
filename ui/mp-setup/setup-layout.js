@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@
  */
 
 /**
- * Multiplayer Toolkit - Create Game layout (shell scope).
+ * Better Balanced Multiplayer - Create Game layout (shell scope).
  *
  * The multiplayer Create Game screen's tabs, the parameter groups each holds and
  * the order of those groups (sections), shared by the setup tabs and the lobby's
  * rules summary. Multiplayer resolves a parameter's group to its
  * GroupIDMultiplayerOverride when it has one ("MPAdvanced" + group for most
- * Toolkit settings), so a section names the base group and stands for both.
+ * mod settings), so a section names the base group and stands for both.
  * The screen adds sections in the order of their first setting; each tab then
  * shows its listed sections in the order below, as Advanced Settings Pro lays
  * out single player. Other "MPAdvanced" groups show on Advanced, every other

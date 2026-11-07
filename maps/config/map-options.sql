@@ -85,7 +85,7 @@ UPDATE Parameters SET GroupIDMultiplayerOverride = 'MapOptions' WHERE ParameterI
 --*******************************************************
 -- A Resource Settings group after Map Settings on the Map tab. Resource
 -- List picks the resources: Standard keeps the game's list and rules, All loads
--- the Toolkit's resource data (modinfo criteria maps-resource-list-all-*). Resource
+-- the mod's resource data (modinfo criteria maps-resource-list-all-*). Resource
 -- Amount and Clusters apply to either (maps/maps/global-resource-system.js).
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
@@ -110,7 +110,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTResourceClusterOptions', 'MPT_MAPS_RESOURCE_CLUSTERS_LARGE', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_NAME', 'LOC_MPT_MAPS_RESOURCE_CLUSTERS_LARGE_DESC', 30);
 
 -- The Earth map keeps the game's resources: Resource Settings hide there and
--- choosing it sets Resource List to Standard (no Toolkit resource data loads).
+-- choosing it sets Resource List to Standard (no mod resource data loads).
 INSERT OR IGNORE INTO ParameterDependencies (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
     VALUES
         ('MPTResourceList', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map'),

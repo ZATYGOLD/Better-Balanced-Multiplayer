@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,13 +19,13 @@
  */
 
 /**
- * Multiplayer Toolkit - Lobby rules summary (shell scope).
+ * Better Balanced Multiplayer - Lobby rules summary (shell scope).
  *
  * The lobby's own summaries list a fixed set of base rules, so a player who
- * joins cannot see the Toolkit's settings. Both are extended:
+ * joins cannot see the mod's settings. Both are extended:
  *   Game Rules       a list beside the mods list, scrolling on its own, of every
- *                    Toolkit setting (an "MPT" parameter) changed from its default,
- *                    with the base settings the Toolkit extends or regroups, in
+ *                    mod setting (an "MPT" parameter) changed from its default,
+ *                    with the base settings the mod extends or regroups, in
  *                    the setup tabs' order. Per-Age rows (and the per-victory
  *                    thresholds) are listed only while their setting is Custom,
  *                    and the Natural Wonder toggles collapse into one count.
@@ -45,7 +45,7 @@ const MOD_ID = "multiplayer-toolkit";
 const PARAM_PREFIX = "MPT";
 const SUMMARY_PARAM_IDS = ["MPTMatchType", "MPTBalance", "MPTPacePreset"];
 const SUMMARY_ANCHOR = "LOC_UI_MP_LOBBY_GAME_SPEED";
-// Base settings the Toolkit extends (Triumph Set) or moves to its groups in multiplayer.
+// Base settings the mod extends (Triumph Set) or moves to its groups in multiplayer.
 const BASE_PARAM_IDS = new Set(["LegacySets", "IndependentHostility", "MapSeaLevel", "StartPosition"]);
 // Shown through another row: the Pace tab's copy of Pace Set.
 const SKIPPED_PARAM_IDS = new Set(["MPTPaceSetMirror"]);

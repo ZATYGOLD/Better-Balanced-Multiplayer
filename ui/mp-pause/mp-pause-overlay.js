@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Pause resume countdown overlay.
+ * Better Balanced Multiplayer - Pause resume countdown overlay.
  *
  * A small, self-contained component that owns the full-screen "UNPAUSING..."
  * element. It only manipulates its own DOM, so it can be reused/replaced

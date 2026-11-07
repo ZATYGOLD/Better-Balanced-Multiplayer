@@ -39,7 +39,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 -- setting's values (Custom leaves them to the host). The per-Age rows are what
 -- the game data reads (pace/data/), one file per Age and value.
 
--- Age Length is the Toolkit's own in multiplayer: the base setting is hidden
+-- Age Length is the mod's own in multiplayer: the base setting is hidden
 -- there, and every option sets the same points for each base length.
 INSERT OR IGNORE INTO ParameterDependencies (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
     VALUES ('AgeLength', 'Game', 'MPTMultiplayerSetup', 'NotEquals', 1);

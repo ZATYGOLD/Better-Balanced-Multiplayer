@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Pace Set and Pace Settings rules (shell scope).
+ * Better Balanced Multiplayer - Pace Set and Pace Settings rules (shell scope).
  *
  * Keeps the multiplayer Pace settings (pace/config/pace-settings.sql) consistent,
  * as Advanced Settings Pro does in single player:

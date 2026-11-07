@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Keybind actions (config/mpt-input.sql registers them and their default keys).
+ * Better Balanced Multiplayer - Keybind actions (config/mpt-input.sql registers them and their default keys).
  */
 
 const PAUSE_ACTION_ID = 'mpt-pause-game';
@@ -51,7 +51,7 @@ const CITY_ACTIONS = {
   'mpt-city-capital': 'capital'
 };
 
-/** Every Toolkit action listed in the keyboard-mapping options. */
+/** Every mod action listed in the keyboard-mapping options. */
 const KEYBIND_ACTIONS = [PAUSE_ACTION_ID, ...Object.keys(LENS_ACTIONS), ...Object.keys(UNIT_ACTIONS), ...Object.keys(CITY_ACTIONS)];
 
 export { CITY_ACTIONS, DEFAULT_LENS, KEYBIND_ACTIONS, LENS_ACTIONS, PAUSE_ACTION_ID, UNIT_ACTIONS };

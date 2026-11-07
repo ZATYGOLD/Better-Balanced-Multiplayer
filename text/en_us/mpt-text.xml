@@ -19,37 +19,37 @@
 		<Row Tag="LOC_MPT_PAUSE_HOST_CHANGED"><Text>The host changed.</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_UNPAUSING"><Text>Unpausing...</Text></Row>
 		<Row Tag="LOC_MPT_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 
 	<!-- Keybinds -->
 		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT"><Text>Toggle Continent Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL"><Text>Toggle Appeal Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER"><Text>Toggle Settler Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY"><Text>Found Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS"><Text>Previous Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT"><Text>Next Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL"><Text>Capital</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_SEARCH"><Text>Search (Scout)</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS"><Text>Commander Pack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS"><Text>Commander Unpack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Multiplayer games only; added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 
 	<!-- Turn Timers -->
 		<Row Tag="LOC_MPT_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Row>

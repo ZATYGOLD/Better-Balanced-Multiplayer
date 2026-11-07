@@ -10,7 +10,7 @@ UPDATE Parameters SET Description = 'LOC_MPT_TURNTIMER_DESC' WHERE ParameterID =
 
 -- The engine times a Turn Timer it does not know by Turn Time (TurnTimerTime), which
 -- only Standard sets; unset, it ends every turn at once. Competitive sets it to an
--- hour, a backstop the Toolkit's own countdown (ui/mp-timer) always ends first.
+-- hour, a backstop the mod's own countdown (ui/mp-timer) always ends first.
 -- Standard returns it to the game's default (180).
 INSERT OR IGNORE INTO ConfigurationUpdates (SourceGroup, SourceKey, SourceValue, TargetGroup, TargetKey, TargetValue, Hash)
     VALUES

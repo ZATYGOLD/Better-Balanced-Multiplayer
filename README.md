@@ -1,4 +1,4 @@
-# Multiplayer Toolkit
+# Better Balanced Multiplayer
 
 Multiplayer quality-of-life features for **Sid Meier's Civilization VII**,
 built on the game's own UI components. Current version: **0.6.2**.
@@ -38,7 +38,7 @@ alongside **Zatygold's Advanced Settings Pro** (single player) and
 ## Installation
 
 1. Copy the folder to `…\Sid Meier's Civilization VII\Mods\Multiplayer-Toolkit\`.
-2. Enable **Multiplayer Toolkit** in **Main Menu → Additional Content**.
+2. Enable **Better Balanced Multiplayer** in **Main Menu → Additional Content**.
 3. **Every player needs the mod** (it changes game data, and menus and timer
    enforcement run per client). Saves made with it need it to load.
 
@@ -71,7 +71,7 @@ Advanced tabs returns to its multiplayer default from the setup database
 Timer Competitive. Kept as they are: the values the Match Type sets (table
 above), the Multiplayer Settings section (game name, Hidden Game, Multiplayer
 Balance, Kick Vote), the Game and Map seeds, the map, the ruleset and starting Age, the
-hidden settings the Toolkit manages, and every player setting (slots, teams,
+hidden settings the mod manages, and every player setting (slots, teams,
 leaders, civilizations, mementos). Only the host's own change applies it;
 opening, rejoining or loading a setup does not
 (`ui/mp-setup/match-type-rules.js`).
@@ -112,7 +112,7 @@ The engine only computes its built-in timers, so the mod registers a subclass
 of the game's action panel (only when Competitive is chosen) that draws the
 native text and ring from its own wall clock and ends the turn itself. The
 engine times the unknown type by Turn Time, which the mod sets to one hour
-for Competitive (`config/SetupParameters.sql`), a backstop the Toolkit's
+for Competitive (`config/SetupParameters.sql`), a backstop the mod's
 clock always beats. Its numbers live in mod-owned tables; the Dynamic timer is
 untouched.
 
@@ -198,7 +198,7 @@ and single-player maps are generated untouched.
   first.
 - **Strict Start Biases** (Spawn Settings) — leaders and civilizations start on
   their terrain; everyone is warned on the first turn if one could not.
-- **Resource List** (Resource Settings) — **All** (default): the Toolkit's
+- **Resource List** (Resource Settings) — **All** (default): the mod's
   resource system. Every resource is valid in every Age and kept across Age
   transitions (Oil and Rubber from Modern), with custom yields, classes,
   tooltips and per-Age effects. Military and construction resources (Horses,
@@ -209,7 +209,7 @@ and single-player maps are generated untouched.
   Quinine, Cocoa, Furs), different from its neighbours', with 1 copy per 100
   tiles of the region (up to 3); islands without a start get only general
   resources. **Standard**: the game's own resource list, rules, yields and
-  effects (none of the Toolkit's resource data loads); the game places its
+  effects (none of the mod's resource data loads); the game places its
   resources, then Resource Amount and Clusters scale them: one of each resource
   per continent (and in the water) stays, the rest return in random order on
   their own tiles until the amount is met, and clusters grow only where the
@@ -299,7 +299,7 @@ Pace tab with the same values and order.
   Standard or High sets all three thresholds; changing one switches it to
   Custom, as Triumph Set does with its per-Age rows.
 - **No longer games** — multiplayer offers no Epic or Marathon Game Speed and
-  no Long Age Length (the game's or the Toolkit's); single player keeps them.
+  no Long Age Length (the game's or the mod's); single player keeps them.
 - **Multiplayer defaults** — new multiplayer games start on Abbreviated Age
   Length (Pace Set then shows Custom).
 
@@ -346,7 +346,7 @@ Everything lives in `gameplay/` (see Project structure).
 
 ## Lobby
 
-- **Game Rules** — the lobby's rules window lists every Toolkit setting the
+- **Game Rules** — the lobby's rules window lists every mod setting the
   host changed from its multiplayer default (Match Type, Balance, Pace, Map
   Settings, Start Position, Resource Settings, Gameplay...), in the setup
   tabs' order; per-Age rows (and the per-victory thresholds) show while their
@@ -367,8 +367,8 @@ The scripts live in `ui/mp-lobby/` and `ui/mp-setup/`.
 ## Compatibility
 
 - **Zatygold's Advanced Settings Pro** — Advanced Settings Pro is for single
-  player, Multiplayer Toolkit for multiplayer; both can be enabled together.
-  Its settings are not offered in multiplayer and the Toolkit's not in single
+  player, Better Balanced Multiplayer for multiplayer; both can be enabled together.
+  Its settings are not offered in multiplayer and the mod's not in single
   player, so each mode has one set of settings with the same values and the
   same order, and neither mod's data or scripts act in the other's mode.
 - **Zatygold's Spectator** — adds its slot to the match slots on Tiny and
@@ -385,7 +385,7 @@ Multiplayer-Toolkit/
 ├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
 ├─ config/                       # lobby DB: Competitive option, keybinds, Match Types
 ├─ data/timers/                  # Competitive timer numbers (default + per Age)
-├─ text/en_us/                   # mod info and Toolkit strings
+├─ text/en_us/                   # mod info and shared strings
 ├─ ui/
 │  ├─ mpt-shared/                # logger, method wrapping, deferred patching, multiplayer check,
 │  │                             #   companion mods, setup poll, defaults and per-Age rows
@@ -422,9 +422,9 @@ Multiplayer-Toolkit/
    └─ ui/                        # per-Age and crisis rules
 ```
 
-Each Toolkit feature has a `*-config.js` for settings, and modules patch the
+Each feature has a `*-config.js` for settings, and modules patch the
 base UI at runtime (no base-game files are replaced). Identifiers follow the
-Toolkit's naming: `LOC_MPT_` for text, `mpt-` for keybind actions and element
+The mod's naming: `LOC_MPT_` for text, `mpt-` for keybind actions and element
 ids, `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` / `MPT` for Maps
 (lobby options such as `MPTPlayerPlacement`), `MPT_PACE_` / `MPTPace` for
 Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`, tagged `[MPT <feature>]`.
@@ -435,6 +435,8 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- **Renamed** to Better Balanced Multiplayer (formerly Multiplayer Toolkit); the
+  mod id, folder and `MPT` prefixes are unchanged, so saves keep working.
 - **New: Game Balance** (with Gohei427) — competitive balance changes
   behind the new **Game Balance** lobby option (Multiplayer by default, or
   Standard), in
@@ -471,7 +473,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Crises and Crisis Timing (with the crisis list) and
   Triumph Sets per Age, for multiplayer, in Advanced Settings Pro's order.
 - **New: Lobby** — the Game Rules window and Game Options box show the host's
-  Toolkit settings to everyone; memento slots (all three) under each leader;
+  mod settings to everyone; memento slots (all three) under each leader;
   Random buttons for the Game and Map seeds.
 - **New: Match Type** — Free for All, 1v1, 2v2, 3v3 and 4v4; it replaces the
   Player Placement option and sets teams, slots and the map settings.
@@ -533,12 +535,12 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Settings, Game Balance included, stay as they are), on Online speed
   and the Competitive timer.
 - **Resource List** replaces the Custom Resource System: Standard (the game's
-  resources) or All (the Toolkit's resource system, default). Resource Amount
+  resources) or All (the mod's resource system, default). Resource Amount
   and Clusters apply to both, in a new Resource Settings section after Map
   Settings.
 - **Map Zones** replaces Heat Source (Dual Sun and Tilted Axis are now Hot
   Poles and Hot Edge).
-- **Disasters** — the Toolkit's Disasters setting and its per-Age rows are
+- **Disasters** — the mod's Disasters setting and its per-Age rows are
   removed; multiplayer uses the game's Disaster Intensity again, on Game
   Settings in the single-player layout (Disaster and Crisis Settings with
   Crises and Crisis Timing, then the Crises list).

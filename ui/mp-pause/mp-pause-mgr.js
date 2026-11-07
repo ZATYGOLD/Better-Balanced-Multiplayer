@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - multiplayer pause manager (singleton).
+ * Better Balanced Multiplayer - multiplayer pause manager (singleton).
  *
  * Loaded as an in-game UIScript (scope="game"); active only in multiplayer.
  * Mirrors the base game's manager pattern (see base-standard

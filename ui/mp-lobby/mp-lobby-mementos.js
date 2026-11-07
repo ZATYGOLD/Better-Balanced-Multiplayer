@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Lobby memento slots (shell scope).
+ * Better Balanced Multiplayer - Lobby memento slots (shell scope).
  *
  * Each lobby row shows its mementos as small generic diamonds inside the leader
  * dropdown. These become memento slots: the slot base and a "+" when empty, the

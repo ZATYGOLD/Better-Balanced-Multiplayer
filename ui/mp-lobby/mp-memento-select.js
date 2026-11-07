@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Lobby memento picker (shell scope).
+ * Better Balanced Multiplayer - Lobby memento picker (shell scope).
  *
  * The game's single-player memento picker, with its search bar and attribute
  * filter, opened over the multiplayer lobby for the local player (as Advanced

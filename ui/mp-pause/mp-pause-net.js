@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - cross-client commands over multiplayer chat (in-game scope).
+ * Better Balanced Multiplayer - cross-client commands over multiplayer chat (in-game scope).
  *
  * Civilization VII has no custom UI network message, but it has chat
  * (Network.sendChat and the "MultiplayerChat" event). As in the Civ VI

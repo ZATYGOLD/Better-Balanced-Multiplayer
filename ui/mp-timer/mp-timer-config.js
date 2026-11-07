@@ -1,5 +1,5 @@
 /*
- * Multiplayer Toolkit - multiplayer quality-of-life features for Civilization VII.
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
  * Copyright (C) 2026  Zatygold
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
  */
 
 /**
- * Multiplayer Toolkit - Competitive turn timer configuration & constants.
+ * Better Balanced Multiplayer - Competitive turn timer configuration & constants.
  */
 
 /** TurnTimers row registered by config/SetupParameters.sql, as the configuration stores it (hashed). */
