@@ -57,6 +57,7 @@ import { createLogger, isAgeEnding, isObserverPlayer, whenDefined } from '../mpt
 import { TIMER_TYPE, CONFIG, ENGINE } from './mp-timer-config.js';
 
 const COMPETITIVE_HASH = Database.makeHash(TIMER_TYPE);
+let ENGINE_BACKSTOP = 0;   // read once the configuration is readable
 const DEFINE_RETRY_MS = 200;
 const DEFINE_RETRIES = 50;
 
@@ -76,6 +77,11 @@ function isHumanParticipant(player) {
 /** The configured timer type, or undefined while the configuration is unreadable. */
 function configuredTimerType() {
   try { return Configuration.getGame().turnTimerType; } catch (e) { return undefined; }
+}
+
+/** The engine's own limit for Competitive turns (config/SetupParameters.sql), or 0 when unset. */
+function engineBackstop() {
+  try { return Number(Configuration.getGame().getValue('TurnTimerTime')) || 0; } catch (e) { return 0; }
 }
 
 function currentTurn() {
@@ -454,7 +460,7 @@ function defineMptPanelAction(base) {
      */
     mptContext(data) {
       const limit = data?.phaseTimeLimit ?? 0;
-      if (limit <= 0 || limit > CONFIG.maxProxyLimit) return null;
+      if (limit <= 0 || (limit > CONFIG.maxProxyLimit && limit !== ENGINE_BACKSTOP)) return null;
       syncClockFrozen();
       CLOCK.syncTurn();
       if (clockHeld()) CLOCK.restart();   // show a full clock until the capital exists
@@ -575,5 +581,7 @@ function defineMptPanelAction(base) {
 
 whenConfigured((configured) => {
   if (configured !== COMPETITIVE_HASH) return;   // any other timer keeps the game's own panel
+  ENGINE_BACKSTOP = engineBackstop();
+  log(`engine backstop (TurnTimerTime): ${ENGINE_BACKSTOP || 'unset'}s`);
   whenDefined('panel-action', defineMptPanelAction, { retries: DEFINE_RETRIES, intervalMs: DEFINE_RETRY_MS, log });
 });

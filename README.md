@@ -145,8 +145,6 @@ it is On, so single-player games always use the game's own balance.
 
 Always available in multiplayer setup, whatever the option:
 
-- **Advanced Turn Timer Options** — presets for the game's Dynamic timer:
-  Standard, Competitive, Blitz and Casual (base / per city / per unit seconds).
 - A second minor memento slot.
 
 Everything lives in `balance/` (see Project structure).
@@ -218,7 +216,7 @@ Multiplayer-Toolkit/
 │  ├─ mp-pause/                  # pause manager, overlay, chat commands
 │  └─ mp-timer/                  # Competitive timer
 ├─ balance/                      # Multiplayer Balance (everything balance)
-│  ├─ config/                    # Balance option, turn-phase presets, memento slot, victory thresholds
+│  ├─ config/                    # Balance option, memento slot, victory thresholds
 │  ├─ data/                      # one folder per subject (civilizations, leaders, units, policies,
 │  │                             #   religion, resources, victories...): common and per-Age files
 │  └─ text/en_us/                # balance strings
@@ -234,8 +232,8 @@ Multiplayer-Toolkit/
 Each Toolkit feature has a `*-config.js` for settings, and modules patch the
 base UI at runtime (no base-game files are replaced). Identifiers follow the
 Toolkit's naming: `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` /
-`MPT` for Maps (lobby options such as `MPTPlayerPlacement`), `MPT_TURNPHASE_`
-for the Dynamic timer presets. Diagnostics go to `UI.log`.
+`MPT` for Maps (lobby options such as `MPTPlayerPlacement`). Diagnostics go to
+`UI.log`.
 
 ---
 
@@ -245,8 +243,7 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
 
 - **New: Multiplayer Balance** (with Gohei427) — competitive balance changes
   behind the new **Multiplayer Balance** lobby option (On by default), plus
-  Victory Threshold Scaling, Dynamic timer presets
-  (Standard, Competitive, Blitz, Casual) and a second minor memento slot.
+  Victory Threshold Scaling and a second minor memento slot.
 - **New: Maps** (with Gohei427) — Pangaea Ultima, Player Placement (Base,
   Duel, 2v2, 3v3, 4v4), Strict Start Biases and the Custom Resource System.
 - **Multiplayer only** — every Balance and Maps option exists only in
@@ -282,6 +279,8 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
 - **Balance:** Daimyo applies to Infantry only, Iron Working's Codex works with
   or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
   place of Drottkvætt I) and upgrades to Reiði Guðanna.
+- **Competitive timer** — no longer ends every turn at once when Turn Time was
+  never set (the game's own timer backs it up at one hour); retuned per Age.
 - The mod now affects saved games. Gohei427 joins as co-author.
 
 ### 0.6.1

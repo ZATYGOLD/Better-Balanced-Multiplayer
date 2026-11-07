@@ -21,21 +21,6 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTBalanceOptions', 'MPT_BALANCE_OFF', 'LOC_MPT_BALANCE_OFF_NAME', 'LOC_MPT_BALANCE_OFF_DESC', 20);
 
 --*******************************************************
---***************** TURN TIMER SETTINGS *****************
---*******************************************************
--- Advanced Turn Timer Options: presets for the Dynamic timer (data/turn-phases/turn-phases.xml).
-INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, SupportsLANMultiplayer, SupportsInternetMultiplayer, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
-    VALUES
-        ('TurnPhaseType', 'LOC_GAME_TURNPHASE_TYPE', 'LOC_GAME_TURNPHASE_DESC', 'StandardTurnPhases', 1, 'MPT_TURNPHASE_STANDARD', 'Game', 'TurnPhaseType', 'GameOptions', 0, 1, 0, 0, 41);
-
-INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
-    VALUES
-        ('StandardTurnPhases', 'MPT_TURNPHASE_STANDARD', 'LOC_MPT_TURNPHASE_STANDARD', 'LOC_MPT_TURNPHASE_STANDARD_DESC', 50),
-        ('StandardTurnPhases', 'MPT_TURNPHASE_BLITZ', 'LOC_MPT_TURNPHASE_BLITZ', 'LOC_MPT_TURNPHASE_BLITZ_DESC', 60),
-        ('StandardTurnPhases', 'MPT_TURNPHASE_CASUAL', 'LOC_MPT_TURNPHASE_CASUAL', 'LOC_MPT_TURNPHASE_CASUAL_DESC', 70),
-        ('StandardTurnPhases', 'MPT_TURNPHASE_COP', 'LOC_MPT_TURNPHASE_COP', 'LOC_MPT_TURNPHASE_COP_DESC', 80);
-
---*******************************************************
 --***************** VICTORY SETTINGS ********************
 --*******************************************************
 -- Victory Threshold Scaling (data/victories/thresholds-*.sql).

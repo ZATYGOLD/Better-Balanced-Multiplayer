@@ -107,6 +107,7 @@
 					<Item>ui/mpt-shared/mpt-util.js</Item>
 					<Item>ui/mp-lobby/mp-lobby-config.js</Item>
 					<Item>ui/mp-lobby/mp-lobby-tooltips.js</Item>
+					<Item>ui/mp-timer/mp-timer-lobby.js</Item>
 					<Item>ui/mp-keybind/mp-keybind.js</Item>
 				</UIScripts>
 			</Actions>
@@ -212,16 +213,6 @@
 					<Item>balance/text/en_us/antiquity.xml</Item>
 					<Item>balance/text/en_us/mementos.xml</Item>
 				</UpdateText>
-			</Actions>
-		</ActionGroup>
-
-		<!-- Turn-phase presets: always, they back the lobby's default turn phase. -->
-		<ActionGroup id="mpt-balance-turn-phases" scope="game" criteria="always">
-			<Properties><LoadOrder>201</LoadOrder></Properties>
-			<Actions>
-				<UpdateDatabase>
-					<Item>balance/data/turn-phases/turn-phases.xml</Item>
-				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
 
