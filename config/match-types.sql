@@ -3,10 +3,10 @@
 --*******************************************************
 -- One choice that sets a match's map settings (multiplayer only), in Multiplayer
 -- Settings on Game Settings, after Hidden Game. The Match Type decides Player
--- Placement (maps/config/map-options.sql keeps it hidden): Free for All places
+-- Placement (config/maps.sql keeps it hidden): Free for All places
 -- over the whole map and leaves the other settings to the host. Choosing one also
 -- returns every other game setting to Standard, on Online speed and the
--- Competitive timer (ui/mp-setup/match-type-rules.js).
+-- Competitive timer (ui/setup/match-type-rules.js).
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
         ('MPTMatchType', 'LOC_MPT_MATCHTYPE_NAME', 'LOC_MPT_MATCHTYPE_DESC', 'MPTMatchTypes', 0, 'MPT_MATCHTYPE_FFA', 'Game', 'MPTMatchType', 'LobbyOptions', 'SimpleSelectWindow', 0, 0, 25);

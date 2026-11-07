@@ -1452,29 +1452,29 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateText>
-					<Item>text/en_us/mpt-text.xml</Item>
+					<Item>text/en_us/shared.xml</Item>
 				</UpdateText>
 				<UpdateDatabase>
-					<Item>config/setup-parameters.sql</Item>
-					<Item>config/mpt-input.sql</Item>
+					<Item>config/timer.sql</Item>
+					<Item>config/input.sql</Item>
 					<Item>config/match-types.sql</Item>
 				</UpdateDatabase>
 				<UIScripts>
-					<Item>ui/mpt-shared/mpt-util.js</Item>
-					<Item>ui/mpt-shared/mpt-setup.js</Item>
-					<Item>ui/mp-lobby/mp-lobby-config.js</Item>
-					<Item>ui/mp-lobby/mp-lobby-tooltips.js</Item>
-					<Item>ui/mp-lobby/mp-lobby-rules.js</Item>
-					<Item>ui/mp-lobby/mp-memento-select-model.js</Item>
-					<Item>ui/mp-lobby/mp-memento-select.js</Item>
-					<Item>ui/mp-lobby/mp-lobby-mementos.js</Item>
-					<Item>ui/mp-setup/setup-layout.js</Item>
-					<Item>ui/mp-setup/setup-tabs.js</Item>
-					<Item>ui/mp-setup/match-type-rules.js</Item>
-					<Item>ui/mp-timer/mp-timer-config.js</Item>
-					<Item>ui/mp-timer/mp-timer-lobby.js</Item>
-					<Item>ui/mp-keybind/mp-keybind-config.js</Item>
-					<Item>ui/mp-keybind/mp-keybind.js</Item>
+					<Item>ui/shared/mpt-util.js</Item>
+					<Item>ui/shared/mpt-setup.js</Item>
+					<Item>ui/lobby/mp-lobby-config.js</Item>
+					<Item>ui/lobby/mp-lobby-tooltips.js</Item>
+					<Item>ui/lobby/mp-lobby-rules.js</Item>
+					<Item>ui/lobby/mp-memento-select-model.js</Item>
+					<Item>ui/lobby/mp-memento-select.js</Item>
+					<Item>ui/lobby/mp-lobby-mementos.js</Item>
+					<Item>ui/setup/setup-layout.js</Item>
+					<Item>ui/setup/setup-tabs.js</Item>
+					<Item>ui/setup/match-type-rules.js</Item>
+					<Item>ui/timer/mp-timer-config.js</Item>
+					<Item>ui/timer/mp-timer-lobby.js</Item>
+					<Item>ui/keybind/mp-keybind-config.js</Item>
+					<Item>ui/keybind/mp-keybind.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1485,10 +1485,10 @@
 			<Properties><LoadOrder>500</LoadOrder></Properties>
 			<Actions>
 				<UpdateText>
-					<Item>text/en_us/mpt-text.xml</Item>
+					<Item>text/en_us/shared.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>ui/mpt-shared/mpt-util.js</Item>
+					<Item>ui/shared/mpt-util.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1499,26 +1499,26 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UIScripts>
-					<Item>ui/mp-pause/mp-pause-config.js</Item>
-					<Item>ui/mp-pause/mp-pause.scss.js</Item>
-					<Item>ui/mp-pause/mp-pause-overlay.js</Item>
-					<Item>ui/mp-pause/mp-pause-net.js</Item>
-					<Item>ui/mp-pause/mp-pause-mgr.js</Item>
-					<Item>ui/mp-keybind/mp-keybind-config.js</Item>
-					<Item>ui/mp-keybind/mp-keybind.js</Item>
-					<Item>ui/mp-keybind/mp-hotkeys.js</Item>
+					<Item>ui/pause/mp-pause-config.js</Item>
+					<Item>ui/pause/mp-pause.scss.js</Item>
+					<Item>ui/pause/mp-pause-overlay.js</Item>
+					<Item>ui/pause/mp-pause-net.js</Item>
+					<Item>ui/pause/mp-pause-mgr.js</Item>
+					<Item>ui/keybind/mp-keybind-config.js</Item>
+					<Item>ui/keybind/mp-keybind.js</Item>
+					<Item>ui/keybind/mp-hotkeys.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME: COMPETITIVE TIMER (ui/mp-timer/) ****************************-->
+<!--*************************** GAME: COMPETITIVE TIMER (ui/timer/) *******************************-->
 
 		<ActionGroup id="mpt-competitive-timer-script" scope="game" criteria="always">
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UIScripts>
-					<Item>ui/mp-timer/mp-timer-config.js</Item>
-					<Item>ui/mp-timer/mp-timer.js</Item>
+					<Item>ui/timer/mp-timer-config.js</Item>
+					<Item>ui/timer/mp-timer.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1562,17 +1562,17 @@
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAME BALANCE (balance/) ********************************************-->
+<!--*************************** GAME BALANCE (data/balance/) **************************************-->
 
 		<!-- Lobby option and its text: always (the shell loads before any game option is known). -->
 		<ActionGroup id="mpt-balance-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>200</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>balance/config/setup-parameters.sql</Item>
+					<Item>config/balance.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/setup.xml</Item>
+					<Item>text/en_us/balance-setup.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1582,7 +1582,7 @@
 			<Properties><LoadOrder>200</LoadOrder></Properties>
 			<Actions>
 				<UpdateText>
-					<Item>balance/text/en_us/setup.xml</Item>
+					<Item>text/en_us/balance-setup.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1592,32 +1592,32 @@
 			<Properties><LoadOrder>201</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>balance/data/mementos/mementos-gameeffects.xml</Item>
-					<Item>balance/data/mementos/mementos.sql</Item>
-					<Item>balance/data/city-states/city-states-gameeffects.xml</Item>
-					<Item>balance/data/settlements/raze-rules-gameeffects.xml</Item>
-					<Item>balance/data/settlements/raze-rules.xml</Item>
-					<Item>balance/data/settlements/raze-dominion-gameeffects.xml</Item>
-					<Item>balance/data/settlements/raze-dominion.xml</Item>
-					<Item>balance/data/leaders/leaders-gameeffects.xml</Item>
-					<Item>balance/data/leaders/leaders.xml</Item>
-					<Item>balance/data/diplomacy/diplomacy.xml</Item>
-					<Item>balance/data/diplomacy/diplomacy-gameeffects.xml</Item>
-					<Item>balance/data/leaders/leaders.sql</Item>
-					<Item>balance/data/units/units.sql</Item>
-					<Item>balance/data/victories/victory-scoring.xml</Item>
-					<Item>balance/data/happiness/happiness.xml</Item>
-					<Item>balance/data/great-works/archaeology.sql</Item>
-					<Item>balance/data/victories/threshold-curve.sql</Item>
-					<Item>balance/data/religion/altar.sql</Item>
-					<Item>balance/data/religion/pantheon-carryover-tags.xml</Item>
+					<Item>data/balance/mementos/mementos-gameeffects.xml</Item>
+					<Item>data/balance/mementos/mementos.sql</Item>
+					<Item>data/balance/city-states/city-states-gameeffects.xml</Item>
+					<Item>data/balance/settlements/raze-rules-gameeffects.xml</Item>
+					<Item>data/balance/settlements/raze-rules.xml</Item>
+					<Item>data/balance/settlements/raze-dominion-gameeffects.xml</Item>
+					<Item>data/balance/settlements/raze-dominion.xml</Item>
+					<Item>data/balance/leaders/leaders-gameeffects.xml</Item>
+					<Item>data/balance/leaders/leaders.xml</Item>
+					<Item>data/balance/diplomacy/diplomacy.xml</Item>
+					<Item>data/balance/diplomacy/diplomacy-gameeffects.xml</Item>
+					<Item>data/balance/leaders/leaders.sql</Item>
+					<Item>data/balance/units/units.sql</Item>
+					<Item>data/balance/victories/victory-scoring.xml</Item>
+					<Item>data/balance/happiness/happiness.xml</Item>
+					<Item>data/balance/great-works/archaeology.sql</Item>
+					<Item>data/balance/victories/threshold-curve.sql</Item>
+					<Item>data/balance/religion/altar.sql</Item>
+					<Item>data/balance/religion/pantheon-carryover-tags.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/general.xml</Item>
-					<Item>balance/text/en_us/modern.xml</Item>
-					<Item>balance/text/en_us/exploration.xml</Item>
-					<Item>balance/text/en_us/antiquity.xml</Item>
-					<Item>balance/text/en_us/mementos.xml</Item>
+					<Item>text/en_us/balance-general.xml</Item>
+					<Item>text/en_us/balance-modern.xml</Item>
+					<Item>text/en_us/balance-exploration.xml</Item>
+					<Item>text/en_us/balance-antiquity.xml</Item>
+					<Item>text/en_us/balance-mementos.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1626,43 +1626,43 @@
 			<Properties><LoadOrder>210</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>balance/data/civilizations/antiquity.sql</Item>
-					<Item>balance/data/civilizations/exploration.sql</Item>
-					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/antiquity.sql</Item>
-					<Item>balance/data/constructibles/buildings.sql</Item>
-					<Item>balance/data/city-states/city-states.sql</Item>
-					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
-					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
-					<Item>balance/data/policies/traditions.xml</Item>
-					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes-gameeffects.xml</Item>
-					<Item>balance/data/constructibles/constructibles.xml</Item>
-					<Item>balance/data/constructibles/constructibles-gameeffects.xml</Item>
-					<Item>balance/data/civilizations/antiquity.xml</Item>
-					<Item>balance/data/attributes/antiquity-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes.sql</Item>
-					<Item>balance/data/governments/antiquity-gameeffects.xml</Item>
-					<Item>balance/data/governments/antiquity.xml</Item>
-					<Item>balance/data/units/antiquity.sql</Item>
-					<Item>balance/data/units/antiquity-tier3.xml</Item>
-					<Item>balance/data/progression-trees/antiquity-gameeffects.xml</Item>
-					<Item>balance/data/progression-trees/antiquity.xml</Item>
-					<Item>balance/data/resources/antiquity.xml</Item>
-					<Item>balance/data/resources/antiquity-gameeffects.xml</Item>
-					<Item>balance/data/policies/antiquity.xml</Item>
-					<Item>balance/data/religion/pantheons.xml</Item>
-					<Item>balance/data/religion/pantheons-gameeffects.xml</Item>
-					<Item>balance/data/religion/pantheon-records.xml</Item>
-					<Item>balance/data/religion/pantheon-records-gameeffects.xml</Item>
+					<Item>data/balance/civilizations/antiquity.sql</Item>
+					<Item>data/balance/civilizations/exploration.sql</Item>
+					<Item>data/balance/civilizations/modern.sql</Item>
+					<Item>data/balance/constructibles/antiquity.sql</Item>
+					<Item>data/balance/constructibles/buildings.sql</Item>
+					<Item>data/balance/city-states/city-states.sql</Item>
+					<Item>data/balance/triumphs/triumphs-gameeffects.xml</Item>
+					<Item>data/balance/triumphs/triumphs.sql</Item>
+					<Item>data/balance/policies/traditions-gameeffects.xml</Item>
+					<Item>data/balance/policies/traditions.xml</Item>
+					<Item>data/balance/civilizations/civilizations-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes-gameeffects.xml</Item>
+					<Item>data/balance/constructibles/constructibles.xml</Item>
+					<Item>data/balance/constructibles/constructibles-gameeffects.xml</Item>
+					<Item>data/balance/civilizations/antiquity.xml</Item>
+					<Item>data/balance/attributes/antiquity-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes.sql</Item>
+					<Item>data/balance/governments/antiquity-gameeffects.xml</Item>
+					<Item>data/balance/governments/antiquity.xml</Item>
+					<Item>data/balance/units/antiquity.sql</Item>
+					<Item>data/balance/units/antiquity-tier3.xml</Item>
+					<Item>data/balance/progression-trees/antiquity-gameeffects.xml</Item>
+					<Item>data/balance/progression-trees/antiquity.xml</Item>
+					<Item>data/balance/resources/antiquity.xml</Item>
+					<Item>data/balance/resources/antiquity-gameeffects.xml</Item>
+					<Item>data/balance/policies/antiquity.xml</Item>
+					<Item>data/balance/religion/pantheons.xml</Item>
+					<Item>data/balance/religion/pantheons-gameeffects.xml</Item>
+					<Item>data/balance/religion/pantheon-records.xml</Item>
+					<Item>data/balance/religion/pantheon-records-gameeffects.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/resources-antiquity.xml</Item>
+					<Item>text/en_us/balance-resources-antiquity.xml</Item>
 				</UpdateText>
 				<UpdateIcons>
-					<Item>balance/data/icons/units-antiquity.xml</Item>
-					<Item>balance/data/icons/pantheons.xml</Item>
+					<Item>data/balance/icons/units-antiquity.xml</Item>
+					<Item>data/balance/icons/pantheons.xml</Item>
 				</UpdateIcons>
 			</Actions>
 		</ActionGroup>
@@ -1671,38 +1671,38 @@
 			<Properties><LoadOrder>220</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>balance/data/civilizations/antiquity.sql</Item>
-					<Item>balance/data/civilizations/exploration.sql</Item>
-					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/exploration.sql</Item>
-					<Item>balance/data/constructibles/buildings.sql</Item>
-					<Item>balance/data/city-states/city-states.sql</Item>
-					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
-					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
-					<Item>balance/data/policies/traditions.xml</Item>
-					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes-gameeffects.xml</Item>
-					<Item>balance/data/constructibles/constructibles.xml</Item>
-					<Item>balance/data/constructibles/constructibles-gameeffects.xml</Item>
-					<Item>balance/data/civilizations/exploration.xml</Item>
-					<Item>balance/data/attributes/exploration-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes.sql</Item>
-					<Item>balance/data/governments/exploration-gameeffects.xml</Item>
-					<Item>balance/data/governments/exploration.xml</Item>
-					<Item>balance/data/constructibles/exploration.xml</Item>
-					<Item>balance/data/resources/exploration.xml</Item>
-					<Item>balance/data/resources/exploration-gameeffects.xml</Item>
-					<Item>balance/data/resources/exploration.sql</Item>
-					<Item>balance/data/progression-trees/exploration.xml</Item>
-					<Item>balance/data/policies/exploration.xml</Item>
-					<Item>balance/data/units/exploration.sql</Item>
-					<Item>balance/data/religion/pantheon-carryover.xml</Item>
-					<Item>balance/data/religion/pantheon-carryover-gameeffects.xml</Item>
-					<Item>balance/data/diplomacy/war-weariness.xml</Item>
+					<Item>data/balance/civilizations/antiquity.sql</Item>
+					<Item>data/balance/civilizations/exploration.sql</Item>
+					<Item>data/balance/civilizations/modern.sql</Item>
+					<Item>data/balance/constructibles/exploration.sql</Item>
+					<Item>data/balance/constructibles/buildings.sql</Item>
+					<Item>data/balance/city-states/city-states.sql</Item>
+					<Item>data/balance/triumphs/triumphs-gameeffects.xml</Item>
+					<Item>data/balance/triumphs/triumphs.sql</Item>
+					<Item>data/balance/policies/traditions-gameeffects.xml</Item>
+					<Item>data/balance/policies/traditions.xml</Item>
+					<Item>data/balance/civilizations/civilizations-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes-gameeffects.xml</Item>
+					<Item>data/balance/constructibles/constructibles.xml</Item>
+					<Item>data/balance/constructibles/constructibles-gameeffects.xml</Item>
+					<Item>data/balance/civilizations/exploration.xml</Item>
+					<Item>data/balance/attributes/exploration-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes.sql</Item>
+					<Item>data/balance/governments/exploration-gameeffects.xml</Item>
+					<Item>data/balance/governments/exploration.xml</Item>
+					<Item>data/balance/constructibles/exploration.xml</Item>
+					<Item>data/balance/resources/exploration.xml</Item>
+					<Item>data/balance/resources/exploration-gameeffects.xml</Item>
+					<Item>data/balance/resources/exploration.sql</Item>
+					<Item>data/balance/progression-trees/exploration.xml</Item>
+					<Item>data/balance/policies/exploration.xml</Item>
+					<Item>data/balance/units/exploration.sql</Item>
+					<Item>data/balance/religion/pantheon-carryover.xml</Item>
+					<Item>data/balance/religion/pantheon-carryover-gameeffects.xml</Item>
+					<Item>data/balance/diplomacy/war-weariness.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/resources-exploration.xml</Item>
+					<Item>text/en_us/balance-resources-exploration.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1711,59 +1711,57 @@
 			<Properties><LoadOrder>230</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>balance/data/civilizations/antiquity.sql</Item>
-					<Item>balance/data/civilizations/exploration.sql</Item>
-					<Item>balance/data/civilizations/modern.sql</Item>
-					<Item>balance/data/constructibles/modern.sql</Item>
-					<Item>balance/data/constructibles/buildings.sql</Item>
-					<Item>balance/data/city-states/city-states.sql</Item>
-					<Item>balance/data/triumphs/triumphs-gameeffects.xml</Item>
-					<Item>balance/data/triumphs/triumphs.sql</Item>
-					<Item>balance/data/progression-trees/modern.sql</Item>
-					<Item>balance/data/policies/traditions-gameeffects.xml</Item>
-					<Item>balance/data/policies/traditions.xml</Item>
-					<Item>balance/data/civilizations/civilizations-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes-gameeffects.xml</Item>
-					<Item>balance/data/constructibles/constructibles.xml</Item>
-					<Item>balance/data/constructibles/constructibles-gameeffects.xml</Item>
-					<Item>balance/data/civilizations/modern.xml</Item>
-					<Item>balance/data/attributes/modern-gameeffects.xml</Item>
-					<Item>balance/data/attributes/attributes.sql</Item>
-					<Item>balance/data/governments/modern-gameeffects.xml</Item>
-					<Item>balance/data/governments/modern.xml</Item>
-					<Item>balance/data/constructibles/modern.xml</Item>
-					<Item>balance/data/progression-trees/modern.xml</Item>
-					<Item>balance/data/resources/modern.xml</Item>
-					<Item>balance/data/resources/modern-gameeffects.xml</Item>
-					<Item>balance/data/policies/modern.xml</Item>
-					<Item>balance/data/units/modern.sql</Item>
-					<Item>balance/data/religion/pantheon-carryover.xml</Item>
-					<Item>balance/data/religion/pantheon-carryover-gameeffects.xml</Item>
-					<Item>balance/data/diplomacy/war-weariness.xml</Item>
+					<Item>data/balance/civilizations/antiquity.sql</Item>
+					<Item>data/balance/civilizations/exploration.sql</Item>
+					<Item>data/balance/civilizations/modern.sql</Item>
+					<Item>data/balance/constructibles/modern.sql</Item>
+					<Item>data/balance/constructibles/buildings.sql</Item>
+					<Item>data/balance/city-states/city-states.sql</Item>
+					<Item>data/balance/triumphs/triumphs-gameeffects.xml</Item>
+					<Item>data/balance/triumphs/triumphs.sql</Item>
+					<Item>data/balance/progression-trees/modern.sql</Item>
+					<Item>data/balance/policies/traditions-gameeffects.xml</Item>
+					<Item>data/balance/policies/traditions.xml</Item>
+					<Item>data/balance/civilizations/civilizations-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes-gameeffects.xml</Item>
+					<Item>data/balance/constructibles/constructibles.xml</Item>
+					<Item>data/balance/constructibles/constructibles-gameeffects.xml</Item>
+					<Item>data/balance/civilizations/modern.xml</Item>
+					<Item>data/balance/attributes/modern-gameeffects.xml</Item>
+					<Item>data/balance/attributes/attributes.sql</Item>
+					<Item>data/balance/governments/modern-gameeffects.xml</Item>
+					<Item>data/balance/governments/modern.xml</Item>
+					<Item>data/balance/constructibles/modern.xml</Item>
+					<Item>data/balance/progression-trees/modern.xml</Item>
+					<Item>data/balance/resources/modern.xml</Item>
+					<Item>data/balance/resources/modern-gameeffects.xml</Item>
+					<Item>data/balance/policies/modern.xml</Item>
+					<Item>data/balance/units/modern.sql</Item>
+					<Item>data/balance/religion/pantheon-carryover.xml</Item>
+					<Item>data/balance/religion/pantheon-carryover-gameeffects.xml</Item>
+					<Item>data/balance/diplomacy/war-weariness.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>balance/text/en_us/resources-modern.xml</Item>
+					<Item>text/en_us/balance-resources-modern.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** MAPS (maps/) *******************************************************-->
+<!--*************************** MAPS (maps/, data/maps/) ******************************************-->
 
 		<ActionGroup id="mpt-maps-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>300</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/config/map-options.sql</Item>
-					<Item>maps/config/map-settings.sql</Item>
-					<Item>maps/config/multiplayer-only.sql</Item>
+					<Item>config/maps.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>maps/text/en_us/map-options.xml</Item>
-					<Item>maps/text/en_us/map-settings.xml</Item>
+					<Item>text/en_us/maps-options.xml</Item>
+					<Item>text/en_us/maps-settings.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>maps/ui/multiplayer-defaults.js</Item>
-					<Item>maps/ui/match-slots.js</Item>
+					<Item>ui/maps/multiplayer-defaults.js</Item>
+					<Item>ui/maps/match-slots.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1775,13 +1773,13 @@
 					<Item>{multiplayer-toolkit}maps/scripts/global-team-starts.js</Item>
 				</MapGenScripts>
 				<UIScripts>
-					<Item>maps/ui/start-bias-warning.js</Item>
+					<Item>ui/maps/start-bias-warning.js</Item>
 				</UIScripts>
 				<UpdateDatabase>
-					<Item>maps/data/islands.xml</Item>
+					<Item>data/maps/islands.xml</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>maps/text/en_us/map-options.xml</Item>
+					<Item>text/en_us/maps-options.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1791,7 +1789,7 @@
 			<Properties><LoadOrder>304</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/duel-map.sql</Item>
+					<Item>data/maps/duel-map.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1800,7 +1798,7 @@
 			<Properties><LoadOrder>305</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/chosen-size-tiny.sql</Item>
+					<Item>data/maps/chosen-size-tiny.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1808,7 +1806,7 @@
 			<Properties><LoadOrder>305</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/chosen-size-small.sql</Item>
+					<Item>data/maps/chosen-size-small.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1817,7 +1815,7 @@
 			<Properties><LoadOrder>310</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/resource-system.sql</Item>
+					<Item>data/maps/resource-system.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1826,14 +1824,14 @@
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/effects-reset.sql</Item>
-					<Item>maps/data/effects-common.xml</Item>
-					<Item>maps/data/effects-antiquity.sql</Item>
-					<Item>maps/data/effects-antiquity.xml</Item>
-					<Item>maps/data/classes-antiquity.sql</Item>
+					<Item>data/maps/effects-reset.sql</Item>
+					<Item>data/maps/effects-common.xml</Item>
+					<Item>data/maps/effects-antiquity.sql</Item>
+					<Item>data/maps/effects-antiquity.xml</Item>
+					<Item>data/maps/classes-antiquity.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>maps/text/en_us/resources.xml</Item>
+					<Item>text/en_us/maps-resources.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1842,14 +1840,14 @@
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/effects-reset.sql</Item>
-					<Item>maps/data/effects-common.xml</Item>
-					<Item>maps/data/effects-exploration.sql</Item>
-					<Item>maps/data/effects-exploration.xml</Item>
-					<Item>maps/data/classes-exploration.sql</Item>
+					<Item>data/maps/effects-reset.sql</Item>
+					<Item>data/maps/effects-common.xml</Item>
+					<Item>data/maps/effects-exploration.sql</Item>
+					<Item>data/maps/effects-exploration.xml</Item>
+					<Item>data/maps/classes-exploration.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>maps/text/en_us/resources.xml</Item>
+					<Item>text/en_us/maps-resources.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1858,24 +1856,24 @@
 			<Properties><LoadOrder>350</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/effects-reset.sql</Item>
-					<Item>maps/data/effects-common.xml</Item>
-					<Item>maps/data/effects-modern.sql</Item>
-					<Item>maps/data/effects-modern.xml</Item>
-					<Item>maps/data/classes-modern.sql</Item>
+					<Item>data/maps/effects-reset.sql</Item>
+					<Item>data/maps/effects-common.xml</Item>
+					<Item>data/maps/effects-modern.sql</Item>
+					<Item>data/maps/effects-modern.xml</Item>
+					<Item>data/maps/classes-modern.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>maps/text/en_us/resources.xml</Item>
+					<Item>text/en_us/maps-resources.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
 
-		<!-- Map Settings (maps/config/map-settings.sql), after the map sizes so counts scale the final values. -->
+		<!-- Map Settings (config/maps.sql), after the map sizes so counts scale the final values. -->
 		<ActionGroup id="mpt-maps-natural-wonders" scope="game" criteria="maps-natural-wonders">
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/spawn-fixes.sql</Item>
+					<Item>data/maps/natural-wonders/spawn-fixes.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1883,7 +1881,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/count-none.sql</Item>
+					<Item>data/maps/natural-wonders/count-none.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1891,7 +1889,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/count-half.sql</Item>
+					<Item>data/maps/natural-wonders/count-half.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1899,7 +1897,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/count-more.sql</Item>
+					<Item>data/maps/natural-wonders/count-more.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1907,7 +1905,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/count-double.sql</Item>
+					<Item>data/maps/natural-wonders/count-double.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1915,7 +1913,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-barrier-reef.sql</Item>
+					<Item>data/maps/natural-wonders/off-barrier-reef.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1923,7 +1921,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-bermuda-triangle.sql</Item>
+					<Item>data/maps/natural-wonders/off-bermuda-triangle.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1931,7 +1929,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-grand-canyon.sql</Item>
+					<Item>data/maps/natural-wonders/off-grand-canyon.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1939,7 +1937,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-great-blue-hole.sql</Item>
+					<Item>data/maps/natural-wonders/off-great-blue-hole.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1947,7 +1945,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-gullfoss.sql</Item>
+					<Item>data/maps/natural-wonders/off-gullfoss.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1955,7 +1953,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-hoerikwaggo.sql</Item>
+					<Item>data/maps/natural-wonders/off-hoerikwaggo.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1963,7 +1961,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-iguazu-falls.sql</Item>
+					<Item>data/maps/natural-wonders/off-iguazu-falls.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1971,7 +1969,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-kilimanjaro.sql</Item>
+					<Item>data/maps/natural-wonders/off-kilimanjaro.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1979,7 +1977,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-machapuchare.sql</Item>
+					<Item>data/maps/natural-wonders/off-machapuchare.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1987,7 +1985,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-mapu-a-vaea-blowholes.sql</Item>
+					<Item>data/maps/natural-wonders/off-mapu-a-vaea-blowholes.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1995,7 +1993,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-mount-everest.sql</Item>
+					<Item>data/maps/natural-wonders/off-mount-everest.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2003,7 +2001,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-mount-fuji.sql</Item>
+					<Item>data/maps/natural-wonders/off-mount-fuji.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2011,7 +2009,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-nachi-falls.sql</Item>
+					<Item>data/maps/natural-wonders/off-nachi-falls.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2019,7 +2017,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-redwood-forest.sql</Item>
+					<Item>data/maps/natural-wonders/off-redwood-forest.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2027,7 +2025,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-seongsan-ilchulbong.sql</Item>
+					<Item>data/maps/natural-wonders/off-seongsan-ilchulbong.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2035,7 +2033,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-thera.sql</Item>
+					<Item>data/maps/natural-wonders/off-thera.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2043,7 +2041,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-torres-del-paine.sql</Item>
+					<Item>data/maps/natural-wonders/off-torres-del-paine.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2051,7 +2049,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-uluru.sql</Item>
+					<Item>data/maps/natural-wonders/off-uluru.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2059,7 +2057,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-valley-of-flowers.sql</Item>
+					<Item>data/maps/natural-wonders/off-valley-of-flowers.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2067,7 +2065,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-vihren.sql</Item>
+					<Item>data/maps/natural-wonders/off-vihren.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2075,7 +2073,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-vinicunca.sql</Item>
+					<Item>data/maps/natural-wonders/off-vinicunca.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2083,7 +2081,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/natural-wonders/off-zhangjiajie.sql</Item>
+					<Item>data/maps/natural-wonders/off-zhangjiajie.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2091,7 +2089,7 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/lakes/less.sql</Item>
+					<Item>data/maps/lakes/less.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2099,25 +2097,25 @@
 			<Properties><LoadOrder>320</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>maps/data/lakes/more.sql</Item>
+					<Item>data/maps/lakes/more.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** PACE (pace/) *******************************************************-->
+<!--*************************** PACE (data/pace/) *************************************************-->
 
 		<!-- Lobby options, text and Pace Set rules: always (the shell loads before any game option is known). -->
 		<ActionGroup id="mpt-pace-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/config/pace-settings.sql</Item>
+					<Item>config/pace.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>pace/text/en_us/pace-settings.xml</Item>
+					<Item>text/en_us/pace.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>pace/ui/pace-rules.js</Item>
+					<Item>ui/pace/pace-rules.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -2129,7 +2127,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/90.sql</Item>
+					<Item>data/pace/age-length/90.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2137,7 +2135,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/100.sql</Item>
+					<Item>data/pace/age-length/100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2145,7 +2143,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/110.sql</Item>
+					<Item>data/pace/age-length/110.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2153,7 +2151,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/120.sql</Item>
+					<Item>data/pace/age-length/120.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2161,7 +2159,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/130.sql</Item>
+					<Item>data/pace/age-length/130.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2169,7 +2167,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/140.sql</Item>
+					<Item>data/pace/age-length/140.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2177,7 +2175,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/150.sql</Item>
+					<Item>data/pace/age-length/150.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2185,7 +2183,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/160.sql</Item>
+					<Item>data/pace/age-length/160.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2193,7 +2191,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/170.sql</Item>
+					<Item>data/pace/age-length/170.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2201,7 +2199,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/180.sql</Item>
+					<Item>data/pace/age-length/180.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2209,7 +2207,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/190.sql</Item>
+					<Item>data/pace/age-length/190.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2217,7 +2215,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/200.sql</Item>
+					<Item>data/pace/age-length/200.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2225,7 +2223,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/220.sql</Item>
+					<Item>data/pace/age-length/220.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2233,7 +2231,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/240.sql</Item>
+					<Item>data/pace/age-length/240.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2241,7 +2239,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/260.sql</Item>
+					<Item>data/pace/age-length/260.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2249,7 +2247,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/280.sql</Item>
+					<Item>data/pace/age-length/280.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2257,7 +2255,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/300.sql</Item>
+					<Item>data/pace/age-length/300.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2265,7 +2263,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/90.sql</Item>
+					<Item>data/pace/age-length/90.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2273,7 +2271,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/100.sql</Item>
+					<Item>data/pace/age-length/100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2281,7 +2279,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/110.sql</Item>
+					<Item>data/pace/age-length/110.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2289,7 +2287,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/120.sql</Item>
+					<Item>data/pace/age-length/120.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2297,7 +2295,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/130.sql</Item>
+					<Item>data/pace/age-length/130.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2305,7 +2303,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/140.sql</Item>
+					<Item>data/pace/age-length/140.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2313,7 +2311,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/150.sql</Item>
+					<Item>data/pace/age-length/150.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2321,7 +2319,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/160.sql</Item>
+					<Item>data/pace/age-length/160.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2329,7 +2327,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/170.sql</Item>
+					<Item>data/pace/age-length/170.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2337,7 +2335,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/180.sql</Item>
+					<Item>data/pace/age-length/180.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2345,7 +2343,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/190.sql</Item>
+					<Item>data/pace/age-length/190.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2353,7 +2351,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/200.sql</Item>
+					<Item>data/pace/age-length/200.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2361,7 +2359,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/220.sql</Item>
+					<Item>data/pace/age-length/220.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2369,7 +2367,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/240.sql</Item>
+					<Item>data/pace/age-length/240.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2377,7 +2375,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/260.sql</Item>
+					<Item>data/pace/age-length/260.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2385,7 +2383,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/280.sql</Item>
+					<Item>data/pace/age-length/280.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2393,7 +2391,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/300.sql</Item>
+					<Item>data/pace/age-length/300.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2401,7 +2399,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/90.sql</Item>
+					<Item>data/pace/age-length/90.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2409,7 +2407,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/100.sql</Item>
+					<Item>data/pace/age-length/100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2417,7 +2415,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/110.sql</Item>
+					<Item>data/pace/age-length/110.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2425,7 +2423,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/120.sql</Item>
+					<Item>data/pace/age-length/120.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2433,7 +2431,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/130.sql</Item>
+					<Item>data/pace/age-length/130.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2441,7 +2439,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/140.sql</Item>
+					<Item>data/pace/age-length/140.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2449,7 +2447,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/150.sql</Item>
+					<Item>data/pace/age-length/150.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2457,7 +2455,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/160.sql</Item>
+					<Item>data/pace/age-length/160.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2465,7 +2463,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/170.sql</Item>
+					<Item>data/pace/age-length/170.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2473,7 +2471,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/180.sql</Item>
+					<Item>data/pace/age-length/180.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2481,7 +2479,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/190.sql</Item>
+					<Item>data/pace/age-length/190.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2489,7 +2487,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/200.sql</Item>
+					<Item>data/pace/age-length/200.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2497,7 +2495,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/220.sql</Item>
+					<Item>data/pace/age-length/220.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2505,7 +2503,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/240.sql</Item>
+					<Item>data/pace/age-length/240.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2513,7 +2511,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/260.sql</Item>
+					<Item>data/pace/age-length/260.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2521,7 +2519,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/280.sql</Item>
+					<Item>data/pace/age-length/280.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2529,7 +2527,7 @@
 			<Properties><LoadOrder>1100000001</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-length/300.sql</Item>
+					<Item>data/pace/age-length/300.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2539,7 +2537,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/slow.sql</Item>
+					<Item>data/pace/age-progression/slow.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2547,7 +2545,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/balanced-antiquity.sql</Item>
+					<Item>data/pace/age-progression/balanced-antiquity.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2555,7 +2553,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/fast.sql</Item>
+					<Item>data/pace/age-progression/fast.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2563,7 +2561,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/slow.sql</Item>
+					<Item>data/pace/age-progression/slow.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2571,7 +2569,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/balanced-exploration.sql</Item>
+					<Item>data/pace/age-progression/balanced-exploration.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2579,7 +2577,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/fast.sql</Item>
+					<Item>data/pace/age-progression/fast.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2587,7 +2585,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/slow.sql</Item>
+					<Item>data/pace/age-progression/slow.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2595,7 +2593,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/balanced-modern.sql</Item>
+					<Item>data/pace/age-progression/balanced-modern.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2603,7 +2601,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/age-progression/fast.sql</Item>
+					<Item>data/pace/age-progression/fast.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2613,7 +2611,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/minus-25.sql</Item>
+					<Item>data/pace/technology-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2621,7 +2619,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-25.sql</Item>
+					<Item>data/pace/technology-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2629,7 +2627,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-50.sql</Item>
+					<Item>data/pace/technology-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2637,7 +2635,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-100.sql</Item>
+					<Item>data/pace/technology-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2645,7 +2643,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/minus-25.sql</Item>
+					<Item>data/pace/technology-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2653,7 +2651,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-25.sql</Item>
+					<Item>data/pace/technology-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2661,7 +2659,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-50.sql</Item>
+					<Item>data/pace/technology-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2669,7 +2667,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-100.sql</Item>
+					<Item>data/pace/technology-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2677,7 +2675,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/minus-25.sql</Item>
+					<Item>data/pace/technology-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2685,7 +2683,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-25.sql</Item>
+					<Item>data/pace/technology-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2693,7 +2691,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-50.sql</Item>
+					<Item>data/pace/technology-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2701,7 +2699,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/technology-cost/plus-100.sql</Item>
+					<Item>data/pace/technology-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2711,7 +2709,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/minus-25.sql</Item>
+					<Item>data/pace/civic-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2719,7 +2717,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-25.sql</Item>
+					<Item>data/pace/civic-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2727,7 +2725,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-50.sql</Item>
+					<Item>data/pace/civic-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2735,7 +2733,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-100.sql</Item>
+					<Item>data/pace/civic-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2743,7 +2741,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/minus-25.sql</Item>
+					<Item>data/pace/civic-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2751,7 +2749,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-25.sql</Item>
+					<Item>data/pace/civic-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2759,7 +2757,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-50.sql</Item>
+					<Item>data/pace/civic-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2767,7 +2765,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-100.sql</Item>
+					<Item>data/pace/civic-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2775,7 +2773,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/minus-25.sql</Item>
+					<Item>data/pace/civic-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2783,7 +2781,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-25.sql</Item>
+					<Item>data/pace/civic-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2791,7 +2789,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-50.sql</Item>
+					<Item>data/pace/civic-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2799,7 +2797,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/civic-cost/plus-100.sql</Item>
+					<Item>data/pace/civic-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2809,7 +2807,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/minus-25.sql</Item>
+					<Item>data/pace/building-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2817,7 +2815,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-25.sql</Item>
+					<Item>data/pace/building-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2825,7 +2823,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-50.sql</Item>
+					<Item>data/pace/building-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2833,7 +2831,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-100.sql</Item>
+					<Item>data/pace/building-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2841,7 +2839,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/minus-25.sql</Item>
+					<Item>data/pace/building-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2849,7 +2847,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-25.sql</Item>
+					<Item>data/pace/building-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2857,7 +2855,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-50.sql</Item>
+					<Item>data/pace/building-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2865,7 +2863,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-100.sql</Item>
+					<Item>data/pace/building-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2873,7 +2871,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/minus-25.sql</Item>
+					<Item>data/pace/building-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2881,7 +2879,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-25.sql</Item>
+					<Item>data/pace/building-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2889,7 +2887,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-50.sql</Item>
+					<Item>data/pace/building-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2897,7 +2895,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/building-cost/plus-100.sql</Item>
+					<Item>data/pace/building-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2907,7 +2905,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/minus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2915,7 +2913,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2923,7 +2921,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-50.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2931,7 +2929,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-100.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2939,7 +2937,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/minus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2947,7 +2945,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2955,7 +2953,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-50.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2963,7 +2961,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-100.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2971,7 +2969,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/minus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2979,7 +2977,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-25.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2987,7 +2985,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-50.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -2995,7 +2993,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-project-cost/plus-100.sql</Item>
+					<Item>data/pace/victory-project-cost/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3005,7 +3003,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/plus-25.sql</Item>
+					<Item>data/pace/settlement-growth/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3013,7 +3011,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-25.sql</Item>
+					<Item>data/pace/settlement-growth/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3021,7 +3019,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-50.sql</Item>
+					<Item>data/pace/settlement-growth/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3029,7 +3027,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/plus-25.sql</Item>
+					<Item>data/pace/settlement-growth/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3037,7 +3035,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-25.sql</Item>
+					<Item>data/pace/settlement-growth/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3045,7 +3043,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-50.sql</Item>
+					<Item>data/pace/settlement-growth/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3053,7 +3051,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/plus-25.sql</Item>
+					<Item>data/pace/settlement-growth/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3061,7 +3059,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-25.sql</Item>
+					<Item>data/pace/settlement-growth/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3069,7 +3067,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/settlement-growth/minus-50.sql</Item>
+					<Item>data/pace/settlement-growth/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3079,7 +3077,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/plus-25.sql</Item>
+					<Item>data/pace/road-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3087,7 +3085,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-25.sql</Item>
+					<Item>data/pace/road-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3095,7 +3093,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-50.sql</Item>
+					<Item>data/pace/road-speed/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3103,7 +3101,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/plus-25.sql</Item>
+					<Item>data/pace/road-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3111,7 +3109,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-25.sql</Item>
+					<Item>data/pace/road-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3119,7 +3117,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-50.sql</Item>
+					<Item>data/pace/road-speed/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3127,7 +3125,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/plus-25.sql</Item>
+					<Item>data/pace/road-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3135,7 +3133,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-25.sql</Item>
+					<Item>data/pace/road-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3143,7 +3141,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/road-speed/minus-50.sql</Item>
+					<Item>data/pace/road-speed/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3153,8 +3151,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/minus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3162,8 +3160,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3171,8 +3169,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-50.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3180,7 +3178,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/instant.sql</Item>
+					<Item>data/pace/trade-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3188,8 +3186,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/minus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3197,8 +3195,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3206,8 +3204,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-50.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3215,7 +3213,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/instant.sql</Item>
+					<Item>data/pace/trade-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3223,8 +3221,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/minus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3232,7 +3230,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3240,8 +3238,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-25.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3249,8 +3247,8 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/trade-speed/travel.sql</Item>
-					<Item>pace/data/trade-speed/plus-50.sql</Item>
+					<Item>data/pace/trade-speed/travel.sql</Item>
+					<Item>data/pace/trade-speed/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3260,7 +3258,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/plus-100-antiquity.sql</Item>
+					<Item>data/pace/raze-speed/plus-100-antiquity.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3268,7 +3266,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/instant.sql</Item>
+					<Item>data/pace/raze-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3276,7 +3274,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/plus-100-exploration.sql</Item>
+					<Item>data/pace/raze-speed/plus-100-exploration.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3284,7 +3282,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/instant.sql</Item>
+					<Item>data/pace/raze-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3292,7 +3290,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/plus-100-modern.sql</Item>
+					<Item>data/pace/raze-speed/plus-100-modern.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3300,7 +3298,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/raze-speed/instant.sql</Item>
+					<Item>data/pace/raze-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3310,7 +3308,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/culture-low.sql</Item>
+					<Item>data/pace/victory-thresholds/culture-low.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3318,7 +3316,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/culture-high.sql</Item>
+					<Item>data/pace/victory-thresholds/culture-high.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3326,7 +3324,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/economic-low.sql</Item>
+					<Item>data/pace/victory-thresholds/economic-low.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3334,7 +3332,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/economic-high.sql</Item>
+					<Item>data/pace/victory-thresholds/economic-high.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3342,7 +3340,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/military-low.sql</Item>
+					<Item>data/pace/victory-thresholds/military-low.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3350,25 +3348,25 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>pace/data/victory-thresholds/military-high.sql</Item>
+					<Item>data/pace/victory-thresholds/military-high.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** GAMEPLAY (gameplay/) ***********************************************-->
+<!--*************************** GAMEPLAY (data/gameplay/) *****************************************-->
 
 		<!-- Lobby options, text and setup rules: always (the shell loads before any game option is known). -->
 		<ActionGroup id="mpt-gameplay-shell" scope="shell" criteria="always">
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/config/gameplay-settings.sql</Item>
+					<Item>config/gameplay.sql</Item>
 				</UpdateDatabase>
 				<UpdateText>
-					<Item>gameplay/text/en_us/gameplay-settings.xml</Item>
+					<Item>text/en_us/gameplay.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>gameplay/ui/gameplay-rules.js</Item>
+					<Item>ui/gameplay/gameplay-rules.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -3378,7 +3376,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateText>
-					<Item>gameplay/text/en_us/gameplay-settings.xml</Item>
+					<Item>text/en_us/gameplay.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -3390,7 +3388,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-distance/less.sql</Item>
+					<Item>data/gameplay/settlement-distance/less.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3398,7 +3396,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-distance/more.sql</Item>
+					<Item>data/gameplay/settlement-distance/more.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3408,7 +3406,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/1.sql</Item>
+					<Item>data/gameplay/settlement-limit/1.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3416,7 +3414,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/2.sql</Item>
+					<Item>data/gameplay/settlement-limit/2.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3424,7 +3422,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/4.sql</Item>
+					<Item>data/gameplay/settlement-limit/4.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3432,7 +3430,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/5.sql</Item>
+					<Item>data/gameplay/settlement-limit/5.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3440,7 +3438,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/6.sql</Item>
+					<Item>data/gameplay/settlement-limit/6.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3448,7 +3446,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/7.sql</Item>
+					<Item>data/gameplay/settlement-limit/7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3456,7 +3454,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/8.sql</Item>
+					<Item>data/gameplay/settlement-limit/8.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3464,7 +3462,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/9.sql</Item>
+					<Item>data/gameplay/settlement-limit/9.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3472,7 +3470,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/10.sql</Item>
+					<Item>data/gameplay/settlement-limit/10.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3480,7 +3478,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/11.sql</Item>
+					<Item>data/gameplay/settlement-limit/11.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3488,7 +3486,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/12.sql</Item>
+					<Item>data/gameplay/settlement-limit/12.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3496,7 +3494,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/13.sql</Item>
+					<Item>data/gameplay/settlement-limit/13.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3504,7 +3502,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/14.sql</Item>
+					<Item>data/gameplay/settlement-limit/14.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3512,7 +3510,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/15.sql</Item>
+					<Item>data/gameplay/settlement-limit/15.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3520,7 +3518,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/16.sql</Item>
+					<Item>data/gameplay/settlement-limit/16.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3528,7 +3526,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/17.sql</Item>
+					<Item>data/gameplay/settlement-limit/17.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3536,7 +3534,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/18.sql</Item>
+					<Item>data/gameplay/settlement-limit/18.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3544,7 +3542,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/19.sql</Item>
+					<Item>data/gameplay/settlement-limit/19.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3552,7 +3550,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/20.sql</Item>
+					<Item>data/gameplay/settlement-limit/20.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3560,7 +3558,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/21.sql</Item>
+					<Item>data/gameplay/settlement-limit/21.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3568,7 +3566,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/22.sql</Item>
+					<Item>data/gameplay/settlement-limit/22.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3576,7 +3574,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/23.sql</Item>
+					<Item>data/gameplay/settlement-limit/23.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3584,7 +3582,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/24.sql</Item>
+					<Item>data/gameplay/settlement-limit/24.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3592,7 +3590,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/25.sql</Item>
+					<Item>data/gameplay/settlement-limit/25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3600,7 +3598,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/30.sql</Item>
+					<Item>data/gameplay/settlement-limit/30.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3608,7 +3606,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/35.sql</Item>
+					<Item>data/gameplay/settlement-limit/35.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3616,7 +3614,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/40.sql</Item>
+					<Item>data/gameplay/settlement-limit/40.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3624,7 +3622,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/45.sql</Item>
+					<Item>data/gameplay/settlement-limit/45.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3632,7 +3630,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/50.sql</Item>
+					<Item>data/gameplay/settlement-limit/50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3640,7 +3638,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/55.sql</Item>
+					<Item>data/gameplay/settlement-limit/55.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3648,7 +3646,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/60.sql</Item>
+					<Item>data/gameplay/settlement-limit/60.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3656,7 +3654,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/65.sql</Item>
+					<Item>data/gameplay/settlement-limit/65.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3664,7 +3662,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/70.sql</Item>
+					<Item>data/gameplay/settlement-limit/70.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3672,7 +3670,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/75.sql</Item>
+					<Item>data/gameplay/settlement-limit/75.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3680,7 +3678,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/1.sql</Item>
+					<Item>data/gameplay/settlement-limit/1.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3688,7 +3686,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/2.sql</Item>
+					<Item>data/gameplay/settlement-limit/2.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3696,7 +3694,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/3.sql</Item>
+					<Item>data/gameplay/settlement-limit/3.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3704,7 +3702,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/4.sql</Item>
+					<Item>data/gameplay/settlement-limit/4.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3712,7 +3710,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/5.sql</Item>
+					<Item>data/gameplay/settlement-limit/5.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3720,7 +3718,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/6.sql</Item>
+					<Item>data/gameplay/settlement-limit/6.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3728,7 +3726,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/7.sql</Item>
+					<Item>data/gameplay/settlement-limit/7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3736,7 +3734,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/9.sql</Item>
+					<Item>data/gameplay/settlement-limit/9.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3744,7 +3742,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/10.sql</Item>
+					<Item>data/gameplay/settlement-limit/10.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3752,7 +3750,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/11.sql</Item>
+					<Item>data/gameplay/settlement-limit/11.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3760,7 +3758,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/12.sql</Item>
+					<Item>data/gameplay/settlement-limit/12.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3768,7 +3766,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/13.sql</Item>
+					<Item>data/gameplay/settlement-limit/13.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3776,7 +3774,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/14.sql</Item>
+					<Item>data/gameplay/settlement-limit/14.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3784,7 +3782,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/15.sql</Item>
+					<Item>data/gameplay/settlement-limit/15.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3792,7 +3790,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/16.sql</Item>
+					<Item>data/gameplay/settlement-limit/16.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3800,7 +3798,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/17.sql</Item>
+					<Item>data/gameplay/settlement-limit/17.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3808,7 +3806,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/18.sql</Item>
+					<Item>data/gameplay/settlement-limit/18.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3816,7 +3814,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/19.sql</Item>
+					<Item>data/gameplay/settlement-limit/19.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3824,7 +3822,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/20.sql</Item>
+					<Item>data/gameplay/settlement-limit/20.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3832,7 +3830,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/21.sql</Item>
+					<Item>data/gameplay/settlement-limit/21.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3840,7 +3838,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/22.sql</Item>
+					<Item>data/gameplay/settlement-limit/22.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3848,7 +3846,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/23.sql</Item>
+					<Item>data/gameplay/settlement-limit/23.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3856,7 +3854,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/24.sql</Item>
+					<Item>data/gameplay/settlement-limit/24.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3864,7 +3862,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/25.sql</Item>
+					<Item>data/gameplay/settlement-limit/25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3872,7 +3870,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/30.sql</Item>
+					<Item>data/gameplay/settlement-limit/30.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3880,7 +3878,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/35.sql</Item>
+					<Item>data/gameplay/settlement-limit/35.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3888,7 +3886,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/40.sql</Item>
+					<Item>data/gameplay/settlement-limit/40.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3896,7 +3894,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/45.sql</Item>
+					<Item>data/gameplay/settlement-limit/45.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3904,7 +3902,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/50.sql</Item>
+					<Item>data/gameplay/settlement-limit/50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3912,7 +3910,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/55.sql</Item>
+					<Item>data/gameplay/settlement-limit/55.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3920,7 +3918,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/60.sql</Item>
+					<Item>data/gameplay/settlement-limit/60.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3928,7 +3926,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/65.sql</Item>
+					<Item>data/gameplay/settlement-limit/65.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3936,7 +3934,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/70.sql</Item>
+					<Item>data/gameplay/settlement-limit/70.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3944,7 +3942,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/75.sql</Item>
+					<Item>data/gameplay/settlement-limit/75.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3952,7 +3950,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/1.sql</Item>
+					<Item>data/gameplay/settlement-limit/1.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3960,7 +3958,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/2.sql</Item>
+					<Item>data/gameplay/settlement-limit/2.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3968,7 +3966,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/3.sql</Item>
+					<Item>data/gameplay/settlement-limit/3.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3976,7 +3974,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/4.sql</Item>
+					<Item>data/gameplay/settlement-limit/4.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3984,7 +3982,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/5.sql</Item>
+					<Item>data/gameplay/settlement-limit/5.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -3992,7 +3990,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/6.sql</Item>
+					<Item>data/gameplay/settlement-limit/6.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4000,7 +3998,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/7.sql</Item>
+					<Item>data/gameplay/settlement-limit/7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4008,7 +4006,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/8.sql</Item>
+					<Item>data/gameplay/settlement-limit/8.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4016,7 +4014,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/9.sql</Item>
+					<Item>data/gameplay/settlement-limit/9.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4024,7 +4022,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/10.sql</Item>
+					<Item>data/gameplay/settlement-limit/10.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4032,7 +4030,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/11.sql</Item>
+					<Item>data/gameplay/settlement-limit/11.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4040,7 +4038,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/12.sql</Item>
+					<Item>data/gameplay/settlement-limit/12.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4048,7 +4046,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/13.sql</Item>
+					<Item>data/gameplay/settlement-limit/13.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4056,7 +4054,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/14.sql</Item>
+					<Item>data/gameplay/settlement-limit/14.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4064,7 +4062,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/15.sql</Item>
+					<Item>data/gameplay/settlement-limit/15.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4072,7 +4070,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/17.sql</Item>
+					<Item>data/gameplay/settlement-limit/17.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4080,7 +4078,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/18.sql</Item>
+					<Item>data/gameplay/settlement-limit/18.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4088,7 +4086,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/19.sql</Item>
+					<Item>data/gameplay/settlement-limit/19.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4096,7 +4094,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/20.sql</Item>
+					<Item>data/gameplay/settlement-limit/20.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4104,7 +4102,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/21.sql</Item>
+					<Item>data/gameplay/settlement-limit/21.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4112,7 +4110,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/22.sql</Item>
+					<Item>data/gameplay/settlement-limit/22.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4120,7 +4118,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/23.sql</Item>
+					<Item>data/gameplay/settlement-limit/23.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4128,7 +4126,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/24.sql</Item>
+					<Item>data/gameplay/settlement-limit/24.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4136,7 +4134,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/25.sql</Item>
+					<Item>data/gameplay/settlement-limit/25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4144,7 +4142,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/30.sql</Item>
+					<Item>data/gameplay/settlement-limit/30.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4152,7 +4150,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/35.sql</Item>
+					<Item>data/gameplay/settlement-limit/35.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4160,7 +4158,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/40.sql</Item>
+					<Item>data/gameplay/settlement-limit/40.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4168,7 +4166,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/45.sql</Item>
+					<Item>data/gameplay/settlement-limit/45.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4176,7 +4174,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/50.sql</Item>
+					<Item>data/gameplay/settlement-limit/50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4184,7 +4182,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/55.sql</Item>
+					<Item>data/gameplay/settlement-limit/55.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4192,7 +4190,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/60.sql</Item>
+					<Item>data/gameplay/settlement-limit/60.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4200,7 +4198,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/65.sql</Item>
+					<Item>data/gameplay/settlement-limit/65.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4208,7 +4206,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/70.sql</Item>
+					<Item>data/gameplay/settlement-limit/70.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4216,7 +4214,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/settlement-limit/75.sql</Item>
+					<Item>data/gameplay/settlement-limit/75.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4226,7 +4224,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-count/none.sql</Item>
+					<Item>data/gameplay/independent-count/none.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4234,7 +4232,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-count/less.sql</Item>
+					<Item>data/gameplay/independent-count/less.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4242,7 +4240,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-count/more.sql</Item>
+					<Item>data/gameplay/independent-count/more.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4252,7 +4250,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/4.sql</Item>
+					<Item>data/gameplay/independent-spacing/4.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4260,7 +4258,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/3.sql</Item>
+					<Item>data/gameplay/independent-spacing/3.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4268,7 +4266,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/2.sql</Item>
+					<Item>data/gameplay/independent-spacing/2.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4276,7 +4274,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/7.sql</Item>
+					<Item>data/gameplay/independent-spacing/7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4284,7 +4282,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/7.sql</Item>
+					<Item>data/gameplay/independent-spacing/7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4292,7 +4290,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-spacing/5.sql</Item>
+					<Item>data/gameplay/independent-spacing/5.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4302,8 +4300,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/calm.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-0.sql</Item>
+					<Item>data/gameplay/independent-aggression/calm.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-0.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4311,8 +4309,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/calm.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-2.sql</Item>
+					<Item>data/gameplay/independent-aggression/calm.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-2.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4320,8 +4318,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/calm.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-3.sql</Item>
+					<Item>data/gameplay/independent-aggression/calm.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-3.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4329,8 +4327,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/raging.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-3.sql</Item>
+					<Item>data/gameplay/independent-aggression/raging.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-3.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4338,8 +4336,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/raging.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-5.sql</Item>
+					<Item>data/gameplay/independent-aggression/raging.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-5.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4347,8 +4345,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/independent-aggression/raging.sql</Item>
-					<Item>gameplay/data/independent-aggression/defenders-7.sql</Item>
+					<Item>data/gameplay/independent-aggression/raging.sql</Item>
+					<Item>data/gameplay/independent-aggression/defenders-7.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4358,7 +4356,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-50.sql</Item>
+					<Item>data/gameplay/trade-range/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4366,7 +4364,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-25.sql</Item>
+					<Item>data/gameplay/trade-range/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4374,7 +4372,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-25.sql</Item>
+					<Item>data/gameplay/trade-range/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4382,7 +4380,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-50.sql</Item>
+					<Item>data/gameplay/trade-range/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4390,7 +4388,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-100.sql</Item>
+					<Item>data/gameplay/trade-range/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4398,7 +4396,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-50.sql</Item>
+					<Item>data/gameplay/trade-range/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4406,7 +4404,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-25.sql</Item>
+					<Item>data/gameplay/trade-range/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4414,7 +4412,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-25.sql</Item>
+					<Item>data/gameplay/trade-range/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4422,7 +4420,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-50.sql</Item>
+					<Item>data/gameplay/trade-range/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4430,7 +4428,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-100.sql</Item>
+					<Item>data/gameplay/trade-range/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4438,7 +4436,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-50.sql</Item>
+					<Item>data/gameplay/trade-range/minus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4446,7 +4444,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/minus-25.sql</Item>
+					<Item>data/gameplay/trade-range/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4454,7 +4452,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-25.sql</Item>
+					<Item>data/gameplay/trade-range/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4462,7 +4460,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-50.sql</Item>
+					<Item>data/gameplay/trade-range/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4470,7 +4468,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/trade-range/plus-100.sql</Item>
+					<Item>data/gameplay/trade-range/plus-100.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4480,7 +4478,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/world-wonders/carry-over.sql</Item>
+					<Item>data/gameplay/world-wonders/carry-over.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4490,7 +4488,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/crisis-timing/early.sql</Item>
+					<Item>data/gameplay/crisis-timing/early.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4498,7 +4496,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/crisis-timing/late.sql</Item>
+					<Item>data/gameplay/crisis-timing/late.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4508,8 +4506,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/default.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/default.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4517,8 +4515,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/classic.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/classic.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4526,8 +4524,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/race.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/race.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4535,8 +4533,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/conqueror.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/conqueror.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4544,8 +4542,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/explorer.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/explorer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4553,7 +4551,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4561,8 +4559,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/default.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/default.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4570,8 +4568,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/classic.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/classic.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4579,8 +4577,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/race.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/race.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4588,8 +4586,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/conqueror.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/conqueror.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4597,8 +4595,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/explorer.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/explorer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4606,7 +4604,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4614,8 +4612,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/default.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/default.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4623,8 +4621,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/classic.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/classic.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4632,8 +4630,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/race.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/race.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4641,8 +4639,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/conqueror.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/conqueror.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4650,8 +4648,8 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
-					<Item>gameplay/data/triumph-sets/explorer.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/explorer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4659,7 +4657,7 @@
 			<Properties><LoadOrder>450</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>gameplay/data/triumph-sets/custom.sql</Item>
+					<Item>data/gameplay/triumph-sets/custom.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -4668,6 +4666,6 @@
 <!--*************************** LOCALIZED TEXT ****************************************************-->
 
 	<LocalizedText>
-		<File>text/en_us/mod-info-text.xml</File>
+		<File>text/en_us/mod-info.xml</File>
 	</LocalizedText>
 </Mod>

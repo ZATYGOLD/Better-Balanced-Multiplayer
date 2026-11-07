@@ -1,7 +1,7 @@
 --*******************************************************
 --*************** ADDITIONAL TIMER SCALING **************
 --*******************************************************
--- Schema and defaults of the Competitive timer (ui/mp-timer); every Age's
+-- Schema and defaults of the Competitive timer (ui/timer); every Age's
 -- data/timers/<age>/competitive-timer.sql overrides them (loaded only in that Age).
 --   seconds = Base + PerCity * (most cities) + PerUnit * (most units)
 --           + PerHuman * (living human players, Observers excluded)

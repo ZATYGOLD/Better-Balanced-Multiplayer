@@ -74,7 +74,7 @@ Balance, Kick Vote), the Game and Map seeds, the map, the ruleset and starting A
 hidden settings the mod manages, and every player setting (slots, teams,
 leaders, civilizations, mementos). Only the host's own change applies it;
 opening, rejoining or loading a setup does not
-(`ui/mp-setup/match-type-rules.js`).
+(`ui/setup/match-type-rules.js`).
 
 ---
 
@@ -106,13 +106,13 @@ timer **Competitive**.
 |---|---|
 | Per-Age values (table above) | `data/timers/<age>/competitive-timer.sql` |
 | Schema and defaults | `data/timers/timer-scaling.sql` |
-| Tiers, colours, sounds, grace turn, debug | `ui/mp-timer/mp-timer-config.js` |
+| Tiers, colours, sounds, grace turn, debug | `ui/timer/mp-timer-config.js` |
 
 The engine only computes its built-in timers, so the mod registers a subclass
 of the game's action panel (only when Competitive is chosen) that draws the
 native text and ring from its own wall clock and ends the turn itself. The
 engine times the unknown type by Turn Time, which the mod sets to one hour
-for Competitive (`config/setup-parameters.sql`), a backstop the mod's
+for Competitive (`config/timer.sql`), a backstop the mod's
 clock always beats. Its numbers live in mod-owned tables; the Dynamic timer is
 untouched.
 
@@ -135,7 +135,7 @@ untouched.
   **Drop Disconnected & Resume** to continue without them. Host changes and
   rejoin resyncs also pause, with a notice in the menu.
 
-Settings: `ui/mp-pause/mp-pause-config.js`. The engine exposes only a total
+Settings: `ui/pause/mp-pause-config.js`. The engine exposes only a total
 "want pause" count, so host resume uses hidden chat commands between clients.
 
 ---
@@ -159,7 +159,7 @@ A lens key switches to that lens, or back to the default lens if it is
 already active. Unit keys run the same actions as the unit's buttons (choosing
 a plot when one is needed) and are blocked while paused. Settlement keys select
 and open the previous, next or capital settlement.
-Actions and keys: `config/mpt-input.sql`, `ui/mp-keybind/`.
+Actions and keys: `config/input.sql`, `ui/keybind/`.
 
 ---
 
@@ -179,7 +179,8 @@ player (and every setup screen) keeps the game's own balance and text.
 - A longer victory curve for Culture, Economic and Military victories, scaled
   by the Pace tab's victory thresholds (see Pacing).
 
-Everything lives in `balance/` (see Project structure).
+The option is in `config/balance.sql`, the data in `data/balance/` and the text in
+`text/en_us/balance-*.xml` (see Project structure).
 
 ---
 
@@ -225,7 +226,7 @@ and single-player maps are generated untouched.
     patches of the same resource (2 or up to 3 tiles); the amount stays the same.
 
   Both run in the multiplayer post-process (`maps/scripts/global-team-starts.js`,
-  `maps/maps/global-resource-system.js`), so they apply to every multiplayer
+  `maps/global-resource-system.js`), so they apply to every multiplayer
   map: Pangaea Ultima and the multiplayer copies of the standard maps. The
   game's Earth map keeps the game's resources: Resource Settings hide there and
   Resource List becomes Standard.
@@ -256,7 +257,7 @@ and single-player maps are generated untouched.
   navigable), **Mountains** (Less, Standard, More), then Sea Level. Multiplayer
   lists its own copies of the game's standard maps (same names and order) in
   place of the base scripts; they and Pangaea Ultima run the shared passes in
-  `maps/maps/generation/` (the climate adapted, with permission, from Scrum
+  `maps/generation/` (the climate adapted, with permission, from Scrum
   Lord's Climate Controls). Resources stay the game's, then the Resource List
   and Player Placement run as before. Standard everywhere generates the
   game's own maps.
@@ -270,7 +271,8 @@ and single-player maps are generated untouched.
   end-of-Age countdown, Pangaea Ultima and Standard size (the host can change
   them).
 
-Everything lives in `maps/` (see Project structure).
+The map scripts are in `maps/`, the options in `config/maps.sql`, the data in
+`data/maps/` and the lobby scripts in `ui/maps/` (see Project structure).
 
 ---
 
@@ -308,7 +310,8 @@ Pace tab with the same values and order.
 - **Multiplayer defaults** — new multiplayer games start on Standard Age
   Length, so Pace Set shows Standard.
 
-Everything lives in `pace/`; the Create Game tabs are in `ui/mp-setup/`.
+The settings are in `config/pace.sql`, the data in `data/pace/` and the rules in
+`ui/pace/`; the Create Game tabs are in `ui/setup/`.
 
 ---
 
@@ -359,7 +362,8 @@ Custom.
   Mementos and Age Transition AI Mementos, and its Online 2.0 / Marathon 2.0
   speeds (retired: never offered in setup, kept only for old saves).
 
-Everything lives in `gameplay/` (see Project structure).
+The settings are in `config/gameplay.sql`, the data in `data/gameplay/` and the
+rules in `ui/gameplay/` (see Project structure).
 
 ---
 
@@ -379,7 +383,7 @@ Everything lives in `gameplay/` (see Project structure).
 - **Seed buttons** — Random beside the Game and Map seed fields on the Create
   Game screen.
 
-The scripts live in `ui/mp-lobby/` and `ui/mp-setup/`.
+The scripts live in `ui/lobby/` and `ui/setup/`.
 
 ---
 
@@ -402,43 +406,40 @@ The scripts live in `ui/mp-lobby/` and `ui/mp-setup/`.
 ```
 Multiplayer-Toolkit/
 ├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
-├─ config/                       # lobby DB: Competitive option, keybinds, Match Types
-├─ data/timers/                  # Competitive timer numbers (default + per Age)
-├─ text/en_us/                   # mod info and shared strings
-├─ ui/
-│  ├─ mpt-shared/                # logger, method wrapping, deferred patching, multiplayer check,
-│  │                             #   companion mods, setup poll, defaults and per-Age rows
-│  ├─ mp-keybind/                # keyboard-mapping entries; lens, unit and settlement keys
-│  ├─ mp-lobby/                  # tooltips, countdown, Game Rules summary, memento slots and picker
-│  ├─ mp-pause/                  # pause manager, overlay, chat commands
-│  ├─ mp-setup/                  # Create Game tabs (Pace, Map), section order, seed buttons,
-│  │                             #   Match Type rules
-│  └─ mp-timer/                  # Competitive timer, Game Rules label
-├─ balance/                      # Game Balance (everything balance)
-│  ├─ config/                    # Balance option, memento slot
-│  ├─ data/                      # one folder per subject (civilizations, leaders, units, policies,
-│  │                             #   religion, resources, victories...): common and per-Age files
-│  └─ text/en_us/                # balance strings (setup option; game text with Game Balance on Multiplayer)
-├─ maps/                         # Maps (everything map)
-│  ├─ config/                    # map list, Map Options, Map Settings, multiplayer-only filter
-│  ├─ data/                      # All resource list (per Age), Map Settings, Pangaea Ultima islands
-│  ├─ maps/                      # Pangaea Ultima, strict start biases, start-bias scoring, Resource List
-│  │  ├─ generation/             # climate and terrain passes (Map Settings) shared by the maps below
-│  │  └─ standard/               # multiplayer copies of the game's standard maps
-│  ├─ scripts/                   # multiplayer placement pass, Pangaea Ultima Voronoi settings
-│  ├─ text/en_us/                # map strings
-│  └─ ui/                        # multiplayer defaults, match slots, turn-1 start warning
-├─ pace/                         # Pacing (everything pace)
-│  ├─ config/                    # Pace Set, Pace Settings with per-Age rows, victory thresholds
-│  ├─ data/                      # one folder per setting: a file per value (per Age where it differs)
-│  ├─ text/en_us/                # pace strings
-│  └─ ui/                        # Pace Set, Victory Threshold Set and per-Age rules
-└─ gameplay/                     # Gameplay settings (settlements, independents, trade, wonders,
-   │                             #   crises, Triumph Sets)
-   ├─ config/                    # settings with per-Age rows, Custom Triumph Set
-   ├─ data/                      # one folder per setting: a file per value
-   ├─ text/en_us/                # gameplay strings
-   └─ ui/                        # per-Age and crisis rules
+├─ config/                       # lobby DB, one file per feature
+│  ├─ balance.sql                #   Game Balance option, memento slot
+│  ├─ gameplay.sql               #   Gameplay settings with per-Age rows, Custom Triumph Set
+│  ├─ input.sql                  #   keybind actions and default keys
+│  ├─ maps.sql                   #   map list, Map Options, Map Settings, multiplayer-only filter
+│  ├─ match-types.sql            #   Match Types
+│  ├─ pace.sql                   #   Pace Set, Pace Settings with per-Age rows, victory thresholds
+│  └─ timer.sql                  #   Competitive timer option
+├─ data/                         # game data, loaded by setting and Age
+│  ├─ balance/                   #   one folder per subject (civilizations, leaders, units, policies,
+│  │                             #     religion, resources, victories...): common and per-Age files
+│  ├─ gameplay/                  #   one folder per setting: a file per value
+│  ├─ maps/                      #   All resource list (per Age), Map Settings, Pangaea Ultima islands
+│  ├─ pace/                      #   one folder per setting: a file per value (per Age where it differs)
+│  └─ timers/                    #   Competitive timer numbers (default + per Age)
+├─ maps/                         # map scripts: Pangaea Ultima, strict start biases, start-bias
+│  │                             #   scoring, Resource List
+│  ├─ generation/                #   climate and terrain passes (Map Settings) shared by the maps
+│  ├─ standard/                  #   multiplayer copies of the game's standard maps
+│  └─ scripts/                   #   multiplayer placement pass, Pangaea Ultima Voronoi settings
+├─ text/en_us/                   # strings: mod-info.xml, shared.xml, then one file per feature
+│                                #   (balance-*.xml, gameplay.xml, maps-*.xml, pace.xml)
+└─ ui/
+   ├─ shared/                    # logger, method wrapping, deferred patching, multiplayer check,
+   │                             #   companion mods, setup poll, defaults and per-Age rows
+   ├─ gameplay/                  # Gameplay per-Age and crisis rules
+   ├─ keybind/                   # keyboard-mapping entries; lens, unit and settlement keys
+   ├─ lobby/                     # tooltips, countdown, Game Rules summary, memento slots and picker
+   ├─ maps/                      # multiplayer defaults, match slots, turn-1 start warning
+   ├─ pace/                      # Pace Set, Victory Threshold Set and per-Age rules
+   ├─ pause/                     # pause manager, overlay, chat commands
+   ├─ setup/                     # Create Game tabs (Pace, Map), section order, seed buttons,
+   │                             #   Match Type rules
+   └─ timer/                     # Competitive timer, Game Rules label
 ```
 
 Each feature has a `*-config.js` for settings, and modules patch the
@@ -454,6 +455,8 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- Files reorganized by type: one `config/`, `data/`, `text/` and `ui/` folder,
+  with `maps/` for the map scripts only.
 - **Fixes:** start positions are searched with a step limit instead of a time
   limit, so every machine generates the same starts; Game Balance no longer
   sets Merchants to 1 Movement, and Pace Trade Speed travel settings now work

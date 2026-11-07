@@ -6,10 +6,10 @@
 // scales the game's own; Reefs are then added near coast-biased starts.
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
-import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../maps/global-resource-system.js';
-import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../maps/placement.js';
-import { adjacentPlots } from '../maps/plots.js';
-import { adjustScoreByStartBias, resetStartBiasScores } from '../maps/start-bias-score.js';
+import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../global-resource-system.js';
+import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../placement.js';
+import { adjacentPlots } from '../plots.js';
+import { adjustScoreByStartBias, resetStartBiasScores } from '../start-bias-score.js';
 import {
   getPlayerStrictStartBias,
   isStrictStartBiasEnabled,
@@ -17,7 +17,7 @@ import {
   matchesPlayerStrictStartBiasWithLakeFallback,
   recordStrictStartBiasFailure,
   resetStrictStartBiases
-} from '../maps/strict-start-biases.js';
+} from '../strict-start-biases.js';
 
 // Search limits count nodes, never time, so every machine generates the same starts.
 const JOINT_START_SEARCH_NODE_LIMIT = 750000;
