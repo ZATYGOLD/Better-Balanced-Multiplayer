@@ -14,7 +14,9 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
         ('IndependentPowerOptions', 'LOC_GROUPID_MPT_INDEPENDENTPOWEROPTIONS'),
         ('MPAdvancedIndependentPowerOptions', 'LOC_GROUPID_MPT_INDEPENDENTPOWEROPTIONS'),
         ('TradeOptions', 'LOC_GROUPID_MPT_TRADEOPTIONS'),
-        ('MPAdvancedTradeOptions', 'LOC_GROUPID_MPT_TRADEOPTIONS');
+        ('MPAdvancedTradeOptions', 'LOC_GROUPID_MPT_TRADEOPTIONS'),
+        ('WonderOptions', 'LOC_GROUPID_MPT_WONDEROPTIONS'),
+        ('MPAdvancedWonderOptions', 'LOC_GROUPID_MPT_WONDEROPTIONS');
 
 --*******************************************************
 --***************** SETTLEMENT SETTINGS *****************
@@ -128,6 +130,20 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTGameplayTradeRangeAgeValues', 'MPT_GAMEPLAY_TRADE_RANGE_PLUS_25', 'LOC_MPT_GAMEPLAY_PCT_PLUS_25_NAME', 'LOC_MPT_GAMEPLAY_TRADE_RANGE_PLUS_25_DESC', 40),
         ('MPTGameplayTradeRangeAgeValues', 'MPT_GAMEPLAY_TRADE_RANGE_PLUS_50', 'LOC_MPT_GAMEPLAY_PCT_PLUS_50_NAME', 'LOC_MPT_GAMEPLAY_TRADE_RANGE_PLUS_50_DESC', 50),
         ('MPTGameplayTradeRangeAgeValues', 'MPT_GAMEPLAY_TRADE_RANGE_PLUS_100', 'LOC_MPT_GAMEPLAY_PCT_PLUS_100_NAME', 'LOC_MPT_GAMEPLAY_TRADE_RANGE_PLUS_100_DESC', 60);
+
+--*******************************************************
+--***************** WONDER SETTINGS *********************
+--*******************************************************
+-- World Wonders: Carry Over keeps an earlier Age's World Wonders buildable by the
+-- players who unlocked them, until built (gameplay/data/world-wonders/).
+INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
+    VALUES
+        ('MPTGameplayWorldWonders', 'LOC_MPT_GAMEPLAY_WORLD_WONDERS_NAME', 'LOC_MPT_GAMEPLAY_WORLD_WONDERS_DESC', 'MPTGameplayWorldWondersValues', 0, 'MPT_GAMEPLAY_WORLD_WONDERS_STANDARD', 'Game', 'MPTGameplayWorldWonders', 'WonderOptions', 'MPAdvancedWonderOptions', 0, 0, 5000);
+
+INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
+    VALUES
+        ('MPTGameplayWorldWondersValues', 'MPT_GAMEPLAY_WORLD_WONDERS_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_MPT_GAMEPLAY_WORLD_WONDERS_STANDARD_DESC', 10),
+        ('MPTGameplayWorldWondersValues', 'MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER', 'LOC_MPT_GAMEPLAY_CARRY_OVER_NAME', 'LOC_MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC', 20);
 
 --*******************************************************
 --***************** DISASTER AND CRISIS SETTINGS *******

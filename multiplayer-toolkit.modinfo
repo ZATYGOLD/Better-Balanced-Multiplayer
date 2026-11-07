@@ -1339,6 +1339,11 @@
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayTradeRangeModern</ConfigurationId><Value>MPT_GAMEPLAY_TRADE_RANGE_PLUS_100</Value></ConfigurationValueMatches>
 		</Criteria>
 
+		<!-- World Wonders. -->
+		<Criteria id="gameplay-world-wonders-carry-over">
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayWorldWonders</ConfigurationId><Value>MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER</Value></ConfigurationValueMatches>
+		</Criteria>
+
 		<!-- Crisis Timing. -->
 		<Criteria id="gameplay-crisis-timing-early">
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTGameplayCrisisTiming</ConfigurationId><Value>MPT_GAMEPLAY_CRISIS_TIMING_EARLY</Value></ConfigurationValueMatches>
@@ -4460,6 +4465,16 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>gameplay/data/trade-range/plus-100.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+
+		<!-- World Wonders, in every Age. -->
+		<ActionGroup id="mpt-gameplay-world-wonders-carry-over" scope="game" criteria="gameplay-world-wonders-carry-over">
+			<Properties><LoadOrder>450</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>gameplay/data/world-wonders/carry-over.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>

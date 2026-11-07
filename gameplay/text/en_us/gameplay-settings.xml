@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Gameplay: Settlement, Independent Power, Trade, Crisis and Triumph settings -->
+	<!-- Gameplay: Settlement, Independent Power, Trade, Wonder, Crisis and Triumph settings -->
 		<Row Tag="LOC_GROUPID_MPT_CRISESOPTIONS"><Text>Crises</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_SETTLEMENTOPTIONS"><Text>Settlement Settings</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_INDEPENDENTPOWEROPTIONS"><Text>Independent Power Settings</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_TRADEOPTIONS"><Text>Trade Settings</Text></Row>
+		<Row Tag="LOC_GROUPID_MPT_WONDEROPTIONS"><Text>Wonder Settings</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_SETTLEMENT_DISTANCE_NAME"><Text>Settlement Distance</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_SETTLEMENT_DISTANCE_DESC"><Text>Sets the minimum distance between settlements.</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_LESS_NAME"><Text>Less</Text></Row>
@@ -55,6 +56,11 @@
 		<Row Tag="LOC_MPT_GAMEPLAY_TRADE_RANGE_PLUS_100_DESC"><Text>Double the range.[nn][BLIST][LI] Antiquity: 20 land, 60 sea[LI] Exploration: 30 land, 90 sea[LI] Modern: 40 land, 120 sea[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_TRADE_RANGE_CUSTOM_DESC"><Text>Set the Trade Range for each age individually.</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_TRADE_RANGE_AGE_DESC"><Text>Sets this age's Trade Range.[n]Applies only when Trade Range is set to Custom.</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_WORLD_WONDERS_NAME"><Text>World Wonders</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_WORLD_WONDERS_DESC"><Text>Sets whether World Wonders from a previous age can still be built.</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_WORLD_WONDERS_STANDARD_DESC"><Text>The game's own rules: World Wonders can only be built in their own age.</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_CARRY_OVER_NAME"><Text>Carry Over</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC"><Text>World Wonders you unlocked in a previous age stay buildable in later ages until someone builds them.[n]A few one-time effects tied to a wonder's own age are not granted.</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_CRISES_NAME"><Text>Crises</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_CRISES_DESC"><Text>Enables or disables all crises.[n]Off turns off every crisis in the Crises list.</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_CRISES_ON_DESC"><Text>Every crisis in the selection below can occur.</Text></Row>

@@ -320,6 +320,7 @@ Custom.
 | **Settlement Limit** | Standard (3/8/16), Less (1/4/10), More (5/12/20), Custom (1-75 per Age) | Advanced: Settlement Settings |
 | **Independent Amount / Spacing / Aggression** | Standard, None/Less/More, Less/More, Calm/Raging | Advanced: Independent Power Settings, with Initial Independent Hostility |
 | **Trade Range** | Standard, -50% to +100%, Custom (per Age) | Advanced: Trade Settings |
+| **World Wonders** | Standard, Carry Over | Advanced: Wonder Settings |
 | **Crises** | On, Off (every crisis in the Crises list) | Game Settings: Disaster and Crisis Settings |
 | **Crisis Timing** | Standard, Off, Early, Late | Game Settings: Disaster and Crisis Settings |
 | **Triumph Set** | the game's sets, plus Custom | Game Settings: Triumph Settings |
@@ -334,6 +335,19 @@ Custom.
   crises are off.
 - **Triumph Sets** — the Triumph Set stays on Game Settings; its per-Age rows
   sit on the Advanced tab and follow it (Custom leaves them to the host).
+- **World Wonders** (the mod's own, not from Advanced Settings Pro) — with
+  Carry Over, a World Wonder from a previous Age stays buildable for each
+  player who unlocked it (researched its technology or civic) in that Age,
+  until anyone builds it; the game still allows one of each wonder per world.
+  Each Age records the wonders a player unlocks as narrative tags (player
+  state the game keeps across Ages); later Ages unlock those wonders again for
+  the tag holders and clear their Age, as the game does for buildings that
+  stay buildable in every Age. Pure game data: nothing runs in a script. The
+  wonders keep their base cost and effects; a few one-time effects that exist
+  only in the wonder's own Age (Nalanda's Codex, the Great Lighthouse's
+  Merchant, House of Wisdom's Relics, Notre-Dame's celebration, Havana
+  Harbor's Treasure Fleets) are not granted, and a carried wonder may count
+  as a current-Age wonder for the game's checks.
 - Not carried over: Advanced Settings Pro's Unit Settings (Settler and
   Treasure Convoy Speed, Military and Civilian Unit Cost), its Resources
   density (Resource Settings has its own Resource Amount), AI
@@ -414,8 +428,8 @@ Multiplayer-Toolkit/
 │  ├─ data/                      # one folder per setting: a file per value (per Age where it differs)
 │  ├─ text/en_us/                # pace strings
 │  └─ ui/                        # Pace Set, Victory Threshold Set and per-Age rules
-└─ gameplay/                     # Gameplay settings (settlements, independents, trade, crises,
-   │                             #   Triumph Sets)
+└─ gameplay/                     # Gameplay settings (settlements, independents, trade, wonders,
+   │                             #   crises, Triumph Sets)
    ├─ config/                    # settings with per-Age rows, Custom Triumph Set
    ├─ data/                      # one folder per setting: a file per value
    ├─ text/en_us/                # gameplay strings
@@ -472,6 +486,9 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Age) and Distance, Independent Amount, Spacing and Aggression, Trade Range (per Age),
   Crises and Crisis Timing (with the crisis list) and
   Triumph Sets per Age, for multiplayer, in Advanced Settings Pro's order.
+- **New: World Wonders** — Carry Over keeps the World Wonders you unlocked in
+  a previous Age buildable in later Ages until someone builds them
+  (multiplayer only; Advanced tab, new Wonder Settings section).
 - **New: Lobby** — the Game Rules window and Game Options box show the host's
   mod settings to everyone; memento slots (all three) under each leader;
   Random buttons for the Game and Map seeds.
