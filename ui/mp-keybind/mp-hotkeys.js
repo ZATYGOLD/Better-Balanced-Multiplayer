@@ -19,19 +19,22 @@
  */
 
 /**
- * Multiplayer Toolkit - Lens and Commander hotkeys (game scope).
+ * Multiplayer Toolkit - Lens, unit and city hotkeys (game scope).
  *
  * Lens keys switch the map lens like the mini-map's lens panel (pressing the
- * key of the active lens returns to the default lens). Commander keys run the
- * same unit commands as the unit action buttons, through the game's own target
- * selection when the command needs a plot.
+ * key of the active lens returns to the default lens). Unit keys (Found City,
+ * Commander actions) run the same operations and commands as the unit action
+ * buttons, through the game's own target selection when one needs a plot.
+ * City keys select the previous, next or capital settlement, as the city
+ * screen's arrows do.
  */
 import { InterfaceMode } from 'fs://game/core/ui/interface-modes/interface-modes.js';
 import LensManager from 'fs://game/core/ui/lenses/lens-manager.js';
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
 import { UnitActionHandlers } from 'fs://game/base-standard/ui/unit-interact/unit-action-handlers.js';
+import { GetNextCityID, GetPrevCityID } from 'fs://game/base-standard/ui/production-chooser/production-chooser-helpers.js';
 import { createLogger } from '../mpt-shared/mpt-util.js';
-import { COMMAND_ACTIONS, DEFAULT_LENS, LENS_ACTIONS } from './mp-keybind-config.js';
+import { CITY_ACTIONS, DEFAULT_LENS, LENS_ACTIONS, UNIT_ACTIONS } from './mp-keybind-config.js';
 
 const log = createLogger('hotkeys');
 
@@ -40,28 +43,51 @@ function toggleLens(lens) {
   LensManager.setActiveLens(target);
 }
 
-function runUnitCommand(commandType) {
+/** Ability-less first, then each ability that grants the action (Search and the like require one). */
+function abilityChoices(actionType) {
+  const abilities = [...GameInfo.UnitAbilities].filter((a) => a.OperationType === actionType || a.CommandType === actionType);
+  return [-1, ...abilities.map((a) => a.$index)];
+}
+
+/** The selected unit's operation (UNITOPERATION_*) or command (UNITCOMMAND_*), as its action button would run it. */
+function runUnitAction(actionType) {
   const unitId = UI.Player.getHeadSelectedUnit();
   if (!ComponentID.isValid(unitId)) return;
-  const args = {};
-  if (!Game.UnitCommands.canStart(unitId, commandType, args, false)?.Success) return;
-  if (UnitActionHandlers.doesActionHaveHandler(commandType) && UnitActionHandlers.doesActionRequireTargetPlot(commandType)) {
-    UnitActionHandlers.switchToActionInterfaceMode(commandType, { UnitID: unitId, CommandArguments: args });
+  const requests = actionType.startsWith('UNITOPERATION_') ? Game.UnitOperations : Game.UnitCommands;
+  const args = abilityChoices(actionType)
+    .map((ability) => ({ X: -9999, Y: -9999, UnitAbilityType: ability }))   // no target plot
+    .find((choice) => requests.canStart(unitId, actionType, choice, false)?.Success);
+  if (!args) return;
+  if (UnitActionHandlers.doesActionHaveHandler(actionType) && UnitActionHandlers.doesActionRequireTargetPlot(actionType)) {
+    UnitActionHandlers.switchToActionInterfaceMode(actionType, { UnitID: unitId, CommandArguments: args });
   } else {
-    Game.UnitCommands.sendRequest(unitId, commandType, args);
+    requests.sendRequest(unitId, actionType, args);
   }
+}
+
+/** Select the previous, next or capital settlement; from no selected settlement, previous/next start at the capital. */
+function selectCity(which) {
+  const capital = Players.get(GameContext.localPlayerID)?.Cities?.getCapital()?.id;
+  const current = UI.Player.getHeadSelectedCity();
+  let target = capital;
+  if (which !== 'capital' && ComponentID.isValid(current)) target = which === 'next' ? GetNextCityID(current) : GetPrevCityID(current);
+  if (!ComponentID.isValid(target)) return;
+  UI.Player.lookAtID(target, 0);
+  UI.Player.selectCity(target);
 }
 
 function onEngineInput(event) {
   const detail = event?.detail;
   if (!detail || detail.status !== InputActionStatuses.FINISH) return;
   const lens = LENS_ACTIONS[detail.name];
-  const command = COMMAND_ACTIONS[detail.name];
-  if (!lens && !command) return;
+  const unitAction = UNIT_ACTIONS[detail.name];
+  const city = CITY_ACTIONS[detail.name];
+  if (!lens && !unitAction && !city) return;
   if (!InterfaceMode.allowsHotKeys()) return;
   try {
     if (lens) toggleLens(lens);
-    else runUnitCommand(command);
+    else if (unitAction) runUnitAction(unitAction);
+    else selectCity(city);
   } catch (e) { log(`${detail.name} failed: ${e}`); }
 }
 

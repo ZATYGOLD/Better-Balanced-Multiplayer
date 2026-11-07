@@ -112,14 +112,21 @@ it had the same action:
 | Action | Default |
 |---|---|
 | Toggle Trade / Continent / Appeal / Settler / Discovery Lens | 1 / 2 / 3 / 4 / 5 |
+| Found Settlement | B |
+| Search (Scout) | J |
+| Previous / Next Settlement, Capital | [ / ] / \ |
 | Unit Join / Leave Commander | Ctrl+Z / Ctrl+X |
 | Commander Pack / Unpack Units | Ctrl+Q / Ctrl+W |
 | Pause Game (multiplayer) | P |
 | Government (game action) | F7 (was L) |
+| Advisors (game action) | F8 (was B) |
+| Trade Routes / Religion (game actions) | F4 (was U) / L (was J) |
+| Attributes (game action) | F10 (was P) |
 
 A lens key switches to that lens, or back to the default lens if it is
-already active. Commander keys run the same commands as the unit's buttons
-(choosing a plot when the command needs one) and are blocked while paused.
+already active. Unit keys run the same actions as the unit's buttons (choosing
+a plot when one is needed) and are blocked while paused. Settlement keys select
+and open the previous, next or capital settlement.
 Actions and keys: `config/mpt-input.sql`, `ui/mp-keybind/`.
 
 ---
@@ -262,8 +269,10 @@ for the Dynamic timer presets. Diagnostics go to `UI.log`.
   settings.
 - **Match slots** — team matches open exactly their players on their teams
   (unused slots closed), plus a Spectator slot the Spectator claims.
-- **New: Keybinds** — lens toggles (1–5), Commander join/leave/pack/unpack
-  (Ctrl+Z/X/Q/W) and Government on F7, all rebindable.
+- **New: Keybinds** — lens toggles (1–5), Found Settlement (B), Search (J),
+  Previous/Next Settlement and Capital ([ ] \), Commander join/leave/pack/unpack
+  (Ctrl+Z/X/Q/W); game screens on Civilization VI's keys (Government F7, Trade
+  Routes F4, Religion L), Advisors F8 and Attributes F10. All rebindable.
 - **Player feedback:** Militaristic's garrisoned-Commander node keeps its
   Science and Culture after an Age transition; Kiem gives Science again (it
   duplicated the Artilleryman's Gloves); Modern Coal works when slotted in a

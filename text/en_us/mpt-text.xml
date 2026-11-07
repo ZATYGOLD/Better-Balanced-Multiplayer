@@ -32,6 +32,16 @@
 		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY"><Text>Found Settlement</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS"><Text>Previous Settlement</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT"><Text>Next Settlement</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL"><Text>Capital</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Added by Multiplayer Toolkit.</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_SEARCH"><Text>Search (Scout)</Text></Row>
+		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Added by Multiplayer Toolkit.</Text></Row>
 		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>

@@ -34,15 +34,24 @@ const LENS_ACTIONS = {
 };
 const DEFAULT_LENS = 'fxs-default-lens';
 
-/** Commander actions: action id -> unit command for the selected unit. */
-const COMMAND_ACTIONS = {
+/** Unit actions: action id -> unit operation or command for the selected unit. */
+const UNIT_ACTIONS = {
+  'mpt-unit-found-city': 'UNITOPERATION_FOUND_CITY',
+  'mpt-unit-search': 'UNITOPERATION_SEARCH',
   'mpt-unit-join-commander': 'UNITCOMMAND_ADD_TO_ARMY',
   'mpt-unit-leave-commander': 'UNITCOMMAND_REMOVE_FROM_ARMY',
   'mpt-commander-pack': 'UNITCOMMAND_PACK_ARMY',
   'mpt-commander-unpack': 'UNITCOMMAND_UNPACK_ARMY'
 };
 
-/** Every Toolkit action listed in the keyboard-mapping options. */
-const KEYBIND_ACTIONS = [PAUSE_ACTION_ID, ...Object.keys(LENS_ACTIONS), ...Object.keys(COMMAND_ACTIONS)];
+/** City actions: action id -> which settlement to select (its screen opens). */
+const CITY_ACTIONS = {
+  'mpt-city-previous': 'previous',
+  'mpt-city-next': 'next',
+  'mpt-city-capital': 'capital'
+};
 
-export { COMMAND_ACTIONS, DEFAULT_LENS, KEYBIND_ACTIONS, LENS_ACTIONS, PAUSE_ACTION_ID };
+/** Every Toolkit action listed in the keyboard-mapping options. */
+const KEYBIND_ACTIONS = [PAUSE_ACTION_ID, ...Object.keys(LENS_ACTIONS), ...Object.keys(UNIT_ACTIONS), ...Object.keys(CITY_ACTIONS)];
+
+export { CITY_ACTIONS, DEFAULT_LENS, KEYBIND_ACTIONS, LENS_ACTIONS, PAUSE_ACTION_ID, UNIT_ACTIONS };
