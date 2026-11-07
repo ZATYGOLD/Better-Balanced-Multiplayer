@@ -88,11 +88,11 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
         + PerHuman × (living humans, Observers excluded) + PerTurn × (turn number)
 ```
 
-| Age | Base | PerCity | PerUnit | PerHuman | PerTurn |
-|---|---|---|---|---|---|
-| Antiquity | 10 | 1.00 | 1.15 | 1.15 | 1.20 |
-| Exploration | 20 | 1.15 | 1.20 | 1.20 | 1.30 |
-| Modern | 30 | 1.25 | 1.25 | 1.30 | 1.40 |
+| Age | Base | PerCity | PerUnit | PerHuman | PerTurn | About (8 humans, turns 2-70) |
+|---|---|---|---|---|---|---|
+| Antiquity | 30 | 1.00 | 1.00 | 1.00 | 1.00 | 43-123s |
+| Exploration | 35 | 2.00 | 1.00 | 2.50 | 1.25 | 76-180s |
+| Modern | 40 | 3.00 | 1.00 | 3.00 | 1.50 | 106-236s |
 
 Every player gets the same clock. At zero the turn ends automatically (idle
 units skip, pending choices are dismissed). From 30s the display turns orange
@@ -508,7 +508,8 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   or without DLC, and Iceland's Reiði Guðanna I is unlocked by Origins (in
   place of Drottkvætt I) and upgrades to Reiði Guðanna.
 - **Competitive timer** — no longer ends every turn at once when Turn Time was
-  never set (the game's own timer backs it up at one hour); retuned per Age;
+  never set (the game's own timer backs it up at one hour); retuned per Age,
+  tuned per Age (about 43-123s, 76-180s and 106-236s with 8 humans);
   the lobby Game Rules popup names it instead of showing a debug string.
 - **Climate and terrain settings** — Advanced Settings Pro's Map Age, Map
   Temperature, Heat Source (as Map Zones), Rivers and Mountains for

@@ -2,12 +2,12 @@
 -- Author: Zatygold
 
 UPDATE MPT_TurnSegments
-SET TimeLimit_Base = 10,
+SET TimeLimit_Base = 30,
     TimeLimit_PerCity = 1.00,
-    TimeLimit_PerUnit = 1.15
+    TimeLimit_PerUnit = 1.00
 WHERE TurnSegmentType = 'TURN_SEGMENT_SINGLEPHASE';
 
 UPDATE MPT_TimerScaling
-SET PerHuman = 1.15,
-    PerTurn = 1.20
+SET PerHuman = 1.00,
+    PerTurn = 1.00
 WHERE ScalingId = 'DEFAULT';
