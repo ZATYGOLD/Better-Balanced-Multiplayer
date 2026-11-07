@@ -1,6 +1,6 @@
 // Copy of {base-standard}maps/archipelago-voronoi.js for multiplayer: the terrain pass
 // comes from ../generation/map-features.js (Map Settings climate and terrain);
-// resources stay the base game's.
+// Resource Settings apply afterwards (maps/scripts/global-team-starts.js).
 import { generateMapFeatures } from '../generation/map-features.js';
 import { assignAdvancedStartRegions } from '../../../../base-standard/maps/assign-advanced-start-region.js';
 import { assignStartPositionsFromHexMap } from '../../../../base-standard/maps/assign-starting-plots.js';

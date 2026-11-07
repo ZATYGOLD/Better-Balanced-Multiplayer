@@ -33,6 +33,7 @@
  */
 import { createComponent, onCleanup } from 'fs://game/core/vendor/solid-js/dist/solid.js';
 import { ContextManager } from 'fs://game/core/ui/context-manager/context-manager.js';
+import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
 import { defineLegacyComponent } from 'fs://game/core/ui-next/components/fxs-solid-component.js';
 import { Panel } from 'fs://game/core/ui-next/components/panel.js';
 import { ScreenFlowContext } from 'fs://game/core/ui-next/components/screen-flow.js';
@@ -47,9 +48,9 @@ const GAME_EDITOR = "memento-editor";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
 let openingSlot = null;
 
-/** As the lobby's Choose Mementos: only while mementos are on and you are not ready. */
+/** As the lobby's Choose Mementos: only in a new game, while mementos are on and you are not ready. */
 function canEditMementos() {
-  return !!Configuration.getGame()?.isMementosEnabled && !Network.isPlayerStartReady(GameContext.localPlayerID);
+  return !!Configuration.getGame()?.isMementosEnabled && !Network.isPlayerStartReady(GameContext.localPlayerID) && MPLobbyDataModel.isNewGame;
 }
 
 function close() {

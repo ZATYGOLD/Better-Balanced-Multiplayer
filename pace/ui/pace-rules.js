@@ -100,7 +100,7 @@ function applyPreset(preset) {
     const entry = SETTINGS[key];
     if (Array.isArray(option)) {
       setOption(entry.id, entry.prefix, CUSTOM);
-      entry.ageIds.forEach((id, i) => setOption(id, entry.prefix, option[i]));
+      entry.ageIds.forEach((id, i) => setOption(id, entry.agePrefix, option[i]));
     } else {
       setOption(entry.id, entry.prefix, option);
     }
@@ -112,7 +112,7 @@ function matchesPreset(preset) {
     const entry = SETTINGS[key];
     const current = optionOf(entry.id, entry.prefix);
     if (!Array.isArray(option)) return current === option;
-    return current === CUSTOM && entry.ageIds.every((id, i) => optionOf(id, entry.prefix) === option[i]);
+    return current === CUSTOM && entry.ageIds.every((id, i) => optionOf(id, entry.agePrefix) === option[i]);
   });
 }
 
@@ -164,7 +164,7 @@ function resetBaselines() {
 
 onSetupRevision("pace", (restarted) => {
   if (restarted) resetBaselines();   // a new setup starts its revisions over
-  if (GameSetup.findGameParameter(PRESET_ID) == null) return;   // single player: no Pace settings
+  if (GameSetup.findGameParameter(PRESET_ID) == null) return;   // the setup has no Pace settings
   syncMirror();
   syncPreset();
   Object.values(SETTINGS).forEach(syncAgeRows);

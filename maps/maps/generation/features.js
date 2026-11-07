@@ -22,7 +22,8 @@ function indexFeaturesByClass() {
   const byClass = new Map();
   for (let featIdx = 0; featIdx < GameInfo.Features.length; featIdx++) {
     const placementClass = GameInfo.Features[featIdx].PlacementClass;
-    byClass.set(placementClass, [...(byClass.get(placementClass) ?? []), featIdx]);
+    if (!byClass.has(placementClass)) byClass.set(placementClass, []);
+    byClass.get(placementClass).push(featIdx);
   }
   return byClass;
 }

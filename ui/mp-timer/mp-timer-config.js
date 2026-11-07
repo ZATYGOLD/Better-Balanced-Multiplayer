@@ -22,7 +22,7 @@
  * Better Balanced Multiplayer - Competitive turn timer configuration & constants.
  */
 
-/** TurnTimers row registered by config/SetupParameters.sql, as the configuration stores it (hashed). */
+/** TurnTimers row registered by config/setup-parameters.sql, as the configuration stores it (hashed). */
 const COMPETITIVE_HASH = Database.makeHash("MPT_TURNTIMER_COMPETITIVE");
 
 /** Tunable timings / thresholds. */
@@ -41,7 +41,7 @@ const CONFIG = {
   staleEventMs: 1200,       // timer events silent this long (a panel is open): the sweep takes over the beeps
   maxUnitSkips: 40,         // units skipped per sweep when idle units block the end of the turn
   maxProxyLimit: 600,       // pass through bigger phases (age transition = 3000s), except the engine backstop (TurnTimerTime)
-  debug: true
+  debug: false
 };
 
 /** Engine identifiers the timer touches. */

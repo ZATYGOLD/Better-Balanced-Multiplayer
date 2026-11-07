@@ -1,5 +1,12 @@
+// Resource Settings for the multiplayer maps, run by the placement pass
+// (scripts/global-team-starts.js). Resource List All replaces the map's resources
+// with the general pool (generateGlobalResources) and, once starts are final, deals
+// matched pools to each player's region and stocks the islands (placeDealtResources).
+// Resource List Standard scales the game's own resources (scaleGameResources).
+// Resource Amount and Resource Clusters apply to either list.
 import { replaceIslandResources } from '../../../base-standard/maps/map-utilities.js';
 import { DENSITY_TARGET } from '../../../base-standard/maps/resource-placement-common.js';
+import { adjacentPlot, adjacentPlots } from './plots.js';
 
 const GENERAL_RESOURCES = [
   "RESOURCE_CAMELS",
@@ -54,7 +61,7 @@ const MODERN_AGE = "AGE_MODERN";
 const WATER_REGION = -1;
 const ADJACENCY_PASSES = 3;
 
-// Resource Settings (maps/config/map-options.sql), for either Resource List.
+// Resource Amount and Resource Clusters (maps/config/map-options.sql).
 // Amount scales the game's density; Clusters grow a share of deposits into
 // patches, with the seed count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
@@ -121,21 +128,6 @@ const currentAgeType = () => GameInfo.Ages.lookup(Game.age)?.AgeType;
 /** The general pool for this Age (Oil and Rubber from Modern). */
 function generalResourceTypes(ageType) {
   return resolveResourceTypes(ageType === MODERN_AGE ? [...GENERAL_RESOURCES, ...MODERN_GENERAL_RESOURCES] : GENERAL_RESOURCES);
-}
-
-/** The adjacent plot in a direction, or null off the map. */
-function adjacentPlot(location, direction) {
-  const next = GameplayMap.getAdjacentPlotLocation(location, direction);
-  return next == null || next.x < 0 || next.y < 0 ? null : next;
-}
-
-function adjacentPlots(location) {
-  const plots = [];
-  for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
-    const next = adjacentPlot(location, direction);
-    if (next != null) plots.push(next);
-  }
-  return plots;
 }
 
 const isIslandLand = (x, y) => !GameplayMap.isWater(x, y) && GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND);
@@ -429,9 +421,11 @@ function scaleGameResources() {
     console.log(`MPT MAPS RESOURCES: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
     return;
   }
+  const width = GameplayMap.getGridWidth();
+  const height = GameplayMap.getGridHeight();
   const deposits = [];
-  for (let y = 0; y < GameplayMap.getGridHeight(); y++) {
-    for (let x = 0; x < GameplayMap.getGridWidth(); x++) {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
       const resourceIndex = GameplayMap.getResourceType(x, y);
       if (resourceIndex === ResourceTypes.NO_RESOURCE || isIslandLand(x, y)) continue;
       deposits.push({ x, y, resourceIndex });

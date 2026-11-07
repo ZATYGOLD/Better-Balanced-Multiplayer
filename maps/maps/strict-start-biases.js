@@ -1,3 +1,8 @@
+// Strict Start Biases (Spawn Settings): the leaders and civilizations whose start
+// must meet a terrain rule, and the rule checks. Read by the placement pass
+// (scripts/global-team-starts.js) and the turn-1 check (ui/start-bias-warning.js).
+import { adjacentPlots } from './plots.js';
+
 const STRICT_LEADER_RULES = new Map([
   ["LEADER_AMINA", { id: "desert-or-plains", label: "Desert or Plains" }],
   ["LEADER_CATHERINE", { id: "tundra", label: "Tundra" }],
@@ -78,15 +83,7 @@ function getPlayerStrictStartBias(playerId) {
   return bias;
 }
 
-function adjacentLocations(x, y) {
-  const origin = { x: x, y: y };
-  const locations = [];
-  for (let direction = 0; direction < 6; direction++) {
-    const adjacent = GameplayMap.getAdjacentPlotLocation(origin, direction);
-    if (adjacent != null && adjacent.x >= 0 && adjacent.y >= 0) locations.push(adjacent);
-  }
-  return locations;
-}
+const adjacentLocations = (x, y) => adjacentPlots({ x, y });
 
 /** Adjacent ocean-connected water; navigable rivers and lakes do not count. */
 function isOceanAccess(x, y) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Maps: Disaster, Climate, Natural Wonder and Terrain settings -->
+	<!-- Maps: Climate, Natural Wonder and Terrain settings -->
 		<Row Tag="LOC_GROUPID_MPT_TERRAINOPTIONS"><Text>Terrain Settings</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_NATURALWONDERSELECTIONOPTIONS"><Text>Natural Wonder Selection</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_LESS_NAME"><Text>Less</Text></Row>

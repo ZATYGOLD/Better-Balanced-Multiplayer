@@ -21,7 +21,7 @@ WHERE ID IN (
 
 -- Food Towns: Ocean tiles count for both Farming and Fishing Town bonuses.
 INSERT OR IGNORE INTO Warehouse_YieldChanges (ID, Age, YieldType, YieldChange, TerrainInCity)
-VALUES ('MPTBalanceEXTownOceanTerrainFood', 'AGE_EXPLORATION', 'YIELD_FOOD', 2, 'TERRAIN_OCEAN');
+    VALUES ('MPTBalanceEXTownOceanTerrainFood', 'AGE_EXPLORATION', 'YIELD_FOOD', 2, 'TERRAIN_OCEAN');
 
 UPDATE ModifierArguments
 SET Value = Value || ', MPTBalanceEXTownOceanTerrainFood'

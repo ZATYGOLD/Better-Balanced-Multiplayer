@@ -69,6 +69,7 @@
 		<Row Tag="LOC_MPT_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Small map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Standard map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+
 	<!-- Create Game tabs -->
 		<Row Tag="LOC_MPT_SETUP_TAB_PACE"><Text>Pace</Text></Row>
 		<Row Tag="LOC_MPT_SETUP_TAB_MAP"><Text>Map</Text></Row>

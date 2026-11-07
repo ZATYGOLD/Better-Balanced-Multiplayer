@@ -4,12 +4,8 @@ SET Value = 5
 WHERE Name = 'Percent'
   AND ModifierId IN ('MOD_PROMOTION_FLEET_GUNFIRE_SUPPORT', 'MOD_PROMOTION_SQUADRON_OBLITERATION');
 
--- Merchants
-UPDATE Units
-SET BaseMoves = 1
-WHERE MakeTradeRoute = 1;
-
--- Use the Modern Age's remote Trade Route behavior in every Age.
+-- Trade routes start from a distance in every Age, as in the Modern Age; a
+-- Pace Trade Speed travel setting (pace/data/trade-speed/travel.sql) overrides it.
 UPDATE TradeSystemParameterSets
 SET StartRoutesAtDistance = 1
 WHERE Type IN (

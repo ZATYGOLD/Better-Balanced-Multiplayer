@@ -22,7 +22,7 @@
  * Better Balanced Multiplayer - shared helpers (shell and game scope).
  *
  * Logging, method wrapping, deferred patching and the decorator base used by
- * every feature, plus the multiplayer and Age-ending checks and companion-mod
+ * every feature, plus the multiplayer and Age transition checks and companion-mod
  * detection (Observer, enabled mods).
  */
 
@@ -66,13 +66,18 @@ function isMultiplayerGame() {
   try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
 }
 
+/** True while an Age transition is in progress. */
+function isAgeTransition() {
+  try { return Modding.getTransitionInProgress?.() === TransitionType.Age; } catch (e) { return false; }
+}
+
 /**
  * True from the moment a non-final Age is complete (its progress is full, the
  * HUD's action turns into the Age transition) until the next Age loads.
  */
 function isAgeEnding() {
   try {
-    if (Modding.getTransitionInProgress?.() === TransitionType.Age) return true;
+    if (isAgeTransition()) return true;
     const ages = Game.AgeProgressManager;
     if (!ages || ages.isFinalAge || ages.isExtendedGame) return false;
     const max = ages.getMaxAgeProgressionPoints();
@@ -115,4 +120,4 @@ function isModEnabled(modId) {
   try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isModEnabled, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isModEnabled, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined, wrapMethod };

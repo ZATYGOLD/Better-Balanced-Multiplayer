@@ -109,6 +109,7 @@ class MultiplayerPauseManager {
   acknowledged = {};          // disconnected ids the players deliberately resumed past
   disconnectNotices = [];     // { id, name } per currently-disconnected player (menu display)
   viewHiddenForcedEl = null;  // production chooser element we forced "View Hidden" on
+  hotkeyLastAt = 0;           // last Pause keybind press (debounce)
 
   // --- reusable components ---
   overlay = new PauseCountdownOverlay();
@@ -121,7 +122,6 @@ class MultiplayerPauseManager {
   playerConnectedListener = (data) => this.onPlayerConnected(data);
   hostMigratedListener = (data) => this.onHostMigrated(data);
   engineInputListener = (ev) => this.onEngineInput(ev);
-  hotkeyLastAt = 0;
 
   constructor() {
     engine.whenReady.then(() => this.onReady());

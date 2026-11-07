@@ -12,6 +12,7 @@
 // and uses no random numbers, so a map seed still reproduces exactly.
 import { g_MountainFractal, g_HillFractal, g_MountainTerrain, g_HillTerrain, g_FlatTerrain } from '../../../../base-standard/maps/map-globals.js';
 import { forEachTile, settingTier } from './settings.js';
+import { adjacentPlots } from '../plots.js';
 
 const MOUNTAINS_SETTING_KEY = "MPTMapMountains";
 // cutoff: fractal height percentile on classic maps; scale: the mountain count
@@ -50,14 +51,7 @@ export function addMountains(iWidth, iHeight) {
 }
 
 function countMountainNeighbours(location) {
-  let count = 0;
-  for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
-    const adjacent = GameplayMap.getAdjacentPlotLocation(location, direction);
-    if (adjacent.x >= 0 && adjacent.y >= 0 && GameplayMap.isMountain(adjacent.x, adjacent.y)) {
-      count++;
-    }
-  }
-  return count;
+  return adjacentPlots(location).filter((adjacent) => GameplayMap.isMountain(adjacent.x, adjacent.y)).length;
 }
 
 export function adjustMountains(iWidth, iHeight) {

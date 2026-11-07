@@ -1,6 +1,6 @@
 // Copy of {base-standard}maps/continents.js for multiplayer: the mountain, rough,
 // river, biome, feature and snow passes come from ../generation/ (Map Settings
-// climate and terrain); resources stay the base game's.
+// climate and terrain); Resource Settings apply afterwards (maps/scripts/global-team-starts.js).
 import { designateBiomes } from '../generation/biomes.js';
 import { addFeatures } from '../generation/features.js';
 import { addHills } from '../generation/hills.js';

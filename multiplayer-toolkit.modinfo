@@ -1455,7 +1455,7 @@
 					<Item>text/en_us/mpt-text.xml</Item>
 				</UpdateText>
 				<UpdateDatabase>
-					<Item>config/SetupParameters.sql</Item>
+					<Item>config/setup-parameters.sql</Item>
 					<Item>config/mpt-input.sql</Item>
 					<Item>config/match-types.sql</Item>
 				</UpdateDatabase>
@@ -1529,7 +1529,7 @@
 			<Properties><LoadOrder>900</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>data/timers/TimerScaling.sql</Item>
+					<Item>data/timers/timer-scaling.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1539,7 +1539,7 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>data/timers/antiquity/CompetitiveTimer.sql</Item>
+					<Item>data/timers/antiquity/competitive-timer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1548,7 +1548,7 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>data/timers/exploration/CompetitiveTimer.sql</Item>
+					<Item>data/timers/exploration/competitive-timer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
@@ -1557,12 +1557,12 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
-					<Item>data/timers/modern/CompetitiveTimer.sql</Item>
+					<Item>data/timers/modern/competitive-timer.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
 
-<!--*************************** MULTIPLAYER BALANCE (balance/) ************************************-->
+<!--*************************** GAME BALANCE (balance/) ********************************************-->
 
 		<!-- Lobby option and its text: always (the shell loads before any game option is known). -->
 		<ActionGroup id="mpt-balance-shell" scope="shell" criteria="always">
@@ -1780,6 +1780,9 @@
 				<UpdateDatabase>
 					<Item>maps/data/islands.xml</Item>
 				</UpdateDatabase>
+				<UpdateText>
+					<Item>maps/text/en_us/map-options.xml</Item>
+				</UpdateText>
 			</Actions>
 		</ActionGroup>
 
@@ -1790,9 +1793,6 @@
 				<UpdateDatabase>
 					<Item>maps/data/duel-map.sql</Item>
 				</UpdateDatabase>
-				<UpdateText>
-					<Item>maps/text/en_us/map-options.xml</Item>
-				</UpdateText>
 			</Actions>
 		</ActionGroup>
 
@@ -3153,6 +3153,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
@@ -3161,6 +3162,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
@@ -3169,6 +3171,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>
@@ -3185,6 +3188,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/minus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
@@ -3193,6 +3197,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/plus-25.sql</Item>
 				</UpdateDatabase>
 			</Actions>
@@ -3201,6 +3206,7 @@
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
+					<Item>pace/data/trade-speed/travel.sql</Item>
 					<Item>pace/data/trade-speed/plus-50.sql</Item>
 				</UpdateDatabase>
 			</Actions>

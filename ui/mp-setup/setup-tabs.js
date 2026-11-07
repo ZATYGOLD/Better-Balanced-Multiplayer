@@ -31,6 +31,7 @@
  * builds the tabs from the index-aligned slotIDs and navControlButtonInfo.
  */
 import { Decorator, createLogger } from '../mpt-shared/mpt-util.js';
+import { resolveString } from '../mpt-shared/mpt-setup.js';
 import { SETUP_TABS, TABS, baseGroupOf, tabIndexOfGroup } from './setup-layout.js';
 
 const log = createLogger('setup tabs');
@@ -92,7 +93,7 @@ function orderSections(groupContainers, container, order) {
   const rank = (section) => order.indexOf(baseGroupOf(section.groupId));
   const children = [...container.children];
   const listed = [...groupContainers]
-    .map(([handle, group]) => ({ groupId: GameSetup.resolveString(handle) ?? "", group }))
+    .map(([handle, group]) => ({ groupId: resolveString(handle), group }))
     .filter((section) => section.group.headerElement.parentElement === container && rank(section) >= 0)
     .sort((a, b) => children.indexOf(a.group.headerElement) - children.indexOf(b.group.headerElement));
   const sorted = [...listed].sort((a, b) => rank(a) - rank(b));
@@ -160,7 +161,7 @@ class SetupTabs extends Decorator {
     const component = this.component;
     const baseContainer = component.getTabContainerForParam.bind(component);
     component.getTabContainerForParam = (param) => {
-      const groupId = GameSetup.resolveString(component.resolveParamGroup(param)) ?? "";
+      const groupId = resolveString(component.resolveParamGroup(param));
       return this.addedContainer(TABS[tabIndexOfGroup(groupId)].key) ?? baseContainer(param);
     };
   }
@@ -180,7 +181,7 @@ class SetupTabs extends Decorator {
   /** Random buttons beside the seeds. */
   decorateRows() {
     afterMethod(this.component, "createParamEleLabel", (row, setupParam) => {
-      const parameterId = GameSetup.resolveString(setupParam.ID);
+      const parameterId = resolveString(setupParam.ID);
       if (SEED_PARAM_IDS.includes(parameterId) && !setupParam.readOnly) row.appendChild(seedButton(parameterId));
     });
   }

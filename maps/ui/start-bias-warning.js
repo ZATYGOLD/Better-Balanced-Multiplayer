@@ -1,9 +1,9 @@
+// Turn-1 check of the multiplayer Player Placement pass: Fresh Water, spacing and strict start biases.
 import { createLogger, isMultiplayerGame } from '../../ui/mpt-shared/mpt-util.js';
+import { PLACEMENT_SETTING_KEY, START_MINIMUM_DISTANCE } from '../maps/placement.js';
 import { getPlayerStrictStartBias, isStrictStartBiasEnabled, matchesRule, matchesRuleWithLakeFallback } from '../maps/strict-start-biases.js';
 
-// Turn-1 check of the multiplayer Player Placement pass: Fresh Water, spacing and strict start biases.
 const log = createLogger('maps start check');
-const MINIMUM_START_DISTANCE = 12;
 const RETRY_MS = 1000;
 const MAX_ATTEMPTS = 15;
 
@@ -13,7 +13,7 @@ let trainAttempts = 0;
 
 /** The placement pass runs only in multiplayer, where the Map Options exist. */
 function placementApplied() {
-  try { return isMultiplayerGame() && Configuration.getMapValue("MPTPlayerPlacement") != null; } catch (_) { return false; }
+  try { return isMultiplayerGame() && Configuration.getMapValue(PLACEMENT_SETTING_KEY) != null; } catch (_) { return false; }
 }
 
 function getValidationStorageKey() {
@@ -171,10 +171,10 @@ function validateStarts() {
       const second = locations.get(aliveMajorIds[j]);
       if (first == null || second == null) continue;
       const distance = GameplayMap.getPlotDistance(first.x, first.y, second.x, second.y);
-      if (distance < MINIMUM_START_DISTANCE) {
+      if (distance < START_MINIMUM_DISTANCE) {
         failures.push(
           `${getPlayerLabel(aliveMajorIds[i])} and ${getPlayerLabel(aliveMajorIds[j])}: only ${distance} tiles apart; ` +
-          `${MINIMUM_START_DISTANCE} required`
+          `${START_MINIMUM_DISTANCE} required`
         );
       }
     }

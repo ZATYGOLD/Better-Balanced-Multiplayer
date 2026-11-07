@@ -31,7 +31,7 @@
  */
 import { Audio } from 'fs://game/core/ui/audio-base/audio-support.js';
 import { Decorator, createLogger } from '../mpt-shared/mpt-util.js';
-import { onSetupRevision } from '../mpt-shared/mpt-setup.js';
+import { onSetupRevision, resolveString } from '../mpt-shared/mpt-setup.js';
 import { canEditMementos, openMementoPicker } from './mp-memento-select.js';
 
 const log = createLogger('lobby mementos');
@@ -47,12 +47,10 @@ const CLICK_INPUTS = new Set(["mousebutton-left", "touch-tap"]);
 const MEMENTO_PARAM_IDS = ["PlayerMementoMajorSlot", "PlayerMementoMinorSlot1"];
 const MEMENTO_NONE = "NONE";
 
-const resolve = (handle) => GameSetup.resolveString(handle) ?? "";
-
 /** A slot's value as tooltip text: its name in bold, then what it does. */
 function mementoTooltip(value) {
   if (!value || value.value === MEMENTO_NONE) return Locale.compose("LOC_MEMENTO_NONE_NAME");
-  const name = Locale.compose(resolve(value.name));
+  const name = Locale.compose(resolveString(value.name));
   const functional = GameSetup.findString("FunctionalDescription");
   const effect = value.additionalProperties?.find((property) => property.name === functional)?.value;
   return effect ? `[B]${name}[/B][N]${Locale.compose(effect)}` : name;
@@ -72,7 +70,7 @@ function createSlot() {
 
 function paintSlot(slot, value) {
   const art = slot.firstChild;
-  const icon = !value || value.value === MEMENTO_NONE ? "" : resolve(value.icon);
+  const icon = !value || value.value === MEMENTO_NONE ? "" : resolveString(value.icon);
   if (icon) {
     art.style.backgroundImage = `url('blp:${icon}')`;
     art.style.backgroundSize = "";

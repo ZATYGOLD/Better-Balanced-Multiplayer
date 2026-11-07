@@ -34,7 +34,7 @@
  * rejoin) and a change seen while not the host only record the Match Type.
  */
 import { createLogger } from '../mpt-shared/mpt-util.js';
-import { canEditSetup, gameValue, isAgeTransition, onSetupRevision, parameterDefaults, setValue } from '../mpt-shared/mpt-setup.js';
+import { canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, parameterDefaults, resolveString, setValue } from '../mpt-shared/mpt-setup.js';
 
 const log = createLogger('match type');
 const MATCH_TYPE_ID = "MPTMatchType";
@@ -67,16 +67,15 @@ function keptIds(matchType) {
 function applyMatchType(matchType) {
   const kept = keptIds(matchType);
   const defaults = parameterDefaults();
-  const group = (param) => GameSetup.resolveString(param.groupMultiplayer ? param.groupMultiplayer : param.group) ?? "";
   let written = 0;
   for (const [id, value] of MATCH_TYPE_VALUES) {
     const param = GameSetup.findGameParameter(id);
     if (param && setValue(param, value)) written++;
   }
   for (const param of GameSetup.getGameParameters()) {
-    const id = GameSetup.resolveString(param.ID) ?? "";
+    const id = resolveString(param.ID);
     const entry = defaults.get(id);
-    if (!entry || entry.hidden || kept.has(id) || param.readOnly || KEPT_GROUPS.has(group(param))) continue;
+    if (!entry || entry.hidden || kept.has(id) || param.readOnly || KEPT_GROUPS.has(groupOf(param))) continue;
     if (setValue(param, entry.value)) written++;
   }
   log(`${matchType}: ${written} settings reset`);

@@ -1,4 +1,5 @@
--- Trade Speed in the Modern Age when not Instant: Merchants travel to start a
--- route, as in the earlier ages. Paired with a movement file except on Standard.
+-- Trade Speed travel settings: Merchants travel to start a route, overriding
+-- the Modern Age's distance routes and Game Balance's (balance/data/units/).
+-- Paired with a movement file except on Standard.
 UPDATE TradeSystemParameterSets
 SET StartRoutesAtDistance = 0;

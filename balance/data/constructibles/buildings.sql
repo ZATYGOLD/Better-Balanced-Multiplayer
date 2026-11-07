@@ -4,11 +4,11 @@
 -- Non-Warehouse Buildings: reduce the empire-wide cost increase from each
 -- additional City beyond the Capital from 10% to 5%.
 INSERT OR REPLACE INTO GlobalParameters (Name, Value)
-VALUES ('BUILDING_COST_INCREASE_PERCENT_PER_CITY', '5');
+    VALUES ('BUILDING_COST_INCREASE_PERCENT_PER_CITY', '5');
 
 -- The modifier can then target all Buildings without also affecting Improvements.
 INSERT OR IGNORE INTO Tags (Tag, Category)
-VALUES ('MPT_BALANCE_BUILDING', 'CONSTRUCTIBLE_TAG');
+    VALUES ('MPT_BALANCE_BUILDING', 'CONSTRUCTIBLE_TAG');
 
 INSERT OR IGNORE INTO TypeTags (Type, Tag)
 SELECT ConstructibleType, 'MPT_BALANCE_BUILDING'

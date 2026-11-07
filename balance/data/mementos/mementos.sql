@@ -40,8 +40,7 @@ WHERE Name = 'Tag'
       WHERE m.ModifierId = 'MEMENTO_TECUMSEH_WARCLUB_MODIFIER'
   );
 
-INSERT OR REPLACE INTO ModifierArguments
-    (ModifierId, Name, Value)
+INSERT OR REPLACE INTO ModifierArguments (ModifierId, Name, Value)
 SELECT
     ModifierId, 'Divisor', '2'
 FROM Modifiers
@@ -91,8 +90,7 @@ DELETE FROM MementoModifiers
 WHERE MementoType = 'MEMENTO_FOUNDATION_GARUDA_STATUE'
   AND ModifierId = 'MEMENTO_FOUNDATION_GARUDA_STATUE_MODIFIER';
 
-INSERT OR REPLACE INTO MementoModifiers
-    (MementoType, ModifierId)
+INSERT OR REPLACE INTO MementoModifiers (MementoType, ModifierId)
 SELECT
     'MEMENTO_FOUNDATION_GARUDA_STATUE',
     'MPT_BALANCE_MEMENTO_GARUDA_STATUE_CAPITAL'

@@ -146,7 +146,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTGameplayWorldWondersValues', 'MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER', 'LOC_MPT_GAMEPLAY_CARRY_OVER_NAME', 'LOC_MPT_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC', 20);
 
 --*******************************************************
---***************** DISASTER AND CRISIS SETTINGS *******
+--***************** DISASTER AND CRISIS SETTINGS ********
 --*******************************************************
 -- The single-player layout in multiplayer: Disaster and Crisis Settings holds the
 -- game's Disaster Intensity, Crises and Crisis Timing; the Crises section holds the
@@ -169,9 +169,9 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTGameplayCrisisTimingValues', 'MPT_GAMEPLAY_CRISIS_TIMING_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_STANDARD_DESC', 30),
         ('MPTGameplayCrisisTimingValues', 'MPT_GAMEPLAY_CRISIS_TIMING_LATE', 'LOC_MPT_GAMEPLAY_LATE_NAME', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_LATE_DESC', 40);
 
--- The game's Crises list is split by mode: a multiplayer copy (same ParameterID)
--- fills the Crises section, one flat list as in single player (its domain has no
--- per-Age categories), and the shipped row keeps single player. Both rows are keyed to the standard
+-- The game's Crises list is split by mode: a multiplayer copy (same ParameterID;
+-- MPTCrises, one flat list without per-Age categories) fills the Crises section,
+-- and the shipped row keeps single player. Both rows are keyed to the standard
 -- ruleset (the game's RulesetParameters query), so a single-player copy made
 -- from the unkeyed rows later (Advanced Settings Pro) finds none to copy and
 -- restyles the single-player row in place instead of adding a second one.

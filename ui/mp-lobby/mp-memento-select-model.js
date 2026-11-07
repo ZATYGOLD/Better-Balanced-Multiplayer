@@ -30,7 +30,9 @@
 import { createSignal } from 'fs://game/core/vendor/solid-js/dist/solid.js';
 import { createMutable, modifyMutable, reconcile } from 'fs://game/core/vendor/solid-js/store/dist/store.js';
 import { FullTextSearch } from 'fs://game/core/ui-next/utilities/search-utils.js';
+import { createLogger } from '../mpt-shared/mpt-util.js';
 
+const log = createLogger('memento picker');
 const MEMENTO_NONE = "NONE";
 const MAJOR_SLOT_PREFIX = "PlayerMementoMajorSlot";
 const YIELD_ICON_PATTERN = /\[icon:(YIELD_(?:FOOD|PRODUCTION|GOLD|SCIENCE|CULTURE|HAPPINESS|DIPLOMACY))\]/g;
@@ -64,7 +66,7 @@ function slotInfo(playerId, mementos) {
     const id = GameSetup.resolveString(param.ID) ?? "";
     const metadata = slotMetadata.find((m) => m.mementoTypeId == id);
     if (!metadata) {
-      console.log(`Unable to find memento slot metadata for ${id}`);
+      log(`no memento slot metadata for ${id}`);
       continue;
     }
     const resolved = GameSetup.findPlayerParameter(playerId, id) ?? param;

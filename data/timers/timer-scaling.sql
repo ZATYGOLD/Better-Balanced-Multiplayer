@@ -1,11 +1,8 @@
--- data/timers/TimerScaling.sql
--- Author: Zatygold
-
 --*******************************************************
 --*************** ADDITIONAL TIMER SCALING **************
 --*******************************************************
 -- Schema and defaults of the Competitive timer (ui/mp-timer); every Age's
--- data/timers/<age>/CompetitiveTimer.sql overrides them (loaded only in that Age).
+-- data/timers/<age>/competitive-timer.sql overrides them (loaded only in that Age).
 --   seconds = Base + PerCity * (most cities) + PerUnit * (most units)
 --           + PerHuman * (living human players, Observers excluded)
 --           + PerTurn  * (current turn number)
@@ -18,8 +15,9 @@ CREATE TABLE IF NOT EXISTS MPT_TimerScaling
         PRIMARY KEY(ScalingId)
     );
 
-INSERT OR REPLACE INTO MPT_TimerScaling (ScalingId, PerHuman, PerTurn)
-    VALUES ('DEFAULT', 2, 1);
+INSERT OR IGNORE INTO MPT_TimerScaling (ScalingId, PerHuman, PerTurn)
+    VALUES
+        ('DEFAULT', 2, 1);
 
 --*******************************************************
 --************** MPT COMPETITIVE TURN SEGMENT ***********
@@ -35,5 +33,6 @@ CREATE TABLE IF NOT EXISTS MPT_TurnSegments
         PRIMARY KEY(TurnSegmentType)
     );
 
-INSERT OR REPLACE INTO MPT_TurnSegments (TurnSegmentType, TimeLimit_Base, TimeLimit_PerCity, TimeLimit_PerUnit)
-    VALUES ('TURN_SEGMENT_SINGLEPHASE', 20, 1, 1);
+INSERT OR IGNORE INTO MPT_TurnSegments (TurnSegmentType, TimeLimit_Base, TimeLimit_PerCity, TimeLimit_PerUnit)
+    VALUES
+        ('TURN_SEGMENT_SINGLEPHASE', 20, 1, 1);

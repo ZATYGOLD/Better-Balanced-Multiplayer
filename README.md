@@ -104,15 +104,15 @@ timer **Competitive**.
 
 | Tune | Where |
 |---|---|
-| Per-Age values (table above) | `data/timers/<age>/CompetitiveTimer.sql` |
-| Schema and defaults | `data/timers/TimerScaling.sql` |
+| Per-Age values (table above) | `data/timers/<age>/competitive-timer.sql` |
+| Schema and defaults | `data/timers/timer-scaling.sql` |
 | Tiers, colours, sounds, grace turn, debug | `ui/mp-timer/mp-timer-config.js` |
 
 The engine only computes its built-in timers, so the mod registers a subclass
 of the game's action panel (only when Competitive is chosen) that draws the
 native text and ring from its own wall clock and ends the turn itself. The
 engine times the unknown type by Turn Time, which the mod sets to one hour
-for Competitive (`config/SetupParameters.sql`), a backstop the mod's
+for Competitive (`config/setup-parameters.sql`), a backstop the mod's
 clock always beats. Its numbers live in mod-owned tables; the Dynamic timer is
 untouched.
 
@@ -174,6 +174,8 @@ player (and every setup screen) keeps the game's own balance and text.
 - Balance changes for civilizations, leaders, units, governments, policies,
   traditions, wonders, buildings, resources, city-states, pantheons,
   mementos, Triumphs, diplomacy, happiness, razing and victories, per Age.
+- Trade routes start from a distance in every Age, as in the Modern Age (a
+  Pace Trade Speed travel setting overrides this).
 - A longer victory curve for Culture, Economic and Military victories, scaled
   by the Pace tab's victory thresholds (see Pacing).
 
@@ -216,7 +218,9 @@ and single-player maps are generated untouched.
   game allows that resource. Island resources stay as the map placed them.
   For either list:
   - **Resource Amount** — Scarce, Sparse, Standard (default) or Abundant: 35%,
-    50%, 70% or 100% of the game's resource density.
+    50%, 70% or 100% of the game's resource density. With Resource List
+    Standard, every continent keeps at least one of each resource the game
+    placed there, so Scarce and Sparse can place more on small continents.
   - **Resource Clusters** — Off (default), Small or Large: deposits grow into
     patches of the same resource (2 or up to 3 tiles); the amount stays the same.
 
@@ -262,9 +266,9 @@ and single-player maps are generated untouched.
   Natural Wonders and the seed), Resource Settings (Resource List, Resource
   Amount, Resource Clusters), then Terrain and Natural Wonder Selection;
   Disasters and Crises sit on Game Settings.
-- **Multiplayer defaults** — new multiplayer games start on Online speed,
-  Abbreviated Ages, no end-of-Age countdown, Pangaea Ultima and Standard size
-  (the host can change them).
+- **Multiplayer defaults** — new multiplayer games start on Online speed, no
+  end-of-Age countdown, Pangaea Ultima and Standard size (the host can change
+  them).
 
 Everything lives in `maps/` (see Project structure).
 
@@ -289,7 +293,8 @@ Pace tab with the same values and order.
   - **Technology, Civic, Building and Victory Project Cost** — Low, Standard,
     Medium, High, Double, or the presets' per-Age curves (-25% to +100%).
   - **Settlement Growth** and **Road Speed** — Slow, Standard, Quick, Fast.
-  - **Trade Speed** — Merchant movement or Instant routes; **Raze Speed** —
+  - **Trade Speed** — Merchant movement or Instant routes (Standard is Instant
+    in every Age with Game Balance on Multiplayer); **Raze Speed** —
     Standard, Fast or Instant.
 - **Victory Thresholds** (Advanced tab, after Victory Settings) — Culture,
   Economic and Military, each Low (x0.5, default), Standard or High (x1.5),
@@ -300,8 +305,8 @@ Pace tab with the same values and order.
   Custom, as Triumph Set does with its per-Age rows.
 - **No longer games** — multiplayer offers no Epic or Marathon Game Speed and
   no Long Age Length (the game's or the mod's); single player keeps them.
-- **Multiplayer defaults** — new multiplayer games start on Abbreviated Age
-  Length (Pace Set then shows Custom).
+- **Multiplayer defaults** — new multiplayer games start on Standard Age
+  Length, so Pace Set shows Standard.
 
 Everything lives in `pace/`; the Create Game tabs are in `ui/mp-setup/`.
 
@@ -449,6 +454,11 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.6.2
 
+- **Fixes:** start positions are searched with a step limit instead of a time
+  limit, so every machine generates the same starts; Game Balance no longer
+  sets Merchants to 1 Movement, and Pace Trade Speed travel settings now work
+  with it; new multiplayer games start on Standard Age Length; the memento
+  picker only opens in a new game's lobby.
 - **Renamed** to Better Balanced Multiplayer (formerly Multiplayer Toolkit); the
   mod id, folder and `MPT` prefixes are unchanged, so saves keep working.
 - **New: Game Balance** (with Gohei427) — competitive balance changes

@@ -56,13 +56,11 @@ WHERE ModifierId = 'ATTACH_COMMANDER_XP_PRODUCTION'
 DELETE FROM Constructible_ValidBiomes
 WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE';
 
-INSERT OR IGNORE INTO Constructible_ValidBiomes
-    (ConstructibleType, BiomeType)
+INSERT OR IGNORE INTO Constructible_ValidBiomes (ConstructibleType, BiomeType)
 SELECT 'IMPROVEMENT_ICE_HOUSE', 'BIOME_PLAINS'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE');
 
-INSERT OR IGNORE INTO Constructible_ValidBiomes
-    (ConstructibleType, BiomeType)
+INSERT OR IGNORE INTO Constructible_ValidBiomes (ConstructibleType, BiomeType)
 SELECT 'IMPROVEMENT_ICE_HOUSE', 'BIOME_TROPICAL'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE');
 
@@ -70,8 +68,7 @@ DELETE FROM ConstructibleModifiers
 WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE'
   AND ModifierId = 'MOD_ICE_HOUSE_FOOD';
 
-INSERT OR IGNORE INTO ConstructibleModifiers
-    (ConstructibleType, ModifierId)
+INSERT OR IGNORE INTO ConstructibleModifiers (ConstructibleType, ModifierId)
 SELECT 'IMPROVEMENT_ICE_HOUSE', 'MPT_BALANCE_MOD_ICE_HOUSE_GROWTH'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE');
 
@@ -106,23 +103,19 @@ SET AdjacentRiver = 1
 WHERE ConstructibleType = 'IMPROVEMENT_SAQIYA';
 
 -- Modern: Open-Air Museum and Abattoir.
-INSERT OR IGNORE INTO Adjacency_YieldChanges
-    (ID, Age, YieldType, YieldChange, TilesRequired, AdjacentBiome)
+INSERT OR IGNORE INTO Adjacency_YieldChanges (ID, Age, YieldType, YieldChange, TilesRequired, AdjacentBiome)
 SELECT 'MPT_BALANCE_OpenAirMuseumGrasslandProduction', 'AGE_MODERN', 'YIELD_PRODUCTION', 1, 1, 'BIOME_GRASSLAND'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_OPEN_AIR_MUSEUM');
 
-INSERT OR IGNORE INTO Adjacency_YieldChanges
-    (ID, Age, YieldType, YieldChange, TilesRequired, AdjacentBiome)
+INSERT OR IGNORE INTO Adjacency_YieldChanges (ID, Age, YieldType, YieldChange, TilesRequired, AdjacentBiome)
 SELECT 'MPT_BALANCE_OpenAirMuseumPlainsProduction', 'AGE_MODERN', 'YIELD_PRODUCTION', 1, 1, 'BIOME_PLAINS'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_OPEN_AIR_MUSEUM');
 
-INSERT OR IGNORE INTO Constructible_Adjacencies
-    (ConstructibleType, YieldChangeId)
+INSERT OR IGNORE INTO Constructible_Adjacencies (ConstructibleType, YieldChangeId)
 SELECT 'IMPROVEMENT_OPEN_AIR_MUSEUM', 'MPT_BALANCE_OpenAirMuseumGrasslandProduction'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_OPEN_AIR_MUSEUM');
 
-INSERT OR IGNORE INTO Constructible_Adjacencies
-    (ConstructibleType, YieldChangeId)
+INSERT OR IGNORE INTO Constructible_Adjacencies (ConstructibleType, YieldChangeId)
 SELECT 'IMPROVEMENT_OPEN_AIR_MUSEUM', 'MPT_BALANCE_OpenAirMuseumPlainsProduction'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_OPEN_AIR_MUSEUM');
 
@@ -130,7 +123,6 @@ DELETE FROM ConstructibleModifiers
 WHERE ConstructibleType = 'IMPROVEMENT_ABATTOIR'
   AND ModifierId IN ('MOD_ABATTOIR_FOOD', 'MOD_ABATTOIR_UNHAPPINESS');
 
-INSERT OR IGNORE INTO ConstructibleModifiers
-    (ConstructibleType, ModifierId)
+INSERT OR IGNORE INTO ConstructibleModifiers (ConstructibleType, ModifierId)
 SELECT 'IMPROVEMENT_ABATTOIR', 'MPT_BALANCE_MOD_ABATTOIR_PRODUCTION'
 WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMENT_ABATTOIR');

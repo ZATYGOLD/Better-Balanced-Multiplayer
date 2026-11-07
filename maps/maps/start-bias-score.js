@@ -1,8 +1,8 @@
-import { isOceanAccess } from '../../../base-standard/maps/map-utilities.js';
-
 // The game's start-bias score (base-standard assign-starting-plots.js
 // adjustScoreByStartBias, which is not exported), with each player's matching
 // StartBias rows resolved once instead of on every scored tile.
+import { isOceanAccess } from '../../../base-standard/maps/map-utilities.js';
+
 const BIAS_RADIUS = 3;
 
 /** Per StartBias table: its type column (if any) and how one matching row scores a tile. */

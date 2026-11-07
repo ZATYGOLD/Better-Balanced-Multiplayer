@@ -1,6 +1,14 @@
+// Multiplayer Player Placement: a post-process of every map that places every
+// major player on a Fresh Water start at least START_MINIMUM_DISTANCE apart,
+// within East vs West team regions when the Match Type sets a team placement,
+// honouring strict start biases. Before it, Resource List All places the general
+// resources (each player region's dealt resources follow placement) and Standard
+// scales the game's own; Reefs are then added near coast-biased starts.
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
 import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../maps/global-resource-system.js';
+import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../maps/placement.js';
+import { adjacentPlots } from '../maps/plots.js';
 import { adjustScoreByStartBias, resetStartBiasScores } from '../maps/start-bias-score.js';
 import {
   getPlayerStrictStartBias,
@@ -11,19 +19,11 @@ import {
   resetStrictStartBiases
 } from '../maps/strict-start-biases.js';
 
-// Multiplayer Player Placement: a post-process of every map that places every
-// major player on a Fresh Water start at least JOINT_START_MINIMUM_DISTANCE
-// apart, within East vs West team regions when chosen, honouring strict start
-// biases. Before it, Resource List All places the general resources (each
-// player region's dealt resources follow placement) and Standard scales the
-// game's own; Reefs are then added near coast-biased starts.
-const JOINT_START_MINIMUM_DISTANCE = 12;
+// Search limits count nodes, never time, so every machine generates the same starts.
 const JOINT_START_SEARCH_NODE_LIMIT = 750000;
 const JOINT_START_SEARCH_RESTARTS = 3;
-const SOLVE_TIME_BUDGET_MS = 4000;
-const PLACEMENT_TIME_BUDGET_MS = 20000;
+const PLACEMENT_NODE_LIMIT = 3000000;
 const COASTAL_REEFS_PER_START = 3;
-const PLAYERS_BY_PLACEMENT = { MPT_MAPS_PLACEMENT_DUEL: 2, MPT_MAPS_PLACEMENT_2V2: 4, MPT_MAPS_PLACEMENT_3V3: 6, MPT_MAPS_PLACEMENT_4V4: 8 };
 
 // ============================ Reefs ============================
 
@@ -105,7 +105,7 @@ function addCoastalStartReefs() {
 
 /** Players of the chosen team placement (0: whole map). */
 function getSelectedPlayerCount() {
-  return PLAYERS_BY_PLACEMENT[Configuration.getMapValue("MPTPlayerPlacement")] ?? 0;
+  return PLAYERS_BY_PLACEMENT[Configuration.getMapValue(PLACEMENT_SETTING_KEY)] ?? 0;
 }
 
 function buildEastWestTeamRegions(playerCount, primaryLandmass) {
@@ -222,11 +222,7 @@ function getPlayerLandBounds() {
       const location = GameplayMap.getLocationFromIndex(plotIndex);
       plots.push(location);
 
-      for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
-        const adjacent = GameplayMap.getAdjacentPlotLocation(location, direction);
-        if (adjacent == null || adjacent.x < 0 || adjacent.x >= width || adjacent.y < 0 || adjacent.y >= height) {
-          continue;
-        }
+      for (const adjacent of adjacentPlots(location)) {
         const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
         if (!componentByPlot.has(adjacentIndex) && isLand(adjacent.x, adjacent.y)) {
           componentByPlot.set(adjacentIndex, componentId);
@@ -299,7 +295,7 @@ function homelandRegions() {
 /** Per-pass caches: tile validity and scores are fixed while starts are being solved. */
 function createPlacementContext() {
   return {
-    deadline: Date.now() + PLACEMENT_TIME_BUDGET_MS,
+    visitedNodes: 0,
     homelands: homelandRegions(),
     usable: new Map(),
     plotScores: new Map(),
@@ -309,7 +305,7 @@ function createPlacementContext() {
   };
 }
 
-const passExpired = (ctx) => Date.now() > ctx.deadline;
+const passExpired = (ctx) => ctx.visitedNodes >= PLACEMENT_NODE_LIMIT;
 
 function memo(map, key, compute) {
   let value = map.get(key);
@@ -388,7 +384,7 @@ function buildJointStartCandidates(ctx, playerId, tiles, originalStart, allowLak
 
 // ============================ Solver ============================
 
-const farEnough = (a, b) => GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= JOINT_START_MINIMUM_DISTANCE;
+const farEnough = (a, b) => GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
 
 /**
  * Backtracking with forward checking: every remaining player keeps the
@@ -406,7 +402,6 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
     domains.set(playerId, candidates);
   }
 
-  const deadline = Math.min(ctx.deadline, Date.now() + SOLVE_TIME_BUDGET_MS);
   const assigned = new Map();
   let visitedNodes = 0;
   let stopped = false;
@@ -421,7 +416,8 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
       }
     }
     for (const candidate of chosenDomain) {
-      if (++visitedNodes >= JOINT_START_SEARCH_NODE_LIMIT || Date.now() > deadline) {
+      ctx.visitedNodes++;
+      if (++visitedNodes >= JOINT_START_SEARCH_NODE_LIMIT || passExpired(ctx)) {
         stopped = true;
         return false;
       }
@@ -497,8 +493,8 @@ function validateStartSolution(
     if (a == null) continue;
     for (let j = i + 1; j < playerIds.length; j++) {
       const b = locations.get(playerIds[j]);
-      if (b != null && GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) < JOINT_START_MINIMUM_DISTANCE) {
-        failures.push(`players ${playerIds[i]} and ${playerIds[j]}: less than ${JOINT_START_MINIMUM_DISTANCE} tiles apart`);
+      if (b != null && GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) < START_MINIMUM_DISTANCE) {
+        failures.push(`players ${playerIds[i]} and ${playerIds[j]}: less than ${START_MINIMUM_DISTANCE} tiles apart`);
       }
     }
   }
@@ -537,7 +533,7 @@ function buildHardRegionEmergencySolution(ctx, playerIds, tileSets) {
       if (matchesExact(ctx, playerId, tile)) score += 1000000000;
       else if (matchesLakeFallback(ctx, playerId, tile)) score += 500000000;
       if (GameplayMap.isFreshWater(tile.x, tile.y)) score += 100000000;
-      score += Math.min(minimumDistance, JOINT_START_MINIMUM_DISTANCE) * 1000000;
+      score += Math.min(minimumDistance, START_MINIMUM_DISTANCE) * 1000000;
       if (score > bestScore) {
         bestScore = score;
         bestCandidate = { plotIndex, x: tile.x, y: tile.y, score };
@@ -573,10 +569,10 @@ function applyGlobalTeamStarts() {
     originalStarts.set(playerId, StartPositioner.getStartPosition(playerId));
   }
 
-  const wholeMapTiles = getWholeMapTiles();
   let tileSets;
-  let placementLabel = "Base whole-map";
+  let placementLabel = "whole-map";
   if (playerCount === 0) {
+    const wholeMapTiles = getWholeMapTiles();
     tileSets = aliveMajorIds.map(() => wholeMapTiles);
   } else {
     let regionPlayerCount = playerCount;
@@ -607,20 +603,11 @@ function applyGlobalTeamStarts() {
       : `${regionPlayerCount / 2}v${regionPlayerCount / 2} designated regions`;
   }
 
-  const wholeMapTileSets = aliveMajorIds.map(() => wholeMapTiles);
   const allStrictPlayerIds = new Set(aliveMajorIds.filter(hasStrictBias));
-  const attempts = [];
-  if (playerCount !== 0) {
-    attempts.push({ label: placementLabel + " exact", tileSets, allowLakeFallback: false });
-    attempts.push({
-      label: placementLabel + " with lake fallback",
-      tileSets,
-      allowLakeFallback: true
-    });
-  } else {
-    attempts.push({ label: "whole-map exact", tileSets: wholeMapTileSets, allowLakeFallback: false });
-    attempts.push({ label: "whole-map with lake fallback", tileSets: wholeMapTileSets, allowLakeFallback: true });
-  }
+  const attempts = [
+    { label: placementLabel + " exact", allowLakeFallback: false },
+    { label: placementLabel + " with lake fallback", allowLakeFallback: true }
+  ];
 
   let solution = null;
   let chosenAttempt = null;
@@ -630,7 +617,7 @@ function applyGlobalTeamStarts() {
     const candidateSolution = solveJointStartPositionsWithRestarts(
       ctx,
       aliveMajorIds,
-      attempt.tileSets,
+      tileSets,
       originalStarts,
       attempt.allowLakeFallback,
       allStrictPlayerIds
@@ -641,7 +628,7 @@ function applyGlobalTeamStarts() {
       candidateSolution,
       attempt.allowLakeFallback,
       allStrictPlayerIds,
-      playerCount !== 0 ? attempt.tileSets : null
+      playerCount !== 0 ? tileSets : null
     );
     if (failures.length === 0) {
       solution = candidateSolution;
@@ -655,9 +642,8 @@ function applyGlobalTeamStarts() {
   // complete arrangement, isolate only the smallest-candidate strict player
   // and restart the entire placement. Other strict players remain mandatory.
   // Competitive modes always reuse their designated tile sets here: region
-  // membership is a hard constraint and is never widened by recovery.
-  const recoveryTileSets = playerCount !== 0 ? tileSets : wholeMapTileSets;
-  // This prevents one contradiction from reverting every civilization to an
+  // membership is a hard constraint and is never widened by recovery. This
+  // prevents one contradiction from reverting every civilization to an
   // invalid vanilla start.
   let enforcedStrictPlayerIds = new Set(allStrictPlayerIds);
   const relaxedStrictPlayerIds = new Set();
@@ -669,7 +655,7 @@ function applyGlobalTeamStarts() {
       const candidateCount = buildJointStartCandidates(
         ctx,
         playerId,
-        recoveryTileSets[playerIndex],
+        tileSets[playerIndex],
         originalStarts.get(playerId),
         true,
         enforcedStrictPlayerIds,
@@ -690,7 +676,7 @@ function applyGlobalTeamStarts() {
     const candidateSolution = solveJointStartPositionsWithRestarts(
       ctx,
       aliveMajorIds,
-      recoveryTileSets,
+      tileSets,
       originalStarts,
       true,
       enforcedStrictPlayerIds
@@ -701,7 +687,7 @@ function applyGlobalTeamStarts() {
       candidateSolution,
       true,
       enforcedStrictPlayerIds,
-      playerCount !== 0 ? recoveryTileSets : null
+      playerCount !== 0 ? tileSets : null
     );
     if (failures.length === 0) {
       solution = candidateSolution;
@@ -764,7 +750,7 @@ function applyGlobalTeamStarts() {
       committedSolution,
       chosenAttempt.allowLakeFallback,
       enforcedStrictPlayerIds,
-      playerCount !== 0 ? recoveryTileSets : null
+      playerCount !== 0 ? tileSets : null
     );
   if (committedFailures.length > 0) {
     console.log(
@@ -794,7 +780,7 @@ function applyGlobalTeamStarts() {
   }
   console.log(
     `MPT MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
-    `${JOINT_START_MINIMUM_DISTANCE}-tile minimum spacing`
+    `${START_MINIMUM_DISTANCE}-tile minimum spacing`
   );
 }
 
@@ -822,7 +808,7 @@ function applyGlobalTeamStartsSafely() {
 
 // The Map Options exist only in multiplayer setup; Resource List All matches the
 // criteria that load its data (any other value is Standard).
-const isMultiplayerMap = () => Configuration.getMapValue("MPTPlayerPlacement") != null;
+const isMultiplayerMap = () => Configuration.getMapValue(PLACEMENT_SETTING_KEY) != null;
 const isResourceListAll = () => Configuration.getMapValue("MPTResourceList") === "MPT_MAPS_RESOURCE_LIST_ALL";
 // Map files (Earth) keep the game's resources.
 const isScriptedMap = () => String(Configuration.getMapValue("Script") ?? "").endsWith(".js");

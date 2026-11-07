@@ -35,7 +35,7 @@
  * rules open, or within a moment in the Game Options box.
  */
 import { Decorator, createLogger } from '../mpt-shared/mpt-util.js';
-import { onSetupRevision, parameterDefaults, sameValue } from '../mpt-shared/mpt-setup.js';
+import { AGES, CUSTOM, groupOf, onSetupRevision, parameterDefaults, resolveString, sameValue } from '../mpt-shared/mpt-setup.js';
 import { sectionIndexOfGroup, tabIndexOfGroup } from '../mp-setup/setup-layout.js';
 
 const log = createLogger('lobby rules');
@@ -52,19 +52,15 @@ const SKIPPED_PARAM_IDS = new Set(["MPTPaceSetMirror"]);
 const WONDER_PREFIX = "MPTNaturalWonder";
 const WONDER_COUNT_ID = "MPTNaturalWonders";
 const WONDER_ON = "MPT_MAPS_NATURAL_WONDER_ON";
-const AGE_SUFFIX = /(Antiquity|Exploration|Modern)$/;
+const AGE_SUFFIX = new RegExp(`(${AGES.join("|")})$`);
 // A per-Age row's setting, where it is not the row's own id less the Age.
 const AGE_PARENTS = { MPTGameplayTriumphSet: "LegacySets" };
 // Rows of a set that are not per Age: the victory thresholds of Victory Threshold Set.
 const SET_PARENTS = Object.fromEntries(["Culture", "Economic", "Military"].map((victory) => [`MPTPace${victory}VictoryThreshold`, "MPTPaceVictoryThresholdSet"]));
-const CUSTOM_MARKER = "CUSTOM";
 
 // ============================ Settings ============================
 
-const resolve = (handle) => GameSetup.resolveString(handle) ?? "";
-const idOf = (param) => resolve(param.ID);
-// The group the multiplayer screen shows a parameter in, as it resolves it.
-const groupOf = (param) => resolve(param.groupMultiplayer ? param.groupMultiplayer : param.group);
+const idOf = (param) => resolveString(param.ID);
 const valueOf = (param) => param?.value?.value;
 const isWonderToggle = (id) => id.startsWith(WONDER_PREFIX) && id !== WONDER_COUNT_ID;
 const ageParentId = (id) => { const stem = id.replace(AGE_SUFFIX, ""); return AGE_PARENTS[stem] ?? stem; };
@@ -72,7 +68,7 @@ const ageParentId = (id) => { const stem = id.replace(AGE_SUFFIX, ""); return AG
 function valueText(param) {
   const value = valueOf(param);
   if (typeof value === "boolean") return Locale.compose(value ? "LOC_ADVANCED_OPTIONS_ON" : "LOC_ADVANCED_OPTIONS_OFF");
-  return Locale.compose(resolve(param.value?.name) || String(value ?? ""));
+  return Locale.compose(resolveString(param.value?.name) || String(value ?? ""));
 }
 
 function isListed(param) {
@@ -83,7 +79,7 @@ function isListed(param) {
   if (param.array || ![GameSetupDomainType.Select, GameSetupDomainType.Boolean].includes(param.domain?.type)) return false;
   const parentId = SET_PARENTS[id] ?? (own && AGE_SUFFIX.test(id) ? ageParentId(id) : null);
   const parent = parentId ? GameSetup.findGameParameter(parentId) : null;
-  if (parent) return String(valueOf(parent) ?? "").toUpperCase().includes(CUSTOM_MARKER);
+  if (parent) return String(valueOf(parent) ?? "").toUpperCase().includes(CUSTOM);
   const fallback = parameterDefaults().get(id)?.value;
   return fallback == null || !sameValue(valueOf(param), fallback);
 }
@@ -92,8 +88,8 @@ function isListed(param) {
 function rowLabel(param, id) {
   const age = id.match(AGE_SUFFIX)?.[1];
   const parent = age && id.startsWith(PARAM_PREFIX) ? GameSetup.findGameParameter(ageParentId(id)) : null;
-  if (!parent) return Locale.compose(resolve(param.name) || id);
-  return `${Locale.compose(resolve(parent.name))} (${Locale.compose(`LOC_AGE_${age.toUpperCase()}_NAME`)})`;
+  if (!parent) return Locale.compose(resolveString(param.name) || id);
+  return `${Locale.compose(resolveString(parent.name))} (${Locale.compose(`LOC_AGE_${age.toUpperCase()}_NAME`)})`;
 }
 
 /** "N / M" after the Natural Wonders count when any wonder is switched off. */
@@ -102,7 +98,7 @@ function wonderRow(parameters) {
   const on = toggles.filter((param) => valueOf(param) === WONDER_ON).length;
   const count = GameSetup.findGameParameter(WONDER_COUNT_ID);
   if (!count || toggles.length === 0 || on === toggles.length) return null;
-  return { id: WONDER_COUNT_ID, group: groupOf(count), label: `${Locale.compose(resolve(count.name))}:`, value: `${on} / ${toggles.length}`, after: true };
+  return { id: WONDER_COUNT_ID, group: groupOf(count), label: `${Locale.compose(resolveString(count.name))}:`, value: `${on} / ${toggles.length}`, after: true };
 }
 
 /** The changed settings as [{ label, value }], in the setup tabs' order. */
@@ -115,11 +111,8 @@ function changedSettings() {
   });
   const wonders = wonderRow(parameters);
   if (wonders) rows.push(wonders);
-  const key = (row) => [tabIndexOfGroup(row.group), sectionIndexOfGroup(row.group), defaults.get(row.id)?.sortIndex ?? 0, row.after ? 1 : 0];
-  return rows.sort((a, b) => {
-    const [ka, kb] = [key(a), key(b)];
-    return ka.reduce((order, value, i) => order || value - kb[i], 0);
-  });
+  for (const row of rows) row.key = [tabIndexOfGroup(row.group), sectionIndexOfGroup(row.group), defaults.get(row.id)?.sortIndex ?? 0, row.after ? 1 : 0];
+  return rows.sort((a, b) => a.key.reduce((order, value, i) => order || value - b.key[i], 0));
 }
 
 // ============================ Game Rules ============================
@@ -276,7 +269,7 @@ class LobbySummary extends Decorator {
       const param = GameSetup.findGameParameter(entry.id);
       entry.row.classList.toggle("hidden", !param);
       if (!param) continue;
-      entry.label.textContent = `${Locale.compose(resolve(param.name))}:`;
+      entry.label.textContent = `${Locale.compose(resolveString(param.name))}:`;
       entry.value.textContent = valueText(param);
     }
   }

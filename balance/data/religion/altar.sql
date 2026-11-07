@@ -31,8 +31,7 @@ WHERE EXISTS (SELECT 1 FROM Types WHERE Type = 'BUILDING_ALTAR');
 -- warehouse buildings also carry explicit zero building-maintenance records.
 -- Replace the Altar's base 2 Gold upkeep and add the matching Happiness record
 -- so it uses the same maintenance setup as the Granary and other warehouses.
-INSERT OR REPLACE INTO Constructible_Maintenances
-	(ConstructibleType, YieldType, Amount)
-VALUES
-	('BUILDING_ALTAR', 'YIELD_GOLD', 0),
-	('BUILDING_ALTAR', 'YIELD_HAPPINESS', 0);
+INSERT OR REPLACE INTO Constructible_Maintenances (ConstructibleType, YieldType, Amount)
+    VALUES
+        ('BUILDING_ALTAR', 'YIELD_GOLD', 0),
+        ('BUILDING_ALTAR', 'YIELD_HAPPINESS', 0);

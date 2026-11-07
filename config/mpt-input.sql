@@ -4,7 +4,7 @@
 -- The mod's actions in Options -> keyboard mapping (ui/mp-keybind). They act in
 -- multiplayer games only, and their default keys are ones the game leaves free,
 -- so the game's own keys stay as they are.
-INSERT OR REPLACE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)
+INSERT OR IGNORE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)
     VALUES
         ('mpt-pause-game', 'Keyboard', 'LOC_MPT_PAUSE_KEYBIND', 'LOC_MPT_PAUSE_KEYBIND_TT', 100),
         ('mpt-lens-trade', 'Keyboard', 'LOC_MPT_KEYBIND_LENS_TRADE', 'LOC_MPT_KEYBIND_LENS_TRADE_TT', 101),
@@ -25,7 +25,7 @@ INSERT OR REPLACE INTO InputActions (ActionId, DeviceType, Name, Description, So
 -- Number keys for the lenses, brackets and backslash for settlements, Ctrl with a
 -- letter for Pause and the unit actions (Ctrl+P and Ctrl+B after Civilization VI's
 -- P and B, whose plain keys the game uses).
-INSERT OR REPLACE INTO InputActionDefaultGestures (ActionId, "Index", GestureType, GestureData)
+INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType, GestureData)
     VALUES
         ('mpt-pause-game', 0, 'KBMouse', 'KEY_P+KEY_CONTROL'),
         ('mpt-lens-trade', 0, 'KBMouse', 'KEY_1'),

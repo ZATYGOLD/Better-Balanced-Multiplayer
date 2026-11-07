@@ -33,7 +33,7 @@
  * session is untimed (inGrace).
  *
  * Engine backstop: the engine times an unknown type by TurnTimerTime, which
- * config/SetupParameters.sql sets to an hour for Competitive. That phase limit
+ * config/setup-parameters.sql sets to an hour for Competitive. That phase limit
  * (ENGINE_BACKSTOP) is proxied like a normal one, and this countdown always
  * ends the turn first.
  *
@@ -84,7 +84,7 @@ function configuredTimerType() {
   try { return Configuration.getGame().turnTimerType; } catch (e) { return undefined; }
 }
 
-/** The engine's own limit for Competitive turns (config/SetupParameters.sql), or 0 when unset. */
+/** The engine's own limit for Competitive turns (config/setup-parameters.sql), or 0 when unset. */
 function engineBackstop() {
   try { return Number(Configuration.getGame().getValue('TurnTimerTime')) || 0; } catch (e) { return 0; }
 }

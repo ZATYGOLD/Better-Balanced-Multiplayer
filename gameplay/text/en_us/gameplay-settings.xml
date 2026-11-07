@@ -74,7 +74,7 @@
 		<Row Tag="LOC_MPT_GAMEPLAY_LATE_NAME"><Text>Late</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_CRISIS_TIMING_LATE_DESC"><Text>Each crisis stage begins later in the age.[nn][BLIST][LI] Stage 1: Begins at 85%[LI] Stage 2: Begins at 90%[LI] Stage 3: Begins at 95%[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_TRIUMPH_SET_AGE_DESC"><Text>Sets this age's Triumph Set.[n]Applies only when Triumph Set is set to Custom.</Text></Row>
-		<Row Tag="LOC_MPT_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC"><Text>Custom: set the Triumph Set for each age individually.</Text></Row>
+		<Row Tag="LOC_MPT_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC"><Text>Set the Triumph Set for each age individually.</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_1"><Text>1</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_2"><Text>2</Text></Row>
 		<Row Tag="LOC_MPT_GAMEPLAY_NUM_3"><Text>3</Text></Row>

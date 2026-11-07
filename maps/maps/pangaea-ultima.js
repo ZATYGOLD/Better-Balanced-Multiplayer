@@ -1,3 +1,10 @@
+// Pangaea Ultima: the game's Voronoi Pangaea pipeline with one solid central
+// continent. After the Voronoi pass the continent's core is filled, enclosed
+// seas become land, land touching the continent joins it, and other land keeps
+// a clear ocean gap from it. The islands beyond that gap are the Distant Lands:
+// they join the other landmass region, so they host Exploration's Treasure Fleets.
+// The terrain and snow passes apply the Map Settings climate and terrain
+// (./generation/), as on the multiplayer copies of the base maps.
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { assignStartPositionsFromHexMap } from '../../../base-standard/maps/assign-starting-plots.js';
 import { generateDiscoveries } from '../../../base-standard/maps/discovery-generator.js';
@@ -8,16 +15,10 @@ import { FeatureType, TerrainType } from '../../../base-standard/scripts/voronoi
 import { VoronoiPangaeaUltima } from '../scripts/voronoi_maps/pangaea-ultima.js';
 import { generateMapFeatures } from './generation/map-features.js';
 import { generateSnow } from './generation/snow.js';
+import { adjacentPlots } from './plots.js';
 // Loads the multiplayer Player Placement pass with the map (it arms itself once).
 import '../scripts/global-team-starts.js';
 
-// Pangaea Ultima: the game's Voronoi Pangaea pipeline with one solid central
-// continent. After the Voronoi pass the continent's core is filled, enclosed
-// seas become land, land touching the continent joins it, and other land keeps
-// a clear ocean gap from it. The islands beyond that gap are the Distant Lands:
-// they join the other landmass region, so they host Exploration's Treasure Fleets.
-// The terrain and snow passes apply the Map Settings climate and terrain
-// (./generation/), as on the multiplayer copies of the base maps.
 const CORE_RADIUS_X = 0.43;
 const CORE_RADIUS_Y = 0.38;
 const DISTANT_LAND_GAP = 4;
@@ -197,8 +198,6 @@ function enforceDistantLandGap(hexMap, tiles, primaryId) {
 
 /** After terrain generation, land connected to the continent on the final map belongs to it. */
 function joinFinalAttachedLand(tiles, primaryId) {
-  const width = GameplayMap.getGridWidth();
-  const height = GameplayMap.getGridHeight();
   const isGameplayLand = (x, y) => {
     const terrain = GameplayMap.getTerrainType(x, y);
     return terrain !== g_OceanTerrain && terrain !== g_CoastTerrain;
@@ -217,9 +216,7 @@ function joinFinalAttachedLand(tiles, primaryId) {
       corrected++;
     }
     TerrainBuilder.removePlotTag(location.x, location.y, PlotTags.PLOT_TAG_ISLAND);
-    for (let direction = 0; direction < DirectionTypes.NUM_DIRECTION_TYPES; direction++) {
-      const adjacent = GameplayMap.getAdjacentPlotLocation(location, direction);
-      if (adjacent == null || adjacent.x < 0 || adjacent.x >= width || adjacent.y < 0 || adjacent.y >= height) continue;
+    for (const adjacent of adjacentPlots(location)) {
       const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
       if (!visited.has(adjacentIndex) && isGameplayLand(adjacent.x, adjacent.y)) {
         visited.add(adjacentIndex);
@@ -239,13 +236,15 @@ function markDistantIslands(primaryId) {
   const distantId = primaryId === LandmassRegion.LANDMASS_REGION_EAST ? LandmassRegion.LANDMASS_REGION_WEST
     : primaryId === LandmassRegion.LANDMASS_REGION_WEST ? LandmassRegion.LANDMASS_REGION_EAST : -1;
   if (distantId < 0) {
-    console.log(`PANGAEA ULTIMA: continent region ${primaryId} is neither East nor West; islands left unmarked`);
+    console.log(`MPT MAPS PANGAEA ULTIMA: continent region ${primaryId} is neither East nor West; islands left unmarked`);
     return;
   }
+  const width = GameplayMap.getGridWidth();
+  const height = GameplayMap.getGridHeight();
   let marked = 0;
   let levelled = 0;
-  for (let y = 0; y < GameplayMap.getGridHeight(); y++) {
-    for (let x = 0; x < GameplayMap.getGridWidth(); x++) {
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
       if (!GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND) || GameplayMap.isWater(x, y)) continue;
       TerrainBuilder.setLandmassRegionId(x, y, distantId);
       marked++;
@@ -257,7 +256,7 @@ function markDistantIslands(primaryId) {
       }
     }
   }
-  console.log(`PANGAEA ULTIMA: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
+  console.log(`MPT MAPS PANGAEA ULTIMA: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
 }
 
 function requestMapData(initParams) {
@@ -285,7 +284,7 @@ function generateMap() {
     const seas = fillEnclosedSeas(hexMap, tiles, primaryId);
     const joined = joinAttachedLand(hexMap, tiles, primaryId);
     const trimmed = enforceDistantLandGap(hexMap, tiles, primaryId);
-    console.log(`PANGAEA ULTIMA: core=${core} enclosedSeas=${seas} joined=${joined} trimmed=${trimmed}`);
+    console.log(`MPT MAPS PANGAEA ULTIMA: core=${core} enclosedSeas=${seas} joined=${joined} trimmed=${trimmed}`);
   }
 
   // Snow and resources follow the final continent pass.
@@ -293,7 +292,7 @@ function generateMap() {
   context.phases &= ~(GenerationPhases.Snow | GenerationPhases.Resources);
   generateMapFeatures(hexMap, context);
   if (primaryId > 0) {
-    console.log(`PANGAEA ULTIMA: final attached-land corrections=${joinFinalAttachedLand(tiles, primaryId)}`);
+    console.log(`MPT MAPS PANGAEA ULTIMA: final attached-land corrections=${joinFinalAttachedLand(tiles, primaryId)}`);
     markDistantIslands(primaryId);
     AreaBuilder.recalculateAreas();
   }

@@ -142,13 +142,13 @@
 		<Row Tag="LOC_MPT_PACE_TECHNOLOGY_COST_SWIFT_DESC"><Text>Cheaper research early, standard once the Modern Age arrives.[nn][BLIST][LI] Antiquity: -25%[LI] Exploration: -25%[LI] Modern: Standard[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_BALANCED_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: Standard[LI] Exploration: Standard[LI] Modern: Instant[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_DEFAULT_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: travel with 4[icon:Action_Move]Movement[LI] Exploration: travel with 4[icon:Action_Move]Movement[LI] Modern: from a distance[/BLIST]</Text></Row>
-		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_DESC"><Text>Sets how quickly Merchants start trade routes: by travelling to the settlement they trade with, or from a distance. A travel speed applies in every age, the Modern Age included.</Text></Row>
+		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_DESC"><Text>Sets how quickly Merchants start trade routes: by travelling to the settlement they trade with, or from a distance. A travel speed applies in every age, the Modern Age included. With Game Balance on Multiplayer, Standard starts trade routes from a distance in every age.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_FAST_DESC"><Text>Merchants travel with 6[icon:Action_Move]Movement.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_INSTANT_DESC"><Text>Trade routes start from a distance, so Merchants do not need to travel.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_NAME"><Text>Trade Speed</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_QUICK_DESC"><Text>Merchants travel with 5[icon:Action_Move]Movement.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_SLOW_DESC"><Text>Merchants travel with 3[icon:Action_Move]Movement.</Text></Row>
-		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_STANDARD_DESC"><Text>Merchants travel with 4[icon:Action_Move]Movement.</Text></Row>
+		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_STANDARD_DESC"><Text>Merchants travel with 4[icon:Action_Move]Movement; with Game Balance on Multiplayer, trade routes start from a distance instead.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_TRADE_SPEED_SWIFT_DESC"><Text>Trade routes start from a distance in every age.[nn][BLIST][LI] Antiquity: Instant[LI] Exploration: Instant[LI] Modern: Instant[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_PROJECT_COST_AGE_MINUS_25_DESC"><Text>25% less Production for Victory Projects in this age.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_PROJECT_COST_AGE_PLUS_100_DESC"><Text>100% more Production for Victory Projects in this age.</Text></Row>

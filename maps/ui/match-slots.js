@@ -1,6 +1,3 @@
-import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
-import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../../ui/mpt-shared/mpt-util.js';
-
 // Multiplayer lobby slots (host, new games): team placements open exactly their
 // players (Duel 2, 2v2 4, 3v3 6, 4v4 8) on alternating teams 1-2-1-2 (Player
 // Placement gives even slots the West, odd slots the East), plus a last slot for
@@ -9,8 +6,11 @@ import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../../ui
 // Small needs one slot more than the size allows, so the host launches the next
 // size up and records the chosen size (MPTChosenMapSize); the game data then
 // builds the map at that size (maps/data/chosen-size-*.sql).
+import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
+import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../../ui/mpt-shared/mpt-util.js';
+import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT } from '../maps/placement.js';
+
 const log = createLogger('match slots');
-const PLACEMENT_PARAMETER = "MPTPlayerPlacement";
 const SIZE_PARAMETER = "MapSize";
 const CHOSEN_SIZE_PARAMETER = "MPTChosenMapSize";
 const NO_CHOSEN_SIZE = "MPT_MAPS_CHOSEN_SIZE_NONE";
@@ -19,7 +19,6 @@ const NO_SLOT = -1;
 const NO_TEAM = -1;
 const TEAM_COUNT = 2;
 const SLOT_SWEEP_END = 16;   // past any lobby's slots: every player id that can hold a configuration
-const PLAYERS_BY_PLACEMENT = { MPT_MAPS_PLACEMENT_DUEL: 2, MPT_MAPS_PLACEMENT_2V2: 4, MPT_MAPS_PLACEMENT_3V3: 6, MPT_MAPS_PLACEMENT_4V4: 8 };
 /** Map size -> the size launched when it holds one player more than it allows. */
 const LAUNCH_SIZE = { MAPSIZE_TINY: "MAPSIZE_SMALL", MAPSIZE_SMALL: "MAPSIZE_STANDARD" };
 const LAUNCH_DELAY_MS = 1000;    // lets the switched size reach every client before the load
@@ -32,7 +31,7 @@ let launching = false;
 /** The Match Type's Player Placement (a hidden setting, read from the map configuration). */
 function placement() {
   try {
-    const raw = Configuration.getMap().getValue(PLACEMENT_PARAMETER);
+    const raw = Configuration.getMap().getValue(PLACEMENT_SETTING_KEY);
     return typeof raw === "number" ? GameSetup.resolveString(raw) : raw;
   } catch (e) { return undefined; }
 }

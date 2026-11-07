@@ -6,6 +6,6 @@
 		<Row Tag="LOC_MPT_BALANCE_DESC"><Text>Balance changes for competitive multiplayer: civilizations, leaders, units, governments, wonders, resources, pantheons, mementos and victories. Added by Better Balanced Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_BALANCE_STANDARD_DESC"><Text>Use Civilization VII's own balance.</Text></Row>
 		<Row Tag="LOC_MPT_BALANCE_MULTIPLAYER_NAME"><Text>Multiplayer</Text></Row>
-		<Row Tag="LOC_MPT_BALANCE_MULTIPLAYER_DESC"><Text>Use the Better Balanced Multiplayer's competitive balance changes.</Text></Row>
+		<Row Tag="LOC_MPT_BALANCE_MULTIPLAYER_DESC"><Text>Use Better Balanced Multiplayer's competitive balance changes.</Text></Row>
 	</EnglishText>
 </Database>

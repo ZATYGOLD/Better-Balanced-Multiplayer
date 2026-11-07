@@ -1,5 +1,5 @@
 --*******************************************************
---***************** PARAMETER GROUPS *******************
+--***************** PARAMETER GROUPS ********************
 --*******************************************************
 -- The Map tab's Terrain and Natural Wonder Selection groups
 -- (ui/mp-setup/setup-layout.js).
@@ -11,7 +11,7 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
         ('MPAdvancedNaturalWonderSelectionOptions', 'LOC_GROUPID_MPT_NATURALWONDERSELECTIONOPTIONS');
 
 --*******************************************************
---***************** CLIMATE ****************************
+--***************** CLIMATE *****************************
 --*******************************************************
 -- Map Age, Map Temperature and Map Zones, in Map Settings, read by the terrain,
 -- biome, feature and snow passes of the multiplayer maps (maps/maps/generation/).
@@ -42,7 +42,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTMapZoneOptions', 'MPT_MAPS_MAP_ZONES_RANDOM', 'LOC_ADVANCED_OPTIONS_RANDOM', 'LOC_MPT_MAPS_MAP_ZONES_RANDOM_DESC', 80);
 
 --*******************************************************
---***************** NATURAL WONDERS ********************
+--***************** NATURAL WONDERS *********************
 --*******************************************************
 -- How many Natural Wonders a map places (maps/data/natural-wonders/count-*.sql), in Map Settings.
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, Hash, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
@@ -58,7 +58,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTNaturalWonderCounts', 'MPT_MAPS_NATURAL_WONDERS_DOUBLE', 'LOC_MPT_MAPS_DOUBLE_NAME', 'LOC_MPT_MAPS_NATURAL_WONDERS_DOUBLE_DESC', 50);
 
 --*******************************************************
---***************** NATURAL WONDER SELECTION ***********
+--***************** NATURAL WONDER SELECTION ************
 --*******************************************************
 -- One toggle per Natural Wonder; Off keeps it off the map (maps/data/natural-wonders/).
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, Hash, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
@@ -92,7 +92,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('MPTNaturalWonderToggles', 'MPT_MAPS_NATURAL_WONDER_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_MPT_MAPS_NATURAL_WONDER_OFF_DESC', 20);
 
 --*******************************************************
---***************** TERRAIN ****************************
+--***************** TERRAIN *****************************
 --*******************************************************
 -- Lakes (maps/data/lakes/), Rivers and Mountains (the multiplayer maps' passes,
 -- maps/maps/generation/), with Sea Level after them in multiplayer.

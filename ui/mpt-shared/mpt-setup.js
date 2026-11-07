@@ -23,9 +23,9 @@
  *
  * Reading and writing setup parameters, their multiplayer defaults, one shared
  * poll of the setup (multiplayer setups only), and the rule that keeps a
- * setting's rows on its value (Pace, Gameplay and Maps).
+ * setting's rows on its value (Pace and Gameplay).
  */
-import { createLogger, isMultiplayerGame } from './mpt-util.js';
+import { createLogger, isAgeTransition, isMultiplayerGame } from './mpt-util.js';
 
 const log = createLogger('setup');
 const POLL_MS = 250;
@@ -38,7 +38,11 @@ function canEditSetup() {
   return !Configuration.getGame()?.isNetworkMultiplayer || !(host >= 0) || host === GameContext.localPlayerID;
 }
 
-const isAgeTransition = () => Modding.getTransitionInProgress?.() === TransitionType.Age;
+/** A setup string handle as text ("" if absent). */
+const resolveString = (handle) => GameSetup.resolveString(handle) ?? "";
+
+/** The group the multiplayer Create Game screen shows a parameter in: its multiplayer group when it has one. */
+const groupOf = (param) => resolveString(param.groupMultiplayer ? param.groupMultiplayer : param.group);
 
 /** A game parameter's value (null if absent). */
 const gameValue = (id) => GameSetup.findGameParameter(id)?.value?.value ?? null;
@@ -195,4 +199,4 @@ function syncAgeRows(entry) {
   }
 }
 
-export { AGES, CUSTOM, ageSetting, canEditSetup, gameValue, isAgeTransition, onSetupRevision, optionOf, parameterDefaults, sameValue, setOption, setValue, syncAgeRows };
+export { AGES, CUSTOM, ageSetting, canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, optionOf, parameterDefaults, resolveString, sameValue, setOption, setValue, syncAgeRows };

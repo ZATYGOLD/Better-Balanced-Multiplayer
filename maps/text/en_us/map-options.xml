@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
-	<!-- Maps: Map List and Map Settings -->
+	<!-- Maps: Map List, Spawn, Player Placement and Resource settings -->
 		<Row Tag="LOC_GROUPID_MPT_SPAWNOPTIONS"><Text>Spawn Settings</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLAYER_PLACEMENT_NAME"><Text>Player Placement</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLAYER_PLACEMENT_DESC"><Text>Choose whole-map placement or an East vs West competitive layout. Every solved start requires Fresh Water and 12 tiles of separation.</Text></Row>
@@ -28,7 +28,7 @@
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_ALL_NAME"><Text>All</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_ALL_DESC"><Text>Every resource in every Age (Oil and Rubber from Modern), kept across Age transitions: matched resource pools dealt to each player's region, even counts of general resources per continent, and the mod's own classes, yields and effects.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_NAME"><Text>Resource Amount</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the map places, as a share of the game's own density.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the map places, as a share of the game's own density. With Resource List Standard, every continent keeps at least one of each resource the game placed there, so Scarce and Sparse can place more on small continents.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_NAME"><Text>Scarce</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SCARCE_DESC"><Text>35% of the game's density.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_AMOUNT_SPARSE_DESC"><Text>50% of the game's density.</Text></Row>
