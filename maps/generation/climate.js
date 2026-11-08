@@ -16,8 +16,8 @@
 // Standard matches the base game in every value.
 import { interpolate, settingTier } from './settings.js';
 
-const TEMPERATURE_SETTING_KEY = "MPTMapTemperature";
-const MAP_ZONES_SETTING_KEY = "MPTMapZones";
+const TEMPERATURE_SETTING_KEY = "BBMMapTemperature";
+const MAP_ZONES_SETTING_KEY = "BBMMapZones";
 const MAX_LATITUDE = 90;
 // map-globals.js gives the landmass, mountain, and hill fractals ids 0 to 2.
 const PATCHWORK_FRACTAL = 3;
@@ -26,11 +26,11 @@ const PATCHWORK_GRAIN = 2;
 const weights = (elevation, rainfall, river) => ({ elevation, rainfall, river });
 
 const TEMPERATURE_TIERS = {
-  MPT_MAPS_TEMPERATURE_FRIGID: { bands: [4, 13, 13, 27], shift: 45, weights: weights(1.75, 1, 1.75) },
-  MPT_MAPS_TEMPERATURE_COLD: { bands: [17, 33, 37, 50], shift: 10, weights: weights(1.25, 1, 1.25) },
-  MPT_MAPS_TEMPERATURE_STANDARD: { bands: [17, 33, 44, 58], shift: 0, weights: weights(1, 1, 1) },
-  MPT_MAPS_TEMPERATURE_HOT: { bands: [17, 33, 51, 65], shift: -10, weights: weights(1, 1.25, 1.25) },
-  MPT_MAPS_TEMPERATURE_SCORCHING: { bands: [40, 48, 82, 105], shift: -45, weights: weights(1.5, 1.5, 1.75) },
+  BBM_MAPS_TEMPERATURE_FRIGID: { bands: [4, 13, 13, 27], shift: 45, weights: weights(1.75, 1, 1.75) },
+  BBM_MAPS_TEMPERATURE_COLD: { bands: [17, 33, 37, 50], shift: 10, weights: weights(1.25, 1, 1.25) },
+  BBM_MAPS_TEMPERATURE_STANDARD: { bands: [17, 33, 44, 58], shift: 0, weights: weights(1, 1, 1) },
+  BBM_MAPS_TEMPERATURE_HOT: { bands: [17, 33, 51, 65], shift: -10, weights: weights(1, 1.25, 1.25) },
+  BBM_MAPS_TEMPERATURE_SCORCHING: { bands: [40, 48, 82, 105], shift: -45, weights: weights(1.5, 1.5, 1.75) },
 };
 
 // --------------------------------------------------------- band shapes --
@@ -88,26 +88,26 @@ const hotPolesSun = (latitude) => (latitude < 0 ? -1 : 1) - latitude;
 
 // rollHotEdge: the map seed picks which pole faces the sun, north or south.
 const MAP_ZONE_TIERS = {
-  MPT_MAPS_MAP_ZONES_STANDARD: null,
-  MPT_MAPS_MAP_ZONES_HOT_POLES: { bands: stripeBands, sun: hotPolesSun },
-  MPT_MAPS_MAP_ZONES_HOT_EDGE: { bands: stripeBands, sun: hotEdgeSun, rollHotEdge: true },
-  MPT_MAPS_MAP_ZONES_HOT_CENTER: { bands: () => ringBands(true), sun: hotEdgeSun },
-  MPT_MAPS_MAP_ZONES_COLD_CENTER: { bands: () => ringBands(false), sun: hotEdgeSun },
-  MPT_MAPS_MAP_ZONES_WARM_RING: { bands: () => ringBands(false), sun: standardSun },
-  MPT_MAPS_MAP_ZONES_PATCHWORK: { bands: patchworkBands, sun: standardSun },
+  BBM_MAPS_MAP_ZONES_STANDARD: null,
+  BBM_MAPS_MAP_ZONES_HOT_POLES: { bands: stripeBands, sun: hotPolesSun },
+  BBM_MAPS_MAP_ZONES_HOT_EDGE: { bands: stripeBands, sun: hotEdgeSun, rollHotEdge: true },
+  BBM_MAPS_MAP_ZONES_HOT_CENTER: { bands: () => ringBands(true), sun: hotEdgeSun },
+  BBM_MAPS_MAP_ZONES_COLD_CENTER: { bands: () => ringBands(false), sun: hotEdgeSun },
+  BBM_MAPS_MAP_ZONES_WARM_RING: { bands: () => ringBands(false), sun: standardSun },
+  BBM_MAPS_MAP_ZONES_PATCHWORK: { bands: patchworkBands, sun: standardSun },
 };
 
 // Signed latitude in degrees for every tile, by Map Zones, and whether it is
 // the engine's own.
 function mapZoneLatitude() {
-  const source = settingTier(MAP_ZONE_TIERS, MAP_ZONES_SETTING_KEY, "MPT_MAPS_MAP_ZONES_STANDARD", "MPT_MAPS_MAP_ZONES_RANDOM");
+  const source = settingTier(MAP_ZONE_TIERS, MAP_ZONES_SETTING_KEY, "BBM_MAPS_MAP_ZONES_STANDARD", "BBM_MAPS_MAP_ZONES_RANDOM");
   if (!source) {
     return { latitude: (x, y) => GameplayMap.getPlotLatitude(x, y), engineLatitude: true };
   }
   let bands = source.bands();
   if (source.rollHotEdge) {
-    const northHot = TerrainBuilder.getRandomNumber(2, "MPT Map Zones Hot Edge") == 1;
-    console.log(`MPT MAPS climate: ${northHot ? "north" : "south"} edge hot`);
+    const northHot = TerrainBuilder.getRandomNumber(2, "BBM Map Zones Hot Edge") == 1;
+    console.log(`BBM MAPS climate: ${northHot ? "north" : "south"} edge hot`);
     if (northHot) {
       const southHot = bands;
       bands = (x, y) => -southHot(x, y);
@@ -123,9 +123,9 @@ if (typeof engine !== "undefined") engine.on("RequestMapInitData", () => { clima
 // Both settings resolve once per map, so a Random roll holds for every pass.
 export function getClimate() {
   if (!climate) {
-    const temperature = settingTier(TEMPERATURE_TIERS, TEMPERATURE_SETTING_KEY, "MPT_MAPS_TEMPERATURE_STANDARD", "MPT_MAPS_TEMPERATURE_RANDOM");
+    const temperature = settingTier(TEMPERATURE_TIERS, TEMPERATURE_SETTING_KEY, "BBM_MAPS_TEMPERATURE_STANDARD", "BBM_MAPS_TEMPERATURE_RANDOM");
     climate = { ...temperature, ...mapZoneLatitude() };
-    console.log(`MPT MAPS climate: bands ${temperature.bands.join("/")}, shift ${temperature.shift}, weights ${Object.values(temperature.weights).join("/")}`);
+    console.log(`BBM MAPS climate: bands ${temperature.bands.join("/")}, shift ${temperature.shift}, weights ${Object.values(temperature.weights).join("/")}`);
   }
   return climate;
 }

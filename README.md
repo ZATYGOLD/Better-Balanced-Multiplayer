@@ -189,13 +189,13 @@ Multiplayer-Toolkit/
                                  #   setup, shared, timer
 ```
 
-The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `[MPT <feature>]`.
+The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `[BBM <feature>]`.
 
 ## Changelog
 
 ### 0.7.0
 
-**Renamed:** the mod was formerly Multiplayer Toolkit. Saves still work, because the mod id and folder are unchanged. Other renames:
+**Renamed:** the mod was formerly Multiplayer Toolkit, and its mod id is now `zatygolds-multiplayer-balance` (was `multiplayer-toolkit`), so saves and setups from earlier versions don't load. Other renames:
 
 - Game Set → **Match Type**
 - Multiplayer Balance → **Game Balance**

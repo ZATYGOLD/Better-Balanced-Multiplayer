@@ -2,26 +2,26 @@
 <Database>
 	<!-- Attach one conditional Pantheon restorer to every major player. -->
 	<TraitModifiers>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_1"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_2"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_3"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_4"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_5"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_6"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_7"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_8"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_9"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_10"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_11"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_12"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_13"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_14"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_15"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_16"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_17"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_18"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_19"/>
-		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="MPT_BALANCE_CARRY_PANTHEON_20"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_1"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_2"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_3"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_4"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_5"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_6"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_7"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_8"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_9"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_10"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_11"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_12"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_13"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_14"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_15"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_16"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_17"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_18"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_19"/>
+		<InsertOrIgnore TraitType="TRAIT_LEADER_MAJOR_CIV" ModifierId="BBM_BALANCE_CARRY_PANTHEON_20"/>
 	</TraitModifiers>
 
 	<!-- The Altar's Antiquity-only activation data is recreated for the active later Age database. -->
@@ -36,12 +36,12 @@
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="AltarLakeHappiness" RequiresActivation="true" />
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="AltarResourceHappiness" RequiresActivation="true" />
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="AltarRiverHappiness" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarMountainScience" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarNaturalWonderScience" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarCoastCulture" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarLakeCulture" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarRiverCulture" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarResourceProduction" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarMountainScience" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarNaturalWonderScience" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarCoastCulture" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarLakeCulture" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarRiverCulture" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarResourceProduction" RequiresActivation="true" />
 	</Constructible_Adjacencies>
 	<Adjacency_YieldChanges>
 		<InsertOrIgnore ID="AltarUrbanHappiness" YieldType="YIELD_HAPPINESS" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentQuarter="true" />
@@ -54,12 +54,12 @@
 		<InsertOrIgnore ID="AltarLakeHappiness" YieldType="YIELD_HAPPINESS" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true" />
 		<InsertOrIgnore ID="AltarResourceHappiness" YieldType="YIELD_HAPPINESS" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true" />
 		<InsertOrIgnore ID="AltarRiverHappiness" YieldType="YIELD_HAPPINESS" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER" />
-		<InsertOrIgnore ID="MPTBalanceAltarMountainScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN" />
-		<InsertOrIgnore ID="MPTBalanceAltarNaturalWonderScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true" />
-		<InsertOrIgnore ID="MPTBalanceAltarCoastCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST" />
-		<InsertOrIgnore ID="MPTBalanceAltarLakeCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true" />
-		<InsertOrIgnore ID="MPTBalanceAltarRiverCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER" />
-		<InsertOrIgnore ID="MPTBalanceAltarResourceProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true" />
+		<InsertOrIgnore ID="BBMBalanceAltarMountainScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN" />
+		<InsertOrIgnore ID="BBMBalanceAltarNaturalWonderScience" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true" />
+		<InsertOrIgnore ID="BBMBalanceAltarCoastCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST" />
+		<InsertOrIgnore ID="BBMBalanceAltarLakeCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true" />
+		<InsertOrIgnore ID="BBMBalanceAltarRiverCulture" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER" />
+		<InsertOrIgnore ID="BBMBalanceAltarResourceProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true" />
 	</Adjacency_YieldChanges>
 	<Constructible_WarehouseYields>
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="PantheonAltarCampGold" RequiresActivation="true" />
@@ -87,9 +87,9 @@
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="PantheonAltarWetFeatureProduction" RequiresActivation="true" />
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="PantheonAltarHappinessOnResources" RequiresActivation="true" />
 		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="PantheonAltarClayPitResourceProduction" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarFishingBoatResourceFood" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarFishingBoatFood" RequiresActivation="true" />
-		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarOceanTerrainFood" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarFishingBoatResourceFood" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarFishingBoatFood" RequiresActivation="true" />
+		<InsertOrIgnore ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarOceanTerrainFood" RequiresActivation="true" />
 	</Constructible_WarehouseYields>
 	<Warehouse_YieldChanges>
 		<InsertOrIgnore ID="PantheonAltarCampGold" YieldType="YIELD_GOLD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_CAMP" />
@@ -117,8 +117,8 @@
 		<InsertOrIgnore ID="PantheonAltarRoughTerrainProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" TerrainInCity="TERRAIN_HILL" />
 		<InsertOrIgnore ID="PantheonAltarWetFeatureProduction" YieldType="YIELD_PRODUCTION" YieldChange="1" FeatureClassInCity="FEATURE_CLASS_WET" />
 		<InsertOrIgnore ID="PantheonAltarHappinessOnResources" YieldType="YIELD_HAPPINESS" YieldChange="1" ResourceInCity="true" />
-		<InsertOrIgnore ID="MPTBalancePantheonAltarFishingBoatResourceFood" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE" />
-		<InsertOrIgnore ID="MPTBalancePantheonAltarFishingBoatFood" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT" />
-		<InsertOrIgnore ID="MPTBalancePantheonAltarOceanTerrainFood" YieldType="YIELD_FOOD" YieldChange="1" TerrainInCity="TERRAIN_OCEAN" />
+		<InsertOrIgnore ID="BBMBalancePantheonAltarFishingBoatResourceFood" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE" />
+		<InsertOrIgnore ID="BBMBalancePantheonAltarFishingBoatFood" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT" />
+		<InsertOrIgnore ID="BBMBalancePantheonAltarOceanTerrainFood" YieldType="YIELD_FOOD" YieldChange="1" TerrainInCity="TERRAIN_OCEAN" />
 	</Warehouse_YieldChanges>
 </Database>

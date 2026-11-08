@@ -40,12 +40,12 @@
  */
 import InputFilterManager from 'fs://game/core/ui/input/input-filter.js';
 import { InterfaceMode, InterfaceModeChangedEventName } from 'fs://game/core/ui/interface-modes/interface-modes.js';
-import { createLogger, isMultiplayerGame, isObserverPlayer } from '../shared/mpt-util.js';
+import { createLogger, isMultiplayerGame, isObserverPlayer } from '../shared/bbm-util.js';
 import { PAUSE_ACTION_ID } from '../keybind/mp-keybind-config.js';
 import { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC } from './mp-pause-config.js';
 import styles from './mp-pause.scss.js';
 import PauseCountdownOverlay from './mp-pause-overlay.js';
-import MPTNet from './mp-pause-net.js';
+import BBMNet from './mp-pause-net.js';
 
 const STATE = { IDLE: "idle", PAUSED: "paused", COUNTDOWN: "countdown" };
 const log = createLogger("pause");
@@ -79,13 +79,13 @@ function textDiv(className, text) {
   return div;
 }
 
-const STYLE_ELEMENT_ID = "mpt-pause-styles";
-const READY_BUTTON_ID = "mpt-ready-button";
-const VIEW_MAP_BUTTON_ID = "mpt-viewmap-button";
-const PAUSE_BUTTON_ID = "mpt-pause-button";
-const DROP_RESUME_BUTTON_ID = "mpt-drop-resume-button";
-const HOST_HINT_ID = "mpt-host-hint";
-const FOOTER_READY_ID = "mpt-footer-ready";
+const STYLE_ELEMENT_ID = "bbm-pause-styles";
+const READY_BUTTON_ID = "bbm-ready-button";
+const VIEW_MAP_BUTTON_ID = "bbm-viewmap-button";
+const PAUSE_BUTTON_ID = "bbm-pause-button";
+const DROP_RESUME_BUTTON_ID = "bbm-drop-resume-button";
+const HOST_HINT_ID = "bbm-host-hint";
+const FOOTER_READY_ID = "bbm-footer-ready";
 const PAUSE_MENU_CONTAINER = "#pause-menu-button-container";
 const NATIVE_RESUME_BUTTON = "#pause-menu-resume-button";
 
@@ -206,7 +206,7 @@ class MultiplayerPauseManager {
   makeButton(id, caption, onActivate) {
     const btn = document.createElement("fxs-button");
     btn.id = id;
-    btn.classList.add("pause-menu-button", "mpt-injected");
+    btn.classList.add("pause-menu-button", "bbm-injected");
     btn.setAttribute("caption", caption);
     btn.addEventListener("action-activate", onActivate);
     return btn;
@@ -214,7 +214,7 @@ class MultiplayerPauseManager {
   injectMenuButtons(container) {
     const paused = this.state === STATE.PAUSED;
     const nativeResume = container.querySelector(NATIVE_RESUME_BUTTON);
-    container.querySelectorAll(".mpt-injected").forEach((el) => el.remove());
+    container.querySelectorAll(".bbm-injected").forEach((el) => el.remove());
 
     if (paused) {
       // The native ui-next "Resume Game" hero button can't be reliably hooked to
@@ -222,7 +222,7 @@ class MultiplayerPauseManager {
       if (nativeResume) nativeResume.style.display = "none";
 
       const hint = document.createElement("div");
-      hint.className = "mpt-host-hint mpt-injected";
+      hint.className = "bbm-host-hint bbm-injected";
       hint.id = HOST_HINT_ID;
       this.statusText = "";
       this.renderHint(hint);
@@ -275,8 +275,8 @@ class MultiplayerPauseManager {
   renderFooter(el) {
     const tally = this.footerTally();
     if (el.textContent !== tally.text) el.textContent = tally.text;
-    el.classList.toggle("mpt-enough", tally.enough);
-    el.classList.toggle("mpt-not-enough", !tally.enough);
+    el.classList.toggle("bbm-enough", tally.enough);
+    el.classList.toggle("bbm-not-enough", !tally.enough);
   }
   injectFooterReady() {
     let el = document.getElementById(FOOTER_READY_ID);
@@ -285,7 +285,7 @@ class MultiplayerPauseManager {
       if (!fc) return;
       el = document.createElement("div");
       el.id = FOOTER_READY_ID;
-      el.className = "mpt-footer-ready";
+      el.className = "bbm-footer-ready";
       fc.appendChild(el);
     }
     this.renderFooter(el);
@@ -316,7 +316,7 @@ class MultiplayerPauseManager {
     this.disconnectNotices = this.disconnectNotices.filter((n) => n.id !== id);
     this.refreshStatus();
   }
-  /** Hint lines: one per disconnected player and the pause reason (red, see .mpt-reason), then the status line. */
+  /** Hint lines: one per disconnected player and the pause reason (red, see .bbm-reason), then the status line. */
   hintLines() {
     const reasons = this.disconnectNotices.map((n) => Locale.compose(LOC.playerDisconnected, n.name));
     if (this.pauseReason) reasons.push(this.pauseReason);
@@ -330,7 +330,7 @@ class MultiplayerPauseManager {
     if (key === this.statusText) return;
     this.statusText = key;
     hint.textContent = "";
-    for (const reason of reasons) hint.appendChild(textDiv("mpt-reason", reason));
+    for (const reason of reasons) hint.appendChild(textDiv("bbm-reason", reason));
     hint.appendChild(document.createTextNode(status));
   }
   refreshStatus() {
@@ -362,7 +362,7 @@ class MultiplayerPauseManager {
     if (this.state === STATE.PAUSED || this.numWantPause() > 0) this.onReadyClick(null);
     else this.onPauseClick(null);
   }
-  // Rebindable keybind: the "mpt-pause-game" input action (config/input.sql),
+  // Rebindable keybind: the "bbm-pause-game" input action (config/input.sql),
   // reachable from the game's own keyboard-mapping options.
   onEngineInput(ev) {
     try {
@@ -391,7 +391,7 @@ class MultiplayerPauseManager {
     ev?.stopPropagation?.();
     if (this.state !== STATE.PAUSED) return;
     this.onRemoteResume();
-    MPTNet.send("RESUME");
+    BBMNet.send("RESUME");
     log("Host broadcast resume to all connected players.");
   }
   /** A trusted RESUME arrived (or we issued one): clear our own flag. */
@@ -436,7 +436,7 @@ class MultiplayerPauseManager {
     // Clear every remaining connected player's flag too, so the game resumes the
     // moment the kicked slots free up (kick alone only clears the dropped flags).
     this.onRemoteResume();
-    MPTNet.send("RESUME");
+    BBMNet.send("RESUME");
     this.refreshStatus();
   }
 
@@ -673,7 +673,7 @@ class MultiplayerPauseManager {
     if (this.state === STATE.IDLE) this.requestDisconnectPause(reason);
     else this.pauseReason = reason;
     // Captions depend on amHost(): rebuild the injected buttons now if the menu is open.
-    document.querySelectorAll(".mpt-injected").forEach((el) => el.remove());
+    document.querySelectorAll(".bbm-injected").forEach((el) => el.remove());
     if (this.pauseMenuIsOpen()) this.tryInjectWhenMenuReady(0);
     this.refreshStatus();
   }
@@ -706,7 +706,7 @@ class MultiplayerPauseManager {
     window.addEventListener("engine-input", this.engineInputListener, true);
     // Host-authoritative resume: honor a RESUME command only when it came from
     // the host, then clear our own flag so the game unpauses in sync.
-    MPTNet.on("RESUME", (d) => { if (MPTNet.isFromHost(d.from)) this.onRemoteResume(); });
+    BBMNet.on("RESUME", (d) => { if (BBMNet.isFromHost(d.from)) this.onRemoteResume(); });
     this.startConnectionWatch();
     if (this.numWantPause() > 0) this.onGamePauseStateChanged({ data: 1 });
     else this.enterIdle();

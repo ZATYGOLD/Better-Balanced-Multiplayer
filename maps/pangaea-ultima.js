@@ -236,7 +236,7 @@ function markDistantIslands(primaryId) {
   const distantId = primaryId === LandmassRegion.LANDMASS_REGION_EAST ? LandmassRegion.LANDMASS_REGION_WEST
     : primaryId === LandmassRegion.LANDMASS_REGION_WEST ? LandmassRegion.LANDMASS_REGION_EAST : -1;
   if (distantId < 0) {
-    console.log(`MPT MAPS PANGAEA ULTIMA: continent region ${primaryId} is neither East nor West; islands left unmarked`);
+    console.log(`BBM MAPS PANGAEA ULTIMA: continent region ${primaryId} is neither East nor West; islands left unmarked`);
     return;
   }
   const width = GameplayMap.getGridWidth();
@@ -256,7 +256,7 @@ function markDistantIslands(primaryId) {
       }
     }
   }
-  console.log(`MPT MAPS PANGAEA ULTIMA: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
+  console.log(`BBM MAPS PANGAEA ULTIMA: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
 }
 
 function requestMapData(initParams) {
@@ -284,7 +284,7 @@ function generateMap() {
     const seas = fillEnclosedSeas(hexMap, tiles, primaryId);
     const joined = joinAttachedLand(hexMap, tiles, primaryId);
     const trimmed = enforceDistantLandGap(hexMap, tiles, primaryId);
-    console.log(`MPT MAPS PANGAEA ULTIMA: core=${core} enclosedSeas=${seas} joined=${joined} trimmed=${trimmed}`);
+    console.log(`BBM MAPS PANGAEA ULTIMA: core=${core} enclosedSeas=${seas} joined=${joined} trimmed=${trimmed}`);
   }
 
   // Snow and resources follow the final continent pass.
@@ -292,7 +292,7 @@ function generateMap() {
   context.phases &= ~(GenerationPhases.Snow | GenerationPhases.Resources);
   generateMapFeatures(hexMap, context);
   if (primaryId > 0) {
-    console.log(`MPT MAPS PANGAEA ULTIMA: final attached-land corrections=${joinFinalAttachedLand(tiles, primaryId)}`);
+    console.log(`BBM MAPS PANGAEA ULTIMA: final attached-land corrections=${joinFinalAttachedLand(tiles, primaryId)}`);
     markDistantIslands(primaryId);
     AreaBuilder.recalculateAreas();
   }

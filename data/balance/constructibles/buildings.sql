@@ -8,10 +8,10 @@ INSERT OR REPLACE INTO GlobalParameters (Name, Value)
 
 -- The modifier can then target all Buildings without also affecting Improvements.
 INSERT OR IGNORE INTO Tags (Tag, Category)
-    VALUES ('MPT_BALANCE_BUILDING', 'CONSTRUCTIBLE_TAG');
+    VALUES ('BBM_BALANCE_BUILDING', 'CONSTRUCTIBLE_TAG');
 
 INSERT OR IGNORE INTO TypeTags (Type, Tag)
-SELECT ConstructibleType, 'MPT_BALANCE_BUILDING'
+SELECT ConstructibleType, 'BBM_BALANCE_BUILDING'
 FROM Constructibles
 WHERE ConstructibleClass='BUILDING';
 

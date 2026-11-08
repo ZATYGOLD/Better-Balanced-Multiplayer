@@ -31,7 +31,7 @@
 import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
 import { GetCivilizationData } from 'fs://game/core/ui/shell/create-panels/age-civ-select-model.js';
 import { getLeaderData } from 'fs://game/core/ui/shell/create-panels/leader-select-model.js';
-import { createLogger, whenDefined, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { CONFIG } from './mp-lobby-config.js';
 
 const log = createLogger('lobby');

@@ -40,9 +40,9 @@ const baseGroupOf = (groupId) => (groupId.startsWith(MP_GROUP_PREFIX) ? groupId.
 /** Every tab in display order; added tabs claim their sections' groups. */
 const TABS = [
   { key: "game", sections: ["LobbyOptions", "GameOptions", "VictoryOptions", "TriumphSettings", "DisasterCrisisOptions", "CrisesOptions"] },
-  { key: "pace", title: "LOC_MPT_SETUP_TAB_PACE", added: true,
+  { key: "pace", title: "LOC_BBM_SETUP_TAB_PACE", added: true,
     sections: ["GamePacingOptions", "PacingAntiquityOptions", "PacingExplorationOptions", "PacingModernOptions"] },
-  { key: "map", title: "LOC_MPT_SETUP_TAB_MAP", added: true,
+  { key: "map", title: "LOC_BBM_SETUP_TAB_MAP", added: true,
     sections: ["SpawnOptions", "MapOptions", "ResourceOptions", "TerrainOptions", "NaturalWonderSelectionOptions"] },
   { key: "advanced", sections: ["PlayerDifficulty", "VictoryOptions", "VictoryThresholdOptions", "TriumphSettings",
     "SettlementOptions", "IndependentPowerOptions", "TradeOptions", "WonderOptions"] }

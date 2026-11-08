@@ -25,7 +25,7 @@
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_HWARANG_3" UnlockDepth="2" RequiredTraitType="TRAIT_SILLA"/>
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_QASTI_3" UnlockDepth="2" RequiredTraitType="TRAIT_BABYLON"/>
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_UNIT" TargetType="UNIT_BALLISTA_2" UnlockDepth="2"/>
-		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_MODIFIER" TargetType="MPT_BALANCE_AQ_CODEX" UnlockDepth="2"/>
+		<Row ProgressionTreeNodeType="NODE_TECH_AQ_IRON_WORKING" TargetKind="KIND_MODIFIER" TargetType="BBM_BALANCE_AQ_CODEX" UnlockDepth="2"/>
 		<!-- Navigation -->
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_NAVIGATION" TargetKind="KIND_UNIT" TargetType="UNIT_FLEET_COMMANDER" UnlockDepth="1"/>
 	</ProgressionTreeNodeUnlocks>

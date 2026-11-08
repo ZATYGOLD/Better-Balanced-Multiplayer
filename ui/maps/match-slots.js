@@ -24,21 +24,21 @@
  * Host, new games: team placements open exactly their players (Duel 2, 2v2 4,
  * 3v3 6, 4v4 8) on alternating teams 1-2-1-2 (Player Placement gives even slots
  * the West, odd slots the East), plus a last slot for Zatygold's Spectator
- * (published as MPTSpectatorSlot; the Spectator makes its player the Observer).
+ * (published as BBMSpectatorSlot; the Spectator makes its player the Observer).
  * Slots past the count are closed. A Spectator on Tiny or Small needs one slot
  * more than the size allows, so the host launches the next size up and records
- * the chosen size (MPTChosenMapSize); the game data then builds the map at that
+ * the chosen size (BBMChosenMapSize); the game data then builds the map at that
  * size (data/maps/chosen-size-*.sql).
  */
 import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
-import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../shared/mpt-util.js';
+import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../shared/bbm-util.js';
 import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT } from '../../maps/placement.js';
 
 const log = createLogger('match slots');
 const SIZE_PARAMETER = "MapSize";
-const CHOSEN_SIZE_PARAMETER = "MPTChosenMapSize";
-const NO_CHOSEN_SIZE = "MPT_MAPS_CHOSEN_SIZE_NONE";
-const SPECTATOR_SLOT_PARAMETER = "MPTSpectatorSlot";
+const CHOSEN_SIZE_PARAMETER = "BBMChosenMapSize";
+const NO_CHOSEN_SIZE = "BBM_MAPS_CHOSEN_SIZE_NONE";
+const SPECTATOR_SLOT_PARAMETER = "BBMSpectatorSlot";
 const NO_SLOT = -1;
 const NO_TEAM = -1;
 const TEAM_COUNT = 2;

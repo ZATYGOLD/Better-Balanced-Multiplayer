@@ -65,15 +65,15 @@ const ADJACENCY_PASSES = 3;
 // Amount scales the game's density; Clusters grow a share of deposits into
 // patches, with the seed count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
-  MPT_MAPS_RESOURCE_AMOUNT_SCARCE: 0.35,
-  MPT_MAPS_RESOURCE_AMOUNT_SPARSE: 0.5,
-  MPT_MAPS_RESOURCE_AMOUNT_STANDARD: 0.7,
-  MPT_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1
+  BBM_MAPS_RESOURCE_AMOUNT_SCARCE: 0.35,
+  BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.5,
+  BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 0.7,
+  BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1
 };
 const RESOURCE_CLUSTERS = {
-  MPT_MAPS_RESOURCE_CLUSTERS_OFF: { chance: 0, size: 1 },
-  MPT_MAPS_RESOURCE_CLUSTERS_SMALL: { chance: 50, size: 2 },
-  MPT_MAPS_RESOURCE_CLUSTERS_LARGE: { chance: 75, size: 3 }
+  BBM_MAPS_RESOURCE_CLUSTERS_OFF: { chance: 0, size: 1 },
+  BBM_MAPS_RESOURCE_CLUSTERS_SMALL: { chance: 50, size: 2 },
+  BBM_MAPS_RESOURCE_CLUSTERS_LARGE: { chance: 75, size: 3 }
 };
 // Copies of each dealt resource scale with the region's land: one per
 // TILES_PER_COPY tiles, from 1 up to MAX_COPIES; land in no player's region
@@ -82,8 +82,8 @@ const MAX_COPIES = 3;
 const TILES_PER_COPY = 100;
 const OTHER_PER_REGION = 3;
 const ISLAND_RESOURCES = 2;          // resources on every island without a start (Treasure in Exploration on island maps)
-const DEFAULT_AMOUNT = "MPT_MAPS_RESOURCE_AMOUNT_STANDARD";
-const DEFAULT_CLUSTERS = "MPT_MAPS_RESOURCE_CLUSTERS_OFF";
+const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_STANDARD";
+const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_OFF";
 const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbours accepting the resource
 const FILL_ROUNDS = 3;              // seed-and-grow rounds topping the map up to the target
 
@@ -105,8 +105,8 @@ function mapSetting(table, key, fallback) {
 /** Resource Amount and Resource Clusters as set up. */
 function resourceSettings() {
   return {
-    amount: mapSetting(RESOURCE_AMOUNTS, "MPTResourceAmount", DEFAULT_AMOUNT),
-    clusters: mapSetting(RESOURCE_CLUSTERS, "MPTResourceClusters", DEFAULT_CLUSTERS)
+    amount: mapSetting(RESOURCE_AMOUNTS, "BBMResourceAmount", DEFAULT_AMOUNT),
+    clusters: mapSetting(RESOURCE_CLUSTERS, "BBMResourceClusters", DEFAULT_CLUSTERS)
   };
 }
 
@@ -115,7 +115,7 @@ function resolveResourceTypes(typeNames) {
   for (const typeName of typeNames) {
     const definition = GameInfo.Resources.lookup(typeName);
     if (definition == null) {
-      console.log(`MPT MAPS RESOURCES: ${typeName} is unavailable and will be skipped`);
+      console.log(`BBM MAPS RESOURCES: ${typeName} is unavailable and will be skipped`);
       continue;
     }
     result.push(definition.$index);
@@ -194,7 +194,7 @@ function dealRegionResources(regions) {
   const dealt = regions.map(() => []);
   REGION_POOLS.forEach((pool, poolIndex) => {
     let bag = [];
-    const label = `MPT MAPS pool ${poolIndex + 1}`;
+    const label = `BBM MAPS pool ${poolIndex + 1}`;
     regions.forEach((region, index) => {
       if (bag.length === 0) bag = shuffleInPlace([...pool], label);
       const taken = new Set([...region.neighbours].map((other) => dealt[other][poolIndex]));
@@ -203,9 +203,9 @@ function dealRegionResources(regions) {
     });
   });
   regions.forEach((region, index) => {
-    const others = shuffleInPlace([...OTHER_REGION_RESOURCES], `MPT MAPS region ${region.playerId} other resources`);
+    const others = shuffleInPlace([...OTHER_REGION_RESOURCES], `BBM MAPS region ${region.playerId} other resources`);
     dealt[index].push(...others.slice(0, OTHER_PER_REGION));
-    console.log(`MPT MAPS RESOURCES: player=${region.playerId} tiles=${region.plots.length} copies=${region.copies} identity=${dealt[index].join(",")}`);
+    console.log(`BBM MAPS RESOURCES: player=${region.playerId} tiles=${region.plots.length} copies=${region.copies} identity=${dealt[index].join(",")}`);
   });
   return dealt.map(resolveResourceTypes);
 }
@@ -249,7 +249,7 @@ function pickEvenly(candidates, region, counts) {
   let best = -1;
   let bestScore = Number.POSITIVE_INFINITY;
   for (const resourceIndex of candidates) {
-    const score = counts.get(region, resourceIndex) + TerrainBuilder.getRandomNumber(1000, "MPT MAPS resource balance") / 1000;
+    const score = counts.get(region, resourceIndex) + TerrainBuilder.getRandomNumber(1000, "BBM MAPS resource balance") / 1000;
     if (score < bestScore) {
       bestScore = score;
       best = resourceIndex;
@@ -296,7 +296,7 @@ function fillEvenly(plots, candidatesByPlot, counts, limit, seeds, label) {
 /** Place up to `copies` of one resource on the given plots. */
 function placeCopies(resourceIndex, plots, copies, counts, seeds, label) {
   const placed = spreadResources(plots, copies, () => resourceIndex, counts, seeds, label);
-  if (placed < copies) console.log(`MPT MAPS RESOURCES: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
+  if (placed < copies) console.log(`BBM MAPS RESOURCES: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
   return placed;
 }
 
@@ -310,9 +310,9 @@ function growClusters(seeds, counts, clusters, evenCounts, limit) {
   let grown = 0;
   for (const seed of seeds) {
     if (grown >= limit) break;
-    if (TerrainBuilder.getRandomNumber(100, "MPT MAPS cluster roll") >= clusters.chance) continue;
+    if (TerrainBuilder.getRandomNumber(100, "BBM MAPS cluster roll") >= clusters.chance) continue;
     const region = regionOf(seed.x, seed.y);
-    const start = TerrainBuilder.getRandomNumber(DirectionTypes.NUM_DIRECTION_TYPES, "MPT MAPS cluster direction");
+    const start = TerrainBuilder.getRandomNumber(DirectionTypes.NUM_DIRECTION_TYPES, "BBM MAPS cluster direction");
     let size = 1;
     for (let step = 0; step < DirectionTypes.NUM_DIRECTION_TYPES && size < clusters.size && grown < limit; step++) {
       const next = adjacentPlot(seed, (start + step) % DirectionTypes.NUM_DIRECTION_TYPES);
@@ -396,15 +396,15 @@ function generateGlobalResources() {
   }
 
   const seeds = [];
-  for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "MPT MAPS guaranteed general resource");
+  for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "BBM MAPS guaranteed general resource");
   const dealtEstimate = dealtCopies(buildPlayerRegions());   // the map's own starts; placement moves them only a little in size terms
 
   const { amount, clusters } = resourceSettings();
   // The amount covers every resource; general deposits fill what the dealt copies will take.
   const target = Math.max(0, Math.round(placeablePlots.length * DENSITY_TARGET * amount.value) - dealtEstimate);
   const grown = fillToTarget(target, seeds, counts, clusters.value, true, (limit, roundSeeds, round) =>
-    fillEvenly(placeablePlots, candidatesByPlot, counts, limit, roundSeeds, `MPT MAPS resource plot order ${round + 1}`));
-  console.log(`MPT MAPS RESOURCES: age=${ageType} amount=${amount.name} clusters=${clusters.name} candidates=${placeablePlots.length} dealtEstimate=${dealtEstimate} general=${seeds.length + grown}/${target} (${seeds.length} seeds, ${grown} grown) replaced=${removed}`);
+    fillEvenly(placeablePlots, candidatesByPlot, counts, limit, roundSeeds, `BBM MAPS resource plot order ${round + 1}`));
+  console.log(`BBM MAPS RESOURCES: age=${ageType} amount=${amount.name} clusters=${clusters.name} candidates=${placeablePlots.length} dealtEstimate=${dealtEstimate} general=${seeds.length + grown}/${target} (${seeds.length} seeds, ${grown} grown) replaced=${removed}`);
 }
 
 /**
@@ -418,7 +418,7 @@ function generateGlobalResources() {
 function scaleGameResources() {
   const { amount, clusters } = resourceSettings();
   if (amount.value >= 1 && clusters.value.chance <= 0) {
-    console.log(`MPT MAPS RESOURCES: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
+    console.log(`BBM MAPS RESOURCES: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
     return;
   }
   const width = GameplayMap.getGridWidth();
@@ -432,7 +432,7 @@ function scaleGameResources() {
       ResourceBuilder.setResourceType(x, y, ResourceTypes.NO_RESOURCE);
     }
   }
-  shuffleInPlace(deposits, "MPT MAPS game resource order");
+  shuffleInPlace(deposits, "BBM MAPS game resource order");
   const target = Math.round(deposits.length * amount.value);
   const counts = new RegionCounts();
   const seeds = [];
@@ -455,7 +455,7 @@ function scaleGameResources() {
     }
     return placed;
   });
-  console.log(`MPT MAPS RESOURCES: game resources amount=${amount.name} clusters=${clusters.name} placed=${seeds.length + grown}/${target} of ${deposits.length} (${seeds.length} seeds, ${grown} grown)`);
+  console.log(`BBM MAPS RESOURCES: game resources amount=${amount.name} clusters=${clusters.name} placed=${seeds.length + grown}/${target} of ${deposits.length} (${seeds.length} seeds, ${grown} grown)`);
 }
 
 /**
@@ -475,10 +475,10 @@ function placeDealtResources() {
         const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
         return !GameplayMap.isNaturalWonder(x, y) && ResourceBuilder.canHaveResource(x, y, resourceIndex, true);
       });
-      placed += placeCopies(resourceIndex, plots, region.copies, counts, null, `MPT MAPS player ${region.playerId} resource`);
+      placed += placeCopies(resourceIndex, plots, region.copies, counts, null, `BBM MAPS player ${region.playerId} resource`);
     }
   });
-  console.log(`MPT MAPS RESOURCES: dealt ${placed} copies to ${regions.length} player regions`);
+  console.log(`BBM MAPS RESOURCES: dealt ${placed} copies to ${regions.length} player regions`);
   stockIslands(new Set(regions.map((region) => region.plotIndex)));
 }
 
@@ -526,7 +526,7 @@ function stockIslands(startPlots) {
       return GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE;
     }).length;
     let needed = ISLAND_RESOURCES - present;
-    for (const plotIndex of shuffleInPlace([...island], "MPT MAPS island resources")) {
+    for (const plotIndex of shuffleInPlace([...island], "BBM MAPS island resources")) {
       if (needed <= 0) break;
       const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
       if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || GameplayMap.isNaturalWonder(x, y)) continue;
@@ -540,7 +540,7 @@ function stockIslands(startPlots) {
   const mapType = Configuration.getMapValue("Name");
   const rules = GameInfo.MapIslandBehavior.filter((rule) => rule.MapType === mapType && rule.AgeType === ageType);
   for (const rule of rules) replaceIslandResources(GameplayMap.getGridWidth(), GameplayMap.getGridHeight(), rule.ResourceClassType);
-  console.log(`MPT MAPS RESOURCES: islands=${islands} islandResourcesAdded=${added} islandRules=${rules.map((rule) => rule.ResourceClassType).join(",") || "none"}`);
+  console.log(`BBM MAPS RESOURCES: islands=${islands} islandResourcesAdded=${added} islandRules=${rules.map((rule) => rule.ResourceClassType).join(",") || "none"}`);
 }
 
 export { generateGlobalResources, placeDealtResources, scaleGameResources };

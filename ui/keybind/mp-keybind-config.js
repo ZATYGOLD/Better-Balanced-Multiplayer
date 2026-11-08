@@ -22,33 +22,33 @@
  * Better Balanced Multiplayer - Keybind actions (config/input.sql registers them and their default keys).
  */
 
-const PAUSE_ACTION_ID = 'mpt-pause-game';
+const PAUSE_ACTION_ID = 'bbm-pause-game';
 
 /** Lens toggles: action id -> lens (pressing it again returns to the default lens). */
 const LENS_ACTIONS = {
-  'mpt-lens-trade': 'fxs-trade-lens',
-  'mpt-lens-continent': 'fxs-continent-lens',
-  'mpt-lens-appeal': 'fxs-general-appeal-lens',
-  'mpt-lens-settler': 'fxs-settler-lens',
-  'mpt-lens-discovery': 'fxs-discovery-lens'
+  'bbm-lens-trade': 'fxs-trade-lens',
+  'bbm-lens-continent': 'fxs-continent-lens',
+  'bbm-lens-appeal': 'fxs-general-appeal-lens',
+  'bbm-lens-settler': 'fxs-settler-lens',
+  'bbm-lens-discovery': 'fxs-discovery-lens'
 };
 const DEFAULT_LENS = 'fxs-default-lens';
 
 /** Unit actions: action id -> unit operation or command for the selected unit. */
 const UNIT_ACTIONS = {
-  'mpt-unit-found-city': 'UNITOPERATION_FOUND_CITY',
-  'mpt-unit-search': 'UNITOPERATION_SEARCH',
-  'mpt-unit-join-commander': 'UNITCOMMAND_ADD_TO_ARMY',
-  'mpt-unit-leave-commander': 'UNITCOMMAND_REMOVE_FROM_ARMY',
-  'mpt-commander-pack': 'UNITCOMMAND_PACK_ARMY',
-  'mpt-commander-unpack': 'UNITCOMMAND_UNPACK_ARMY'
+  'bbm-unit-found-city': 'UNITOPERATION_FOUND_CITY',
+  'bbm-unit-search': 'UNITOPERATION_SEARCH',
+  'bbm-unit-join-commander': 'UNITCOMMAND_ADD_TO_ARMY',
+  'bbm-unit-leave-commander': 'UNITCOMMAND_REMOVE_FROM_ARMY',
+  'bbm-commander-pack': 'UNITCOMMAND_PACK_ARMY',
+  'bbm-commander-unpack': 'UNITCOMMAND_UNPACK_ARMY'
 };
 
 /** City actions: action id -> which settlement to select (its screen opens). */
 const CITY_ACTIONS = {
-  'mpt-city-previous': 'previous',
-  'mpt-city-next': 'next',
-  'mpt-city-capital': 'capital'
+  'bbm-city-previous': 'previous',
+  'bbm-city-next': 'next',
+  'bbm-city-capital': 'capital'
 };
 
 /** Every mod action listed in the keyboard-mapping options. */

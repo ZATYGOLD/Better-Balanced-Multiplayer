@@ -39,11 +39,11 @@ import { Panel } from 'fs://game/core/ui-next/components/panel.js';
 import { ScreenFlowContext } from 'fs://game/core/ui-next/components/screen-flow.js';
 import { MementoSelect } from 'fs://game/core/ui-next/screens/create-game/memento-select.js';
 import { MementoSelectModelContext } from 'fs://game/core/ui-next/screens/create-game/memento-select-model.js';
-import { isMultiplayerGame } from '../shared/mpt-util.js';
-import { onSetupRevision } from '../shared/mpt-setup.js';
+import { isMultiplayerGame } from '../shared/bbm-util.js';
+import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLobbyMementoModel } from './mp-memento-select-model.js';
 
-const SCREEN_NAME = "mpt-memento-select";
+const SCREEN_NAME = "bbm-memento-select";
 const GAME_EDITOR = "memento-editor";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
 let openingSlot = null;

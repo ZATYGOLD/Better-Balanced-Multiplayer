@@ -41,7 +41,7 @@ const STRICT_CIVILIZATION_RULES = new Map([
   ["CIVILIZATION_RUSSIA", { id: "tundra", label: "Tundra" }]
 ]);
 
-const START_BIAS_MULTIPLAYER = "MPT_MAPS_START_BIAS_MULTIPLAYER";
+const START_BIAS_MULTIPLAYER = "BBM_MAPS_START_BIAS_MULTIPLAYER";
 
 let strictEnabled;
 const biasByPlayer = new Map();
@@ -51,7 +51,7 @@ const floodplainClasses = new Map();   // feature class value -> is Floodplain
 
 /** On only with Start Bias Multiplayer; the option exists only in multiplayer setup. */
 function isStrictStartBiasEnabled() {
-  strictEnabled ??= Configuration.getMapValue("MPTStartBias") === START_BIAS_MULTIPLAYER;
+  strictEnabled ??= Configuration.getMapValue("BBMStartBias") === START_BIAS_MULTIPLAYER;
   return strictEnabled;
 }
 
@@ -184,7 +184,7 @@ function describePlayerStrictStartBias(playerId) {
 }
 
 function recordStrictStartBiasFailure(playerId, reason) {
-  console.log(`MPT MAPS STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`);
+  console.log(`BBM MAPS STRICT START BIAS FAILURE: player=${playerId} requirement=${describePlayerStrictStartBias(playerId)} reason=${reason}`);
 }
 
 export {

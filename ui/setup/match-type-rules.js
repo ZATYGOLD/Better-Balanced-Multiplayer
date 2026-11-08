@@ -34,13 +34,13 @@
  * Only a change by the host applies it; a setup's first pass (a new setup, a
  * rejoin) and a change seen while not the host only record the Match Type.
  */
-import { createLogger } from '../shared/mpt-util.js';
-import { canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, parameterDefaults, resolveString, setValue } from '../shared/mpt-setup.js';
+import { createLogger } from '../shared/bbm-util.js';
+import { canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, parameterDefaults, resolveString, setValue } from '../shared/bbm-setup.js';
 
 const log = createLogger('match type');
-const MATCH_TYPE_ID = "MPTMatchType";
+const MATCH_TYPE_ID = "BBMMatchType";
 // Every Match Type plays on the multiplayer speed and the Competitive timer.
-const MATCH_TYPE_VALUES = [["GameSpeeds", "GAMESPEED_ONLINE"], ["TurnTimerType", "MPT_TURNTIMER_COMPETITIVE"]];
+const MATCH_TYPE_VALUES = [["GameSpeeds", "GAMESPEED_ONLINE"], ["TurnTimerType", "BBM_TURNTIMER_COMPETITIVE"]];
 const KEPT_IDS = new Set([MATCH_TYPE_ID, "GameRandomSeed", "MapRandomSeed", "Map", "Ruleset", "Age", "Crises"]);
 // Every setting in these groups is kept.
 const KEPT_GROUPS = new Set(["LobbyOptions"]);

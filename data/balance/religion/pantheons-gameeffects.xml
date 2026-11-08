@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
 	<!-- Earth Goddess: Science instead of Happiness. -->
-	<Modifier id="MPT_BALANCE_MOD_PANTHEON_EARTH_GODDESS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_MOD_PANTHEON_EARTH_GODDESS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_PANTHEON"/></SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_ATTACH_ALTAR_MOUNTAIN_SCIENCE,MPT_BALANCE_ATTACH_ALTAR_NATURAL_WONDER_SCIENCE</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_ALTAR_MOUNTAIN_SCIENCE,BBM_BALANCE_ATTACH_ALTAR_NATURAL_WONDER_SCIENCE</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_MOUNTAIN_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
-		<Argument name="ConstructibleAdjacency">MPTBalanceAltarMountainScience</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_MOUNTAIN_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAltarMountainScience</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_NATURAL_WONDER_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
-		<Argument name="ConstructibleAdjacency">MPTBalanceAltarNaturalWonderScience</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_NATURAL_WONDER_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAltarNaturalWonderScience</Argument>
 	</Modifier>
 
 	<!-- Oral Tradition: all trainable civilian families in cities with an Altar. -->
-	<Modifier id="MPT_BALANCE_MOD_PANTHEON_ORAL_TRADITION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_MOD_PANTHEON_ORAL_TRADITION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_PANTHEON"/></SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_ATTACH_ALTAR_CIVILIAN_PRODUCTION,MPT_BALANCE_ATTACH_ALTAR_SETTLER_PRODUCTION,MPT_BALANCE_ATTACH_ALTAR_RECON_CIVILIAN_PRODUCTION</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_ALTAR_CIVILIAN_PRODUCTION,BBM_BALANCE_ATTACH_ALTAR_SETTLER_PRODUCTION,BBM_BALANCE_ATTACH_ALTAR_RECON_CIVILIAN_PRODUCTION</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_CIVILIAN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_CIVILIAN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
 		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_BUILDING"><Argument name="BuildingType">BUILDING_ALTAR</Argument></Requirement></SubjectRequirements>
 		<Argument name="Percent">15</Argument>
 		<Argument name="UnitCoreClass">CORE_CLASS_CIVILIAN</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_SETTLER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_SETTLER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
 		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_BUILDING"><Argument name="BuildingType">BUILDING_ALTAR</Argument></Requirement></SubjectRequirements>
 		<Argument name="Percent">15</Argument>
 		<Argument name="UnitClass">UNIT_CLASS_CREATE_TOWN</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_RECON_CIVILIAN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_RECON_CIVILIAN_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION">
 		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_BUILDING"><Argument name="BuildingType">BUILDING_ALTAR</Argument></Requirement></SubjectRequirements>
 		<Argument name="Percent">15</Argument>
 		<Argument name="UnitCoreClass">CORE_CLASS_RECON</Argument>
 	</Modifier>
 
 	<!-- Sacred Waters: Culture instead of Happiness. -->
-	<Modifier id="MPT_BALANCE_MOD_PANTHEON_SACRED_WATERS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_MOD_PANTHEON_SACRED_WATERS" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_PANTHEON"/></SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_ATTACH_ALTAR_COAST_CULTURE,MPT_BALANCE_ATTACH_ALTAR_LAKE_CULTURE,MPT_BALANCE_ATTACH_ALTAR_RIVER_CULTURE</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_ALTAR_COAST_CULTURE,BBM_BALANCE_ATTACH_ALTAR_LAKE_CULTURE,BBM_BALANCE_ATTACH_ALTAR_RIVER_CULTURE</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_COAST_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
-		<Argument name="ConstructibleWarehouseYield">MPTBalanceAltarCoastCulture</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_COAST_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
+		<Argument name="ConstructibleWarehouseYield">BBMBalanceAltarCoastCulture</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_LAKE_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
-		<Argument name="ConstructibleWarehouseYield">MPTBalanceAltarLakeCulture</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_LAKE_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
+		<Argument name="ConstructibleWarehouseYield">BBMBalanceAltarLakeCulture</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_RIVER_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
-		<Argument name="ConstructibleAdjacency">MPTBalanceAltarRiverCulture</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_RIVER_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAltarRiverCulture</Argument>
 	</Modifier>
 
 	<!-- New Pantheons. -->
-	<Modifier id="MPT_BALANCE_MOD_PANTHEON_GODDESS_OF_TIDES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_MOD_PANTHEON_GODDESS_OF_TIDES" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_PANTHEON"/></SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_RESOURCE_FOOD,MPT_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_FOOD,MPT_BALANCE_ATTACH_PANTHEON_ALTAR_OCEAN_FOOD</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_RESOURCE_FOOD,BBM_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_FOOD,BBM_BALANCE_ATTACH_PANTHEON_ALTAR_OCEAN_FOOD</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_RESOURCE_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
-		<Argument name="ConstructibleWarehouseYield">MPTBalancePantheonAltarFishingBoatResourceFood</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_RESOURCE_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
+		<Argument name="ConstructibleWarehouseYield">BBMBalancePantheonAltarFishingBoatResourceFood</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
-		<Argument name="ConstructibleWarehouseYield">MPTBalancePantheonAltarFishingBoatFood</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_PANTHEON_ALTAR_FISHING_BOAT_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
+		<Argument name="ConstructibleWarehouseYield">BBMBalancePantheonAltarFishingBoatFood</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_PANTHEON_ALTAR_OCEAN_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
-		<Argument name="ConstructibleWarehouseYield">MPTBalancePantheonAltarOceanTerrainFood</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_PANTHEON_ALTAR_OCEAN_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_WAREHOUSE_YIELD">
+		<Argument name="ConstructibleWarehouseYield">BBMBalancePantheonAltarOceanTerrainFood</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_MOD_PANTHEON_GOD_OF_CRAFTSMEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_MOD_PANTHEON_GOD_OF_CRAFTSMEN" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_PANTHEON"/></SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_ATTACH_ALTAR_RESOURCE_PRODUCTION</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_ALTAR_RESOURCE_PRODUCTION</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ATTACH_ALTAR_RESOURCE_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
-		<Argument name="ConstructibleAdjacency">MPTBalanceAltarResourceProduction</Argument>
+	<Modifier id="BBM_BALANCE_ATTACH_ALTAR_RESOURCE_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAltarResourceProduction</Argument>
 	</Modifier>
 </GameEffects>

@@ -36,43 +36,43 @@
  * The game data reads the per-Age rows, so they always hold the values in effect.
  * Each rule compares against the last pass; only the host writes the setup.
  */
-import { CUSTOM, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/mpt-setup.js';
+import { CUSTOM, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
 
 const STANDARD = "STANDARD";
-const PRESET_ID = "MPTPacePreset";
-const MIRROR_ID = "MPTPaceSetMirror";
-const PRESET_PREFIX = "MPT_PACE_PRESET_";
+const PRESET_ID = "BBMPacePreset";
+const MIRROR_ID = "BBMPaceSetMirror";
+const PRESET_PREFIX = "BBM_PACE_PRESET_";
 
 /** Each Pace Setting: its parameter, value prefix and each option's per-Age values. */
 const COST = { LOW: "MINUS_25", MEDIUM: "PLUS_25", HIGH: "PLUS_50", DOUBLE: "PLUS_100" };
 const SPEED = { SLOW: "PLUS_25", QUICK: "MINUS_25", FAST: "MINUS_50" };
 const SETTINGS = {
-  AgeLength: ageSetting("MPTPaceAgeLength", "MPT_PACE_AGE_LENGTH_", {
+  AgeLength: ageSetting("BBMPaceAgeLength", "BBM_PACE_AGE_LENGTH_", {
     SWIFT: ["90", "100", "110"], ABBREVIATED: "120", STANDARD: "140" }),
-  AgeProgression: ageSetting("MPTPaceAgeProgression", "MPT_PACE_AGE_PROGRESSION_"),
-  TechnologyCost: ageSetting("MPTPaceTechnologyCost", "MPT_PACE_TECHNOLOGY_COST_", { ...COST,
+  AgeProgression: ageSetting("BBMPaceAgeProgression", "BBM_PACE_AGE_PROGRESSION_"),
+  TechnologyCost: ageSetting("BBMPaceTechnologyCost", "BBM_PACE_TECHNOLOGY_COST_", { ...COST,
     BALANCED: ["PLUS_25", STANDARD, "MINUS_25"], SWIFT: ["MINUS_25", "MINUS_25", STANDARD] }),
-  CivicCost: ageSetting("MPTPaceCivicCost", "MPT_PACE_CIVIC_COST_", { ...COST,
+  CivicCost: ageSetting("BBMPaceCivicCost", "BBM_PACE_CIVIC_COST_", { ...COST,
     BALANCED: [STANDARD, "PLUS_25", "PLUS_25"], SWIFT: ["MINUS_25", "MINUS_25", STANDARD] }),
-  BuildingCost: ageSetting("MPTPaceBuildingCost", "MPT_PACE_BUILDING_COST_", { ...COST,
+  BuildingCost: ageSetting("BBMPaceBuildingCost", "BBM_PACE_BUILDING_COST_", { ...COST,
     BALANCED: ["PLUS_25", STANDARD, STANDARD], SWIFT: "MINUS_25" }),
-  VictoryProjectCost: ageSetting("MPTPaceVictoryProjectCost", "MPT_PACE_VICTORY_PROJECT_COST_", { ...COST,
+  VictoryProjectCost: ageSetting("BBMPaceVictoryProjectCost", "BBM_PACE_VICTORY_PROJECT_COST_", { ...COST,
     BALANCED: [STANDARD, "MINUS_25", "MINUS_25"], SWIFT: "MINUS_25" }),
-  SettlementGrowth: ageSetting("MPTPaceSettlementGrowth", "MPT_PACE_SETTLEMENT_GROWTH_", { ...SPEED,
+  SettlementGrowth: ageSetting("BBMPaceSettlementGrowth", "BBM_PACE_SETTLEMENT_GROWTH_", { ...SPEED,
     BALANCED: ["MINUS_25", "MINUS_25", STANDARD], SWIFT: "MINUS_25" }),
-  RoadSpeed: ageSetting("MPTPaceRoadSpeed", "MPT_PACE_ROAD_SPEED_", { ...SPEED,
+  RoadSpeed: ageSetting("BBMPaceRoadSpeed", "BBM_PACE_ROAD_SPEED_", { ...SPEED,
     BALANCED: [STANDARD, STANDARD, "MINUS_25"], SWIFT: ["MINUS_25", "MINUS_50", "MINUS_50"] }),
   // Standard is the game's own: Merchants travel in Antiquity and Exploration, Modern routes start from a distance.
-  TradeSpeed: ageSetting("MPTPaceTradeSpeed", "MPT_PACE_TRADE_SPEED_", {
+  TradeSpeed: ageSetting("BBMPaceTradeSpeed", "BBM_PACE_TRADE_SPEED_", {
     SLOW: "MINUS_25", STANDARD: [STANDARD, STANDARD, "INSTANT"], QUICK: "PLUS_25", FAST: "PLUS_50",
     SWIFT: "INSTANT", BALANCED: [STANDARD, STANDARD, "INSTANT"] }),
-  RazeSpeed: ageSetting("MPTPaceRazeSpeed", "MPT_PACE_RAZE_SPEED_", {
+  RazeSpeed: ageSetting("BBMPaceRazeSpeed", "BBM_PACE_RAZE_SPEED_", {
     FAST: "PLUS_100", SWIFT: "INSTANT", BALANCED: STANDARD })
 };
 
 /** Victory Threshold: Low, Standard or High for each victory's threshold. */
-const VICTORY_THRESHOLDS = ageSetting("MPTPaceVictoryThresholdSet", "MPT_PACE_VICTORY_THRESHOLD_", {}, {
-  ageIds: ["Culture", "Economic", "Military"].map((victory) => `MPTPace${victory}VictoryThreshold`) });
+const VICTORY_THRESHOLDS = ageSetting("BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_", {}, {
+  ageIds: ["Culture", "Economic", "Military"].map((victory) => `BBMPace${victory}VictoryThreshold`) });
 
 /**
  * Pace Set presets: each setting's option, or per-Age values (which put it on Custom).

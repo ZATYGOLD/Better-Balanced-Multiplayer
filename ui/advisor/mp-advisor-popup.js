@@ -28,7 +28,7 @@
  * still open the council. Multiplayer games only.
  */
 import PopupSequencer from 'fs://game/base-standard/ui/popup-sequencer/popup-sequencer.js';
-import { createLogger, isMultiplayerGame, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, isMultiplayerGame, wrapMethod } from '../shared/bbm-util.js';
 
 const log = createLogger('advisor');
 const ADVISOR_POPUP_ID = 'advisor-council-popup';

@@ -11,13 +11,13 @@
 	<ConstructibleModifiers>
 		<!-- Wonders -->
 		<!-- Muzibu -->
-		<Row ConstructibleType="WONDER_MUZIBU_AZAALA_MPANGA" ModifierId="MPT_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM"/>
+		<Row ConstructibleType="WONDER_MUZIBU_AZAALA_MPANGA" ModifierId="BBM_BALANCE_MOD_MUZIBU_AZAALA_MPANGA_LAKE_TOURISM"/>
 		<!-- Doi Suthep -->
-		<Row ConstructibleType="WONDER_DOI_SUTHEP" ModifierId="MPT_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE"/>
+		<Row ConstructibleType="WONDER_DOI_SUTHEP" ModifierId="BBM_BALANCE_MOD_DOI_SUTHEP_SUZERAIN_INFLUENCE"/>
 		<!-- Nirayama -->
-		<Row ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" ModifierId="MPT_BALANCE_MOD_NIRAYAMA_REVERBERATORY_FURNACE_MINE_SCIENCE"/>
+		<Row ConstructibleType="WONDER_NIRAYAMA_REVERBERATORY_FURNACE" ModifierId="BBM_BALANCE_MOD_NIRAYAMA_REVERBERATORY_FURNACE_MINE_SCIENCE"/>
 		<!-- Hermitage -->
-		<Row ConstructibleType="WONDER_HERMITAGE" ModifierId="MPT_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM"/>
+		<Row ConstructibleType="WONDER_HERMITAGE" ModifierId="BBM_BALANCE_MOD_HERMITAGE_ARTIFACT_TOURISM"/>
 	</ConstructibleModifiers>
 
 	<Constructible_WarehouseYields>

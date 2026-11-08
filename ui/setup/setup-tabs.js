@@ -31,14 +31,14 @@
  * A decorator runs after the screen's constructor and before onInitialize, which
  * builds the tabs from the index-aligned slotIDs and navControlButtonInfo.
  */
-import { Decorator, createLogger } from '../shared/mpt-util.js';
-import { resolveString } from '../shared/mpt-setup.js';
+import { Decorator, createLogger } from '../shared/bbm-util.js';
+import { resolveString } from '../shared/bbm-setup.js';
 import { SETUP_TABS, TABS, baseGroupOf, tabIndexOfGroup } from './setup-layout.js';
 
 const log = createLogger('setup tabs');
 const SCREEN_TAG = "screen-mp-create-game";
 const FIRST_TAB_INDEX = 1;
-const ADDED_TABS = SETUP_TABS.map((tab) => ({ ...tab, id: `mpt-advanced-setup-mp__${tab.key}`, containerClass: `mpt-advanced-setup__mp-${tab.key}-container` }));
+const ADDED_TABS = SETUP_TABS.map((tab) => ({ ...tab, id: `bbm-advanced-setup-mp__${tab.key}`, containerClass: `bbm-advanced-setup__mp-${tab.key}-container` }));
 // The screen's own tabs' containers.
 const BASE_CONTAINER_CLASSES = { game: "advanced-setup__game-options-container", advanced: "advanced-setup__mp-advanced-options-container" };
 // A row-height Random button beside each seed field, drawing a new positive seed.

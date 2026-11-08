@@ -24,7 +24,7 @@
  * The lobby's own summaries list a fixed set of base rules, so a player who
  * joins cannot see the mod's settings. Both are extended:
  *   Game Rules       a list beside the mods list, scrolling on its own, of every
- *                    mod setting (an "MPT" parameter) changed from its default,
+ *                    mod setting (an "BBM" parameter) changed from its default,
  *                    with the base settings the mod extends or regroups, in
  *                    the setup tabs' order. Per-Age rows (and the per-victory
  *                    thresholds) are listed only while their setting is Custom,
@@ -34,29 +34,29 @@
  * Both read the live setup, so a change by the host shows the next time the
  * rules open, or within a moment in the Game Options box.
  */
-import { Decorator, createLogger } from '../shared/mpt-util.js';
-import { AGES, CUSTOM, groupOf, onSetupRevision, parameterDefaults, resolveString, sameValue } from '../shared/mpt-setup.js';
+import { Decorator, createLogger } from '../shared/bbm-util.js';
+import { AGES, CUSTOM, groupOf, onSetupRevision, parameterDefaults, resolveString, sameValue } from '../shared/bbm-setup.js';
 import { sectionIndexOfGroup, tabIndexOfGroup } from '../setup/setup-layout.js';
 
 const log = createLogger('lobby rules');
 const RULES_SCREEN = "screen-mp-game-rules";
 const LOBBY_SCREEN = "screen-mp-lobby";
-const MOD_ID = "multiplayer-toolkit";
-const PARAM_PREFIX = "MPT";
-const SUMMARY_PARAM_IDS = ["MPTMatchType", "MPTBalance", "MPTPacePreset"];
+const MOD_ID = "zatygolds-multiplayer-balance";
+const PARAM_PREFIX = "BBM";
+const SUMMARY_PARAM_IDS = ["BBMMatchType", "BBMBalance", "BBMPacePreset"];
 const SUMMARY_ANCHOR = "LOC_UI_MP_LOBBY_GAME_SPEED";
 // Base settings the mod extends (Triumph Set) or moves to its groups in multiplayer.
 const BASE_PARAM_IDS = new Set(["LegacySets", "IndependentHostility", "MapSeaLevel", "StartPosition"]);
 // Shown through another row: the Pace tab's copy of Pace Set.
-const SKIPPED_PARAM_IDS = new Set(["MPTPaceSetMirror"]);
-const WONDER_PREFIX = "MPTNaturalWonder";
-const WONDER_COUNT_ID = "MPTNaturalWonders";
-const WONDER_ON = "MPT_MAPS_NATURAL_WONDER_ON";
+const SKIPPED_PARAM_IDS = new Set(["BBMPaceSetMirror"]);
+const WONDER_PREFIX = "BBMNaturalWonder";
+const WONDER_COUNT_ID = "BBMNaturalWonders";
+const WONDER_ON = "BBM_MAPS_NATURAL_WONDER_ON";
 const AGE_SUFFIX = new RegExp(`(${AGES.join("|")})$`);
 // A per-Age row's setting, where it is not the row's own id less the Age.
-const AGE_PARENTS = { MPTGameplayTriumphSet: "LegacySets" };
+const AGE_PARENTS = { BBMGameplayTriumphSet: "LegacySets" };
 // Rows of a set that are not per Age: the victory thresholds of Victory Threshold.
-const SET_PARENTS = Object.fromEntries(["Culture", "Economic", "Military"].map((victory) => [`MPTPace${victory}VictoryThreshold`, "MPTPaceVictoryThresholdSet"]));
+const SET_PARENTS = Object.fromEntries(["Culture", "Economic", "Military"].map((victory) => [`BBMPace${victory}VictoryThreshold`, "BBMPaceVictoryThresholdSet"]));
 
 // ============================ Settings ============================
 

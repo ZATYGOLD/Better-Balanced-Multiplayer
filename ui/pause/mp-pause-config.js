@@ -57,23 +57,23 @@ const PROGRESS_ACTIONS = [
 
 /** Localization keys (text/en_us/shared.xml; View Map reuses the base game's string). */
 const LOC = {
-  pauseGame: "LOC_MPT_PAUSE_GAME",
-  ready: "LOC_MPT_READY",
-  cancelReady: "LOC_MPT_CANCEL_READY",
-  resumeHost: "LOC_MPT_RESUME_HOST",
-  resumeAll: "LOC_MPT_RESUME_ALL",        // host-authoritative: resume for every connected player
-  dropResume: "LOC_MPT_DROP_RESUME",      // host-only: kick disconnected players to break a pause deadlock
+  pauseGame: "LOC_BBM_PAUSE_GAME",
+  ready: "LOC_BBM_READY",
+  cancelReady: "LOC_BBM_CANCEL_READY",
+  resumeHost: "LOC_BBM_RESUME_HOST",
+  resumeAll: "LOC_BBM_RESUME_ALL",        // host-authoritative: resume for every connected player
+  dropResume: "LOC_BBM_DROP_RESUME",      // host-only: kick disconnected players to break a pause deadlock
   viewMap: "LOC_ADVANCED_START_VIEW_MAP",
-  readyTally: "LOC_MPT_PAUSE_READY_TALLY",
-  hintHost: "LOC_MPT_PAUSE_HINT_HOST",
-  hintReady: "LOC_MPT_PAUSE_HINT_READY",
-  hintWaiting: "LOC_MPT_PAUSE_HINT_WAITING",
-  aPlayer: "LOC_MPT_PAUSE_A_PLAYER",
-  playerDisconnected: "LOC_MPT_PAUSE_PLAYER_DISCONNECTED",
-  playerIsDisconnected: "LOC_MPT_PAUSE_PLAYER_IS_DISCONNECTED",
-  playerReconnecting: "LOC_MPT_PAUSE_PLAYER_RECONNECTING",
-  hostChanged: "LOC_MPT_PAUSE_HOST_CHANGED",
-  unpausing: "LOC_MPT_PAUSE_UNPAUSING"
+  readyTally: "LOC_BBM_PAUSE_READY_TALLY",
+  hintHost: "LOC_BBM_PAUSE_HINT_HOST",
+  hintReady: "LOC_BBM_PAUSE_HINT_READY",
+  hintWaiting: "LOC_BBM_PAUSE_HINT_WAITING",
+  aPlayer: "LOC_BBM_PAUSE_A_PLAYER",
+  playerDisconnected: "LOC_BBM_PAUSE_PLAYER_DISCONNECTED",
+  playerIsDisconnected: "LOC_BBM_PAUSE_PLAYER_IS_DISCONNECTED",
+  playerReconnecting: "LOC_BBM_PAUSE_PLAYER_RECONNECTING",
+  hostChanged: "LOC_BBM_PAUSE_HOST_CHANGED",
+  unpausing: "LOC_BBM_PAUSE_UNPAUSING"
 };
 
 export { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC };

@@ -13,7 +13,7 @@
 import { g_HillTerrain } from '../../../base-standard/maps/map-globals.js';
 import { forEachTile, settingTier } from './settings.js';
 
-const MAP_AGE_SETTING_KEY = "MPTMapAge";
+const MAP_AGE_SETTING_KEY = "BBMMapAge";
 
 // Port of {base-standard}maps/elevation-terrain-generator.js addHills, which
 // scores each land tile by how much its elevation differs from its neighbours
@@ -21,14 +21,14 @@ const MAP_AGE_SETTING_KEY = "MPTMapAge";
 // catches gentler ground, so it yields more rough tiles; Standard is the base
 // game's own 950 - 3 * 20.
 const MAP_AGE_TIERS = {
-  MPT_MAPS_MAP_AGE_NEW: 790,
-  MPT_MAPS_MAP_AGE_STANDARD: 890,
-  MPT_MAPS_MAP_AGE_OLD: 990,
+  BBM_MAPS_MAP_AGE_NEW: 790,
+  BBM_MAPS_MAP_AGE_STANDARD: 890,
+  BBM_MAPS_MAP_AGE_OLD: 990,
 };
 
 export function addHills(iWidth, iHeight) {
-  const threshold = settingTier(MAP_AGE_TIERS, MAP_AGE_SETTING_KEY, "MPT_MAPS_MAP_AGE_STANDARD");
-  console.log(`MPT MAPS map age: rough score threshold ${threshold}`);
+  const threshold = settingTier(MAP_AGE_TIERS, MAP_AGE_SETTING_KEY, "BBM_MAPS_MAP_AGE_STANDARD");
+  console.log(`BBM MAPS map age: rough score threshold ${threshold}`);
   forEachTile(iWidth, iHeight, (iX, iY) => {
     if (GameplayMap.isWater(iX, iY) || GameplayMap.isMountain(iX, iY)) {
       return;

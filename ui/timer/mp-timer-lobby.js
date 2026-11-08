@@ -25,7 +25,7 @@
  * shows a debug value. With Competitive chosen, its Turn Timer row shows the
  * Competitive name instead.
  */
-import { createLogger, whenDefined, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { COMPETITIVE_HASH } from './mp-timer-config.js';
 
 const log = createLogger('timer lobby');
@@ -39,7 +39,7 @@ whenDefined(RULES_TAG, (definition) => {
   const timerLabel = Locale.compose('LOC_UI_MP_GAME_RULE_TURN_TIMER');
   wrapMethod(definition.createInstance.prototype, 'addRule', function (base, parent, label, value, ...rest) {
     if (label === timerLabel && isCompetitive()) {
-      value = Locale.compose('LOC_MPT_TURNTIMER_COMPETITIVE');
+      value = Locale.compose('LOC_BBM_TURNTIMER_COMPETITIVE');
     }
     return base(parent, label, value, ...rest);
   });

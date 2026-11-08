@@ -4,8 +4,8 @@
 -- Every pooled resource is valid in every Age and protected from replacement
 -- (Staple). Oil and Rubber stay Modern-only: games started in Modern place them
 -- in the general pool, and the Age transition adds them (MinimumPerLandmass).
-CREATE TEMP TABLE MPT_PersistentResources (ResourceType TEXT PRIMARY KEY);
-INSERT OR IGNORE INTO MPT_PersistentResources (ResourceType)
+CREATE TEMP TABLE BBM_PersistentResources (ResourceType TEXT PRIMARY KEY);
+INSERT OR IGNORE INTO BBM_PersistentResources (ResourceType)
     VALUES
         ('RESOURCE_CAMELS'),
         ('RESOURCE_CLAY'),
@@ -57,11 +57,11 @@ INSERT OR IGNORE INTO MPT_PersistentResources (ResourceType)
         ('RESOURCE_CITRUS');
 
 UPDATE Resources SET Staple = 1, LandmassUnique = 0, MinimumPerLandmass = 0
-WHERE ResourceType IN (SELECT ResourceType FROM MPT_PersistentResources);
+WHERE ResourceType IN (SELECT ResourceType FROM BBM_PersistentResources);
 UPDATE Resources SET MinimumPerLandmass = 2 WHERE ResourceType IN ('RESOURCE_OIL','RESOURCE_RUBBER');
 
 DELETE FROM Resource_ValidAges
-WHERE ResourceType IN (SELECT ResourceType FROM MPT_PersistentResources) OR ResourceType IN ('RESOURCE_OIL','RESOURCE_RUBBER');
+WHERE ResourceType IN (SELECT ResourceType FROM BBM_PersistentResources) OR ResourceType IN ('RESOURCE_OIL','RESOURCE_RUBBER');
 INSERT OR IGNORE INTO Resource_ValidAges (ResourceType, AgeType)
 SELECT ResourceType, AgeType
 FROM Resources
@@ -70,7 +70,7 @@ CROSS JOIN (
   UNION ALL SELECT 'AGE_EXPLORATION'
   UNION ALL SELECT 'AGE_MODERN'
 )
-WHERE ResourceType IN (SELECT ResourceType FROM MPT_PersistentResources);
+WHERE ResourceType IN (SELECT ResourceType FROM BBM_PersistentResources);
 INSERT OR IGNORE INTO Resource_ValidAges (ResourceType, AgeType)
     VALUES
         ('RESOURCE_OIL', 'AGE_MODERN'),
@@ -82,7 +82,7 @@ INSERT OR IGNORE INTO Resource_ValidAges (ResourceType, AgeType)
 -- Resource yields are additive to the terrain, biome, and feature yields.
 -- Replace the base rows so each deposit contributes exactly its configured +1.
 DELETE FROM Resource_YieldChanges
-WHERE ResourceType IN (SELECT ResourceType FROM MPT_PersistentResources) OR ResourceType IN ('RESOURCE_OIL','RESOURCE_RUBBER');
+WHERE ResourceType IN (SELECT ResourceType FROM BBM_PersistentResources) OR ResourceType IN ('RESOURCE_OIL','RESOURCE_RUBBER');
 INSERT OR IGNORE INTO Resource_YieldChanges (ResourceType, YieldType, YieldChange)
     VALUES
         ('RESOURCE_CAMELS', 'YIELD_GOLD', 1),
@@ -141,18 +141,18 @@ INSERT OR IGNORE INTO Resource_YieldChanges (ResourceType, YieldType, YieldChang
 --*******************************************************
 -- Preserve each resource's normal terrain/feature rules while replacing only
 -- its biome list with the All resource list's.
-CREATE TEMP TABLE MPT_OriginalResourceBiomes AS
+CREATE TEMP TABLE BBM_OriginalResourceBiomes AS
 SELECT ResourceType, TerrainType, FeatureType, Weight
 FROM Resource_ValidBiomes;
 
-CREATE TEMP TABLE MPT_ResourceBiomeTargets (
+CREATE TEMP TABLE BBM_ResourceBiomeTargets (
   ResourceType TEXT NOT NULL,
   BiomeType TEXT NOT NULL,
   PRIMARY KEY(ResourceType, BiomeType)
 );
 
 -- All ordinary land biomes.
-INSERT OR IGNORE INTO MPT_ResourceBiomeTargets (ResourceType, BiomeType)
+INSERT OR IGNORE INTO BBM_ResourceBiomeTargets (ResourceType, BiomeType)
 SELECT ResourceType, BiomeType
 FROM (
   SELECT 'RESOURCE_CLAY' ResourceType UNION ALL SELECT 'RESOURCE_LIMESTONE' UNION ALL
@@ -165,7 +165,7 @@ CROSS JOIN (
   SELECT 'BIOME_PLAINS' UNION ALL SELECT 'BIOME_TROPICAL' UNION ALL SELECT 'BIOME_DESERT'
 );
 
-INSERT OR IGNORE INTO MPT_ResourceBiomeTargets (ResourceType, BiomeType)
+INSERT OR IGNORE INTO BBM_ResourceBiomeTargets (ResourceType, BiomeType)
     VALUES
         ('RESOURCE_CAMELS', 'BIOME_PLAINS'), ('RESOURCE_CAMELS', 'BIOME_DESERT'),
         ('RESOURCE_COTTON', 'BIOME_DESERT'), ('RESOURCE_COTTON', 'BIOME_PLAINS'), ('RESOURCE_COTTON', 'BIOME_GRASSLAND'),
@@ -205,12 +205,12 @@ INSERT OR IGNORE INTO MPT_ResourceBiomeTargets (ResourceType, BiomeType)
         ('RESOURCE_WHALES', 'BIOME_MARINE'), ('RESOURCE_TURTLES', 'BIOME_MARINE'), ('RESOURCE_DYES', 'BIOME_MARINE');
 
 DELETE FROM Resource_ValidBiomes
-WHERE ResourceType IN (SELECT DISTINCT ResourceType FROM MPT_ResourceBiomeTargets);
+WHERE ResourceType IN (SELECT DISTINCT ResourceType FROM BBM_ResourceBiomeTargets);
 
 INSERT OR IGNORE INTO Resource_ValidBiomes (ResourceType, BiomeType, TerrainType, FeatureType, Weight)
 SELECT targets.ResourceType, targets.BiomeType, original.TerrainType, original.FeatureType, original.Weight
-FROM MPT_ResourceBiomeTargets targets
-JOIN MPT_OriginalResourceBiomes original ON original.ResourceType = targets.ResourceType
+FROM BBM_ResourceBiomeTargets targets
+JOIN BBM_OriginalResourceBiomes original ON original.ResourceType = targets.ResourceType
 WHERE (targets.BiomeType = 'BIOME_MARINE') = (original.TerrainType IN ('TERRAIN_COAST','TERRAIN_OCEAN'));
 
 -- Crabs and Oil explicitly support ordinary Marine coast tiles. Crabs retain
@@ -257,6 +257,6 @@ INSERT OR IGNORE INTO TypeTags (Type, Tag)
         ('RESOURCE_FISH', 'NAVIGABLE_RIVERS_ELIGIBLE'),
         ('RESOURCE_FISH', 'IGNORES_WEIGHT_FOR_NAVIGABLE_RIVER_PLACEMENT');
 
-DROP TABLE MPT_ResourceBiomeTargets;
-DROP TABLE MPT_OriginalResourceBiomes;
-DROP TABLE MPT_PersistentResources;
+DROP TABLE BBM_ResourceBiomeTargets;
+DROP TABLE BBM_OriginalResourceBiomes;
+DROP TABLE BBM_PersistentResources;

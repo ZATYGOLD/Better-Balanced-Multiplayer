@@ -38,28 +38,28 @@
  * The game data reads the per-Age rows, so they always hold the values in effect.
  * Each rule compares against the last pass; only the host writes the setup.
  */
-import { createLogger } from '../shared/mpt-util.js';
-import { AGES, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/mpt-setup.js';
+import { createLogger } from '../shared/bbm-util.js';
+import { AGES, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
 
 const log = createLogger('gameplay');
 const TRIUMPH_SETS = ["DEFAULT", "CLASSIC", "RACE", "CONQUEROR", "EXPLORER", "NONE"];
 
 const AGE_SETTINGS = [
   // Each tier as the limits its Age rows hold.
-  ageSetting("MPTGameplaySettlementLimit", "MPT_GAMEPLAY_SETTLEMENT_LIMIT_", {
+  ageSetting("BBMGameplaySettlementLimit", "BBM_GAMEPLAY_SETTLEMENT_LIMIT_", {
     LESS: ["1", "4", "10"], STANDARD: ["3", "8", "16"], MORE: ["5", "12", "20"] }),
-  ageSetting("MPTGameplayTradeRange", "MPT_GAMEPLAY_TRADE_RANGE_"),
+  ageSetting("BBMGameplayTradeRange", "BBM_GAMEPLAY_TRADE_RANGE_"),
   // The game's Triumph Set, with the mod's Custom; its rows name each set.
   ageSetting("LegacySets", "", Object.fromEntries(TRIUMPH_SETS.map((set) => [`LEGACY_SET_${set}`, set])), {
-    ageIds: AGES.map((age) => `MPTGameplayTriumphSet${age}`), agePrefix: "MPT_GAMEPLAY_TRIUMPH_SET_", custom: "MPT_LEGACY_SET_CUSTOM" })
+    ageIds: AGES.map((age) => `BBMGameplayTriumphSet${age}`), agePrefix: "BBM_GAMEPLAY_TRIUMPH_SET_", custom: "BBM_LEGACY_SET_CUSTOM" })
 ];
 
 // ============================ Crises ============================
 
-const CRISES_ID = "MPTGameplayCrises";
-const CRISES_PREFIX = "MPT_GAMEPLAY_CRISES_";
-const TIMING_ID = "MPTGameplayCrisisTiming";
-const TIMING_PREFIX = "MPT_GAMEPLAY_CRISIS_TIMING_";
+const CRISES_ID = "BBMGameplayCrises";
+const CRISES_PREFIX = "BBM_GAMEPLAY_CRISES_";
+const TIMING_ID = "BBMGameplayCrisisTiming";
+const TIMING_PREFIX = "BBM_GAMEPLAY_CRISIS_TIMING_";
 // The game's Crises list holds the excluded crises (UxHint InvertSelection).
 const SELECTION_ID = "Crises";
 const ON = "ON";

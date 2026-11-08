@@ -30,7 +30,7 @@
 import { createSignal } from 'fs://game/core/vendor/solid-js/dist/solid.js';
 import { createMutable, modifyMutable, reconcile } from 'fs://game/core/vendor/solid-js/store/dist/store.js';
 import { FullTextSearch } from 'fs://game/core/ui-next/utilities/search-utils.js';
-import { createLogger } from '../shared/mpt-util.js';
+import { createLogger } from '../shared/bbm-util.js';
 
 const log = createLogger('memento picker');
 const MEMENTO_NONE = "NONE";

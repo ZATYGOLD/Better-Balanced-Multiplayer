@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
 	<!-- Alexander -->
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_HAS_ANY_WONDER"/>
 		</SubjectRequirements>
@@ -9,7 +9,7 @@
 		<Argument name="Percent">10</Argument>
 		<Argument name="Tooltip">LOC_ALEXANDER_KING_OF_THE_WORLD_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ALEXANDER_CAPTURED_WONDER_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_ALEXANDER_CAPTURED_WONDER_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_CITY_HAS_ANY_WONDER"/>
 			<Requirement type="REQUIREMENT_CITY_CONQUERED_ANY_AGE"/>
@@ -19,85 +19,85 @@
 		<Argument name="Tooltip">LOC_ALEXANDER_KING_OF_THE_WORLD_NAME</Argument>
 	</Modifier>
 
-	<RequirementSet id="MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER">
+	<RequirementSet id="BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER">
 		<Requirement type="REQUIREMENT_CITY_HAS_ANY_WONDER"/>
 	</RequirementSet>
-	<RequirementSet id="MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_1">
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">1</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">2</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+	<RequirementSet id="BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_1">
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">1</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">2</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
 	</RequirementSet>
-	<RequirementSet id="MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_2">
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">2</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">3</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+	<RequirementSet id="BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_2">
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">2</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">3</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
 	</RequirementSet>
-	<RequirementSet id="MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_3">
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">3</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">4</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+	<RequirementSet id="BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_3">
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">3</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">4</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
 	</RequirementSet>
-	<RequirementSet id="MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_4">
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">4</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">5</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+	<RequirementSet id="BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_4">
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">4</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">5</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
 	</RequirementSet>
-	<RequirementSet id="MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_5">
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">5</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
-		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">6</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">MPT_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+	<RequirementSet id="BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_5">
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST"><Argument name="Count">5</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
+		<Requirement type="REQUIREMENT_COLLECTION_COUNT_ATLEAST" inverse="true"><Argument name="Count">6</Argument><Argument name="CollectionType">COLLECTION_PLAYER_CITIES</Argument><Argument name="RequirementSetId">BBM_BALANCE_SUBREQSET_ALEXANDER_SETTLEMENT_HAS_WONDER</Argument></Requirement>
 	</RequirementSet>
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_1" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_1</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_1" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_1</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
 		<Argument name="ModifierId">ATTACH_ALEXANDER_WONDER_COMBAT_STRENGTH_1</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_2" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_2</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_2" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_2</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
 		<Argument name="ModifierId">ATTACH_ALEXANDER_WONDER_COMBAT_STRENGTH_2</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_3" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_3</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_3" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_3</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
 		<Argument name="ModifierId">ATTACH_ALEXANDER_WONDER_COMBAT_STRENGTH_3</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_4" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_4</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_4" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_4</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
 		<Argument name="ModifierId">ATTACH_ALEXANDER_WONDER_COMBAT_STRENGTH_4</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_5" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">MPT_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_5</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
+	<Modifier id="BBM_BALANCE_ALEXANDER_WONDER_COMBAT_STRENGTH_5" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_ALEXANDER_WONDER_SETTLEMENTS_5</Argument></Requirement><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_UNIQUE</Argument></Requirement></SubjectRequirements>
 		<Argument name="ModifierId">ATTACH_ALEXANDER_WONDER_COMBAT_STRENGTH_5</Argument>
 	</Modifier>
 
 	<!-- Ashoka, World Conqueror -->
-	<Modifier id="MPT_BALANCE_ASHOKA_MOD_HAPPINESS_PROD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS">
+	<Modifier id="BBM_BALANCE_ASHOKA_MOD_HAPPINESS_PROD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS">
 		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
 		<Argument name="Amount">1</Argument>
 		<Argument name="Divisor">5</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_ASHOKA_ABILITY_NAME</Argument>
 	</Modifier>
 	<!-- Ashoka, World Renouncer -->
-	<Modifier id="MPT_BALANCE_ASHOKA_MOD_HAPPINESS_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS">
+	<Modifier id="BBM_BALANCE_ASHOKA_MOD_HAPPINESS_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SURPLUS_HAPPINESS">
 		<Argument name="YieldType">YIELD_FOOD</Argument>
 		<Argument name="Amount">1</Argument>
 		<Argument name="Divisor">5</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_ASHOKA_ABILITY_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ASHOKA_MOD_ALL_BUILDING_HAPPINESS_ADJACENCY_TO_IMPROVEMENTS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
-		<Argument name="ConstructibleAdjacency">MPTBalanceAshokaAllBuildingHappinessAdjacencyToImprovements</Argument>
+	<Modifier id="BBM_BALANCE_ASHOKA_MOD_ALL_BUILDING_HAPPINESS_ADJACENCY_TO_IMPROVEMENTS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAshokaAllBuildingHappinessAdjacencyToImprovements</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_ASHOKA_ABILITY_NAME</Argument>
 	</Modifier>
 
 	<!-- Genghis Khan -->
-	<Modifier id="MPT_BALANCE_GENGHIS_KHAN_CAV_UPKEEP" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_UNIT_MAINTENANCE_EFFICIENCY">
+	<Modifier id="BBM_BALANCE_GENGHIS_KHAN_CAV_UPKEEP" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_UNIT_MAINTENANCE_EFFICIENCY">
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 		<Argument name="UnitTag">UNIT_CLASS_MOUNTED</Argument>
 		<String context="Description">LOC_MEMENTO_GENGHIS_KHAN_PAIZA_FUNCTIONAL_DESCRIPTION</String>
 	</Modifier>
 
 	<!-- Hatshepsut -->
-	<Modifier id="MPT_BALANCE_HATSHEPSUT_MOD_CULTURE_FROM_RESOURCES" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_HATSHEPSUT_MOD_CULTURE_FROM_RESOURCES" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_RESOURCE_VISIBLE"></Requirement>
 		</SubjectRequirements>
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_HATSHEPSUT_MOD_GOLD_FROM_RESOURCES" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_HATSHEPSUT_MOD_GOLD_FROM_RESOURCES" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_RESOURCE_VISIBLE"></Requirement>
 		</SubjectRequirements>
@@ -106,11 +106,11 @@
 	</Modifier>
 	<!-- Harriet Tubman -->
 	<!-- Attach the combat modifier to all units; its tile test is evaluated during each combat. -->
-	<Modifier id="MPT_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
-		<Argument name="ModifierId">MPT_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS_MOD</Argument>
+	<Modifier id="BBM_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<Argument name="ModifierId">BBM_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS_MOD</Argument>
 	</Modifier>
 	<!-- Same friendly-territory formula used by the Cossack: own land or land of a City-State you suzerain. -->
-	<Modifier id="MPT_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS_MOD" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TUBMAN_COMBAT_STRENGTH_BORDERS_MOD" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<SubjectRequirements type="REQUIREMENTSET_TEST_ANY">
 			<Requirement type="REQUIREMENT_PLOT_IS_OWNER"/>
 			<Requirement type="REQUIREMENT_PLOT_IS_SUZERAIN_BY_OWNER"/>
@@ -120,24 +120,24 @@
 	</Modifier>
 
 	<!-- Jose Rizal: Culture, Gold, and Influence whenever a Celebration begins. -->
-	<Modifier id="MPT_BALANCE_RIZAL_CELEBRATION_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
+	<Modifier id="BBM_BALANCE_RIZAL_CELEBRATION_CULTURE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
 		<Argument name="YieldType">YIELD_CULTURE</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">20</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_JOSE_RIZAL_ABILITY_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_RIZAL_CELEBRATION_GOLD" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
+	<Modifier id="BBM_BALANCE_RIZAL_CELEBRATION_GOLD" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
 		<Argument name="YieldType">YIELD_GOLD</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">40</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_JOSE_RIZAL_ABILITY_NAME</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_RIZAL_CELEBRATION_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
+	<Modifier id="BBM_BALANCE_RIZAL_CELEBRATION_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_FOR_GOLDEN_AGE_START">
 		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">20</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_JOSE_RIZAL_ABILITY_NAME</Argument>
 	</Modifier>
 
 	<!-- Elizabeth: fixed Land-unit malus and +2 Combat Strength for Naval units. -->
-	<Modifier id="MPT_BALANCE_ELIZABETH_LAND_COMBAT_STRENGTH" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_ELIZABETH_LAND_COMBAT_STRENGTH" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
 				<Argument name="UnitDomain">DOMAIN_LAND</Argument>
@@ -146,7 +146,7 @@
 		<Argument name="Amount">-2</Argument>
 		<String context="Preview">LOC_TRAIT_LEADER_ELIZABETH_ABILITY_PREVIEW</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_ELIZABETH_NAVAL_COMBAT_STRENGTH" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_ELIZABETH_NAVAL_COMBAT_STRENGTH" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
 				<Argument name="UnitDomain">DOMAIN_SEA</Argument>
@@ -157,7 +157,7 @@
 	</Modifier>
 
 	<!-- Lafayette: +1 Combat Strength per filled Tradition slot for Land units, capped at +4. -->
-	<Modifier id="MPT_BALANCE_LAFAYETTE_TRADITION_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_LAFAYETTE_TRADITION_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS">
 				<Argument name="MinFilled">1</Argument>
@@ -168,7 +168,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_ABILITY_LAFAYETTE_COMBAT_PREVIEW</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_LAFAYETTE_TRADITION_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_LAFAYETTE_TRADITION_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS">
 				<Argument name="MinFilled">2</Argument>
@@ -179,7 +179,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_ABILITY_LAFAYETTE_COMBAT_PREVIEW</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_LAFAYETTE_TRADITION_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_LAFAYETTE_TRADITION_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS">
 				<Argument name="MinFilled">3</Argument>
@@ -190,7 +190,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_ABILITY_LAFAYETTE_COMBAT_PREVIEW</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_LAFAYETTE_TRADITION_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_LAFAYETTE_TRADITION_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS">
 				<Argument name="MinFilled">4</Argument>
@@ -203,25 +203,25 @@
 	</Modifier>
 
 	<!-- Napoleon, Emperor: one +1 Land Unit Combat Strength step per Unfriendly or Hostile Civilization, capped at four steps. -->
-	<Modifier id="MPT_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_X_RELATIONSHIPS"><Argument name="DiplomacyPlayerRelationships">PLAYER_RELATIONSHIP_HOSTILE, PLAYER_RELATIONSHIP_UNFRIENDLY</Argument><Argument name="Amount">1</Argument></Requirement></OwnerRequirements>
 		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES"><Argument name="UnitDomain">DOMAIN_LAND</Argument></Requirement></SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TRAIT_LEADER_NAPOLEON_ABILITY_NAME</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_X_RELATIONSHIPS"><Argument name="DiplomacyPlayerRelationships">PLAYER_RELATIONSHIP_HOSTILE, PLAYER_RELATIONSHIP_UNFRIENDLY</Argument><Argument name="Amount">2</Argument></Requirement></OwnerRequirements>
 		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES"><Argument name="UnitDomain">DOMAIN_LAND</Argument></Requirement></SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TRAIT_LEADER_NAPOLEON_ABILITY_NAME</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_X_RELATIONSHIPS"><Argument name="DiplomacyPlayerRelationships">PLAYER_RELATIONSHIP_HOSTILE, PLAYER_RELATIONSHIP_UNFRIENDLY</Argument><Argument name="Amount">3</Argument></Requirement></OwnerRequirements>
 		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES"><Argument name="UnitDomain">DOMAIN_LAND</Argument></Requirement></SubjectRequirements>
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TRAIT_LEADER_NAPOLEON_ABILITY_NAME</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_NAPOLEON_RELATIONSHIP_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_HAS_X_RELATIONSHIPS"><Argument name="DiplomacyPlayerRelationships">PLAYER_RELATIONSHIP_HOSTILE, PLAYER_RELATIONSHIP_UNFRIENDLY</Argument><Argument name="Amount">4</Argument></Requirement></OwnerRequirements>
 		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES"><Argument name="UnitDomain">DOMAIN_LAND</Argument></Requirement></SubjectRequirements>
 		<Argument name="Amount">1</Argument>
@@ -229,14 +229,14 @@
 	</Modifier>
 
 	<!-- Machiavelli -->
-	<Modifier id="MPT_BALANCE_MACHIAVELLI_MOD_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_MACHIAVELLI_MOD_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
 		<Argument name="Amount" type="ScaleByGameAge" extra="100">1</Argument>
 		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_MACHIAVELLI_ABILITY_NAME</Argument>
 	</Modifier>
 
 	<!-- Simon Bolivar -->
-	<Modifier id="MPT_BALANCE_BOLIVAR_WAR_SUPPORT_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_DIPLOMATIC_ACTION_TYPE_EFFICIENCY">
+	<Modifier id="BBM_BALANCE_BOLIVAR_WAR_SUPPORT_INFLUENCE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_DIPLOMATIC_ACTION_TYPE_EFFICIENCY">
 		<Argument name="Percent">20</Argument>
 		<Argument name="ActionType">DIPLOMACY_ACTION_DECLARE_WAR</Argument>
 		<Argument name="Tooltip">LOC_TRAIT_LEADER_BOLIVAR_ABILITY_NAME</Argument>
@@ -244,7 +244,7 @@
 	</Modifier>
 
 	<!-- Tecumseh -->
-	<Modifier id="MPT_BALANCE_TECUMSEH_SUZERAIN_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TECUMSEH_SUZERAIN_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
 				<Argument name="Amount">1</Argument>
@@ -261,7 +261,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TECUMSEH_MOD_SUZERAIN_COMBAT_DESCRIPTION</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_TECUMSEH_SUZERAIN_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TECUMSEH_SUZERAIN_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
 				<Argument name="Amount">2</Argument>
@@ -278,7 +278,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TECUMSEH_MOD_SUZERAIN_COMBAT_DESCRIPTION</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_TECUMSEH_SUZERAIN_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TECUMSEH_SUZERAIN_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
 				<Argument name="Amount">3</Argument>
@@ -295,7 +295,7 @@
 		<Argument name="Amount">1</Argument>
 		<String context="Preview">LOC_TECUMSEH_MOD_SUZERAIN_COMBAT_DESCRIPTION</String>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_TECUMSEH_SUZERAIN_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TECUMSEH_SUZERAIN_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<OwnerRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
 				<Argument name="Amount">4</Argument>
@@ -314,7 +314,7 @@
 	</Modifier>
 
 	<!-- Trung Trac -->
-	<Modifier id="MPT_BALANCE_TRUNG_TRAC_MOD_TROPICAL_SCIENCE_AT_WAR" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+	<Modifier id="BBM_BALANCE_TRUNG_TRAC_MOD_TROPICAL_SCIENCE_AT_WAR" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
 				<Argument name="BiomeType">BIOME_TROPICAL</Argument>
@@ -329,36 +329,36 @@
 	</Modifier>
 
 	<!-- Toyotomi Hideyoshi: +5 Combat Strength for Land Units when attacking, -5 when defending. -->
-	<Modifier id="MPT_BALANCE_TOYOTOMI_LAND_ATT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_TOYOTOMI_LAND_ATT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
 				<Argument name="UnitDomain">DOMAIN_LAND</Argument>
 			</Requirement>
 		</SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_TOYOTOMI_ATT</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_TOYOTOMI_ATT</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_TOYOTOMI_ATT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TOYOTOMI_ATT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_ATTACKING"/>
 		</SubjectRequirements>
 		<Argument name="Amount">5</Argument>
-		<String context="Preview">LOC_MPT_BALANCE_TOYOTOMI_CS</String>
+		<String context="Preview">LOC_BBM_BALANCE_TOYOTOMI_CS</String>
 	</Modifier>
 
-	<Modifier id="MPT_BALANCE_TOYOTOMI_LAND_DEF" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+	<Modifier id="BBM_BALANCE_TOYOTOMI_LAND_DEF" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
 				<Argument name="UnitDomain">DOMAIN_LAND</Argument>
 			</Requirement>
 		</SubjectRequirements>
-		<Argument name="ModifierId">MPT_BALANCE_TOYOTOMI_DEF</Argument>
+		<Argument name="ModifierId">BBM_BALANCE_TOYOTOMI_DEF</Argument>
 	</Modifier>
-	<Modifier id="MPT_BALANCE_TOYOTOMI_DEF" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+	<Modifier id="BBM_BALANCE_TOYOTOMI_DEF" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_IS_ATTACKING" inverse="true"/>
 		</SubjectRequirements>
 		<Argument name="Amount">-5</Argument>
-		<String context="Preview">LOC_MPT_BALANCE_TOYOTOMI_CS</String>
+		<String context="Preview">LOC_BBM_BALANCE_TOYOTOMI_CS</String>
 	</Modifier>
 </GameEffects>
 

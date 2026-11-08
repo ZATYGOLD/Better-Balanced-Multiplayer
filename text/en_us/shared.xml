@@ -2,80 +2,80 @@
 <Database>
 	<EnglishText>
 	<!-- Pause -->
-		<Row Tag="LOC_MPT_PAUSE_GAME"><Text>Pause Game</Text></Row>
-		<Row Tag="LOC_MPT_READY"><Text>Ready</Text></Row>
-		<Row Tag="LOC_MPT_CANCEL_READY"><Text>Cancel Ready</Text></Row>
-		<Row Tag="LOC_MPT_RESUME_HOST"><Text>Resume (Host)</Text></Row>
-		<Row Tag="LOC_MPT_RESUME_ALL"><Text>Resume (All Players)</Text></Row>
-		<Row Tag="LOC_MPT_DROP_RESUME"><Text>Drop Disconnected &amp; Resume</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_READY_TALLY"><Text>Ready: {1_Ready} / {2_Total}</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HINT_HOST"><Text>You are the host. Resume when ready.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HINT_READY"><Text>You are ready. Waiting for the other players or the host to resume.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HINT_WAITING"><Text>Press Ready when you are ready to resume, or wait for the host.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_A_PLAYER"><Text>A player</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_PLAYER_DISCONNECTED"><Text>{1_Name} disconnected.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_PLAYER_IS_DISCONNECTED"><Text>A player is disconnected.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_PLAYER_RECONNECTING"><Text>{1_Name} is reconnecting - resyncing.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_HOST_CHANGED"><Text>The host changed.</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_UNPAUSING"><Text>Unpausing...</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
-		<Row Tag="LOC_MPT_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_GAME"><Text>Pause Game</Text></Row>
+		<Row Tag="LOC_BBM_READY"><Text>Ready</Text></Row>
+		<Row Tag="LOC_BBM_CANCEL_READY"><Text>Cancel Ready</Text></Row>
+		<Row Tag="LOC_BBM_RESUME_HOST"><Text>Resume (Host)</Text></Row>
+		<Row Tag="LOC_BBM_RESUME_ALL"><Text>Resume (All Players)</Text></Row>
+		<Row Tag="LOC_BBM_DROP_RESUME"><Text>Drop Disconnected &amp; Resume</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_READY_TALLY"><Text>Ready: {1_Ready} / {2_Total}</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HINT_HOST"><Text>You are the host. Resume when ready.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HINT_READY"><Text>You are ready. Waiting for the other players or the host to resume.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HINT_WAITING"><Text>Press Ready when you are ready to resume, or wait for the host.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_A_PLAYER"><Text>A player</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_PLAYER_DISCONNECTED"><Text>{1_Name} disconnected.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_PLAYER_IS_DISCONNECTED"><Text>A player is disconnected.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_PLAYER_RECONNECTING"><Text>{1_Name} is reconnecting - resyncing.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HOST_CHANGED"><Text>The host changed.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_UNPAUSING"><Text>Unpausing...</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 
 	<!-- Keybinds -->
-		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT"><Text>Toggle Continent Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL"><Text>Toggle Appeal Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER"><Text>Toggle Settler Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY"><Text>Found Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS"><Text>Previous Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT"><Text>Next Settlement</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL"><Text>Capital</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_SEARCH"><Text>Search (Scout)</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS"><Text>Commander Pack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS"><Text>Commander Unpack Units</Text></Row>
-		<Row Tag="LOC_MPT_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_TRADE_TT"><Text>Switches the map to the Trade lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_CONTINENT"><Text>Toggle Continent Lens</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_CONTINENT_TT"><Text>Switches the map to the Continent lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_APPEAL"><Text>Toggle Appeal Lens</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_APPEAL_TT"><Text>Switches the map to the Appeal lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_SETTLER"><Text>Toggle Settler Lens</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_SETTLER_TT"><Text>Switches the map to the Settler lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_DISCOVERY"><Text>Toggle Discovery Lens</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LENS_DISCOVERY_TT"><Text>Switches the map to the Discovery lens, or back to the default lens. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_FOUND_CITY"><Text>Found Settlement</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_FOUND_CITY_TT"><Text>The selected Settler founds a settlement where it stands. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_PREVIOUS"><Text>Previous Settlement</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_PREVIOUS_TT"><Text>Selects your previous settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_NEXT"><Text>Next Settlement</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_NEXT_TT"><Text>Selects your next settlement and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_CAPITAL"><Text>Capital</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_CITY_CAPITAL_TT"><Text>Selects your Capital and opens it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_SEARCH"><Text>Search (Scout)</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_SEARCH_TT"><Text>The selected Scout searches the area around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_JOIN_COMMANDER"><Text>Unit Join Commander</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_JOIN_COMMANDER_TT"><Text>The selected unit joins a nearby Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LEAVE_COMMANDER"><Text>Unit Leave Commander</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_LEAVE_COMMANDER_TT"><Text>The selected unit leaves its Commander's army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_PACK_UNITS"><Text>Commander Pack Units</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_PACK_UNITS_TT"><Text>The selected Commander packs nearby units into its army. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_UNPACK_UNITS"><Text>Commander Unpack Units</Text></Row>
+		<Row Tag="LOC_BBM_KEYBIND_UNPACK_UNITS_TT"><Text>The selected Commander unpacks its army around it. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 
 	<!-- Turn Timers -->
-		<Row Tag="LOC_MPT_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Row>
-		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
-		<Row Tag="LOC_MPT_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
+		<Row Tag="LOC_BBM_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Row>
+		<Row Tag="LOC_BBM_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
+		<Row Tag="LOC_BBM_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
 
 	<!-- Match Type -->
-		<Row Tag="LOC_MPT_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start and the Map Size; 1v1 and the team matches also set Start Position and Start Bias.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to its multiplayer default, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the starting Age, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart), Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 36x22 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Small map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start and the Map Size; 1v1 and the team matches also set Start Position and Start Bias.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to its multiplayer default, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the starting Age, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart), Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 36x22 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Small map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 
 	<!-- Create Game tabs -->
-		<Row Tag="LOC_MPT_SETUP_TAB_PACE"><Text>Pace</Text></Row>
-		<Row Tag="LOC_MPT_SETUP_TAB_MAP"><Text>Map</Text></Row>
+		<Row Tag="LOC_BBM_SETUP_TAB_PACE"><Text>Pace</Text></Row>
+		<Row Tag="LOC_BBM_SETUP_TAB_MAP"><Text>Map</Text></Row>
 
 	<!-- Lobby (LOC_UI_MP_MEMENTO is the multiplayer lobby's alone) -->
-		<Row Tag="LOC_MPT_LOBBY_BROWSE"><Text>Browse</Text></Row>
+		<Row Tag="LOC_BBM_LOBBY_BROWSE"><Text>Browse</Text></Row>
 		<Replace Tag="LOC_UI_MP_MEMENTO"><Text>Mementos</Text></Replace>
 	</EnglishText>
 </Database>

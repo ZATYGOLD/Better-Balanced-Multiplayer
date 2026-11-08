@@ -22,7 +22,7 @@
  * Better Balanced Multiplayer - Competitive turn timer (component subclass).
  *
  * The engine only computes None/Standard/Dynamic, so the custom "Competitive"
- * type is driven here from the mod's MPT_TurnSegments and MPT_TimerScaling
+ * type is driven here from the mod's BBM_TurnSegments and BBM_TimerScaling
  * tables for the active Age (data/timers/):
  *
  *   seconds = Base + PerCity*cities + PerUnit*units
@@ -40,7 +40,7 @@
  * Architecture: instead of proxying the action panel's event listener, the
  * panel COMPONENT itself is replaced. Controls.define supports priority-based
  * redefinition, and Controls.getDefinition exposes the base game's PanelAction
- * class, so MPT_PanelAction extends it - inheriting every piece of base logic
+ * class, so BBM_PanelAction extends it - inheriting every piece of base logic
  * - and overrides only the timer path. The engine then constructs OUR panel:
  * no listener juggling, no render fighting, one render pipeline.
  *
@@ -61,7 +61,7 @@
  *   flashStart..0              engine's red flash + per-second beeps
  */
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
-import { createLogger, isAgeEnding, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined } from '../shared/mpt-util.js';
+import { createLogger, isAgeEnding, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined } from '../shared/bbm-util.js';
 import { COMPETITIVE_HASH, CONFIG, ENGINE } from './mp-timer-config.js';
 
 let ENGINE_BACKSTOP = 0;   // TurnTimerTime, read once the configuration is readable
@@ -111,18 +111,18 @@ function cachedRow(sql) {
 }
 
 /**
- * TimeLimit_Base/PerCity/PerUnit from the mod-owned MPT_TurnSegments table,
+ * TimeLimit_Base/PerCity/PerUnit from the mod-owned BBM_TurnSegments table,
  * keeping the Competitive numbers fully separate from the Dynamic timer's
  * (the game's TurnSegments is never modified).
  */
 function segmentLimits() {
   return cachedRow("SELECT TimeLimit_Base AS base, TimeLimit_PerCity AS perCity, TimeLimit_PerUnit AS perUnit " +
-    `FROM MPT_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
+    `FROM BBM_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
 }
 
 /** PerHuman/PerTurn scaling for the active Age; zeros when absent. */
 function scalingValues() {
-  return cachedRow("SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM MPT_TimerScaling") ?? { perHuman: 0, perTurn: 0 };
+  return cachedRow("SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM BBM_TimerScaling") ?? { perHuman: 0, perTurn: 0 };
 }
 
 /**
@@ -400,9 +400,9 @@ function setStyledNumber(el, styleClass, n) {
 
 /** Ring element class -> [stylesheet keyframes, identical clone] (panel-action.css). */
 const RING_ANIMATIONS = [
-  { className: 'action_panel__mp-timer-left-circle', names: ['rotate-timer-first', 'mpt-rotate-timer-first'] },
-  { className: 'action_panel__mp-timer-right-circle', names: ['rotate-timer-second', 'mpt-rotate-timer-second'] },
-  { className: 'action_panel__mp-timer-left-bk-circle', names: ['fade-in-bg', 'mpt-fade-in-bg'] }
+  { className: 'action_panel__mp-timer-left-circle', names: ['rotate-timer-first', 'bbm-rotate-timer-first'] },
+  { className: 'action_panel__mp-timer-right-circle', names: ['rotate-timer-second', 'bbm-rotate-timer-second'] },
+  { className: 'action_panel__mp-timer-left-bk-circle', names: ['fade-in-bg', 'bbm-fade-in-bg'] }
 ];
 
 function ringAnimationNames(el) {
@@ -412,14 +412,14 @@ function ringAnimationNames(el) {
 /**
  * Identical clones of the game's ring keyframes. Flipping an element between
  * its original and clone forces the animation restart that makes a new
- * animationDelay take effect (see mptSyncRing).
+ * animationDelay take effect (see bbmSyncRing).
  */
 function injectRingKeyframes() {
   const style = document.createElement('style');
   style.textContent = `
-@keyframes mpt-rotate-timer-first { 0% { transform: rotate(0deg); } 50% { transform: rotate(-180deg); } 100% { transform: rotate(-180deg); } }
-@keyframes mpt-rotate-timer-second { 0% { transform: rotate(180deg); } 50% { transform: rotate(180deg); } 100% { transform: rotate(0deg); } }
-@keyframes mpt-fade-in-bg { 0% { opacity: 0; } 49% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } }`;
+@keyframes bbm-rotate-timer-first { 0% { transform: rotate(0deg); } 50% { transform: rotate(-180deg); } 100% { transform: rotate(-180deg); } }
+@keyframes bbm-rotate-timer-second { 0% { transform: rotate(180deg); } 50% { transform: rotate(180deg); } 100% { transform: rotate(0deg); } }
+@keyframes bbm-fade-in-bg { 0% { opacity: 0; } 49% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 1; } }`;
   document.head.appendChild(style);
 }
 
@@ -434,7 +434,7 @@ function defineMptPanelAction(base) {
   injectRingKeyframes();
   startEnforcement();   // wall-clock enforcement runs even while the panel is rebuilt
 
-  class MPT_PanelAction extends PanelAction {
+  class BBM_PanelAction extends PanelAction {
     /** The timer override: feed the base renderer our clock. */
     onTurnTimerUpdated(data) {
       lastEventMs = Date.now();   // events are flowing
@@ -443,12 +443,12 @@ function defineMptPanelAction(base) {
         super.onTurnTimerUpdated({ ...data, phaseTimeLimit: 0 });
         return;
       }
-      const ctx = this.mptContext(data);
+      const ctx = this.bbmContext(data);
       super.onTurnTimerUpdated(ctx ? ctx.data : data);
       if (ctx) {
-        this.mptSyncRing(ctx.ringElapsed);
-        this.mptDecorateText(ctx.n);
-        this.mptWarnSounds(ctx.n);
+        this.bbmSyncRing(ctx.ringElapsed);
+        this.bbmDecorateText(ctx.n);
+        this.bbmWarnSounds(ctx.n);
       }
     }
 
@@ -456,7 +456,7 @@ function defineMptPanelAction(base) {
      * Substituted event data + display seconds from the wall-clock CLOCK.
      * Null when the event should pass through to the base panel untouched.
      */
-    mptContext(data) {
+    bbmContext(data) {
       const limit = data?.phaseTimeLimit ?? 0;
       if (limit <= 0 || (limit > CONFIG.maxProxyLimit && limit !== ENGINE_BACKSTOP)) return null;
       syncClockFrozen();
@@ -496,7 +496,7 @@ function defineMptPanelAction(base) {
      * mpTimerMaxTime is kept equal to the total, so its grow-only guard
      * stays false.)
      */
-    mptSyncRing(elapsed) {
+    bbmSyncRing(elapsed) {
       const total = CLOCK.total;
       if (total <= 0) return;
       this.mpTimerMaxTime = total;   // neutralize the inherited grow-only ring latch
@@ -509,7 +509,7 @@ function defineMptPanelAction(base) {
         el.style.animationFillMode = 'forwards';
         el.style.animationName = el.style.animationName === names[1] ? names[0] : names[1];
       }
-      this.mptFreezeRing();
+      this.bbmFreezeRing();
     }
 
     /**
@@ -518,7 +518,7 @@ function defineMptPanelAction(base) {
      * the orange tier uses an inline colour, and the red tier keeps a steady
      * flash colour.
      */
-    mptDecorateText(n) {
+    bbmDecorateText(n) {
       const el = this.turnTimerElement ?? document.getElementById(ENGINE.timerTextId);
       if (!el) return;
       const active = localPlayerTurnActive();
@@ -543,7 +543,7 @@ function defineMptPanelAction(base) {
      * Urgency beep through the orange tier (30/25/20). The inherited renderer
      * beeps at flashStart and below, so stopping above it avoids a double hit.
      */
-    mptWarnSounds(n) {
+    bbmWarnSounds(n) {
       if (CLOCK.expired() || !localPlayerTurnActive()) return;
       if (n > CONFIG.orangeStart || n <= CONFIG.flashStart || n % CONFIG.warnEverySeconds !== 0) return;
       if (n >= CLOCK.lastWarnTick) return;
@@ -557,10 +557,10 @@ function defineMptPanelAction(base) {
      */
     onGamePauseStateChanged(...args) {
       super.onGamePauseStateChanged(...args);
-      this.mptFreezeRing();
+      this.bbmFreezeRing();
     }
 
-    mptFreezeRing() {
+    bbmFreezeRing() {
       const state = clockFrozen() ? 'paused' : 'running';
       for (const el of this.timerAnimationElements ?? []) el.style.animationPlayState = state;
     }
@@ -568,13 +568,13 @@ function defineMptPanelAction(base) {
 
   Controls.define('panel-action', {
     ...base,
-    createInstance: MPT_PanelAction,
+    createInstance: BBM_PanelAction,
     description: (base.description ?? '') + ' (Better Balanced Multiplayer competitive timer)',
     priority: (base.priority ?? 0) + 1
   });
   // The subclass only applies to panels created from now on.
   const existing = document.querySelector('panel-action')?.maybeComponent;
-  if (existing && !(existing instanceof MPT_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
+  if (existing && !(existing instanceof BBM_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
 }
 
 whenAvailable(configuredTimerType, (configured) => {

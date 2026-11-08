@@ -14,25 +14,25 @@ import { g_MountainFractal, g_HillFractal, g_MountainTerrain, g_HillTerrain, g_F
 import { forEachTile, settingTier } from './settings.js';
 import { adjacentPlots } from '../plots.js';
 
-const MOUNTAINS_SETTING_KEY = "MPTMapMountains";
+const MOUNTAINS_SETTING_KEY = "BBMMapMountains";
 // cutoff: fractal height percentile on classic maps; scale: the mountain count
 // multiplier on Voronoi maps.
 const MOUNTAINS_TIERS = {
-  MPT_MAPS_MOUNTAINS_LESS: { cutoff: 95, scale: 0.5 },
-  MPT_MAPS_MOUNTAINS_STANDARD: { cutoff: 90, scale: 1 },
-  MPT_MAPS_MOUNTAINS_MORE: { cutoff: 80, scale: 2 },
+  BBM_MAPS_MOUNTAINS_LESS: { cutoff: 95, scale: 0.5 },
+  BBM_MAPS_MOUNTAINS_STANDARD: { cutoff: 90, scale: 1 },
+  BBM_MAPS_MOUNTAINS_MORE: { cutoff: 80, scale: 2 },
 };
 // The Marvelous Mountains live event lowers the cutoff, as in the base.
 const LIVE_EVENT_EXTRA_MOUNTAINS = 40;
 
-const mountainsTier = () => settingTier(MOUNTAINS_TIERS, MOUNTAINS_SETTING_KEY, "MPT_MAPS_MOUNTAINS_STANDARD");
+const mountainsTier = () => settingTier(MOUNTAINS_TIERS, MOUNTAINS_SETTING_KEY, "BBM_MAPS_MOUNTAINS_STANDARD");
 
 export function addMountains(iWidth, iHeight) {
   const grainAmount = 5;
   const liveEventDBRow = GameInfo.GlobalParameters.lookup("REGISTERED_MARVELOUS_MOUNTAINS_EVENT");
   const extraMountains = liveEventDBRow && liveEventDBRow.Value != "0" ? LIVE_EVENT_EXTRA_MOUNTAINS : 0;
   const mountains = mountainsTier().cutoff - extraMountains;
-  console.log(`MPT MAPS mountains: height percentile ${mountains}`);
+  console.log(`BBM MAPS mountains: height percentile ${mountains}`);
   FractalBuilder.create(g_MountainFractal, iWidth, iHeight, grainAmount, 0);
   FractalBuilder.create(g_HillFractal, iWidth, iHeight, grainAmount, 0);
   const iMountainThreshold = FractalBuilder.getHeightFromPercent(g_MountainFractal, mountains);
@@ -99,5 +99,5 @@ export function adjustMountains(iWidth, iHeight) {
       TerrainBuilder.setTerrainType(rough[i].x, rough[i].y, g_MountainTerrain);
     }
   }
-  console.log(`MPT MAPS mountains: ${mountains.length} mountain and ${rough.length} rough tiles adjusted by ${scale < 1 ? "-" : "+"}${changed}`);
+  console.log(`BBM MAPS mountains: ${mountains.length} mountain and ${rough.length} rough tiles adjusted by ${scale < 1 ? "-" : "+"}${changed}`);
 }

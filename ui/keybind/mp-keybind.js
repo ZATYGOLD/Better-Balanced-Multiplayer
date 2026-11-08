@@ -28,7 +28,7 @@
  * in multiplayer games only). Loaded in both scopes: the screen opens from the
  * main menu and in game.
  */
-import { createLogger, whenDefined, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { KEYBIND_ACTIONS } from './mp-keybind-config.js';
 
 const log = createLogger('keybind');
@@ -36,8 +36,8 @@ const EDITOR_TAG = 'editor-keyboard-mapping';
 
 whenDefined(EDITOR_TAG, (definition) => {
   const proto = definition.createInstance.prototype;
-  if (proto.mptKeybindPatched) return;
-  proto.mptKeybindPatched = true;
+  if (proto.bbmKeybindPatched) return;
+  proto.bbmKeybindPatched = true;
   wrapMethod(proto, 'addActionsForContext', function (base, inputContext, ...rest) {
     const result = base(inputContext, ...rest);
     for (const name of KEYBIND_ACTIONS) {

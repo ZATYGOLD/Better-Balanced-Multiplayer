@@ -5,9 +5,9 @@
 		<Delete BeliefType="PANTHEON_BONUS_2"/>
 		<Delete BeliefType="PANTHEON_BONUS_14"/>
 		<Delete BeliefType="PANTHEON_BONUS_15"/>
-		<Row BeliefType="PANTHEON_BONUS_2" ModifierID="MPT_BALANCE_MOD_PANTHEON_EARTH_GODDESS"/>
-		<Row BeliefType="PANTHEON_BONUS_14" ModifierID="MPT_BALANCE_MOD_PANTHEON_ORAL_TRADITION"/>
-		<Row BeliefType="PANTHEON_BONUS_15" ModifierID="MPT_BALANCE_MOD_PANTHEON_SACRED_WATERS"/>
+		<Row BeliefType="PANTHEON_BONUS_2" ModifierID="BBM_BALANCE_MOD_PANTHEON_EARTH_GODDESS"/>
+		<Row BeliefType="PANTHEON_BONUS_14" ModifierID="BBM_BALANCE_MOD_PANTHEON_ORAL_TRADITION"/>
+		<Row BeliefType="PANTHEON_BONUS_15" ModifierID="BBM_BALANCE_MOD_PANTHEON_SACRED_WATERS"/>
 	</BeliefModifiers>
 
 	<!-- New Pantheons. -->
@@ -20,36 +20,36 @@
 		<Row BeliefType="PANTHEON_BONUS_20" Name="LOC_PANTHEON_BONUS_20_NAME" Description="LOC_PANTHEON_BONUS_20_DESCRIPTION" BeliefClassType="BELIEF_CLASS_PANTHEON" AISelectionBin="3"/>
 	</Beliefs>
 	<BeliefModifiers>
-		<Row BeliefType="PANTHEON_BONUS_19" ModifierID="MPT_BALANCE_MOD_PANTHEON_GODDESS_OF_TIDES"/>
-		<Row BeliefType="PANTHEON_BONUS_20" ModifierID="MPT_BALANCE_MOD_PANTHEON_GOD_OF_CRAFTSMEN"/>
+		<Row BeliefType="PANTHEON_BONUS_19" ModifierID="BBM_BALANCE_MOD_PANTHEON_GODDESS_OF_TIDES"/>
+		<Row BeliefType="PANTHEON_BONUS_20" ModifierID="BBM_BALANCE_MOD_PANTHEON_GOD_OF_CRAFTSMEN"/>
 	</BeliefModifiers>
 
 	<!-- Altar activation data used by the changed and new Pantheons. -->
 	<Constructible_Adjacencies>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarMountainScience" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarNaturalWonderScience" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarCoastCulture" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarLakeCulture" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarRiverCulture" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalanceAltarResourceProduction" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarMountainScience" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarNaturalWonderScience" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarCoastCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarLakeCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarRiverCulture" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalanceAltarResourceProduction" RequiresActivation="true"/>
 	</Constructible_Adjacencies>
 	<Adjacency_YieldChanges>
-		<Row ID="MPTBalanceAltarMountainScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
-		<Row ID="MPTBalanceAltarNaturalWonderScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true"/>
-		<Row ID="MPTBalanceAltarCoastCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
-		<Row ID="MPTBalanceAltarLakeCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true"/>
-		<Row ID="MPTBalanceAltarRiverCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
-		<Row ID="MPTBalanceAltarResourceProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true"/>
+		<Row ID="BBMBalanceAltarMountainScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_MOUNTAIN"/>
+		<Row ID="BBMBalanceAltarNaturalWonderScience" Age="AGE_ANTIQUITY" YieldType="YIELD_SCIENCE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentNaturalWonder="true"/>
+		<Row ID="BBMBalanceAltarCoastCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_COAST"/>
+		<Row ID="BBMBalanceAltarLakeCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentLake="true"/>
+		<Row ID="BBMBalanceAltarRiverCulture" Age="AGE_ANTIQUITY" YieldType="YIELD_CULTURE" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentTerrain="TERRAIN_NAVIGABLE_RIVER"/>
+		<Row ID="BBMBalanceAltarResourceProduction" Age="AGE_ANTIQUITY" YieldType="YIELD_PRODUCTION" YieldChange="1" TilesRequired="1" ProjectMaxYield="true" AdjacentResource="true"/>
 	</Adjacency_YieldChanges>
 	<!-- Goddess of Tides clones God of the Sea's Fishing Boat warehouse bonus, using Food. -->
 	<Constructible_WarehouseYields>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarFishingBoatResourceFood" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarFishingBoatFood" RequiresActivation="true"/>
-		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="MPTBalancePantheonAltarOceanTerrainFood" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarFishingBoatResourceFood" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarFishingBoatFood" RequiresActivation="true"/>
+		<Row ConstructibleType="BUILDING_ALTAR" YieldChangeId="BBMBalancePantheonAltarOceanTerrainFood" RequiresActivation="true"/>
 	</Constructible_WarehouseYields>
 	<Warehouse_YieldChanges>
-		<Row ID="MPTBalancePantheonAltarFishingBoatResourceFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE"/>
-		<Row ID="MPTBalancePantheonAltarFishingBoatFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT"/>
-		<Row ID="MPTBalancePantheonAltarOceanTerrainFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TerrainInCity="TERRAIN_OCEAN"/>
+		<Row ID="BBMBalancePantheonAltarFishingBoatResourceFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT_RESOURCE"/>
+		<Row ID="BBMBalancePantheonAltarFishingBoatFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" ConstructibleInCity="IMPROVEMENT_FISHING_BOAT"/>
+		<Row ID="BBMBalancePantheonAltarOceanTerrainFood" Age="AGE_ANTIQUITY" YieldType="YIELD_FOOD" YieldChange="1" TerrainInCity="TERRAIN_OCEAN"/>
 	</Warehouse_YieldChanges>
 </Database>

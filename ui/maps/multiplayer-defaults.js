@@ -28,23 +28,23 @@
  * defaults the mod promises are written here; the Pace and Gameplay rules then
  * bring each setting's rows in line.
  */
-import { createLogger, whenDefined, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";
 const RETRY_MS = 50;
 const MAX_ATTEMPTS = 20;
 const REQUIRED_PARAMETERS = ["GameSpeeds", "Map", "MapSize"];
-const COMPETITIVE = "MPT_TURNTIMER_COMPETITIVE";
+const COMPETITIVE = "BBM_TURNTIMER_COMPETITIVE";
 const MULTIPLAYER_DEFAULTS = [
   ["TurnTimerType", COMPETITIVE],
   ["GameSpeeds", "GAMESPEED_ONLINE"],
   ["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_STANDARD"],
   ["AgeTransitionSetting", "AGE_TRANSITION_SETTING_KEEP_MORE"],
-  ["MPTPaceVictoryThresholdSet", "MPT_PACE_VICTORY_THRESHOLD_STANDARD"],
-  ["MPTGameplayCrises", "MPT_GAMEPLAY_CRISES_OFF"],
-  ["MPTGameplayCrisisTiming", "MPT_GAMEPLAY_CRISIS_TIMING_OFF"],
-  ["Map", "{multiplayer-toolkit}maps/pangaea-ultima.js"],
+  ["BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_STANDARD"],
+  ["BBMGameplayCrises", "BBM_GAMEPLAY_CRISES_OFF"],
+  ["BBMGameplayCrisisTiming", "BBM_GAMEPLAY_CRISIS_TIMING_OFF"],
+  ["Map", "{zatygolds-multiplayer-balance}maps/pangaea-ultima.js"],
   ["MapSize", "MAPSIZE_STANDARD"]
 ];
 const COMPETITIVE_BACKSTOP = 3600;

@@ -32,7 +32,7 @@ function addCoastalStartReefs() {
   const coldReef = GameInfo.Features.lookup("FEATURE_COLD_REEF");
   const marine = GameInfo.Biomes.lookup("BIOME_MARINE");
   if (reef == null || marine == null) {
-    console.log("MPT MAPS COASTAL REEFS: Reef or Marine definition unavailable; skipping");
+    console.log("BBM MAPS COASTAL REEFS: Reef or Marine definition unavailable; skipping");
     return;
   }
 
@@ -91,7 +91,7 @@ function addCoastalStartReefs() {
       if (reefCount === COASTAL_REEFS_PER_START) break;
     }
     console.log(
-      `MPT MAPS COASTAL REEFS: player=${playerId} candidates=${candidates.length} ` +
+      `BBM MAPS COASTAL REEFS: player=${playerId} candidates=${candidates.length} ` +
       `nearest reef tiles=${reefCount} rejected=${rejectedCount}`
     );
   }
@@ -100,7 +100,7 @@ function addCoastalStartReefs() {
     FertilityBuilder.recalculate();
     assignAdvancedStartRegions();
   }
-  console.log(`MPT MAPS COASTAL REEFS: placed ${totalPlaced} new Reef tile(s)`);
+  console.log(`BBM MAPS COASTAL REEFS: placed ${totalPlaced} new Reef tile(s)`);
 }
 
 // ============================ Regions ============================
@@ -401,7 +401,7 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
   for (let i = 0; i < playerIds.length; i++) {
     const playerId = playerIds[i];
     const candidates = buildJointStartCandidates(ctx, playerId, tileSets[i], originalStarts.get(playerId), allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
-    console.log(`MPT MAPS JOINT STARTS: player=${playerId} candidates=${candidates.length} lakeFallback=${allowLakeFallback} seed=${orderingSeed}`);
+    console.log(`BBM MAPS JOINT STARTS: player=${playerId} candidates=${candidates.length} lakeFallback=${allowLakeFallback} seed=${orderingSeed}`);
     if (candidates.length === 0) return { solution: null, exhausted: false };
     domains.set(playerId, candidates);
   }
@@ -443,7 +443,7 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
   };
 
   const solved = search(domains);
-  console.log(`MPT MAPS JOINT STARTS: solved=${solved} visitedNodes=${visitedNodes} stopped=${stopped}`);
+  console.log(`BBM MAPS JOINT STARTS: solved=${solved} visitedNodes=${visitedNodes} stopped=${stopped}`);
   return { solution: solved ? new Map(assigned) : null, exhausted: !solved && stopped };
 }
 
@@ -452,7 +452,7 @@ function solveJointStartPositionsWithRestarts(ctx, playerIds, tileSets, original
     const result = solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
     if (result.solution != null) return result.solution;
     if (!result.exhausted) break;
-    console.log(`MPT MAPS JOINT STARTS: restarting bounded search with ordering seed ${orderingSeed + 1}`);
+    console.log(`BBM MAPS JOINT STARTS: restarting bounded search with ordering seed ${orderingSeed + 1}`);
   }
   return null;
 }
@@ -584,21 +584,21 @@ function applyGlobalTeamStarts() {
       const supportedActualCount = [2, 4, 6, 8].includes(aliveMajorIds.length);
       if (!supportedActualCount) {
         console.log(
-          `MPT MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
+          `BBM MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
           `${aliveMajorIds.length} major players; no valid competitive region layout exists`
         );
         return;
       }
       regionPlayerCount = aliveMajorIds.length;
       console.log(
-        `MPT MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
+        `BBM MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
         `${aliveMajorIds.length} major players; hard-forcing regions for the detected player count`
       );
     }
     const bounds = getPlayerLandBounds();
     const regions = bounds == null ? null : buildEastWestTeamRegions(regionPlayerCount, bounds);
     if (regions == null || regions.length !== aliveMajorIds.length) {
-      console.log("MPT MAPS PLAYER PLACEMENT: could not determine designated team regions; retaining original starts");
+      console.log("BBM MAPS PLAYER PLACEMENT: could not determine designated team regions; retaining original starts");
       return;
     }
     tileSets = regions.map(getRegionTiles);
@@ -617,7 +617,7 @@ function applyGlobalTeamStarts() {
   let chosenAttempt = null;
   for (const attempt of attempts) {
     if (passExpired(ctx)) break;
-    console.log(`MPT MAPS PLAYER PLACEMENT: attempting ${attempt.label}`);
+    console.log(`BBM MAPS PLAYER PLACEMENT: attempting ${attempt.label}`);
     const candidateSolution = solveJointStartPositionsWithRestarts(
       ctx,
       aliveMajorIds,
@@ -639,7 +639,7 @@ function applyGlobalTeamStarts() {
       chosenAttempt = attempt;
       break;
     }
-    console.log(`MPT MAPS PLAYER PLACEMENT: rejected ${attempt.label}: ${failures.join("; ")}`);
+    console.log(`BBM MAPS PLAYER PLACEMENT: rejected ${attempt.label}: ${failures.join("; ")}`);
   }
 
   // If a genuinely impossible leader/civilization combination blocks the
@@ -674,7 +674,7 @@ function applyGlobalTeamStarts() {
     enforcedStrictPlayerIds.delete(playerToRelax);
     relaxedStrictPlayerIds.add(playerToRelax);
     console.log(
-      `MPT MAPS PLAYER PLACEMENT: restarting after isolating player=${playerToRelax} ` +
+      `BBM MAPS PLAYER PLACEMENT: restarting after isolating player=${playerToRelax} ` +
       `with only ${fewestCandidates} strict candidate(s)`
     );
     const candidateSolution = solveJointStartPositionsWithRestarts(
@@ -705,7 +705,7 @@ function applyGlobalTeamStarts() {
 
   if (solution == null && playerCount !== 0) {
     console.log(
-      "MPT MAPS PLAYER PLACEMENT: strict regional restarts exhausted; applying hard-region emergency placement"
+      "BBM MAPS PLAYER PLACEMENT: strict regional restarts exhausted; applying hard-region emergency placement"
     );
     solution = buildHardRegionEmergencySolution(ctx, aliveMajorIds, tileSets);
     if (solution != null) {
@@ -721,7 +721,7 @@ function applyGlobalTeamStarts() {
 
   if (solution == null || chosenAttempt == null) {
     console.log(
-      `MPT MAPS PLAYER PLACEMENT: every ${playerCount !== 0 ? "designated-region" : "whole-map"} ` +
+      `BBM MAPS PLAYER PLACEMENT: every ${playerCount !== 0 ? "designated-region" : "whole-map"} ` +
       "and isolated-player restart failed; " +
       "retaining original starts"
     );
@@ -742,7 +742,7 @@ function applyGlobalTeamStarts() {
   for (const playerId of aliveMajorIds) {
     const candidate = solution.get(playerId);
     StartPositioner.setStartPosition(candidate.plotIndex, playerId);
-    console.log(`MPT MAPS PLAYER PLACEMENT: player=${playerId} x=${candidate.x} y=${candidate.y}`);
+    console.log(`BBM MAPS PLAYER PLACEMENT: player=${playerId} x=${candidate.x} y=${candidate.y}`);
   }
   assignAdvancedStartRegions();
 
@@ -758,7 +758,7 @@ function applyGlobalTeamStarts() {
     );
   if (committedFailures.length > 0) {
     console.log(
-      `MPT MAPS PLAYER PLACEMENT: committed layout failed verification (${committedFailures.join("; ")}); ` +
+      `BBM MAPS PLAYER PLACEMENT: committed layout failed verification (${committedFailures.join("; ")}); ` +
       "restoring original starts"
     );
     for (const [playerId, plotIndex] of originalStarts) {
@@ -783,7 +783,7 @@ function applyGlobalTeamStarts() {
     }
   }
   console.log(
-    `MPT MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
+    `BBM MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
     `${START_MINIMUM_DISTANCE}-tile minimum spacing`
   );
 }
@@ -802,10 +802,10 @@ function applyGlobalTeamStartsSafely() {
     try {
       assignAdvancedStartRegions();
     } catch (regionError) {
-      console.error(`MPT MAPS PLAYER PLACEMENT: original advanced regions could not be rebuilt: ${regionError?.stack ?? regionError}`);
+      console.error(`BBM MAPS PLAYER PLACEMENT: original advanced regions could not be rebuilt: ${regionError?.stack ?? regionError}`);
     }
     console.error(
-      `MPT MAPS PLAYER PLACEMENT: unexpected solver error; restored every original start: ${error?.stack ?? error}`
+      `BBM MAPS PLAYER PLACEMENT: unexpected solver error; restored every original start: ${error?.stack ?? error}`
     );
   }
 }
@@ -813,7 +813,7 @@ function applyGlobalTeamStartsSafely() {
 // The Map Options exist only in multiplayer setup; Resource List All matches the
 // criteria that load its data (any other value is Standard).
 const isMultiplayerMap = () => Configuration.getMapValue(PLACEMENT_SETTING_KEY) != null;
-const isResourceListAll = () => Configuration.getMapValue("MPTResourceList") === "MPT_MAPS_RESOURCE_LIST_ALL";
+const isResourceListAll = () => Configuration.getMapValue("BBMResourceList") === "BBM_MAPS_RESOURCE_LIST_ALL";
 // Map files (Earth) keep the game's resources.
 const isScriptedMap = () => String(Configuration.getMapValue("Script") ?? "").endsWith(".js");
 
@@ -821,15 +821,15 @@ function armGlobalTeamStartHandler() {
   resetStrictStartBiases();   // a new map: re-read the option and the players
   resetStartBiasScores();
   // One handler per generation even if this script is loaded through more than one path.
-  if (globalThis.MPTPlayerPlacementArmed) return;
-  globalThis.MPTPlayerPlacementArmed = true;
+  if (globalThis.BBMPlayerPlacementArmed) return;
+  globalThis.BBMPlayerPlacementArmed = true;
 
   // Arming during RequestMapInitData registers this listener after the chosen
   // map's GenerateMap listener, so placement is a post-process of every map.
   // Resources, placement and Reefs run in one ordered pass.
   engine.on("GenerateMap", () => {
     if (!isMultiplayerMap()) {
-      console.log("MPT MAPS PLAYER PLACEMENT: not a multiplayer setup; map left unchanged");
+      console.log("BBM MAPS PLAYER PLACEMENT: not a multiplayer setup; map left unchanged");
       return;
     }
     const scripted = isScriptedMap();
@@ -842,17 +842,17 @@ function armGlobalTeamStartHandler() {
       try {
         placeDealtResources();   // player regions follow the final starts
       } catch (error) {
-        console.error(`MPT MAPS RESOURCES: dealt resources skipped after unexpected error: ${error?.stack ?? error}`);
+        console.error(`BBM MAPS RESOURCES: dealt resources skipped after unexpected error: ${error?.stack ?? error}`);
       }
     }
     try {
       addCoastalStartReefs();
     } catch (error) {
-      console.error(`MPT MAPS COASTAL REEFS: skipped after unexpected error: ${error?.stack ?? error}`);
+      console.error(`BBM MAPS COASTAL REEFS: skipped after unexpected error: ${error?.stack ?? error}`);
     }
   });
-  console.log("MPT MAPS PLAYER PLACEMENT: post-process armed");
+  console.log("BBM MAPS PLAYER PLACEMENT: post-process armed");
 }
 
 engine.on("RequestMapInitData", armGlobalTeamStartHandler);
-console.log("MPT MAPS PLAYER PLACEMENT: loaded");
+console.log("BBM MAPS PLAYER PLACEMENT: loaded");

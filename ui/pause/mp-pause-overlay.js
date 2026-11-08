@@ -27,7 +27,7 @@
  */
 import { CONFIG, LOC } from './mp-pause-config.js';
 
-const OVERLAY_ID = "mpt-countdown";
+const OVERLAY_ID = "bbm-countdown";
 
 class PauseCountdownOverlay {
   element = null;
@@ -41,17 +41,17 @@ class PauseCountdownOverlay {
     const el = document.createElement("div");
     el.id = OVERLAY_ID;
     el.innerHTML =
-      '<div class="mpt-count-label">' + Locale.compose(LOC.unpausing) + '</div>' +
-      '<div class="mpt-count-num">' + CONFIG.resumeCountdownSeconds + '</div>';
+      '<div class="bbm-count-label">' + Locale.compose(LOC.unpausing) + '</div>' +
+      '<div class="bbm-count-num">' + CONFIG.resumeCountdownSeconds + '</div>';
     document.body.appendChild(el);
     this.element = el;
-    this.numElement = el.querySelector(".mpt-count-num");
+    this.numElement = el.querySelector(".bbm-count-num");
   }
 
   /** Show or hide the overlay. */
   show(visible) {
     if (this.element) {
-      this.element.classList.toggle("mpt-show", !!visible);
+      this.element.classList.toggle("bbm-show", !!visible);
     }
   }
 

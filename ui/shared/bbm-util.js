@@ -28,7 +28,7 @@
 
 /** Logger that reaches UI.log (console.log output does not). */
 function createLogger(tag) {
-  return (message) => { try { console.warn(`[MPT ${tag}] ${message}`); } catch (e) { /* ignore */ } };
+  return (message) => { try { console.warn(`[BBM ${tag}] ${message}`); } catch (e) { /* ignore */ } };
 }
 
 /**

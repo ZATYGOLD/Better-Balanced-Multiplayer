@@ -30,8 +30,8 @@
  * Mementos opens the same picker (ui/lobby/mp-memento-select.js).
  */
 import { Audio } from 'fs://game/core/ui/audio-base/audio-support.js';
-import { Decorator, createLogger } from '../shared/mpt-util.js';
-import { onSetupRevision, resolveString } from '../shared/mpt-setup.js';
+import { Decorator, createLogger } from '../shared/bbm-util.js';
+import { onSetupRevision, resolveString } from '../shared/bbm-setup.js';
 import { canEditMementos, openMementoPicker } from './mp-memento-select.js';
 
 const log = createLogger('lobby mementos');
@@ -71,8 +71,8 @@ function createSlot() {
 /** Draws a slot's memento; a slot already showing it is left as is (every setup change repaints every row). */
 function paintSlot(slot, value) {
   const memento = value?.value ?? MEMENTO_NONE;
-  if (slot.mptMemento === memento) return;
-  slot.mptMemento = memento;
+  if (slot.bbmMemento === memento) return;
+  slot.bbmMemento = memento;
   const art = slot.firstChild;
   const icon = memento === MEMENTO_NONE ? "" : resolveString(value.icon);
   if (icon) {

@@ -33,7 +33,7 @@
  * for one is hidden. The mini-map binds the chat handler it first sees, so the
  * sound can still play until chat is first opened.
  */
-import { createLogger, isMultiplayerGame, whenDefined, wrapMethod } from '../shared/mpt-util.js';
+import { createLogger, isMultiplayerGame, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { CONFIG } from './mp-pause-config.js';
 
 const log = createLogger('pause net');
@@ -43,7 +43,7 @@ const handlers = {};
 
 const isCommand = (data) => typeof data?.text === "string" && data.text.startsWith(PREFIX);
 
-const MPTNet = {
+const BBMNet = {
   /** Broadcast a command (optionally with a string arg) to every player. */
   send(cmd, arg) {
     try { Network.sendChat(PREFIX + cmd + (arg != null ? ":" + String(arg) : ""), ChatTargetTypes.CHATTARGET_ALL, -1); }
@@ -71,8 +71,8 @@ function onChat(data) {
 function hideCommandsFromChat() {
   whenDefined(CHAT_TAG, (definition) => {
     const proto = definition.createInstance.prototype;
-    if (proto.mptNetPatched) return;
-    proto.mptNetPatched = true;
+    if (proto.bbmNetPatched) return;
+    proto.bbmNetPatched = true;
     // onMultiplayerChat is an instance field (the mini-map binds it directly), so wrap it per instance.
     wrapMethod(proto, "onInitialize", function (base, ...args) {
       const result = base(...args);
@@ -97,4 +97,4 @@ if (CONFIG.hostAuthoritativeResume !== false) {
   });
 }
 
-export default MPTNet;
+export default BBMNet;

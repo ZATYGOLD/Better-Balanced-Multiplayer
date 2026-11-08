@@ -34,7 +34,7 @@ export function generateSnow(iWidth, iHeight) {
     generateBaseSnow(iWidth, iHeight);
     return;
   }
-  console.log("MPT MAPS snow: laid by climate latitude");
+  console.log("BBM MAPS snow: laid by climate latitude");
   const effects = ["LIGHT", "MEDIUM", "HEAVY"].map(snowEffect);
   const coldest = coldestSnowLatitude(iHeight);
   forEachTile(iWidth, iHeight, (iX, iY) => {

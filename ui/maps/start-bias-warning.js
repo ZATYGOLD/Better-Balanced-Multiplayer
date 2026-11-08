@@ -25,7 +25,7 @@
  * Fresh Water, spacing and, with Start Bias Multiplayer, strict start biases.
  * Failures show as a banner and a notification for every player.
  */
-import { createLogger, isMultiplayerGame } from '../shared/mpt-util.js';
+import { createLogger, isMultiplayerGame } from '../shared/bbm-util.js';
 import { PLACEMENT_SETTING_KEY, START_MINIMUM_DISTANCE } from '../../maps/placement.js';
 import { getPlayerStrictStartBias, isStrictStartBiasEnabled, matchesRule, matchesRuleWithLakeFallback } from '../../maps/strict-start-biases.js';
 
@@ -46,7 +46,7 @@ function getValidationStorageKey() {
   try {
     const mapSeed = Configuration.getMap()?.mapSeed ?? "unknown-map";
     const gameSeed = Configuration.getGame()?.gameSeed ?? "unknown-game";
-    return `mpt-maps-start-validation-v5-${mapSeed}-${gameSeed}`;
+    return `bbm-maps-start-validation-v5-${mapSeed}-${gameSeed}`;
   } catch (_) {
     return null;
   }
@@ -87,22 +87,22 @@ function getFinalStartLocation(playerId) {
 
 function getPlayerLabel(playerId) {
   const player = Players.get(playerId);
-  if (player == null) return Locale.compose("LOC_MPT_MAPS_START_WARNING_PLAYER", playerId + 1);
+  if (player == null) return Locale.compose("LOC_BBM_MAPS_START_WARNING_PLAYER", playerId + 1);
   const leader = GameInfo.Leaders.lookup(player.leaderType);
   const civilization = GameInfo.Civilizations.lookup(player.civilizationType);
-  const leaderName = leader?.Name ? Locale.compose(leader.Name) : Locale.compose("LOC_MPT_MAPS_START_WARNING_PLAYER", playerId + 1);
-  const civilizationName = civilization?.Name ? Locale.compose(civilization.Name) : Locale.compose("LOC_MPT_MAPS_START_WARNING_UNKNOWN_CIV");
-  return Locale.compose("LOC_MPT_MAPS_START_WARNING_LEADER_CIV", leaderName, civilizationName);
+  const leaderName = leader?.Name ? Locale.compose(leader.Name) : Locale.compose("LOC_BBM_MAPS_START_WARNING_PLAYER", playerId + 1);
+  const civilizationName = civilization?.Name ? Locale.compose(civilization.Name) : Locale.compose("LOC_BBM_MAPS_START_WARNING_UNKNOWN_CIV");
+  return Locale.compose("LOC_BBM_MAPS_START_WARNING_LEADER_CIV", leaderName, civilizationName);
 }
 
 /** A strict-bias rule's text, by its id (text/en_us/maps-options.xml). */
-const ruleText = (rule) => Locale.compose(`LOC_MPT_MAPS_START_BIAS_RULE_${rule.id.toUpperCase().replace(/-/g, "_")}`);
+const ruleText = (rule) => Locale.compose(`LOC_BBM_MAPS_START_BIAS_RULE_${rule.id.toUpperCase().replace(/-/g, "_")}`);
 
 function createVisibleBanner(summary) {
   if (document.body == null) return;
-  document.querySelector(".mpt-maps-strict-bias-banner")?.remove();
+  document.querySelector(".bbm-maps-strict-bias-banner")?.remove();
   const banner = document.createElement("div");
-  banner.classList.add("mpt-maps-strict-bias-banner");
+  banner.classList.add("bbm-maps-strict-bias-banner");
   Object.assign(banner.style, {
     position: "fixed", right: "5rem", top: "7rem", width: "29rem", zIndex: "10000",
     padding: "1rem 1.25rem", border: "2px solid #d9b56d", borderRadius: "0.35rem",
@@ -111,7 +111,7 @@ function createVisibleBanner(summary) {
     boxShadow: "0 0 1.2rem rgba(0,0,0,0.85)", pointerEvents: "auto",
     transition: "opacity 0.5s ease"
   });
-  banner.textContent = `${summary}\n\n${Locale.compose("LOC_MPT_MAPS_START_WARNING_BANNER_HINT")}`;
+  banner.textContent = `${summary}\n\n${Locale.compose("LOC_BBM_MAPS_START_WARNING_BANNER_HINT")}`;
   banner.addEventListener("click", () => banner.remove());
   document.body.appendChild(banner);
   setTimeout(() => { banner.style.opacity = "0"; }, 20000);
@@ -126,13 +126,13 @@ function addNotificationRailIcon(summary, failureCount) {
     return;
   }
   const typeContainer = document.createElement("div");
-  typeContainer.classList.add("notif__container", "notif__animate", "mpt-maps-strict-bias-notification");
+  typeContainer.classList.add("notif__container", "notif__animate", "bbm-maps-strict-bias-notification");
   const notificationContainer = document.createElement("fxs-vslot");
   notificationContainer.classList.add("notification-container");
   const button = document.createElement("fxs-activatable");
   button.classList.add("notice", "notif__button");
   button.setAttribute("tabindex", "-1");
-  button.setAttribute("data-tooltip-content", `${Locale.compose("LOC_MPT_MAPS_START_WARNING_TOOLTIP")}\n${summary}`);
+  button.setAttribute("data-tooltip-content", `${Locale.compose("LOC_BBM_MAPS_START_WARNING_TOOLTIP")}\n${summary}`);
   const background = document.createElement("div");
   background.classList.add("notif__button-bk");
   const icon = document.createElement("div");
@@ -154,7 +154,7 @@ function addNotificationRailIcon(summary, failureCount) {
 }
 
 function createFailureNotification(failures) {
-  const summary = `${Locale.compose("LOC_MPT_MAPS_START_WARNING_TITLE")}\n${Locale.compose("LOC_MPT_MAPS_START_WARNING_INTRO")}\n` +
+  const summary = `${Locale.compose("LOC_BBM_MAPS_START_WARNING_TITLE")}\n${Locale.compose("LOC_BBM_MAPS_START_WARNING_INTRO")}\n` +
     failures.map((failure) => `- ${failure}`).join("\n");
   createVisibleBanner(summary);
   addNotificationRailIcon(summary, failures.length);
@@ -184,13 +184,13 @@ function validateStarts() {
     if (location == null) { unresolvedStarts++; continue; }
     locations.set(playerId, location);
     if (!GameplayMap.isFreshWater(location.x, location.y)) {
-      failures.push(Locale.compose("LOC_MPT_MAPS_START_WARNING_NO_FRESH_WATER", getPlayerLabel(playerId)));
+      failures.push(Locale.compose("LOC_BBM_MAPS_START_WARNING_NO_FRESH_WATER", getPlayerLabel(playerId)));
     }
     if (strict) {
       const failedRules = getPlayerStrictStartBias(playerId)?.rules.filter((rule) => !ruleMet(rule, location.x, location.y)) ?? [];
       if (failedRules.length > 0) {
-        const rules = failedRules.map((rule) => Locale.compose(`LOC_MPT_MAPS_START_WARNING_${rule.kind.toUpperCase()}_RULE`, ruleText(rule))).join("; ");
-        failures.push(Locale.compose("LOC_MPT_MAPS_START_WARNING_RULES", getPlayerLabel(playerId), rules));
+        const rules = failedRules.map((rule) => Locale.compose(`LOC_BBM_MAPS_START_WARNING_${rule.kind.toUpperCase()}_RULE`, ruleText(rule))).join("; ");
+        failures.push(Locale.compose("LOC_BBM_MAPS_START_WARNING_RULES", getPlayerLabel(playerId), rules));
       }
     }
   }
@@ -202,7 +202,7 @@ function validateStarts() {
       if (first == null || second == null) continue;
       const distance = GameplayMap.getPlotDistance(first.x, first.y, second.x, second.y);
       if (distance < START_MINIMUM_DISTANCE) {
-        failures.push(Locale.compose("LOC_MPT_MAPS_START_WARNING_TOO_CLOSE",
+        failures.push(Locale.compose("LOC_BBM_MAPS_START_WARNING_TOO_CLOSE",
           getPlayerLabel(aliveMajorIds[i]), getPlayerLabel(aliveMajorIds[j]), distance, START_MINIMUM_DISTANCE));
       }
     }

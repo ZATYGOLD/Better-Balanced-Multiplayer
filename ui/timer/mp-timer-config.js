@@ -23,7 +23,7 @@
  */
 
 /** TurnTimers row registered by config/timer.sql, as the configuration stores it (hashed). */
-const COMPETITIVE_HASH = Database.makeHash("MPT_TURNTIMER_COMPETITIVE");
+const COMPETITIVE_HASH = Database.makeHash("BBM_TURNTIMER_COMPETITIVE");
 
 /** Tunable timings / thresholds. */
 const CONFIG = {

@@ -58,16 +58,16 @@ import { LeaderSelectModel, LeaderSelectModelContext } from 'fs://game/core/ui-n
 import { LeaderSelectScreen } from 'fs://game/core/ui-next/screens/create-game/leader-select-screen.js';
 import { RecommendedChoiceModel, RecommendedChoiceModelContext } from 'fs://game/core/ui-next/screens/create-game/recommended-choice-model.js';
 import { useAudio } from 'fs://game/core/ui-next/services/audio-support.js';
-import { Decorator, createLogger, isObserverValue } from '../shared/mpt-util.js';
-import { onSetupRevision } from '../shared/mpt-setup.js';
+import { Decorator, createLogger, isObserverValue } from '../shared/bbm-util.js';
+import { onSetupRevision } from '../shared/bbm-setup.js';
 import { canEditOwnSlot, closeScreen, usesLobbyPickers } from './mp-memento-select.js';
 
 const log = createLogger('leader civ picker');
-const SCREEN_NAME = "mpt-leader-civ-select";
+const SCREEN_NAME = "bbm-leader-civ-select";
 const LOBBY_TAG = "screen-mp-lobby";
 const PARAM_LEADER = "PlayerLeader";
 const PARAM_CIV = "PlayerCivilization";
-const SPECTATOR_SLOT_SETTING = "MPTSpectatorSlot";
+const SPECTATOR_SLOT_SETTING = "BBMSpectatorSlot";
 const SCREENS = [
   { name: "leader-select", step: "leader-select", type: ScreenFlowStepType.Start },
   { name: "civ-select", step: "civ-select" },
@@ -81,8 +81,8 @@ const MOUSE_GUARD_TAG = "mouse-guard";
 // Panels the game's audio keeps while single player's Create Game is up (it opens over the main menu).
 const AUDIO_KEPT_PANELS = ["main-menu", MOUSE_GUARD_TAG];
 const CREATE_GAME_PANEL = "create-game-sp";
-const BROWSE_CLASS = "mpt-browse-button";
-const BROWSE_CAPTION = "LOC_MPT_LOBBY_BROWSE";
+const BROWSE_CLASS = "bbm-browse-button";
+const BROWSE_CAPTION = "LOC_BBM_LOBBY_BROWSE";
 const CLOSE_CAPTION = "LOC_GENERIC_CLOSE";
 // The Close button takes the header's right button area, where the profile badge sits.
 const STYLES = `${SCREEN_NAME} .create-game-badge-container-outer { display: none; }`;

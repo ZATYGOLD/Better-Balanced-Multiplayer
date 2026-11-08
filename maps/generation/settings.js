@@ -11,8 +11,8 @@ export function settingTier(table, key, standard, random) {
   const value = Configuration.getMapValue(key);
   if (random && value == random) {
     const names = Object.keys(table);
-    const name = names[TerrainBuilder.getRandomNumber(names.length, `MPT ${key}`)];
-    console.log(`MPT MAPS ${key}: Random rolled ${name}`);
+    const name = names[TerrainBuilder.getRandomNumber(names.length, `BBM ${key}`)];
+    console.log(`BBM MAPS ${key}: Random rolled ${name}`);
     return table[name];
   }
   return table[value] ?? table[standard];

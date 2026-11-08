@@ -25,7 +25,7 @@
  * poll of the setup (multiplayer setups only), and the rule that keeps a
  * setting's rows on its value (Pace and Gameplay).
  */
-import { createLogger, isAgeTransition, isMultiplayerGame } from './mpt-util.js';
+import { createLogger, isAgeTransition, isMultiplayerGame } from './bbm-util.js';
 
 const log = createLogger('setup');
 const POLL_MS = 250;
