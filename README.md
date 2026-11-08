@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.0**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.1**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -33,10 +33,10 @@ New multiplayer games, and any Match Type change, start with these settings. The
 | Map / Map Size | Pangaea Ultima / Standard |
 | Game Balance | Multiplayer |
 | Start Bias | Multiplayer |
-| Resource List / Amount / Clusters | All / Standard / Off |
+| Resource List / Amount / Clusters | All / Multiplayer / Disabled |
 | Pace Set | Standard (Trade Speed Instant) |
 | Victory Threshold | Standard |
-| Crises | Off |
+| Crises | Disabled |
 
 ## Match Type
 
@@ -72,7 +72,7 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
 - The first turn of each session (a new game, a loaded save, or a new Age) is untimed. The clock stops while the game is paused or an Age is ending.
-- To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/mp-timer-config.js`.
+- To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/bbm-timer-config.js`.
 
 ## Synchronized Pause
 
@@ -105,6 +105,7 @@ The **Game Balance** option is in Multiplayer Settings, above Kick Vote. **Multi
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
 - Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
 - In every Age, trade routes start from a distance, as in the Modern Age.
+- Commanders on a Military Building in their own Settlement gain 1 XP each turn.
 
 ## Maps
 
@@ -120,12 +121,12 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
     - Military and construction resources come in even counts on each continent.
     - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbours get different resources.
   - **Standard** uses the game's own resources and rules.
-- **Resource Amount**: Scarce, Sparse, Standard (the default) or Abundant, which is 35%, 50%, 70% or 100% of the game's density.
-- **Resource Clusters**: Off (the default), Small or Large. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
+- **Resource Amount**: Scarce, Limited, Multiplayer (the default) or Standard, which is 35%, 50%, 70% or 100% of the game's density. Standard is the game's own density, as in Advanced Settings Pro.
+- **Resource Clusters**: Disabled (the default), Small or Large. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
 - **Climate and terrain** (from Advanced Settings Pro) has two groups of settings. Choosing Standard for all of them generates the game's own maps.
   - **Map Settings**: Map Age, Map Temperature and **Map Zones**, which sets where the hot and cold regions lie: Standard, Hot Poles, Hot Edge, Hot Center, Cold Center, Warm Ring, Patchwork or Random.
   - **Terrain Settings**: Lakes, Rivers, Mountains and Sea Level.
-- **Natural Wonders**: how many are placed, with an On/Off toggle for each wonder.
+- **Natural Wonders**: how many are placed, with an Enabled/Disabled toggle for each wonder.
 - **Disasters**: the game's own Disaster Intensity, on Game Settings.
 - The Earth map keeps the game's resources.
 
@@ -153,10 +154,10 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 | Independent Amount / Spacing / Aggression | Standard, or less/more | Advanced |
 | Trade Range | Standard, -50% to +100%, Custom (per Age) | Advanced |
 | World Wonders | Standard, Carry Over | Advanced |
-| Crises / Crisis Timing | Off, On / Standard, Early, Late | Game Settings |
+| Crises / Crisis Timing | Disabled, Enabled / Standard, Early, Late | Game Settings |
 | Triumph Set | the game's sets, Custom (one per Age, set on the Advanced tab) | Game Settings |
 
-- **Crises**: a single crisis list, as in single player. Turning Crises Off excludes every crisis in the list.
+- **Crises**: a single crisis list, as in single player. Setting Crises to Disabled excludes every crisis in the list.
 - **World Wonders: Carry Over**: a World Wonder that you unlocked in an earlier Age stays buildable for you until someone builds it. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
 
 ## Lobby
@@ -176,7 +177,7 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 ## Project structure
 
 ```
-Multiplayer-Toolkit/
+Better-Balanced-Multiplayer/
 ├─ zatygolds-multiplayer-balance.modinfo   # manifest
 ├─ config/                       # lobby setup: one .sql per feature
 ├─ data/                         # game data: balance/, gameplay/, maps/, pace/, timers/
@@ -189,9 +190,18 @@ Multiplayer-Toolkit/
                                  #   setup, shared, timer
 ```
 
-The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `[BBM <feature>]`.
+Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.1
+
+Hotfix.
+
+- Commanders on a Military Building in their own Settlement gain 1 XP each turn again (restored).
+- The lobby's leader and civilization tooltips and memento slots show the Game Balance text when Game Balance is Multiplayer.
+- The Competitive timer no longer switches to the engine's own countdown after a pause.
+- The Competitive timer ring no longer flickers, which showed most when hovering the End Turn button.
 
 ### 0.7.0
 
@@ -231,11 +241,13 @@ The mod patches the base UI at runtime and replaces no base-game files. Diagnost
   - 10-turn end-of-Age countdown (was none).
   - Continuity.
   - Victory Threshold Standard (was Low).
-  - Crises Off.
+  - Crises Disabled.
   - Trade Speed Instant.
 - Age Length is limited to 90–140 points per Age. The Balanced option is gone.
 - Settlement Limit Custom is capped at 25 per Age.
 - Resources: fewer by default (70% density), with even counts per continent and matched Empire resource pools for each player region.
+- Resource Amount's options are now Scarce, Limited, Multiplayer (the default) and Standard, so Standard means the game's own density here and in Advanced Settings Pro.
+- On/Off options now read Enabled/Disabled, matching Advanced Settings Pro.
 - The Competitive timer is retuned for each Age.
 - The Create Game tabs and sections follow the single-player layout (Spawn, Map, Resource and Terrain Settings).
 - Multiplayer uses the game's own Disaster Intensity again.
@@ -265,7 +277,6 @@ The mod patches the base UI at runtime and replaces no base-game files. Diagnost
 - Unit Settings (Settler and Treasure Convoy Speed, unit costs).
 - The Epic and Marathon speeds and the Long Age Length in multiplayer.
 - The mod's own Disasters setting.
-- Per-turn Commander XP on Military Buildings.
 - The one-technology-per-turn limit.
 
 ## License

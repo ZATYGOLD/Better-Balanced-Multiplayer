@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Database>
 	<EnglishText>
+	<!-- Setup labels -->
+		<Row Tag="LOC_BBM_ENABLED_NAME"><Text>Enabled</Text></Row>
+		<Row Tag="LOC_BBM_DISABLED_NAME"><Text>Disabled</Text></Row>
+		<Row Tag="LOC_BBM_CUSTOM_NAME"><Text>Custom</Text></Row>
+
 	<!-- Pause -->
 		<Row Tag="LOC_BBM_PAUSE_GAME"><Text>Pause Game</Text></Row>
 		<Row Tag="LOC_BBM_READY"><Text>Ready</Text></Row>

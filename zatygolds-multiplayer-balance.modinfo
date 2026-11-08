@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="zatygolds-multiplayer-balance" version="00700" xmlns="ModInfo">
+<Mod id="zatygolds-multiplayer-balance" version="00710" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_BBM_NAME</Name>
 		<Description>LOC_MODULE_BBM_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.7.0</Version>
+		<Version>0.7.1</Version>
 		<Package>Mod</Package>
 		<LastUpdated>2026-11-08</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
@@ -1214,20 +1214,21 @@
 				<UIScripts>
 					<Item>ui/shared/bbm-util.js</Item>
 					<Item>ui/shared/bbm-setup.js</Item>
-					<Item>ui/lobby/mp-lobby-config.js</Item>
-					<Item>ui/lobby/mp-lobby-tooltips.js</Item>
-					<Item>ui/lobby/mp-lobby-rules.js</Item>
-					<Item>ui/lobby/mp-memento-select-model.js</Item>
-					<Item>ui/lobby/mp-memento-select.js</Item>
-					<Item>ui/lobby/mp-lobby-mementos.js</Item>
-					<Item>ui/lobby/mp-leader-civ-select.js</Item>
-					<Item>ui/setup/setup-layout.js</Item>
-					<Item>ui/setup/setup-tabs.js</Item>
-					<Item>ui/setup/match-type-rules.js</Item>
-					<Item>ui/timer/mp-timer-config.js</Item>
-					<Item>ui/timer/mp-timer-lobby.js</Item>
-					<Item>ui/keybind/mp-keybind-config.js</Item>
-					<Item>ui/keybind/mp-keybind.js</Item>
+					<Item>ui/lobby/bbm-lobby-config.js</Item>
+					<Item>ui/lobby/bbm-lobby-balance-text.js</Item>
+					<Item>ui/lobby/bbm-lobby-tooltips.js</Item>
+					<Item>ui/lobby/bbm-lobby-rules.js</Item>
+					<Item>ui/lobby/bbm-memento-select-model.js</Item>
+					<Item>ui/lobby/bbm-memento-select.js</Item>
+					<Item>ui/lobby/bbm-lobby-mementos.js</Item>
+					<Item>ui/lobby/bbm-leader-civ-select.js</Item>
+					<Item>ui/setup/bbm-setup-layout.js</Item>
+					<Item>ui/setup/bbm-setup-tabs.js</Item>
+					<Item>ui/setup/bbm-match-type-rules.js</Item>
+					<Item>ui/timer/bbm-timer-config.js</Item>
+					<Item>ui/timer/bbm-timer-lobby.js</Item>
+					<Item>ui/keybind/bbm-keybind-config.js</Item>
+					<Item>ui/keybind/bbm-keybind.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1250,15 +1251,15 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UIScripts>
-					<Item>ui/pause/mp-pause-config.js</Item>
-					<Item>ui/pause/mp-pause.scss.js</Item>
-					<Item>ui/pause/mp-pause-overlay.js</Item>
-					<Item>ui/pause/mp-pause-net.js</Item>
-					<Item>ui/pause/mp-pause-mgr.js</Item>
-					<Item>ui/advisor/mp-advisor-popup.js</Item>
-					<Item>ui/keybind/mp-keybind-config.js</Item>
-					<Item>ui/keybind/mp-keybind.js</Item>
-					<Item>ui/keybind/mp-hotkeys.js</Item>
+					<Item>ui/pause/bbm-pause-config.js</Item>
+					<Item>ui/pause/bbm-pause.scss.js</Item>
+					<Item>ui/pause/bbm-pause-overlay.js</Item>
+					<Item>ui/pause/bbm-pause-net.js</Item>
+					<Item>ui/pause/bbm-pause-mgr.js</Item>
+					<Item>ui/advisor/bbm-advisor-popup.js</Item>
+					<Item>ui/keybind/bbm-keybind-config.js</Item>
+					<Item>ui/keybind/bbm-keybind.js</Item>
+					<Item>ui/keybind/bbm-hotkeys.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1268,8 +1269,8 @@
 			<Properties><LoadOrder>1000</LoadOrder></Properties>
 			<Actions>
 				<UIScripts>
-					<Item>ui/timer/mp-timer-config.js</Item>
-					<Item>ui/timer/mp-timer.js</Item>
+					<Item>ui/timer/bbm-timer-config.js</Item>
+					<Item>ui/timer/bbm-timer.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1323,6 +1324,7 @@
 				</UpdateDatabase>
 				<UpdateText>
 					<Item>text/en_us/balance-setup.xml</Item>
+					<Item>text/en_us/balance-lobby.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1510,8 +1512,8 @@
 					<Item>text/en_us/maps-settings.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>ui/maps/multiplayer-defaults.js</Item>
-					<Item>ui/maps/match-slots.js</Item>
+					<Item>ui/maps/bbm-multiplayer-defaults.js</Item>
+					<Item>ui/maps/bbm-match-slots.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1524,7 +1526,7 @@
 					<Item>{zatygolds-multiplayer-balance}maps/scripts/global-team-starts.js</Item>
 				</MapGenScripts>
 				<UIScripts>
-					<Item>ui/maps/start-bias-warning.js</Item>
+					<Item>ui/maps/bbm-start-bias-warning.js</Item>
 				</UIScripts>
 				<UpdateDatabase>
 					<Item>data/maps/islands.xml</Item>
@@ -1871,7 +1873,7 @@
 					<Item>text/en_us/pace.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>ui/pace/pace-rules.js</Item>
+					<Item>ui/pace/bbm-pace-rules.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -2858,7 +2860,7 @@
 					<Item>text/en_us/gameplay.xml</Item>
 				</UpdateText>
 				<UIScripts>
-					<Item>ui/gameplay/gameplay-rules.js</Item>
+					<Item>ui/gameplay/bbm-gameplay-rules.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>

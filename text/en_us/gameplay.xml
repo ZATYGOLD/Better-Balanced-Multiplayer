@@ -62,12 +62,12 @@
 		<Row Tag="LOC_BBM_GAMEPLAY_CARRY_OVER_NAME"><Text>Carry Over</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC"><Text>World Wonders you unlocked in a previous age stay buildable in later ages until someone builds them.[n]A few one-time effects tied to a wonder's own age are not granted.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_NAME"><Text>Crises</Text></Row>
-		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_DESC"><Text>Enables or disables all crises.[n]Off turns off every crisis in the Crises list.</Text></Row>
+		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_DESC"><Text>Enables or disables all crises.[n]Disabled turns off every crisis in the Crises list.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_ON_DESC"><Text>The crises included in the Crises list below can occur.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_OFF_DESC"><Text>No crises occur.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_NAME"><Text>Crisis Timing</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_DESC"><Text>Sets when the crises begin.</Text></Row>
-		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_OFF_DESC"><Text>No crises occur.[n]Set Crises to On to choose a timing.</Text></Row>
+		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_OFF_DESC"><Text>No crises occur.[n]Set Crises to Enabled to choose a timing.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_EARLY_NAME"><Text>Early</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_EARLY_DESC"><Text>Each crisis stage begins earlier in the age.[nn][BLIST][LI] Stage 1: Begins at 50%[LI] Stage 2: Begins at 65%[LI] Stage 3: Begins at 85%[/BLIST]</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISIS_TIMING_STANDARD_DESC"><Text>The game's own crisis timing.[nn][BLIST][LI] Stage 1: Begins at 70%[LI] Stage 2: Begins at 80%[LI] Stage 3: Begins at 90%[/BLIST]</Text></Row>

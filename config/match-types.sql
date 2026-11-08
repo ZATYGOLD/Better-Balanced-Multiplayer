@@ -6,7 +6,7 @@
 -- Placement (config/maps.sql keeps it hidden): Free for All places
 -- over the whole map and leaves the other settings to the host. Choosing one also
 -- returns every other game setting to its multiplayer default, on Online speed
--- and the Competitive timer (ui/setup/match-type-rules.js).
+-- and the Competitive timer (ui/setup/bbm-match-type-rules.js).
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
         ('BBMMatchType', 'LOC_BBM_MATCHTYPE_NAME', 'LOC_BBM_MATCHTYPE_DESC', 'BBMMatchTypes', 0, 'BBM_MATCHTYPE_FFA', 'Game', 'BBMMatchType', 'LobbyOptions', 'SimpleSelectWindow', 0, 0, 25);
