@@ -13,8 +13,6 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
         ('MPAdvancedSettlementOptions', 'LOC_GROUPID_BBM_SETTLEMENTOPTIONS'),
         ('IndependentPowerOptions', 'LOC_GROUPID_BBM_INDEPENDENTPOWEROPTIONS'),
         ('MPAdvancedIndependentPowerOptions', 'LOC_GROUPID_BBM_INDEPENDENTPOWEROPTIONS'),
-        ('TradeOptions', 'LOC_GROUPID_BBM_TRADEOPTIONS'),
-        ('MPAdvancedTradeOptions', 'LOC_GROUPID_BBM_TRADEOPTIONS'),
         ('WonderOptions', 'LOC_GROUPID_BBM_WONDEROPTIONS'),
         ('MPAdvancedWonderOptions', 'LOC_GROUPID_BBM_WONDEROPTIONS');
 
@@ -92,34 +90,6 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('BBMGameplayIndependentAggressionValues', 'BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_CALM', 'LOC_BBM_GAMEPLAY_CALM_NAME', 'LOC_BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_CALM_DESC', 10),
         ('BBMGameplayIndependentAggressionValues', 'BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_STANDARD_DESC', 20),
         ('BBMGameplayIndependentAggressionValues', 'BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_RAGING', 'LOC_BBM_GAMEPLAY_RAGING_NAME', 'LOC_BBM_GAMEPLAY_INDEPENDENT_AGGRESSION_RAGING_DESC', 30);
-
---*******************************************************
---***************** TRADE SETTINGS **********************
---*******************************************************
--- Trade Range scales each Age's land and sea trade range, with a row per Age
--- that follows it, as Settlement Limit does.
-INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
-    VALUES
-        ('BBMGameplayTradeRange', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_DESC', 'BBMGameplayTradeRangeValues', 0, 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'Game', 'BBMGameplayTradeRange', 'TradeOptions', 'MPAdvancedTradeOptions', 0, 0, 4900),
-        ('BBMGameplayTradeRangeAntiquity', 'LOC_AGE_ANTIQUITY_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_AGE_DESC', 'BBMGameplayTradeRangeAgeValues', 0, 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'Game', 'BBMGameplayTradeRangeAntiquity', 'TradeOptions', 'MPAdvancedTradeOptions', 0, 0, 4901),
-        ('BBMGameplayTradeRangeExploration', 'LOC_AGE_EXPLORATION_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_AGE_DESC', 'BBMGameplayTradeRangeAgeValues', 0, 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'Game', 'BBMGameplayTradeRangeExploration', 'TradeOptions', 'MPAdvancedTradeOptions', 0, 0, 4902),
-        ('BBMGameplayTradeRangeModern', 'LOC_AGE_MODERN_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_AGE_DESC', 'BBMGameplayTradeRangeAgeValues', 0, 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'Game', 'BBMGameplayTradeRangeModern', 'TradeOptions', 'MPAdvancedTradeOptions', 0, 0, 4903);
-
-INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
-    VALUES
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_50', 'LOC_BBM_GAMEPLAY_PCT_MINUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_50_DESC', 10),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_25', 'LOC_BBM_GAMEPLAY_PCT_MINUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_25_DESC', 20),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_STANDARD_DESC', 30),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_25', 'LOC_BBM_GAMEPLAY_PCT_PLUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_25_DESC', 40),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_50', 'LOC_BBM_GAMEPLAY_PCT_PLUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_50_DESC', 50),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_100', 'LOC_BBM_GAMEPLAY_PCT_PLUS_100_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_100_DESC', 60),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_CUSTOM', 'LOC_BBM_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_CUSTOM_DESC', 70),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_50', 'LOC_BBM_GAMEPLAY_PCT_MINUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_50_DESC', 10),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_25', 'LOC_BBM_GAMEPLAY_PCT_MINUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_25_DESC', 20),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_STANDARD_DESC', 30),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_25', 'LOC_BBM_GAMEPLAY_PCT_PLUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_25_DESC', 40),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_50', 'LOC_BBM_GAMEPLAY_PCT_PLUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_50_DESC', 50),
-        ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_100', 'LOC_BBM_GAMEPLAY_PCT_PLUS_100_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_100_DESC', 60);
 
 --*******************************************************
 --***************** WONDER SETTINGS *********************
