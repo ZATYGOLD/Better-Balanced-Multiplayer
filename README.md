@@ -177,7 +177,7 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 
 ```
 Multiplayer-Toolkit/
-├─ multiplayer-toolkit.modinfo   # manifest
+├─ zatygolds-multiplayer-balance.modinfo   # manifest
 ├─ config/                       # lobby setup: one .sql per feature
 ├─ data/                         # game data: balance/, gameplay/, maps/, pace/, timers/
 ├─ maps/                         # map scripts (Pangaea Ultima, placement, Resource List)
@@ -195,7 +195,7 @@ The mod patches the base UI at runtime and replaces no base-game files. Diagnost
 
 ### 0.7.0
 
-**Renamed:** the mod was formerly Multiplayer Toolkit, and its mod id is now `zatygolds-multiplayer-balance` (was `multiplayer-toolkit`), so saves and setups from earlier versions don't load. Other renames:
+**Renamed:** the mod was formerly Multiplayer Toolkit, and its mod id is now `zatygolds-multiplayer-balance` (was `multiplayer-toolkit`; the manifest is now `zatygolds-multiplayer-balance.modinfo`), so saves and setups from earlier versions don't load. Other renames:
 
 - Game Set → **Match Type**
 - Multiplayer Balance → **Game Balance**
