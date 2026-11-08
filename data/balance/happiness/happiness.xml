@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<GlobalParameters>
+		<!-- Unhappy Settlements lose 3% of applicable yields per Happiness deficit, capped at 40%. -->
+		<Replace name="CITY_YIELD_PENALTY_PERCENT_PER_HAPPINESS_DEFICIT" value="-3"/>
+		<Replace name="CITY_YIELD_PENALTY_PERCENT_PER_HAPPINESS_CAP" value="-40"/>
+	</GlobalParameters>
+</Database>

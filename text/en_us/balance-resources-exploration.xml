@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+	<!-- Game Balance: Resources (Exploration Age) -->
+		<Replace Tag="LOC_ANT_RESOURCE_HORSES_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_CAVALRY_UNITS_TOOLTIP]Cavalry Units[/TIP] per Horses resource.</Text></Replace>
+		<Replace Tag="LOC_ANT_RESOURCE_IRON_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_INFANTRY_UNITS_TOOLTIP]Infantry Units[/TIP] per Iron resource.</Text></Replace>
+		<Replace Tag="LOC_EXP_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward [TIP:LOC_PEDIA_CONCEPTS_SIEGE_UNITS_TOOLTIP]Siege[/TIP] and [TIP:LOC_PEDIA_CONCEPTS_NAVAL_UNITS_TOOLTIP]Naval Units[/TIP] per Niter resource.</Text></Replace>
+		<Replace Tag="LOC_EXP_RESOURCE_SPICES_TOOLTIP"><Text>+1 [icon:YIELD_CULTURE] Culture and [icon:YIELD_FOOD] Food in [icon:YIELD_CITIES] [TIP:LOC_PEDIA_CONCEPTS_CITIES_TOOLTIP]Cities[/TIP], doubled in [TIP:LOC_PEDIA_CONCEPTS_HOMELANDS_TOOLTIP]Homelands[/TIP].</Text></Replace>
+		<Replace Tag="LOC_EXP_RESOURCE_TEA_TOOLTIP"><Text>+1 [icon:YIELD_SCIENCE] Science and [icon:YIELD_FOOD] Food in [icon:YIELD_CITIES] [TIP:LOC_PEDIA_CONCEPTS_CITIES_TOOLTIP]Cities[/TIP], doubled in [TIP:LOC_PEDIA_CONCEPTS_HOMELANDS_TOOLTIP]Homelands[/TIP].</Text></Replace>
+	</EnglishText>
+</Database>

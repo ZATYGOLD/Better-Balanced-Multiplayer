@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_CULTURAL_FREE_GREAT_WORK_ANTIQUITY" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_COMPLETED_PROGRESSION_TREE_NODE">
+				<Argument name="ProgressionTreeNodeType">NODE_ATTRIBUTE_CULTURAL_06</Argument>
+				<Argument name="MinDepth">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ObjectType">GREATWORKOBJECT_WRITING</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+</GameEffects>

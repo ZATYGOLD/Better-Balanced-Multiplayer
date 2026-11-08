@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Gaul: Terror Cimbricus uses a separate -1 Fear effect so other Fear sources remain unchanged. -->
+	<Modifier id="BBM_BALANCE_TERROR_CIMBRICUS_MOD_ABILITY_FEAR" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+		<SubjectRequirements type="REQUIREMENTSET_TEST_ALL">
+			<Requirement type="REQUIREMENT_UNIT_IN_ARMY" inverse="true"/>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="AbilityType">BBM_BALANCE_ABILITY_TERROR_CIMBRICUS_FEAR</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_TERROR_CIMBRICUS_FEAR_ATTACH" collection="COLLECTION_ALL_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_OWNER_AT_WAR"/>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_TERROR_CIMBRICUS_FEAR_COMBAT</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_TERROR_CIMBRICUS_FEAR_COMBAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">-1</Argument>
+		<String context="Preview">LOC_KEYWORD_ABILITY_FEAR_PREVIEW</String>
+	</Modifier>
+
+	<!-- Sengoku: Kabunakama's combat bonus applies only to Infantry. -->
+	<Modifier id="BBM_BALANCE_KABUNAKAMA_MOD_INFANTRY_COMBAT_STRENGTH" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">ATTACH_KABUNAKAMA_MOD_MELEE_COMBAT_STRENGTH, ATTACH_KABUNAKAMA_MOD_RANGED_COMBAT_STRENGTH</Argument>
+	</Modifier>
+
+	<!-- Sengoku: Daimyo keeps full Combat Strength when damaged for Infantry only. -->
+	<Modifier id="BBM_BALANCE_DAIMYO_MOD_INFANTRY_NO_REDUCTION_DAMAGE" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_NO_REDUCTION_DAMAGE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<String context="Description">LOC_TRADITION_DAIMYO_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Shawnee: Bread Dance changes both Farms and Fishing Boats in Farming and Fishing Towns. -->
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_I_FARM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_GRANARY</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIFarmCulture</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_I_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_I_FISHING_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_FISHING</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIFishingBoatFood,BBMBalanceBreadDanceIFishingBoatFoodGeneral</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_I_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_I_FISHING_TOWN_FARM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_FISHING</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIFarmCulture</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_I_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_I_FARMING_TOWN_FISHING_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_GRANARY</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIFishingBoatFood,BBMBalanceBreadDanceIFishingBoatFoodGeneral</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_I_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_II_FARM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_GRANARY</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIIFarmCulture</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_II_FISHING_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_FISHING</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIIFishingBoatFood,BBMBalanceBreadDanceIIFishingBoatFoodGeneral</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_II_FISHING_TOWN_FARM_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_FISHING</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIIFarmCulture</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_BREAD_DANCE_II_FARMING_TOWN_FISHING_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_PROJECT"><Argument name="ProjectType">PROJECT_TOWN_GRANARY</Argument></Requirement></SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceBreadDanceIIFishingBoatFood,BBMBalanceBreadDanceIIFishingBoatFoodGeneral</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_BREAD_DANCE_II_NAME</Argument>
+	</Modifier>
+
+	<!-- Government Traditions and Policy Cards -->
+	<!-- Classical Republic -->
+	<Modifier id="BBM_BALANCE_YAXCHE_WONDER_HAPPINESS" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_CONSTRUCTIBLE_YIELD">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="ConstructibleClass">WONDER</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_YAXCHE_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_POIEISIS_GREAT_WORK_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_POIEISIS_GREAT_WORK_CULTURE_JOYOUS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_JOYOUS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_POIEISIS_GREAT_WORK_CULTURE_ECSTATIC" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_GREAT_WORK">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_ECSTATIC</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+	</Modifier>
+	<!-- Despotism -->
+	<Modifier id="BBM_BALANCE_FAJIA_ENDEAVOR_SANCTION_EFFICIENCY" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_DIPLOMATIC_ACTION_TYPE_EFFICIENCY">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ENDEAVOR, DIPLOMACY_ACTION_GROUP_SANCTION</Argument>
+		<Argument name="Percent">20</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CONQUEST_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_CONQUERED_SETTLEMENT">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">3</Argument>
+	</Modifier>
+	<!-- Commanderies Policy Card -->
+	<Modifier id="BBM_BALANCE_COMMANDERIES_UPGRADE_DISCOUNT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_PROPERTY">
+		<Argument name="Key">UpgradeDiscount</Argument>
+		<Argument name="Value">30</Argument>
+		<Argument name="Operation">SET</Argument>
+	</Modifier>
+	<!-- Feudal Monarchy -->
+	<Modifier id="BBM_BALANCE_MAHAKRUNG_CAPITAL_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CAPITAL"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE, YIELD_PRODUCTION, YIELD_GOLD</Argument>
+		<Argument name="Amount">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_MAHAKRUNG_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MAHAKRUNG_CAPITAL_YIELDS_JOYOUS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CAPITAL"/>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_JOYOUS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE, YIELD_PRODUCTION, YIELD_GOLD</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_MAHAKRUNG_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MAHAKRUNG_CAPITAL_YIELDS_ECSTATIC" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CAPITAL"/>
+			<Requirement type="REQUIREMENT_SETTLEMENT_HAPPINESS_STAGE_MATCHES">
+				<Argument name="IsGreaterThanOrEquals">true</Argument>
+				<Argument name="HappinessStage">HAPPINESS_STAGE_ECSTATIC</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE, YIELD_PRODUCTION, YIELD_GOLD</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_MAHAKRUNG_NAME</Argument>
+	</Modifier>
+	<!-- Plutocracy -->
+	<Modifier id="BBM_BALANCE_TEQUITL_IMPORTED_RESOURCE_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_RESOURCE">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Imported">true</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+	<!-- Theocracy -->
+	<Modifier id="BBM_BALANCE_DARGAH_RELIGION_TOWN_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+			<Requirement type="REQUIREMENT_CITY_FOLLOWS_RELIGION"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">4</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_VINAYA_RELIGION_CITY_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_CITY_FOLLOWS_RELIGION"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">5</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_VINAYA_RELIGION_CITY_INFLUENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_CITY_FOLLOWS_RELIGION"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount">2</Argument>
+	</Modifier>
+	<!-- Bureaucratic Monarchy -->
+	<Modifier id="BBM_BALANCE_EVIDENZBUREAU_ESPIONAGE_EFFICIENCY" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_DIPLOMATIC_ACTION_TYPE_EFFICIENCY">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ESPIONAGE</Argument>
+		<Argument name="Percent">50</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_EVIDENZBUREAU_ESPIONAGE_SPEED" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_DIPLOMACY_ACTION_GROUP_MOD">
+		<Argument name="ActionGroup">DIPLOMACY_ACTION_GROUP_ESPIONAGE</Argument>
+		<Argument name="Percent">25</Argument>
+	</Modifier>
+
+	<!-- Antiquity Policy Cards -->
+	<Modifier id="BBM_BALANCE_COINAGE_LAND_TRADE_RANGE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_TRADE_ROUTE_RANGE">
+		<Argument name="DomainType">DOMAIN_LAND</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_COINAGE_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_COINAGE_SEA_TRADE_RANGE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_TRADE_ROUTE_RANGE">
+		<Argument name="DomainType">DOMAIN_SEA</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_COINAGE_NAME</Argument>
+	</Modifier>
+
+	<!-- Exploration Policy Cards -->
+	<Modifier id="BBM_BALANCE_COMMUNE_OVERBUILDING_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_OVERBUILD_PRODUCTION_MOD">
+		<Argument name="Percent">30</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_COMMUNE_NAME</Argument>
+		<String context="Description">LOC_TRADITION_COMMUNE_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_TRADE_WINDS_LAND_TRADE_RANGE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_TRADE_ROUTE_RANGE">
+		<Argument name="DomainType">DOMAIN_LAND</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_TRADE_WINDS_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_TRADE_WINDS_SEA_TRADE_RANGE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_TRADE_ROUTE_RANGE">
+		<Argument name="DomainType">DOMAIN_SEA</Argument>
+		<Argument name="Amount">5</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_TRADE_WINDS_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_REGULARS_UNIT_MAINTENANCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_UNIT_MAINTENANCE_EFFICIENCY">
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_CHARTERS_SETTLEMENT_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_CHARTERS_NAME</Argument>
+		<String context="Description">LOC_TRADITION_CHARTERS_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CHARTERS_SPECIALIST_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_CHARTERS_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_UPOSATHA_SETTLEMENT_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_UPOSATHA_NAME</Argument>
+		<String context="Description">LOC_TRADITION_UPOSATHA_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_UPOSATHA_SPECIALIST_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_UPOSATHA_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_INDENTURE_SETTLEMENT_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_INDENTURE_NAME</Argument>
+		<String context="Description">LOC_TRADITION_INDENTURE_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_INDENTURE_SPECIALIST_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_INDENTURE_NAME</Argument>
+	</Modifier>
+
+	<!-- Modern Policy Cards -->
+	<Modifier id="BBM_BALANCE_CIVIL_ENGINEERING_OVERBUILDING_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_OVERBUILD_PRODUCTION_MOD">
+		<Argument name="Percent">40</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_CIVIL_ENGINEERING_NAME</Argument>
+		<String context="Description">LOC_TRADITION_CIVIL_ENGINEERING_DESCRIPTION</String>
+	</Modifier>
+
+
+	<!-- Policy Cards -->
+	<Modifier id="BBM_BALANCE_EXPEDITIONS_EXPLORER_MOVEMENT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_MOVEMENT">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_EXPLORER</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_BBM_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
+		<String context="Description">LOC_BBM_BALANCE_TRADITION_EXPEDITIONS_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_EXPEDITIONS_EXPLORER_IGNORE_ROUGH" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_EXPLORER</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Obstacle">TERRAIN_HILL</Argument>
+		<Argument name="Tooltip">LOC_BBM_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_EXPEDITIONS_EXPLORER_IGNORE_VEGETATION" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_IGNORE_MOVEMENT_OBSTACLE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_EXPLORER</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="FeatureClassTypes">FEATURE_CLASS_VEGETATED</Argument>
+		<Argument name="Tooltip">LOC_BBM_BALANCE_TRADITION_EXPEDITIONS_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_DEMAGOGY_CAPITAL_HAPPINESS" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">25</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_DEMAGOGY_NAME</Argument>
+		<String context="Description">LOC_TRADITION_DEMAGOGY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_DEMAGOGY_CAPITAL_DIPLOMACY" collection="COLLECTION_PLAYER_CAPITAL_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<Argument name="YieldType">YIELD_DIPLOMACY</Argument>
+		<Argument name="Amount">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_DEMAGOGY_NAME</Argument>
+		<String context="Description">LOC_TRADITION_DEMAGOGY_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_FREE_PRESS_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">6</Argument>
+		<String context="Description">LOC_TRADITION_FREE_PRESS_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_WELFARE_STATE_HAPPINESS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="Amount">10</Argument>
+		<String context="Description">LOC_TRADITION_WELFARE_STATE_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_MARTIAL_LAW_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">10</Argument>
+		<!-- <String context="Description">LOC_TRADITION_MARTIAL_LAW_DESCRIPTION</String> -->
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_PROPAGANDA_GOLD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">10</Argument>
+		<String context="Description">LOC_TRADITION_PROPAGANDA_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_NAUKOGRAD_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">6</Argument>
+		<String context="Description">LOC_TRADITION_NAUKOGRAD_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_COLLECTIVIZATION_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_TOWN"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">10</Argument>
+		<String context="Description">LOC_TRADITION_COLLECTIVIZATION_DESCRIPTION</String>
+	</Modifier>
+
+
+
+<!-- Antiquity -->
+	<!-- Assyria -->
+	<Modifier id="BBM_BALANCE_GIRRU_II_MOD_CAVALRY_ABILITY" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+		<Argument name="AbilityType">BBM_BALANCE_ABILITY_GIRRU_II</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_GIRRU_II_MOD_COMMAND_RADIUS" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_IN_COMMAND_RADIUS"/>
+		</SubjectRequirements>
+		<Argument name="AbilityType">BBM_BALANCE_ABILITY_GIRRU_II_COMBAT</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_GIRRU_II_MOD_COMBAT" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">5</Argument>
+		<String context="Preview">LOC_TRADITION_GIRRU_COMBAT_PREVIEW</String>
+	</Modifier>
+	<!-- Greece -->
+	<Modifier id="BBM_BALANCE_PELOPONNESIAN_LEAGUE_I_MOD_ADJUST_ESPIONAGE" collection="COLLECTION_OWNER" effect="EFFECT_DIPLOMACY_ADJUST_DIPLOMATIC_ACTION_TYPE_EFFICIENCY">
+		<Argument name="ActionGroupType">DIPLOMACY_ACTION_GROUP_ESPIONAGE</Argument>
+		<Argument name="Percent">30</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_STRATEGOI_SUZERAIN_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_STRATEGOI_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_STRATEGOI_SUZERAIN_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
+				<Argument name="Amount">2</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_STRATEGOI_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_STRATEGOI_SUZERAIN_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
+				<Argument name="Amount">3</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_STRATEGOI_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_STRATEGOI_SUZERAIN_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_TRIBUTARIES">
+				<Argument name="Amount">4</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_INFANTRY</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_STRATEGOI_PREVIEW</String>
+	</Modifier>
+
+	<!-- Khmer -->
+	<Modifier id="BBM_BALANCE_PITHI_CHRAT_I_FLOODPLAIN_FOOD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_FEATURE_TYPE_MATCHES">
+				<Argument name="FeatureClassType">FEATURE_CLASS_FLOODPLAIN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_PITHI_CHRAT_TOOLTIP</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_PITHI_CHRAT_II_FLOODPLAIN_FOOD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_FEATURE_TYPE_MATCHES">
+				<Argument name="FeatureClassType">FEATURE_CLASS_FLOODPLAIN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_PITHI_CHRAT_TOOLTIP</Argument>
+	</Modifier>
+
+	<!-- Maya -->
+	<Modifier id="BBM_BALANCE_MAYA_SYNCRETISM_EXPLORATION_SCIENCE_VEGETATION_SCIENCE" collection="COLLECTION_PLAYER_CONSTRUCTIBLES" effect="EFFECT_CONSTRUCTIBLE_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_FEATURE_TYPE_MATCHES">
+				<Argument name="FeatureClassType">FEATURE_CLASS_VEGETATED</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_CONSTRUCTIBLE_TAG_MATCHES">
+				<Argument name="Tag">BBM_BALANCE_BUILDING</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_MAYA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MAYA_SYNCRETISM_MODERN_SCIENCE_VEGETATION_SCIENCE" collection="COLLECTION_PLAYER_CONSTRUCTIBLES" effect="EFFECT_CONSTRUCTIBLE_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_FEATURE_TYPE_MATCHES">
+				<Argument name="FeatureClassType">FEATURE_CLASS_VEGETATED</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_CONSTRUCTIBLE_TAG_MATCHES">
+				<Argument name="Tag">BBM_BALANCE_BUILDING</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_MAYA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+
+	<!-- Rome -->
+	<Modifier id="BBM_BALANCE_LIMITANEI_TRADITION_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">1</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_INFANTRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_ROME_SYNCRETISM_COMBAT_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_LIMITANEI_TRADITION_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">2</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_INFANTRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_ROME_SYNCRETISM_COMBAT_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_LIMITANEI_TRADITION_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">3</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_INFANTRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_ROME_SYNCRETISM_COMBAT_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_LIMITANEI_TRADITION_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">4</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_INFANTRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_ROME_SYNCRETISM_COMBAT_PREVIEW</String>
+	</Modifier>
+
+	<!-- Sila -->
+	<Modifier id="BBM_BALANCE_STRATEGIC_ALLIES_MOD_ALLIANCE_ROUTE_YIELDS" collection="COLLECTION_OWNER" effect="EFFECT_MODIFY_PLAYER_TRADE_YIELD_CONVERSION">
+		<Argument name="Percent">25</Argument>
+		<Argument name="FromYieldType">YIELD_GOLD</Argument>
+		<Argument name="ToYieldType">YIELD_FOOD,YIELD_PRODUCTION</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_THRONE_OF_MY_FATHERS_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_THE_GOLDEN_ROAD_MOD_ALLIANCE_ROUTE_YIELDS" collection="COLLECTION_OWNER" effect="EFFECT_MODIFY_PLAYER_TRADE_YIELD_CONVERSION">
+		<Argument name="Percent">25</Argument>
+		<Argument name="FromYieldType">YIELD_GOLD</Argument>
+		<Argument name="ToYieldType">YIELD_SCIENCE,YIELD_CULTURE</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_THRONE_OF_MY_FATHERS_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_THE_GOLDEN_ROAD_II_MOD_ALLIANCE_ROUTE_YIELDS" collection="COLLECTION_OWNER" effect="EFFECT_MODIFY_PLAYER_TRADE_YIELD_CONVERSION">
+		<Argument name="Percent">50</Argument>
+		<Argument name="FromYieldType">YIELD_GOLD</Argument>
+		<Argument name="ToYieldType">YIELD_SCIENCE,YIELD_CULTURE</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_THRONE_OF_MY_FATHERS_NAME</Argument>
+	</Modifier>
+	<!-- Tonga -->
+	<Modifier id="BBM_BALANCE_TAKUAKA_MOD_CITY_WAREHOUSE_BONUS_MO" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_GRANT_WAREHOUSE_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="WarehouseYieldChange">BBMBalanceTakuakaIIFishingBoatProduction, BBMBalanceTakuakaIIAtollProduction, BBMBalanceTakuakaIILotusProduction, BBMBalanceTakuakaIIReefProduction, BBMBalanceTakuakaIIColdReefProduction,BBMBalanceTakuakaIICoastProduction,BBMBalanceTakuakaIINavigableRiverProduction</Argument>
+		<String context="Description">LOC_BBM_BALANCE_TRADITION_TAKUAKA_II_DESCRIPTION</String>
+	</Modifier>
+
+<!-- Explo -->
+	<!-- Bulgaria -->
+	<Modifier id="BBM_BALANCE_STRATAGEMS_GREAT_WORKS_COMBAT" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_UNIT_ADJUST_ABILITY">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_X_GREAT_WORKS">
+				<Argument name="Count">4</Argument>
+				<Argument name="IncludeArchived">false</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="AbilityType">ABILITY_STRATAGEMS_COMBAT</Argument>
+		<String context="Description">LOC_TRADITION_STRATAGEMS_COMBAT_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_ICONOLATRY_GREAT_WORK_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_HAS_GREAT_WORK"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS, YIELD_GOLD</Argument>
+		<Argument name="Percent">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_ICONOLATRY_NAME</Argument>
+		<String context="Description">LOC_TRADITION_ICONOLATRY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ICONOLATRY_II_GREAT_WORK_SETTLEMENT_YIELDS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_HAS_GREAT_WORK"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS, YIELD_GOLD</Argument>
+		<Argument name="Percent">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_ICONOLATRY_II_NAME</Argument>
+		<String context="Description">LOC_TRADITION_ICONOLATRY_II_GREAT_WORKS_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Hawai'i -->
+	<Modifier id="BBM_BALANCE_KAPA_HAPPINESS_BUILDING_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION">
+		<Argument name="Percent">50</Argument>
+		<Argument name="Tag">HAPPINESS</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_KAPA_NAME</Argument>
+		<String context="Description">LOC_TRADITION_KAPA_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_AHUPUAA_I_CULTURE_BUILDING_COAST_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAhupuaaICoastFood</Argument>
+		<String context="Description">LOC_TRADITION_AHUPUA_A_I_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_AHUPUAA_II_CULTURE_BUILDING_COAST_FOOD" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceAhupuaaIICoastFood</Argument>
+		<String context="Description">LOC_TRADITION_AHUPUA_A_II_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Iceland -->
+	<Modifier id="BBM_BALANCE_REIDI_GUDANNA_MOD_VOLCANO_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceReidiGudannaVolcanoCulture, BBMBalanceReidiGudannaNWCulture</Argument>
+		<String context="Description">LOC_BBM_BALANCE_TRADITION_REIDI_GUDANNA_I_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Normans -->
+	<Modifier id="BBM_BALANCE_SERVITIUM_DEBITUM_TRADITION_COMBAT_1" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_ACTIVE_TRADITION"><Argument name="TraditionType">TRADITION_SERVITIUM_DEBITUM</Argument></Requirement>
+			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">1</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_CAVALRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_TRADITION_SERVITIUM_DEBITUM_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SERVITIUM_DEBITUM_TRADITION_COMBAT_2" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_ACTIVE_TRADITION"><Argument name="TraditionType">TRADITION_SERVITIUM_DEBITUM</Argument></Requirement>
+			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">2</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_CAVALRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_TRADITION_SERVITIUM_DEBITUM_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SERVITIUM_DEBITUM_TRADITION_COMBAT_3" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_ACTIVE_TRADITION"><Argument name="TraditionType">TRADITION_SERVITIUM_DEBITUM</Argument></Requirement>
+			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">3</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_CAVALRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_TRADITION_SERVITIUM_DEBITUM_PREVIEW</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SERVITIUM_DEBITUM_TRADITION_COMBAT_4" collection="COLLECTION_PLAYER_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_ACTIVE_TRADITION"><Argument name="TraditionType">TRADITION_SERVITIUM_DEBITUM</Argument></Requirement>
+			<Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">4</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement>
+		</OwnerRequirements>
+		<SubjectRequirements><Requirement type="REQUIREMENT_UNIT_TAG_MATCHES"><Argument name="Tag">UNIT_CLASS_CAVALRY</Argument></Requirement></SubjectRequirements>
+		<Argument name="Amount">1</Argument><String context="Preview">LOC_TRADITION_SERVITIUM_DEBITUM_PREVIEW</String>
+	</Modifier>
+
+	<!-- Pirates -->
+	<Modifier id="BBM_BALANCE_MOD_BLACK_FLAG_I_COASTAL_RAID_GOLD" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_COASTAL_RAID_YIELD_MODIFIER">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="PlunderTypes">PLUNDER_GOLD</Argument>
+		<Argument name="Percent">50</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_BLACK_FLAG_II_COASTAL_RAID_GOLD" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ADJUST_UNIT_COASTAL_RAID_YIELD_MODIFIER">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_NAVAL</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="PlunderTypes">PLUNDER_GOLD</Argument>
+		<Argument name="Percent">100</Argument>
+	</Modifier>
+
+	<!-- Shawnee -->
+	<Modifier id="BBM_BALANCE_TAKESIYAKE_YEPEPOKI_I_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
+				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET">
+				<Argument name="RequirementSetId">REQSET_TAKESIYAKE_YEPEPOKI_BIOME</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_IS_RIVER" inverse="true">
+				<Argument name="Navigable">true</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_TAKESIYAKE_YEPEPOKI_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_TAKESIYAKE_YEPEPOKI_I_RIVER_BIOME_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
+				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET">
+				<Argument name="RequirementSetId">REQSET_TAKESIYAKE_YEPEPOKI_BIOME</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_IS_RIVER">
+				<Argument name="Navigable">true</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_TAKESIYAKE_YEPEPOKI_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_SHAWNEE_SYNCRETISM_AQ" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SUZERAIN">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SHAWNEE_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SHAWNEE_SYNCRETISM_MO" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_SUZERAIN">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">4</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SHAWNEE_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+
+	<!-- Songhai Syncretism: Antiquity +1 Gold on Improvements on Plains (base covers Desert), doubled on Unique Improvements -->
+	<Modifier id="BBM_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_PLAINS_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
+				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_PLAINS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_ANTIQUITY_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SONGHAI_SYNCRETISM_ANTIQUITY_PLAINS_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="Tag">UNIQUE_IMPROVEMENT</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_PLAINS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_ANTIQUITY_NAME</Argument>
+	</Modifier>
+	<!-- Songhai Syncretism: Modern +2 Gold on Improvements on Plains (base covers Desert), doubled on Unique Improvements -->
+	<Modifier id="BBM_BALANCE_SONGHAI_SYNCRETISM_MODERN_PLAINS_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS" inverse="true">
+				<Argument name="DistrictClass">CITYCENTER, URBAN, WONDER</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_PLAINS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_MODERN_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SONGHAI_SYNCRETISM_MODERN_PLAINS_UNIQUE_IMPROVEMENT_GOLD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
+				<Argument name="Tag">UNIQUE_IMPROVEMENT</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_PLOT_BIOME_TYPE_MATCHES">
+				<Argument name="BiomeType">BIOME_PLAINS</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_GOLD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SONGHAI_SYNCRETISM_MODERN_NAME</Argument>
+	</Modifier>
+
+<!-- Modern -->
+	<!-- America -->
+	<Modifier id="BBM_BALANCE_AMERICA_SYNCRETISM_ANTIQUITY_MOD_TOWN_RESOURCE_FOOD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_RESOURCE_TAG_MATCHES"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_AMERICA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+
+	<!-- Joseon -->
+	<Modifier id="BBM_BALANCE_GWAGEO_I_CULTURE_SPECIALISTS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_GWAGEO_I_NAME</Argument>
+		<String context="Description">LOC_TRADITION_GWAGEO_I_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_GWAGEO_II_CULTURE_SPECIALISTS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_CULTURE</Argument>
+		<Argument name="Amount">3</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_GWAGEO_II_NAME</Argument>
+		<String context="Description">LOC_TRADITION_GWAGEO_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SILHAK_SCIENCE_SPECIALISTS" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">3</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_SILHAK_NAME</Argument>
+		<String context="Description">LOC_TRADITION_SILHAK_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_HERMIT_KINGDOM_I_ALL_CITIES_HAPPINESS_POP" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_POPULATION">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="All">true</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Divisor">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_JOSEON_SYNCRETISM_ANTIQUITY_NAME</Argument>
+		<String context="Description">LOC_TRADITION_JOSEON_SYNCRETISM_ANTIQUITY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_HERMIT_KINGDOM_II_ALL_CITIES_HAPPINESS_POP" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_POPULATION">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements>
+		<Argument name="YieldType">YIELD_HAPPINESS</Argument>
+		<Argument name="All">true</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_JOSEON_SYNCRETISM_EXPLORATION_NAME</Argument>
+		<String context="Description">LOC_TRADITION_JOSEON_SYNCRETISM_EXPLORATION_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Yangban Bureaucracy scales once for each Specialist threshold reached. -->
+	<Modifier id="BBM_BALANCE_YANGBAN_I_SPECIALIST_1" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_I_SPECIALIST_1</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_I_SPECIALIST_1" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">1</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_I_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_YANGBAN_I_SPECIALIST_2" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_I_SPECIALIST_2</Argument>
+		<String context="Description">LOC_TRADITION_YANGBAN_BUREAUCRACY_I_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_I_SPECIALIST_2" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">2</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_I_NAME</Argument>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_YANGBAN_II_SPECIALIST_1" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements><Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_1</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_1" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">1</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_YANGBAN_II_SPECIALIST_2" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements><Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_2</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_2" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">2</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_YANGBAN_II_SPECIALIST_3" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements><Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_3</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_3" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">3</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_II_NAME</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_YANGBAN_II_SPECIALIST_4" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements><Argument name="ModifierId">BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_4</Argument>
+		<String context="Description">LOC_TRADITION_YANGBAN_BUREAUCRACY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_ATTACH_YANGBAN_II_SPECIALIST_4" collection="COLLECTION_CITY_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements><Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS"><Argument name="DistrictClass">CITYCENTER, URBAN</Argument></Requirement><Requirement type="REQUIREMENT_PLOT_HAS_X_WORKER_POPULATION"><Argument name="MinWorkerPopulation">4</Argument></Requirement></SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD, YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument><Argument name="Tooltip">LOC_TRADITION_YANGBAN_BUREAUCRACY_II_NAME</Argument>
+	</Modifier>
+
+	<!-- Mexico -->
+	<RequirementSet id="BBM_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY" type="REQUIREMENTSET_TEST_ANY">
+		<Requirement type="REQUIREMENT_PLOT_IS_OWNER"/>
+		<Requirement type="REQUIREMENT_PLOT_IS_SUZERAIN_BY_OWNER"/>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_CRY_OF_DOLORES_LAND_OR_SEA" type="REQUIREMENTSET_TEST_ANY">
+		<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
+			<Argument name="UnitDomain">DOMAIN_LAND</Argument>
+		</Requirement>
+		<Requirement type="REQUIREMENT_UNIT_DOMAIN_MATCHES">
+			<Argument name="UnitDomain">DOMAIN_SEA</Argument>
+		</Requirement>
+	</RequirementSet>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_TRADITION_COMBAT_1" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">1</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY</Argument></Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_LAND_OR_SEA</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_1</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_TRADITION_COMBAT_2" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">2</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY</Argument></Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_LAND_OR_SEA</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_2</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_TRADITION_COMBAT_3" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">3</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY</Argument></Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_LAND_OR_SEA</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_3</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_TRADITION_COMBAT_4" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<OwnerRequirements><Requirement type="REQUIREMENT_PLAYER_TRADITION_SLOTS"><Argument name="MinFilled">4</Argument><Argument name="SlotTypes">TRADITION_CULTURE_SLOT</Argument></Requirement></OwnerRequirements>
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_FRIENDLY_TERRITORY</Argument></Requirement>
+			<Requirement type="REQUIREMENT_REQUIREMENTSET_IS_MET"><Argument name="RequirementSetId">BBM_BALANCE_REQSET_CRY_OF_DOLORES_LAND_OR_SEA</Argument></Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_4</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_1" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_CRY_OF_DOLORES_NAME</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_2" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_CRY_OF_DOLORES_NAME</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_3" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_CRY_OF_DOLORES_NAME</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_CRY_OF_DOLORES_FRIENDLY_TERRITORY_COMBAT_4" collection="COLLECTION_UNIT_COMBAT" effect="EFFECT_ADJUST_UNIT_STRENGTH_MODIFIER">
+		<Argument name="Amount">1</Argument>
+		<String context="Preview">LOC_TRADITION_CRY_OF_DOLORES_NAME</String>
+	</Modifier>
+
+	<!-- Prussia -->
+	<Modifier id="BBM_BALANCE_COKING_I_BUILDING_NAVIGABLE_RIVER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="ConstructibleAdjacency">BBMBalanceCokingINavigableRiverProduction</Argument>
+		<String context="Description">LOC_TRADITION_COKING_I_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_COKING_II_BUILDING_NAVIGABLE_RIVER_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="ConstructibleAdjacency">BBMBalanceCokingIINavigableRiverProduction</Argument>
+		<String context="Description">LOC_TRADITION_COKING_II_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_TUGENDEN_I_RESOURCE_SCIENCE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_RESOURCE_TAG_MATCHES"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_PRUSSIA_SYNCRETISM_ANTIQUITY_NAME</Argument>
+		<String context="Description">LOC_TRADITION_PRUSSIA_SYNCRETISM_ANTIQUITY_DESCRIPTION</String>
+	</Modifier>
+
+	<Modifier id="BBM_BALANCE_TUGENDEN_II_RESOURCE_SCIENCE" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_RESOURCE_TAG_MATCHES"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_PRUSSIA_SYNCRETISM_EXPLORATION_NAME</Argument>
+		<String context="Description">LOC_TRADITION_PRUSSIA_SYNCRETISM_EXPLORATION_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Prussia: Realpolitik grants percentage Production in Cities while at war. -->
+	<Modifier id="BBM_BALANCE_REALPOLITIK_I_WARTIME_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_X_WARS">
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Percent">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_REALPOLITIK_TOOLTIP</Argument>
+		<String context="Description">LOC_TRADITION_REALPOLITIK_I_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_REALPOLITIK_II_WARTIME_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+			<Requirement type="REQUIREMENT_PLAYER_HAS_X_WARS">
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Percent">15</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_REALPOLITIK_TOOLTIP</Argument>
+		<String context="Description">LOC_TRADITION_REALPOLITIK_II_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Meiji: Shusei Kokubo II Coast adjacency for Production Buildings. -->
+	<Modifier id="BBM_BALANCE_SHUSEI_KOKUBO_II_PRODUCTION_BUILDING_COAST" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceShuseiKokuboProductionBuildingCoast</Argument>
+		<String context="Description">LOC_TRADITION_SHUSEI_KOKUBO_II_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Meiji: O-yatoi Gaikokujin I applies to Specialists in every Settlement. -->
+	<Modifier id="BBM_BALANCE_O_YATOI_I_SPECIALIST_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_O_YATOI_I_SPECIALIST_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_WORKER_YIELD">
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Amount">1</Argument>
+	</Modifier>
+
+	<!-- Meiji affirmations: Kimi I is the coastal assigned-Resource effect;
+	     Kimi II upgrades both it and the Empire Resource effect to +2. -->
+	<Modifier id="BBM_BALANCE_KIMI_I_COAST_CITY_RESOURCE_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_RESOURCE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_COAST"/>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="Amount">1</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="PercentMultiplier">false</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_KIMI_II_EMPIRE_RESOURCE_SCIENCE" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_ADJUST_YIELD_PER_RESOURCE_CLASS">
+		<Argument name="Amount">2</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="ResourceClassType">RESOURCECLASS_EMPIRE</Argument>
+		<Argument name="PercentMultiplier">false</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_KIMI_II_COAST_CITY_RESOURCE_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_RESOURCE">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_ADJACENT_TO_COAST"/>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="Amount">2</Argument>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="PercentMultiplier">false</Argument>
+	</Modifier>
+
+	<!-- Russia: Skazki turns the former flat Wonder yields into Building adjacency. -->
+	<Modifier id="BBM_BALANCE_SKAZKI_I_WONDER_CULTURE_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceSkazkiIWonderCulture</Argument>
+		<String context="Description">LOC_TRADITION_RUSSIA_SYNCRETISM_ANTIQUITY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SKAZKI_I_TUNDRA_WONDER_SCIENCE_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceSkazkiIWonderScience</Argument>
+		<String context="Description">LOC_TRADITION_RUSSIA_SYNCRETISM_ANTIQUITY_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SKAZKI_II_WONDER_CULTURE_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceSkazkiIIWonderCulture</Argument>
+		<String context="Description">LOC_TRADITION_RUSSIA_SYNCRETISM_EXPLORATION_DESCRIPTION</String>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_SKAZKI_II_TUNDRA_WONDER_SCIENCE_ADJACENCY" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ACTIVATE_CONSTRUCTIBLE_ADJACENCY">
+		<Argument name="ConstructibleAdjacency">BBMBalanceSkazkiIIWonderScience</Argument>
+		<String context="Description">LOC_TRADITION_RUSSIA_SYNCRETISM_EXPLORATION_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Han: Ju Xian II gives +10% Science in every City. -->
+	<Modifier id="BBM_BALANCE_JU_XIAN_II_ALL_CITIES_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+		<Argument name="Percent">10</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_JU_XIAN_II_NAME</Argument>
+		<String context="Description">LOC_TRADITION_JU_XIAN_II_DESCRIPTION</String>
+	</Modifier>
+
+	<!-- Inca: Qullqa II adds +1 Production per active Trade Route in Cities. -->
+	<Modifier id="BBM_BALANCE_QULLQA_II_TRADE_ROUTE_PRODUCTION" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_TOTAL_NUM_TRADE_ROUTES">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_CITY_IS_CITY"/>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_QULLQA_TOOLTIP</Argument>
+	</Modifier>
+
+	<!-- Inca: Huaca applies flat yields directly to Mountain Terrain. -->
+	<Modifier id="BBM_BALANCE_HUACA_I_MOUNTAIN_FOOD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_TERRAIN_TYPE_MATCHES">
+				<Argument name="TerrainType">TERRAIN_MOUNTAIN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_INCA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_HUACA_II_MOUNTAIN_FOOD" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_TERRAIN_TYPE_MATCHES">
+				<Argument name="TerrainType">TERRAIN_MOUNTAIN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_FOOD</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_INCA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_HUACA_II_MOUNTAIN_PRODUCTION" collection="COLLECTION_PLAYER_PLOT_YIELDS" effect="EFFECT_PLOT_ADJUST_YIELD">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLOT_TERRAIN_TYPE_MATCHES">
+				<Argument name="TerrainType">TERRAIN_MOUNTAIN</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="YieldType">YIELD_PRODUCTION</Argument>
+		<Argument name="Amount">2</Argument>
+		<Argument name="Tooltip">LOC_TRADITION_INCA_SYNCRETISM_TOOLTIP</Argument>
+	</Modifier>
+
+</GameEffects>

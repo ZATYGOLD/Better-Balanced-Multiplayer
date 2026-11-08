@@ -1,168 +1,275 @@
-# Multiplayer Toolkit
+# Better Balanced Multiplayer
 
-Multiplayer quality-of-life features for **Sid Meier's Civilization VII**,
-built on the game's own UI components. Current version: **0.6.1**.
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.0**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
-- **Competitive turn timer** — a Turn Timer option that scales with cities,
-  units, human players and the turn number, with urgency tiers and sounds.
-- **Synchronized pause** — anyone can pause; everyone readies up (or the host
-  resumes) and a shared countdown restarts the game. Disconnects, host
-  changes and rejoins pause automatically.
-- **Lobby fixes** — ability names in civ / leader tooltips; a 5-second start
-  countdown.
+## Features
 
-Works alongside **Zatygold's Spectator** (the Observer, formerly part of
-this mod).
+- **Match Type**: Free for All, 1v1, 2v2, 3v3 or 4v4. It sets teams, slots, placement and map size.
+- **Competitive Turn Timer**: the turn clock scales with cities, units, players and the turn number.
+- **Synchronized Pause**: anyone can pause, and everyone resumes together.
+- **Keybinds**: rebindable keys for lenses, units, Commanders, settlements and pause.
+- **Game Balance**: competitive balance changes across every Age.
+- **Maps**: Pangaea Ultima, East vs West placement, strict start biases, a Resource List, and climate and terrain settings.
+- **Pacing**: Pace Sets, per-Age pace settings and victory thresholds.
+- **Gameplay settings**: settlements, independent powers, trade range, crises, Triumph Sets and World Wonders.
+- **Lobby**: a rules summary, memento slots, single-player-style leader, civilization and memento pickers, and Random seed buttons.
 
 ## Installation
 
 1. Copy the folder to `…\Sid Meier's Civilization VII\Mods\Multiplayer-Toolkit\`.
-2. Enable **Multiplayer Toolkit** in **Main Menu → Additional Content**.
-3. **Every player needs the mod** (menus and timer enforcement run per
-   client). It is dormant in single-player.
+2. Enable **Better Balanced Multiplayer** in **Main Menu → Additional Content**.
+3. **Every player needs the mod.** Saves made with it need it to load.
 
----
+## Multiplayer defaults
+
+New multiplayer games, and any Match Type change, start with these settings. The host can change any of them.
+
+| Setting | Default |
+|---|---|
+| Turn Timer | Competitive |
+| Game Speed | Online |
+| End-of-Age countdown | 10 turns |
+| Age Transition Impact | Continuity |
+| Map / Map Size | Pangaea Ultima / Standard |
+| Game Balance | Multiplayer |
+| Start Bias | Multiplayer |
+| Resource List / Amount / Clusters | All / Standard / Off |
+| Pace Set | Standard (Trade Speed Instant) |
+| Victory Threshold | Standard |
+| Crises | Off |
+
+## Match Type
+
+The Match Type setting is under Game Settings → Multiplayer Settings. Free for All is the default.
+
+| Match Type | Player Placement | Teams by slot | Start Position | Start Bias | Map Size |
+|---|---|---|---|---|---|
+| Free for All | whole map | — | (host) | (host) | Standard |
+| 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (36x22 Duel map) |
+| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny |
+| 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | Multiplayer | Small |
+| 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
+
+- The lobby opens only the match's slots. Team 1 starts West and team 2 starts East.
+- With Zatygold's Spectator, one extra slot is kept for the Observer.
+- When the host picks a Match Type, every other setting returns to its multiplayer default. These are kept: Multiplayer Settings (including Game Balance), the seeds, the map, the ruleset, the starting Age, and all player choices.
 
 ## Competitive Turn Timer
 
-Set **Turn Timer** to **Competitive** in multiplayer setup (Simultaneous
-turns). Each turn's clock, per Age:
+**Competitive** is a Turn Timer option and the multiplayer default. Every player gets the same clock each turn:
 
 ```
 seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units any civ has)
-        + PerHuman × (living humans, Observers excluded) + PerTurn × (turn number)
+        + PerHuman × (living humans) + PerTurn × (turn number)
 ```
 
-Every player gets the same clock. At zero the turn ends automatically. Below
-30s the display turns orange with warning beeps; below 15s it turns red with a
-beep per second. The clock holds until you found a settlement and stands still
-while paused or while an Age is ending.
+| Age | Base | PerCity | PerUnit | PerHuman | PerTurn | About (8 humans, turns 2-70) |
+|---|---|---|---|---|---|---|
+| Antiquity | 30 | 1.00 | 1.00 | 1.00 | 1.00 | 43-123s |
+| Exploration | 35 | 2.00 | 1.00 | 2.50 | 1.25 | 76-180s |
+| Modern | 40 | 3.00 | 1.00 | 3.00 | 1.50 | 106-236s |
 
-| Tune | Where |
-|---|---|
-| Per-Age `Base` / `PerCity` / `PerUnit` (and overrides) | `data/timers/<age>/CompetitiveTimer.sql` |
-| Default `PerHuman` / `PerTurn` | `data/timers/TimerScaling.sql` |
-| Tiers, colours, sounds, debug | `ui/mp-timer/mp-timer-config.js` |
-
-The engine only enforces its built-in timers, so the mod registers a subclass
-of the game's action panel (only when Competitive is chosen) that draws the
-native text and ring from the synchronized phase clock and ends the turn
-itself. Its numbers live in mod-owned tables; the Dynamic timer is untouched.
-Known cosmetic: the lobby **Rules** popup shows a debug string for the timer.
-
----
+- When the clock hits zero, the turn ends.
+- At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
+- The first turn of each session (a new game, a loaded save, or a new Age) is untimed. The clock stops while the game is paused or an Age is ending.
+- To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/mp-timer-config.js`.
 
 ## Synchronized Pause
 
-- **Pause:** **Pause Game** in the Esc menu, or the **P** key (rebindable in
-  keyboard mapping). The pause menu opens for everyone.
-- **While paused:** **Ready** (or **Resume (All Players)** for the host) and
-  **View Map** to look around (Esc returns to the menu). A "Ready X / N" tally
-  counts connected players. Game-advancing actions (end turn, unit orders,
-  quick load) are blocked; camera, selection and panels are not.
-- **Resume:** when every connected player is ready, or the host resumes for
-  all, a 5-second **UNPAUSING…** countdown runs (still paused) and play resumes
-  together.
-- **Disconnects:** a dropped player pauses the game before the AI takes over
-  (disconnect event, connection polling and a turn-start guard). The host gets
-  **Drop Disconnected & Resume** to continue without them. Host changes and
-  rejoin resyncs also pause, with a notice in the menu.
+- **Pause** with **Pause Game** in the Esc menu or with **Ctrl+P**. The pause menu opens for everyone.
+- **While paused**, players press **Ready**, and the host can **Resume (All Players)**. **View Map** lets players look around. Actions that advance the game are blocked.
+- **Resume** happens when every connected player is ready or the host resumes for everyone. A 5-second **UNPAUSING…** countdown runs, then play resumes together.
+- **Disconnects, host changes and rejoins** pause the game automatically. The host can **Drop Disconnected & Resume**.
 
-Settings: `ui/mp-pause/mp-pause-config.js`. The engine exposes only a total
-"want pause" count, so host resume uses hidden chat commands between clients.
+## Keybinds
 
----
+Keybinds are active in multiplayer games and can be changed in **Options → keyboard mapping**.
+
+| Action | Default |
+|---|---|
+| Trade / Continent / Appeal / Settler / Discovery Lens (toggle) | 1 / 2 / 3 / 4 / 5 |
+| Found Settlement | B |
+| Advisors Council (moved from B, also in single player) | Ctrl+B |
+| Search (Scout) | Ctrl+J |
+| Previous / Next Settlement / Capital | [ / ] / \ |
+| Unit Join / Leave Commander | Ctrl+Z / Ctrl+X |
+| Commander Pack / Unpack Units | Ctrl+Q / Ctrl+W |
+| Pause Game | Ctrl+P |
+
+Pressing a lens key again returns to the default lens. Unit keys are blocked while paused. The Advisor Council popup no longer opens on its own in multiplayer, but its button and key still work.
+
+## Game Balance
+
+The **Game Balance** option is in Multiplayer Settings, above Kick Vote. **Multiplayer** (the default) applies the mod's balance. **Standard** keeps the game's own balance.
+
+- The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
+- Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
+- In every Age, trade routes start from a distance, as in the Modern Age.
+
+## Maps
+
+The Create Game screen gets a **Map** tab after the Pace tab. Every option below exists only in multiplayer.
+
+- **Pangaea Ultima** is one large central continent. Its islands are Distant Lands: no player starts on them, and each one has guaranteed resources (including Treasure in Exploration).
+- **Player Placement** is set by the Match Type. It is whole map or an East vs West layout for any map. Every start gets fresh water and 12 tiles of separation.
+- **Start Bias** (Spawn Settings) has two options:
+  - **Multiplayer** (the default) uses strict start biases. Coastal starts also get a few Reefs, and everyone is warned on turn 1 if a bias could not be met.
+  - **Standard** uses the game's own weighted biases.
+- **Resource List** (Resource Settings) has two options:
+  - **All** (the default) makes every resource valid in every Age and keeps it across Age transitions (Oil and Rubber arrive in Modern). It comes with custom yields and effects.
+    - Military and construction resources come in even counts on each continent.
+    - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbours get different resources.
+  - **Standard** uses the game's own resources and rules.
+- **Resource Amount**: Scarce, Sparse, Standard (the default) or Abundant, which is 35%, 50%, 70% or 100% of the game's density.
+- **Resource Clusters**: Off (the default), Small or Large. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
+- **Climate and terrain** (from Advanced Settings Pro) has two groups of settings. Choosing Standard for all of them generates the game's own maps.
+  - **Map Settings**: Map Age, Map Temperature and **Map Zones**, which sets where the hot and cold regions lie: Standard, Hot Poles, Hot Edge, Hot Center, Cold Center, Warm Ring, Patchwork or Random.
+  - **Terrain Settings**: Lakes, Rivers, Mountains and Sea Level.
+- **Natural Wonders**: how many are placed, with an On/Off toggle for each wonder.
+- **Disasters**: the game's own Disaster Intensity, on Game Settings.
+- The Earth map keeps the game's resources.
+
+## Pacing
+
+The **Pace** tab comes after Game Settings. Its settings are carried over from Advanced Settings Pro.
+
+- **Pace Set**: Standard (the default), Balanced or Multiplayer. Each preset fills in every pace setting. Changing any single setting switches Pace Set to Custom.
+- **Pace settings**: each has an All Ages value, or per-Age values with Custom.
+  - **Age Length**: Swift, Abbreviated, Standard or Custom (90–140 points per Age, in steps of 10).
+  - **Age Progression**, plus **Technology, Civic, Building and Victory Project Cost**.
+  - **Settlement Growth** and **Road Speed**.
+  - **Trade Speed** (default Instant: routes start from a distance) and **Raze Speed**.
+- **Victory Threshold** (Game Settings → Victory Settings): Low (x0.5), Standard (the default) or High (x1.5). It sets the Culture, Economic and Military thresholds at once. You can also set each of them separately on the Advanced tab, which shows as Custom. Science is unchanged.
+- **Removed from multiplayer**: the Epic and Marathon speeds and the Long Age Length. Single player keeps them.
+
+## Gameplay settings
+
+Most of these settings are carried over from Advanced Settings Pro. Settings with per-Age values use them when set to Custom.
+
+| Setting | Options (default first) | Location |
+|---|---|---|
+| Settlement Distance | Standard (3), Less (2), More (4) | Advanced |
+| Settlement Limit | Standard (3/8/16), Less (1/4/10), More (5/12/20), Custom (1–25 per Age) | Advanced |
+| Independent Amount / Spacing / Aggression | Standard, or less/more | Advanced |
+| Trade Range | Standard, -50% to +100%, Custom (per Age) | Advanced |
+| World Wonders | Standard, Carry Over | Advanced |
+| Crises / Crisis Timing | Off, On / Standard, Early, Late | Game Settings |
+| Triumph Set | the game's sets, Custom (one per Age, set on the Advanced tab) | Game Settings |
+
+- **Crises**: a single crisis list, as in single player. Turning Crises Off excludes every crisis in the list.
+- **World Wonders: Carry Over**: a World Wonder that you unlocked in an earlier Age stays buildable for you until someone builds it. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
+
+## Lobby
+
+- **Game Rules** lists every mod setting the host changed from its multiplayer default. The Game Options box shows Match Type, Game Balance and Pace Set.
+- **Memento slots** appear under each leader, showing each memento's art, name and effect.
+- **Mementos** (formerly Choose Mementos) and your own memento slots open the single-player memento picker, with search and filters.
+- **Browse** opens the single-player leader, civilization and details screens in one pass, with the 3D leader and voice. You can use it while you can still change your pick. The lobby dropdowns work as before.
+- **Random** buttons sit beside the Game and Map seed fields.
+- Ability names appear in civ and leader tooltips, and there is a 5-second start countdown.
+
+## Compatibility
+
+- **Zatygold's Advanced Settings Pro**: it handles single player and BBM handles multiplayer. Both can be enabled at once.
+- **Zatygold's Spectator**: it takes the extra Spectator slot. The Observer adds no time to the timer, never pauses the game by disconnecting, and is left out of Player Placement.
 
 ## Project structure
 
 ```
 Multiplayer-Toolkit/
-├─ multiplayer-toolkit.modinfo   # manifest, per-Age timer data
-├─ config/                       # lobby DB: Competitive option, pause keybind
-├─ data/timers/                  # Competitive timer numbers (default + per Age)
-├─ text/en_us/                   # mod info and in-game strings
-└─ ui/
-   ├─ mpt-shared/                # logger, method wrapping, deferred patching
-   ├─ mp-keybind/                # pause action in keyboard mapping
-   ├─ mp-lobby/                  # tooltips, countdown
-   ├─ mp-pause/                  # pause manager, overlay, chat commands
-   └─ mp-timer/                  # Competitive timer
+├─ zatygolds-multiplayer-balance.modinfo   # manifest
+├─ config/                       # lobby setup: one .sql per feature
+├─ data/                         # game data: balance/, gameplay/, maps/, pace/, timers/
+├─ maps/                         # map scripts (Pangaea Ultima, placement, Resource List)
+│  ├─ generation/                #   climate and terrain passes
+│  ├─ standard/                  #   multiplayer copies of the standard maps
+│  └─ scripts/                   #   multiplayer post-process
+├─ text/en_us/                   # strings, one file per feature
+└─ ui/                           # advisor, gameplay, keybind, lobby, maps, pace, pause,
+                                 #   setup, shared, timer
 ```
 
-Each feature has a `*-config.js` for settings, and modules patch the base UI at
-runtime (no base-game files are replaced). Diagnostics go to `UI.log`.
-
----
+The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `[BBM <feature>]`.
 
 ## Changelog
 
-### 0.6.1
+### 0.7.0
 
-- **Observer removed** — the Observer is no longer part of Multiplayer
-  Toolkit; it continues as its own mod, Zatygold's Spectator. Multiplayer
-  Toolkit no longer replaces any base-game file.
-- **Works with Zatygold's Spectator** — its Observer adds no time to the
-  Competitive timer (it still counts toward ending turns), never has its clock
-  held, counts toward the pause's ready tally and never pauses the game by
-  disconnecting.
+**Renamed:** the mod was formerly Multiplayer Toolkit, and its mod id is now `zatygolds-multiplayer-balance` (was `multiplayer-toolkit`; the manifest is now `zatygolds-multiplayer-balance.modinfo`), so saves and setups from earlier versions don't load. Other renames:
 
-### 0.6.01
+- Game Set → **Match Type**
+- Multiplayer Balance → **Game Balance**
+- Strict Start Biases → **Start Bias**
+- Heat Source → **Map Zones** (Dual Sun and Tilted Axis are now Hot Poles and Hot Edge)
+- Custom Resource System → **Resource List**
+- Victory Threshold Set → **Victory Threshold**
+- Choose Mementos → **Mementos**
 
-- **Fix:** the Competitive timer kept counting while paused (when a pause
-  event was missed); it also stands still from the moment an Age is complete
-  until the next Age starts.
-- **Performance:** the Competitive timer retries an expired turn once a
-  second; the pause manager re-scans players once a turn; lobby tooltips no
-  longer rebuild the civilization data on every refresh.
+**New:**
 
-### 0.6.00
+- **Game Balance** (with Gohei427): competitive balance changes, on by default.
+- **Maps** (with Gohei427):
+  - Pangaea Ultima with Distant Lands islands.
+  - East vs West Player Placement and a 36x22 Duel map.
+  - Start Bias, plus Resource List with Amount and Clusters.
+  - Climate and terrain settings.
+- **Match Type**: Free for All, 1v1, 2v2, 3v3 or 4v4, with automatic teams and slots.
+- **Pacing**: the Pace tab, Pace Sets, and per-victory thresholds with one Victory Threshold setting.
+- **Gameplay settings**: Settlement Limit and Distance, independent powers, Trade Range, Crises with the crisis list, and Triumph Sets per Age.
+- **World Wonders: Carry Over**.
+- **Keybinds**: lens toggles, Found Settlement (B), Search, settlement navigation and Commander keys. Pause moves to Ctrl+P, and Advisors Council moves to Ctrl+B.
+- **Lobby**:
+  - A Game Rules summary and memento slots.
+  - Single-player memento picker, plus a leader and civilization picker (Browse).
+  - Random seed buttons.
+- The Advisor Council popup no longer opens on its own in multiplayer.
 
-- Shared helpers (logging, method wrapping, deferred patching) across every
-  feature; pause-menu texts localized; pause/resume chat commands no longer
-  play the chat sound or mark chat unread.
+**Changed:**
 
-### 0.5.9
+- New multiplayer defaults:
+  - Competitive timer and Online speed.
+  - 10-turn end-of-Age countdown (was none).
+  - Continuity.
+  - Victory Threshold Standard (was Low).
+  - Crises Off.
+  - Trade Speed Instant.
+- Age Length is limited to 90–140 points per Age. The Balanced option is gone.
+- Settlement Limit Custom is capped at 25 per Age.
+- Resources: fewer by default (70% density), with even counts per continent and matched Empire resource pools for each player region.
+- The Competitive timer is retuned for each Age.
+- The Create Game tabs and sections follow the single-player layout (Spawn, Map, Resource and Terrain Settings).
+- Multiplayer uses the game's own Disaster Intensity again.
+- All options exist only in multiplayer, and single-player map generation is untouched.
+- The maps are rebuilt on the game's current map scripts.
 
-- **Fix:** Competitive timer ending opening turns; timer-ended turns no longer
-  cancel unit orders.
+**Fixed:**
 
-### 0.5.8
+- Every machine now generates the same start positions.
+- The Competitive timer no longer ends every turn at once when Turn Time was unset.
+- Game Balance no longer sets Merchants to 1 Movement, and Trade Speed now works with it.
+- Balance fixes:
+  - Bulgaria's Stratagems no longer stacks.
+  - Maurya's Matha and the Empire style apply their values.
+  - Kiem gives Science again.
+  - Militaristic's Commander node keeps its yields after an Age transition.
+  - Modern Coal and Dyes work as intended.
+  - Daimyo applies to Infantry only.
+  - Iron Working's Codex works with or without DLC.
+  - Iceland's Reiði Guðanna is unlocked correctly.
+- Pangaea Ultima no longer leaves volcanoes in the ocean.
+- Starts are no longer placed on a Discovery.
+- The memento picker opens only in a new game's lobby.
 
-- Pause: consensus of connected players or host **Resume (All Players)**;
-  **Drop Disconnected & Resume**; cross-client chat commands.
+**Removed:**
 
-### 0.5.7
-
-- Competitive timer retuned.
-
-### 0.5.5
-
-- Rebindable pause key; timer fixes (capital turn, stalls, strict expiry,
-  starts turn 2); retuned timings.
-
-### 0.5.4
-
-- 5-second lobby countdown.
-
-### 0.5.3
-
-- Lobby tooltip ability names; timer as an action-panel subclass with its own
-  tables and a synced ring. More than 8 players is not moddable (engine
-  limit).
-
-### 0.5.2
-
-- Decimal timer weights; vote resume off by default; disconnect, host-change
-  and rejoin pauses.
-
-### 0.5.1
-
-- Competitive turn timer; config / logic split.
-
----
+- Unit Settings (Settler and Treasure Convoy Speed, unit costs).
+- The Epic and Marathon speeds and the Long Age Length in multiplayer.
+- The mod's own Disasters setting.
+- Per-turn Commander XP on Military Buildings.
+- The one-technology-per-turn limit.
 
 ## License
 
-Copyright (C) 2026 Zatygold. Free software under the **GNU General Public
-License v3 or later**, without any warranty. See [`LICENSE`](LICENSE) or
-<https://www.gnu.org/licenses/>.
+Copyright (C) 2026 Zatygold. Free software under the **GNU
+General Public License v3 or later**, without any warranty. See
+[`LICENSE`](LICENSE) or <https://www.gnu.org/licenses/>.

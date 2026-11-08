@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Types>
+		<Row Type="UNIT_ARCHER_2" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_BURNING_ARROW_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_HULCHE_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_NU_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_YUMI_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_HWARANG_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_QASTI_3" Kind="KIND_UNIT"/>
+		<Row Type="UNIT_BALLISTA_2" Kind="KIND_UNIT"/>
+	</Types>
+	<Units>
+		<Row UnitType="UNIT_ARCHER_2" Name="LOC_UNIT_ARCHER_2_NAME" Description="LOC_UNIT_ARCHER_2_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="false"/>
+		<Row UnitType="UNIT_BURNING_ARROW_3" Name="LOC_UNIT_BURNING_ARROW_NAME" Description="LOC_UNIT_BURNING_ARROW_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="false" TraitType="TRAIT_MISSISSIPPIAN"/>
+		<Row UnitType="UNIT_HULCHE_3" Name="LOC_UNIT_HULCHE_NAME" Description="LOC_UNIT_HULCHE_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="false" TraitType="TRAIT_MAYA"/>
+		<Row UnitType="UNIT_NU_3" Name="LOC_UNIT_NU_NAME" Description="LOC_UNIT_NU_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_FOOT" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_HAN"/>
+		<Row UnitType="UNIT_YUMI_3" Name="LOC_UNIT_YUMI_NAME" Description="LOC_UNIT_YUMI_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="4" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_HEIAN"/>
+		<Row UnitType="UNIT_HWARANG_3" Name="LOC_UNIT_HWARANG_NAME" Description="LOC_UNIT_HWARANG_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="3" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="false" TraitType="TRAIT_SILLA"/>
+		<Row UnitType="UNIT_QASTI_3" Name="LOC_UNIT_QASTI_NAME" Description="LOC_UNIT_QASTI_3_DESCRIPTION" Tier="3" Maintenance="2" BaseSightRange="2" BaseMoves="2" UnitMovementClass="UNIT_MOVEMENT_CLASS_MOUNTED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="true" TraitType="TRAIT_BABYLON"/>
+		<Row UnitType="UNIT_BALLISTA_2" Name="LOC_UNIT_BALLISTA_2_NAME" Description="LOC_UNIT_BALLISTA_2_DESCRIPTION" Tier="3" Maintenance="3" BaseSightRange="2" BaseMoves="1" UnitMovementClass="UNIT_MOVEMENT_CLASS_WHEELED" Domain="DOMAIN_LAND" CoreClass="CORE_CLASS_MILITARY" FormationClass="FORMATION_CLASS_LAND_COMBAT" ZoneOfControl="false"/>
+	</Units>
+	<Unit_Stats>
+		<Row UnitType="UNIT_ARCHER_2" Combat="15" RangedCombat="25" Bombard="15" Range="2"/>
+		<Row UnitType="UNIT_BURNING_ARROW_3" Combat="15" RangedCombat="25" Bombard="18" Range="2"/>
+		<Row UnitType="UNIT_HULCHE_3" Combat="15" RangedCombat="25" Bombard="15" Range="2"/>
+		<Row UnitType="UNIT_NU_3" Combat="20" RangedCombat="25" Bombard="15" Range="2"/>
+		<Row UnitType="UNIT_YUMI_3" Combat="25" RangedCombat="30" Bombard="20" Range="2"/>
+		<Row UnitType="UNIT_HWARANG_3" Combat="15" RangedCombat="25" Bombard="18" Range="2"/>
+		<Row UnitType="UNIT_QASTI_3" Combat="25" RangedCombat="30" Bombard="20" Range="2"/>
+		<Row UnitType="UNIT_BALLISTA_2" Combat="20" RangedCombat="15" Bombard="35" Range="2"/>
+	</Unit_Stats>
+	<Unit_Costs>
+		<Row UnitType="UNIT_ARCHER_2" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_BURNING_ARROW_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_HULCHE_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_NU_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_YUMI_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_HWARANG_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_QASTI_3" YieldType="YIELD_PRODUCTION" Cost="90"/>
+		<Row UnitType="UNIT_BALLISTA_2" YieldType="YIELD_PRODUCTION" Cost="95"/>
+	</Unit_Costs>
+	<UnitUpgrades>
+		<Row Unit="UNIT_ARCHER" UpgradeUnit="UNIT_ARCHER_2"/>
+		<Row Unit="UNIT_BURNING_ARROW_2" UpgradeUnit="UNIT_BURNING_ARROW_3"/>
+		<Row Unit="UNIT_HULCHE_2" UpgradeUnit="UNIT_HULCHE_3"/>
+		<Row Unit="UNIT_NU_2" UpgradeUnit="UNIT_NU_3"/>
+		<Row Unit="UNIT_YUMI_2" UpgradeUnit="UNIT_YUMI_3"/>
+		<Row Unit="UNIT_HWARANG_2" UpgradeUnit="UNIT_HWARANG_3"/>
+		<Row Unit="UNIT_QASTI_2" UpgradeUnit="UNIT_QASTI_3"/>
+		<Row Unit="UNIT_BALLISTA" UpgradeUnit="UNIT_BALLISTA_2"/>
+	</UnitUpgrades>
+	<UnitReplaces>
+		<Row CivUniqueUnitType="UNIT_BURNING_ARROW_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+		<Row CivUniqueUnitType="UNIT_HULCHE_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+		<Row CivUniqueUnitType="UNIT_NU_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+		<Row CivUniqueUnitType="UNIT_YUMI_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+		<Row CivUniqueUnitType="UNIT_HWARANG_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+		<Row CivUniqueUnitType="UNIT_QASTI_3" ReplacesUnitType="UNIT_ARCHER_2"/>
+	</UnitReplaces>
+	<TypeTags>
+		<Row Type="UNIT_ARCHER_2" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_ARCHER_2" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_BURNING_ARROW_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_BURNING_ARROW_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_BURNING_ARROW_3" Tag="UNIT_CLASS_BURNING_ARROW"/>
+		<Row Type="UNIT_BURNING_ARROW_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_HULCHE_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_HULCHE_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_HULCHE_3" Tag="UNIT_CLASS_HULCHE"/>
+		<Row Type="UNIT_HULCHE_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_NU_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_NU_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_NU_3" Tag="UNIT_CLASS_NU"/>
+		<Row Type="UNIT_NU_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_YUMI_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_YUMI_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_YUMI_3" Tag="UNIT_CLASS_YUMI"/>
+		<Row Type="UNIT_YUMI_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_HWARANG"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_MOUNTED"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_CAVALRY"/>
+		<Row Type="UNIT_HWARANG_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_QASTI_3" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_QASTI_3" Tag="UNIT_CLASS_RANGED"/>
+		<Row Type="UNIT_QASTI_3" Tag="UNIT_CLASS_QASTI"/>
+		<Row Type="UNIT_QASTI_3" Tag="UNIT_CLASS_UNIQUE"/>
+		<Row Type="UNIT_BALLISTA_2" Tag="UNIT_CLASS_COMBAT"/>
+		<Row Type="UNIT_BALLISTA_2" Tag="UNIT_CLASS_WHEELED"/>
+		<Row Type="UNIT_BALLISTA_2" Tag="UNIT_CLASS_SIEGE"/>
+	</TypeTags>
+	<Unit_Advisories>
+		<Row UnitType="UNIT_ARCHER_2" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_BURNING_ARROW_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_HULCHE_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_NU_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_YUMI_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_HWARANG_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_QASTI_3" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+		<Row UnitType="UNIT_BALLISTA_2" AdvisoryClassType="ADVISORY_CLASS_MILITARY"/>
+	</Unit_Advisories>
+</Database>

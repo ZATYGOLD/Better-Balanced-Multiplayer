@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnterStageModifiers>
+		<Delete ModifierId="PLAYER_DIPLOMACY_MILITARY_AID_COMPLETE"/>
+		<Row StageType="DIPLOMACY_MILITARY_AID_COMPLETE" ModifierId="BBM_BALANCE_PLAYER_DIPLOMACY_MILITARY_AID_COMPLETE"/>
+	</EnterStageModifiers>
+</Database>

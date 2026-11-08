@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<EnglishText>
+	<!-- Game Balance: Resources (Antiquity Age) -->
+		<Replace Tag="LOC_ANT_RESOURCE_HORSES_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Cavalry Units per Horses resource.</Text></Replace>
+		<Replace Tag="LOC_ANT_RESOURCE_IRON_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Infantry Units per Iron resource.</Text></Replace>
+	</EnglishText>
+</Database>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<Traditions>
+		<Update><Where TraditionType="TRADITION_DRILLS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_ETHICS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_SCHOLARS"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+		<Update><Where TraditionType="TRADITION_COINAGE"/><Set AgeType="AGE_ANTIQUITY" IgnoreInitializeUnlock="true"/></Update>
+	</Traditions>
+
+	<ProgressionTreeNodeUnlocks>
+		<Delete TargetType="TRADITION_COMMANDERIES"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_TACTICS" TargetKind="KIND_TRADITION" TargetType="TRADITION_CONQUEST" UnlockDepth="1" RequiredGovernmentType="GOVERNMENT_DESPOTISM"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_ORG_MILITARY" TargetKind="KIND_TRADITION" TargetType="TRADITION_COMMANDERIES" UnlockDepth="1"/>
+	</ProgressionTreeNodeUnlocks>
+</Database>

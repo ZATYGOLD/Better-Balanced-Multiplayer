@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<!-- Each milestone needs a unique permanent modifier instance; reusing one
+	     ModifierId causes every reward after the first to be ignored. -->
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_01" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_02" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_03" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_04" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_05" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_06" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_07" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_08" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_09" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_10" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_11" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_12" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_13" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_14" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_15" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_16" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_17" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_18" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_19" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_20" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_21" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_22" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_23" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_24" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_25" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_26" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_27" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_28" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_29" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_30" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_31" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_32" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_33" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_34" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_35" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_36" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_37" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_38" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_39" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_40" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_41" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_42" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_43" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_44" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_45" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_46" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_47" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_48" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_49" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_50" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_51" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_52" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_53" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_54" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_55" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_56" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_57" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_58" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_59" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_60" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_61" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_62" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_63" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_RAZED_SETTLEMENT_DOMINION_64" collection="COLLECTION_OWNER" effect="EFFECT_PLAYER_GRANT_VICTORY_TRACKER_POINTS" permanent="true">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_PLAYER_IS_MAJOR"/>
+		</SubjectRequirements>
+		<Argument name="VictoryType">VICTORY_MILITARY_MODERN</Argument>
+		<Argument name="Points">2</Argument>
+		<Argument name="ItemName">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_NAME</Argument>
+		<Argument name="TypeData">NARRATIVE</Argument>
+		<Argument name="Description">LOC_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_DESCRIPTION</Argument>
+	</Modifier>
+
+	<!-- Each cumulative threshold has its own one-shot story. -->
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_01">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">1</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_02">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">2</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_03">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">3</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_04">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">4</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_05">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">5</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_06">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">6</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_07">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">7</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_08">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">8</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_09">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">9</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_10">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">10</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_11">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">11</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_12">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">12</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_13">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">13</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_14">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">14</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_15">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">15</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_16">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">16</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_17">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">17</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_18">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">18</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_19">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">19</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_20">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">20</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_21">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">21</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_22">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">22</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_23">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">23</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_24">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">24</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_25">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">25</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_26">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">26</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_27">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">27</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_28">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">28</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_29">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">29</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_30">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">30</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_31">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">31</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_32">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">32</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_33">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">33</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_34">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">34</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_35">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">35</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_36">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">36</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_37">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">37</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_38">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">38</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_39">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">39</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_40">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">40</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_41">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">41</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_42">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">42</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_43">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">43</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_44">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">44</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_45">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">45</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_46">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">46</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_47">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">47</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_48">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">48</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_49">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">49</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_50">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">50</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_51">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">51</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_52">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">52</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_53">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">53</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_54">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">54</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_55">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">55</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_56">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">56</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_57">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">57</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_58">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">58</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_59">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">59</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_60">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">60</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_61">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">61</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_62">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">62</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_63">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">63</Argument>
+		</Requirement>
+	</RequirementSet>
+	<RequirementSet id="BBM_BALANCE_REQSET_RAZED_SETTLEMENT_DOMINION_64">
+		<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
+			<Argument name="GossipTypes">GOSSIP_CITY_RAZED01</Argument>
+			<Argument name="GOSSIP_CITY_RAZED01">Hash,OtherPlayer,Other</Argument>
+			<Argument name="DuplicateCount">64</Argument>
+		</Requirement>
+	</RequirementSet>
+</GameEffects>
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<!-- Pangaea Ultima: islands turn to Treasure resources in Exploration, like the game's own Pangaea. -->
+	<MapIslandBehavior>
+		<Row MapType="LOC_BBM_MAPS_PANGAEA_ULTIMA_NAME" AgeType="AGE_EXPLORATION" ResourceClassType="RESOURCECLASS_TREASURE"/>
+	</MapIslandBehavior>
+</Database>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Civilization changes loaded in this Age (every civilization, not only this Age's). -->
+<Database>
+	<TraitModifiers>
+		<!-- Khmer: remove the Happiness penalty from non-Capital Cities. -->
+		<Delete TraitType="TRAIT_KHMER_ABILITY" ModifierId="TRAIT_MOD_KSEKAM_CHAMNON_CITY_HAPPINESS_PENALTY"/>
+		<!-- Antiquity -->
+		<!-- Persia -->
+		<Delete ModifierId="TRAIT_MOD_HAMARANA_COMMANDER_PROMOTION"/>
+		<!-- Greece -->
+		<Row TraitType="TRAIT_GREECE_ABILITY" ModifierId="TRAIT_MOD_DEMOKRATIA_CULTURE_ESPIONAGE"/>
+		<Row TraitType="TRAIT_GREECE_ABILITY" ModifierId="BBM_BALANCE_TRAIT_MOD_DEMOKRATIA_CULTURE_OPEN_BORDERS_TOT_AQ"/>
+
+		<!-- Exploration -->
+		<!-- Iceland -->
+		<Row TraitType="TRAIT_ICELAND_ABILITY" ModifierId="BBM_BALANCE_ICELAND_AQ_MOD_NATURAL_WONDER_CULTURE"/>
+		<!-- Mongolia -->
+		<Delete ModifierId="TRAIT_MOD_EXPENSIVE_SETTLER"/>
+		<!-- Sengoku -->
+		<Delete ModifierId="SENGOKU_MOD_COMMANDER_XP_CULTURE"/>
+		<Delete ModifierId="SENGOKU_MOD_COMMANDER_XP_SCIENCE"/>
+		<Row TraitType="TRAIT_SENGOKU_ABILITY" ModifierId="BBM_BALANCE_SENGOKU_MOD_COMMANDER_XP_CULTURE"/>
+		<Row TraitType="TRAIT_SENGOKU_ABILITY" ModifierId="BBM_BALANCE_SENGOKU_MOD_COMMANDER_XP_SCIENCE"/>
+
+
+		<!-- Modern-->
+		<!-- Qajar -->
+		<Delete TraitType="TRAIT_QAJAR_ABILITY" ModifierId="MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ" />
+		<Row TraitType="TRAIT_QAJAR_ABILITY" ModifierId="BBM_BALANCE_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ" />
+		<Row TraitType="TRAIT_QAJAR_ABILITY" ModifierId="BBM_BALANCE_MOD_CIV_QAJAR_YIELDS_UNDER_SETTLEMENT_CAP_AQ_CAPITAL" />
+		<!-- Joseon -->
+		<Delete ModifierId="MOD_JOSEON_NON_CAPITAL_SPECIALIST_LIMIT_DECREASE"/>
+		<!-- Russa -->
+		<Delete TraitType="TRAIT_RUSSIA_ABILITY" ModifierId="PROSVESHCHENIE_CITY_YIELDS"/>
+		<Row TraitType="TRAIT_RUSSIA_ABILITY" ModifierId="BBM_BALANCE_PROSVESHCHENIE_QUARTER_YIELDS"/>
+		<Delete ModifierId="PROSVESHCHENIE_TOWN_FOOD"/>
+		<Delete ModifierId="PROSVESHCHENIE_TOWN_PRODUCTION"/>
+		<Row TraitType="TRAIT_RUSSIA_ABILITY" ModifierId="BBM_BALANCE_PROSVESHCHENIE_TOWN_FOOD"/>
+		<Row TraitType="TRAIT_RUSSIA_ABILITY" ModifierId="BBM_BALANCE_PROSVESHCHENIE_TOWN_PRODUCTION"/>
+	</TraitModifiers>
+
+	<UnitAbilityModifiers>
+		<Delete UnitAbilityType="ABILITY_LEGION" ModifierId="LEGION_MOD_COMBAT_PER_TRADITION"/>
+		<Row UnitAbilityType="ABILITY_LEGION" ModifierId="BBM_BALANCE_LEGION_TRADITION_COMBAT_1"/>
+		<Row UnitAbilityType="ABILITY_LEGION" ModifierId="BBM_BALANCE_LEGION_TRADITION_COMBAT_2"/>
+		<Row UnitAbilityType="ABILITY_LEGION" ModifierId="BBM_BALANCE_LEGION_TRADITION_COMBAT_3"/>
+		<Row UnitAbilityType="ABILITY_LEGION" ModifierId="BBM_BALANCE_LEGION_TRADITION_COMBAT_4"/>
+	</UnitAbilityModifiers>
+
+	<!-- Sengoku unlock: have a Level 8 Commander instead of being at war with every player. -->
+	<RequirementSets>
+		<Row RequirementSetId="BBM_BALANCE_REQSET_SENGOKU_LEVEL_8_COMMANDER" RequirementSetType="REQUIREMENTSET_TEST_ALL"/>
+	</RequirementSets>
+	<Requirements>
+		<Row RequirementId="BBM_BALANCE_REQ_SENGOKU_LEVEL_8_COMMANDER" RequirementType="REQUIREMENT_PLAYER_HAS_COMMANDERS_WITH_X_LEVELS"/>
+	</Requirements>
+	<RequirementArguments>
+		<Row RequirementId="BBM_BALANCE_REQ_SENGOKU_LEVEL_8_COMMANDER" Name="LevelCount" Value="8"/>
+	</RequirementArguments>
+	<RequirementSetRequirements>
+		<Row RequirementSetId="BBM_BALANCE_REQSET_SENGOKU_LEVEL_8_COMMANDER" RequirementId="BBM_BALANCE_REQ_SENGOKU_LEVEL_8_COMMANDER"/>
+		<Row RequirementSetId="BBM_BALANCE_REQSET_SENGOKU_LEVEL_8_COMMANDER" RequirementId="REQ_AGE_IS_ANTIQUITY"/>
+	</RequirementSetRequirements>
+	<UnlockRequirements>
+		<Delete UnlockType="UNLOCK_CIVILIZATION_SENGOKU" RequirementSetId="REQSET_PLAYER_HAS_ALL_WARS"/>
+		<Row UnlockType="UNLOCK_CIVILIZATION_SENGOKU" RequirementSetId="BBM_BALANCE_REQSET_SENGOKU_LEVEL_8_COMMANDER" Description="LOC_BBM_BALANCE_UNLOCK_LEVEL_8_COMMANDER_DESCRIPTION" Tooltip="LOC_BBM_BALANCE_UNLOCK_LEVEL_8_COMMANDER_SENGOKU_TOOLTIP" GameplayUnlock="True"/>
+	</UnlockRequirements>
+
+	<!-- George Washington's unique Policies unlock from Antiquity Civics. -->
+	<ProgressionTreeNodeUnlocks>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_DISCIPLINE" TargetKind="KIND_TRADITION" TargetType="TRADITION_BILL_OF_RIGHTS" UnlockDepth="1" RequiredTraitType="TRAIT_LEADER_WASHINGTON_ABILITY"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_MAIN_CODE_OF_LAWS" TargetKind="KIND_TRADITION" TargetType="TRADITION_CONTINENTAL_AMBITION" UnlockDepth="1" RequiredTraitType="TRAIT_LEADER_WASHINGTON_ABILITY"/>
+	</ProgressionTreeNodeUnlocks>
+</Database>

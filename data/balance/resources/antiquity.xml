@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database>
+	<GameModifiers>
+		<Delete ModifierId="MOD_HORSES_CAVALRY_COMBAT_STRENGTH"/>
+		<Delete ModifierId="MOD_IRON_INFANTRY_COMBAT_STRENGTH"/>
+		<Row ModifierId="BBM_BALANCE_MOD_HORSES_CAVALRY_PRODUCTION"/>
+		<Row ModifierId="BBM_BALANCE_MOD_IRON_INFANTRY_PRODUCTION"/>
+	</GameModifiers>
+	<ModifierMetadatas>
+		<Delete ModifierId="MOD_HORSES_CAVALRY_COMBAT_STRENGTH"/>
+		<Delete ModifierId="MOD_IRON_INFANTRY_COMBAT_STRENGTH"/>
+		<Row ModifierId="BBM_BALANCE_MOD_HORSES_CAVALRY_PRODUCTION" FieldName="ResourceType" String="RESOURCE_HORSES"/>
+		<Row ModifierId="BBM_BALANCE_MOD_IRON_INFANTRY_PRODUCTION" FieldName="ResourceType" String="RESOURCE_IRON"/>
+	</ModifierMetadatas>
+</Database>

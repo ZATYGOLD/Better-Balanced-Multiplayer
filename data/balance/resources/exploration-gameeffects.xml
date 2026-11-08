@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameEffects xmlns="GameEffects">
+	<Modifier id="BBM_BALANCE_MOD_HORSES_CAVALRY_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_CAVALRY</Argument>
+		<Argument name="ResourceType">RESOURCE_HORSES</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_IRON_INFANTRY_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_INFANTRY</Argument>
+		<Argument name="ResourceType">RESOURCE_IRON</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_NITER_SIEGE_NAVAL_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
+		<Argument name="Percent">3</Argument>
+		<Argument name="UnitClass">UNIT_CLASS_SIEGE, UNIT_CLASS_NAVAL</Argument>
+		<Argument name="ResourceType">RESOURCE_NITER</Argument>
+	</Modifier>
+</GameEffects>
