@@ -3,7 +3,7 @@
 	<Properties>
 		<Name>LOC_MODULE_MPT_NAME</Name>
 		<Description>LOC_MODULE_MPT_DESCRIPTION</Description>
-		<Authors>Zatygold, Gohei427</Authors>
+		<Authors>Zatygold</Authors>
 		<Version>0.6.2</Version>
 		<Package>Mod</Package>
 		<LastUpdated>2026-11-07</LastUpdated>
@@ -3924,7 +3924,6 @@
 	</ActionGroups>
 
 <!--*************************** LOCALIZED TEXT ****************************************************-->
-
 	<LocalizedText>
 		<File>text/en_us/mod-info.xml</File>
 	</LocalizedText>
