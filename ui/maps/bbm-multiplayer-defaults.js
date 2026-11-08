@@ -41,7 +41,7 @@ const MULTIPLAYER_DEFAULTS = [
 	["GameSpeeds", "GAMESPEED_ONLINE"],
 	["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_STANDARD"],
 	["AgeTransitionSetting", "AGE_TRANSITION_SETTING_KEEP_MORE"],
-	["BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_STANDARD"],
+	["BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_LOW"],
 	["BBMGameplayCrises", "BBM_GAMEPLAY_CRISES_OFF"],
 	["BBMGameplayCrisisTiming", "BBM_GAMEPLAY_CRISIS_TIMING_OFF"],
 	["Map", "{zatygolds-multiplayer-balance}maps/pangaea-ultima.js"],

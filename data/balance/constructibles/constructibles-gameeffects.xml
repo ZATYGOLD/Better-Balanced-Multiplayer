@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameEffects xmlns="GameEffects">
-	<!-- Commanders on a Military Building in their own Settlement gain 1 XP each turn -->
-	<Modifier id="BBM_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP_WRAPPER" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_ATTACH_MODIFIERS">
-		<Argument name="ModifierId">BBM_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP</Argument>
-	</Modifier>
-	<Modifier id="BBM_BALANCE_MOD_COMMANDER_MILITARY_BUILDING_XP" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_GRANT_UNIT_EXPERIENCE" run-once="false" permanent="true">
-		<OwnerRequirements>
-			<Requirement type="REQUIREMENT_PLAYER_TURN_STARTED"/>
-		</OwnerRequirements>
-		<SubjectRequirements>
-			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
-				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
-			</Requirement>
-			<Requirement type="REQUIREMENT_PLOT_HAS_CONSTRUCTIBLE">
-				<Argument name="Tag">MILITARY</Argument>
-				<Argument name="CurrentAgeOnly">false</Argument>
-			</Requirement>
-			<Requirement type="REQUIREMENT_PLOT_DISTRICT_CLASS">
-				<Argument name="DistrictClass">CITYCENTER, URBAN</Argument>
-			</Requirement>
-			<Requirement type="REQUIREMENT_PLOT_IS_OWNER"/>
-		</SubjectRequirements>
-		<Argument name="Amount">1</Argument>
-	</Modifier>
 	<!-- Wonders -->
 	<!-- Antiquity -->
 	<!-- Angkor Wat -->

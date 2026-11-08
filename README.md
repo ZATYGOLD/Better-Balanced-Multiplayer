@@ -35,7 +35,7 @@ New multiplayer games, and any Match Type change, start with these settings. The
 | Start Bias | Multiplayer |
 | Resource List / Amount / Clusters | All / Multiplayer / Disabled |
 | Pace Set | Standard (Trade Speed Instant) |
-| Victory Threshold | Standard |
+| Victory Threshold | Low |
 | Crises | Disabled |
 
 ## Match Type
@@ -51,7 +51,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 | 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
 
 - The lobby opens only the match's slots. Team 1 starts West and team 2 starts East.
-- With Zatygold's Spectator, one extra slot is kept for the Observer.
+- With Zatygold's Spectator, one extra slot is kept for the Observer while its **Spectator Slot** setting is on (default). Turn it off to play without a Spectator.
 - When the host picks a Match Type, every other setting returns to its multiplayer default. These are kept: Multiplayer Settings (including Game Balance), the seeds, the map, the ruleset, the starting Age, and all player choices.
 
 ## Competitive Turn Timer
@@ -105,7 +105,7 @@ The **Game Balance** option is in Multiplayer Settings, above Kick Vote. **Multi
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
 - Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
 - In every Age, trade routes start from a distance, as in the Modern Age.
-- Commanders on a Military Building in their own Settlement gain 1 XP each turn.
+- Commanders on a Military Building in their own Settlement gain 2 XP each turn.
 
 ## Maps
 
@@ -140,7 +140,7 @@ The **Pace** tab comes after Game Settings. Its settings are carried over from A
   - **Age Progression**, plus **Technology, Civic, Building and Victory Project Cost**.
   - **Settlement Growth** and **Road Speed**.
   - **Trade Speed** (default Instant: routes start from a distance) and **Raze Speed**.
-- **Victory Threshold** (Game Settings → Victory Settings): Low (x0.5), Standard (the default) or High (x1.5). It sets the Culture, Economic and Military thresholds at once. You can also set each of them separately on the Advanced tab, which shows as Custom. Science is unchanged.
+- **Victory Threshold** (Game Settings → Victory Settings): Low (x0.5, the default), Standard or High (x1.5). It sets the Culture, Economic and Military thresholds at once. You can also set each of them separately on the Advanced tab, which shows as Custom. Science is unchanged.
 - **Removed from multiplayer**: the Epic and Marathon speeds and the Long Age Length. Single player keeps them.
 
 ## Gameplay settings
@@ -158,7 +158,7 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 | Triumph Set | the game's sets, Custom (one per Age, set on the Advanced tab) | Game Settings |
 
 - **Crises**: a single crisis list, as in single player. Setting Crises to Disabled excludes every crisis in the list.
-- **World Wonders: Carry Over**: a World Wonder that you unlocked in an earlier Age stays buildable for you until someone builds it. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
+- **World Wonders: Carry Over**: World Wonders of earlier Ages that nobody built stay buildable in later Ages, with no unlock needed. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
 
 ## Lobby
 
@@ -198,7 +198,11 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 
 Hotfix.
 
-- Commanders on a Military Building in their own Settlement gain 1 XP each turn again (restored).
+- Commanders on a Military Building in their own Settlement gain 2 XP at the start of each turn (it was granted only once).
+- World Wonders: Carry Over no longer crashes, and earlier-Age wonders that nobody built are buildable by everyone with no unlock needed.
+- Cocoa (Resource List All) gives +2 Science instead of +2 Influence while in a Celebration.
+- Victory Threshold defaults to Low again.
+- With Zatygold's Spectator, the new Spectator Slot setting can turn off the extra lobby slot in Match Types.
 - The lobby's leader and civilization tooltips and memento slots show the Game Balance text when Game Balance is Multiplayer.
 - The Competitive timer no longer switches to the engine's own countdown after a pause.
 - The Competitive timer ring no longer flickers, which showed most when hovering the End Turn button.
@@ -240,7 +244,6 @@ Hotfix.
   - Competitive timer and Online speed.
   - 10-turn end-of-Age countdown (was none).
   - Continuity.
-  - Victory Threshold Standard (was Low).
   - Crises Disabled.
   - Trade Speed Instant.
 - Age Length is limited to 90–140 points per Age. The Balanced option is gone.

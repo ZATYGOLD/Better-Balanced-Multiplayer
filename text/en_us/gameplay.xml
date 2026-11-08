@@ -60,7 +60,7 @@
 		<Row Tag="LOC_BBM_GAMEPLAY_WORLD_WONDERS_DESC"><Text>Sets whether World Wonders from a previous age can still be built.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_WORLD_WONDERS_STANDARD_DESC"><Text>The game's own rules: World Wonders can only be built in their own age.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CARRY_OVER_NAME"><Text>Carry Over</Text></Row>
-		<Row Tag="LOC_BBM_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC"><Text>World Wonders you unlocked in a previous age stay buildable in later ages until someone builds them.[n]A few one-time effects tied to a wonder's own age are not granted.</Text></Row>
+		<Row Tag="LOC_BBM_GAMEPLAY_WORLD_WONDERS_CARRY_OVER_DESC"><Text>World Wonders of previous ages that nobody built stay buildable in later ages, with no unlock needed.[n]A few one-time effects tied to a wonder's own age are not granted.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_NAME"><Text>Crises</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_DESC"><Text>Enables or disables all crises.[n]Disabled turns off every crisis in the Crises list.</Text></Row>
 		<Row Tag="LOC_BBM_GAMEPLAY_CRISES_ON_DESC"><Text>The crises included in the Crises list below can occur.</Text></Row>
