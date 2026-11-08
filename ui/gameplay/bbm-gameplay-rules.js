@@ -23,7 +23,7 @@
  *
  * Keeps the multiplayer Gameplay settings (config/gameplay.sql)
  * consistent, as Advanced Settings Pro does in single player:
- *   Settlement Limit, Trade Range and Triumph Set (shared per-Age rule):
+ *   Settlement Limit and Triumph Set (shared per-Age rule):
  *     1. A setting changes             -> its per-Age rows take that option's values.
  *     2. A per-Age row leaves them     -> the setting switches to Custom.
  *   Crises:
@@ -49,7 +49,6 @@ const AGE_SETTINGS = [
 	// Each tier as the limits its Age rows hold.
 	ageSetting("BBMGameplaySettlementLimit", "BBM_GAMEPLAY_SETTLEMENT_LIMIT_", {
 		LESS: ["1", "4", "10"], STANDARD: ["3", "8", "16"], MORE: ["5", "12", "20"] }),
-	ageSetting("BBMGameplayTradeRange", "BBM_GAMEPLAY_TRADE_RANGE_"),
 	// The game's Triumph Set, with the mod's Custom; its rows name each set.
 	ageSetting("LegacySets", "", Object.fromEntries(TRIUMPH_SETS.map((set) => [`LEGACY_SET_${set}`, set])), {
 		ageIds: AGES.map((age) => `BBMGameplayTriumphSet${age}`), agePrefix: "BBM_GAMEPLAY_TRIUMPH_SET_", custom: "BBM_LEGACY_SET_CUSTOM" })

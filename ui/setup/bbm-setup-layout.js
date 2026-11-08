@@ -45,7 +45,7 @@ const TABS = [
 	{ key: "map", title: "LOC_BBM_SETUP_TAB_MAP", added: true,
 		sections: ["SpawnOptions", "MapOptions", "ResourceOptions", "TerrainOptions", "NaturalWonderSelectionOptions"] },
 	{ key: "advanced", sections: ["PlayerDifficulty", "VictoryOptions", "VictoryThresholdOptions", "TriumphSettings",
-		"SettlementOptions", "IndependentPowerOptions", "TradeOptions", "WonderOptions"] }
+		"SettlementOptions", "IndependentPowerOptions", "WonderOptions"] }
 ];
 
 /** The tabs added after Game Settings, in order. */

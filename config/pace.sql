@@ -222,10 +222,10 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
-        ('BBMPaceVictoryThresholdSet', 'LOC_BBM_PACE_VICTORY_THRESHOLD_SET_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_SET_DESC', 'BBMPaceVictoryThresholdSets', 0, 'BBM_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'BBMPaceVictoryThresholdSet', 'VictoryOptions', NULL, 0, 0, 4000),
-        ('BBMPaceCultureVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_CULTURE_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_CULTURE_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'BBMPaceCultureVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4001),
-        ('BBMPaceEconomicVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_ECONOMIC_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_ECONOMIC_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'BBMPaceEconomicVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4002),
-        ('BBMPaceMilitaryVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_MILITARY_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_MILITARY_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'BBMPaceMilitaryVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4003);
+        ('BBMPaceVictoryThresholdSet', 'LOC_BBM_PACE_VICTORY_THRESHOLD_SET_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_SET_DESC', 'BBMPaceVictoryThresholdSets', 0, 'BBM_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'BBMPaceVictoryThresholdSet', 'VictoryOptions', NULL, 0, 0, 4000),
+        ('BBMPaceCultureVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_CULTURE_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_CULTURE_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'BBMPaceCultureVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4001),
+        ('BBMPaceEconomicVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_ECONOMIC_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_ECONOMIC_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'BBMPaceEconomicVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4002),
+        ('BBMPaceMilitaryVictoryThreshold', 'LOC_BBM_PACE_VICTORY_THRESHOLD_MILITARY_NAME', 'LOC_BBM_PACE_VICTORY_THRESHOLD_MILITARY_DESC', 'BBMPaceVictoryThresholds', 0, 'BBM_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'BBMPaceMilitaryVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4003);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES

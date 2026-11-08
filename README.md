@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.1**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.2**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -11,7 +11,7 @@ Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Mei
 - **Game Balance**: competitive balance changes across every Age.
 - **Maps**: Pangaea Ultima, East vs West placement, strict start biases, a Resource List, and climate and terrain settings.
 - **Pacing**: Pace Sets, per-Age pace settings and victory thresholds.
-- **Gameplay settings**: settlements, independent powers, trade range, crises, Triumph Sets and World Wonders.
+- **Gameplay settings**: settlements, independent powers, crises, Triumph Sets and World Wonders.
 - **Lobby**: a rules summary, memento slots, single-player-style leader, civilization and memento pickers, and Random seed buttons.
 
 ## Installation
@@ -35,7 +35,7 @@ New multiplayer games, and any Match Type change, start with these settings. The
 | Start Bias | Multiplayer |
 | Resource List / Amount / Clusters | All / Multiplayer / Disabled |
 | Pace Set | Standard (Trade Speed Instant) |
-| Victory Threshold | Standard |
+| Victory Threshold | Low |
 | Crises | Disabled |
 
 ## Match Type
@@ -51,7 +51,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 | 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
 
 - The lobby opens only the match's slots. Team 1 starts West and team 2 starts East.
-- With Zatygold's Spectator, one extra slot is kept for the Observer.
+- With Zatygold's Spectator, one extra slot is kept for the Observer while its **Spectator Slot** setting is on (default). Turn it off to play without a Spectator.
 - When the host picks a Match Type, every other setting returns to its multiplayer default. These are kept: Multiplayer Settings (including Game Balance), the seeds, the map, the ruleset, the starting Age, and all player choices.
 
 ## Competitive Turn Timer
@@ -105,7 +105,7 @@ The **Game Balance** option is in Multiplayer Settings, above Kick Vote. **Multi
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
 - Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
 - In every Age, trade routes start from a distance, as in the Modern Age.
-- Commanders on a Military Building in their own Settlement gain 1 XP each turn.
+- Commanders on a Military Building in their own Settlement gain 2 XP each turn.
 
 ## Maps
 
@@ -139,8 +139,8 @@ The **Pace** tab comes after Game Settings. Its settings are carried over from A
   - **Age Length**: Swift, Abbreviated, Standard or Custom (90–140 points per Age, in steps of 10).
   - **Age Progression**, plus **Technology, Civic, Building and Victory Project Cost**.
   - **Settlement Growth** and **Road Speed**.
-  - **Trade Speed** (default Instant: routes start from a distance) and **Raze Speed**.
-- **Victory Threshold** (Game Settings → Victory Settings): Low (x0.5), Standard (the default) or High (x1.5). It sets the Culture, Economic and Military thresholds at once. You can also set each of them separately on the Advanced tab, which shows as Custom. Science is unchanged.
+  - **Trade Speed** (default Instant: routes start from a distance; Merchants have 1 Movement and 1 Sight) and **Raze Speed**.
+- **Victory Threshold** (Game Settings → Victory Settings): Low (x0.5, the default), Standard or High (x1.5). It sets the Culture, Economic and Military thresholds at once. You can also set each of them separately on the Advanced tab, which shows as Custom. Science is unchanged.
 - **Removed from multiplayer**: the Epic and Marathon speeds and the Long Age Length. Single player keeps them.
 
 ## Gameplay settings
@@ -152,13 +152,12 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 | Settlement Distance | Standard (3), Less (2), More (4) | Advanced |
 | Settlement Limit | Standard (3/8/16), Less (1/4/10), More (5/12/20), Custom (1–25 per Age) | Advanced |
 | Independent Amount / Spacing / Aggression | Standard, or less/more | Advanced |
-| Trade Range | Standard, -50% to +100%, Custom (per Age) | Advanced |
 | World Wonders | Standard, Carry Over | Advanced |
 | Crises / Crisis Timing | Disabled, Enabled / Standard, Early, Late | Game Settings |
 | Triumph Set | the game's sets, Custom (one per Age, set on the Advanced tab) | Game Settings |
 
 - **Crises**: a single crisis list, as in single player. Setting Crises to Disabled excludes every crisis in the list.
-- **World Wonders: Carry Over**: a World Wonder that you unlocked in an earlier Age stays buildable for you until someone builds it. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
+- **World Wonders: Carry Over**: World Wonders of earlier Ages that nobody built stay buildable in later Ages, with no unlock needed. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
 
 ## Lobby
 
@@ -193,6 +192,16 @@ Better-Balanced-Multiplayer/
 Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.2
+
+- Commanders on a Military Building in their own Settlement gain 2 XP at the start of each turn (it was granted only once).
+- World Wonders: Carry Over no longer crashes, and earlier-Age wonders that nobody built are buildable by everyone with no unlock needed.
+- Cocoa (Resource List All) gives +2 Science instead of +2 Influence while in a Celebration.
+- Trade Speed Instant gives Merchants 1 Movement and 1 Sight.
+- The Trade Range setting is removed.
+- Victory Threshold defaults to Low again.
+- With Zatygold's Spectator, the new Spectator Slot setting can turn off the extra lobby slot in Match Types.
 
 ### 0.7.1
 
@@ -240,7 +249,6 @@ Hotfix.
   - Competitive timer and Online speed.
   - 10-turn end-of-Age countdown (was none).
   - Continuity.
-  - Victory Threshold Standard (was Low).
   - Crises Disabled.
   - Trade Speed Instant.
 - Age Length is limited to 90–140 points per Age. The Balanced option is gone.

@@ -121,7 +121,7 @@
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_DEFAULT_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: travel with 4[icon:Action_Move]Movement[LI] Exploration: travel with 4[icon:Action_Move]Movement[LI] Modern: from a distance[/BLIST]</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_DESC"><Text>Sets how quickly Merchants start trade routes: by travelling to the settlement they trade with, or from a distance. A travel speed applies in every age, the Modern Age included. With Game Balance on Multiplayer, Standard starts trade routes from a distance in every age.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_FAST_DESC"><Text>Merchants travel with 6[icon:Action_Move]Movement.</Text></Row>
-		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_INSTANT_DESC"><Text>Trade routes start from a distance, so Merchants do not need to travel.</Text></Row>
+		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_INSTANT_DESC"><Text>Trade routes start from a distance, so Merchants do not need to travel. Merchants have 1[icon:Action_Move]Movement and 1 Sight.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_NAME"><Text>Trade Speed</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_QUICK_DESC"><Text>Merchants travel with 5[icon:Action_Move]Movement.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_SLOW_DESC"><Text>Merchants travel with 3[icon:Action_Move]Movement.</Text></Row>
