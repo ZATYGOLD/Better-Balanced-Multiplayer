@@ -30,9 +30,11 @@
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_DESC"><Text>How many resources the map places, as a share of the game's own density. With Resource List Standard, every continent keeps at least one of each resource the game placed there, so Scarce and Sparse can place more on small continents.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_SCARCE_NAME"><Text>Scarce</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_SCARCE_DESC"><Text>35% of the game's density.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_SPARSE_DESC"><Text>50% of the game's density.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_STANDARD_DESC"><Text>70% of the game's density.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT_DESC"><Text>The game's density.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_LIMITED_NAME"><Text>Limited</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_LIMITED_DESC"><Text>50% of the game's density.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER_NAME"><Text>Multiplayer</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER_DESC"><Text>70% of the game's density.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_AMOUNT_STANDARD_DESC"><Text>The game's density, as in the base game.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_CLUSTERS_NAME"><Text>Resource Clusters</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_CLUSTERS_DESC"><Text>Whether resources gather into patches of the same resource. The amount stays the same.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_RESOURCE_CLUSTERS_OFF_DESC"><Text>Resources are spread out one by one.</Text></Row>
@@ -47,7 +49,7 @@
 		<Row Tag="LOC_BBM_MAPS_PANGAEA_ULTIMA_NAME"><Text>Pangaea Ultima</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PANGAEA_ULTIMA_DESC"><Text>One large central Pangaea; the islands beyond its coasts are the Distant Lands.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MULTIPLAYER_SETUP"><Text>Multiplayer setup</Text></Row>
-	<!-- Start placement warning (ui/maps/start-bias-warning.js) -->
+	<!-- Start placement warning (ui/maps/bbm-start-bias-warning.js) -->
 		<Row Tag="LOC_BBM_MAPS_START_WARNING_TITLE"><Text>START PLACEMENT WARNING</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_START_WARNING_INTRO"><Text>The safe original-start fallback was used because these requirements were not met:</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_START_WARNING_BANNER_HINT"><Text>Select this message to close it. Select the notification icon to view these details again.</Text></Row>

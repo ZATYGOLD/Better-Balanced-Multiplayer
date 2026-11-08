@@ -34,8 +34,8 @@ const CUSTOM = "CUSTOM";
 
 /** Only the host writes the setup; a joined client sees the host's writes arrive. */
 function canEditSetup() {
-  const host = Network.getHostPlayerId();
-  return !Configuration.getGame()?.isNetworkMultiplayer || !(host >= 0) || host === GameContext.localPlayerID;
+	const host = Network.getHostPlayerId();
+	return !Configuration.getGame()?.isNetworkMultiplayer || !(host >= 0) || host === GameContext.localPlayerID;
 }
 
 /** A setup string handle as text ("" if absent). */
@@ -51,21 +51,21 @@ const offers = (id, value) => (GameSetup.findGameParameter(id)?.domain?.possible
 
 /** The option a parameter holds, without its prefix (null if absent). */
 function optionOf(id, prefix = "") {
-  const value = gameValue(id);
-  return typeof value === "string" && value.startsWith(prefix) ? value.slice(prefix.length) : null;
+	const value = gameValue(id);
+	return typeof value === "string" && value.startsWith(prefix) ? value.slice(prefix.length) : null;
 }
 
 /** Sets a parameter to prefix + option when it exists, offers that value and holds another. */
 function setOption(id, prefix, option) {
-  const value = prefix + option;
-  if (gameValue(id) === value || !offers(id, value)) return;
-  GameSetup.setGameParameterValue(id, value);
+	const value = prefix + option;
+	if (gameValue(id) === value || !offers(id, value)) return;
+	GameSetup.setGameParameterValue(id, value);
 }
 
 // ============================ Defaults ============================
 
 const MULTIPLAYER_ROWS = "SELECT ParameterID, DefaultValue, SortIndex, Hidden, Key1, SupportsSinglePlayer FROM Parameters"
-  + " WHERE SupportsLANMultiplayer = 1 OR SupportsInternetMultiplayer = 1 OR SupportsHotseatMultiplayer = 1";
+	+ " WHERE SupportsLANMultiplayer = 1 OR SupportsInternetMultiplayer = 1 OR SupportsHotseatMultiplayer = 1";
 let defaults = null;
 
 /**
@@ -74,17 +74,17 @@ let defaults = null;
  * and an unkeyed row over one keyed to a map or ruleset.
  */
 function parameterDefaults() {
-  if (defaults) return defaults;
-  defaults = new Map();
-  const rank = (row) => (row.Key1 == null ? 2 : 0) + (row.SupportsSinglePlayer ? 0 : 1);
-  let rows = [];
-  try { rows = Database.query("config", MULTIPLAYER_ROWS) ?? []; } catch (e) { log(`defaults not read: ${e}`); }
-  for (const row of rows) {
-    const known = defaults.get(row.ParameterID);
-    if (known && known.rank >= rank(row)) continue;
-    defaults.set(row.ParameterID, { value: row.DefaultValue, sortIndex: row.SortIndex ?? 0, hidden: !!row.Hidden, rank: rank(row) });
-  }
-  return defaults;
+	if (defaults) return defaults;
+	defaults = new Map();
+	const rank = (row) => (row.Key1 == null ? 2 : 0) + (row.SupportsSinglePlayer ? 0 : 1);
+	let rows = [];
+	try { rows = Database.query("config", MULTIPLAYER_ROWS) ?? []; } catch (e) { log(`defaults not read: ${e}`); }
+	for (const row of rows) {
+		const known = defaults.get(row.ParameterID);
+		if (known && known.rank >= rank(row)) continue;
+		defaults.set(row.ParameterID, { value: row.DefaultValue, sortIndex: row.SortIndex ?? 0, hidden: !!row.Hidden, rank: rank(row) });
+	}
+	return defaults;
 }
 
 /** A parameter's value matches a database value (case, and booleans as 0 / 1, aside). */
@@ -96,30 +96,30 @@ const sameValue = (a, b) => String(a).toLowerCase() === String(b).toLowerCase() 
  * parameter does not offer are left alone. Returns true when it wrote.
  */
 function setValue(param, value) {
-  const id = GameSetup.resolveString(param.ID);
-  if (param.array) {
-    if (value != null || (param.values?.length ?? 0) === 0) return false;
-    GameSetup.setGameParameterValue(id, []);
-    return true;
-  }
-  const current = param.value?.value;
-  if (value == null || sameValue(current, value)) return false;
-  switch (param.domain?.type) {
-    case GameSetupDomainType.Select:
-      if (!offers(id, String(value))) return false;
-      GameSetup.setGameParameterValue(id, String(value));
-      return true;
-    case GameSetupDomainType.Boolean:
-      GameSetup.setGameParameterValue(id, value == 1 || value === "true");
-      return true;
-    case GameSetupDomainType.Integer:
-    case GameSetupDomainType.UnsignedInteger:
-      if (!Number.isFinite(Number(value))) return false;
-      GameSetup.setGameParameterValue(id, Number(value));
-      return true;
-    default:
-      return false;
-  }
+	const id = GameSetup.resolveString(param.ID);
+	if (param.array) {
+		if (value != null || (param.values?.length ?? 0) === 0) return false;
+		GameSetup.setGameParameterValue(id, []);
+		return true;
+	}
+	const current = param.value?.value;
+	if (value == null || sameValue(current, value)) return false;
+	switch (param.domain?.type) {
+		case GameSetupDomainType.Select:
+			if (!offers(id, String(value))) return false;
+			GameSetup.setGameParameterValue(id, String(value));
+			return true;
+		case GameSetupDomainType.Boolean:
+			GameSetup.setGameParameterValue(id, value == 1 || value === "true");
+			return true;
+		case GameSetupDomainType.Integer:
+		case GameSetupDomainType.UnsignedInteger:
+			if (!Number.isFinite(Number(value))) return false;
+			GameSetup.setGameParameterValue(id, Number(value));
+			return true;
+		default:
+			return false;
+	}
 }
 
 // ============================ Setup poll ============================
@@ -128,20 +128,20 @@ const listeners = new Set();
 let timer = null;
 
 function poll() {
-  if (!isMultiplayerGame()) return;
-  let revision;
-  try { revision = GameSetup.currentRevision; } catch (e) { return; }
-  for (const entry of listeners) {
-    if (revision === entry.last) continue;
-    try {
-      if (!entry.ready()) continue;
-      const restarted = revision < entry.last;
-      entry.last = revision;
-      entry.listener(restarted);
-    } catch (error) {
-      log(`${entry.name} failed: ${error?.stack ?? error}`);
-    }
-  }
+	if (!isMultiplayerGame()) return;
+	let revision;
+	try { revision = GameSetup.currentRevision; } catch (e) { return; }
+	for (const entry of listeners) {
+		if (revision === entry.last) continue;
+		try {
+			if (!entry.ready()) continue;
+			const restarted = revision < entry.last;
+			entry.last = revision;
+			entry.listener(restarted);
+		} catch (error) {
+			log(`${entry.name} failed: ${error?.stack ?? error}`);
+		}
+	}
 }
 
 /**
@@ -150,13 +150,13 @@ function poll() {
  * when a new setup started its revisions over. Returns the unsubscribe.
  */
 function onSetupRevision(name, listener, ready = () => true) {
-  const entry = { name, listener, ready, last: -1 };
-  listeners.add(entry);
-  timer ??= setInterval(poll, POLL_MS);
-  return () => {
-    listeners.delete(entry);
-    if (listeners.size === 0) { clearInterval(timer); timer = null; }
-  };
+	const entry = { name, listener, ready, last: -1 };
+	listeners.add(entry);
+	timer ??= setInterval(poll, POLL_MS);
+	return () => {
+		listeners.delete(entry);
+		if (listeners.size === 0) { clearInterval(timer); timer = null; }
+	};
 }
 
 // ============================ Per-Age rows ============================
@@ -168,14 +168,14 @@ function onSetupRevision(name, listener, ready = () => true) {
  * rows, their prefix and the Custom option.
  */
 function ageSetting(id, prefix, ageValues = {}, { ageIds = AGES.map((age) => id + age), agePrefix = prefix, custom = CUSTOM } = {}) {
-  return { id, prefix, ageValues, ageIds, agePrefix, custom, last: null };
+	return { id, prefix, ageValues, ageIds, agePrefix, custom, last: null };
 }
 
 /** The row options of a setting's option; null for Custom. */
 function ageOptions(entry, option) {
-  if (option === entry.custom) return null;
-  const mapped = entry.ageValues[option] ?? option;
-  return Array.isArray(mapped) ? mapped : entry.ageIds.map(() => mapped);
+	if (option === entry.custom) return null;
+	const mapped = entry.ageValues[option] ?? option;
+	return Array.isArray(mapped) ? mapped : entry.ageIds.map(() => mapped);
 }
 
 /**
@@ -185,18 +185,18 @@ function ageOptions(entry, option) {
  * hold is left alone.
  */
 function syncAgeRows(entry) {
-  const option = optionOf(entry.id, entry.prefix);
-  if (option == null || entry.ageIds.some((id) => GameSetup.findGameParameter(id) == null)) return;
-  const expected = ageOptions(entry, option);
-  const changed = option !== entry.last;
-  entry.last = option;
-  if (!expected || !expected.every((ageOption, i) => offers(entry.ageIds[i], entry.agePrefix + ageOption))) return;
-  if (changed) {
-    expected.forEach((ageOption, i) => setOption(entry.ageIds[i], entry.agePrefix, ageOption));
-  } else if (entry.ageIds.some((id, i) => optionOf(id, entry.agePrefix) !== expected[i])) {
-    setOption(entry.id, entry.prefix, entry.custom);
-    entry.last = entry.custom;
-  }
+	const option = optionOf(entry.id, entry.prefix);
+	if (option == null || entry.ageIds.some((id) => GameSetup.findGameParameter(id) == null)) return;
+	const expected = ageOptions(entry, option);
+	const changed = option !== entry.last;
+	entry.last = option;
+	if (!expected || !expected.every((ageOption, i) => offers(entry.ageIds[i], entry.agePrefix + ageOption))) return;
+	if (changed) {
+		expected.forEach((ageOption, i) => setOption(entry.ageIds[i], entry.agePrefix, ageOption));
+	} else if (entry.ageIds.some((id, i) => optionOf(id, entry.agePrefix) !== expected[i])) {
+		setOption(entry.id, entry.prefix, entry.custom);
+		entry.last = entry.custom;
+	}
 }
 
 export { AGES, CUSTOM, ageSetting, canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, optionOf, parameterDefaults, resolveString, sameValue, setOption, setValue, syncAgeRows };

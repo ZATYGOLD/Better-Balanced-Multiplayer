@@ -6,18 +6,18 @@
 // scales the game's own; Reefs are then added near coast-biased starts.
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
 import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
-import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../global-resource-system.js';
-import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../placement.js';
-import { adjacentPlots } from '../plots.js';
-import { adjustScoreByStartBias, resetStartBiasScores } from '../start-bias-score.js';
+import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../bbm-global-resource-system.js';
+import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../bbm-placement.js';
+import { adjacentPlots } from '../bbm-plots.js';
+import { adjustScoreByStartBias, resetStartBiasScores } from '../bbm-start-bias-score.js';
 import {
-  getPlayerStrictStartBias,
-  isStrictStartBiasEnabled,
-  matchesPlayerStrictStartBias,
-  matchesPlayerStrictStartBiasWithLakeFallback,
-  recordStrictStartBiasFailure,
-  resetStrictStartBiases
-} from '../strict-start-biases.js';
+	getPlayerStrictStartBias,
+	isStrictStartBiasEnabled,
+	matchesPlayerStrictStartBias,
+	matchesPlayerStrictStartBiasWithLakeFallback,
+	recordStrictStartBiasFailure,
+	resetStrictStartBiases
+} from '../bbm-strict-start-biases.js';
 
 // Search limits count nodes, never time, so every machine generates the same starts.
 const JOINT_START_SEARCH_NODE_LIMIT = 750000;
@@ -28,294 +28,294 @@ const COASTAL_REEFS_PER_START = 3;
 // ============================ Reefs ============================
 
 function addCoastalStartReefs() {
-  const reef = GameInfo.Features.lookup("FEATURE_REEF");
-  const coldReef = GameInfo.Features.lookup("FEATURE_COLD_REEF");
-  const marine = GameInfo.Biomes.lookup("BIOME_MARINE");
-  if (reef == null || marine == null) {
-    console.log("BBM MAPS COASTAL REEFS: Reef or Marine definition unavailable; skipping");
-    return;
-  }
+	const reef = GameInfo.Features.lookup("FEATURE_REEF");
+	const coldReef = GameInfo.Features.lookup("FEATURE_COLD_REEF");
+	const marine = GameInfo.Biomes.lookup("BIOME_MARINE");
+	if (reef == null || marine == null) {
+		console.log("BBM coastal reefs: Reef or Marine definition unavailable; skipping");
+		return;
+	}
 
-  // Only with Start Bias Multiplayer: the reefs back the strict ocean-coast bias.
-  if (!isStrictStartBiasEnabled()) return;
-  const coastPlayers = Players.getAliveMajorIds().filter((playerId) =>
-    getPlayerStrictStartBias(playerId)?.rules.some((rule) => rule.id === "ocean-coast"));
-  if (coastPlayers.length === 0) return;
+	// Only with Start Bias Multiplayer: the reefs back the strict ocean-coast bias.
+	if (!isStrictStartBiasEnabled()) return;
+	const coastPlayers = Players.getAliveMajorIds().filter((playerId) =>
+		getPlayerStrictStartBias(playerId)?.rules.some((rule) => rule.id === "ocean-coast"));
+	if (coastPlayers.length === 0) return;
 
-  // Marine coast tiles, collected once for every coast-biased player.
-  const width = GameplayMap.getGridWidth();
-  const height = GameplayMap.getGridHeight();
-  const coastTiles = [];
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      if (GameplayMap.getTerrainType(x, y) !== g_CoastTerrain || GameplayMap.isLake(x, y)) continue;
-      if (GameplayMap.getBiomeType(x, y) !== marine.$index || GameplayMap.isNaturalWonder(x, y)) continue;
-      coastTiles.push({ x, y, index: GameplayMap.getIndexFromXY(x, y) });
-    }
-  }
+	// Marine coast tiles, collected once for every coast-biased player.
+	const width = GameplayMap.getGridWidth();
+	const height = GameplayMap.getGridHeight();
+	const coastTiles = [];
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+			if (GameplayMap.getTerrainType(x, y) !== g_CoastTerrain || GameplayMap.isLake(x, y)) continue;
+			if (GameplayMap.getBiomeType(x, y) !== marine.$index || GameplayMap.isNaturalWonder(x, y)) continue;
+			coastTiles.push({ x, y, index: GameplayMap.getIndexFromXY(x, y) });
+		}
+	}
 
-  let totalPlaced = 0;
-  for (const playerId of coastPlayers) {
-    const startIndex = StartPositioner.getStartPosition(playerId);
-    if (startIndex < 0) continue;
-    const start = GameplayMap.getLocationFromIndex(startIndex);
-    const candidates = coastTiles
-      .map((tile) => ({ ...tile, distance: GameplayMap.getPlotDistance(start.x, start.y, tile.x, tile.y) }))
-      .sort((a, b) => a.distance - b.distance || a.index - b.index);
+	let totalPlaced = 0;
+	for (const playerId of coastPlayers) {
+		const startIndex = StartPositioner.getStartPosition(playerId);
+		if (startIndex < 0) continue;
+		const start = GameplayMap.getLocationFromIndex(startIndex);
+		const candidates = coastTiles
+			.map((tile) => ({ ...tile, distance: GameplayMap.getPlotDistance(start.x, start.y, tile.x, tile.y) }))
+			.sort((a, b) => a.distance - b.distance || a.index - b.index);
 
-    let reefCount = 0;
-    let rejectedCount = 0;
-    for (const tile of candidates) {
-      const existingFeature = GameplayMap.getFeatureType(tile.x, tile.y);
-      if (existingFeature === reef.$index || existingFeature === coldReef?.$index) {
-        reefCount++;
-      } else if (existingFeature === FeatureTypes.NO_FEATURE) {
-        let feature = reef;
-        if (!TerrainBuilder.canHaveFeature(tile.x, tile.y, feature.$index)) {
-          feature = coldReef;
-        }
-        if (feature == null || !TerrainBuilder.canHaveFeature(tile.x, tile.y, feature.$index)) continue;
-        TerrainBuilder.setFeatureType(tile.x, tile.y, {
-          Feature: feature.$index,
-          Direction: -1,
-          Elevation: 0
-        });
-        const placedFeature = GameplayMap.getFeatureType(tile.x, tile.y);
-        if (placedFeature === reef.$index || placedFeature === coldReef?.$index) {
-          reefCount++;
-          totalPlaced++;
-        } else {
-          rejectedCount++;
-        }
-      }
-      if (reefCount === COASTAL_REEFS_PER_START) break;
-    }
-    console.log(
-      `BBM MAPS COASTAL REEFS: player=${playerId} candidates=${candidates.length} ` +
-      `nearest reef tiles=${reefCount} rejected=${rejectedCount}`
-    );
-  }
+		let reefCount = 0;
+		let rejectedCount = 0;
+		for (const tile of candidates) {
+			const existingFeature = GameplayMap.getFeatureType(tile.x, tile.y);
+			if (existingFeature === reef.$index || existingFeature === coldReef?.$index) {
+				reefCount++;
+			} else if (existingFeature === FeatureTypes.NO_FEATURE) {
+				let feature = reef;
+				if (!TerrainBuilder.canHaveFeature(tile.x, tile.y, feature.$index)) {
+					feature = coldReef;
+				}
+				if (feature == null || !TerrainBuilder.canHaveFeature(tile.x, tile.y, feature.$index)) continue;
+				TerrainBuilder.setFeatureType(tile.x, tile.y, {
+					Feature: feature.$index,
+					Direction: -1,
+					Elevation: 0
+				});
+				const placedFeature = GameplayMap.getFeatureType(tile.x, tile.y);
+				if (placedFeature === reef.$index || placedFeature === coldReef?.$index) {
+					reefCount++;
+					totalPlaced++;
+				} else {
+					rejectedCount++;
+				}
+			}
+			if (reefCount === COASTAL_REEFS_PER_START) break;
+		}
+		console.log(
+			`BBM coastal reefs: player=${playerId} candidates=${candidates.length} ` +
+			`nearest reef tiles=${reefCount} rejected=${rejectedCount}`
+		);
+	}
 
-  if (totalPlaced > 0) {
-    FertilityBuilder.recalculate();
-    assignAdvancedStartRegions();
-  }
-  console.log(`BBM MAPS COASTAL REEFS: placed ${totalPlaced} new Reef tile(s)`);
+	if (totalPlaced > 0) {
+		FertilityBuilder.recalculate();
+		assignAdvancedStartRegions();
+	}
+	console.log(`BBM coastal reefs: placed ${totalPlaced} new Reef tile(s)`);
 }
 
 // ============================ Regions ============================
 
 /** Players of the chosen team placement (0: whole map). */
 function getSelectedPlayerCount() {
-  return PLAYERS_BY_PLACEMENT[Configuration.getMapValue(PLACEMENT_SETTING_KEY)] ?? 0;
+	return PLAYERS_BY_PLACEMENT[Configuration.getMapValue(PLACEMENT_SETTING_KEY)] ?? 0;
 }
 
 function buildEastWestTeamRegions(playerCount, primaryLandmass) {
-  if (playerCount !== 2 && playerCount !== 4 && playerCount !== 6 && playerCount !== 8) {
-    return null;
-  }
+	if (playerCount !== 2 && playerCount !== 4 && playerCount !== 6 && playerCount !== 8) {
+		return null;
+	}
 
-  const west = primaryLandmass.west;
-  const east = primaryLandmass.east;
-  const south = primaryLandmass.south;
-  const north = primaryLandmass.north;
-  const width = Math.max(4, east - west);
-  const height = Math.max(4, north - south);
+	const west = primaryLandmass.west;
+	const east = primaryLandmass.east;
+	const south = primaryLandmass.south;
+	const north = primaryLandmass.north;
+	const width = Math.max(4, east - west);
+	const height = Math.max(4, north - south);
 
-  // These are the established East vs West bands used by every placement mode.
-  const farWestEnd = Math.floor(west + width * 0.24);
-  const innerWestStart = Math.floor(west + width * 0.34);
-  const innerWestEnd = Math.floor(west + width * 0.44);
-  const innerEastStart = Math.floor(west + width * 0.56);
-  const innerEastEnd = Math.floor(west + width * 0.66);
-  const farEastStart = Math.floor(west + width * 0.76);
-  const lowerNorth = Math.floor(south + height * 0.45);
-  const upperSouth = Math.ceil(south + height * 0.55);
-  const makeRegion = (regionWest, regionEast, regionSouth, regionNorth, role) => ({
-    west: regionWest,
-    east: regionEast,
-    south: regionSouth,
-    north: regionNorth,
-    continent: -1,
-    _eastWestRole: role
-  });
+	// These are the established East vs West bands used by every placement mode.
+	const farWestEnd = Math.floor(west + width * 0.24);
+	const innerWestStart = Math.floor(west + width * 0.34);
+	const innerWestEnd = Math.floor(west + width * 0.44);
+	const innerEastStart = Math.floor(west + width * 0.56);
+	const innerEastEnd = Math.floor(west + width * 0.66);
+	const farEastStart = Math.floor(west + width * 0.76);
+	const lowerNorth = Math.floor(south + height * 0.45);
+	const upperSouth = Math.ceil(south + height * 0.55);
+	const makeRegion = (regionWest, regionEast, regionSouth, regionNorth, role) => ({
+		west: regionWest,
+		east: regionEast,
+		south: regionSouth,
+		north: regionNorth,
+		continent: -1,
+		_eastWestRole: role
+	});
 
-  const westBackFull = makeRegion(west, farWestEnd, south, north, "west-backline");
-  const eastBackFull = makeRegion(farEastStart, east, south, north, "east-backline");
-  const westFrontFull = makeRegion(innerWestStart, innerWestEnd, south, north, "west-frontline");
-  const eastFrontFull = makeRegion(innerEastStart, innerEastEnd, south, north, "east-frontline");
-  const westBackLower = makeRegion(west, farWestEnd, south, lowerNorth, "west-backline-lower");
-  const eastBackLower = makeRegion(farEastStart, east, south, lowerNorth, "east-backline-lower");
-  const westBackUpper = makeRegion(west, farWestEnd, upperSouth, north, "west-backline-upper");
-  const eastBackUpper = makeRegion(farEastStart, east, upperSouth, north, "east-backline-upper");
-  const westFrontLower = makeRegion(innerWestStart, innerWestEnd, south, lowerNorth, "west-frontline-lower");
-  const eastFrontLower = makeRegion(innerEastStart, innerEastEnd, south, lowerNorth, "east-frontline-lower");
-  const westFrontUpper = makeRegion(innerWestStart, innerWestEnd, upperSouth, north, "west-frontline-upper");
-  const eastFrontUpper = makeRegion(innerEastStart, innerEastEnd, upperSouth, north, "east-frontline-upper");
+	const westBackFull = makeRegion(west, farWestEnd, south, north, "west-backline");
+	const eastBackFull = makeRegion(farEastStart, east, south, north, "east-backline");
+	const westFrontFull = makeRegion(innerWestStart, innerWestEnd, south, north, "west-frontline");
+	const eastFrontFull = makeRegion(innerEastStart, innerEastEnd, south, north, "east-frontline");
+	const westBackLower = makeRegion(west, farWestEnd, south, lowerNorth, "west-backline-lower");
+	const eastBackLower = makeRegion(farEastStart, east, south, lowerNorth, "east-backline-lower");
+	const westBackUpper = makeRegion(west, farWestEnd, upperSouth, north, "west-backline-upper");
+	const eastBackUpper = makeRegion(farEastStart, east, upperSouth, north, "east-backline-upper");
+	const westFrontLower = makeRegion(innerWestStart, innerWestEnd, south, lowerNorth, "west-frontline-lower");
+	const eastFrontLower = makeRegion(innerEastStart, innerEastEnd, south, lowerNorth, "east-frontline-lower");
+	const westFrontUpper = makeRegion(innerWestStart, innerWestEnd, upperSouth, north, "west-frontline-upper");
+	const eastFrontUpper = makeRegion(innerEastStart, innerEastEnd, upperSouth, north, "east-frontline-upper");
 
-  if (playerCount === 2) {
-    // Duel combines each side's backline and frontline territory into one
-    // broad region. A slightly wider 18% center gap keeps both capitals out
-    // of the exact middle without forcing them to the extreme map edges.
-    const duelWestEnd = Math.floor(west + width * 0.41);
-    const duelEastStart = Math.ceil(west + width * 0.59);
-    return [
-      makeRegion(west, duelWestEnd, south, north, "duel-west"),
-      makeRegion(duelEastStart, east, south, north, "duel-east")
-    ];
-  }
-  if (playerCount === 4) {
-    return [westBackFull, eastBackFull, westFrontFull, eastFrontFull];
-  }
-  if (playerCount === 6) {
-    return [
-      westBackLower, eastBackLower,
-      westBackUpper, eastBackUpper,
-      westFrontFull, eastFrontFull
-    ];
-  }
-  return [
-    westBackLower, eastBackLower,
-    westBackUpper, eastBackUpper,
-    westFrontLower, eastFrontLower,
-    westFrontUpper, eastFrontUpper
-  ];
+	if (playerCount === 2) {
+		// Duel combines each side's backline and frontline territory into one
+		// broad region. A slightly wider 18% center gap keeps both capitals out
+		// of the exact middle without forcing them to the extreme map edges.
+		const duelWestEnd = Math.floor(west + width * 0.41);
+		const duelEastStart = Math.ceil(west + width * 0.59);
+		return [
+			makeRegion(west, duelWestEnd, south, north, "duel-west"),
+			makeRegion(duelEastStart, east, south, north, "duel-east")
+		];
+	}
+	if (playerCount === 4) {
+		return [westBackFull, eastBackFull, westFrontFull, eastFrontFull];
+	}
+	if (playerCount === 6) {
+		return [
+			westBackLower, eastBackLower,
+			westBackUpper, eastBackUpper,
+			westFrontFull, eastFrontFull
+		];
+	}
+	return [
+		westBackLower, eastBackLower,
+		westBackUpper, eastBackUpper,
+		westFrontLower, eastFrontLower,
+		westFrontUpper, eastFrontUpper
+	];
 }
 
 function isLand(x, y) {
-  const terrain = GameplayMap.getTerrainType(x, y);
-  return terrain !== g_OceanTerrain && terrain !== g_CoastTerrain;
+	const terrain = GameplayMap.getTerrainType(x, y);
+	return terrain !== g_OceanTerrain && terrain !== g_CoastTerrain;
 }
 
 function getPlayerLandBounds() {
-  const width = GameplayMap.getGridWidth();
-  const height = GameplayMap.getGridHeight();
-  const aliveMajorIds = Players.getAliveMajorIds();
-  const startIndices = [];
+	const width = GameplayMap.getGridWidth();
+	const height = GameplayMap.getGridHeight();
+	const aliveMajorIds = Players.getAliveMajorIds();
+	const startIndices = [];
 
-  for (const playerId of aliveMajorIds) {
-    const plotIndex = StartPositioner.getStartPosition(playerId);
-    if (plotIndex < 0) {
-      return null;
-    }
-    startIndices.push(plotIndex);
-  }
+	for (const playerId of aliveMajorIds) {
+		const plotIndex = StartPositioner.getStartPosition(playerId);
+		if (plotIndex < 0) {
+			return null;
+		}
+		startIndices.push(plotIndex);
+	}
 
-  // Use every connected land area that the chosen map selected for a major
-  // player. This excludes unused distant islands while preserving maps that
-  // intentionally spread players over two continents or several islands.
-  const requiredComponents = new Set();
-  const componentByPlot = new Map();
-  const components = [];
+	// Use every connected land area that the chosen map selected for a major
+	// player. This excludes unused distant islands while preserving maps that
+	// intentionally spread players over two continents or several islands.
+	const requiredComponents = new Set();
+	const componentByPlot = new Map();
+	const components = [];
 
-  for (const startIndex of startIndices) {
-    if (componentByPlot.has(startIndex)) {
-      requiredComponents.add(componentByPlot.get(startIndex));
-      continue;
-    }
+	for (const startIndex of startIndices) {
+		if (componentByPlot.has(startIndex)) {
+			requiredComponents.add(componentByPlot.get(startIndex));
+			continue;
+		}
 
-    const componentId = components.length;
-    const plots = [];
-    const queue = [startIndex];
-    componentByPlot.set(startIndex, componentId);
+		const componentId = components.length;
+		const plots = [];
+		const queue = [startIndex];
+		componentByPlot.set(startIndex, componentId);
 
-    for (let cursor = 0; cursor < queue.length; cursor++) {
-      const plotIndex = queue[cursor];
-      const location = GameplayMap.getLocationFromIndex(plotIndex);
-      plots.push(location);
+		for (let cursor = 0; cursor < queue.length; cursor++) {
+			const plotIndex = queue[cursor];
+			const location = GameplayMap.getLocationFromIndex(plotIndex);
+			plots.push(location);
 
-      for (const adjacent of adjacentPlots(location)) {
-        const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
-        if (!componentByPlot.has(adjacentIndex) && isLand(adjacent.x, adjacent.y)) {
-          componentByPlot.set(adjacentIndex, componentId);
-          queue.push(adjacentIndex);
-        }
-      }
-    }
+			for (const adjacent of adjacentPlots(location)) {
+				const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
+				if (!componentByPlot.has(adjacentIndex) && isLand(adjacent.x, adjacent.y)) {
+					componentByPlot.set(adjacentIndex, componentId);
+					queue.push(adjacentIndex);
+				}
+			}
+		}
 
-    components.push(plots);
-    requiredComponents.add(componentId);
-  }
+		components.push(plots);
+		requiredComponents.add(componentId);
+	}
 
-  let west = width - 1;
-  let east = 0;
-  let south = height - 1;
-  let north = 0;
-  let tileCount = 0;
-  for (const componentId of requiredComponents) {
-    const component = components[componentId];
-    if (component == null) {
-      continue;
-    }
-    for (const location of component) {
-      west = Math.min(west, location.x);
-      east = Math.max(east, location.x);
-      south = Math.min(south, location.y);
-      north = Math.max(north, location.y);
-      tileCount++;
-    }
-  }
+	let west = width - 1;
+	let east = 0;
+	let south = height - 1;
+	let north = 0;
+	let tileCount = 0;
+	for (const componentId of requiredComponents) {
+		const component = components[componentId];
+		if (component == null) {
+			continue;
+		}
+		for (const location of component) {
+			west = Math.min(west, location.x);
+			east = Math.max(east, location.x);
+			south = Math.min(south, location.y);
+			north = Math.max(north, location.y);
+			tileCount++;
+		}
+	}
 
-  if (tileCount === 0 || east - west < 8 || north - south < 6) {
-    return null;
-  }
-  return { west, east, south, north };
+	if (tileCount === 0 || east - west < 8 || north - south < 6) {
+		return null;
+	}
+	return { west, east, south, north };
 }
 
 function getRegionTiles(region) {
-  const tiles = [];
-  for (let y = region.south; y <= region.north; y++) {
-    for (let x = region.west; x <= region.east; x++) tiles.push({ x, y });
-  }
-  return tiles;
+	const tiles = [];
+	for (let y = region.south; y <= region.north; y++) {
+		for (let x = region.west; x <= region.east; x++) tiles.push({ x, y });
+	}
+	return tiles;
 }
 
 function getWholeMapTiles() {
-  const tiles = [];
-  const width = GameplayMap.getGridWidth();
-  const height = GameplayMap.getGridHeight();
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) tiles.push({ x, y });
-  }
-  return tiles;
+	const tiles = [];
+	const width = GameplayMap.getGridWidth();
+	const height = GameplayMap.getGridHeight();
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) tiles.push({ x, y });
+	}
+	return tiles;
 }
 
 // ============================ Scoring ============================
 
 /** The landmass regions the map started players on (homelands): no start moves to any other (Distant Lands). */
 function homelandRegions() {
-  const regions = new Set();
-  for (const playerId of Players.getAliveMajorIds()) {
-    const plotIndex = StartPositioner.getStartPosition(playerId);
-    if (plotIndex < 0) continue;
-    const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
-    regions.add(GameplayMap.getLandmassRegionId(x, y));
-  }
-  return regions;
+	const regions = new Set();
+	for (const playerId of Players.getAliveMajorIds()) {
+		const plotIndex = StartPositioner.getStartPosition(playerId);
+		if (plotIndex < 0) continue;
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		regions.add(GameplayMap.getLandmassRegionId(x, y));
+	}
+	return regions;
 }
 
 /** Per-pass caches: tile validity and scores are fixed while starts are being solved. */
 function createPlacementContext() {
-  return {
-    visitedNodes: 0,
-    homelands: homelandRegions(),
-    usable: new Map(),
-    plotScores: new Map(),
-    playerScores: new Map(),
-    exact: new Map(),
-    lake: new Map()
-  };
+	return {
+		visitedNodes: 0,
+		homelands: homelandRegions(),
+		usable: new Map(),
+		plotScores: new Map(),
+		playerScores: new Map(),
+		exact: new Map(),
+		lake: new Map()
+	};
 }
 
 const passExpired = (ctx) => ctx.visitedNodes >= PLACEMENT_NODE_LIMIT;
 
 function memo(map, key, compute) {
-  let value = map.get(key);
-  if (value === undefined) {
-    value = compute();
-    map.set(key, value);
-  }
-  return value;
+	let value = map.get(key);
+	if (value === undefined) {
+		value = compute();
+		map.set(key, value);
+	}
+	return value;
 }
 
 const plotKey = (tile) => GameplayMap.getIndexFromXY(tile.x, tile.y);
@@ -323,72 +323,72 @@ const playerPlotKey = (playerId, plotIndex) => playerId * 1048576 + plotIndex;
 
 /** A Discovery (goody hut) or other constructible on the plot: the map places them before starts move. */
 function hasConstructible(x, y) {
-  try { return (MapConstructibles.getConstructibles(x, y)?.length ?? 0) > 0; } catch (e) { return false; }
+	try { return (MapConstructibles.getConstructibles(x, y)?.length ?? 0) > 0; } catch (e) { return false; }
 }
 
 const isHomeland = (ctx, tile) => ctx.homelands.size === 0 || ctx.homelands.has(GameplayMap.getLandmassRegionId(tile.x, tile.y));
 
 /** Homeland land, passable, not a Natural Wonder or a Discovery, with Fresh Water. */
 function isUsableStart(ctx, tile) {
-  return memo(ctx.usable, plotKey(tile), () =>
-    isHomeland(ctx, tile) && !GameplayMap.isWater(tile.x, tile.y) && !GameplayMap.isMountain(tile.x, tile.y) &&
-    !GameplayMap.isNaturalWonder(tile.x, tile.y) && !hasConstructible(tile.x, tile.y) &&
-    GameplayMap.isFreshWater(tile.x, tile.y));
+	return memo(ctx.usable, plotKey(tile), () =>
+		isHomeland(ctx, tile) && !GameplayMap.isWater(tile.x, tile.y) && !GameplayMap.isMountain(tile.x, tile.y) &&
+		!GameplayMap.isNaturalWonder(tile.x, tile.y) && !hasConstructible(tile.x, tile.y) &&
+		GameplayMap.isFreshWater(tile.x, tile.y));
 }
 
 function matchesExact(ctx, playerId, tile) {
-  return memo(ctx.exact, playerPlotKey(playerId, plotKey(tile)), () => matchesPlayerStrictStartBias(tile.x, tile.y, playerId));
+	return memo(ctx.exact, playerPlotKey(playerId, plotKey(tile)), () => matchesPlayerStrictStartBias(tile.x, tile.y, playerId));
 }
 
 function matchesLakeFallback(ctx, playerId, tile) {
-  return memo(ctx.lake, playerPlotKey(playerId, plotKey(tile)), () => matchesPlayerStrictStartBiasWithLakeFallback(tile.x, tile.y, playerId));
+	return memo(ctx.lake, playerPlotKey(playerId, plotKey(tile)), () => matchesPlayerStrictStartBiasWithLakeFallback(tile.x, tile.y, playerId));
 }
 
 const hasStrictBias = (playerId) => isStrictStartBiasEnabled() && getPlayerStrictStartBias(playerId) != null;
 
 /** The game's start score plus the player's start biases. */
 function startScore(ctx, playerId, tile) {
-  const plotIndex = plotKey(tile);
-  const base = memo(ctx.plotScores, plotIndex, () => StartPositioner.getStartPositionScore(tile.x, tile.y));
-  const bias = memo(ctx.playerScores, playerPlotKey(playerId, plotIndex), () => adjustScoreByStartBias(tile.x, tile.y, playerId));
-  return { base, bias };
+	const plotIndex = plotKey(tile);
+	const base = memo(ctx.plotScores, plotIndex, () => StartPositioner.getStartPositionScore(tile.x, tile.y));
+	const bias = memo(ctx.playerScores, playerPlotKey(playerId, plotIndex), () => adjustScoreByStartBias(tile.x, tile.y, playerId));
+	return { base, bias };
 }
 
 function isValidJointStartTile(ctx, tile, playerId, allowLakeFallback, enforcedStrictPlayerIds) {
-  if (!isUsableStart(ctx, tile)) return false;
-  if (!hasStrictBias(playerId) || (enforcedStrictPlayerIds != null && !enforcedStrictPlayerIds.has(playerId))) return true;
-  if (matchesExact(ctx, playerId, tile)) return true;
-  return allowLakeFallback && matchesLakeFallback(ctx, playerId, tile);
+	if (!isUsableStart(ctx, tile)) return false;
+	if (!hasStrictBias(playerId) || (enforcedStrictPlayerIds != null && !enforcedStrictPlayerIds.has(playerId))) return true;
+	if (matchesExact(ctx, playerId, tile)) return true;
+	return allowLakeFallback && matchesLakeFallback(ctx, playerId, tile);
 }
 
 function buildJointStartCandidates(ctx, playerId, tiles, originalStart, allowLakeFallback, enforcedStrictPlayerIds, orderingSeed) {
-  const original = originalStart >= 0 ? GameplayMap.getLocationFromIndex(originalStart) : null;
-  const strict = hasStrictBias(playerId);
-  const candidates = [];
-  for (const tile of tiles) {
-    if (!isValidJointStartTile(ctx, tile, playerId, allowLakeFallback, enforcedStrictPlayerIds)) continue;
-    const { base, bias } = startScore(ctx, playerId, tile);
-    // A non-positive game score marks a poor start, not an invalid one: it may be the only way to meet a requirement.
-    let score = (!Number.isFinite(base) || base <= 0 ? 1 : base) + bias;
-    // Lake matches are the coastal fallback: true ocean-coast matches stay ahead whenever both solve.
-    if (strict && !matchesExact(ctx, playerId, tile)) score -= 1000000;
-    if (original != null) score /= 1 + GameplayMap.getPlotDistance(tile.x, tile.y, original.x, original.y) * 0.02;
-    const plotIndex = plotKey(tile);
-    candidates.push({ plotIndex, x: tile.x, y: tile.y, score, order: ((plotIndex * 1103515245 + orderingSeed * 12345) >>> 0) });
-  }
-  candidates.sort((a, b) => {
-    if (orderingSeed === 0) return b.score - a.score || a.plotIndex - b.plotIndex;
-    // Restarts keep broad quality bands but explore a different branch order.
-    return Math.floor(b.score / 25) - Math.floor(a.score / 25) || a.order - b.order || a.plotIndex - b.plotIndex;
-  });
-  return candidates;
+	const original = originalStart >= 0 ? GameplayMap.getLocationFromIndex(originalStart) : null;
+	const strict = hasStrictBias(playerId);
+	const candidates = [];
+	for (const tile of tiles) {
+		if (!isValidJointStartTile(ctx, tile, playerId, allowLakeFallback, enforcedStrictPlayerIds)) continue;
+		const { base, bias } = startScore(ctx, playerId, tile);
+		// A non-positive game score marks a poor start, not an invalid one: it may be the only way to meet a requirement.
+		let score = (!Number.isFinite(base) || base <= 0 ? 1 : base) + bias;
+		// Lake matches are the coastal fallback: true ocean-coast matches stay ahead whenever both solve.
+		if (strict && !matchesExact(ctx, playerId, tile)) score -= 1000000;
+		if (original != null) score /= 1 + GameplayMap.getPlotDistance(tile.x, tile.y, original.x, original.y) * 0.02;
+		const plotIndex = plotKey(tile);
+		candidates.push({ plotIndex, x: tile.x, y: tile.y, score, order: ((plotIndex * 1103515245 + orderingSeed * 12345) >>> 0) });
+	}
+	candidates.sort((a, b) => {
+		if (orderingSeed === 0) return b.score - a.score || a.plotIndex - b.plotIndex;
+		// Restarts keep broad quality bands but explore a different branch order.
+		return Math.floor(b.score / 25) - Math.floor(a.score / 25) || a.order - b.order || a.plotIndex - b.plotIndex;
+	});
+	return candidates;
 }
 
 // ============================ Solver ============================
 
 // Rows apart is a lower bound on the hex distance, so far-apart rows skip the distance call.
 const farEnough = (a, b) => Math.abs(a.y - b.y) >= START_MINIMUM_DISTANCE ||
-  GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
+	GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
 
 /**
  * Backtracking with forward checking: every remaining player keeps the
@@ -397,64 +397,64 @@ const farEnough = (a, b) => Math.abs(a.y - b.y) >= START_MINIMUM_DISTANCE ||
  * placed first; node limits (per search and per pass) bound the search.
  */
 function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allowLakeFallback = false, enforcedStrictPlayerIds = null, orderingSeed = 0) {
-  const domains = new Map();
-  for (let i = 0; i < playerIds.length; i++) {
-    const playerId = playerIds[i];
-    const candidates = buildJointStartCandidates(ctx, playerId, tileSets[i], originalStarts.get(playerId), allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
-    console.log(`BBM MAPS JOINT STARTS: player=${playerId} candidates=${candidates.length} lakeFallback=${allowLakeFallback} seed=${orderingSeed}`);
-    if (candidates.length === 0) return { solution: null, exhausted: false };
-    domains.set(playerId, candidates);
-  }
+	const domains = new Map();
+	for (let i = 0; i < playerIds.length; i++) {
+		const playerId = playerIds[i];
+		const candidates = buildJointStartCandidates(ctx, playerId, tileSets[i], originalStarts.get(playerId), allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
+		console.log(`BBM joint starts: player=${playerId} candidates=${candidates.length} lakeFallback=${allowLakeFallback} seed=${orderingSeed}`);
+		if (candidates.length === 0) return { solution: null, exhausted: false };
+		domains.set(playerId, candidates);
+	}
 
-  const assigned = new Map();
-  let visitedNodes = 0;
-  let stopped = false;
-  const search = (remaining) => {
-    if (remaining.size === 0) return true;
-    let chosenPlayer = -1;
-    let chosenDomain = null;
-    for (const [playerId, domain] of remaining) {
-      if (chosenDomain == null || domain.length < chosenDomain.length) {
-        chosenPlayer = playerId;
-        chosenDomain = domain;
-      }
-    }
-    for (const candidate of chosenDomain) {
-      ctx.visitedNodes++;
-      if (++visitedNodes >= JOINT_START_SEARCH_NODE_LIMIT || passExpired(ctx)) {
-        stopped = true;
-        return false;
-      }
-      const next = new Map();
-      let deadEnd = false;
-      for (const [playerId, domain] of remaining) {
-        if (playerId === chosenPlayer) continue;
-        const compatible = domain.filter((other) => farEnough(other, candidate));
-        if (compatible.length === 0) { deadEnd = true; break; }
-        next.set(playerId, compatible);
-      }
-      if (deadEnd) continue;
-      assigned.set(chosenPlayer, candidate);
-      if (search(next)) return true;
-      assigned.delete(chosenPlayer);
-      if (stopped) return false;
-    }
-    return false;
-  };
+	const assigned = new Map();
+	let visitedNodes = 0;
+	let stopped = false;
+	const search = (remaining) => {
+		if (remaining.size === 0) return true;
+		let chosenPlayer = -1;
+		let chosenDomain = null;
+		for (const [playerId, domain] of remaining) {
+			if (chosenDomain == null || domain.length < chosenDomain.length) {
+				chosenPlayer = playerId;
+				chosenDomain = domain;
+			}
+		}
+		for (const candidate of chosenDomain) {
+			ctx.visitedNodes++;
+			if (++visitedNodes >= JOINT_START_SEARCH_NODE_LIMIT || passExpired(ctx)) {
+				stopped = true;
+				return false;
+			}
+			const next = new Map();
+			let deadEnd = false;
+			for (const [playerId, domain] of remaining) {
+				if (playerId === chosenPlayer) continue;
+				const compatible = domain.filter((other) => farEnough(other, candidate));
+				if (compatible.length === 0) { deadEnd = true; break; }
+				next.set(playerId, compatible);
+			}
+			if (deadEnd) continue;
+			assigned.set(chosenPlayer, candidate);
+			if (search(next)) return true;
+			assigned.delete(chosenPlayer);
+			if (stopped) return false;
+		}
+		return false;
+	};
 
-  const solved = search(domains);
-  console.log(`BBM MAPS JOINT STARTS: solved=${solved} visitedNodes=${visitedNodes} stopped=${stopped}`);
-  return { solution: solved ? new Map(assigned) : null, exhausted: !solved && stopped };
+	const solved = search(domains);
+	console.log(`BBM joint starts: solved=${solved} visitedNodes=${visitedNodes} stopped=${stopped}`);
+	return { solution: solved ? new Map(assigned) : null, exhausted: !solved && stopped };
 }
 
 function solveJointStartPositionsWithRestarts(ctx, playerIds, tileSets, originalStarts, allowLakeFallback, enforcedStrictPlayerIds) {
-  for (let orderingSeed = 0; orderingSeed < JOINT_START_SEARCH_RESTARTS && !passExpired(ctx); orderingSeed++) {
-    const result = solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
-    if (result.solution != null) return result.solution;
-    if (!result.exhausted) break;
-    console.log(`BBM MAPS JOINT STARTS: restarting bounded search with ordering seed ${orderingSeed + 1}`);
-  }
-  return null;
+	for (let orderingSeed = 0; orderingSeed < JOINT_START_SEARCH_RESTARTS && !passExpired(ctx); orderingSeed++) {
+		const result = solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allowLakeFallback, enforcedStrictPlayerIds, orderingSeed);
+		if (result.solution != null) return result.solution;
+		if (!result.exhausted) break;
+		console.log(`BBM joint starts: restarting bounded search with ordering seed ${orderingSeed + 1}`);
+	}
+	return null;
 }
 
 // ============================ Validation ============================
@@ -462,352 +462,352 @@ function solveJointStartPositionsWithRestarts(ctx, playerIds, tileSets, original
 const inTileSet = (tiles, candidate) => tiles.some((tile) => tile.x === candidate.x && tile.y === candidate.y);
 
 function validateStartSolution(
-  playerIds,
-  solution,
-  allowLakeFallback,
-  enforcedStrictPlayerIds = null,
-  requiredTileSets = null
+	playerIds,
+	solution,
+	allowLakeFallback,
+	enforcedStrictPlayerIds = null,
+	requiredTileSets = null
 ) {
-  const failures = [];
-  const locations = new Map();
-  for (const playerId of playerIds) {
-    const candidate = solution.get(playerId);
-    if (candidate == null) {
-      failures.push(`player ${playerId}: no assigned tile`);
-      continue;
-    }
-    if (requiredTileSets != null && !inTileSet(requiredTileSets[playerIds.indexOf(playerId)], candidate)) {
-      failures.push(`player ${playerId}: outside the assigned competitive region`);
-    }
-    if (GameplayMap.isWater(candidate.x, candidate.y) || GameplayMap.isMountain(candidate.x, candidate.y)) {
-      failures.push(`player ${playerId}: assigned an impassable tile`);
-    } else if (!GameplayMap.isFreshWater(candidate.x, candidate.y)) {
-      failures.push(`player ${playerId}: assigned without Fresh Water`);
-    }
-    const strictIsEnforced = enforcedStrictPlayerIds == null || enforcedStrictPlayerIds.has(playerId);
-    if (strictIsEnforced && hasStrictBias(playerId)) {
-      const exact = matchesPlayerStrictStartBias(candidate.x, candidate.y, playerId);
-      const fallback = allowLakeFallback && matchesPlayerStrictStartBiasWithLakeFallback(candidate.x, candidate.y, playerId);
-      if (!exact && !fallback) failures.push(`player ${playerId}: strict requirement not met`);
-    }
-    locations.set(playerId, candidate);
-  }
-  for (let i = 0; i < playerIds.length; i++) {
-    const a = locations.get(playerIds[i]);
-    if (a == null) continue;
-    for (let j = i + 1; j < playerIds.length; j++) {
-      const b = locations.get(playerIds[j]);
-      if (b != null && GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) < START_MINIMUM_DISTANCE) {
-        failures.push(`players ${playerIds[i]} and ${playerIds[j]}: less than ${START_MINIMUM_DISTANCE} tiles apart`);
-      }
-    }
-  }
-  return failures;
+	const failures = [];
+	const locations = new Map();
+	for (const playerId of playerIds) {
+		const candidate = solution.get(playerId);
+		if (candidate == null) {
+			failures.push(`player ${playerId}: no assigned tile`);
+			continue;
+		}
+		if (requiredTileSets != null && !inTileSet(requiredTileSets[playerIds.indexOf(playerId)], candidate)) {
+			failures.push(`player ${playerId}: outside the assigned competitive region`);
+		}
+		if (GameplayMap.isWater(candidate.x, candidate.y) || GameplayMap.isMountain(candidate.x, candidate.y)) {
+			failures.push(`player ${playerId}: assigned an impassable tile`);
+		} else if (!GameplayMap.isFreshWater(candidate.x, candidate.y)) {
+			failures.push(`player ${playerId}: assigned without Fresh Water`);
+		}
+		const strictIsEnforced = enforcedStrictPlayerIds == null || enforcedStrictPlayerIds.has(playerId);
+		if (strictIsEnforced && hasStrictBias(playerId)) {
+			const exact = matchesPlayerStrictStartBias(candidate.x, candidate.y, playerId);
+			const fallback = allowLakeFallback && matchesPlayerStrictStartBiasWithLakeFallback(candidate.x, candidate.y, playerId);
+			if (!exact && !fallback) failures.push(`player ${playerId}: strict requirement not met`);
+		}
+		locations.set(playerId, candidate);
+	}
+	for (let i = 0; i < playerIds.length; i++) {
+		const a = locations.get(playerIds[i]);
+		if (a == null) continue;
+		for (let j = i + 1; j < playerIds.length; j++) {
+			const b = locations.get(playerIds[j]);
+			if (b != null && GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) < START_MINIMUM_DISTANCE) {
+				failures.push(`players ${playerIds[i]} and ${playerIds[j]}: less than ${START_MINIMUM_DISTANCE} tiles apart`);
+			}
+		}
+	}
+	return failures;
 }
 
 function getCommittedStartSolution(playerIds) {
-  const solution = new Map();
-  for (const playerId of playerIds) {
-    const plotIndex = StartPositioner.getStartPosition(playerId);
-    if (plotIndex < 0) continue;
-    const location = GameplayMap.getLocationFromIndex(plotIndex);
-    solution.set(playerId, { plotIndex, x: location.x, y: location.y, score: 0 });
-  }
-  return solution;
+	const solution = new Map();
+	for (const playerId of playerIds) {
+		const plotIndex = StartPositioner.getStartPosition(playerId);
+		if (plotIndex < 0) continue;
+		const location = GameplayMap.getLocationFromIndex(plotIndex);
+		solution.set(playerId, { plotIndex, x: location.x, y: location.y, score: 0 });
+	}
+	return solution;
 }
 
 function buildHardRegionEmergencySolution(ctx, playerIds, tileSets) {
-  const solution = new Map();
-  const usedPlots = new Set();
-  for (let i = 0; i < playerIds.length; i++) {
-    const playerId = playerIds[i];
-    let bestCandidate = null;
-    let bestScore = Number.NEGATIVE_INFINITY;
-    for (const tile of tileSets[i]) {
-      if (GameplayMap.isWater(tile.x, tile.y) || GameplayMap.isMountain(tile.x, tile.y)) continue;
-      if (!isHomeland(ctx, tile) || GameplayMap.isNaturalWonder(tile.x, tile.y) || hasConstructible(tile.x, tile.y)) continue;
-      const plotIndex = plotKey(tile);
-      if (usedPlots.has(plotIndex)) continue;
-      let minimumDistance = 999;
-      for (const other of solution.values()) {
-        minimumDistance = Math.min(minimumDistance, GameplayMap.getPlotDistance(tile.x, tile.y, other.x, other.y));
-      }
-      const { base, bias } = startScore(ctx, playerId, tile);
-      let score = Math.max(0, base) + bias;
-      if (matchesExact(ctx, playerId, tile)) score += 1000000000;
-      else if (matchesLakeFallback(ctx, playerId, tile)) score += 500000000;
-      if (GameplayMap.isFreshWater(tile.x, tile.y)) score += 100000000;
-      score += Math.min(minimumDistance, START_MINIMUM_DISTANCE) * 1000000;
-      if (score > bestScore) {
-        bestScore = score;
-        bestCandidate = { plotIndex, x: tile.x, y: tile.y, score };
-      }
-    }
-    if (bestCandidate == null) return null;
-    solution.set(playerId, bestCandidate);
-    usedPlots.add(bestCandidate.plotIndex);
-  }
-  return solution;
+	const solution = new Map();
+	const usedPlots = new Set();
+	for (let i = 0; i < playerIds.length; i++) {
+		const playerId = playerIds[i];
+		let bestCandidate = null;
+		let bestScore = Number.NEGATIVE_INFINITY;
+		for (const tile of tileSets[i]) {
+			if (GameplayMap.isWater(tile.x, tile.y) || GameplayMap.isMountain(tile.x, tile.y)) continue;
+			if (!isHomeland(ctx, tile) || GameplayMap.isNaturalWonder(tile.x, tile.y) || hasConstructible(tile.x, tile.y)) continue;
+			const plotIndex = plotKey(tile);
+			if (usedPlots.has(plotIndex)) continue;
+			let minimumDistance = 999;
+			for (const other of solution.values()) {
+				minimumDistance = Math.min(minimumDistance, GameplayMap.getPlotDistance(tile.x, tile.y, other.x, other.y));
+			}
+			const { base, bias } = startScore(ctx, playerId, tile);
+			let score = Math.max(0, base) + bias;
+			if (matchesExact(ctx, playerId, tile)) score += 1000000000;
+			else if (matchesLakeFallback(ctx, playerId, tile)) score += 500000000;
+			if (GameplayMap.isFreshWater(tile.x, tile.y)) score += 100000000;
+			score += Math.min(minimumDistance, START_MINIMUM_DISTANCE) * 1000000;
+			if (score > bestScore) {
+				bestScore = score;
+				bestCandidate = { plotIndex, x: tile.x, y: tile.y, score };
+			}
+		}
+		if (bestCandidate == null) return null;
+		solution.set(playerId, bestCandidate);
+		usedPlots.add(bestCandidate.plotIndex);
+	}
+	return solution;
 }
 
 function validateHardRegionMembership(playerIds, solution, tileSets) {
-  const failures = [];
-  for (let i = 0; i < playerIds.length; i++) {
-    const playerId = playerIds[i];
-    const candidate = solution.get(playerId);
-    if (candidate == null || !inTileSet(tileSets[i], candidate)) {
-      failures.push(`player ${playerId}: outside the assigned competitive region`);
-    }
-  }
-  return failures;
+	const failures = [];
+	for (let i = 0; i < playerIds.length; i++) {
+		const playerId = playerIds[i];
+		const candidate = solution.get(playerId);
+		if (candidate == null || !inTileSet(tileSets[i], candidate)) {
+			failures.push(`player ${playerId}: outside the assigned competitive region`);
+		}
+	}
+	return failures;
 }
 
 // ============================ Placement ============================
 
 function applyGlobalTeamStarts() {
-  const ctx = createPlacementContext();
-  const playerCount = getSelectedPlayerCount();
-  const aliveMajorIds = Players.getAliveMajorIds();
-  const originalStarts = new Map();
-  for (const playerId of aliveMajorIds) {
-    originalStarts.set(playerId, StartPositioner.getStartPosition(playerId));
-  }
+	const ctx = createPlacementContext();
+	const playerCount = getSelectedPlayerCount();
+	const aliveMajorIds = Players.getAliveMajorIds();
+	const originalStarts = new Map();
+	for (const playerId of aliveMajorIds) {
+		originalStarts.set(playerId, StartPositioner.getStartPosition(playerId));
+	}
 
-  let tileSets;
-  let placementLabel = "whole-map";
-  if (playerCount === 0) {
-    const wholeMapTiles = getWholeMapTiles();
-    tileSets = aliveMajorIds.map(() => wholeMapTiles);
-  } else {
-    let regionPlayerCount = playerCount;
-    if (aliveMajorIds.length !== playerCount) {
-      const supportedActualCount = [2, 4, 6, 8].includes(aliveMajorIds.length);
-      if (!supportedActualCount) {
-        console.log(
-          `BBM MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
-          `${aliveMajorIds.length} major players; no valid competitive region layout exists`
-        );
-        return;
-      }
-      regionPlayerCount = aliveMajorIds.length;
-      console.log(
-        `BBM MAPS PLAYER PLACEMENT: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
-        `${aliveMajorIds.length} major players; hard-forcing regions for the detected player count`
-      );
-    }
-    const bounds = getPlayerLandBounds();
-    const regions = bounds == null ? null : buildEastWestTeamRegions(regionPlayerCount, bounds);
-    if (regions == null || regions.length !== aliveMajorIds.length) {
-      console.log("BBM MAPS PLAYER PLACEMENT: could not determine designated team regions; retaining original starts");
-      return;
-    }
-    tileSets = regions.map(getRegionTiles);
-    placementLabel = regionPlayerCount === 2
-      ? "Duel designated regions"
-      : `${regionPlayerCount / 2}v${regionPlayerCount / 2} designated regions`;
-  }
+	let tileSets;
+	let placementLabel = "whole-map";
+	if (playerCount === 0) {
+		const wholeMapTiles = getWholeMapTiles();
+		tileSets = aliveMajorIds.map(() => wholeMapTiles);
+	} else {
+		let regionPlayerCount = playerCount;
+		if (aliveMajorIds.length !== playerCount) {
+			const supportedActualCount = [2, 4, 6, 8].includes(aliveMajorIds.length);
+			if (!supportedActualCount) {
+				console.log(
+					`BBM player placement: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
+					`${aliveMajorIds.length} major players; no valid competitive region layout exists`
+				);
+				return;
+			}
+			regionPlayerCount = aliveMajorIds.length;
+			console.log(
+				`BBM player placement: selected ${playerCount / 2}v${playerCount / 2}, but detected ` +
+				`${aliveMajorIds.length} major players; hard-forcing regions for the detected player count`
+			);
+		}
+		const bounds = getPlayerLandBounds();
+		const regions = bounds == null ? null : buildEastWestTeamRegions(regionPlayerCount, bounds);
+		if (regions == null || regions.length !== aliveMajorIds.length) {
+			console.log("BBM player placement: could not determine designated team regions; retaining original starts");
+			return;
+		}
+		tileSets = regions.map(getRegionTiles);
+		placementLabel = regionPlayerCount === 2
+			? "Duel designated regions"
+			: `${regionPlayerCount / 2}v${regionPlayerCount / 2} designated regions`;
+	}
 
-  const allStrictPlayerIds = new Set(aliveMajorIds.filter(hasStrictBias));
-  const attempts = [
-    { label: placementLabel + " exact", allowLakeFallback: false },
-    { label: placementLabel + " with lake fallback", allowLakeFallback: true }
-  ];
+	const allStrictPlayerIds = new Set(aliveMajorIds.filter(hasStrictBias));
+	const attempts = [
+		{ label: placementLabel + " exact", allowLakeFallback: false },
+		{ label: placementLabel + " with lake fallback", allowLakeFallback: true }
+	];
 
-  let solution = null;
-  let chosenAttempt = null;
-  for (const attempt of attempts) {
-    if (passExpired(ctx)) break;
-    console.log(`BBM MAPS PLAYER PLACEMENT: attempting ${attempt.label}`);
-    const candidateSolution = solveJointStartPositionsWithRestarts(
-      ctx,
-      aliveMajorIds,
-      tileSets,
-      originalStarts,
-      attempt.allowLakeFallback,
-      allStrictPlayerIds
-    );
-    if (candidateSolution == null) continue;
-    const failures = validateStartSolution(
-      aliveMajorIds,
-      candidateSolution,
-      attempt.allowLakeFallback,
-      allStrictPlayerIds,
-      playerCount !== 0 ? tileSets : null
-    );
-    if (failures.length === 0) {
-      solution = candidateSolution;
-      chosenAttempt = attempt;
-      break;
-    }
-    console.log(`BBM MAPS PLAYER PLACEMENT: rejected ${attempt.label}: ${failures.join("; ")}`);
-  }
+	let solution = null;
+	let chosenAttempt = null;
+	for (const attempt of attempts) {
+		if (passExpired(ctx)) break;
+		console.log(`BBM MAPS PLAYER PLACEMENT: attempting ${attempt.label}`);
+		const candidateSolution = solveJointStartPositionsWithRestarts(
+			ctx,
+			aliveMajorIds,
+			tileSets,
+			originalStarts,
+			attempt.allowLakeFallback,
+			allStrictPlayerIds
+		);
+		if (candidateSolution == null) continue;
+		const failures = validateStartSolution(
+			aliveMajorIds,
+			candidateSolution,
+			attempt.allowLakeFallback,
+			allStrictPlayerIds,
+			playerCount !== 0 ? tileSets : null
+		);
+		if (failures.length === 0) {
+			solution = candidateSolution;
+			chosenAttempt = attempt;
+			break;
+		}
+		console.log(`BBM MAPS PLAYER PLACEMENT: rejected ${attempt.label}: ${failures.join("; ")}`);
+	}
 
-  // If a genuinely impossible leader/civilization combination blocks the
-  // complete arrangement, isolate only the smallest-candidate strict player
-  // and restart the entire placement. Other strict players remain mandatory.
-  // Competitive modes always reuse their designated tile sets here: region
-  // membership is a hard constraint and is never widened by recovery. This
-  // prevents one contradiction from reverting every civilization to an
-  // invalid vanilla start.
-  let enforcedStrictPlayerIds = new Set(allStrictPlayerIds);
-  const relaxedStrictPlayerIds = new Set();
-  while (solution == null && enforcedStrictPlayerIds.size > 0 && !passExpired(ctx)) {
-    let playerToRelax = -1;
-    let fewestCandidates = Number.POSITIVE_INFINITY;
-    for (const playerId of enforcedStrictPlayerIds) {
-      const playerIndex = aliveMajorIds.indexOf(playerId);
-      const candidateCount = buildJointStartCandidates(
-        ctx,
-        playerId,
-        tileSets[playerIndex],
-        originalStarts.get(playerId),
-        true,
-        enforcedStrictPlayerIds,
-        0
-      ).length;
-      if (candidateCount < fewestCandidates) {
-        fewestCandidates = candidateCount;
-        playerToRelax = playerId;
-      }
-    }
-    if (playerToRelax < 0) break;
-    enforcedStrictPlayerIds.delete(playerToRelax);
-    relaxedStrictPlayerIds.add(playerToRelax);
-    console.log(
-      `BBM MAPS PLAYER PLACEMENT: restarting after isolating player=${playerToRelax} ` +
-      `with only ${fewestCandidates} strict candidate(s)`
-    );
-    const candidateSolution = solveJointStartPositionsWithRestarts(
-      ctx,
-      aliveMajorIds,
-      tileSets,
-      originalStarts,
-      true,
-      enforcedStrictPlayerIds
-    );
-    if (candidateSolution == null) continue;
-    const failures = validateStartSolution(
-      aliveMajorIds,
-      candidateSolution,
-      true,
-      enforcedStrictPlayerIds,
-      playerCount !== 0 ? tileSets : null
-    );
-    if (failures.length === 0) {
-      solution = candidateSolution;
-      chosenAttempt = {
-        label: `${playerCount !== 0 ? "designated-region" : "whole-map"} best-effort recovery ` +
-          `(${relaxedStrictPlayerIds.size} isolated)`,
-        allowLakeFallback: true
-      };
-    }
-  }
+	// If a genuinely impossible leader/civilization combination blocks the
+	// complete arrangement, isolate only the smallest-candidate strict player
+	// and restart the entire placement. Other strict players remain mandatory.
+	// Competitive modes always reuse their designated tile sets here: region
+	// membership is a hard constraint and is never widened by recovery. This
+	// prevents one contradiction from reverting every civilization to an
+	// invalid vanilla start.
+	let enforcedStrictPlayerIds = new Set(allStrictPlayerIds);
+	const relaxedStrictPlayerIds = new Set();
+	while (solution == null && enforcedStrictPlayerIds.size > 0 && !passExpired(ctx)) {
+		let playerToRelax = -1;
+		let fewestCandidates = Number.POSITIVE_INFINITY;
+		for (const playerId of enforcedStrictPlayerIds) {
+			const playerIndex = aliveMajorIds.indexOf(playerId);
+			const candidateCount = buildJointStartCandidates(
+				ctx,
+				playerId,
+				tileSets[playerIndex],
+				originalStarts.get(playerId),
+				true,
+				enforcedStrictPlayerIds,
+				0
+			).length;
+			if (candidateCount < fewestCandidates) {
+				fewestCandidates = candidateCount;
+				playerToRelax = playerId;
+			}
+		}
+		if (playerToRelax < 0) break;
+		enforcedStrictPlayerIds.delete(playerToRelax);
+		relaxedStrictPlayerIds.add(playerToRelax);
+		console.log(
+			`BBM player placement: restarting after isolating player=${playerToRelax} ` +
+			`with only ${fewestCandidates} strict candidate(s)`
+		);
+		const candidateSolution = solveJointStartPositionsWithRestarts(
+			ctx,
+			aliveMajorIds,
+			tileSets,
+			originalStarts,
+			true,
+			enforcedStrictPlayerIds
+		);
+		if (candidateSolution == null) continue;
+		const failures = validateStartSolution(
+			aliveMajorIds,
+			candidateSolution,
+			true,
+			enforcedStrictPlayerIds,
+			playerCount !== 0 ? tileSets : null
+		);
+		if (failures.length === 0) {
+			solution = candidateSolution;
+			chosenAttempt = {
+				label: `${playerCount !== 0 ? "designated-region" : "whole-map"} best-effort recovery ` +
+					`(${relaxedStrictPlayerIds.size} isolated)`,
+				allowLakeFallback: true
+			};
+		}
+	}
 
-  if (solution == null && playerCount !== 0) {
-    console.log(
-      "BBM MAPS PLAYER PLACEMENT: strict regional restarts exhausted; applying hard-region emergency placement"
-    );
-    solution = buildHardRegionEmergencySolution(ctx, aliveMajorIds, tileSets);
-    if (solution != null) {
-      enforcedStrictPlayerIds = new Set();
-      for (const playerId of allStrictPlayerIds) relaxedStrictPlayerIds.add(playerId);
-      chosenAttempt = {
-        label: "hard-region emergency placement",
-        allowLakeFallback: true,
-        regionEmergency: true
-      };
-    }
-  }
+	if (solution == null && playerCount !== 0) {
+		console.log(
+			"BBM player placement: strict regional restarts exhausted; applying hard-region emergency placement"
+		);
+		solution = buildHardRegionEmergencySolution(ctx, aliveMajorIds, tileSets);
+		if (solution != null) {
+			enforcedStrictPlayerIds = new Set();
+			for (const playerId of allStrictPlayerIds) relaxedStrictPlayerIds.add(playerId);
+			chosenAttempt = {
+				label: "hard-region emergency placement",
+				allowLakeFallback: true,
+				regionEmergency: true
+			};
+		}
+	}
 
-  if (solution == null || chosenAttempt == null) {
-    console.log(
-      `BBM MAPS PLAYER PLACEMENT: every ${playerCount !== 0 ? "designated-region" : "whole-map"} ` +
-      "and isolated-player restart failed; " +
-      "retaining original starts"
-    );
-    for (const playerId of allStrictPlayerIds) {
-      const plotIndex = originalStarts.get(playerId);
-      if (plotIndex == null || plotIndex < 0) continue;
-      const location = GameplayMap.getLocationFromIndex(plotIndex);
-      if (
-        !matchesPlayerStrictStartBias(location.x, location.y, playerId) &&
-        !matchesPlayerStrictStartBiasWithLakeFallback(location.x, location.y, playerId)
-      ) {
-        recordStrictStartBiasFailure(playerId, "all complete placement restarts were exhausted");
-      }
-    }
-    return;
-  }
+	if (solution == null || chosenAttempt == null) {
+		console.log(
+			`BBM player placement: every ${playerCount !== 0 ? "designated-region" : "whole-map"} ` +
+			"and isolated-player restart failed; " +
+			"retaining original starts"
+		);
+		for (const playerId of allStrictPlayerIds) {
+			const plotIndex = originalStarts.get(playerId);
+			if (plotIndex == null || plotIndex < 0) continue;
+			const location = GameplayMap.getLocationFromIndex(plotIndex);
+			if (
+				!matchesPlayerStrictStartBias(location.x, location.y, playerId) &&
+				!matchesPlayerStrictStartBiasWithLakeFallback(location.x, location.y, playerId)
+			) {
+				recordStrictStartBiasFailure(playerId, "all complete placement restarts were exhausted");
+			}
+		}
+		return;
+	}
 
-  for (const playerId of aliveMajorIds) {
-    const candidate = solution.get(playerId);
-    StartPositioner.setStartPosition(candidate.plotIndex, playerId);
-    console.log(`BBM MAPS PLAYER PLACEMENT: player=${playerId} x=${candidate.x} y=${candidate.y}`);
-  }
-  assignAdvancedStartRegions();
+	for (const playerId of aliveMajorIds) {
+		const candidate = solution.get(playerId);
+		StartPositioner.setStartPosition(candidate.plotIndex, playerId);
+		console.log(`BBM player placement: player=${playerId} x=${candidate.x} y=${candidate.y}`);
+	}
+	assignAdvancedStartRegions();
 
-  const committedSolution = getCommittedStartSolution(aliveMajorIds);
-  const committedFailures = chosenAttempt.regionEmergency
-    ? validateHardRegionMembership(aliveMajorIds, committedSolution, tileSets)
-    : validateStartSolution(
-      aliveMajorIds,
-      committedSolution,
-      chosenAttempt.allowLakeFallback,
-      enforcedStrictPlayerIds,
-      playerCount !== 0 ? tileSets : null
-    );
-  if (committedFailures.length > 0) {
-    console.log(
-      `BBM MAPS PLAYER PLACEMENT: committed layout failed verification (${committedFailures.join("; ")}); ` +
-      "restoring original starts"
-    );
-    for (const [playerId, plotIndex] of originalStarts) {
-      if (plotIndex >= 0) StartPositioner.setStartPosition(plotIndex, playerId);
-    }
-    assignAdvancedStartRegions();
-    for (const playerId of allStrictPlayerIds) {
-      recordStrictStartBiasFailure(playerId, "post-placement verification failed");
-    }
-    return;
-  }
+	const committedSolution = getCommittedStartSolution(aliveMajorIds);
+	const committedFailures = chosenAttempt.regionEmergency
+		? validateHardRegionMembership(aliveMajorIds, committedSolution, tileSets)
+		: validateStartSolution(
+			aliveMajorIds,
+			committedSolution,
+			chosenAttempt.allowLakeFallback,
+			enforcedStrictPlayerIds,
+			playerCount !== 0 ? tileSets : null
+		);
+	if (committedFailures.length > 0) {
+		console.log(
+			`BBM player placement: committed layout failed verification (${committedFailures.join("; ")}); ` +
+			"restoring original starts"
+		);
+		for (const [playerId, plotIndex] of originalStarts) {
+			if (plotIndex >= 0) StartPositioner.setStartPosition(plotIndex, playerId);
+		}
+		assignAdvancedStartRegions();
+		for (const playerId of allStrictPlayerIds) {
+			recordStrictStartBiasFailure(playerId, "post-placement verification failed");
+		}
+		return;
+	}
 
-  for (const playerId of allStrictPlayerIds) {
-    const candidate = committedSolution.get(playerId);
-    const exact = candidate != null && matchesPlayerStrictStartBias(candidate.x, candidate.y, playerId);
-    const lakeFallback = candidate != null && matchesPlayerStrictStartBiasWithLakeFallback(candidate.x, candidate.y, playerId);
-    if (!exact && !lakeFallback) {
-      recordStrictStartBiasFailure(
-        playerId,
-        "the player's requirement was isolated only after every complete strict placement restart failed"
-      );
-    }
-  }
-  console.log(
-    `BBM MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
-    `${START_MINIMUM_DISTANCE}-tile minimum spacing`
-  );
+	for (const playerId of allStrictPlayerIds) {
+		const candidate = committedSolution.get(playerId);
+		const exact = candidate != null && matchesPlayerStrictStartBias(candidate.x, candidate.y, playerId);
+		const lakeFallback = candidate != null && matchesPlayerStrictStartBiasWithLakeFallback(candidate.x, candidate.y, playerId);
+		if (!exact && !lakeFallback) {
+			recordStrictStartBiasFailure(
+				playerId,
+				"the player's requirement was isolated only after every complete strict placement restart failed"
+			);
+		}
+	}
+	console.log(
+		`BBM MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
+		`${START_MINIMUM_DISTANCE}-tile minimum spacing`
+	);
 }
 
 function applyGlobalTeamStartsSafely() {
-  const originalStarts = new Map();
-  for (const playerId of Players.getAliveMajorIds()) {
-    originalStarts.set(playerId, StartPositioner.getStartPosition(playerId));
-  }
-  try {
-    applyGlobalTeamStarts();
-  } catch (error) {
-    for (const [playerId, plotIndex] of originalStarts) {
-      if (plotIndex >= 0) StartPositioner.setStartPosition(plotIndex, playerId);
-    }
-    try {
-      assignAdvancedStartRegions();
-    } catch (regionError) {
-      console.error(`BBM MAPS PLAYER PLACEMENT: original advanced regions could not be rebuilt: ${regionError?.stack ?? regionError}`);
-    }
-    console.error(
-      `BBM MAPS PLAYER PLACEMENT: unexpected solver error; restored every original start: ${error?.stack ?? error}`
-    );
-  }
+	const originalStarts = new Map();
+	for (const playerId of Players.getAliveMajorIds()) {
+		originalStarts.set(playerId, StartPositioner.getStartPosition(playerId));
+	}
+	try {
+		applyGlobalTeamStarts();
+	} catch (error) {
+		for (const [playerId, plotIndex] of originalStarts) {
+			if (plotIndex >= 0) StartPositioner.setStartPosition(plotIndex, playerId);
+		}
+		try {
+			assignAdvancedStartRegions();
+		} catch (regionError) {
+			console.error(`BBM player placement: original advanced regions could not be rebuilt: ${regionError?.stack ?? regionError}`);
+		}
+		console.error(
+			`BBM player placement: unexpected solver error; restored every original start: ${error?.stack ?? error}`
+		);
+	}
 }
 
 // The Map Options exist only in multiplayer setup; Resource List All matches the
@@ -818,41 +818,41 @@ const isResourceListAll = () => Configuration.getMapValue("BBMResourceList") ===
 const isScriptedMap = () => String(Configuration.getMapValue("Script") ?? "").endsWith(".js");
 
 function armGlobalTeamStartHandler() {
-  resetStrictStartBiases();   // a new map: re-read the option and the players
-  resetStartBiasScores();
-  // One handler per generation even if this script is loaded through more than one path.
-  if (globalThis.BBMPlayerPlacementArmed) return;
-  globalThis.BBMPlayerPlacementArmed = true;
+	resetStrictStartBiases();   // a new map: re-read the option and the players
+	resetStartBiasScores();
+	// One handler per generation even if this script is loaded through more than one path.
+	if (globalThis.BBMPlayerPlacementArmed) return;
+	globalThis.BBMPlayerPlacementArmed = true;
 
-  // Arming during RequestMapInitData registers this listener after the chosen
-  // map's GenerateMap listener, so placement is a post-process of every map.
-  // Resources, placement and Reefs run in one ordered pass.
-  engine.on("GenerateMap", () => {
-    if (!isMultiplayerMap()) {
-      console.log("BBM MAPS PLAYER PLACEMENT: not a multiplayer setup; map left unchanged");
-      return;
-    }
-    const scripted = isScriptedMap();
-    const resourceListAll = scripted && isResourceListAll();
-    if (resourceListAll) generateGlobalResources();
-    else if (scripted) scaleGameResources();
-    FertilityBuilder.recalculate();   // start scoring reads fertility from the new resources
-    applyGlobalTeamStartsSafely();
-    if (resourceListAll) {
-      try {
-        placeDealtResources();   // player regions follow the final starts
-      } catch (error) {
-        console.error(`BBM MAPS RESOURCES: dealt resources skipped after unexpected error: ${error?.stack ?? error}`);
-      }
-    }
-    try {
-      addCoastalStartReefs();
-    } catch (error) {
-      console.error(`BBM MAPS COASTAL REEFS: skipped after unexpected error: ${error?.stack ?? error}`);
-    }
-  });
-  console.log("BBM MAPS PLAYER PLACEMENT: post-process armed");
+	// Arming during RequestMapInitData registers this listener after the chosen
+	// map's GenerateMap listener, so placement is a post-process of every map.
+	// Resources, placement and Reefs run in one ordered pass.
+	engine.on("GenerateMap", () => {
+		if (!isMultiplayerMap()) {
+			console.log("BBM player placement: not a multiplayer setup; map left unchanged");
+			return;
+		}
+		const scripted = isScriptedMap();
+		const resourceListAll = scripted && isResourceListAll();
+		if (resourceListAll) generateGlobalResources();
+		else if (scripted) scaleGameResources();
+		FertilityBuilder.recalculate();   // start scoring reads fertility from the new resources
+		applyGlobalTeamStartsSafely();
+		if (resourceListAll) {
+			try {
+				placeDealtResources();   // player regions follow the final starts
+			} catch (error) {
+				console.error(`BBM resources: dealt resources skipped after unexpected error: ${error?.stack ?? error}`);
+			}
+		}
+		try {
+			addCoastalStartReefs();
+		} catch (error) {
+			console.error(`BBM coastal reefs: skipped after unexpected error: ${error?.stack ?? error}`);
+		}
+	});
+	console.log("BBM player placement: post-process armed");
 }
 
 engine.on("RequestMapInitData", armGlobalTeamStartHandler);
-console.log("BBM MAPS PLAYER PLACEMENT: loaded");
+console.log("BBM player placement: loaded");

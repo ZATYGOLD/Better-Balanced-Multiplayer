@@ -1,7 +1,7 @@
 --*******************************************************
 --***************** PARAMETER GROUPS ********************
 --*******************************************************
--- Multiplayer groups (ui/setup/setup-layout.js): Disaster and Crisis Settings
+-- Multiplayer groups (ui/setup/bbm-setup-layout.js): Disaster and Crisis Settings
 -- and Crises on Game Settings, the rest on the Advanced tab with the per-Age
 -- Triumph Sets.
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
@@ -22,7 +22,7 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 --***************** SETTLEMENT SETTINGS *****************
 --*******************************************************
 -- Settlement Distance, and Settlement Limit with a row per Age that follows it
--- (ui/gameplay/gameplay-rules.js; Custom leaves the rows to the host). The game
+-- (ui/gameplay/bbm-gameplay-rules.js; Custom leaves the rows to the host). The game
 -- data reads the rows: a file per limit, none for each Age's own.
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
@@ -40,7 +40,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('BBMGameplaySettlementLimitValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_LESS', 'LOC_BBM_GAMEPLAY_LESS_NAME', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_LESS_DESC', 10),
         ('BBMGameplaySettlementLimitValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_STANDARD_DESC', 20),
         ('BBMGameplaySettlementLimitValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_MORE', 'LOC_BBM_GAMEPLAY_MORE_NAME', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_MORE_DESC', 30),
-        ('BBMGameplaySettlementLimitValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_CUSTOM', 'LOC_DIFFICULTY_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_CUSTOM_DESC', 40),
+        ('BBMGameplaySettlementLimitValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_CUSTOM', 'LOC_BBM_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_CUSTOM_DESC', 40),
         ('BBMGameplaySettlementLimitAgeValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_1', 'LOC_BBM_GAMEPLAY_NUM_1', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_VALUE_DESC', 10),
         ('BBMGameplaySettlementLimitAgeValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_2', 'LOC_BBM_GAMEPLAY_NUM_2', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_VALUE_DESC', 20),
         ('BBMGameplaySettlementLimitAgeValues', 'BBM_GAMEPLAY_SETTLEMENT_LIMIT_3', 'LOC_BBM_GAMEPLAY_NUM_3', 'LOC_BBM_GAMEPLAY_SETTLEMENT_LIMIT_VALUE_DESC', 30),
@@ -113,7 +113,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_25', 'LOC_BBM_GAMEPLAY_PCT_PLUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_25_DESC', 40),
         ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_50', 'LOC_BBM_GAMEPLAY_PCT_PLUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_50_DESC', 50),
         ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_PLUS_100', 'LOC_BBM_GAMEPLAY_PCT_PLUS_100_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_PLUS_100_DESC', 60),
-        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_CUSTOM', 'LOC_DIFFICULTY_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_CUSTOM_DESC', 70),
+        ('BBMGameplayTradeRangeValues', 'BBM_GAMEPLAY_TRADE_RANGE_CUSTOM', 'LOC_BBM_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_CUSTOM_DESC', 70),
         ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_50', 'LOC_BBM_GAMEPLAY_PCT_MINUS_50_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_50_DESC', 10),
         ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_MINUS_25', 'LOC_BBM_GAMEPLAY_PCT_MINUS_25_NAME', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_MINUS_25_DESC', 20),
         ('BBMGameplayTradeRangeAgeValues', 'BBM_GAMEPLAY_TRADE_RANGE_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_TRADE_RANGE_STANDARD_DESC', 30),
@@ -138,11 +138,10 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 --*******************************************************
 --***************** DISASTER AND CRISIS SETTINGS ********
 --*******************************************************
--- The single-player layout in multiplayer: Disaster and Crisis Settings holds the
--- game's Disaster Intensity, Crises and Crisis Timing; the Crises section holds the
--- game's crisis list. Crises drives that list (ui/gameplay/gameplay-rules.js),
--- which the game applies through its ExcludeCrises key; Crisis Timing moves the
--- crisis stages. Multiplayer starts with Crises and Crisis Timing Off.
+-- Disaster and Crisis Settings holds the game's Disaster Intensity, Crises and
+-- Crisis Timing; the Crises section holds the game's crisis list. Crises drives
+-- that list (ui/gameplay/bbm-gameplay-rules.js), which the game applies through its
+-- ExcludeCrises key; Crisis Timing moves the crisis stages. Both start Disabled.
 UPDATE Parameters SET GroupIDMultiplayerOverride = 'DisasterCrisisOptions' WHERE ParameterID = 'DisasterIntensity';
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
@@ -152,9 +151,9 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, 
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
-        ('BBMGameplayCrisesValues', 'BBM_GAMEPLAY_CRISES_ON', 'LOC_ADVANCED_OPTIONS_ON', 'LOC_BBM_GAMEPLAY_CRISES_ON_DESC', 10),
-        ('BBMGameplayCrisesValues', 'BBM_GAMEPLAY_CRISES_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_BBM_GAMEPLAY_CRISES_OFF_DESC', 20),
-        ('BBMGameplayCrisisTimingValues', 'BBM_GAMEPLAY_CRISIS_TIMING_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_BBM_GAMEPLAY_CRISIS_TIMING_OFF_DESC', 10),
+        ('BBMGameplayCrisesValues', 'BBM_GAMEPLAY_CRISES_ON', 'LOC_BBM_ENABLED_NAME', 'LOC_BBM_GAMEPLAY_CRISES_ON_DESC', 10),
+        ('BBMGameplayCrisesValues', 'BBM_GAMEPLAY_CRISES_OFF', 'LOC_BBM_DISABLED_NAME', 'LOC_BBM_GAMEPLAY_CRISES_OFF_DESC', 20),
+        ('BBMGameplayCrisisTimingValues', 'BBM_GAMEPLAY_CRISIS_TIMING_OFF', 'LOC_BBM_DISABLED_NAME', 'LOC_BBM_GAMEPLAY_CRISIS_TIMING_OFF_DESC', 10),
         ('BBMGameplayCrisisTimingValues', 'BBM_GAMEPLAY_CRISIS_TIMING_EARLY', 'LOC_BBM_GAMEPLAY_EARLY_NAME', 'LOC_BBM_GAMEPLAY_CRISIS_TIMING_EARLY_DESC', 20),
         ('BBMGameplayCrisisTimingValues', 'BBM_GAMEPLAY_CRISIS_TIMING_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_GAMEPLAY_CRISIS_TIMING_STANDARD_DESC', 30),
         ('BBMGameplayCrisisTimingValues', 'BBM_GAMEPLAY_CRISIS_TIMING_LATE', 'LOC_BBM_GAMEPLAY_LATE_NAME', 'LOC_BBM_GAMEPLAY_CRISIS_TIMING_LATE_DESC', 40);
@@ -183,12 +182,12 @@ INSERT OR IGNORE INTO Queries (QueryID, Type, SQL)
 -- The game's Triumph Set gains Custom in multiplayer: the engine then reads
 -- BBM_LEGACY_SET_CUSTOM, which data/gameplay/triumph-sets/ fills with the set
 -- chosen for the Age in play. A row per Age follows the Triumph Set
--- (ui/gameplay/gameplay-rules.js) on the Advanced tab, while the Triumph Set
+-- (ui/gameplay/bbm-gameplay-rules.js) on the Advanced tab, while the Triumph Set
 -- stays on Game Settings. Custom is filtered out whenever the hidden
 -- multiplayer-only flag is unset (single-player setup).
 INSERT OR IGNORE INTO LegacySets (LegacySetType, Name, Description, SortIndex)
     VALUES
-        ('BBM_LEGACY_SET_CUSTOM', 'LOC_DIFFICULTY_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC', 5);
+        ('BBM_LEGACY_SET_CUSTOM', 'LOC_BBM_CUSTOM_NAME', 'LOC_BBM_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC', 5);
 
 INSERT OR IGNORE INTO Queries (QueryID, Type, SQL)
     VALUES

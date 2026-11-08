@@ -47,16 +47,16 @@ AND ConfigurationValue IN (SELECT REPLACE(File, '{zatygolds-multiplayer-balance}
 --*******************************************************
 -- Pangaea Ultima is the default multiplayer map (the multiplayer-only Map row). Settings
 -- whose row hotseat shares with single player (speed, map) and Map Size are set by
--- ui/maps/multiplayer-defaults.js on the multiplayer setup screen.
+-- ui/maps/bbm-multiplayer-defaults.js on the multiplayer setup screen.
 UPDATE Parameters SET DefaultValue = '{zatygolds-multiplayer-balance}maps/pangaea-ultima.js' WHERE ParameterID = 'Map' AND SupportsSinglePlayer = 0;
 
 --*******************************************************
 --***************** SPAWN SETTINGS **********************
 --*******************************************************
 -- A Spawn Settings group before Map Settings on the Map tab
--- (ui/setup/setup-layout.js): the game's multiplayer Start Position row, then
+-- (ui/setup/bbm-setup-layout.js): the game's multiplayer Start Position row, then
 -- Start Bias: Multiplayer (default) holds supported leaders and civilizations to
--- strict start biases (maps/strict-start-biases.js), Standard keeps the game's
+-- strict start biases (maps/bbm-strict-start-biases.js), Standard keeps the game's
 -- own. Single player keeps Start Position in Map Options.
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
@@ -88,7 +88,7 @@ UPDATE Parameters SET GroupIDMultiplayerOverride = 'MapOptions' WHERE ParameterI
 -- A Resource Settings group after Map Settings on the Map tab. Resource
 -- List picks the resources: Standard keeps the game's list and rules, All loads
 -- the mod's resource data (modinfo criteria maps-resource-list-all-*). Resource
--- Amount and Clusters apply to either (maps/global-resource-system.js).
+-- Amount and Clusters apply to either (maps/bbm-global-resource-system.js).
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
         ('ResourceOptions', 'LOC_GROUPID_BBM_RESOURCEOPTIONS');
@@ -96,7 +96,7 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, Hash, SupportsSinglePlayer, SortIndex)
     VALUES
         ('BBMResourceList', 'LOC_BBM_MAPS_RESOURCE_LIST_NAME', 'LOC_BBM_MAPS_RESOURCE_LIST_DESC', 'BBMResourceLists', 'BBM_MAPS_RESOURCE_LIST_ALL', 'Map', 'BBMResourceList', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 10),
-        ('BBMResourceAmount', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_DESC', 'BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_STANDARD', 'Map', 'BBMResourceAmount', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 20),
+        ('BBMResourceAmount', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_DESC', 'BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER', 'Map', 'BBMResourceAmount', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 20),
         ('BBMResourceClusters', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_DESC', 'BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_OFF', 'Map', 'BBMResourceClusters', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 30);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
@@ -104,10 +104,10 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('BBMResourceLists', 'BBM_MAPS_RESOURCE_LIST_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_MAPS_RESOURCE_LIST_STANDARD_DESC', 10),
         ('BBMResourceLists', 'BBM_MAPS_RESOURCE_LIST_ALL', 'LOC_BBM_MAPS_RESOURCE_LIST_ALL_NAME', 'LOC_BBM_MAPS_RESOURCE_LIST_ALL_DESC', 20),
         ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_SCARCE', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_SCARCE_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_SCARCE_DESC', 10),
-        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_SPARSE', 'LOC_ADVANCED_OPTIONS_SPARSE', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_SPARSE_DESC', 20),
-        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_STANDARD_DESC', 30),
-        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT', 'LOC_ADVANCED_OPTIONS_ABUNDANT', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT_DESC', 40),
-        ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_OFF_DESC', 10),
+        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_LIMITED', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_LIMITED_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_LIMITED_DESC', 20),
+        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER_DESC', 30),
+        ('BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_STANDARD_DESC', 40),
+        ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_OFF', 'LOC_BBM_DISABLED_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_OFF_DESC', 10),
         ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_SMALL', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_SMALL_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_SMALL_DESC', 20),
         ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_LARGE', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_LARGE_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_LARGE_DESC', 30);
 
@@ -143,7 +143,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 --***************** CHOSEN MAP SIZE *********************
 --*******************************************************
 -- Hidden: the size the lobby chose when a Spectator slot made the host launch the
--- next size up (ui/maps/match-slots.js); the map is still built at the chosen size.
+-- next size up (ui/maps/bbm-match-slots.js); the map is still built at the chosen size.
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, Hidden, Hash, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
         ('BBMChosenMapSize', 'LOC_BBM_MAPS_CHOSEN_MAP_SIZE', 'LOC_BBM_MAPS_CHOSEN_MAP_SIZE', 'BBMChosenMapSizes', 'BBM_MAPS_CHOSEN_SIZE_NONE', 'Map', 'BBMChosenMapSize', 'MapOptions', 1, 0, 0, 0, 9002);
@@ -167,7 +167,7 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Defaul
 --***************** PARAMETER GROUPS ********************
 --*******************************************************
 -- The Map tab's Terrain and Natural Wonder Selection groups
--- (ui/setup/setup-layout.js).
+-- (ui/setup/bbm-setup-layout.js).
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
         ('TerrainOptions', 'LOC_GROUPID_BBM_TERRAINOPTIONS'),
@@ -216,7 +216,7 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Defaul
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
-        ('BBMNaturalWonderCounts', 'BBM_MAPS_NATURAL_WONDERS_NONE', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_BBM_MAPS_NATURAL_WONDERS_NONE_DESC', 10),
+        ('BBMNaturalWonderCounts', 'BBM_MAPS_NATURAL_WONDERS_NONE', 'LOC_BBM_DISABLED_NAME', 'LOC_BBM_MAPS_NATURAL_WONDERS_NONE_DESC', 10),
         ('BBMNaturalWonderCounts', 'BBM_MAPS_NATURAL_WONDERS_HALF', 'LOC_BBM_MAPS_HALF_NAME', 'LOC_BBM_MAPS_NATURAL_WONDERS_HALF_DESC', 20),
         ('BBMNaturalWonderCounts', 'BBM_MAPS_NATURAL_WONDERS_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_BBM_MAPS_NATURAL_WONDERS_STANDARD_DESC', 30),
         ('BBMNaturalWonderCounts', 'BBM_MAPS_NATURAL_WONDERS_MORE', 'LOC_BBM_MAPS_MORE_NAME', 'LOC_BBM_MAPS_NATURAL_WONDERS_MORE_DESC', 40),
@@ -253,8 +253,8 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Defaul
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
-        ('BBMNaturalWonderToggles', 'BBM_MAPS_NATURAL_WONDER_ON', 'LOC_ADVANCED_OPTIONS_ON', 'LOC_BBM_MAPS_NATURAL_WONDER_ON_DESC', 10),
-        ('BBMNaturalWonderToggles', 'BBM_MAPS_NATURAL_WONDER_OFF', 'LOC_ADVANCED_OPTIONS_OFF', 'LOC_BBM_MAPS_NATURAL_WONDER_OFF_DESC', 20);
+        ('BBMNaturalWonderToggles', 'BBM_MAPS_NATURAL_WONDER_ON', 'LOC_BBM_ENABLED_NAME', 'LOC_BBM_MAPS_NATURAL_WONDER_ON_DESC', 10),
+        ('BBMNaturalWonderToggles', 'BBM_MAPS_NATURAL_WONDER_OFF', 'LOC_BBM_DISABLED_NAME', 'LOC_BBM_MAPS_NATURAL_WONDER_OFF_DESC', 20);
 
 --*******************************************************
 --***************** TERRAIN *****************************
