@@ -39,7 +39,9 @@ import { CITY_ACTIONS, DEFAULT_LENS, LENS_ACTIONS, UNIT_ACTIONS } from './mp-key
 const log = createLogger('keybind hotkeys');
 
 function toggleLens(lens) {
-  const target = LensManager.getActiveLens() === lens ? DEFAULT_LENS : lens;
+  const active = LensManager.activeLens;
+  const target = active === lens ? DEFAULT_LENS : lens;
+  log(`lens ${active} -> ${target}`);
   LensManager.setActiveLens(target);
 }
 
@@ -80,6 +82,24 @@ function selectCity(which) {
   UI.Player.selectCity(target);
 }
 
+/**
+ * The context manager dispatches one key press's event to the focused element,
+ * the current screen and then the window, and this window capture listener sees
+ * every dispatch: one press can arrive two or three times (an even count turned
+ * the lens off and on again). Act once per event, and once per action within REPEAT_MS.
+ */
+const REPEAT_MS = 150;
+const seenEvents = new WeakSet();
+const lastActionAt = new Map();
+function isRepeat(event, name) {
+  if (seenEvents.has(event)) return true;
+  seenEvents.add(event);
+  const now = Date.now();
+  if (now - (lastActionAt.get(name) ?? 0) < REPEAT_MS) return true;
+  lastActionAt.set(name, now);
+  return false;
+}
+
 function onEngineInput(event) {
   const detail = event?.detail;
   if (!detail || detail.status !== InputActionStatuses.FINISH) return;
@@ -87,6 +107,7 @@ function onEngineInput(event) {
   const unitAction = UNIT_ACTIONS[detail.name];
   const city = CITY_ACTIONS[detail.name];
   if (!lens && !unitAction && !city) return;
+  if (isRepeat(event, detail.name)) return;
   if (!InterfaceMode.allowsHotKeys()) return;
   try {
     if (lens) toggleLens(lens);

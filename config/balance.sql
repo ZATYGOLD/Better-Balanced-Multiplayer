@@ -12,3 +12,10 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
         ('MPTBalanceOptions', 'MPT_BALANCE_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_MPT_BALANCE_STANDARD_DESC', 10),
         ('MPTBalanceOptions', 'MPT_BALANCE_MULTIPLAYER', 'LOC_MPT_BALANCE_MULTIPLAYER_NAME', 'LOC_MPT_BALANCE_MULTIPLAYER_DESC', 20);
+
+--*******************************************************
+--***************** MEMENTOS ****************************
+--*******************************************************
+-- Mementos (the game's multiplayer-only row) sorts directly above Game Random
+-- Seed in Game Options; single player keeps its own row.
+UPDATE Parameters SET SortIndex = 169 WHERE ParameterID = 'MementosEnabled' AND SupportsSinglePlayer = 0;

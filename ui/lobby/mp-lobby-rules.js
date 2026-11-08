@@ -55,7 +55,7 @@ const WONDER_ON = "MPT_MAPS_NATURAL_WONDER_ON";
 const AGE_SUFFIX = new RegExp(`(${AGES.join("|")})$`);
 // A per-Age row's setting, where it is not the row's own id less the Age.
 const AGE_PARENTS = { MPTGameplayTriumphSet: "LegacySets" };
-// Rows of a set that are not per Age: the victory thresholds of Victory Threshold Set.
+// Rows of a set that are not per Age: the victory thresholds of Victory Threshold.
 const SET_PARENTS = Object.fromEntries(["Culture", "Economic", "Military"].map((victory) => [`MPTPace${victory}VictoryThreshold`, "MPTPaceVictoryThresholdSet"]));
 
 // ============================ Settings ============================

@@ -142,13 +142,13 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 -- game's Disaster Intensity, Crises and Crisis Timing; the Crises section holds the
 -- game's crisis list. Crises drives that list (ui/gameplay/gameplay-rules.js),
 -- which the game applies through its ExcludeCrises key; Crisis Timing moves the
--- crisis stages.
+-- crisis stages. Multiplayer starts with Crises and Crisis Timing Off.
 UPDATE Parameters SET GroupIDMultiplayerOverride = 'DisasterCrisisOptions' WHERE ParameterID = 'DisasterIntensity';
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
-        ('MPTGameplayCrises', 'LOC_MPT_GAMEPLAY_CRISES_NAME', 'LOC_MPT_GAMEPLAY_CRISES_DESC', 'MPTGameplayCrisesValues', 0, 'MPT_GAMEPLAY_CRISES_ON', 'Game', 'MPTGameplayCrises', 'DisasterCrisisOptions', NULL, 0, 0, 3020),
-        ('MPTGameplayCrisisTiming', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_NAME', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_DESC', 'MPTGameplayCrisisTimingValues', 0, 'MPT_GAMEPLAY_CRISIS_TIMING_STANDARD', 'Game', 'MPTGameplayCrisisTiming', 'DisasterCrisisOptions', NULL, 0, 0, 3021);
+        ('MPTGameplayCrises', 'LOC_MPT_GAMEPLAY_CRISES_NAME', 'LOC_MPT_GAMEPLAY_CRISES_DESC', 'MPTGameplayCrisesValues', 0, 'MPT_GAMEPLAY_CRISES_OFF', 'Game', 'MPTGameplayCrises', 'DisasterCrisisOptions', NULL, 0, 0, 3020),
+        ('MPTGameplayCrisisTiming', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_NAME', 'LOC_MPT_GAMEPLAY_CRISIS_TIMING_DESC', 'MPTGameplayCrisisTimingValues', 0, 'MPT_GAMEPLAY_CRISIS_TIMING_OFF', 'Game', 'MPTGameplayCrisisTiming', 'DisasterCrisisOptions', NULL, 0, 0, 3021);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES

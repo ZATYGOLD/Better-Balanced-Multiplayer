@@ -21,13 +21,14 @@
 /**
  * Better Balanced Multiplayer - Match Type rules (shell scope).
  *
- * Choosing a Match Type (config/match-types.sql) starts the match from Standard:
+ * Choosing a Match Type (config/match-types.sql) starts the match from its defaults:
  * every game setting the Create Game tabs show returns to its multiplayer default
  * from the setup database, Game Speed becomes Online and Turn Timer Competitive.
  * Kept: the settings the Match Type (or the speed and timer) sets through its
  * configuration updates, the Multiplayer Settings section (game name, Hidden
  * Game, Game Balance, Kick Vote), the seeds, the map, the ruleset and
- * starting Age, and hidden settings the mod manages. Player slots, leaders,
+ * starting Age, the Crises list (it follows Crises, ui/gameplay/gameplay-rules.js)
+ * and hidden settings the mod manages. Player slots, leaders,
  * civilizations and mementos are player settings and stay as they are.
  * Settings a dependency hides reset too, so they are Standard when they show again.
  * Only a change by the host applies it; a setup's first pass (a new setup, a
@@ -40,7 +41,7 @@ const log = createLogger('match type');
 const MATCH_TYPE_ID = "MPTMatchType";
 // Every Match Type plays on the multiplayer speed and the Competitive timer.
 const MATCH_TYPE_VALUES = [["GameSpeeds", "GAMESPEED_ONLINE"], ["TurnTimerType", "MPT_TURNTIMER_COMPETITIVE"]];
-const KEPT_IDS = new Set([MATCH_TYPE_ID, "GameRandomSeed", "MapRandomSeed", "Map", "Ruleset", "Age"]);
+const KEPT_IDS = new Set([MATCH_TYPE_ID, "GameRandomSeed", "MapRandomSeed", "Map", "Ruleset", "Age", "Crises"]);
 // Every setting in these groups is kept.
 const KEPT_GROUPS = new Set(["LobbyOptions"]);
 // The parameters a parameter's value sets through the setup's configuration updates.

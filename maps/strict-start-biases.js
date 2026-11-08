@@ -1,4 +1,4 @@
-// Strict Start Biases (Spawn Settings): the leaders and civilizations whose start
+// Strict start biases (Start Bias Multiplayer, Spawn Settings): the leaders and civilizations whose start
 // must meet a terrain rule, and the rule checks. Read by the placement pass
 // (maps/scripts/global-team-starts.js) and the turn-1 check (ui/maps/start-bias-warning.js).
 import { adjacentPlots } from './plots.js';
@@ -41,7 +41,7 @@ const STRICT_CIVILIZATION_RULES = new Map([
   ["CIVILIZATION_RUSSIA", { id: "tundra", label: "Tundra" }]
 ]);
 
-const STRICT_BIASES_ON = "MPT_MAPS_STRICT_BIASES_ON";
+const START_BIAS_MULTIPLAYER = "MPT_MAPS_START_BIAS_MULTIPLAYER";
 
 let strictEnabled;
 const biasByPlayer = new Map();
@@ -49,9 +49,9 @@ let volcanoIndex;
 const biomeIndices = new Map();        // biome type list -> Set of biome indices
 const floodplainClasses = new Map();   // feature class value -> is Floodplain
 
-/** On only when chosen; the option exists only in multiplayer setup. */
+/** On only with Start Bias Multiplayer; the option exists only in multiplayer setup. */
 function isStrictStartBiasEnabled() {
-  strictEnabled ??= Configuration.getMapValue("MPTStrictStartBiases") === STRICT_BIASES_ON;
+  strictEnabled ??= Configuration.getMapValue("MPTStartBias") === START_BIAS_MULTIPLAYER;
   return strictEnabled;
 }
 

@@ -27,9 +27,9 @@
  *   2. A per-Age row leaves them     -> the setting switches to Custom.
  *   3. A Pace Set preset is chosen   -> every setting takes the preset's value.
  *   4. A setting leaves the preset   -> Pace Set switches to Custom.
- *   5. Age Length leaves Custom      -> every other setting returns to Standard.
+ *   5. Age Length leaves Custom      -> every other setting returns to the Standard Pace Set's.
  *   6. Pace Set on Game Settings and on the Pace tab mirror each other.
- *   7. Victory Threshold Set sets the three victory thresholds; a threshold
+ *   7. Victory Threshold sets the three victory thresholds; a threshold
  *      that leaves it switches it to Custom (rules 1 and 2, one row per victory).
  * On a setup's first pass the settings win over their rows, so values set by
  * script (ui/maps/multiplayer-defaults.js) reach the rows.
@@ -70,18 +70,21 @@ const SETTINGS = {
     FAST: "PLUS_100", SWIFT: "INSTANT", BALANCED: STANDARD })
 };
 
-/** Victory Threshold Set: Low, Standard or High for each victory's threshold. */
+/** Victory Threshold: Low, Standard or High for each victory's threshold. */
 const VICTORY_THRESHOLDS = ageSetting("MPTPaceVictoryThresholdSet", "MPT_PACE_VICTORY_THRESHOLD_", {}, {
   ageIds: ["Culture", "Economic", "Military"].map((victory) => `MPTPace${victory}VictoryThreshold`) });
 
-/** Pace Set presets: each setting's option, or per-Age values (which put it on Custom). */
-const ALL_STANDARD = Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, STANDARD]));
+/**
+ * Pace Set presets: each setting's option, or per-Age values (which put it on Custom).
+ * Standard and Multiplayer start trade routes from a distance (Trade Speed Instant, its default).
+ */
+const STANDARD_PACE = { ...Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, STANDARD])), TradeSpeed: "INSTANT" };
 const allOf = (option, except = []) => Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, except.includes(key) ? STANDARD : option]));
 const PRESETS = {
-  STANDARD: ALL_STANDARD,
+  STANDARD: STANDARD_PACE,
   BALANCED: allOf("BALANCED", ["AgeLength"]),
   MULTIPLAYER: {
-    ...ALL_STANDARD,
+    ...STANDARD_PACE,
     AgeProgression: "BALANCED",
     TechnologyCost: ["PLUS_25", "PLUS_50", "PLUS_100"],
     CivicCost: ["PLUS_50", "PLUS_50", "PLUS_100"],
@@ -145,7 +148,7 @@ function syncPreset() {
   }
   pace.preset = option;
   if (leftCustomAgeLength) {
-    const { AgeLength, ...others } = ALL_STANDARD;
+    const { AgeLength, ...others } = STANDARD_PACE;
     applyPreset(others);
   }
   if (preset && !matchesPreset(preset)) {

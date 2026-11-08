@@ -58,17 +58,17 @@
 
 	<!-- Match Type -->
 		<Row Tag="LOC_MPT_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Strict Start Biases and Map Size.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to Standard, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Start Bias and Map Size.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to its multiplayer default, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart). Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart), Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Strict Start Biases, Tiny map built as the 36x22 Duel map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 36x22 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Strict Start Biases, Tiny map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Small map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Small map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Strict Start Biases, Standard map. Every other setting returns to Standard, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_4V4_DESC"><Text>4v4 placement (teams 1-2-1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 
 	<!-- Create Game tabs -->
 		<Row Tag="LOC_MPT_SETUP_TAB_PACE"><Text>Pace</Text></Row>

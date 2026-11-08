@@ -2,8 +2,8 @@
 --***************** KEYBINDS ****************************
 --*******************************************************
 -- The mod's actions in Options -> keyboard mapping (ui/keybind). They act in
--- multiplayer games only, and their default keys are ones the game leaves free,
--- so the game's own keys stay as they are.
+-- multiplayer games only. Their default keys are ones the game leaves free,
+-- except B (Found Settlement), taken from the Advisors Council (now Ctrl+B).
 INSERT OR IGNORE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)
     VALUES
         ('mpt-pause-game', 'Keyboard', 'LOC_MPT_PAUSE_KEYBIND', 'LOC_MPT_PAUSE_KEYBIND_TT', 100),
@@ -22,9 +22,9 @@ INSERT OR IGNORE INTO InputActions (ActionId, DeviceType, Name, Description, Sor
         ('mpt-city-capital', 'Keyboard', 'LOC_MPT_KEYBIND_CITY_CAPITAL', 'LOC_MPT_KEYBIND_CITY_CAPITAL_TT', 113),
         ('mpt-unit-search', 'Keyboard', 'LOC_MPT_KEYBIND_SEARCH', 'LOC_MPT_KEYBIND_SEARCH_TT', 114);
 
--- Number keys for the lenses, brackets and backslash for settlements, Ctrl with a
--- letter for Pause and the unit actions (Ctrl+P and Ctrl+B after Civilization VI's
--- P and B, whose plain keys the game uses).
+-- Number keys for the lenses, brackets and backslash for settlements, B for Found
+-- Settlement (as in Civilization VI), Ctrl with a letter for Pause and the other
+-- unit actions (Ctrl+P after Civilization VI's P, which the game uses).
 INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType, GestureData)
     VALUES
         ('mpt-pause-game', 0, 'KBMouse', 'KEY_P+KEY_CONTROL'),
@@ -33,7 +33,7 @@ INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType
         ('mpt-lens-appeal', 0, 'KBMouse', 'KEY_3'),
         ('mpt-lens-settler', 0, 'KBMouse', 'KEY_4'),
         ('mpt-lens-discovery', 0, 'KBMouse', 'KEY_5'),
-        ('mpt-unit-found-city', 0, 'KBMouse', 'KEY_B+KEY_CONTROL'),
+        ('mpt-unit-found-city', 0, 'KBMouse', 'KEY_B'),
         ('mpt-unit-join-commander', 0, 'KBMouse', 'KEY_Z+KEY_CONTROL'),
         ('mpt-unit-leave-commander', 0, 'KBMouse', 'KEY_X+KEY_CONTROL'),
         ('mpt-commander-pack', 0, 'KBMouse', 'KEY_Q+KEY_CONTROL'),
@@ -42,3 +42,9 @@ INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType
         ('mpt-city-next', 0, 'KBMouse', 'KEY_RBRACKET'),
         ('mpt-city-capital', 0, 'KBMouse', 'KEY_BACKSLASH'),
         ('mpt-unit-search', 0, 'KBMouse', 'KEY_J+KEY_CONTROL');
+
+-- The Advisors Council moves from B to Ctrl+B. Default keys are global (the
+-- keyboard-mapping data has no game modes), so this applies in single player too.
+-- Bindings a player saved earlier may still take precedence until reset to defaults.
+UPDATE InputActionDefaultGestures SET GestureData = 'KEY_B+KEY_CONTROL'
+    WHERE ActionId = 'open-advisors' AND GestureType = 'KBMouse' AND GestureData = 'KEY_B';

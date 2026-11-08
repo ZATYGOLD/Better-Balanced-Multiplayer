@@ -1,7 +1,7 @@
 # Better Balanced Multiplayer
 
 Multiplayer quality-of-life features for **Sid Meier's Civilization VII**,
-built on the game's own UI components. Current version: **0.6.2**.
+built on the game's own UI components. Current version: **0.7.0**.
 By Zatygold and Gohei427.
 
 - **Competitive turn timer** — a Turn Timer option that scales with cities,
@@ -12,18 +12,19 @@ By Zatygold and Gohei427.
 - **Game Balance** — competitive balance changes for civilizations,
   leaders, units, governments, wonders, resources, pantheons, mementos and
   victories (lobby option, On by default).
-- **Maps** — the Pangaea Ultima map, East vs West player placement, strict
-  start biases, a Resource List (the game's resources or every resource in
-  every Age) with Resource Amount and Clusters, and climate and terrain settings.
+- **Maps** — the Pangaea Ultima map, East vs West player placement, Start
+  Bias (strict start biases), a Resource List (the game's resources or every
+  resource in every Age) with Resource Amount and Clusters, and climate and
+  terrain settings.
 - **Pacing** — Pace Set presets, Age Length, research, building, growth,
   road, trade and raze pace per Age, and Culture, Economic and Military
-  victory thresholds with a Victory Threshold Set; no Epic or Marathon speed
-  or Long Age Length in multiplayer.
+  victory thresholds with one Victory Threshold setting; no Epic or Marathon
+  speed or Long Age Length in multiplayer.
 - **Gameplay settings** — settlement limit and distance, independent powers,
   trade range, crises and Triumph Sets per Age.
 - **Match Type** — the kind of match (Free for All, 1v1, 2v2, 3v3, 4v4): player
   placement, teams, slots and the matching map settings, starting every other
-  setting from Standard.
+  setting from its multiplayer default.
 - **Keybinds** — rebindable pause, lens, unit, Commander and settlement keys on
   keys the game leaves free.
 - **Lobby** — the host's settings shown to everyone, memento slots under each
@@ -50,13 +51,13 @@ Multiplayer only. **Match Type** (Game Settings, in Multiplayer Settings under
 Hidden Game; Free for All by default) is the kind of match; it decides Player
 Placement (see Maps), and the team matches also set the map settings.
 
-| Match Type | Player Placement | Teams by slot | Start Position | Strict Start Biases | Map Size |
+| Match Type | Player Placement | Teams by slot | Start Position | Start Bias | Map Size |
 |---|---|---|---|---|---|
-| Free for All | whole map | — | (host) | (host) | (host) |
-| 1v1 | Duel | 1-2 | Balanced | On | Tiny (built as the 36x22 Duel map) |
-| 2v2 | 2v2 | 1-2-1-2 | Balanced | On | Tiny |
-| 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | On | Small |
-| 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | On | Standard |
+| Free for All | whole map | — | (host) | (host) | Standard |
+| 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (built as the 36x22 Duel map) |
+| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny |
+| 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | Multiplayer | Small |
+| 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
 
 The lobby opens exactly the match's slots and closes the rest. Even slots are
 team 1 and start West, odd slots team 2 and start East (in 2v2 the first two
@@ -65,14 +66,15 @@ Spectator a last slot is kept for the Spectator, with no team; the player who
 takes it becomes the Observer. The values live in `config/match-types.sql`.
 
 **Choosing a Match Type** (any of them, Free for All included) starts the match
-from Standard: every other setting on the Game Settings, Pace, Map and
+from its defaults: every other setting on the Game Settings, Pace, Map and
 Advanced tabs returns to its multiplayer default from the setup database
-(Disaster Intensity Light, for example), Game Speed becomes Online and Turn
-Timer Competitive. Kept as they are: the values the Match Type sets (table
-above), the Multiplayer Settings section (game name, Hidden Game, Multiplayer
-Balance, Kick Vote), the Game and Map seeds, the map, the ruleset and starting Age, the
-hidden settings the mod manages, and every player setting (slots, teams,
-leaders, civilizations, mementos). Only the host's own change applies it;
+(Disaster Intensity Light, Crises Off, for example), Game Speed becomes Online
+and Turn Timer Competitive. Kept as they are: the values the Match Type sets
+(table above), the Multiplayer Settings section (game name, Hidden Game,
+Multiplayer Balance, Kick Vote), the Game and Map seeds, the map, the ruleset
+and starting Age, the hidden settings the mod manages, the Crises list (it
+follows Crises), and every player setting (slots, teams, leaders,
+civilizations, mementos). Only the host's own change applies it;
 opening, rejoining or loading a setup does not
 (`ui/setup/match-type-rules.js`).
 
@@ -80,8 +82,8 @@ opening, rejoining or loading a setup does not
 
 ## Competitive Turn Timer
 
-Set **Turn Timer** to **Competitive** in multiplayer setup (Simultaneous
-turns). Each turn's clock, per Age:
+**Turn Timer** **Competitive** (the multiplayer default; Simultaneous turns).
+Each turn's clock, per Age:
 
 ```
 seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units any civ has)
@@ -199,8 +201,10 @@ and single-player maps are generated untouched.
   2v2, 3v3 or 4v4 East vs West layouts for any map. Every start needs Fresh
   Water and 12 tiles of separation; the most constrained player is placed
   first.
-- **Strict Start Biases** (Spawn Settings) — leaders and civilizations start on
-  their terrain; everyone is warned on the first turn if one could not.
+- **Start Bias** (Spawn Settings) — **Multiplayer** (default): strict start
+  biases, leaders and civilizations start on their terrain and everyone is
+  warned on the first turn if one could not; **Standard**: the game's own
+  weighted biases.
 - **Resource List** (Resource Settings) — **All** (default): the mod's
   resource system. Every resource is valid in every Age and kept across Age
   transitions (Oil and Rubber from Modern), with custom yields, classes,
@@ -262,14 +266,15 @@ and single-player maps are generated untouched.
   and Player Placement run as before. Standard everywhere generates the
   game's own maps.
 - **Map tab** — the multiplayer Create Game screen gets a Map tab after the
-  Pace tab: Spawn Settings (Start Position, Strict Start Biases),
+  Pace tab: Spawn Settings (Start Position, Start Bias),
   one Map Settings section (map, size, Map Age, Map Temperature, Map Zones,
   Natural Wonders and the seed), Resource Settings (Resource List, Resource
   Amount, Resource Clusters), then Terrain and Natural Wonder Selection;
   Disasters and Crises sit on Game Settings.
-- **Multiplayer defaults** — new multiplayer games start on Online speed, no
-  end-of-Age countdown, Pangaea Ultima and Standard size (the host can change
-  them).
+- **Multiplayer defaults** — new multiplayer games start on the Competitive
+  Turn Timer, Online speed, a 10-turn end-of-Age countdown, Continuity Age
+  Transition Impact, Pangaea Ultima and Standard size, with the Standard
+  Victory Threshold and Crises Off (the host can change them).
 
 The map scripts are in `maps/`, the options in `config/maps.sql`, the data in
 `data/maps/` and the lobby scripts in `ui/maps/` (see Project structure).
@@ -283,9 +288,10 @@ Multiplayer only: the settings below exist only in multiplayer setup, on a
 Pace tab with the same values and order.
 
 - **Pace Set** (Game Settings, mirrored at the top of the Pace tab) — Standard
-  (default), Balanced or Multiplayer presets fill every
-  setting below; changing one switches Pace Set to Custom, and Age Length
-  leaving Custom returns the others to Standard.
+  (default: every setting Standard, Trade Speed Instant), Balanced or
+  Multiplayer presets fill every setting below; changing one switches Pace Set
+  to Custom, and Age Length leaving Custom returns the others to the Standard
+  preset's values.
 - **Pace Settings** — each with an All Ages value and a row per Age
   (Antiquity, Exploration, Modern) that follows it, or set on its own with
   Custom:
@@ -295,20 +301,21 @@ Pace tab with the same values and order.
   - **Technology, Civic, Building and Victory Project Cost** — Low, Standard,
     Medium, High, Double, or the presets' per-Age curves (-25% to +100%).
   - **Settlement Growth** and **Road Speed** — Slow, Standard, Quick, Fast.
-  - **Trade Speed** — Merchant movement or Instant routes (Standard is Instant
-    in every Age with Game Balance on Multiplayer); **Raze Speed** —
+  - **Trade Speed** — Merchant movement or Instant routes (default: Instant,
+    routes start from a distance in every Age; Standard is the game's own, and
+    Instant too with Game Balance on Multiplayer); **Raze Speed** —
     Standard, Fast or Instant.
 - **Victory Thresholds** (Advanced tab, after Victory Settings) — Culture,
-  Economic and Military, each Low (x0.5, default), Standard or High (x1.5),
+  Economic and Military, each Low (x0.5), Standard (default) or High (x1.5),
   over the victory curve in use (the game's own, or Game Balance's when
   it is On), rounded half up. Science stays fixed.
-- **Victory Threshold Set** (Game Settings, Victory Settings) — Low (default),
-  Standard or High sets all three thresholds; changing one switches it to
+- **Victory Threshold** (Game Settings, Victory Settings) — Low, Standard
+  (default) or High sets all three thresholds; changing one switches it to
   Custom, as Triumph Set does with its per-Age rows.
 - **No longer games** — multiplayer offers no Epic or Marathon Game Speed and
   no Long Age Length (the game's or the mod's); single player keeps them.
 - **Multiplayer defaults** — new multiplayer games start on Standard Age
-  Length, so Pace Set shows Standard.
+  Length and Trade Speed Instant, so Pace Set shows Standard.
 
 The settings are in `config/pace.sql`, the data in `data/pace/` and the rules in
 `ui/pace/`; the Create Game tabs are in `ui/setup/`.
@@ -329,8 +336,8 @@ Custom.
 | **Independent Amount / Spacing / Aggression** | Standard, None/Less/More, Less/More, Calm/Raging | Advanced: Independent Power Settings, with Initial Independent Hostility |
 | **Trade Range** | Standard, -50% to +100%, Custom (per Age) | Advanced: Trade Settings |
 | **World Wonders** | Standard, Carry Over | Advanced: Wonder Settings |
-| **Crises** | On, Off (every crisis in the Crises list) | Game Settings: Disaster and Crisis Settings |
-| **Crisis Timing** | Standard, Off, Early, Late | Game Settings: Disaster and Crisis Settings |
+| **Crises** | Off (every crisis in the Crises list), On | Game Settings: Disaster and Crisis Settings |
+| **Crisis Timing** | Off (while Crises is Off), Standard, Early, Late | Game Settings: Disaster and Crisis Settings |
 | **Triumph Set** | the game's sets, plus Custom | Game Settings: Triumph Settings |
 | **Triumph Set per Age** | a set for each Age, used with Custom | Advanced: Triumph Settings |
 
@@ -429,8 +436,8 @@ Multiplayer-Toolkit/
 │  ├─ maps/                      #   All resource list (per Age), Map Settings, Pangaea Ultima islands
 │  ├─ pace/                      #   one folder per setting: a file per value (per Age where it differs)
 │  └─ timers/                    #   Competitive timer numbers (default + per Age)
-├─ maps/                         # map scripts: Pangaea Ultima, strict start biases, start-bias
-│  │                             #   scoring, Resource List
+├─ maps/                         # map scripts: Pangaea Ultima, strict start biases (Start Bias),
+│  │                             #   start-bias scoring, Resource List
 │  ├─ generation/                #   climate and terrain passes (Map Settings) shared by the maps
 │  ├─ standard/                  #   multiplayer copies of the game's standard maps
 │  └─ scripts/                   #   multiplayer placement pass, Pangaea Ultima Voronoi settings
@@ -444,7 +451,7 @@ Multiplayer-Toolkit/
    ├─ lobby/                     # tooltips, countdown, Game Rules summary, memento slots and picker,
    │                             #   leader / civ picker
    ├─ maps/                      # multiplayer defaults, match slots, turn-1 start warning
-   ├─ pace/                      # Pace Set, Victory Threshold Set and per-Age rules
+   ├─ pace/                      # Pace Set, Victory Threshold and per-Age rules
    ├─ pause/                     # pause manager, overlay, chat commands
    ├─ setup/                     # Create Game tabs (Pace, Map), section order, seed buttons,
    │                             #   Match Type rules
@@ -462,8 +469,25 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ## Changelog
 
-### 0.6.2
+### 0.7.0
 
+- The Advisor Council popup no longer opens by itself in multiplayer games.
+- Lens keys toggle reliably: pressing a lens's key again returns to the default
+  lens.
+- Found Settlement defaults to B and the Advisors Council to Ctrl+B (this
+  applies in single player too).
+- **Multiplayer defaults** — new games and a Match Type now start on the
+  Competitive Turn Timer, Online speed, a 10-turn end-of-Age countdown (was
+  none), Continuity Age Transition Impact, the Standard Victory Threshold (was
+  Low) and Crises Off (with Crisis Timing Off); the defaults live in the setup
+  database's multiplayer rows, so single player is unchanged.
+- **Trade Speed** defaults to Instant in every Age; the Standard and
+  Multiplayer Pace Sets use Instant, so a new game still shows Standard.
+- **Start Bias** (formerly Strict Start Biases) — Standard (the game's own
+  biases) or Multiplayer (strict start biases, default).
+- **Victory Threshold** (formerly Victory Threshold Set).
+- **Mementos** sits directly above Game Random Seed in Game Options
+  (multiplayer).
 - **Create Game tabs** use the game's tab bar, as single player does.
 - **Leader and civilization picker** (prototype) — the lobby's **Browse**
   button opens the single-player leader, civilization and civilization
@@ -490,7 +514,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Multiplayer Settings directly above Kick Vote (the Balance Settings section
   is gone).
 - **New: Maps** (with Gohei427) — Pangaea Ultima, Player Placement (Base,
-  Duel, 2v2, 3v3, 4v4), Strict Start Biases and the Resource List.
+  Duel, 2v2, 3v3, 4v4), Start Bias and the Resource List.
 - **Multiplayer only** — every option exists only in multiplayer setup;
   Pangaea Ultima is listed only there; single-player map generation is left
   untouched. Balance text loads only in games with Game Balance on Multiplayer, the keybinds and
@@ -576,12 +600,12 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Game Settings.
 - **Memento picker** — Choose Mementos and the lobby memento slots open the
   single-player memento picker.
-- **Victory Threshold Set** — one setting on Game Settings (Victory Settings)
+- **Victory Threshold** — one setting on Game Settings (Victory Settings)
   for the Culture, Economic and Military thresholds, Custom when they differ.
-- **Spawn Settings** — Start Position and Strict Start Biases get their own
+- **Spawn Settings** — Start Position and Start Bias get their own
   section before Map Settings.
 - **Match Type** (formerly Game Set) sits in Multiplayer Settings under Hidden
-  Game; choosing one returns every other setting to Standard (Multiplayer
+  Game; choosing one returns every other setting to its default (Multiplayer
   Settings, Game Balance included, stay as they are), on Online speed
   and the Competitive timer.
 - **Resource List** replaces the Custom Resource System: Standard (the game's

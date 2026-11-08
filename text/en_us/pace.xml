@@ -74,10 +74,10 @@
 		<Row Tag="LOC_MPT_PACE_PRESET_CUSTOM_DESC"><Text>The Pace Settings on the Pace tab no longer match a preset.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_PRESET_CUSTOM_NAME"><Text>Custom Pace</Text></Row>
 		<Row Tag="LOC_MPT_PACE_PRESET_DESC"><Text>Applies a pacing preset to the Pace Settings on the Pace tab.</Text></Row>
-		<Row Tag="LOC_MPT_PACE_PRESET_MULTIPLAYER_DESC"><Text>Tuned for a session played in one sitting.[nn][BLIST][LI] Age Length: Standard[LI] Age Progression: Balanced[LI] Technology Cost: +25% / +50% / +100%[LI] Civic Cost: +50% / +50% / +100%[LI] Building Cost: Standard[LI] Victory Project Cost: Standard / Standard / +25%[LI] Settlement Growth: +25%[LI] Road Speed: -25% / -25% / -50%[LI] Trade Speed: Standard[LI] Raze Speed: Standard[/BLIST]</Text></Row>
+		<Row Tag="LOC_MPT_PACE_PRESET_MULTIPLAYER_DESC"><Text>Tuned for a session played in one sitting.[nn][BLIST][LI] Age Length: Standard[LI] Age Progression: Balanced[LI] Technology Cost: +25% / +50% / +100%[LI] Civic Cost: +50% / +50% / +100%[LI] Building Cost: Standard[LI] Victory Project Cost: Standard / Standard / +25%[LI] Settlement Growth: +25%[LI] Road Speed: -25% / -25% / -50%[LI] Trade Speed: Instant[LI] Raze Speed: Standard[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_PRESET_MULTIPLAYER_NAME"><Text>Multiplayer Pace</Text></Row>
 		<Row Tag="LOC_MPT_PACE_PRESET_NAME"><Text>Pace Set</Text></Row>
-		<Row Tag="LOC_MPT_PACE_PRESET_STANDARD_DESC"><Text>Every pacing setting left at its standard value.</Text></Row>
+		<Row Tag="LOC_MPT_PACE_PRESET_STANDARD_DESC"><Text>Every pacing setting at its standard value, with trade routes starting from a distance.[nn][BLIST][LI] Trade Speed: Instant[LI] Every other setting: Standard[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_PRESET_STANDARD_NAME"><Text>Standard Pace</Text></Row>
 		<Row Tag="LOC_MPT_PACE_QUICK_NAME"><Text>Quick</Text></Row>
 		<Row Tag="LOC_MPT_PACE_RAZE_SPEED_BALANCED_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: Standard[LI] Exploration: Standard[LI] Modern: Standard[/BLIST]</Text></Row>
@@ -149,7 +149,7 @@
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_STANDARD_DESC"><Text>The victory curve in use: the game's own, or Game Balance's when it is Multiplayer.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_LOW_DESC"><Text>The curve's score modifiers x0.5.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_HIGH_DESC"><Text>The curve's score modifiers x1.5.</Text></Row>
-		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_SET_NAME"><Text>Victory Threshold Set</Text></Row>
+		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_SET_NAME"><Text>Victory Threshold</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_SET_DESC"><Text>Sets the Culture, Economic and Military Victory Thresholds on the Advanced tab. Science stays fixed at 100 Innovation.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_SET_LOW_DESC"><Text>Every victory threshold Low: the curve's score modifiers x0.5.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_VICTORY_THRESHOLD_SET_STANDARD_DESC"><Text>Every victory threshold Standard: the victory curve in use.</Text></Row>

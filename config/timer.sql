@@ -5,8 +5,9 @@ INSERT OR IGNORE INTO TurnTimers (Domain, TurnTimerType, Name, Description, Sort
     VALUES
         ('StandardTurnTimers', 'MPT_TURNTIMER_COMPETITIVE', 'LOC_MPT_TURNTIMER_COMPETITIVE', 'LOC_MPT_TURNTIMER_COMPETITIVE_DESC', 15);
 
--- Turn Timer (multiplayer only) takes a description that fits Competitive too.
-UPDATE Parameters SET Description = 'LOC_MPT_TURNTIMER_DESC' WHERE ParameterID = 'TurnTimerType' AND SupportsSinglePlayer = 0;
+-- Turn Timer (multiplayer only) takes a description that fits Competitive too,
+-- and Competitive is its default.
+UPDATE Parameters SET Description = 'LOC_MPT_TURNTIMER_DESC', DefaultValue = 'MPT_TURNTIMER_COMPETITIVE' WHERE ParameterID = 'TurnTimerType' AND SupportsSinglePlayer = 0;
 
 -- The engine times a Turn Timer it does not know by Turn Time (TurnTimerTime), which
 -- only Standard sets; unset, it ends every turn at once. Competitive sets it to an

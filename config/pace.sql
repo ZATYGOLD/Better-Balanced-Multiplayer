@@ -54,7 +54,7 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, 
         ('MPTPaceVictoryProjectCost', 'LOC_MPT_PACE_VICTORY_PROJECT_COST_NAME', 'LOC_MPT_PACE_VICTORY_PROJECT_COST_DESC', 'MPTPaceVictoryProjectCostValues', 0, 'MPT_PACE_VICTORY_PROJECT_COST_STANDARD', 'Game', 'MPTPaceVictoryProjectCost', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 44),
         ('MPTPaceSettlementGrowth', 'LOC_MPT_PACE_SETTLEMENT_GROWTH_NAME', 'LOC_MPT_PACE_SETTLEMENT_GROWTH_DESC', 'MPTPaceSettlementGrowthValues', 0, 'MPT_PACE_SETTLEMENT_GROWTH_STANDARD', 'Game', 'MPTPaceSettlementGrowth', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 46),
         ('MPTPaceRoadSpeed', 'LOC_MPT_PACE_ROAD_SPEED_NAME', 'LOC_MPT_PACE_ROAD_SPEED_DESC', 'MPTPaceRoadSpeedValues', 0, 'MPT_PACE_ROAD_SPEED_STANDARD', 'Game', 'MPTPaceRoadSpeed', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 48),
-        ('MPTPaceTradeSpeed', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_TRADE_SPEED_DESC', 'MPTPaceTradeSpeedValues', 0, 'MPT_PACE_TRADE_SPEED_STANDARD', 'Game', 'MPTPaceTradeSpeed', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 50),
+        ('MPTPaceTradeSpeed', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_TRADE_SPEED_DESC', 'MPTPaceTradeSpeedValues', 0, 'MPT_PACE_TRADE_SPEED_INSTANT', 'Game', 'MPTPaceTradeSpeed', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 50),
         ('MPTPaceRazeSpeed', 'LOC_MPT_PACE_RAZE_SPEED_NAME', 'LOC_MPT_PACE_RAZE_SPEED_DESC', 'MPTPaceRazeSpeedValues', 0, 'MPT_PACE_RAZE_SPEED_STANDARD', 'Game', 'MPTPaceRazeSpeed', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 52),
         ('MPTPaceAgeLengthAntiquity', 'LOC_ADVANCED_OPTIONS_AGE_LENGTH', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeLengthAgeValues', 0, 'MPT_PACE_AGE_LENGTH_140', 'Game', 'MPTPaceAgeLengthAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 100),
         ('MPTPaceAgeProgressionAntiquity', 'LOC_MPT_PACE_AGE_PROGRESSION_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeProgressionAgeValues', 0, 'MPT_PACE_AGE_PROGRESSION_STANDARD', 'Game', 'MPTPaceAgeProgressionAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 101),
@@ -64,7 +64,7 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, 
         ('MPTPaceVictoryProjectCostAntiquity', 'LOC_MPT_PACE_VICTORY_PROJECT_COST_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceVictoryProjectCostAgeValues', 0, 'MPT_PACE_VICTORY_PROJECT_COST_STANDARD', 'Game', 'MPTPaceVictoryProjectCostAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 105),
         ('MPTPaceSettlementGrowthAntiquity', 'LOC_MPT_PACE_SETTLEMENT_GROWTH_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceSettlementGrowthAgeValues', 0, 'MPT_PACE_SETTLEMENT_GROWTH_STANDARD', 'Game', 'MPTPaceSettlementGrowthAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 106),
         ('MPTPaceRoadSpeedAntiquity', 'LOC_MPT_PACE_ROAD_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceRoadSpeedAgeValues', 0, 'MPT_PACE_ROAD_SPEED_STANDARD', 'Game', 'MPTPaceRoadSpeedAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 107),
-        ('MPTPaceTradeSpeedAntiquity', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceTradeSpeedAgeValues', 0, 'MPT_PACE_TRADE_SPEED_STANDARD', 'Game', 'MPTPaceTradeSpeedAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 108),
+        ('MPTPaceTradeSpeedAntiquity', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceTradeSpeedAgeValues', 0, 'MPT_PACE_TRADE_SPEED_INSTANT', 'Game', 'MPTPaceTradeSpeedAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 108),
         ('MPTPaceRazeSpeedAntiquity', 'LOC_MPT_PACE_RAZE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceRazeSpeedAgeValues', 0, 'MPT_PACE_RAZE_SPEED_STANDARD', 'Game', 'MPTPaceRazeSpeedAntiquity', 'PacingAntiquityOptions', 'MPAdvancedPacingAntiquityOptions', 0, 0, 109),
         ('MPTPaceAgeLengthExploration', 'LOC_ADVANCED_OPTIONS_AGE_LENGTH', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeLengthAgeValues', 0, 'MPT_PACE_AGE_LENGTH_140', 'Game', 'MPTPaceAgeLengthExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 110),
         ('MPTPaceAgeProgressionExploration', 'LOC_MPT_PACE_AGE_PROGRESSION_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeProgressionAgeValues', 0, 'MPT_PACE_AGE_PROGRESSION_STANDARD', 'Game', 'MPTPaceAgeProgressionExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 111),
@@ -74,7 +74,7 @@ INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, 
         ('MPTPaceVictoryProjectCostExploration', 'LOC_MPT_PACE_VICTORY_PROJECT_COST_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceVictoryProjectCostAgeValues', 0, 'MPT_PACE_VICTORY_PROJECT_COST_STANDARD', 'Game', 'MPTPaceVictoryProjectCostExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 115),
         ('MPTPaceSettlementGrowthExploration', 'LOC_MPT_PACE_SETTLEMENT_GROWTH_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceSettlementGrowthAgeValues', 0, 'MPT_PACE_SETTLEMENT_GROWTH_STANDARD', 'Game', 'MPTPaceSettlementGrowthExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 116),
         ('MPTPaceRoadSpeedExploration', 'LOC_MPT_PACE_ROAD_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceRoadSpeedAgeValues', 0, 'MPT_PACE_ROAD_SPEED_STANDARD', 'Game', 'MPTPaceRoadSpeedExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 117),
-        ('MPTPaceTradeSpeedExploration', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceTradeSpeedAgeValues', 0, 'MPT_PACE_TRADE_SPEED_STANDARD', 'Game', 'MPTPaceTradeSpeedExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 118),
+        ('MPTPaceTradeSpeedExploration', 'LOC_MPT_PACE_TRADE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceTradeSpeedAgeValues', 0, 'MPT_PACE_TRADE_SPEED_INSTANT', 'Game', 'MPTPaceTradeSpeedExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 118),
         ('MPTPaceRazeSpeedExploration', 'LOC_MPT_PACE_RAZE_SPEED_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceRazeSpeedAgeValues', 0, 'MPT_PACE_RAZE_SPEED_STANDARD', 'Game', 'MPTPaceRazeSpeedExploration', 'PacingExplorationOptions', 'MPAdvancedPacingExplorationOptions', 0, 0, 119),
         ('MPTPaceAgeLengthModern', 'LOC_ADVANCED_OPTIONS_AGE_LENGTH', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeLengthAgeValues', 0, 'MPT_PACE_AGE_LENGTH_140', 'Game', 'MPTPaceAgeLengthModern', 'PacingModernOptions', 'MPAdvancedPacingModernOptions', 0, 0, 120),
         ('MPTPaceAgeProgressionModern', 'LOC_MPT_PACE_AGE_PROGRESSION_NAME', 'LOC_MPT_PACE_AGE_DESC', 'MPTPaceAgeProgressionAgeValues', 0, 'MPT_PACE_AGE_PROGRESSION_STANDARD', 'Game', 'MPTPaceAgeProgressionModern', 'PacingModernOptions', 'MPAdvancedPacingModernOptions', 0, 0, 121),
@@ -211,9 +211,9 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 -- Culture, Economic and Military victory thresholds, each scaled on its own
 -- (data/pace/victory-thresholds/), over the curve in use: the game's own, or
 -- Game Balance's when it is Multiplayer. Science stays fixed. They sit on the
--- Advanced tab after Victory Settings; Victory Threshold Set, on Game Settings
--- (Victory Settings), sets all three, and shows Custom when they differ
--- (ui/pace/pace-rules.js).
+-- Advanced tab after Victory Settings; Victory Threshold, on Game Settings
+-- (Victory Settings), sets all three (Standard by default), and shows Custom
+-- when they differ (ui/pace/pace-rules.js).
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
         ('VictoryThresholdOptions', 'LOC_GROUPID_MPT_VICTORYTHRESHOLDOPTIONS'),
@@ -221,10 +221,10 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
-        ('MPTPaceVictoryThresholdSet', 'LOC_MPT_PACE_VICTORY_THRESHOLD_SET_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_SET_DESC', 'MPTPaceVictoryThresholdSets', 0, 'MPT_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'MPTPaceVictoryThresholdSet', 'VictoryOptions', NULL, 0, 0, 4000),
-        ('MPTPaceCultureVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_CULTURE_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_CULTURE_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'MPTPaceCultureVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4001),
-        ('MPTPaceEconomicVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_ECONOMIC_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_ECONOMIC_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'MPTPaceEconomicVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4002),
-        ('MPTPaceMilitaryVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_MILITARY_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_MILITARY_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_LOW', 'Game', 'MPTPaceMilitaryVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4003);
+        ('MPTPaceVictoryThresholdSet', 'LOC_MPT_PACE_VICTORY_THRESHOLD_SET_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_SET_DESC', 'MPTPaceVictoryThresholdSets', 0, 'MPT_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'MPTPaceVictoryThresholdSet', 'VictoryOptions', NULL, 0, 0, 4000),
+        ('MPTPaceCultureVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_CULTURE_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_CULTURE_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'MPTPaceCultureVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4001),
+        ('MPTPaceEconomicVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_ECONOMIC_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_ECONOMIC_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'MPTPaceEconomicVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4002),
+        ('MPTPaceMilitaryVictoryThreshold', 'LOC_MPT_PACE_VICTORY_THRESHOLD_MILITARY_NAME', 'LOC_MPT_PACE_VICTORY_THRESHOLD_MILITARY_DESC', 'MPTPaceVictoryThresholds', 0, 'MPT_PACE_VICTORY_THRESHOLD_STANDARD', 'Game', 'MPTPaceMilitaryVictoryThreshold', 'VictoryThresholdOptions', 'MPAdvancedVictoryThresholdOptions', 0, 0, 4003);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES

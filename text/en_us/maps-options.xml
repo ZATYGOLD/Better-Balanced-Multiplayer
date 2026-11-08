@@ -15,12 +15,11 @@
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_3V3_DESC"><Text>Six-player East vs West placement: Slots 1-4 backline and Slots 5/6 frontline.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_4V4_NAME"><Text>4v4</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PLACEMENT_4V4_DESC"><Text>Eight-player East vs West placement: Slots 1-4 backline and Slots 5-8 frontline.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_NAME"><Text>Strict Start Biases</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_DESC"><Text>Require supported leaders and civilizations to start on or near their specified terrain. Normal weighted start biases still rank all qualifying tiles. All players receive a warning if a requirement cannot be met.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_ON_NAME"><Text>On</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_ON_DESC"><Text>Enforce the mod's strict leader and civilization start requirements.</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME"><Text>Off</Text></Row>
-		<Row Tag="LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC"><Text>Use only the game's normal weighted biases; Fresh Water and 12-tile separation remain required.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_NAME"><Text>Start Bias</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_DESC"><Text>How strongly leaders and civilizations are held to their start biases. Fresh Water and 12-tile separation are always required.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_STANDARD_DESC"><Text>The game's own weighted start biases only.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_MULTIPLAYER_NAME"><Text>Multiplayer</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_MULTIPLAYER_DESC"><Text>Strict start biases: supported leaders and civilizations must start on or near their terrain, and the game's weighted biases rank the qualifying tiles. All players are warned if a requirement cannot be met.</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_RESOURCEOPTIONS"><Text>Resource Settings</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_NAME"><Text>Resource List</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_RESOURCE_LIST_DESC"><Text>Which resources the map uses and the rules they follow. Resource Amount and Resource Clusters apply to either list.</Text></Row>

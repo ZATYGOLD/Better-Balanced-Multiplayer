@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="multiplayer-toolkit" version="00620" xmlns="ModInfo">
+<Mod id="multiplayer-toolkit" version="00700" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_MPT_NAME</Name>
 		<Description>LOC_MODULE_MPT_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.6.2</Version>
+		<Version>0.7.0</Version>
 		<Package>Mod</Package>
-		<LastUpdated>2026-11-07</LastUpdated>
+		<LastUpdated>2026-11-08</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
 		<AffectsSavedGames>1</AffectsSavedGames>
 	</Properties>
@@ -1254,6 +1254,7 @@
 					<Item>ui/pause/mp-pause-overlay.js</Item>
 					<Item>ui/pause/mp-pause-net.js</Item>
 					<Item>ui/pause/mp-pause-mgr.js</Item>
+					<Item>ui/advisor/mp-advisor-popup.js</Item>
 					<Item>ui/keybind/mp-keybind-config.js</Item>
 					<Item>ui/keybind/mp-keybind.js</Item>
 					<Item>ui/keybind/mp-hotkeys.js</Item>

@@ -46,7 +46,7 @@ AND ConfigurationValue IN (SELECT REPLACE(File, '{multiplayer-toolkit}maps/stand
 --***************** MULTIPLAYER DEFAULTS ****************
 --*******************************************************
 -- Pangaea Ultima is the default multiplayer map (the multiplayer-only Map row). Settings
--- shared with single player (speed, Age length, countdown, size) are set by
+-- whose row hotseat shares with single player (speed, map) and Map Size are set by
 -- ui/maps/multiplayer-defaults.js on the multiplayer setup screen.
 UPDATE Parameters SET DefaultValue = '{multiplayer-toolkit}maps/pangaea-ultima.js' WHERE ParameterID = 'Map' AND SupportsSinglePlayer = 0;
 
@@ -55,7 +55,9 @@ UPDATE Parameters SET DefaultValue = '{multiplayer-toolkit}maps/pangaea-ultima.j
 --*******************************************************
 -- A Spawn Settings group before Map Settings on the Map tab
 -- (ui/setup/setup-layout.js): the game's multiplayer Start Position row, then
--- Strict Start Biases. Single player keeps Start Position in Map Options.
+-- Start Bias: Multiplayer (default) holds supported leaders and civilizations to
+-- strict start biases (maps/strict-start-biases.js), Standard keeps the game's
+-- own. Single player keeps Start Position in Map Options.
 INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
     VALUES
         ('SpawnOptions', 'LOC_GROUPID_MPT_SPAWNOPTIONS');
@@ -64,12 +66,12 @@ UPDATE Parameters SET GroupIDMultiplayerOverride = 'SpawnOptions' WHERE Paramete
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, Hash, SupportsSinglePlayer, SortIndex)
     VALUES
-        ('MPTStrictStartBiases', 'LOC_MPT_MAPS_STRICT_BIASES_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_DESC', 'MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'Map', 'MPTStrictStartBiases', 'SpawnOptions', 'SimpleSelectWindow', 0, 0, 121);
+        ('MPTStartBias', 'LOC_MPT_MAPS_START_BIAS_NAME', 'LOC_MPT_MAPS_START_BIAS_DESC', 'MPTStartBiasOptions', 'MPT_MAPS_START_BIAS_MULTIPLAYER', 'Map', 'MPTStartBias', 'SpawnOptions', 'SimpleSelectWindow', 0, 0, 121);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES
-        ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_ON', 'LOC_MPT_MAPS_STRICT_BIASES_ON_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_ON_DESC', 10),
-        ('MPTStrictStartBiasOptions', 'MPT_MAPS_STRICT_BIASES_OFF', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_NAME', 'LOC_MPT_MAPS_STRICT_BIASES_OFF_DESC', 20);
+        ('MPTStartBiasOptions', 'MPT_MAPS_START_BIAS_STANDARD', 'LOC_ADVANCED_OPTIONS_STANDARD', 'LOC_MPT_MAPS_START_BIAS_STANDARD_DESC', 10),
+        ('MPTStartBiasOptions', 'MPT_MAPS_START_BIAS_MULTIPLAYER', 'LOC_MPT_MAPS_START_BIAS_MULTIPLAYER_NAME', 'LOC_MPT_MAPS_START_BIAS_MULTIPLAYER_DESC', 20);
 
 --*******************************************************
 --***************** MAP SETTINGS ************************
