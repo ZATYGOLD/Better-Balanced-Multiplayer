@@ -11,7 +11,7 @@ By Zatygold and Gohei427.
   changes and rejoins pause automatically.
 - **Game Balance** — competitive balance changes for civilizations,
   leaders, units, governments, wonders, resources, pantheons, mementos and
-  victories (lobby option, On by default).
+  victories (lobby option, Multiplayer by default).
 - **Maps** — the Pangaea Ultima map, East vs West player placement, Start
   Bias (strict start biases), a Resource List (the game's resources or every
   resource in every Age) with Resource Amount and Clusters, and climate and
@@ -26,7 +26,8 @@ By Zatygold and Gohei427.
   placement, teams, slots and the matching map settings, starting every other
   setting from its multiplayer default.
 - **Keybinds** — rebindable pause, lens, unit, Commander and settlement keys on
-  keys the game leaves free.
+  keys the game leaves free (B, for Found Settlement, moves the Advisors Council
+  to Ctrl+B).
 - **Lobby** — the host's settings shown to everyone, memento slots under each
   leader, the single-player memento and leader / civilization pickers, Random buttons for the seeds, ability names in civ / leader tooltips
   and a 5-second start countdown.
@@ -49,7 +50,8 @@ alongside **Zatygold's Advanced Settings Pro** (single player) and
 
 Multiplayer only. **Match Type** (Game Settings, in Multiplayer Settings under
 Hidden Game; Free for All by default) is the kind of match; it decides Player
-Placement (see Maps), and the team matches also set the map settings.
+Placement (see Maps) and Map Size; 1v1 and the team matches also set Start
+Position and Start Bias.
 
 | Match Type | Player Placement | Teams by slot | Start Position | Start Bias | Map Size |
 |---|---|---|---|---|---|
@@ -71,7 +73,7 @@ Advanced tabs returns to its multiplayer default from the setup database
 (Disaster Intensity Light, Crises Off, for example), Game Speed becomes Online
 and Turn Timer Competitive. Kept as they are: the values the Match Type sets
 (table above), the Multiplayer Settings section (game name, Hidden Game,
-Multiplayer Balance, Kick Vote), the Game and Map seeds, the map, the ruleset
+Game Balance, Kick Vote), the Game and Map seeds, the map, the ruleset
 and starting Age, the hidden settings the mod manages, the Crises list (it
 follows Crises), and every player setting (slots, teams, leaders,
 civilizations, mementos). Only the host's own change applies it;
@@ -145,12 +147,13 @@ Settings: `ui/pause/mp-pause-config.js`. The engine exposes only a total
 ## Keybinds
 
 Multiplayer games only. Rebindable in **Options → keyboard mapping**; the
-defaults are keys the game leaves free, and the game's own keys are unchanged:
+defaults are keys the game leaves free, except B, which Found Settlement takes
+from the Advisors Council (now Ctrl+B, in single player too):
 
 | Action | Default |
 |---|---|
 | Toggle Trade / Continent / Appeal / Settler / Discovery Lens | 1 / 2 / 3 / 4 / 5 |
-| Found Settlement | Ctrl+B |
+| Found Settlement | B |
 | Search (Scout) | Ctrl+J |
 | Previous / Next Settlement, Capital | [ / ] / \ |
 | Unit Join / Leave Commander | Ctrl+Z / Ctrl+X |
@@ -202,9 +205,9 @@ and single-player maps are generated untouched.
   Water and 12 tiles of separation; the most constrained player is placed
   first.
 - **Start Bias** (Spawn Settings) — **Multiplayer** (default): strict start
-  biases, leaders and civilizations start on their terrain and everyone is
-  warned on the first turn if one could not; **Standard**: the game's own
-  weighted biases.
+  biases, leaders and civilizations start on their terrain (ocean-coast starts
+  also get a few Reefs) and everyone is warned on the first turn if one could
+  not; **Standard**: the game's own weighted biases, with no added Reefs.
 - **Resource List** (Resource Settings) — **All** (default): the mod's
   resource system. Every resource is valid in every Age and kept across Age
   transitions (Oil and Rubber from Modern), with custom yields, classes,
@@ -308,7 +311,7 @@ Pace tab with the same values and order.
 - **Victory Thresholds** (Advanced tab, after Victory Settings) — Culture,
   Economic and Military, each Low (x0.5), Standard (default) or High (x1.5),
   over the victory curve in use (the game's own, or Game Balance's when
-  it is On), rounded half up. Science stays fixed.
+  it is Multiplayer), rounded half up. Science stays fixed.
 - **Victory Threshold** (Game Settings, Victory Settings) — Low, Standard
   (default) or High sets all three thresholds; changing one switches it to
   Custom, as Triumph Set does with its per-Age rows.
@@ -387,7 +390,7 @@ rules in `ui/gameplay/` (see Project structure).
   your own lobby memento slots open the single-player memento picker (search and attribute filter); a slot
   opens the picker on that slot. You edit only your own mementos, while mementos are on and you are not
   ready. Hotseat keeps the game's memento editor.
-- **Leader and civilization picker** (prototype) — **Browse**, beside
+- **Leader and civilization picker** — **Browse**, beside
   Mementos, opens the single-player leader, civilization and civilization
   details screens in one pass (Leader, Civilization, then Details), with the
   3D leader and its voice as in single player; Close, or Back from Leader,
@@ -422,7 +425,7 @@ The scripts live in `ui/lobby/` and `ui/setup/`.
 Multiplayer-Toolkit/
 ├─ multiplayer-toolkit.modinfo   # manifest: features, lobby-option criteria, per-Age data
 ├─ config/                       # lobby DB, one file per feature
-│  ├─ balance.sql                #   Game Balance option, memento slot
+│  ├─ balance.sql                #   Game Balance option, Mementos row order
 │  ├─ gameplay.sql               #   Gameplay settings with per-Age rows, Custom Triumph Set
 │  ├─ input.sql                  #   keybind actions and default keys
 │  ├─ maps.sql                   #   map list, Map Options, Map Settings, multiplayer-only filter
@@ -458,9 +461,9 @@ Multiplayer-Toolkit/
    └─ timer/                     # Competitive timer, Game Rules label
 ```
 
-Each feature has a `*-config.js` for settings, and modules patch the
+Pause, timer, lobby and keybinds have a `*-config.js`, and modules patch the
 base UI at runtime (no base-game files are replaced). Identifiers follow the
-The mod's naming: `LOC_MPT_` for text, `mpt-` for keybind actions and element
+mod's naming: `LOC_MPT_` for text, `mpt-` for keybind actions and element
 ids, `MPT_BALANCE_` / `MPTBalance` for Balance, `MPT_MAPS_` / `MPT` for Maps
 (lobby options such as `MPTPlayerPlacement`), `MPT_PACE_` / `MPTPace` for
 Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`, tagged `[MPT <feature>]`.
@@ -471,6 +474,8 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 
 ### 0.7.0
 
+- Coastal start Reefs come only with Start Bias Multiplayer, and the first-turn
+  start-placement warning's text is in the text files, ready for translation.
 - The Advisor Council popup no longer opens by itself in multiplayer games.
 - Lens keys toggle reliably: pressing a lens's key again returns to the default
   lens.
@@ -489,7 +494,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 - **Mementos** sits directly above Game Random Seed in Game Options
   (multiplayer).
 - **Create Game tabs** use the game's tab bar, as single player does.
-- **Leader and civilization picker** (prototype) — the lobby's **Browse**
+- **Leader and civilization picker** — the lobby's **Browse**
   button opens the single-player leader, civilization and civilization
   details screens in one pass, with the 3D leader and its voice as in single
   player and a Close button; the lobby's leader and civilization dropdowns
@@ -519,7 +524,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
   Pangaea Ultima is listed only there; single-player map generation is left
   untouched. Balance text loads only in games with Game Balance on Multiplayer, the keybinds and
   every in-game script act only in multiplayer, and the game's own keys are no
-  longer remapped.
+  longer remapped, except the Advisors Council (Ctrl+B).
 - **Compatible with Advanced Settings Pro (single player) and Zatygold's
   Spectator** (see Compatibility); the Advanced Settings Pro workarounds are
   gone.
@@ -530,8 +535,9 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 - **Maps on the game's current scripts:** Pangaea Ultima and Player Placement
   now use the installed game's map generation instead of older copies (start
   biases include island biases again); placement solves several times faster
-  with time limits; Reefs are added once, after placement; the Oil/Rubber
-  guarantee is left to the game's own Age transition (minimum 2 each).
+  with node limits (the same starts on every machine); Reefs are added once,
+  after placement; the Oil/Rubber guarantee is left to the game's own Age
+  transition (minimum 2 each).
 - **Duel Map** — a 36x22 map for 1v1 (Duel placement on Tiny).
 - **New: Pacing** — Advanced Settings Pro's Pace tab for multiplayer (Pace Set
   presets, Age Length and every Pace Setting with per-Age rows) on a new Pace
@@ -554,7 +560,7 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 - **Match slots** — team matches open exactly their players on their teams
   (unused slots closed), plus a Spectator slot the Spectator claims.
 - **New: Keybinds** (multiplayer games) — lens toggles (1–5), Found Settlement
-  (Ctrl+B), Search (Ctrl+J), Previous/Next Settlement and Capital ([ ] \),
+  (B), Search (Ctrl+J), Previous/Next Settlement and Capital ([ ] \),
   Commander join/leave/pack/unpack (Ctrl+Z/X/Q/W); Pause moves to Ctrl+P. All
   rebindable; the game's own keys are unchanged.
 - **Pangaea Ultima Distant Lands:** its islands are marked as Distant Lands

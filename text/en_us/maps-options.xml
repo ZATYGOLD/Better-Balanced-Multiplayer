@@ -47,5 +47,28 @@
 		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_NAME"><Text>Pangaea Ultima</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_PANGAEA_ULTIMA_DESC"><Text>One large central Pangaea; the islands beyond its coasts are the Distant Lands.</Text></Row>
 		<Row Tag="LOC_MPT_MAPS_MULTIPLAYER_SETUP"><Text>Multiplayer setup</Text></Row>
+	<!-- Start placement warning (ui/maps/start-bias-warning.js) -->
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_TITLE"><Text>START PLACEMENT WARNING</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_INTRO"><Text>The safe original-start fallback was used because these requirements were not met:</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_BANNER_HINT"><Text>Select this message to close it. Select the notification icon to view these details again.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_TOOLTIP"><Text>Select to view start-placement failures.</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_PLAYER"><Text>Player {1_Number}</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_UNKNOWN_CIV"><Text>Unknown Civilization</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_LEADER_CIV"><Text>{1_Leader} / {2_Civilization}</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_NO_FRESH_WATER"><Text>{1_Player}: starting tile does not have Fresh Water</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_RULES"><Text>{1_Player}: {2_Rules}</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_LEADER_RULE"><Text>Leader requirement: {1_Rule}</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_CIVILIZATION_RULE"><Text>Civilization requirement: {1_Rule}</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_WARNING_TOO_CLOSE"><Text>{1_Player} and {2_Player}: only {3_Distance} tiles apart; {4_Required} required</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_DESERT_OR_PLAINS"><Text>Desert or Plains</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_FLOODPLAINS_TWO"><Text>within 2 tiles of Floodplains</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_ICELAND"><Text>adjacent to a Volcano or Natural Wonder and on Tundra or Grassland</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_LAKE"><Text>adjacent to a Lake</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_MOUNTAIN"><Text>adjacent to a Mountain</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_NAVIGABLE_RIVER"><Text>adjacent to a Navigable River</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_OCEAN_COAST"><Text>ocean coast</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_SONGHAI"><Text>adjacent to a Navigable River and on Plains or Desert</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_TROPICAL"><Text>Tropical</Text></Row>
+		<Row Tag="LOC_MPT_MAPS_START_BIAS_RULE_TUNDRA"><Text>Tundra</Text></Row>
 	</EnglishText>
 </Database>

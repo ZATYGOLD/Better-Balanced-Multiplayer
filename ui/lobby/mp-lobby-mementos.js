@@ -68,9 +68,13 @@ function createSlot() {
   return slot;
 }
 
+/** Draws a slot's memento; a slot already showing it is left as is (every setup change repaints every row). */
 function paintSlot(slot, value) {
+  const memento = value?.value ?? MEMENTO_NONE;
+  if (slot.mptMemento === memento) return;
+  slot.mptMemento = memento;
   const art = slot.firstChild;
-  const icon = !value || value.value === MEMENTO_NONE ? "" : resolveString(value.icon);
+  const icon = memento === MEMENTO_NONE ? "" : resolveString(value.icon);
   if (icon) {
     art.style.backgroundImage = `url('blp:${icon}')`;
     art.style.backgroundSize = "";

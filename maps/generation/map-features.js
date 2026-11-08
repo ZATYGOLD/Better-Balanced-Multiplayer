@@ -1,6 +1,6 @@
 // Copy of {base-standard}scripts/common-generation.js generateMapFeatures, the
-// terrain pass every Voronoi map shares, with the Map Settings rough, mountain,
-// river, biome, feature and snow passes substituted in (Resource Settings apply
+// terrain pass every Voronoi map shares, with the Map and Terrain Settings rough,
+// mountain, river, biome, feature and snow passes substituted in (Resource Settings apply
 // afterwards, in maps/scripts/global-team-starts.js); the phase order matches the base.
 import { buildRainfallMap } from '../../../base-standard/maps/elevation-terrain-generator.js';
 import { addFeatures } from './features.js';

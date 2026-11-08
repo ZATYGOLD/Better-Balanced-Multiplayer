@@ -58,7 +58,7 @@
 
 	<!-- Match Type -->
 		<Row Tag="LOC_MPT_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
-		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start, and the team matches also set Start Position, Start Bias and Map Size.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to its multiplayer default, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
+		<Row Tag="LOC_MPT_MATCHTYPE_DESC"><Text>The kind of match. It decides where players start and the Map Size; 1v1 and the team matches also set Start Position and Start Bias.[n]Choosing a Match Type returns every other setting on the Game Settings, Pace, Map and Advanced tabs to its multiplayer default, with Online Game Speed and the Competitive Turn Timer. The map, the seeds, the starting Age, the game name, Hidden Game, Game Balance and Kick Vote stay as they are.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart), Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_MPT_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>

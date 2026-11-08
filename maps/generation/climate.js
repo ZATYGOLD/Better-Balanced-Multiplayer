@@ -117,6 +117,8 @@ function mapZoneLatitude() {
 }
 
 let climate = null;
+// A new map resolves both settings afresh.
+if (typeof engine !== "undefined") engine.on("RequestMapInitData", () => { climate = null; });
 
 // Both settings resolve once per map, so a Random roll holds for every pass.
 export function getClimate() {

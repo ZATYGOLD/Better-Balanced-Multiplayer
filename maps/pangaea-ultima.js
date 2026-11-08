@@ -3,7 +3,7 @@
 // seas become land, land touching the continent joins it, and other land keeps
 // a clear ocean gap from it. The islands beyond that gap are the Distant Lands:
 // they join the other landmass region, so they host Exploration's Treasure Fleets.
-// The terrain and snow passes apply the Map Settings climate and terrain
+// The terrain and snow passes apply the Map and Terrain Settings
 // (./generation/), as on the multiplayer copies of the base maps.
 import { assignAdvancedStartRegions } from '../../base-standard/maps/assign-advanced-start-region.js';
 import { assignStartPositionsFromHexMap } from '../../base-standard/maps/assign-starting-plots.js';

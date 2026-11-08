@@ -22,7 +22,7 @@
  * Better Balanced Multiplayer - Lens, unit and city hotkeys (game scope).
  *
  * Lens keys switch the map lens like the mini-map's lens panel (pressing the
- * key of the active lens returns to the default lens). Unit keys (Found City,
+ * key of the active lens returns to the default lens). Unit keys (Found Settlement,
  * Commander actions) run the same operations and commands as the unit action
  * buttons, through the game's own target selection when one needs a plot.
  * City keys select the previous, next or capital settlement, as the city
@@ -39,10 +39,7 @@ import { CITY_ACTIONS, DEFAULT_LENS, LENS_ACTIONS, UNIT_ACTIONS } from './mp-key
 const log = createLogger('keybind hotkeys');
 
 function toggleLens(lens) {
-  const active = LensManager.activeLens;
-  const target = active === lens ? DEFAULT_LENS : lens;
-  log(`lens ${active} -> ${target}`);
-  LensManager.setActiveLens(target);
+  LensManager.setActiveLens(LensManager.activeLens === lens ? DEFAULT_LENS : lens);
 }
 
 /** Ability-less first, then each ability that grants the action (Search and the like require one); cached per action. */

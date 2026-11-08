@@ -1,4 +1,5 @@
--- Economic Victory Threshold Low: the curve's modifiers x0.5.
+-- Economic Victory Threshold Low: the threshold curve's percentages x0.5
+-- (the game's curve, or Game Balance's when it is Multiplayer).
 -- Adding 1 before integer division rounds half values up to the nearest percent.
 UPDATE VictoryDominationPercents
 SET DominationPercent = (DominationPercent + 1) / 2

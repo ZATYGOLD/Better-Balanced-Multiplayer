@@ -1,11 +1,35 @@
-// Multiplayer lobby slots (host, new games): team placements open exactly their
-// players (Duel 2, 2v2 4, 3v3 6, 4v4 8) on alternating teams 1-2-1-2 (Player
-// Placement gives even slots the West, odd slots the East), plus a last slot for
-// Zatygold's Spectator (published as MPTSpectatorSlot; the Spectator makes its
-// player the Observer). Slots past the count are closed. A Spectator on Tiny or
-// Small needs one slot more than the size allows, so the host launches the next
-// size up and records the chosen size (MPTChosenMapSize); the game data then
-// builds the map at that size (data/maps/chosen-size-*.sql).
+/*
+ * Better Balanced Multiplayer - multiplayer quality-of-life features for Civilization VII.
+ * Copyright (C) 2026  Zatygold
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/**
+ * Better Balanced Multiplayer - Lobby match slots (shell scope).
+ *
+ * Host, new games: team placements open exactly their players (Duel 2, 2v2 4,
+ * 3v3 6, 4v4 8) on alternating teams 1-2-1-2 (Player Placement gives even slots
+ * the West, odd slots the East), plus a last slot for Zatygold's Spectator
+ * (published as MPTSpectatorSlot; the Spectator makes its player the Observer).
+ * Slots past the count are closed. A Spectator on Tiny or Small needs one slot
+ * more than the size allows, so the host launches the next size up and records
+ * the chosen size (MPTChosenMapSize); the game data then builds the map at that
+ * size (data/maps/chosen-size-*.sql).
+ */
 import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
 import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../shared/mpt-util.js';
 import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT } from '../../maps/placement.js';
@@ -36,12 +60,17 @@ function placement() {
   } catch (e) { return undefined; }
 }
 
-/** The map size's own player limit from the setup database. */
+/** The map size's own player limit from the setup database, cached once found (each lobby update reads it). */
+const sizeLimits = new Map();
 function sizeLimit(mapSize) {
+  if (sizeLimits.has(mapSize)) return sizeLimits.get(mapSize);
+  let limit = 0;
   try {
     const rows = Database.query("config", "SELECT MaxPlayers FROM MapSizes WHERE MapSizeType = ?1 ORDER BY MaxPlayers DESC LIMIT 1", mapSize) ?? [];
-    return rows[0]?.MaxPlayers ?? rows[0]?.[0] ?? 0;
-  } catch (e) { return 0; }
+    limit = rows[0]?.MaxPlayers ?? rows[0]?.[0] ?? 0;
+  } catch (e) { limit = 0; }
+  if (limit > 0) sizeLimits.set(mapSize, limit);
+  return limit;
 }
 
 function participants() {

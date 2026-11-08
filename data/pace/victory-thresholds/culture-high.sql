@@ -1,4 +1,5 @@
--- Culture Victory Threshold High: the curve's modifiers x1.5.
+-- Culture Victory Threshold High: the threshold curve's percentages x1.5
+-- (the game's curve, or Game Balance's when it is Multiplayer).
 -- Adding 1 before integer division rounds half values up to the nearest percent.
 UPDATE VictoryDominationPercents
 SET DominationPercent = ((DominationPercent * 3) + 1) / 2

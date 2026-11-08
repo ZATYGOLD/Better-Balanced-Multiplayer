@@ -4,7 +4,7 @@
 	<!-- Pace: Pace Set, Pace Settings and their per-Age rows, victory thresholds -->
 		<Row Tag="LOC_GROUPID_MPT_GAMEPACINGOPTIONS"><Text>Pace Settings</Text></Row>
 		<Row Tag="LOC_GROUPID_MPT_VICTORYTHRESHOLDOPTIONS"><Text>Victory Thresholds</Text></Row>
-		<Row Tag="LOC_MPT_PACE_AGE_DESC"><Text>Sets this age's value.[n]Applies only when the matching Pace Settings row is set to Custom. Pace Set presets fill these rows; changing one switches Pace Set to Custom.</Text></Row>
+		<Row Tag="LOC_MPT_PACE_AGE_DESC"><Text>Sets this age's value.[n]Follows the matching Pace Settings row and the Pace Set; changing it switches both to Custom.</Text></Row>
 		<Row Tag="LOC_MPT_PACE_AGE_LENGTH_100_DESC"><Text>[BLIST][LI] Online: 50 points[LI] Quick: 67 points[LI] Standard: 100 points[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_AGE_LENGTH_110_DESC"><Text>[BLIST][LI] Online: 55 points[LI] Quick: 73 points[LI] Standard: 110 points[/BLIST]</Text></Row>
 		<Row Tag="LOC_MPT_PACE_AGE_LENGTH_120_DESC"><Text>[BLIST][LI] Online: 60 points[LI] Quick: 80 points[LI] Standard: 120 points[/BLIST]</Text></Row>

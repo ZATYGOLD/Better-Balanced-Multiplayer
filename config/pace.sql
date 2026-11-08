@@ -42,7 +42,8 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 -- Age Length is the mod's own in multiplayer: the base setting is hidden
 -- there, and every option sets the same points for each base length.
 INSERT OR IGNORE INTO ParameterDependencies (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
-    VALUES ('AgeLength', 'Game', 'MPTMultiplayerSetup', 'NotEquals', 1);
+    VALUES
+        ('AgeLength', 'Game', 'MPTMultiplayerSetup', 'NotEquals', 1);
 
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES

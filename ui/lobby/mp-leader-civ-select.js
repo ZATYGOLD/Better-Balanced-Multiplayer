@@ -21,7 +21,7 @@
 /**
  * Better Balanced Multiplayer - Lobby leader and civilization picker (shell scope).
  *
- * Prototype. The lobby's Browse button opens the game's single-player leader,
+ * The lobby's Browse button opens the game's single-player leader,
  * civilization and civilization details screens over the multiplayer lobby,
  * hosted as the Create Game screen hosts them (create-game-screen.js): Leader,
  * Civilization, then Details, whose Select closes it. Close, Back from Leader
@@ -203,7 +203,6 @@ function clearShellStage() {
     } catch (error) {
       log(`main menu scene not rebuilt: ${error?.stack ?? error}`);   // never block the other cleanups
     }
-    log(`shell restored (${restores.length} hidden, main menu scene ${hadScene ? "rebuilt" : "not built"})`);
   };
 }
 
@@ -223,7 +222,6 @@ function handOffAudioPanels() {
         ended.unshift(name);
       }
       UI.panelStart(CREATE_GAME_PANEL, "", UIViewChangeMethod.Unknown, true);
-      log(`audio panels: ended ${below.join(", ") || "none"}; ${CREATE_GAME_PANEL} started`);
     } catch (error) {
       log(`audio panels not handed off: ${error?.stack ?? error}`);
     }
@@ -284,7 +282,6 @@ const LeaderCivPicker = () => {
     else flow?.activatePrev();
     backAudio("activate");
   }
-  log(`opened (${leaderModel.leaders.length} leaders, ${civModel.civs.length} civs)`);
   return createComponent(Panel, {
     id: SCREEN_NAME,
     name: SCREEN_NAME,
@@ -392,5 +389,3 @@ class LobbyBrowseButton extends Decorator {
 }
 
 Controls.decorate(LOBBY_TAG, (component) => new LobbyBrowseButton(component));
-
-export { openLeaderCivPicker };

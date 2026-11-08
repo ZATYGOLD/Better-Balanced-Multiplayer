@@ -36,6 +36,8 @@ function addCoastalStartReefs() {
     return;
   }
 
+  // Only with Start Bias Multiplayer: the reefs back the strict ocean-coast bias.
+  if (!isStrictStartBiasEnabled()) return;
   const coastPlayers = Players.getAliveMajorIds().filter((playerId) =>
     getPlayerStrictStartBias(playerId)?.rules.some((rule) => rule.id === "ocean-coast"));
   if (coastPlayers.length === 0) return;
@@ -384,13 +386,15 @@ function buildJointStartCandidates(ctx, playerId, tiles, originalStart, allowLak
 
 // ============================ Solver ============================
 
-const farEnough = (a, b) => GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
+// Rows apart is a lower bound on the hex distance, so far-apart rows skip the distance call.
+const farEnough = (a, b) => Math.abs(a.y - b.y) >= START_MINIMUM_DISTANCE ||
+  GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
 
 /**
  * Backtracking with forward checking: every remaining player keeps the
  * candidates still compatible with the starts chosen so far, so each choice
  * only filters against the start just placed. The most constrained player is
- * placed first; a node limit and a time budget bound the search.
+ * placed first; node limits (per search and per pass) bound the search.
  */
 function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allowLakeFallback = false, enforcedStrictPlayerIds = null, orderingSeed = 0) {
   const domains = new Map();

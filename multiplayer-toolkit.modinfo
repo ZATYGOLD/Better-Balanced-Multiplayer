@@ -600,6 +600,7 @@
 		<Criteria id="pace-trade-speed-modern-standard">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTPaceTradeSpeedModern</ConfigurationId><Value>MPT_PACE_TRADE_SPEED_STANDARD</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>MPTBalance</ConfigurationId><Value>MPT_BALANCE_STANDARD</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="pace-trade-speed-modern-plus-25">
 			<AgeInUse>AGE_MODERN</AgeInUse>

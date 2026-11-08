@@ -187,7 +187,8 @@ INSERT OR IGNORE INTO Queries (QueryID, Type, SQL)
 -- stays on Game Settings. Custom is filtered out whenever the hidden
 -- multiplayer-only flag is unset (single-player setup).
 INSERT OR IGNORE INTO LegacySets (LegacySetType, Name, Description, SortIndex)
-    VALUES ('MPT_LEGACY_SET_CUSTOM', 'LOC_DIFFICULTY_CUSTOM_NAME', 'LOC_MPT_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC', 5);
+    VALUES
+        ('MPT_LEGACY_SET_CUSTOM', 'LOC_DIFFICULTY_CUSTOM_NAME', 'LOC_MPT_GAMEPLAY_TRIUMPH_SET_CUSTOM_DESC', 5);
 
 INSERT OR IGNORE INTO Queries (QueryID, Type, SQL)
     VALUES

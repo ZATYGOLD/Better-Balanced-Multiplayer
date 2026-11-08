@@ -1,4 +1,4 @@
-// Helpers shared by the map settings passes (Map Settings: climate and terrain).
+// Helpers shared by the map settings passes (Map and Terrain Settings: climate and terrain).
 
 // Reads a map setup setting and returns the tier it names.
 //
