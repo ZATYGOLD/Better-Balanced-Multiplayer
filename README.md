@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.1**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.2**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -193,9 +193,7 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 
 ## Changelog
 
-### 0.7.1
-
-Hotfix.
+### 0.7.2
 
 - Commanders on a Military Building in their own Settlement gain 2 XP at the start of each turn (it was granted only once).
 - World Wonders: Carry Over no longer crashes, and earlier-Age wonders that nobody built are buildable by everyone with no unlock needed.
@@ -204,6 +202,12 @@ Hotfix.
 - The Trade Range setting is removed.
 - Victory Threshold defaults to Low again.
 - With Zatygold's Spectator, the new Spectator Slot setting can turn off the extra lobby slot in Match Types.
+
+### 0.7.1
+
+Hotfix.
+
+- Commanders on a Military Building in their own Settlement gain 1 XP each turn again (restored).
 - The lobby's leader and civilization tooltips and memento slots show the Game Balance text when Game Balance is Multiplayer.
 - The Competitive timer no longer switches to the engine's own countdown after a pause.
 - The Competitive timer ring no longer flickers, which showed most when hovering the End Turn button.
