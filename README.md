@@ -383,8 +383,7 @@ rules in `ui/gameplay/` (see Project structure).
 - **Leader and civilization picker** (prototype) — **Browse**, beside
   Mementos, opens the single-player leader, civilization and civilization
   details screens in one pass (Leader, Civilization, then Details), with the
-  3D leader as in single player (its voice does not play in the lobby); Close,
-  or Back from Leader,
+  3D leader and its voice as in single player; Close, or Back from Leader,
   leaves without a change. It is enabled while you can still change your
   leader and civilization (a new game, not ready, not the Spectator) and offers
   only what the setup allows. Your row's dropdowns stay as in the base game;
@@ -468,8 +467,8 @@ Pacing, `MPT_GAMEPLAY_` / `MPTGameplay` for Gameplay. Diagnostics go to `UI.log`
 - **Create Game tabs** use the game's tab bar, as single player does.
 - **Leader and civilization picker** (prototype) — the lobby's **Browse**
   button opens the single-player leader, civilization and civilization
-  details screens in one pass, with the 3D leader (silent in the lobby) and a
-  Close button; the lobby's leader and civilization dropdowns
+  details screens in one pass, with the 3D leader and its voice as in single
+  player and a Close button; the lobby's leader and civilization dropdowns
   stay as in the base game.
 - The lobby's **Choose Mementos** button reads **Mementos**.
 - **Settlement Limit** Custom values capped at 25 per Age.

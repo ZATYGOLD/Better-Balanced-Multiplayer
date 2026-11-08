@@ -27,8 +27,8 @@
  * Civilization, then Details, whose Select closes it. Close, Back from Leader
  * and Random close it too. While open, the lobby and main menu are hidden and
  * the main menu's 3D scene is cleared (as single player does on opening Create
- * Game), so the screens' 3D leader shows; closing restores them. The leader's
- * voice does not play in the lobby.
+ * Game), so the screens' 3D leader shows; closing restores them. The game's
+ * audio is handed the same panels as single player, so the leader speaks.
  * It closes when you can no longer change your row. The screens fetch the
  * game's shared leader and civ models themselves, so the picker creates them
  * first, adjusted for the lobby: their lists leave out the Observer of
@@ -78,6 +78,9 @@ const STEP_SCREENS = { "leader-select": LeaderSelectScreen, "civ-select": CivSel
 const FLOW_END_STEPS = ["game-setup", "create-game-hub", "memento-select"];
 const SHELL_TAGS = [LOBBY_TAG, "main-menu"];
 const MOUSE_GUARD_TAG = "mouse-guard";
+// Panels the game's audio keeps while single player's Create Game is up (it opens over the main menu).
+const AUDIO_KEPT_PANELS = ["main-menu", MOUSE_GUARD_TAG];
+const CREATE_GAME_PANEL = "create-game-sp";
 const BROWSE_CLASS = "mpt-browse-button";
 const BROWSE_CAPTION = "LOC_MPT_LOBBY_BROWSE";
 const CLOSE_CAPTION = "LOC_GENERIC_CLOSE";
@@ -204,6 +207,38 @@ function clearShellStage() {
   };
 }
 
+/**
+ * The game's audio mutes the leader's voice while the lobby's panels are up, so
+ * the panels under the picker are reported ended and Create Game started, as in
+ * single player; closing reports them back in their order. Returns the restore.
+ */
+function handOffAudioPanels() {
+  const ended = [];
+  const timer = setTimeout(() => {   // after ContextManager reports the picker's own panel
+    const below = ContextManager.screens.map((element) => element.tagName.toLowerCase())
+      .filter((name) => name !== SCREEN_NAME && !AUDIO_KEPT_PANELS.includes(name));
+    try {
+      for (const name of below) {
+        UI.panelEnd(name, "", UIViewChangeMethod.Unknown, false);
+        ended.unshift(name);
+      }
+      UI.panelStart(CREATE_GAME_PANEL, "", UIViewChangeMethod.Unknown, true);
+      log(`audio panels: ended ${below.join(", ") || "none"}; ${CREATE_GAME_PANEL} started`);
+    } catch (error) {
+      log(`audio panels not handed off: ${error?.stack ?? error}`);
+    }
+  });
+  return () => {
+    clearTimeout(timer);
+    try {
+      UI.panelEnd(CREATE_GAME_PANEL, "", UIViewChangeMethod.Unknown, false);
+      for (const name of ended) UI.panelStart(name, "", UIViewChangeMethod.Unknown, true);
+    } catch (error) {
+      log(`audio panels not restored: ${error?.stack ?? error}`);
+    }
+  };
+}
+
 const FlowEnd = () => {
   onMount(closeLater);
   return null;
@@ -240,6 +275,7 @@ const LeaderCivPicker = () => {
   const { ageModel, leaderModel, civModel, choiceModel } = models;
   addStyles();
   onCleanup(clearShellStage());
+  onCleanup(handOffAudioPanels());
   const backAudio = useAudio("CreateGameBackButton");
   let flow;
   let popup;
