@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.0**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.1**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -194,6 +194,15 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 
 ## Changelog
 
+### 0.7.1
+
+Hotfix.
+
+- Commanders on a Military Building in their own Settlement gain 1 XP each turn again (restored).
+- The lobby's leader and civilization tooltips and memento slots show the Game Balance text when Game Balance is Multiplayer.
+- The Competitive timer no longer switches to the engine's own countdown after a pause.
+- The Competitive timer ring no longer flickers, which showed most when hovering the End Turn button.
+
 ### 0.7.0
 
 **Renamed:** the mod was formerly Multiplayer Toolkit, and its mod id is now `zatygolds-multiplayer-balance` (was `multiplayer-toolkit`; the manifest is now `zatygolds-multiplayer-balance.modinfo`), so saves and setups from earlier versions don't load. Other renames:
@@ -247,9 +256,6 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 
 **Fixed:**
 
-- The lobby's leader and civilization tooltips and memento slots show the Game Balance text when Game Balance is Multiplayer.
-- The Competitive timer no longer switches to the engine's own countdown after a pause.
-- The Competitive timer ring no longer flickers, which showed most when hovering the End Turn button.
 - Every machine now generates the same start positions.
 - The Competitive timer no longer ends every turn at once when Turn Time was unset.
 - Game Balance no longer sets Merchants to 1 Movement, and Trade Speed now works with it.
