@@ -47,19 +47,6 @@ const MULTIPLAYER_DEFAULTS = [
 	["Map", "{zatygolds-multiplayer-balance}maps/pangaea-ultima.js"],
 	["MapSize", "MAPSIZE_STANDARD"]
 ];
-const COMPETITIVE_BACKSTOP = 3600;
-
-/**
- * Competitive's engine backstop (Turn Time, config/timer.sql) comes from a
- * configuration update; if the default did not trigger it, writing the timer again does.
- */
-function ensureCompetitiveBackstop() {
-	if (GameSetup.findGameParameter("TurnTimerType")?.value?.value !== COMPETITIVE) return;
-	if (Number(Configuration.getGame()?.getValue("TurnTimerTime")) === COMPETITIVE_BACKSTOP) return;
-	GameSetup.setGameParameterValue("TurnTimerType", "TURNTIMER_STANDARD");
-	GameSetup.setGameParameterValue("TurnTimerType", COMPETITIVE);
-	log("rewrote the Competitive timer for its backstop");
-}
 
 function applyMultiplayerDefaults(attempt = 0) {
 	const ready = REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
@@ -71,7 +58,6 @@ function applyMultiplayerDefaults(attempt = 0) {
 		for (const [parameterID, value] of MULTIPLAYER_DEFAULTS) {
 			if (GameSetup.findGameParameter(parameterID) != null) GameSetup.setGameParameterValue(parameterID, value);
 		}
-		ensureCompetitiveBackstop();
 		log("applied the multiplayer defaults");
 	} catch (error) {
 		log(`failed to apply the multiplayer defaults: ${error?.stack ?? error}`);

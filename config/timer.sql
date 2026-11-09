@@ -10,9 +10,18 @@ INSERT OR IGNORE INTO TurnTimers (Domain, TurnTimerType, Name, Description, Sort
 UPDATE Parameters SET Description = 'LOC_BBM_TURNTIMER_DESC', DefaultValue = 'BBM_TURNTIMER_COMPETITIVE' WHERE ParameterID = 'TurnTimerType' AND SupportsSinglePlayer = 0;
 
 -- The engine times a Turn Timer it does not know by Turn Time (TurnTimerTime), which
--- only Standard sets; unset, it ends every turn at once. Competitive sets it to an
--- hour, a backstop the mod's own countdown (ui/timer) always ends first.
--- Standard returns it to the game's default (180).
+-- only Standard shows; unset, it ends every turn at once. Under Competitive a hidden
+-- parameter holds it at an hour, a backstop the mod's own countdown (ui/timer) always
+-- ends first, so every setup refresh restores it. Choosing Competitive sets it too,
+-- and Standard returns it to the game's default (180).
+INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupID, Hidden, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
+    VALUES
+        ('BBMCompetitiveTurnTime', 'LOC_GAME_TURN_TIMER_TIME', 'LOC_GAME_TURN_TIMER_TIME_TOOLTIP', 'uint', 0, 3600, 'Game', 'TurnTimerTime', 'GameOptions', 1, 0, 1, 80);
+
+INSERT OR IGNORE INTO ParameterCriteria (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
+    VALUES
+        ('BBMCompetitiveTurnTime', 'Game', 'TurnTimerType', 'Equals', 'BBM_TURNTIMER_COMPETITIVE');
+
 INSERT OR IGNORE INTO ConfigurationUpdates (SourceGroup, SourceKey, SourceValue, TargetGroup, TargetKey, TargetValue, Hash)
     VALUES
         ('Game', 'TurnTimerType', 'BBM_TURNTIMER_COMPETITIVE', 'Game', 'TurnTimerTime', '3600', 0),

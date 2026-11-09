@@ -30,7 +30,7 @@
  *
  * cities/units are the most any living major civ has; human players never
  * include a companion mod's Observer (isObserverPlayer). The first turn of each
- * session is untimed (inGrace).
+ * Age is untimed and shows no number (inGrace).
  *
  * Engine backstop: the engine times an unknown type by TurnTimerTime, which
  * config/timer.sql sets to an hour for Competitive. Whatever phase limit the
@@ -223,19 +223,9 @@ const CLOCK = {
 	}
 };
 
-/**
- * Grace for the opening turn(s) of a session, measured from the first turn
- * this session actually sees rather than an absolute turn number. A new game
- * starting at turn 1 behaves exactly as before; a game that begins at a later
- * turn (a loaded save, a later-age start, or a patch that renumbers turns) still
- * gets its untimed setup turn instead of being timed from the very first turn.
- */
-let firstTurnSeen = -1;
+/** Untimed opening turn(s) of each Age (Game.turn restarts at 1 every Age); an unreadable turn counts too. */
 function inGrace() {
-	const t = currentTurn();
-	if (t < 1) return true;                  // turn not readable yet: treat as grace
-	if (firstTurnSeen < 1) firstTurnSeen = t;
-	return t < firstTurnSeen + Math.max(0, CONFIG.firstTimedTurn - 1);
+	return currentTurn() < CONFIG.firstTimedTurn;
 }
 
 let settlementFounded = false;
@@ -468,8 +458,7 @@ function defineMptPanelAction(base) {
 		 * Null when the event should pass through to the base panel untouched.
 		 */
 		bbmContext(data) {
-			const limit = data?.phaseTimeLimit ?? 0;
-			if (limit <= 0 || (limit > CONFIG.maxProxyLimit && isAgeEnding())) return null;
+			if ((data?.phaseTimeLimit ?? 0) > CONFIG.maxProxyLimit && isAgeEnding()) return null;
 			syncClockFrozen();
 			CLOCK.syncTurn();
 			if (clockHeld()) CLOCK.restart();   // show a full clock until the capital exists
@@ -606,6 +595,8 @@ function defineMptPanelAction(base) {
 
 whenAvailable(configuredTimerType, (configured) => {
 	if (configured !== COMPETITIVE_HASH || !isMultiplayerGame()) return;   // any other timer keeps the game's own panel
-	log(`engine backstop (TurnTimerTime): ${engineBackstop() || 'unset'}s`);
+	const backstop = engineBackstop();
+	if (backstop === ENGINE.backstopSeconds) log(`engine backstop (TurnTimerTime): ${backstop}s`);
+	else log(`WARNING: engine backstop (TurnTimerTime) is ${backstop || 'unset'}, expected ${ENGINE.backstopSeconds}s; the engine may end turns early`);
 	whenDefined('panel-action', defineMptPanelAction, { log });
 }, { onGiveUp: () => log('game configuration never became readable; competitive timer inactive') });

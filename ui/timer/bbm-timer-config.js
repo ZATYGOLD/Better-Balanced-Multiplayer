@@ -27,7 +27,7 @@ const COMPETITIVE_HASH = Database.makeHash("BBM_TURNTIMER_COMPETITIVE");
 
 /** Tunable timings / thresholds. */
 const CONFIG = {
-	firstTimedTurn: 2,        // grace: the first (firstTimedTurn - 1) turn(s) of each session are untimed (found capital, pick research)
+	firstTimedTurn: 2,        // grace: turns before this one in each Age are untimed and show no number (found capital, pick research)
 	minPlayersToEnforce: 1,   // only force-end turns with at least this many living human players, Observers included (2 = never in solo games)
 	roundToNearest: 1,        // round the computed total to the nearest multiple (1 = whole seconds)
 	orangeStart: 30,          // orange tier begins at this many seconds remaining
@@ -49,6 +49,7 @@ const CONFIG = {
 const ENGINE = {
 	timerTextId: "action_panel__mp-turntimer",
 	segmentType: "TURN_SEGMENT_SINGLEPHASE",
+	backstopSeconds: 3600,    // TurnTimerTime under Competitive (config/timer.sql)
 	styleActiveFlash: "screen-turntimer_text_turn_active_flash",
 	styleInactive: "screen-turntimer_text_turn_inactive",
 	audioUrgency: "turn-timer-countdown"

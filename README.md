@@ -71,7 +71,7 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
-- The first turn of each session (a new game, a loaded save, or a new Age) is untimed. The clock stops while the game is paused or an Age is ending.
+- The first turn of each Age is untimed and shows no number; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused or an Age is ending.
 - To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/bbm-timer-config.js`.
 
 ## Synchronized Pause
@@ -202,6 +202,8 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 - The Trade Range setting is removed.
 - Victory Threshold defaults to Low again.
 - With Zatygold's Spectator, the new Spectator Slot setting can turn off the extra lobby slot in Match Types.
+- The Competitive timer no longer lets the game end every turn at once: its one-hour Turn Time backstop is now held by the setup instead of written once when Create Game opens.
+- The Competitive timer is hidden only on the first turn of each Age, and shows on every other turn, including the first turn after loading a save or reconnecting.
 
 ### 0.7.1
 
