@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="zatygolds-multiplayer-balance" version="00720" xmlns="ModInfo">
+<Mod id="zatygolds-multiplayer-balance" version="00730" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_BBM_NAME</Name>
 		<Description>LOC_MODULE_BBM_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.7.2</Version>
+		<Version>0.7.3</Version>
 		<Package>Mod</Package>
 		<LastUpdated>2026-11-08</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
@@ -50,6 +50,7 @@
 <!--*************************** CRITERIA: RESOURCES ****************************************************-->
 		<Criteria id="maps-resource-list-all">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-duel-placement">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMPlayerPlacement</ConfigurationId><Value>BBM_MAPS_PLACEMENT_DUEL</Value></ConfigurationValueMatches>
@@ -63,14 +64,17 @@
 		<Criteria id="maps-resource-list-all-antiquity">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-resource-list-all-exploration">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-resource-list-all-modern">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 
 <!--*************************** CRITERIA: NATURAL WONDERS ****************************************************-->

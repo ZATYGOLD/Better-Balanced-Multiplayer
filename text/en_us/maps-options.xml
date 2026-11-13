@@ -49,6 +49,7 @@
 		<Row Tag="LOC_BBM_MAPS_PANGAEA_ULTIMA_NAME"><Text>Pangaea Ultima</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PANGAEA_ULTIMA_DESC"><Text>One large central Pangaea; the islands beyond its coasts are the Distant Lands.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MULTIPLAYER_SETUP"><Text>Multiplayer setup</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_RESOURCE_MAP"><Text>Resource map</Text></Row>
 	<!-- Start placement warning (ui/maps/bbm-start-bias-warning.js) -->
 		<Row Tag="LOC_BBM_MAPS_START_WARNING_TITLE"><Text>START PLACEMENT WARNING</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_START_WARNING_INTRO"><Text>The safe original-start fallback was used because these requirements were not met:</Text></Row>

@@ -55,10 +55,32 @@ function whenAvailable(probe, callback, { retries = 50, intervalMs = 200, onGive
 	else onGiveUp?.();
 }
 
-/** Run callback(definition) once the UI component tag is defined, retrying a bounded number of times. */
-function whenDefined(tag, callback, { retries = 50, intervalMs = 200, log = null } = {}) {
-	const probe = () => { const definition = Controls.getDefinition(tag); return definition?.createInstance ? definition : null; };
-	whenAvailable(probe, callback, { retries, intervalMs, onGiveUp: () => log?.(`${tag} was never defined`) });
+const pendingDefinitions = new Map();   // tag -> callbacks waiting for the game to define it
+let defineWrapped = false;
+
+/**
+ * Run callback(definition) once the UI component tag is defined: now, or the
+ * moment the game's Controls.define call for it runs (before any element is built).
+ */
+function whenDefined(tag, callback) {
+	if (Controls.isDefined(tag)) {
+		callback(Controls.getDefinition(tag));
+		return;
+	}
+	if (!defineWrapped) {
+		defineWrapped = true;
+		wrapMethod(Controls, 'define', (base, name, ...rest) => {
+			const result = base(name, ...rest);
+			const callbacks = pendingDefinitions.get(name);
+			if (callbacks) {
+				pendingDefinitions.delete(name);
+				callbacks.forEach((fn) => fn(Controls.getDefinition(name)));
+			}
+			return result;
+		});
+	}
+	if (!pendingDefinitions.has(tag)) pendingDefinitions.set(tag, []);
+	pendingDefinitions.get(tag).push(callback);
 }
 
 /** True in a multiplayer game or setup (hotseat included); every mod feature acts only then. */

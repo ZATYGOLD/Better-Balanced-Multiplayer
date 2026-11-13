@@ -56,7 +56,7 @@ function shortenCountdown() {
 			} catch (e) { /* leave the ring as is */ }
 			return result;
 		});
-	}, { log });
+	});
 }
 
 // ============================ Ability titles ============================

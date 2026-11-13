@@ -32,16 +32,21 @@
  *    "want pause" flag means "this player is NOT ready"; the game unpauses when
  *    all flags clear. readyCount = N - wantPauseCount is identical on every
  *    client, giving a synchronized tally for free.
- *  - Injects Pause / Ready / View Map controls into the built-in pause menu.
+ *  - The game's own Pause / Resume button and Multiplayer Pause key set the
+ *    local flag; this manager adds View Map, the ready tally and the host
+ *    controls to the pause menu, which stands in for the game's pause curtain.
  *  - Blocks game-advancing input while paused (engine InputFilterManager).
  *  - Keeps the game paused through a synchronized "UNPAUSING..." countdown.
  *  - Pauses immediately on a player disconnect, before the AI can take over.
- *  - Host "Resume (All Players)" over the chat channel (mp-pause-net.js).
+ *  - Host "Drop Disconnected & Resume" over the chat channel (bbm-pause-net.js).
  */
 import InputFilterManager from 'fs://game/core/ui/input/input-filter.js';
 import { InterfaceMode, InterfaceModeChangedEventName } from 'fs://game/core/ui/interface-modes/interface-modes.js';
-import { createLogger, isMultiplayerGame, isObserverPlayer } from '../shared/bbm-util.js';
-import { PAUSE_ACTION_ID } from '../keybind/bbm-keybind-config.js';
+import { Audio } from 'fs://game/core/ui/audio-base/audio-support.js';
+import { getPlayerColorVariants } from 'fs://game/core/ui/utilities/utilities-color.js';
+import { Icon } from 'fs://game/core/ui/utilities/utilities-image.js';
+import MultiplayerIngame from 'fs://game/base-standard/ui/mp-ingame-mgr/mp-ingame-mgr.js';
+import { createLogger, isMultiplayerGame, isObserverPlayer, wrapMethod } from '../shared/bbm-util.js';
 import { FILTER_SOURCE, PAUSE_MENU_MODE, CONFIG, PROGRESS_ACTIONS, LOC } from './bbm-pause-config.js';
 import styles from './bbm-pause.scss.js';
 import PauseCountdownOverlay from './bbm-pause-overlay.js';
@@ -72,6 +77,40 @@ function humanParticipantIds(includeObservers = false) {
 	} catch (e) { return []; }
 }
 
+/** A div with the given classes, background image and tint, added to parent when given. */
+function layerDiv(className, image = "", tint = "", parent = null) {
+	const div = document.createElement("div");
+	div.className = className;
+	if (image) div.style.backgroundImage = image;
+	if (tint) div.style.setProperty("fxs-background-image-tint", tint);
+	parent?.appendChild(div);
+	return div;
+}
+
+/** A pausing player's leader and civilization icons and name, as the game's pause screen shows them. */
+function pausingPlayerDiv(id, name) {
+	const player = Players.get(id);
+	const leader = player?.leaderType != null ? GameInfo.Leaders.lookup(player.leaderType)?.LeaderType : null;
+	const civ = player ? Icon.getCivSymbolFromCivilizationType(player.civilizationType) : "";
+	const colors = getPlayerColorVariants(id);
+	const primary = colors?.primaryColor.mainColor ?? "";
+	const secondary = colors?.secondaryColor.mainColor ?? "";
+	const row = layerDiv("relative flex flex-row justify-center mx-3 mt-3");
+	const icons = layerDiv("flex flex-row justify-center h-12", "", "", row);
+	const hex = layerDiv("relative w-12 flex items-center justify-center", "", "", icons);
+	layerDiv("absolute w-14 h-16 bg-no-repeat bg-center bg-contain", "url(blp:lp_hex_bk_128)", "", hex);
+	layerDiv("absolute w-14 h-16 bg-no-repeat bg-center bg-contain", "url(blp:lp_hex_color_128)", secondary, hex);
+	const leaderSlot = layerDiv("absolute inset-0 flex items-center justify-center", "", "", hex);
+	layerDiv("size-14 mb-1 bg-no-repeat bg-center bg-contain", leader ? UI.getIconCSS(leader) : "", "", leaderSlot);
+	const circle = layerDiv("relative w-12 flex justify-center items-center", "", "", icons);
+	layerDiv("absolute size-11 bg-center bg-cover", "url(blp:final_civ-frame)", "", circle);
+	layerDiv("absolute size-12 bg-center bg-cover", "url(blp:lp_circ_color_128)", primary, circle);
+	layerDiv("absolute size-9 bg-center bg-cover", civ ? `url(${civ})` : "", secondary, circle);
+	const label = layerDiv("bbm-paused-by-name font-title text-accent-1 ml-1 self-center", "", "", row);
+	label.textContent = id === GameContext.localPlayerID ? Locale.stylize("LOC_VICTORY_LEADER_NAME_YOU", name) : name;
+	return row;
+}
+
 function textDiv(className, text) {
 	const div = document.createElement("div");
 	div.className = className;
@@ -80,14 +119,14 @@ function textDiv(className, text) {
 }
 
 const STYLE_ELEMENT_ID = "bbm-pause-styles";
-const READY_BUTTON_ID = "bbm-ready-button";
 const VIEW_MAP_BUTTON_ID = "bbm-viewmap-button";
-const PAUSE_BUTTON_ID = "bbm-pause-button";
 const DROP_RESUME_BUTTON_ID = "bbm-drop-resume-button";
 const HOST_HINT_ID = "bbm-host-hint";
 const FOOTER_READY_ID = "bbm-footer-ready";
 const PAUSE_MENU_CONTAINER = "#pause-menu-button-container";
 const NATIVE_RESUME_BUTTON = "#pause-menu-resume-button";
+// The game's multiplayer Pause / Resume button, found by its caption.
+const GAME_PAUSE_CAPTIONS = ["LOC_UI_MP_PAUSE", "LOC_UI_MP_RESUME"];
 
 class MultiplayerPauseManager {
 	// --- runtime state ---
@@ -97,6 +136,7 @@ class MultiplayerPauseManager {
 	finalizing = false;         // countdown finished, releasing our flag
 	pauseStart = 0;
 	pauseReason = "";           // optional cause shown in the menu (e.g. disconnect)
+	pausedBy = [];              // ids of the players who started the pause
 	pollTimer = 0;
 	countdownTimer = 0;
 	backstopTimer = 0;
@@ -109,7 +149,6 @@ class MultiplayerPauseManager {
 	acknowledged = {};          // disconnected ids the players deliberately resumed past
 	disconnectNotices = [];     // { id, name } per currently-disconnected player (menu display)
 	viewHiddenForcedEl = null;  // production chooser element we forced "View Hidden" on
-	hotkeyLastAt = 0;           // last Pause keybind press (debounce)
 
 	// --- reusable components ---
 	overlay = new PauseCountdownOverlay();
@@ -121,7 +160,6 @@ class MultiplayerPauseManager {
 	playerTurnActivatedListener = () => this.onTurnActivated();
 	playerConnectedListener = (data) => this.onPlayerConnected(data);
 	hostMigratedListener = (data) => this.onHostMigrated(data);
-	engineInputListener = (ev) => this.onEngineInput(ev);
 
 	constructor() {
 		engine.whenReady.then(() => this.onReady());
@@ -134,6 +172,14 @@ class MultiplayerPauseManager {
 	}
 	numWantPause() {
 		try { return Network.getNumWantPausePlayers() | 0; } catch (e) { return 0; }
+	}
+	/** True from the start of a pause to the end of its unpause countdown (the turn timer waits for it). */
+	isPaused() {
+		return this.state === STATE.PAUSED || (this.state === STATE.COUNTDOWN && !this.finalizing);
+	}
+	/** Whether this client holds a want-pause flag, as the engine has it. */
+	localWantsPause() {
+		try { return !!Configuration.getPlayer(GameContext.localPlayerID)?.wantsPause; } catch (e) { return this.iHoldFlag; }
 	}
 	toggleEnginePause() {
 		try { Network.toggleMultiplayerPause(); return true; }
@@ -198,7 +244,11 @@ class MultiplayerPauseManager {
 	}
 	tryInjectWhenMenuReady(attempt = 0) {
 		const container = document.querySelector(PAUSE_MENU_CONTAINER);
-		if (container) { this.injectMenuButtons(container); return; }
+		if (container) {
+			this.injectMenuButtons(container);
+			setTimeout(() => this.raiseGamePauseButton(container), MENU_INJECT_INTERVAL_MS);   // in case it renders after the menu
+			return;
+		}
 		if (attempt < MENU_INJECT_RETRIES) setTimeout(() => this.tryInjectWhenMenuReady(attempt + 1), MENU_INJECT_INTERVAL_MS);
 	}
 	// fxs-button dispatches "action-activate" for both mouse and controller, just
@@ -210,6 +260,17 @@ class MultiplayerPauseManager {
 		btn.setAttribute("caption", caption);
 		btn.addEventListener("action-activate", onActivate);
 		return btn;
+	}
+	/** The game's own Pause / Resume button goes under Back to Game, or under the hint while paused (Back to Game is hidden). */
+	raiseGamePauseButton(container) {
+		const captions = GAME_PAUSE_CAPTIONS.map((tag) => Locale.compose(tag));
+		const button = [...container.children].find((el) => !el.classList.contains("bbm-injected") && captions.includes(el.textContent.trim()));
+		if (!button) return;
+		const nativeResume = container.querySelector(NATIVE_RESUME_BUTTON);
+		const hint = document.getElementById(HOST_HINT_ID);
+		const above = nativeResume && nativeResume.style.display !== "none" ? nativeResume : (hint?.parentElement === container ? hint : null);
+		const anchor = above ? above.nextSibling : container.firstChild;
+		if (anchor !== button) container.insertBefore(button, anchor);
 	}
 	injectMenuButtons(container) {
 		const paused = this.state === STATE.PAUSED;
@@ -227,18 +288,13 @@ class MultiplayerPauseManager {
 			this.statusText = "";
 			this.renderHint(hint);
 
+			// Players ready up with the game's own Resume button.
 			const isHost = this.amHost();
-			const hostResumeAll = isHost && CONFIG.hostAuthoritativeResume;
-			const readyCaption = hostResumeAll ? LOC.resumeAll
-				: (isHost ? LOC.resumeHost : (this.iHoldFlag ? LOC.ready : LOC.cancelReady));
-			const readyBtn = this.makeButton(READY_BUTTON_ID, readyCaption,
-				(ev) => hostResumeAll ? this.onHostResumeAllClick(ev) : this.onReadyClick(ev));
 			const viewBtn = this.makeButton(VIEW_MAP_BUTTON_ID, LOC.viewMap, (ev) => this.onViewMapClick(ev));
 
-			// Top of the menu, in order: hint, Resume button, then View Map below it.
+			// Top of the menu, in order: hint, then View Map.
 			const first = container.firstChild;
 			container.insertBefore(hint, first);
-			container.insertBefore(readyBtn, first);
 			container.insertBefore(viewBtn, first);
 
 			// Host-only recovery: when a player has dropped while paused, their stuck
@@ -252,13 +308,11 @@ class MultiplayerPauseManager {
 
 			this.injectFooterReady();
 		} else {
-			// Not paused: keep the native Resume and put Pause Game below it.
+			// Not paused: the game's own Pause button starts a pause.
 			if (nativeResume) nativeResume.style.display = "";
 			this.removeFooterReady();
-			const pauseBtn = this.makeButton(PAUSE_BUTTON_ID, LOC.pauseGame, (ev) => this.onPauseClick(ev));
-			if (nativeResume) container.insertBefore(pauseBtn, nativeResume.nextSibling);
-			else container.insertBefore(pauseBtn, container.firstChild);
 		}
+		this.raiseGamePauseButton(container);
 	}
 
 	// ===================== Status hint & footer ready tally ====================
@@ -272,9 +326,20 @@ class MultiplayerPauseManager {
 		const ready = this.converged() ? Math.max(0, total - this.numWantPause()) : 0;
 		return { text: Locale.compose(LOC.readyTally, ready, total), enough: ready >= total };
 	}
+	/** The tally, then who paused (left out when the pause has a stated reason, such as a disconnect). */
 	renderFooter(el) {
 		const tally = this.footerTally();
-		if (el.textContent !== tally.text) el.textContent = tally.text;
+		const pausedBy = !this.disconnectNotices.length && !this.pauseReason ? this.pausedBy : [];
+		const key = tally.text + "\n" + pausedBy.join(",");
+		if (el.dataset.bbmKey !== key) {
+			el.dataset.bbmKey = key;
+			el.textContent = tally.text;
+			if (pausedBy.length) {
+				el.appendChild(textDiv("bbm-paused-by", Locale.compose(LOC.pausedBy)));
+				const players = layerDiv("flex flex-row flex-wrap justify-center", "", "", el);
+				for (const id of pausedBy) players.appendChild(pausingPlayerDiv(id, this.playerNameById(id) || Locale.compose(LOC.aPlayer)));
+			}
+		}
 		el.classList.toggle("bbm-enough", tally.enough);
 		el.classList.toggle("bbm-not-enough", !tally.enough);
 	}
@@ -320,7 +385,7 @@ class MultiplayerPauseManager {
 	hintLines() {
 		const reasons = this.disconnectNotices.map((n) => Locale.compose(LOC.playerDisconnected, n.name));
 		if (this.pauseReason) reasons.push(this.pauseReason);
-		const status = this.amHost() ? LOC.hintHost : (this.iHoldFlag ? LOC.hintWaiting : LOC.hintReady);
+		const status = this.iHoldFlag ? LOC.hintWaiting : LOC.hintReady;
 		return { reasons, status: Locale.compose(status) };
 	}
 	/** Rebuild the hint only when its text changed (player names are set as text, never markup). */
@@ -339,62 +404,10 @@ class MultiplayerPauseManager {
 		const footer = document.getElementById(FOOTER_READY_ID);
 		if (footer) this.renderFooter(footer);
 		else if (this.state === STATE.PAUSED) this.injectFooterReady();
-		const rb = document.getElementById(READY_BUTTON_ID);
-		const caption = this.iHoldFlag ? LOC.ready : LOC.cancelReady;
-		if (rb && !this.amHost() && rb.getAttribute("caption") !== caption) rb.setAttribute("caption", caption);
 	}
 
 	// ============================== Button handlers ============================
-	onPauseClick(ev) {
-		ev?.stopPropagation?.();
-		if (!this.isMultiplayer || this.state !== STATE.IDLE) return;
-		if (this.numWantPause() > 0) return;       // already paused elsewhere
-		this.pauseReason = "";
-		this.iHoldFlag = true;
-		this.toggleEnginePause();
-	}
-	// Pause keybind: pause when running, toggle readiness (a step toward resume)
-	// when already paused; debounced so a quick double press acts once.
-	triggerPauseToggle() {
-		const now = Date.now();
-		if (now - this.hotkeyLastAt < CONFIG.hotkeyDebounceMs) return;
-		this.hotkeyLastAt = now;
-		if (this.state === STATE.PAUSED || this.numWantPause() > 0) this.onReadyClick(null);
-		else this.onPauseClick(null);
-	}
-	// Rebindable keybind: the "bbm-pause-game" input action (config/input.sql),
-	// reachable from the game's own keyboard-mapping options.
-	onEngineInput(ev) {
-		try {
-			if (!this.isMultiplayer) return;
-			const d = ev?.detail;
-			if (!d || d.name !== PAUSE_ACTION_ID) return;
-			if (d.status !== InputActionStatuses.FINISH) return;
-			this.triggerPauseToggle();
-		} catch (e) { /* ignore */ }
-	}
-	onReadyClick(ev) {
-		ev?.stopPropagation?.();
-		if (this.state !== STATE.PAUSED) return;
-		this.iHoldFlag = !this.iHoldFlag;   // toggle our readiness (drop = ready)
-		this.toggleEnginePause();
-		this.refreshStatus();
-	}
-
-	/**
-	 * Host-authoritative resume (chat-RPC): the host presses one button and every
-	 * connected client releases its want-pause flag together, so the game resumes
-	 * without each player having to ready up. The host applies it locally and
-	 * broadcasts RESUME; other clients honor it in onRemoteResume (host-only).
-	 */
-	onHostResumeAllClick(ev) {
-		ev?.stopPropagation?.();
-		if (this.state !== STATE.PAUSED) return;
-		this.onRemoteResume();
-		BBMNet.send("RESUME");
-		log("Host broadcast resume to all connected players.");
-	}
-	/** A trusted RESUME arrived (or we issued one): clear our own flag. */
+	/** A trusted RESUME arrived from the host (or we issued one): clear our own flag. */
 	onRemoteResume() {
 		if (this.state !== STATE.PAUSED && this.state !== STATE.COUNTDOWN) return;
 		if (this.iHoldFlag) { this.iHoldFlag = false; this.toggleEnginePause(); }
@@ -443,6 +456,7 @@ class MultiplayerPauseManager {
 	// ======================= Synchronized state machine ========================
 	onGamePauseStateChanged(data) {
 		if (!this.isMultiplayer) return;
+		this.iHoldFlag = this.localWantsPause();   // the game's Pause / Resume button may have toggled it
 		const paused = !!data && Number(data.data) === 1;
 		if (paused) {
 			if (this.state === STATE.IDLE) this.enterPaused();
@@ -458,6 +472,8 @@ class MultiplayerPauseManager {
 		this.state = STATE.PAUSED;
 		this.pauseStart = Date.now();
 		this.statusText = "";
+		// Before anyone else takes a flag, only the players who paused hold one.
+		this.pausedBy = humanParticipantIds(true).filter((id) => Configuration.getPlayer(id)?.wantsPause);
 		if (!this.iHoldFlag) { this.iHoldFlag = true; this.toggleEnginePause(); }
 		this.applyProgressFilters();
 		this.openPauseMenu();
@@ -509,10 +525,9 @@ class MultiplayerPauseManager {
 		if (this.pauseMenuIsOpen()) {
 			const needDrop = this.amHost() && this.canHostKick() && this.disconnectedIds().length > 0;
 			const haveDrop = !!document.getElementById(DROP_RESUME_BUTTON_ID);
-			if (!document.getElementById(VIEW_MAP_BUTTON_ID) || needDrop !== haveDrop) {
-				const c = document.querySelector(PAUSE_MENU_CONTAINER);
-				if (c) this.injectMenuButtons(c);
-			}
+			const c = document.querySelector(PAUSE_MENU_CONTAINER);
+			if (c && (!document.getElementById(VIEW_MAP_BUTTON_ID) || needDrop !== haveDrop)) this.injectMenuButtons(c);
+			else if (c) this.raiseGamePauseButton(c);
 		}
 		this.refreshStatus();
 	}
@@ -550,7 +565,17 @@ class MultiplayerPauseManager {
 		}
 		this.overlay.show(false);
 		if (this.iHoldFlag) { this.iHoldFlag = false; this.toggleEnginePause(); }
-		this.backstopTimer = setTimeout(() => { if (this.state === STATE.COUNTDOWN) this.enterIdle(); }, CONFIG.finalizeBackstopMs);
+		this.backstopTimer = setTimeout(() => this.settleCountdown(), CONFIG.finalizeBackstopMs);
+	}
+	/**
+	 * The unpause event was missed, or someone paused again during the countdown
+	 * (such as a player rejoining): settle on the engine's own state.
+	 */
+	settleCountdown() {
+		if (this.state !== STATE.COUNTDOWN) return;
+		const pausedAgain = this.numWantPause() > 0;
+		this.enterIdle();
+		if (pausedAgain) this.enterPaused();
 	}
 	enterIdle() {
 		this.state = STATE.IDLE;
@@ -564,10 +589,11 @@ class MultiplayerPauseManager {
 		this.iHoldFlag = false;
 		this.finalizing = false;
 		this.pauseReason = "";
+		this.pausedBy = [];
 		this.disconnectNotices = [];
 		this.restoreProductionChooser();
 		this.removeFooterReady();
-		this.startMenuListener();   // keep offering the Pause button while idle
+		this.startMenuListener();
 	}
 
 	// ============ Disconnect protection (no AI takeover) - THREE LAYERS =========
@@ -689,6 +715,16 @@ class MultiplayerPauseManager {
 	}
 
 	// ================================ Lifecycle ================================
+	/**
+	 * The pause menu stands in for the game's pause curtain, which would cover
+	 * the map and close the menu on every flag change; its pause sound stays.
+	 */
+	suppressGameCurtain() {
+		wrapMethod(MultiplayerIngame, "attachMultiplayerPauseCurtain", () => {});
+		wrapMethod(MultiplayerIngame, "onMultiplayerPause", () => {
+			Audio.playSound(Configuration.getGame().isPaused ? "data-audio-resume" : "data-audio-pause", "multiplayer-pause");
+		});
+	}
 	onReady() {
 		if (CONFIG.enabled === false) return;
 		this.isMultiplayer = isMultiplayerGame();
@@ -703,7 +739,7 @@ class MultiplayerPauseManager {
 		engine.on("MultiplayerHostMigrated", this.hostMigratedListener);
 		engine.on("PlayerTurnActivated", this.playerTurnActivatedListener);
 		engine.on("RemotePlayerTurnBegin", this.playerTurnActivatedListener);
-		window.addEventListener("engine-input", this.engineInputListener, true);
+		this.suppressGameCurtain();
 		// Host-authoritative resume: honor a RESUME command only when it came from
 		// the host, then clear our own flag so the game unpauses in sync.
 		BBMNet.on("RESUME", (d) => { if (BBMNet.isFromHost(d.from)) this.onRemoteResume(); });

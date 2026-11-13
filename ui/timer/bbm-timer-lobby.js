@@ -25,10 +25,9 @@
  * shows a debug value. With Competitive chosen, its Turn Timer row shows the
  * Competitive name instead.
  */
-import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
+import { whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { COMPETITIVE_HASH } from './bbm-timer-config.js';
 
-const log = createLogger('timer lobby');
 const RULES_TAG = 'screen-mp-game-rules';
 
 function isCompetitive() {
@@ -43,4 +42,4 @@ whenDefined(RULES_TAG, (definition) => {
 		}
 		return base(parent, label, value, ...rest);
 	});
-}, { log });
+});

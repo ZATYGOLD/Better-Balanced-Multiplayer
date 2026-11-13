@@ -20,6 +20,7 @@ WHERE File IN (
     '{base-standard}maps/continents.js',
     '{base-standard}maps/continents-plus.js',
     '{base-standard}maps/continents-voronoi.js',
+    '{base-standard}maps/donut-voronoi.js',
     '{base-standard}maps/fractal.js',
     '{base-standard}maps/fractal-voronoi.js',
     '{base-standard}maps/pangaea-plus.js',
@@ -111,17 +112,32 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
         ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_SMALL', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_SMALL_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_SMALL_DESC', 20),
         ('BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_LARGE', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_LARGE_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_LARGE_DESC', 30);
 
--- The Earth map keeps the game's resources: Resource Settings hide there and
--- choosing it sets Resource List to Standard (no mod resource data loads).
+-- The Earth maps keep the game's resources: Resource Settings hide there, and the
+-- hidden Resource Map flag, set from each map script, keeps the Resource List All
+-- data off them (modinfo criteria maps-resource-list-all-*) without changing the
+-- chosen Resource List.
 INSERT OR IGNORE INTO ParameterDependencies (ParameterID, ConfigurationGroup, ConfigurationKey, Operator, ConfigurationValue)
     VALUES
         ('BBMResourceList', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map'),
         ('BBMResourceAmount', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map'),
-        ('BBMResourceClusters', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map');
+        ('BBMResourceClusters', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map'),
+        ('BBMResourceList', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge_Random.Civ7Map'),
+        ('BBMResourceAmount', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge_Random.Civ7Map'),
+        ('BBMResourceClusters', 'Map', 'MapScript', 'NotEquals', '{base-standard}maps/EarthMaps/Earth_Huge_Random.Civ7Map');
+
+INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupID, Hidden, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
+    VALUES
+        ('BBMResourceMap', 'LOC_BBM_MAPS_RESOURCE_MAP', 'LOC_BBM_MAPS_RESOURCE_MAP', 'BBMResourceMaps', 0, 'BBM_MAPS_RESOURCE_MAP_SUPPORTED', 'Map', 'BBMResourceMap', 'ResourceOptions', 1, 0, 0, 40);
+
+INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
+    VALUES
+        ('BBMResourceMaps', 'BBM_MAPS_RESOURCE_MAP_SUPPORTED', 'LOC_BBM_MAPS_RESOURCE_MAP', 'LOC_BBM_MAPS_RESOURCE_MAP', 10),
+        ('BBMResourceMaps', 'BBM_MAPS_RESOURCE_MAP_EARTH', 'LOC_BBM_MAPS_RESOURCE_MAP', 'LOC_BBM_MAPS_RESOURCE_MAP', 20);
 
 INSERT OR IGNORE INTO ConfigurationUpdates (SourceGroup, SourceKey, SourceValue, TargetGroup, TargetKey, TargetValue, Hash)
-    VALUES
-        ('Map', 'Script', '{base-standard}maps/EarthMaps/Earth_Huge.Civ7Map', 'Map', 'BBMResourceList', 'BBM_MAPS_RESOURCE_LIST_STANDARD', 0);
+SELECT 'Map', 'Script', File, 'Map', 'BBMResourceMap',
+    CASE WHEN File LIKE '{base-standard}maps/EarthMaps/%' THEN 'BBM_MAPS_RESOURCE_MAP_EARTH' ELSE 'BBM_MAPS_RESOURCE_MAP_SUPPORTED' END, 0
+FROM Maps;
 
 --*******************************************************
 --***************** PLAYER PLACEMENT ********************

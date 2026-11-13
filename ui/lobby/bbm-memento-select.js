@@ -37,12 +37,13 @@ import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-st
 import { defineLegacyComponent } from 'fs://game/core/ui-next/components/fxs-solid-component.js';
 import { Panel } from 'fs://game/core/ui-next/components/panel.js';
 import { ScreenFlowContext } from 'fs://game/core/ui-next/components/screen-flow.js';
-import { MementoSelect } from 'fs://game/core/ui-next/screens/create-game/memento-select.js';
+import { MementoSelect, MementoSelectClosedEvent } from 'fs://game/core/ui-next/screens/create-game/memento-select.js';
 import { MementoSelectModelContext } from 'fs://game/core/ui-next/screens/create-game/memento-select-model.js';
-import { isMultiplayerGame } from '../shared/bbm-util.js';
+import { createLogger, isMultiplayerGame } from '../shared/bbm-util.js';
 import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLobbyMementoModel } from './bbm-memento-select-model.js';
 
+const log = createLogger('memento picker');
 const SCREEN_NAME = "bbm-memento-select";
 const GAME_EDITOR = "memento-editor";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
@@ -66,7 +67,12 @@ function canEditMementos() {
 function closeScreen(name) {
 	if (ContextManager.hasInstanceOf(name)) ContextManager.pop(name);
 }
-const close = () => closeScreen(SCREEN_NAME);
+/** Closes the picker and tells the lobby, which hides itself while Mementos is open (as the game's picker does). */
+function close() {
+	if (!ContextManager.hasInstanceOf(SCREEN_NAME)) return;
+	ContextManager.pop(SCREEN_NAME);
+	window.dispatchEvent(new MementoSelectClosedEvent());
+}
 
 // Only what the picker and its stage header read from a flow.
 const standaloneFlow = {
@@ -92,7 +98,9 @@ function backdrop() {
 }
 
 const MementoPicker = () => {
+	log(`opening on slot ${openingSlot?.ID ? GameSetup.resolveString(openingSlot.ID) : "none"}`);
 	const model = createLobbyMementoModel(openingSlot);
+	log(`${model.slots.length} slots, ${model.mementos.length} mementos`);
 	onCleanup(onSetupRevision("memento picker", () => (canEditMementos() ? model.refresh() : close())));
 	return [backdrop(), createComponent(Panel, {
 		id: SCREEN_NAME,

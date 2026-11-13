@@ -62,6 +62,7 @@
  */
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
 import { createLogger, isAgeEnding, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined } from '../shared/bbm-util.js';
+import MultiplayerPause from '../pause/bbm-pause-mgr.js';
 import { COMPETITIVE_HASH, CONFIG, ENGINE } from './bbm-timer-config.js';
 
 const log = createLogger('timer');
@@ -244,8 +245,9 @@ function clockHeld() {
 	return !settlementFounded;
 }
 
-/** The clock stands still while the game is paused or an Age transition is under way. */
+/** The clock stands still while the game is paused (through its unpause countdown) or an Age transition is under way. */
 function clockFrozen() {
+	if (MultiplayerPause.isPaused()) return true;
 	try { if (Configuration.getGame().isPaused) return true; } catch (e) { /* unknown: not paused */ }
 	return isAgeEnding();
 }
@@ -598,5 +600,5 @@ whenAvailable(configuredTimerType, (configured) => {
 	const backstop = engineBackstop();
 	if (backstop === ENGINE.backstopSeconds) log(`engine backstop (TurnTimerTime): ${backstop}s`);
 	else log(`WARNING: engine backstop (TurnTimerTime) is ${backstop || 'unset'}, expected ${ENGINE.backstopSeconds}s; the engine may end turns early`);
-	whenDefined('panel-action', defineMptPanelAction, { log });
+	whenDefined('panel-action', defineMptPanelAction);
 }, { onGiveUp: () => log('game configuration never became readable; competitive timer inactive') });

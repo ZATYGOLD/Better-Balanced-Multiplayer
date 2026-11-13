@@ -32,13 +32,11 @@ const PAUSE_MENU_MODE = "INTERFACEMODE_PAUSE_MENU";
 /** Tunable timings / thresholds. */
 const CONFIG = {
 	enabled: true,               // master switch (set false to fully disable the pause feature)
-	hostAuthoritativeResume: true, // host's Resume button unpauses for EVERYONE (chat-RPC); false = host only readies itself
 	resumeCountdownSeconds: 5,   // length of the "UNPAUSING..." countdown
 	pollMs: 250,                 // tally / condition evaluation interval
 	convergenceDelayMs: 2000,    // wait for all clients to flag in before evaluating readiness
 	finalizeBackstopMs: 4000,    // fallback idle if the unpause event is missed
-	connectionWatchMs: 500,      // how often to poll player connections for drops
-	hotkeyDebounceMs: 250        // presses of the Pause keybind closer than this act once
+	connectionWatchMs: 500       // how often to poll player connections for drops
 };
 
 /**
@@ -57,15 +55,10 @@ const PROGRESS_ACTIONS = [
 
 /** Localization keys (text/en_us/shared.xml; View Map reuses the base game's string). */
 const LOC = {
-	pauseGame: "LOC_BBM_PAUSE_GAME",
-	ready: "LOC_BBM_READY",
-	cancelReady: "LOC_BBM_CANCEL_READY",
-	resumeHost: "LOC_BBM_RESUME_HOST",
-	resumeAll: "LOC_BBM_RESUME_ALL",        // host-authoritative: resume for every connected player
 	dropResume: "LOC_BBM_DROP_RESUME",      // host-only: kick disconnected players to break a pause deadlock
 	viewMap: "LOC_ADVANCED_START_VIEW_MAP",
 	readyTally: "LOC_BBM_PAUSE_READY_TALLY",
-	hintHost: "LOC_BBM_PAUSE_HINT_HOST",
+	pausedBy: "LOC_ACTION_PANEL_MULTIPLAYER_PAUSE_TT",   // the game's "paused by the following players"
 	hintReady: "LOC_BBM_PAUSE_HINT_READY",
 	hintWaiting: "LOC_BBM_PAUSE_HINT_WAITING",
 	aPlayer: "LOC_BBM_PAUSE_A_PLAYER",

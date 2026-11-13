@@ -1,13 +1,13 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.2**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.3**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
 - **Match Type**: Free for All, 1v1, 2v2, 3v3 or 4v4. It sets teams, slots, placement and map size.
 - **Competitive Turn Timer**: the turn clock scales with cities, units, players and the turn number.
 - **Synchronized Pause**: anyone can pause, and everyone resumes together.
-- **Keybinds**: rebindable keys for lenses, units, Commanders, settlements and pause.
+- **Keybinds**: rebindable keys for lenses, units, Commanders and settlements.
 - **Game Balance**: competitive balance changes across every Age.
 - **Maps**: Pangaea Ultima, East vs West placement, strict start biases, a Resource List, and climate and terrain settings.
 - **Pacing**: Pace Sets, per-Age pace settings and victory thresholds.
@@ -71,14 +71,14 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
-- The first turn of each Age is untimed and shows no number; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused or an Age is ending.
+- The first turn of each Age is untimed and shows no number; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused, through the unpause countdown, or while an Age is ending.
 - To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/bbm-timer-config.js`.
 
 ## Synchronized Pause
 
-- **Pause** with **Pause Game** in the Esc menu or with **Ctrl+P**. The pause menu opens for everyone.
-- **While paused**, players press **Ready**, and the host can **Resume (All Players)**. **View Map** lets players look around. Actions that advance the game are blocked.
-- **Resume** happens when every connected player is ready or the host resumes for everyone. A 5-second **UNPAUSING…** countdown runs, then play resumes together.
+- **Pause** with the game's own **Pause** button in the Esc menu or its **Multiplayer Pause** key ([ by default). The pause menu opens for everyone, in place of the game's pause screen.
+- **While paused**, players press the game's **Resume** button when they are ready. The game's Pause / Resume button sits under Back to Game (under the status line while paused), and the footer shows the ready count and who paused. **View Map** lets players look around. Actions that advance the game are blocked.
+- **Resume** happens when every connected player is ready. A 5-second **UNPAUSING…** countdown runs, then play resumes together.
 - **Disconnects, host changes and rejoins** pause the game automatically. The host can **Drop Disconnected & Resume**.
 
 ## Keybinds
@@ -91,10 +91,9 @@ Keybinds are active in multiplayer games and can be changed in **Options → key
 | Found Settlement | B |
 | Advisors Council (moved from B, also in single player) | Ctrl+B |
 | Search (Scout) | Ctrl+J |
-| Previous / Next Settlement / Capital | [ / ] / \ |
+| Previous / Next Settlement / Capital | Page Up / Page Down / Home |
 | Unit Join / Leave Commander | Ctrl+Z / Ctrl+X |
 | Commander Pack / Unpack Units | Ctrl+Q / Ctrl+W |
-| Pause Game | Ctrl+P |
 
 Pressing a lens key again returns to the default lens. Unit keys are blocked while paused. The Advisor Council popup no longer opens on its own in multiplayer, but its button and key still work.
 
@@ -128,7 +127,7 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
   - **Terrain Settings**: Lakes, Rivers, Mountains and Sea Level.
 - **Natural Wonders**: how many are placed, with an Enabled/Disabled toggle for each wonder.
 - **Disasters**: the game's own Disaster Intensity, on Game Settings.
-- The Earth map keeps the game's resources.
+- The Earth and Random Earth maps keep the game's resources.
 
 ## Pacing
 
@@ -192,6 +191,24 @@ Better-Balanced-Multiplayer/
 Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.3
+
+Compatibility with Civilization VII 1.5.1.
+
+- Previous / Next Settlement / Capital move to Page Up / Page Down / Home: the game now uses [ for its own multiplayer pause.
+- The new Donut map gets a multiplayer copy, so Map and Terrain Settings apply to it. It keeps the game's square map sizes.
+- Random Earth keeps the game's resources, like Earth: Resource Settings hide there.
+- Passing over Earth or Random Earth in the map list no longer switches Resource List to Standard for the next map; it stays as chosen.
+- The Competitive timer works again: 1.5.1 loads the game screens later, and the timer stopped waiting before they were ready (the engine's one-hour backstop showed instead).
+- Pause uses the game's own Pause / Resume button and Multiplayer Pause key; BBM's Pause Game button, Ready button and Ctrl+P key are removed. The game's pause screen is replaced by the pause menu, so View Map, the ready tally, Drop Disconnected & Resume and the countdown keep working.
+- Opening Create Game no longer shows the game's new "Settings Changed" notice for Map Type, and the multiplayer defaults wait until the setup is ready instead of giving up after one second.
+- Create Game shows the values BBM sets (multiplayer defaults, Match Type, presets): 1.5.1 stopped redrawing a row whose value changed by script, so the old values stayed on screen even though the game used the new ones.
+- Closing the lobby's Mementos picker brings the lobby back: 1.5.1 hides the lobby while Mementos is open.
+- The pause menu shows who paused under the ready count, with their leader and civilization icons as on the game's pause screen, and the game's Pause / Resume button sits under Back to Game (under the status line while paused); the host's Resume (All Players) button is removed (the game's Resume readies each player).
+- The turn timer waits for the unpause countdown to finish.
+- Chat no longer shows the pause commands, and the keyboard options list the mod's keys again (same cause as the timer).
+- Custom Map Zones and Map Temperature lay snow on the game's new snow curve (from latitude 53 toward the poles).
 
 ### 0.7.2
 

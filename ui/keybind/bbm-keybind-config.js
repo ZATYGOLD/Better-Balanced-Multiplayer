@@ -22,8 +22,6 @@
  * Better Balanced Multiplayer - Keybind actions (config/input.sql registers them and their default keys).
  */
 
-const PAUSE_ACTION_ID = 'bbm-pause-game';
-
 /** Lens toggles: action id -> lens (pressing it again returns to the default lens). */
 const LENS_ACTIONS = {
 	'bbm-lens-trade': 'fxs-trade-lens',
@@ -52,6 +50,6 @@ const CITY_ACTIONS = {
 };
 
 /** Every mod action listed in the keyboard-mapping options. */
-const KEYBIND_ACTIONS = [PAUSE_ACTION_ID, ...Object.keys(LENS_ACTIONS), ...Object.keys(UNIT_ACTIONS), ...Object.keys(CITY_ACTIONS)];
+const KEYBIND_ACTIONS = [...Object.keys(LENS_ACTIONS), ...Object.keys(UNIT_ACTIONS), ...Object.keys(CITY_ACTIONS)];
 
-export { CITY_ACTIONS, DEFAULT_LENS, KEYBIND_ACTIONS, LENS_ACTIONS, PAUSE_ACTION_ID, UNIT_ACTIONS };
+export { CITY_ACTIONS, DEFAULT_LENS, KEYBIND_ACTIONS, LENS_ACTIONS, UNIT_ACTIONS };

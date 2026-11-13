@@ -7,24 +7,16 @@
 		<Row Tag="LOC_BBM_CUSTOM_NAME"><Text>Custom</Text></Row>
 
 	<!-- Pause -->
-		<Row Tag="LOC_BBM_PAUSE_GAME"><Text>Pause Game</Text></Row>
-		<Row Tag="LOC_BBM_READY"><Text>Ready</Text></Row>
-		<Row Tag="LOC_BBM_CANCEL_READY"><Text>Cancel Ready</Text></Row>
-		<Row Tag="LOC_BBM_RESUME_HOST"><Text>Resume (Host)</Text></Row>
-		<Row Tag="LOC_BBM_RESUME_ALL"><Text>Resume (All Players)</Text></Row>
 		<Row Tag="LOC_BBM_DROP_RESUME"><Text>Drop Disconnected &amp; Resume</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_READY_TALLY"><Text>Ready: {1_Ready} / {2_Total}</Text></Row>
-		<Row Tag="LOC_BBM_PAUSE_HINT_HOST"><Text>You are the host. Resume when ready.</Text></Row>
-		<Row Tag="LOC_BBM_PAUSE_HINT_READY"><Text>You are ready. Waiting for the other players or the host to resume.</Text></Row>
-		<Row Tag="LOC_BBM_PAUSE_HINT_WAITING"><Text>Press Ready when you are ready to resume, or wait for the host.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HINT_READY"><Text>You are ready. Waiting for the other players.</Text></Row>
+		<Row Tag="LOC_BBM_PAUSE_HINT_WAITING"><Text>Press Resume when you are ready.</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_A_PLAYER"><Text>A player</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_PLAYER_DISCONNECTED"><Text>{1_Name} disconnected.</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_PLAYER_IS_DISCONNECTED"><Text>A player is disconnected.</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_PLAYER_RECONNECTING"><Text>{1_Name} is reconnecting - resyncing.</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_HOST_CHANGED"><Text>The host changed.</Text></Row>
 		<Row Tag="LOC_BBM_PAUSE_UNPAUSING"><Text>Unpausing...</Text></Row>
-		<Row Tag="LOC_BBM_PAUSE_KEYBIND"><Text>Pause Game (Multiplayer)</Text></Row>
-		<Row Tag="LOC_BBM_PAUSE_KEYBIND_TT"><Text>Pauses the game, or toggles your readiness while it is paused. Multiplayer games only; added by Better Balanced Multiplayer.</Text></Row>
 
 	<!-- Keybinds -->
 		<Row Tag="LOC_BBM_KEYBIND_LENS_TRADE"><Text>Toggle Trade Lens</Text></Row>

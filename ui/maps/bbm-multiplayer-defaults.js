@@ -28,12 +28,11 @@
  * defaults the mod promises are written here; the Pace and Gameplay rules then
  * bring each setting's rows in line.
  */
+import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";
-const RETRY_MS = 50;
-const MAX_ATTEMPTS = 20;
 const REQUIRED_PARAMETERS = ["GameSpeeds", "Map", "MapSize"];
 const COMPETITIVE = "BBM_TURNTIMER_COMPETITIVE";
 const MULTIPLAYER_DEFAULTS = [
@@ -48,12 +47,9 @@ const MULTIPLAYER_DEFAULTS = [
 	["MapSize", "MAPSIZE_STANDARD"]
 ];
 
-function applyMultiplayerDefaults(attempt = 0) {
-	const ready = REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
-	if (!ready) {
-		if (attempt < MAX_ATTEMPTS) setTimeout(() => applyMultiplayerDefaults(attempt + 1), RETRY_MS);
-		return;
-	}
+const setupReady = () => REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
+
+function applyMultiplayerDefaults() {
 	try {
 		for (const [parameterID, value] of MULTIPLAYER_DEFAULTS) {
 			if (GameSetup.findGameParameter(parameterID) != null) GameSetup.setGameParameterValue(parameterID, value);
@@ -64,10 +60,31 @@ function applyMultiplayerDefaults(attempt = 0) {
 	}
 }
 
+/**
+ * The screen opens on the game's multiplayer map list, which drops the previous
+ * map, so its "Settings Changed" notice for Map stays off until the screen has
+ * caught up with the defaults.
+ */
 whenDefined(SCREEN_TAG, (definition) => {
-	wrapMethod(definition.createInstance.prototype, "onAttach", function (base, ...args) {
+	const proto = definition.createInstance.prototype;
+	wrapMethod(proto, "onAttach", function (base, ...args) {
 		const result = base(...args);
-		setTimeout(() => applyMultiplayerDefaults(), 0);
+		this.bbmTrackedParameters ??= this.trackedParameters;
+		this.trackedParameters = [];
+		this.bbmDefaultsRevision = null;
+		const stop = onSetupRevision("maps defaults", () => {
+			stop();
+			applyMultiplayerDefaults();
+			this.bbmDefaultsRevision = GameSetup.currentRevision;
+		}, setupReady);
 		return result;
 	});
-}, { log });
+	wrapMethod(proto, "onUpdate", function (base, ...args) {
+		const result = base(...args);
+		if (this.bbmDefaultsRevision != null && this.gameSetupRevision >= this.bbmDefaultsRevision) {
+			this.trackedParameters = this.bbmTrackedParameters;
+			this.bbmDefaultsRevision = null;
+		}
+		return result;
+	});
+});

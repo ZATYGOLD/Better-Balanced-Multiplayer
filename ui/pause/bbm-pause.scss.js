@@ -45,6 +45,11 @@ const styles = `
   }
   .bbm-footer-ready.bbm-not-enough { color: #ff5555; }
   .bbm-footer-ready.bbm-enough { color: #5dff86; }
+  /* Who started the pause, under the tally, with leader and civilization icons. */
+  .bbm-footer-ready .bbm-paused-by {
+    margin-top: 0.6rem; font-size: 1.15rem; font-weight: 400; letter-spacing: 0.04em; color: #e7d6ab;
+  }
+  .bbm-footer-ready .bbm-paused-by-name { font-size: 1.2rem; letter-spacing: 0.02em; }
 
   /* Full-screen "UNPAUSING..." countdown overlay with a centered, dimming vignette. */
   #bbm-countdown {
