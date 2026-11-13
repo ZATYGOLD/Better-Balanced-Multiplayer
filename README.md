@@ -209,6 +209,8 @@ Compatibility with Civilization VII 1.5.1.
 - The turn timer waits for the unpause countdown to finish.
 - Chat no longer shows the pause commands, and the keyboard options list the mod's keys again (same cause as the timer).
 - Custom Map Zones and Map Temperature lay snow on the game's new snow curve (from latitude 53 toward the poles).
+- Militaristic's Commander node: each Commander garrisoned on a District gives its Settlement +1 Science and +1 Culture per Promotion, up to 15 (it counted every Commander level in every Settlement).
+- With the Policy Yield Previews mod enabled, the Militaristic Commander node shows its Science and Culture from your garrisoned Commanders (that mod showed +0).
 
 ### 0.7.2
 

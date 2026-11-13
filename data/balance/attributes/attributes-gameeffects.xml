@@ -17,16 +17,337 @@
 		<Argument name="Percent">25</Argument>
 	</Modifier>
 
-	<!-- Militaristic: garrisoned Commanders' yields per level. One id in every Age, so a
-	     completed node keeps it through Age transitions (unlocks are not re-fired). -->
-	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_CULTURE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL">
-		<Argument name="YieldType">YIELD_CULTURE</Argument>
-		<Argument name="Amount">1</Argument>
-		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	<!-- Militaristic: garrisoned Commanders' Science and Culture per Promotion, one tier per
+	     Promotion up to 15. One id in every Age, so a completed node keeps it through Age
+	     transitions (unlocks are not re-fired). -->
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_01" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">1</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_01_YIELDS</Argument>
 		<String context="Description">LOC_MOD_ATTRIBUTE_MILITARISTIC_06_DESCRIPTION</String>
 	</Modifier>
-	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_SCIENCE" collection="COLLECTION_PLAYER_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_COMMANDER_LEVEL">
-		<Argument name="YieldType">YIELD_SCIENCE</Argument>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_01_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_02" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">2</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_02_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_02_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_03" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">3</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_03_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_03_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_04" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">4</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_04_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_04_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_05" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">5</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_05_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_05_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_06" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">6</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_06_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_06_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_07" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">7</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_07_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_07_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_08" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">8</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_08_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_08_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_09" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">9</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_09_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_09_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_10" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">10</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_10_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_10_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_11" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">11</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_11_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_11_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_12" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">12</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_12_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_12_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_13" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">13</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_13_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_13_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_14" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">14</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_14_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_14_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
+		<Argument name="Amount">1</Argument>
+		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_15" collection="COLLECTION_PLAYER_UNITS" effect="EFFECT_ATTACH_MODIFIERS">
+		<SubjectRequirements>
+			<Requirement type="REQUIREMENT_UNIT_TAG_MATCHES">
+				<Argument name="Tag">UNIT_CLASS_COMMAND</Argument>
+			</Requirement>
+			<Requirement type="REQUIREMENT_COMMANDER_HAS_X_PROMOTIONS">
+				<Argument name="PromotionsOnly">true</Argument>
+				<Argument name="Amount">15</Argument>
+			</Requirement>
+		</SubjectRequirements>
+		<Argument name="ModifierId">BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_15_YIELDS</Argument>
+	</Modifier>
+	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_MILITARISTIC_GARRISON_15_YIELDS" collection="COLLECTION_UNIT_OCCUPIED_CITY" effect="EFFECT_CITY_ADJUST_YIELD">
+		<OwnerRequirements>
+			<Requirement type="REQUIREMENT_UNIT_IS_STATIONED_ON_DISTRICT">
+				<Argument name="DistrictType">DISTRICT_URBAN, DISTRICT_CITY_CENTER</Argument>
+			</Requirement>
+		</OwnerRequirements>
+		<Argument name="YieldType">YIELD_SCIENCE, YIELD_CULTURE</Argument>
 		<Argument name="Amount">1</Argument>
 		<Argument name="Tooltip">LOC_TREE_ATTRIBUTE_MILITARISTIC</Argument>
 	</Modifier>

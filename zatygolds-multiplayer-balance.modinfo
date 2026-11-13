@@ -1196,6 +1196,7 @@
 					<Item>ui/pause/bbm-pause-mgr.js</Item>
 					<Item>ui/advisor/bbm-advisor-popup.js</Item>
 					<Item>ui/gameplay/bbm-commander-training.js</Item>
+					<Item>ui/gameplay/bbm-yields-preview.js</Item>
 					<Item>ui/keybind/bbm-keybind-config.js</Item>
 					<Item>ui/keybind/bbm-keybind.js</Item>
 					<Item>ui/keybind/bbm-hotkeys.js</Item>

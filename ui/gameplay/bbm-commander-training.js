@@ -26,19 +26,14 @@
  * only once, so the host (the local player outside multiplayer) awards it through
  * Units.changeExperience. Game Balance Multiplayer only.
  */
-import { createLogger } from '../shared/bbm-util.js';
+import { createLogger, isBalanceOn } from '../shared/bbm-util.js';
 
 const log = createLogger('commander training');
 const TRAINING_XP = 2;   // once per Commander per turn, however many Military Buildings share its tile
 const MILITARY_TAG = "MILITARY";
-const BALANCE_MULTIPLAYER = "BBM_BALANCE_MULTIPLAYER";
 
 let lastTurn = -1;   // one award per turn, even if TurnBegin repeats
 let militaryTypes = null;
-
-function isBalanceOn() {
-	try { return Configuration.getGame().getValue("BBMBalance") === BALANCE_MULTIPLAYER; } catch (e) { return false; }
-}
 
 function isAuthority() {
 	if (!Configuration.getGame().isAnyMultiplayer) return true;

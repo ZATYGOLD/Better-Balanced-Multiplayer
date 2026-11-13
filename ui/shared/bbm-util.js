@@ -22,8 +22,8 @@
  * Better Balanced Multiplayer - shared helpers (shell and game scope).
  *
  * Logging, method wrapping, deferred patching and the decorator base used by
- * every feature, plus the multiplayer and Age transition checks and companion-mod
- * detection (Observer, enabled mods).
+ * every feature, plus the multiplayer, Game Balance and Age transition checks and
+ * companion-mod detection (Observer, enabled mods).
  */
 
 /** Logger that reaches UI.log (console.log output does not). */
@@ -88,6 +88,11 @@ function isMultiplayerGame() {
 	try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
 }
 
+/** True when Game Balance is Multiplayer (game scope), so the mod's balance data is loaded. */
+function isBalanceOn() {
+	try { return Configuration.getGame().getValue("BBMBalance") === "BBM_BALANCE_MULTIPLAYER"; } catch (e) { return false; }
+}
+
 /** True while an Age transition is in progress. */
 function isAgeTransition() {
 	try { return Modding.getTransitionInProgress?.() === TransitionType.Age; } catch (e) { return false; }
@@ -149,4 +154,4 @@ function isModEnabled(modId) {
 	try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isBalanceOn, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };
