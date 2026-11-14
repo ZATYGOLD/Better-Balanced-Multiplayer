@@ -21,8 +21,8 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 -- it to Custom (ui/pace/bbm-pace-rules.js).
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
-        ('BBMPacePreset', 'LOC_BBM_PACE_PRESET_NAME', 'LOC_BBM_PACE_PRESET_DESC', 'BBMPacePresets', 0, 'BBM_PACE_PRESET_STANDARD', 'Game', 'BBMPacePreset', 'GameOptions', NULL, 0, 0, 15),
-        ('BBMPaceSetMirror', 'LOC_BBM_PACE_PRESET_NAME', 'LOC_BBM_PACE_PRESET_DESC', 'BBMPacePresets', 0, 'BBM_PACE_PRESET_STANDARD', 'Game', 'BBMPaceSetMirror', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 28);
+        ('BBMPacePreset', 'LOC_BBM_PACE_PRESET_NAME', 'LOC_BBM_PACE_PRESET_DESC', 'BBMPacePresets', 0, 'BBM_PACE_PRESET_MULTIPLAYER', 'Game', 'BBMPacePreset', 'GameOptions', NULL, 0, 0, 15),
+        ('BBMPaceSetMirror', 'LOC_BBM_PACE_PRESET_NAME', 'LOC_BBM_PACE_PRESET_DESC', 'BBMPacePresets', 0, 'BBM_PACE_PRESET_MULTIPLAYER', 'Game', 'BBMPaceSetMirror', 'GamePacingOptions', 'MPAdvancedGamePacingOptions', 0, 0, 28);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
     VALUES

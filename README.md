@@ -22,7 +22,7 @@ Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Mei
 
 ## Multiplayer defaults
 
-New multiplayer games, and any Match Type change, start with these settings. The host can change any of them.
+New multiplayer games start with these settings. The host can change any of them.
 
 | Setting | Default |
 |---|---|
@@ -34,7 +34,7 @@ New multiplayer games, and any Match Type change, start with these settings. The
 | Game Balance | Multiplayer |
 | Start Bias | Multiplayer |
 | Resource List / Amount / Clusters | All / Multiplayer / Disabled |
-| Pace Set | Standard (Trade Speed Instant) |
+| Pace Set | Multiplayer (Trade Speed Instant) |
 | Victory Threshold | Low |
 | Crises | Disabled |
 
@@ -52,7 +52,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 
 - The lobby opens only the match's slots. Team 1 starts West and team 2 starts East.
 - With Zatygold's Spectator, one extra slot is kept for the Observer while its **Spectator Slot** setting is on (default). Turn it off to play without a Spectator.
-- When the host picks a Match Type, every other setting returns to its multiplayer default. These are kept: Multiplayer Settings (including Game Balance), the seeds, the map, the ruleset, the starting Age, and all player choices.
+- When the host picks a Match Type, the other Map tab settings return to their multiplayer defaults. Everything else stays as it is, including the timer, Pace, Victory Threshold, Crises and Resource settings, which follow Game Balance.
 
 ## Competitive Turn Timer
 
@@ -101,6 +101,17 @@ Pressing a lens key again returns to the default lens. Unit keys are blocked whi
 
 The **Game Balance** option is in Multiplayer Settings, above Kick Vote. **Multiplayer** (the default) applies the mod's balance. **Standard** keeps the game's own balance.
 
+Switching Game Balance also sets these settings (the host can change them afterwards):
+
+| Setting | Multiplayer | Standard |
+|---|---|---|
+| Turn Timer | Competitive | Dynamic |
+| Pace Set | Multiplayer | Standard |
+| Victory Threshold | Low | Standard |
+| Crises / Crisis Timing | Disabled | Enabled / Standard |
+| Resource List / Amount | All / Multiplayer | Standard / Standard |
+| Resource Clusters | Disabled | (unchanged) |
+
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
 - Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
 - In every Age, trade routes start from a distance, as in the Modern Age.
@@ -133,7 +144,7 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
 
 The **Pace** tab comes after Game Settings. Its settings are carried over from Advanced Settings Pro.
 
-- **Pace Set**: Standard (the default), Balanced or Multiplayer. Each preset fills in every pace setting. Changing any single setting switches Pace Set to Custom.
+- **Pace Set**: Multiplayer (the default: every setting Standard, Trade Speed Instant), Standard (the game's own) or Balanced. Each preset fills in every pace setting. Changing any single setting switches Pace Set to Custom.
 - **Pace settings**: each has an All Ages value, or per-Age values with Custom.
   - **Age Length**: Swift, Abbreviated, Standard or Custom (90–140 points per Age, in steps of 10).
   - **Age Progression**, plus **Technology, Civic, Building and Victory Project Cost**.
@@ -196,6 +207,8 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 
 Fixes and cleanup from a full review of the mod.
 
+- Pace Set: Multiplayer (the default) is every setting Standard with Trade Speed Instant; Standard is now the game's own pace (its Modern Merchants keep their Movement). The old Multiplayer preset is removed.
+- Switching Game Balance sets the timer, Pace Set, Victory Threshold, Crises and Resource settings to match it: Standard gives the game's own (Dynamic timer, Crises on), Multiplayer the competitive defaults. New games apply it too. Choosing a Match Type now only changes the Map tab and the lobby slots.
 - Militaristic's Commander node also counts a level 1 Commander (+1 per level, as the preview showed) and has no 15-level cap.
 - Trade Speed Instant (the default) now also gives Modern Merchants 1 Movement and 1 Sight; only Antiquity and Exploration had it.
 - Settlement Distance, Independent Amount and Independent Spacing write their values even in an Age whose data has no row for them.

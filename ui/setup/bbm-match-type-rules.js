@@ -21,29 +21,25 @@
 /**
  * Better Balanced Multiplayer - Match Type rules (shell scope).
  *
- * Choosing a Match Type (config/match-types.sql) starts the match from its defaults:
- * every game setting the Create Game tabs show returns to its multiplayer default
- * from the setup database, Game Speed becomes Online and Turn Timer Competitive.
- * Kept: the settings the Match Type (or the speed and timer) sets through its
- * configuration updates, the Multiplayer Settings section (game name, Hidden
- * Game, Game Balance, Kick Vote), the seeds, the map, the ruleset and
- * starting Age, the Crises list (it follows Crises, ui/gameplay/bbm-gameplay-rules.js)
- * and hidden settings the mod manages. Player slots, leaders,
- * civilizations and mementos are player settings and stay as they are.
- * Settings a dependency hides reset too, so they are Standard when they show again.
+ * Choosing a Match Type (config/match-types.sql) sets up the map and the lobby
+ * slots (ui/lobby/bbm-match-slots.js): every setting on the Map tab returns to its
+ * multiplayer default from the setup database. Kept: the settings the Match Type
+ * sets through its configuration updates, the map, the seeds, hidden settings the
+ * mod manages, and the settings Game Balance sets (ui/setup/bbm-balance-rules.js).
+ * Every other tab is left alone. Settings a dependency hides reset too, so they
+ * are Standard when they show again.
  * Only a change by the host applies it; a setup's first pass (a new setup, a
  * rejoin) and a change seen while not the host only record the Match Type.
  */
 import { createLogger, isAgeTransition } from '../shared/bbm-util.js';
 import { canEditSetup, gameValue, groupOf, onSetupRevision, parameterDefaults, resolveString, setValue } from '../shared/bbm-setup.js';
+import { BALANCE_SETTING_IDS } from './bbm-balance-rules.js';
+import { TABS, tabIndexOfGroup } from './bbm-setup-layout.js';
 
 const log = createLogger('match type');
 const MATCH_TYPE_ID = "BBMMatchType";
-// Every Match Type plays on the multiplayer speed and the Competitive timer.
-const MATCH_TYPE_VALUES = [["GameSpeeds", "GAMESPEED_ONLINE"], ["TurnTimerType", "BBM_TURNTIMER_COMPETITIVE"]];
-const KEPT_IDS = new Set([MATCH_TYPE_ID, "GameRandomSeed", "MapRandomSeed", "Map", "Ruleset", "Age", "Crises"]);
-// Every setting in these groups is kept.
-const KEPT_GROUPS = new Set(["LobbyOptions"]);
+const MAP_TAB = "map";
+const KEPT_IDS = new Set([MATCH_TYPE_ID, "GameRandomSeed", "MapRandomSeed", "Map", ...BALANCE_SETTING_IDS]);
 // The parameters a parameter's value sets through the setup's configuration updates.
 const UPDATED_PARAMETERS = "SELECT DISTINCT T.ParameterID FROM Parameters S"
 	+ " JOIN ConfigurationUpdates U ON U.SourceGroup = S.ConfigurationGroup AND U.SourceKey = S.ConfigurationKey"
@@ -56,27 +52,20 @@ function updatedBy(id, value) {
 
 /** The parameters the Match Type leaves alone: its own values and the kept settings. */
 function keptIds(matchType) {
-	const kept = new Set(KEPT_IDS);
-	for (const [id, value] of [[MATCH_TYPE_ID, matchType], ...MATCH_TYPE_VALUES]) {
-		kept.add(id);
-		updatedBy(id, value).forEach((target) => kept.add(target));
-	}
-	return kept;
+	return new Set([...KEPT_IDS, ...updatedBy(MATCH_TYPE_ID, matchType)]);
 }
 
-/** Every shown game setting not kept returns to its default; Game Speed and Turn Timer take the Match Type's values. */
+const onMapTab = (param) => TABS[tabIndexOfGroup(groupOf(param))]?.key === MAP_TAB;
+
+/** Every Map tab setting not kept returns to its default. */
 function applyMatchType(matchType) {
 	const kept = keptIds(matchType);
 	const defaults = parameterDefaults();
 	let written = 0;
-	for (const [id, value] of MATCH_TYPE_VALUES) {
-		const param = GameSetup.findGameParameter(id);
-		if (param && setValue(param, value)) written++;
-	}
 	for (const param of GameSetup.getGameParameters()) {
 		const id = resolveString(param.ID);
 		const entry = defaults.get(id);
-		if (!entry || entry.hidden || kept.has(id) || param.readOnly || KEPT_GROUPS.has(groupOf(param))) continue;
+		if (!entry || entry.hidden || kept.has(id) || param.readOnly || !onMapTab(param)) continue;
 		if (setValue(param, entry.value)) written++;
 	}
 	log(`${matchType}: ${written} settings reset`);

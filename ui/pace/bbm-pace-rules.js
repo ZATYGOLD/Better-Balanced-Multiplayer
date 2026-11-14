@@ -27,7 +27,7 @@
  *   2. A per-Age row leaves them     -> the setting switches to Custom.
  *   3. A Pace Set preset is chosen   -> every setting takes the preset's value.
  *   4. A setting leaves the preset   -> Pace Set switches to Custom.
- *   5. Age Length leaves Custom      -> every other setting returns to the Standard Pace Set's.
+ *   5. Age Length leaves Custom      -> every other setting returns to the default (Multiplayer) Pace Set's.
  *   6. Pace Set on Game Settings and on the Pace tab mirror each other.
  *   7. Victory Threshold sets the three victory thresholds; a threshold
  *      that leaves it switches it to Custom (rules 1 and 2, one row per victory).
@@ -77,22 +77,14 @@ const VICTORY_THRESHOLDS = ageSetting("BBMPaceVictoryThresholdSet", "BBM_PACE_VI
 
 /**
  * Pace Set presets: each setting's option, or per-Age values (which put it on Custom).
- * Standard and Multiplayer start trade routes from a distance (Trade Speed Instant, its default).
+ * Standard is the game's own; Multiplayer (the default) starts trade routes from a distance.
  */
-const STANDARD_PACE = { ...Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, STANDARD])), TradeSpeed: "INSTANT" };
 const allOf = (option, except = []) => Object.fromEntries(Object.keys(SETTINGS).map((key) => [key, except.includes(key) ? STANDARD : option]));
+const STANDARD_PACE = allOf(STANDARD);
 const PRESETS = {
 	STANDARD: STANDARD_PACE,
 	BALANCED: allOf("BALANCED", ["AgeLength"]),
-	MULTIPLAYER: {
-		...STANDARD_PACE,
-		AgeProgression: "BALANCED",
-		TechnologyCost: ["PLUS_25", "PLUS_50", "PLUS_100"],
-		CivicCost: ["PLUS_50", "PLUS_50", "PLUS_100"],
-		SettlementGrowth: "SLOW",
-		RoadSpeed: ["MINUS_25", "MINUS_25", "MINUS_50"],
-		VictoryProjectCost: [STANDARD, STANDARD, "PLUS_25"]
-	}
+	MULTIPLAYER: { ...STANDARD_PACE, TradeSpeed: "INSTANT" }
 };
 
 // ============================ Rules ============================
@@ -149,7 +141,7 @@ function syncPreset() {
 	}
 	pace.preset = option;
 	if (leftCustomAgeLength) {
-		const { AgeLength, ...others } = STANDARD_PACE;
+		const { AgeLength, ...others } = PRESETS.MULTIPLAYER;
 		applyPreset(others);
 	}
 	if (preset && !matchesPreset(preset)) {

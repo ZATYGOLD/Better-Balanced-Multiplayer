@@ -25,11 +25,13 @@
  * Create Game screen resets the configuration as it attaches, so they are set
  * right after; a parameter the setup lacks is skipped. The screen keeps the
  * previous game's choices over the setup database's defaults, so the multiplayer
- * defaults the mod promises are written here; the Pace and Gameplay rules then
- * bring each setting's rows in line.
+ * defaults the mod promises are written here, then the Game Balance set
+ * (ui/setup/bbm-balance-rules.js); the Pace and Gameplay rules then bring each
+ * setting's rows in line.
  */
 import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
+import { applyBalanceSet } from '../setup/bbm-balance-rules.js';
 
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";
@@ -54,6 +56,7 @@ function applyMultiplayerDefaults() {
 		for (const [parameterID, value] of MULTIPLAYER_DEFAULTS) {
 			if (GameSetup.findGameParameter(parameterID) != null) GameSetup.setGameParameterValue(parameterID, value);
 		}
+		applyBalanceSet();
 		log("applied the multiplayer defaults");
 	} catch (error) {
 		log(`failed to apply the multiplayer defaults: ${error?.stack ?? error}`);

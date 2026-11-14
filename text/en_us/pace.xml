@@ -74,10 +74,10 @@
 		<Row Tag="LOC_BBM_PACE_PRESET_CUSTOM_DESC"><Text>The Pace Settings on the Pace tab no longer match a preset.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_PRESET_CUSTOM_NAME"><Text>Custom Pace</Text></Row>
 		<Row Tag="LOC_BBM_PACE_PRESET_DESC"><Text>Applies a pacing preset to the Pace Settings on the Pace tab.</Text></Row>
-		<Row Tag="LOC_BBM_PACE_PRESET_MULTIPLAYER_DESC"><Text>Tuned for a session played in one sitting.[nn][BLIST][LI] Age Length: Standard[LI] Age Progression: Balanced[LI] Technology Cost: +25% / +50% / +100%[LI] Civic Cost: +50% / +50% / +100%[LI] Building Cost: Standard[LI] Victory Project Cost: Standard / Standard / +25%[LI] Settlement Growth: +25%[LI] Road Speed: -25% / -25% / -50%[LI] Trade Speed: Instant[LI] Raze Speed: Standard[/BLIST]</Text></Row>
+		<Row Tag="LOC_BBM_PACE_PRESET_MULTIPLAYER_DESC"><Text>Every pacing setting at its standard value, with trade routes starting from a distance.[nn][BLIST][LI] Trade Speed: Instant[LI] Every other setting: Standard[/BLIST]</Text></Row>
 		<Row Tag="LOC_BBM_PACE_PRESET_MULTIPLAYER_NAME"><Text>Multiplayer Pace</Text></Row>
 		<Row Tag="LOC_BBM_PACE_PRESET_NAME"><Text>Pace Set</Text></Row>
-		<Row Tag="LOC_BBM_PACE_PRESET_STANDARD_DESC"><Text>Every pacing setting at its standard value, with trade routes starting from a distance.[nn][BLIST][LI] Trade Speed: Instant[LI] Every other setting: Standard[/BLIST]</Text></Row>
+		<Row Tag="LOC_BBM_PACE_PRESET_STANDARD_DESC"><Text>The game's own pace: every pacing setting at its standard value.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_PRESET_STANDARD_NAME"><Text>Standard Pace</Text></Row>
 		<Row Tag="LOC_BBM_PACE_QUICK_NAME"><Text>Quick</Text></Row>
 		<Row Tag="LOC_BBM_PACE_RAZE_SPEED_BALANCED_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: Standard[LI] Exploration: Standard[LI] Modern: Standard[/BLIST]</Text></Row>
@@ -117,7 +117,7 @@
 		<Row Tag="LOC_BBM_PACE_TECHNOLOGY_COST_MEDIUM_DESC"><Text>25% more Science. Pottery: 88 instead of 70. (On Standard Speed)</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TECHNOLOGY_COST_NAME"><Text>Technology Cost</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TECHNOLOGY_COST_SWIFT_DESC"><Text>Cheaper research early, standard once the Modern Age arrives.[nn][BLIST][LI] Antiquity: -25%[LI] Exploration: -25%[LI] Modern: Standard[/BLIST]</Text></Row>
-		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_BALANCED_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: Standard[LI] Exploration: Standard[LI] Modern: Instant[/BLIST]</Text></Row>
+		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_BALANCED_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: Standard[LI] Exploration: Standard[LI] Modern: from a distance[/BLIST]</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_DEFAULT_DESC"><Text>The game's own pace.[nn][BLIST][LI] Antiquity: travel with 4[icon:Action_Move]Movement[LI] Exploration: travel with 4[icon:Action_Move]Movement[LI] Modern: from a distance[/BLIST]</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_DESC"><Text>Sets how quickly Merchants start trade routes: by traveling to the Settlement they trade with, or from a distance. A travel speed applies in every Age, the Modern Age included. With Game Balance on Multiplayer, Standard starts trade routes from a distance in every Age.</Text></Row>
 		<Row Tag="LOC_BBM_PACE_TRADE_SPEED_FAST_DESC"><Text>Merchants travel with 6[icon:Action_Move]Movement.</Text></Row>

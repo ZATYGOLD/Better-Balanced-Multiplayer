@@ -617,6 +617,17 @@
 		<Criteria id="pace-trade-speed-modern-instant">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant-swift">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_SWIFT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant-custom">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_CUSTOM</Value></ConfigurationValueMatches>
 		</Criteria>
 
 <!--*************************** CRITERIA: RAZE SPEED ****************************************************-->
@@ -1167,6 +1178,7 @@
 					<Item>ui/lobby/bbm-match-slots.js</Item>
 					<Item>ui/setup/bbm-setup-layout.js</Item>
 					<Item>ui/setup/bbm-setup-tabs.js</Item>
+					<Item>ui/setup/bbm-balance-rules.js</Item>
 					<Item>ui/setup/bbm-match-type-rules.js</Item>
 					<Item>ui/timer/bbm-timer-config.js</Item>
 					<Item>ui/timer/bbm-timer-lobby.js</Item>
@@ -2693,6 +2705,22 @@
 			</Actions>
 		</ActionGroup>
 		<ActionGroup id="bbm-pace-trade-speed-modern-instant" scope="game" criteria="pace-trade-speed-modern-instant">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant-swift" scope="game" criteria="pace-trade-speed-modern-instant-swift">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant-custom" scope="game" criteria="pace-trade-speed-modern-instant-custom">
 			<Properties><LoadOrder>400</LoadOrder></Properties>
 			<Actions>
 				<UpdateDatabase>
