@@ -38,7 +38,7 @@ function createLogger(tag) {
  */
 function wrapMethod(target, name, wrapper) {
 	const base = target?.[name];
-	if (typeof base !== 'function') return false;
+	if (typeof base !== "function") return false;
 	target[name] = function (...args) { return wrapper.call(this, (...a) => base.apply(this, a), ...args); };
 	return true;
 }
@@ -69,7 +69,7 @@ function whenDefined(tag, callback) {
 	}
 	if (!defineWrapped) {
 		defineWrapped = true;
-		wrapMethod(Controls, 'define', (base, name, ...rest) => {
+		wrapMethod(Controls, "define", (base, name, ...rest) => {
 			const result = base(name, ...rest);
 			const callbacks = pendingDefinitions.get(name);
 			if (callbacks) {
@@ -116,7 +116,7 @@ function isAgeEnding() {
  * Observer leaders of companion mods (Zatygold's Spectator): real players
  * who watch instead of play, so the timer and the pause treat them apart.
  */
-const OBSERVER_LEADERS = new Set(['LEADER_ZOM_OBSERVER']);
+const OBSERVER_LEADERS = new Set(["LEADER_ZOM_OBSERVER"]);
 
 /** True for a companion mod's Observer; cached per player id (a player's leader is fixed for the life of the UI). */
 const observerById = new Map();
@@ -131,11 +131,11 @@ function isObserverPlayer(playerId) {
 	} catch (e) { return false; }
 }
 
-const OBSERVER_CIV_PREFIX = 'CIVILIZATION_ZOM_OBSERVER_';
+const OBSERVER_CIV_PREFIX = "CIVILIZATION_ZOM_OBSERVER_";
 
 /** True for a companion mod's Observer leader or civilization as a setup value. */
 function isObserverValue(value) {
-	return OBSERVER_LEADERS.has(value) || (typeof value === 'string' && value.startsWith(OBSERVER_CIV_PREFIX));
+	return OBSERVER_LEADERS.has(value) || (typeof value === "string" && value.startsWith(OBSERVER_CIV_PREFIX));
 }
 
 /** Base for Controls.decorate decorators: the panel calls all four hooks, so a decorator overrides only those it uses. */
@@ -147,7 +147,7 @@ class Decorator {
 }
 
 /** Mod ids of companion mods this one adapts to. */
-const COMPANION_MODS = { spectator: 'zatygolds-observer-mode' };
+const COMPANION_MODS = { spectator: "zatygolds-observer-mode" };
 
 /** True while the mod with this .modinfo id is enabled (shell scope). */
 function isModEnabled(modId) {

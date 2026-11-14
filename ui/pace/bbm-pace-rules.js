@@ -36,7 +36,8 @@
  * The game data reads the per-Age rows, so they always hold the values in effect.
  * Each rule compares against the last pass; only the host writes the setup.
  */
-import { CUSTOM, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
+import { isAgeTransition } from '../shared/bbm-util.js';
+import { CUSTOM, ageSetting, canEditSetup, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
 
 const STANDARD = "STANDARD";
 const PRESET_ID = "BBMPacePreset";

@@ -34,8 +34,8 @@
  * Only a change by the host applies it; a setup's first pass (a new setup, a
  * rejoin) and a change seen while not the host only record the Match Type.
  */
-import { createLogger } from '../shared/bbm-util.js';
-import { canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, parameterDefaults, resolveString, setValue } from '../shared/bbm-setup.js';
+import { createLogger, isAgeTransition } from '../shared/bbm-util.js';
+import { canEditSetup, gameValue, groupOf, onSetupRevision, parameterDefaults, resolveString, setValue } from '../shared/bbm-setup.js';
 
 const log = createLogger('match type');
 const MATCH_TYPE_ID = "BBMMatchType";

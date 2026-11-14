@@ -384,10 +384,6 @@
 		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_2_DESCRIPTION"><Text>The Altar receives a +1 [icon:YIELD_SCIENCE] Science Adjacency for Mountains and Natural Wonders.</Text></Row>
 		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_14_DESCRIPTION"><Text>+15% [icon:YIELD_PRODUCTION] Production towards training Civilian Units, [icon:UNIT_SETTLER] Settlers, and Recon Units in [icon:YIELD_CITIES] Cities with an Altar.</Text></Row>
 		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_15_DESCRIPTION"><Text>The Altar receives a +1 [icon:YIELD_CULTURE] Culture Adjacency for Coast, Lakes, and [TIP:LOC_PEDIA_CONCEPTS_NAVIGABLE_RIVER_TOOLTIP]Navigable Rivers[/TIP]. This Pantheon can be chosen by multiple Civilizations.</Text></Row>
-		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_19_NAME"><Text>Goddess of Tides</Text></Row>
-		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_19_DESCRIPTION"><Text>+1 [icon:YIELD_FOOD] Food on Fishing Boats in [TIP:LOC_PEDIA_CONCEPTS_SETTLEMENT_TOOLTIP]Settlements[/TIP] with an Altar. [icon:YIELD_WAREHOUSE] Warehouse bonus.</Text></Row>
-		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_20_NAME"><Text>God of Craftsmen</Text></Row>
-		<Row Tag="LOC_BBM_LOBBY_PANTHEON_BONUS_20_DESCRIPTION"><Text>The Altar receives a +1 [icon:YIELD_PRODUCTION] Production Adjacency for Resources.</Text></Row>
 		<Row Tag="LOC_BBM_LOBBY_GOVERNMENT_CLASSICAL_REPUBLIC_PASSIVE_DESCRIPTION"><Text>+1 [icon:YIELD_CULTURE] Culture in Happy Settlements, +2 in Joyous Settlements, and +4 in Ecstatic Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_LOBBY_GOLDEN_AGE_CLASSICAL_REPUBLIC_2_DESCRIPTION"><Text>+15% [icon:YIELD_PRODUCTION] Production towards constructing Wonders, or +30% in Joyous or Ecstatic Settlements, for {1_numTurns} Turn(s).</Text></Row>
 		<Row Tag="LOC_BBM_LOBBY_TRADITION_YAXCHE_DESCRIPTION"><Text>[B]+4 [icon:YIELD_HAPPINESS] Happiness[/B] on [icon:WONDER] [TIP:LOC_PEDIA_CONCEPTS_WONDERS_TOOLTIP]Wonders[/TIP].</Text></Row>

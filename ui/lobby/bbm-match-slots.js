@@ -111,11 +111,9 @@ function setTeam(id, team) {
 }
 
 let teamsManaged = false;
-let publishedSpectatorSlot;
 /** Publish the Spectator's slot; a newly kept slot opens for a human to join. */
 function publishSpectatorSlot(slot) {
-	if (slot === publishedSpectatorSlot) return;
-	publishedSpectatorSlot = slot;
+	if (sameValue(gameValue(SPECTATOR_SLOT_PARAMETER), slot)) return;
 	GameSetup.setGameParameterValue(SPECTATOR_SLOT_PARAMETER, slot);
 	if (slot !== NO_SLOT && Configuration.getPlayer(slot)?.slotStatus === SlotStatus.SS_COMPUTER) {
 		Configuration.editPlayer(slot)?.setSlotStatus(SlotStatus.SS_OPEN);

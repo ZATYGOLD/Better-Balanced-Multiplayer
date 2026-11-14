@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Attribute tree modifiers loaded in Exploration. -->
 <GameEffects xmlns="GameEffects">
 	<Modifier id="BBM_BALANCE_MOD_ATTRIBUTE_CULTURAL_FREE_GREAT_WORK_EXPLORATION" collection="COLLECTION_MAJOR_PLAYERS" effect="EFFECT_GRANT_GREAT_WORK" run-once="true" permanent="true">
 		<SubjectRequirements>

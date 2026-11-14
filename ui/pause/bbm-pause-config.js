@@ -24,7 +24,7 @@
 import { UNIT_ACTIONS } from '../keybind/bbm-keybind-config.js';
 
 /** Source tag used when registering/removing engine input filters. */
-const FILTER_SOURCE = "MultiplayerToolkit";
+const FILTER_SOURCE = "BetterBalancedMultiplayer";
 
 /** Interface mode that shows the built-in pause menu. */
 const PAUSE_MENU_MODE = "INTERFACEMODE_PAUSE_MENU";

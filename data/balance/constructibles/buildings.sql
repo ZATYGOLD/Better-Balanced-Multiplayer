@@ -44,13 +44,13 @@ WHERE ConstructibleType='BUILDING_SHIPYARD';
 UPDATE Constructibles
 SET CostProgressionParam1 = CAST((Cost * 0.25) + 0.5 AS INTEGER)
 WHERE ConstructibleClass = 'IMPROVEMENT'
-  AND CostProgressionModel = 'COST_PROGRESSION_PREVIOUS_COPIES_CITY'
-  AND ConstructibleType NOT IN (
+    AND CostProgressionModel = 'COST_PROGRESSION_PREVIOUS_COPIES_CITY'
+    AND ConstructibleType NOT IN (
     'IMPROVEMENT_HAN_GREAT_WALL',
     'IMPROVEMENT_MING_GREAT_WALL'
-  )
-  AND ConstructibleType IN (
+    )
+    AND ConstructibleType IN (
     SELECT Type
     FROM TypeTags
     WHERE Tag = 'UNIQUE_IMPROVEMENT'
-  );
+    );

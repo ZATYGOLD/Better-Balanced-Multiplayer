@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.3**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.4**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -72,7 +72,7 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
 - The first turn of each Age is untimed and shows no number; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused, through the unpause countdown, or while an Age is ending.
-- To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colours and sounds are in `ui/timer/bbm-timer-config.js`.
+- To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colors and sounds are in `ui/timer/bbm-timer-config.js`.
 
 ## Synchronized Pause
 
@@ -118,7 +118,7 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
 - **Resource List** (Resource Settings) has two options:
   - **All** (the default) makes every resource valid in every Age and keeps it across Age transitions (Oil and Rubber arrive in Modern). It comes with custom yields and effects.
     - Military and construction resources come in even counts on each continent.
-    - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbours get different resources.
+    - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbors get different resources.
   - **Standard** uses the game's own resources and rules.
 - **Resource Amount**: Scarce, Limited, Multiplayer (the default) or Standard, which is 35%, 50%, 70% or 100% of the game's density. Standard is the game's own density, as in Advanced Settings Pro.
 - **Resource Clusters**: Disabled (the default), Small or Large. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
@@ -191,6 +191,27 @@ Better-Balanced-Multiplayer/
 Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.4
+
+Fixes and cleanup from a full review of the mod.
+
+- Militaristic's Commander node also counts a level 1 Commander (+1 per level, as the preview showed) and has no 15-level cap.
+- Trade Speed Instant (the default) now also gives Modern Merchants 1 Movement and 1 Sight; only Antiquity and Exploration had it.
+- Settlement Distance, Independent Amount and Independent Spacing write their values even in an Age whose data has no row for them.
+- Independent Aggression lists its defenders per Age (Calm 0 / 2 / 3, Standard 1 / 3 / 4, Raging 3 / 5 / 7), and the Independent Amount and Spacing descriptions match the game's own values.
+- Gameplay and Pace settings capitalize Age and Settlement, as the game does.
+- The Spectator slot is set again in a second lobby of the same session.
+- Hotseat's Choose Mementos opens the game's own memento screen, and the lobby comes back when it closes.
+- Memento slot tooltips follow a Game Balance change right away.
+- The turn-1 start check no longer counts the Spectator's Observer.
+- East vs West: among lake-coast fallback starts, the one closest to the original start now ranks first.
+- Coastal start reefs are placed only within a Settlement's reach (3 tiles) of a coastal start.
+- Volcanoes and Natural Wonders keep their mountain when Pangaea Ultima levels island mountains or Mountains Less removes peaks.
+- Create Game stops waiting to apply the multiplayer defaults once it closes.
+- Commander training awards XP in hotseat.
+- The added Traditions and Pantheons use the BBM_BALANCE_ prefix, and the pause network messages use BBM names: games saved before this version don't load, and every player needs this version.
+- Code cleanup: American English throughout, consistent logs, comments, quotes and SQL indentation, data file headers, shared helpers, and lighter placement and lobby text work.
 
 ### 0.7.3
 

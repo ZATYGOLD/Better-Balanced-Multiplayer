@@ -1,4 +1,4 @@
-// Snow pass with the Map Settings climate (climate.js).
+// Snow pass with the Map Settings climate (bbm-climate.js).
 // Port of {base-standard}maps/snow-generator.js generateSnow.
 //
 // The base lays permanent snow in rows from latitude 53 to each polar edge: the

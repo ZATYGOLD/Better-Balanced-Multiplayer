@@ -203,7 +203,7 @@
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
-				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_19</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,BBM_BALANCE_PANTHEON_BONUS_19</Argument>
 				<Argument name="Amount">1</Argument>
 			</Requirement>
 		</SubjectRequirements>
@@ -214,7 +214,7 @@
 		<SubjectRequirements>
 			<Requirement type="REQUIREMENT_PLAYER_HAS_AT_LEAST_NUM_GOSSIPS">
 				<Argument name="GossipTypes">GOSSIP_CREATE_PANTHEON01</Argument>
-				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,PANTHEON_BONUS_20</Argument>
+				<Argument name="GOSSIP_CREATE_PANTHEON01">Hash,BeliefType,BBM_BALANCE_PANTHEON_BONUS_20</Argument>
 				<Argument name="Amount">1</Argument>
 			</Requirement>
 		</SubjectRequirements>

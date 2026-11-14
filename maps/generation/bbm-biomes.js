@@ -1,4 +1,4 @@
-// Biome pass with the Map Settings climate (climate.js).
+// Biome pass with the Map Settings climate (bbm-climate.js).
 // Port of {base-standard}maps/feature-biome-generator.js designateBiomes.
 //
 // Each land tile starts from its Map Zones latitude, which elevation, rainfall,

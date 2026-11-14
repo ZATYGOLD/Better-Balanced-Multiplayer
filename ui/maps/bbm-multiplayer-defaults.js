@@ -72,12 +72,17 @@ whenDefined(SCREEN_TAG, (definition) => {
 		this.bbmTrackedParameters ??= this.trackedParameters;
 		this.trackedParameters = [];
 		this.bbmDefaultsRevision = null;
-		const stop = onSetupRevision("maps defaults", () => {
-			stop();
+		this.bbmStopDefaults = onSetupRevision("maps defaults", () => {
+			this.bbmStopDefaults();
 			applyMultiplayerDefaults();
 			this.bbmDefaultsRevision = GameSetup.currentRevision;
 		}, setupReady);
 		return result;
+	});
+	// A screen closed before its setup was ready must not write the defaults into a later one.
+	wrapMethod(proto, "onDetach", function (base, ...args) {
+		this.bbmStopDefaults?.();
+		return base(...args);
 	});
 	wrapMethod(proto, "onUpdate", function (base, ...args) {
 		const result = base(...args);

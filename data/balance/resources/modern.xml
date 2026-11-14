@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: resource changes loaded in Modern. -->
 <Database>
 	<GameModifiers>
 		<Delete ModifierId="MOD_NITER_INFANTRY_AND_RANGED_COMBAT_STRENGTH"/>

@@ -35,17 +35,17 @@ const GARRISON_DISTRICTS = new Set(["DISTRICT_CITY_CENTER", "DISTRICT_URBAN"]);
 const GARRISON_YIELDS = ["YIELD_SCIENCE", "YIELD_CULTURE"];
 
 const patchedProtos = new WeakSet();
-let promotionCap = null;
+let levelCap = null;
 
-/** Promotions that count per Commander: one node unlock per Promotion tier. */
-function garrisonPromotionCap() {
-	if (promotionCap === null) {
-		promotionCap = 0;
+/** Levels that count per Commander: one node unlock per tier. */
+function garrisonLevelCap() {
+	if (levelCap === null) {
+		levelCap = 0;
 		for (const row of GameInfo.ProgressionTreeNodeUnlocks) {
-			if (row.ProgressionTreeNodeType === GARRISON_NODE && row.TargetType.startsWith(GARRISON_MODIFIER_PREFIX)) promotionCap++;
+			if (row.ProgressionTreeNodeType === GARRISON_NODE && row.TargetType.startsWith(GARRISON_MODIFIER_PREFIX)) levelCap++;
 		}
 	}
-	return promotionCap;
+	return levelCap;
 }
 
 /** True for a unit stationed on one of its owner's City Centers or urban districts. */
@@ -58,14 +58,13 @@ function isGarrisoned(unit) {
 	return !!district && GARRISON_DISTRICTS.has(GameInfo.Districts.lookup(district.type)?.DistrictType);
 }
 
-/** +1 of each garrison yield per Promotion of every garrisoned Commander, as a YieldsPreviewResult. */
+/** +1 of each garrison yield per level of every garrisoned Commander (a Promotion per level), as a YieldsPreviewResult. */
 function garrisonPreview() {
-	const cap = garrisonPromotionCap();
+	const cap = garrisonLevelCap();
 	let amount = 0;
 	for (const unit of Players.get(GameContext.localPlayerID)?.Units?.getUnits() ?? []) {
-		if (unit.isCommanderUnit && isGarrisoned(unit)) amount += Math.min(unit.Experience?.getNumPromotions ?? 0, cap);
+		if (unit.isCommanderUnit && isGarrisoned(unit)) amount += Math.min(Math.max(1, unit.Experience?.getNumPromotions ?? 0), cap);
 	}
-	log(`garrison node preview: +${amount} per yield`);
 	const yields = {};
 	for (const yieldType of GARRISON_YIELDS) yields[yieldType] = amount;
 	return { yields, modifiers: [], isValid: true };
@@ -82,11 +81,11 @@ function showGarrisonPreview(card, api) {
 function patchCardClass(proto, api) {
 	if (patchedProtos.has(proto)) return;
 	patchedProtos.add(proto);
-	wrapMethod(proto, 'onAttributeChanged', function (base, name, ...rest) {
+	wrapMethod(proto, "onAttributeChanged", function (base, name, ...rest) {
 		base(name, ...rest);
-		if (name === 'type' && isGarrisonCard(this)) queueMicrotask(() => refreshPreview(this, api));
+		if (name === "type" && isGarrisonCard(this)) queueMicrotask(() => refreshPreview(this, api));
 	});
-	log('attribute cards patched');
+	log("attribute cards patched");
 }
 
 /** The card's type attribute may hold the node's hash, so resolve it as the Policy Yield Previews mod does. */
@@ -111,4 +110,4 @@ class GarrisonPreview extends Decorator {
 	}
 }
 
-Controls.decorate('attribute-card', (card) => new GarrisonPreview(card));
+Controls.decorate("attribute-card", (card) => new GarrisonPreview(card));

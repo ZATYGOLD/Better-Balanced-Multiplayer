@@ -36,7 +36,7 @@
 import { createLogger, isMultiplayerGame, whenDefined, wrapMethod } from '../shared/bbm-util.js';
 
 const log = createLogger('pause net');
-const PREFIX = "\u200BMPTNET:";   // leading zero-width space: untypeable and inconspicuous
+const PREFIX = "\u200BBBMNET:";   // leading zero-width space: untypeable and inconspicuous
 const CHAT_TAG = "screen-mp-chat";
 const handlers = {};
 
@@ -45,8 +45,8 @@ const isCommand = (data) => typeof data?.text === "string" && data.text.startsWi
 const BBMNet = {
 	/** Broadcast a command (optionally with a string arg) to every player. */
 	send(cmd, arg) {
-		try { Network.sendChat(PREFIX + cmd + (arg != null ? ":" + String(arg) : ""), ChatTargetTypes.CHATTARGET_ALL, -1); }
-		catch (e) { log("send failed: " + e); }
+		try { Network.sendChat(`${PREFIX}${cmd}${arg != null ? `:${arg}` : ""}`, ChatTargetTypes.CHATTARGET_ALL, -1); }
+		catch (e) { log(`send failed: ${e}`); }
 	},
 	/** Register the handler for a command name. */
 	on(cmd, fn) { handlers[cmd] = fn; },

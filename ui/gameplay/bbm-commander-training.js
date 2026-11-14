@@ -23,7 +23,7 @@
  *
  * At the start of each turn, every Commander standing on a completed Military
  * Building in one of its owner's own Settlements gains 2 XP. Modifiers can grant XP
- * only once, so the host (the local player outside multiplayer) awards it through
+ * only once, so the host (in hotseat, the one machine) awards it through
  * Units.changeExperience. Game Balance Multiplayer only.
  */
 import { createLogger, isBalanceOn } from '../shared/bbm-util.js';
@@ -36,7 +36,7 @@ let lastTurn = -1;   // one award per turn, even if TurnBegin repeats
 let militaryTypes = null;
 
 function isAuthority() {
-	if (!Configuration.getGame().isAnyMultiplayer) return true;
+	if (!Configuration.getGame().isNetworkMultiplayer) return true;
 	return Network.getHostPlayerId() === GameContext.localPlayerID;
 }
 

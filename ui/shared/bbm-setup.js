@@ -25,7 +25,7 @@
  * poll of the setup (multiplayer setups only), and the rule that keeps a
  * setting's rows on its value (Pace and Gameplay).
  */
-import { createLogger, isAgeTransition, isMultiplayerGame } from './bbm-util.js';
+import { createLogger, isMultiplayerGame } from './bbm-util.js';
 
 const log = createLogger('setup');
 const POLL_MS = 250;
@@ -199,4 +199,4 @@ function syncAgeRows(entry) {
 	}
 }
 
-export { AGES, CUSTOM, ageSetting, canEditSetup, gameValue, groupOf, isAgeTransition, onSetupRevision, optionOf, parameterDefaults, resolveString, sameValue, setOption, setValue, syncAgeRows };
+export { AGES, CUSTOM, ageSetting, canEditSetup, gameValue, groupOf, onSetupRevision, optionOf, parameterDefaults, resolveString, sameValue, setOption, setValue, syncAgeRows };

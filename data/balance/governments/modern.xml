@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Modern government changes. -->
 <Database>
 	<HappinessStages>
 		<Update><Where Age="AGE_MODERN" HappinessStageType="HAPPINESS_STAGE_HAPPY"/><Set StageMaxThreshold="20"/></Update>

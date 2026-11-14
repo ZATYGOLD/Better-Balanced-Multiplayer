@@ -28,17 +28,17 @@
 import { whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { COMPETITIVE_HASH } from './bbm-timer-config.js';
 
-const RULES_TAG = 'screen-mp-game-rules';
+const RULES_TAG = "screen-mp-game-rules";
 
 function isCompetitive() {
 	try { return Configuration.getGame().turnTimerType === COMPETITIVE_HASH; } catch (e) { return false; }
 }
 
 whenDefined(RULES_TAG, (definition) => {
-	const timerLabel = Locale.compose('LOC_UI_MP_GAME_RULE_TURN_TIMER');
-	wrapMethod(definition.createInstance.prototype, 'addRule', function (base, parent, label, value, ...rest) {
+	const timerLabel = Locale.compose("LOC_UI_MP_GAME_RULE_TURN_TIMER");
+	wrapMethod(definition.createInstance.prototype, "addRule", function (base, parent, label, value, ...rest) {
 		if (label === timerLabel && isCompetitive()) {
-			value = Locale.compose('LOC_BBM_TURNTIMER_COMPETITIVE');
+			value = Locale.compose("LOC_BBM_TURNTIMER_COMPETITIVE");
 		}
 		return base(parent, label, value, ...rest);
 	});

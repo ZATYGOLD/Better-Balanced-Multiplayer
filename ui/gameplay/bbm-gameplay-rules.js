@@ -39,8 +39,8 @@
  * The game data reads the per-Age rows, so they always hold the values in effect.
  * Each rule compares against the last pass; only the host writes the setup.
  */
-import { createLogger } from '../shared/bbm-util.js';
-import { AGES, ageSetting, canEditSetup, isAgeTransition, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
+import { createLogger, isAgeTransition } from '../shared/bbm-util.js';
+import { AGES, ageSetting, canEditSetup, onSetupRevision, optionOf, setOption, syncAgeRows } from '../shared/bbm-setup.js';
 
 const log = createLogger('gameplay');
 const TRIUMPH_SETS = ["DEFAULT", "CLASSIC", "RACE", "CONQUEROR", "EXPLORER", "NONE"];

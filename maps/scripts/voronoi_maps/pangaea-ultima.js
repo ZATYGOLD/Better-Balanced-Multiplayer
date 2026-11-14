@@ -4,7 +4,7 @@ import { VoronoiMap, voronoiMapSchema } from '../../../../base-standard/scripts/
 import pangaeaUltimaSettings from '../voronoi_data/pangaea-ultima.mapconfig.js';
 
 // The game's Voronoi Pangaea with the Pangaea Ultima settings: one larger,
-// centred player continent with fewer coastal islands.
+// centered player continent with fewer coastal islands.
 class VoronoiPangaeaUltima extends VoronoiMap {
 	constructor() {
 		const generator = new ContinentGenerator({ ...continentGeneratorSchema }, { ...continentGeneratorRulesSettings });

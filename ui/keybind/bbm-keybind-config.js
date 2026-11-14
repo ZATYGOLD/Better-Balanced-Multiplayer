@@ -24,29 +24,29 @@
 
 /** Lens toggles: action id -> lens (pressing it again returns to the default lens). */
 const LENS_ACTIONS = {
-	'bbm-lens-trade': 'fxs-trade-lens',
-	'bbm-lens-continent': 'fxs-continent-lens',
-	'bbm-lens-appeal': 'fxs-general-appeal-lens',
-	'bbm-lens-settler': 'fxs-settler-lens',
-	'bbm-lens-discovery': 'fxs-discovery-lens'
+	"bbm-lens-trade": "fxs-trade-lens",
+	"bbm-lens-continent": "fxs-continent-lens",
+	"bbm-lens-appeal": "fxs-general-appeal-lens",
+	"bbm-lens-settler": "fxs-settler-lens",
+	"bbm-lens-discovery": "fxs-discovery-lens"
 };
-const DEFAULT_LENS = 'fxs-default-lens';
+const DEFAULT_LENS = "fxs-default-lens";
 
 /** Unit actions: action id -> unit operation or command for the selected unit. */
 const UNIT_ACTIONS = {
-	'bbm-unit-found-city': 'UNITOPERATION_FOUND_CITY',
-	'bbm-unit-search': 'UNITOPERATION_SEARCH',
-	'bbm-unit-join-commander': 'UNITCOMMAND_ADD_TO_ARMY',
-	'bbm-unit-leave-commander': 'UNITCOMMAND_REMOVE_FROM_ARMY',
-	'bbm-commander-pack': 'UNITCOMMAND_PACK_ARMY',
-	'bbm-commander-unpack': 'UNITCOMMAND_UNPACK_ARMY'
+	"bbm-unit-found-city": "UNITOPERATION_FOUND_CITY",
+	"bbm-unit-search": "UNITOPERATION_SEARCH",
+	"bbm-unit-join-commander": "UNITCOMMAND_ADD_TO_ARMY",
+	"bbm-unit-leave-commander": "UNITCOMMAND_REMOVE_FROM_ARMY",
+	"bbm-commander-pack": "UNITCOMMAND_PACK_ARMY",
+	"bbm-commander-unpack": "UNITCOMMAND_UNPACK_ARMY"
 };
 
 /** City actions: action id -> which settlement to select (its screen opens). */
 const CITY_ACTIONS = {
-	'bbm-city-previous': 'previous',
-	'bbm-city-next': 'next',
-	'bbm-city-capital': 'capital'
+	"bbm-city-previous": "previous",
+	"bbm-city-next": "next",
+	"bbm-city-capital": "capital"
 };
 
 /** Every mod action listed in the keyboard-mapping options. */

@@ -85,7 +85,7 @@ function configuredTimerType() {
 
 /** The engine's own limit for Competitive turns (config/timer.sql), or 0 when unset. */
 function engineBackstop() {
-	try { return Number(Configuration.getGame().getValue('TurnTimerTime')) || 0; } catch (e) { return 0; }
+	try { return Number(Configuration.getGame().getValue("TurnTimerTime")) || 0; } catch (e) { return 0; }
 }
 
 function currentTurn() {
@@ -104,7 +104,7 @@ const queryCache = new Map();
 function cachedRow(sql) {
 	if (queryCache.has(sql)) return queryCache.get(sql);
 	let row = null;
-	try { row = Database.query('gameplay', sql)?.[0] ?? null; } catch (e) { row = null; }
+	try { row = Database.query("gameplay", sql)?.[0] ?? null; } catch (e) { row = null; }
 	if (row) queryCache.set(sql, row);
 	return row;
 }
@@ -387,7 +387,7 @@ function enforceTick() {
 
 /** Start the enforcement sweep and pause accounting (once, when the Competitive timer is selected). */
 function startEnforcement() {
-	engine.on('GamePauseStateChanged', syncClockFrozen);
+	engine.on("GamePauseStateChanged", syncClockFrozen);
 	setInterval(enforceTick, CONFIG.guardianMs);
 }
 
@@ -401,9 +401,9 @@ function setStyledNumber(el, styleClass, n) {
 
 /** Ring element class -> [stylesheet keyframes, identical clone] (panel-action.css). */
 const RING_ANIMATIONS = [
-	{ className: 'action_panel__mp-timer-left-circle', names: ['rotate-timer-first', 'bbm-rotate-timer-first'] },
-	{ className: 'action_panel__mp-timer-right-circle', names: ['rotate-timer-second', 'bbm-rotate-timer-second'] },
-	{ className: 'action_panel__mp-timer-left-bk-circle', names: ['fade-in-bg', 'bbm-fade-in-bg'] }
+	{ className: "action_panel__mp-timer-left-circle", names: ["rotate-timer-first", "bbm-rotate-timer-first"] },
+	{ className: "action_panel__mp-timer-right-circle", names: ["rotate-timer-second", "bbm-rotate-timer-second"] },
+	{ className: "action_panel__mp-timer-left-bk-circle", names: ["fade-in-bg", "bbm-fade-in-bg"] }
 ];
 
 function ringAnimationNames(el) {
@@ -416,7 +416,7 @@ function ringAnimationNames(el) {
  * animationDelay take effect (see bbmSyncRing).
  */
 function injectRingKeyframes() {
-	const style = document.createElement('style');
+	const style = document.createElement("style");
 	style.textContent = `
 @keyframes bbm-rotate-timer-first { 0% { transform: rotate(0deg); } 50% { transform: rotate(-180deg); } 100% { transform: rotate(-180deg); } }
 @keyframes bbm-rotate-timer-second { 0% { transform: rotate(180deg); } 50% { transform: rotate(180deg); } 100% { transform: rotate(0deg); } }
@@ -518,7 +518,7 @@ function defineMptPanelAction(base) {
 				if (!names) continue;
 				el.style.animationDuration = `${total}s`;
 				el.style.animationDelay = `${-position}s`;
-				el.style.animationFillMode = 'forwards';
+				el.style.animationFillMode = "forwards";
 				el.style.animationName = el.style.animationName === names[1] ? names[0] : names[1];
 			}
 			this.bbmFreezeRing();
@@ -527,8 +527,8 @@ function defineMptPanelAction(base) {
 		/**
 		 * Tier styling on top of the inherited render. While the engine view is
 		 * muzzled (16..20s shows its clamped number) the text is always rewritten;
-		 * the orange tier uses an inline colour, and the red tier keeps a steady
-		 * flash colour.
+		 * the orange tier uses an inline color, and the red tier keeps a steady
+		 * flash color.
 		 */
 		bbmDecorateText(n) {
 			const el = this.turnTimerElement ?? document.getElementById(ENGINE.timerTextId);
@@ -540,7 +540,7 @@ function defineMptPanelAction(base) {
 				if (el.textContent !== String(n) || el.firstElementChild) el.textContent = String(n);
 				return;
 			}
-			if (el.style.color) el.style.color = '';
+			if (el.style.color) el.style.color = "";
 			const engineShowsClamp = beforeExpiry && n > CONFIG.flashStart && n < CONFIG.engineFlashHide;
 			if (!active && engineShowsClamp) {
 				setStyledNumber(el, ENGINE.styleInactive, n);
@@ -579,20 +579,20 @@ function defineMptPanelAction(base) {
 		}
 
 		bbmFreezeRing() {
-			const state = ringFrozen() ? 'paused' : 'running';
+			const state = ringFrozen() ? "paused" : "running";
 			for (const el of this.timerAnimationElements ?? []) el.style.animationPlayState = state;
 		}
 	}
 
-	Controls.define('panel-action', {
+	Controls.define("panel-action", {
 		...base,
 		createInstance: BBM_PanelAction,
-		description: (base.description ?? '') + ' (Better Balanced Multiplayer competitive timer)',
+		description: (base.description ?? "") + " (Better Balanced Multiplayer competitive timer)",
 		priority: (base.priority ?? 0) + 1
 	});
 	// The subclass only applies to panels created from now on.
-	const existing = document.querySelector('panel-action')?.maybeComponent;
-	if (existing && !(existing instanceof BBM_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
+	const existing = document.querySelector("panel-action")?.maybeComponent;
+	if (existing && !(existing instanceof BBM_PanelAction)) log("a panel-action predates the redefinition; timer inactive until it is recreated");
 }
 
 whenAvailable(configuredTimerType, (configured) => {
@@ -600,5 +600,5 @@ whenAvailable(configuredTimerType, (configured) => {
 	const backstop = engineBackstop();
 	if (backstop === ENGINE.backstopSeconds) log(`engine backstop (TurnTimerTime): ${backstop}s`);
 	else log(`WARNING: engine backstop (TurnTimerTime) is ${backstop || 'unset'}, expected ${ENGINE.backstopSeconds}s; the engine may end turns early`);
-	whenDefined('panel-action', defineMptPanelAction);
-}, { onGiveUp: () => log('game configuration never became readable; competitive timer inactive') });
+	whenDefined("panel-action", defineMptPanelAction);
+}, { onGiveUp: () => log("game configuration never became readable; competitive timer inactive") });

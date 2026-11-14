@@ -33,8 +33,8 @@
 import { Audio } from 'fs://game/core/ui/audio-base/audio-support.js';
 import { Decorator, createLogger } from '../shared/bbm-util.js';
 import { onSetupRevision, resolveString } from '../shared/bbm-setup.js';
-import { balancedTag } from './bbm-lobby-balance-text.js';
-import { canEditMementos, openMementoPicker } from './bbm-memento-select.js';
+import { balancedTag, isBalancedText } from './bbm-lobby-balance-text.js';
+import { canEditMementos, openMementoPicker, usesLobbyPickers } from './bbm-memento-select.js';
 
 const log = createLogger('lobby mementos');
 const DROPDOWN_TAG = "leader-dropdown";
@@ -70,11 +70,12 @@ function createSlot() {
 	return slot;
 }
 
-/** Draws a slot's memento; a slot already showing it is left as is (every setup change repaints every row). */
+/** Draws a slot's memento; a slot already showing it, in the same Game Balance text, is left as is (every setup change repaints every row). */
 function paintSlot(slot, value) {
 	const memento = value?.value ?? MEMENTO_NONE;
-	if (slot.bbmMemento === memento) return;
-	slot.bbmMemento = memento;
+	const key = `${memento}|${isBalancedText()}`;
+	if (slot.bbmMemento === key) return;
+	slot.bbmMemento = key;
 	const art = slot.firstChild;
 	const icon = memento === MEMENTO_NONE ? "" : resolveString(value.icon);
 	if (icon) {
@@ -172,11 +173,12 @@ class LobbyMementoSlots extends Decorator {
 	}
 }
 
-/** The lobby's Choose Mementos (its button and hotkey) opens the picker. */
+/** The lobby's Choose Mementos (its button and hotkey) opens the picker; hotseat keeps the game's. */
 class ChooseMementos extends Decorator {
 	constructor(component) {
 		super();
-		component.openMementos = () => openMementoPicker();
+		const base = component.openMementos.bind(component);
+		component.openMementos = () => (usesLobbyPickers() ? openMementoPicker() : base());
 	}
 }
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="zatygolds-multiplayer-balance" version="00730" xmlns="ModInfo">
+<Mod id="zatygolds-multiplayer-balance" version="00740" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_BBM_NAME</Name>
 		<Description>LOC_MODULE_BBM_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.7.3</Version>
+		<Version>0.7.4</Version>
 		<Package>Mod</Package>
 		<LastUpdated>2026-11-14</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
@@ -614,6 +614,10 @@
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_PLUS_50</Value></ConfigurationValueMatches>
 		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+		</Criteria>
 
 <!--*************************** CRITERIA: RAZE SPEED ****************************************************-->
 		<Criteria id="pace-raze-speed-antiquity-plus-100">
@@ -1160,6 +1164,7 @@
 					<Item>ui/lobby/bbm-memento-select.js</Item>
 					<Item>ui/lobby/bbm-lobby-mementos.js</Item>
 					<Item>ui/lobby/bbm-leader-civ-select.js</Item>
+					<Item>ui/lobby/bbm-match-slots.js</Item>
 					<Item>ui/setup/bbm-setup-layout.js</Item>
 					<Item>ui/setup/bbm-setup-tabs.js</Item>
 					<Item>ui/setup/bbm-match-type-rules.js</Item>
@@ -1453,7 +1458,6 @@
 				</UpdateText>
 				<UIScripts>
 					<Item>ui/maps/bbm-multiplayer-defaults.js</Item>
-					<Item>ui/maps/bbm-match-slots.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -2685,6 +2689,14 @@
 				<UpdateDatabase>
 					<Item>data/pace/trade-speed/travel.sql</Item>
 					<Item>data/pace/trade-speed/plus-50.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant" scope="game" criteria="pace-trade-speed-modern-instant">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>

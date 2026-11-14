@@ -31,13 +31,13 @@
 import { whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { KEYBIND_ACTIONS } from './bbm-keybind-config.js';
 
-const EDITOR_TAG = 'editor-keyboard-mapping';
+const EDITOR_TAG = "editor-keyboard-mapping";
 
 whenDefined(EDITOR_TAG, (definition) => {
 	const proto = definition.createInstance.prototype;
 	if (proto.bbmKeybindPatched) return;
 	proto.bbmKeybindPatched = true;
-	wrapMethod(proto, 'addActionsForContext', function (base, inputContext, ...rest) {
+	wrapMethod(proto, "addActionsForContext", function (base, inputContext, ...rest) {
 		const result = base(inputContext, ...rest);
 		for (const name of KEYBIND_ACTIONS) {
 			try {

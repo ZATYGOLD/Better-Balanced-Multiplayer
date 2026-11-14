@@ -24,6 +24,7 @@ async function generateMap() {
 	const mapInfo = GameInfo.Maps.lookup(uiMapSize);
 	if (mapInfo == null) return;
 	const iTotalPlayers = Players.getAliveMajorIds().length;
+	const startTime = Date.now();
 	const voronoiMap = new VoronoiDonut();
 	const seaLevelType = Configuration.getMapValue("SeaLevel");
 	console.log(`Sea Level - ${seaLevelType}`);
@@ -38,6 +39,8 @@ async function generateMap() {
 	voronoiMap.init({ x: iWidth, y: iHeight });
 	voronoiMap.setPrimaryMapSetting(["totalPlayers"], iTotalPlayers);
 	voronoiMap.simulate();
+	const endTime = Date.now();
+	console.log(`Initial Voronoi map generation took ${endTime - startTime} ms`);
 	generateMapFeatures(voronoiMap.getHexTiles());
 	const fertilityGetter = (tile) => StartPositioner.getPlotFertilityForCoord(tile.coord.x, tile.coord.y);
 	voronoiMap.createMajorPlayerAreas(fertilityGetter);

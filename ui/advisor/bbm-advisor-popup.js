@@ -31,13 +31,13 @@ import PopupSequencer from 'fs://game/base-standard/ui/popup-sequencer/popup-seq
 import { createLogger, isMultiplayerGame, wrapMethod } from '../shared/bbm-util.js';
 
 const log = createLogger('advisor');
-const ADVISOR_POPUP_ID = 'advisor-council-popup';
+const ADVISOR_POPUP_ID = "advisor-council-popup";
 
 engine.whenReady.then(() => {
 	if (!isMultiplayerGame()) return;
-	wrapMethod(PopupSequencer, 'addDisplayRequest', function (base, request, ...rest) {
+	wrapMethod(PopupSequencer, "addDisplayRequest", function (base, request, ...rest) {
 		if (request?.popupId === ADVISOR_POPUP_ID || request?.screenId === ADVISOR_POPUP_ID) {
-			log('Advisor Council popup skipped');
+			log("Advisor Council popup skipped");
 			return request;
 		}
 		return base(request, ...rest);

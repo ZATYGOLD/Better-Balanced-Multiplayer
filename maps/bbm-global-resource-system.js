@@ -36,7 +36,7 @@ const GENERAL_RESOURCES = [
 
 const MODERN_GENERAL_RESOURCES = ["RESOURCE_RUBBER", "RESOURCE_OIL"];
 
-// Each player region is dealt one from each pool (neighbours get different ones).
+// Each player region is dealt one from each pool (neighbors get different ones).
 // Options within a pool are matched (comparable value, a different yield), so no
 // draw is worse than another.
 const REGION_POOLS = [
@@ -84,7 +84,7 @@ const OTHER_PER_REGION = 3;
 const ISLAND_RESOURCES = 2;          // resources on every island without a start (Treasure in Exploration on island maps)
 const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER";
 const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_OFF";
-const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbours accepting the resource
+const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbors accepting the resource
 const FILL_ROUNDS = 3;              // seed-and-grow rounds topping the map up to the target
 
 // ============================ Shared helpers ============================
@@ -144,7 +144,7 @@ function regionOf(x, y) {
 /**
  * Each player's region: the land on their start's continent closer to their start
  * than to any other start there, with its copies per dealt resource and its
- * neighbouring regions.
+ * neighboring regions.
  */
 function buildPlayerRegions() {
 	const width = GameplayMap.getGridWidth();
@@ -155,7 +155,7 @@ function buildPlayerRegions() {
 		.map((start) => ({ ...start, ...GameplayMap.getLocationFromIndex(start.plotIndex) }))
 		.map((start) => ({ ...start, continent: regionOf(start.x, start.y) }));
 	const owner = new Int32Array(width * height).fill(-1);
-	const regions = starts.map((start) => ({ ...start, plots: [], neighbours: new Set(), copies: 0 }));
+	const regions = starts.map((start) => ({ ...start, plots: [], neighbors: new Set(), copies: 0 }));
 	const regionsByContinent = new Map();
 	regions.forEach((region, index) => {
 		if (!regionsByContinent.has(region.continent)) regionsByContinent.set(region.continent, []);
@@ -182,14 +182,14 @@ function buildPlayerRegions() {
 		for (const plotIndex of region.plots) {
 			for (const next of adjacentPlots(GameplayMap.getLocationFromIndex(plotIndex))) {
 				const other = owner[GameplayMap.getIndexFromXY(next.x, next.y)];
-				if (other >= 0 && other !== index) region.neighbours.add(other);
+				if (other >= 0 && other !== index) region.neighbors.add(other);
 			}
 		}
 	}
 	return regions;
 }
 
-/** Deal each region one option per pool (a different one from its dealt neighbours where possible) and OTHER_PER_REGION others. */
+/** Deal each region one option per pool (a different one from its dealt neighbors where possible) and OTHER_PER_REGION others. */
 function dealRegionResources(regions) {
 	const dealt = regions.map(() => []);
 	REGION_POOLS.forEach((pool, poolIndex) => {
@@ -197,7 +197,7 @@ function dealRegionResources(regions) {
 		const label = `BBM MAPS pool ${poolIndex + 1}`;
 		regions.forEach((region, index) => {
 			if (bag.length === 0) bag = shuffleInPlace([...pool], label);
-			const taken = new Set([...region.neighbours].map((other) => dealt[other][poolIndex]));
+			const taken = new Set([...region.neighbors].map((other) => dealt[other][poolIndex]));
 			const pick = bag.findIndex((name) => !taken.has(name));
 			dealt[index][poolIndex] = bag.splice(pick >= 0 ? pick : 0, 1)[0];
 		});
@@ -296,12 +296,12 @@ function fillEvenly(plots, candidatesByPlot, counts, limit, seeds, label) {
 /** Place up to `copies` of one resource on the given plots. */
 function placeCopies(resourceIndex, plots, copies, counts, seeds, label) {
 	const placed = spreadResources(plots, copies, () => resourceIndex, counts, seeds, label);
-	if (placed < copies) console.log(`BBM MAPS RESOURCES: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
+	if (placed < copies) console.log(`BBM resources: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
 	return placed;
 }
 
 /**
- * Grow a share of seeds into patches of their resource on empty neighbours in the
+ * Grow a share of seeds into patches of their resource on empty neighbors in the
  * same region, up to `limit` deposits; with evenCounts, only while its count is
  * within the region's share.
  */

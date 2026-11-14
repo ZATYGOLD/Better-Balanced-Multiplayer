@@ -6,5 +6,5 @@
 UPDATE Maps
 SET (Name, Description, GridWidth, GridHeight, NumNaturalWonders, OceanWidth, LakeSizeCutoff, LakeGenerationFrequency, Continents) =
     (SELECT Name, Description, GridWidth, GridHeight, NumNaturalWonders, OceanWidth, LakeSizeCutoff, LakeGenerationFrequency, Continents
-     FROM Maps WHERE MapSizeType = 'MAPSIZE_TINY')
+        FROM Maps WHERE MapSizeType = 'MAPSIZE_TINY')
 WHERE MapSizeType = 'MAPSIZE_SMALL';

@@ -11,7 +11,7 @@ WHERE UnitType = 'UNIT_MORTAR';
 UPDATE ModifierArguments
 SET Value = 5
 WHERE Name = 'Percent'
-  AND ModifierId = 'REVENGE_MOD_SPLASH_ABILITY';
+    AND ModifierId = 'REVENGE_MOD_SPLASH_ABILITY';
 
 UPDATE Unit_Stats
 SET Combat = 53, RangedCombat = 58, Bombard = 53
@@ -24,7 +24,7 @@ WHERE UnitType = 'UNIT_REVENGE_2';
 UPDATE ModifierArguments
 SET Value = 3
 WHERE Name = 'Amount'
-  AND ModifierId = 'JANISSARY_MOD_COMBAT_STRENGTH_VS_LAND';
+    AND ModifierId = 'JANISSARY_MOD_COMBAT_STRENGTH_VS_LAND';
 
 UPDATE Unit_Stats
 SET Combat = 53, RangedCombat = 28, Bombard = 33
@@ -40,4 +40,4 @@ WHERE UnitType = 'UNIT_BARBARY_CORSAIR_3';
 UPDATE ModifierArguments
 SET Value = 3
 WHERE Name = 'Amount'
-  AND ModifierId = 'GHILMAN_MOD_COMBAT';
+    AND ModifierId = 'GHILMAN_MOD_COMBAT';

@@ -1,4 +1,4 @@
-// Feature pass with the Map Settings climate (climate.js).
+// Feature pass with the Map Settings climate (bbm-climate.js).
 // Port of {base-standard}maps/feature-biome-generator.js addFeatures.
 //
 // Sea ice, reefs, and open-water features read the Map Zones latitude plus

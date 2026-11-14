@@ -35,14 +35,12 @@ class PauseCountdownOverlay {
 
 	/** Create the overlay element once and attach it to the document body. */
 	build() {
-		if (this.element) {
-			return;
-		}
+		if (this.element) return;
 		const el = document.createElement("div");
 		el.id = OVERLAY_ID;
 		el.innerHTML =
-			'<div class="bbm-count-label">' + Locale.compose(LOC.unpausing) + '</div>' +
-			'<div class="bbm-count-num">' + CONFIG.resumeCountdownSeconds + '</div>';
+			`<div class="bbm-count-label">${Locale.compose(LOC.unpausing)}</div>` +
+			`<div class="bbm-count-num">${CONFIG.resumeCountdownSeconds}</div>`;
 		document.body.appendChild(el);
 		this.element = el;
 		this.numElement = el.querySelector(".bbm-count-num");
@@ -50,17 +48,13 @@ class PauseCountdownOverlay {
 
 	/** Show or hide the overlay. */
 	show(visible) {
-		if (this.element) {
-			this.element.classList.toggle("bbm-show", !!visible);
-		}
+		this.element?.classList.toggle("bbm-show", !!visible);
 	}
 
 	/** Update the big countdown number and replay its pop animation. */
 	setValue(seconds) {
 		const num = this.numElement;
-		if (!num) {
-			return;
-		}
+		if (!num) return;
 		num.textContent = String(seconds);
 		num.style.animation = "none";
 		void num.offsetWidth;       // force reflow so the animation restarts

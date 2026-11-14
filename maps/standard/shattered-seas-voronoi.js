@@ -1,5 +1,5 @@
 // Copy of {base-standard}maps/shattered-seas-voronoi.js for multiplayer: the terrain pass
-// comes from ../generation/map-features.js (Map and Terrain Settings);
+// comes from ../generation/bbm-map-features.js (Map and Terrain Settings);
 // Resource Settings apply afterwards (maps/scripts/global-team-starts.js).
 import { generateMapFeatures } from '../generation/bbm-map-features.js';
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';

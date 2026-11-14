@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Happiness penalties for unhappy Settlements. -->
 <Database>
 	<GlobalParameters>
 		<!-- Unhappy Settlements lose 3% of applicable yields per Happiness deficit, capped at 40%. -->

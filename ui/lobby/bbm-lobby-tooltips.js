@@ -39,7 +39,7 @@ import { balancedTag, gameText, isBalancedText } from './bbm-lobby-balance-text.
 import { CONFIG } from './bbm-lobby-config.js';
 
 const log = createLogger('lobby');
-const LOBBY_TAG = 'screen-mp-lobby';
+const LOBBY_TAG = "screen-mp-lobby";
 const STOCK_COUNTDOWN_SECONDS = 10;   // the lobby template's hard-coded ring maximum
 
 // ============================ Start countdown ============================
@@ -49,10 +49,10 @@ function shortenCountdown() {
 	MPLobbyDataModel.ALL_READY_COUNTDOWN = CONFIG.startCountdownSeconds * 1000;
 	if (CONFIG.startCountdownSeconds === STOCK_COUNTDOWN_SECONDS) return;
 	whenDefined(LOBBY_TAG, (definition) => {
-		wrapMethod(definition.createInstance.prototype, 'onAttach', function (base, ...args) {
+		wrapMethod(definition.createInstance.prototype, "onAttach", function (base, ...args) {
 			const result = base(...args);
 			try {
-				for (const ring of this.Root?.querySelectorAll?.('.mp-staging__ring-meter') ?? []) ring.setAttribute('max-value', String(CONFIG.startCountdownSeconds));
+				for (const ring of this.Root?.querySelectorAll?.(".mp-staging__ring-meter") ?? []) ring.setAttribute("max-value", String(CONFIG.startCountdownSeconds));
 			} catch (e) { /* leave the ring as is */ }
 			return result;
 		});
@@ -81,8 +81,8 @@ function withAbilityTitle(tooltip, abilityTitle, abilityText) {
 const abilityCache = { civ: null, leader: null };
 const missedIds = new Set();
 function readAbilities(kind) {
-	const rows = kind === 'civ' ? GetCivilizationData(false) : getLeaderData(false);
-	abilityCache[kind] = new Map(rows.map((row) => [String(kind === 'civ' ? row.civID : row.leaderID), { title: row.abilityTitle, text: row.abilityText }]));
+	const rows = kind === "civ" ? GetCivilizationData(false) : getLeaderData(false);
+	abilityCache[kind] = new Map(rows.map((row) => [String(kind === "civ" ? row.civID : row.leaderID), { title: row.abilityTitle, text: row.abilityText }]));
 }
 function abilityOf(kind, id) {
 	const key = String(id);
@@ -103,7 +103,7 @@ function itemTagsOf(type) {
 		const queries = ["SELECT CivilizationType AS Type, Name, Description FROM CivilizationItems", "SELECT LeaderType AS Type, Name, Description FROM LeaderItems"];
 		for (const sql of queries) {
 			let rows = [];
-			try { rows = Database.query('config', sql) ?? []; } catch (e) { log(`items not read: ${e}`); }
+			try { rows = Database.query("config", sql) ?? []; } catch (e) { log(`items not read: ${e}`); }
 			for (const row of rows) {
 				if (!itemTags.has(row.Type)) itemTags.set(row.Type, new Set());
 				for (const tag of [row.Name, row.Description]) if (tag) itemTags.get(row.Type).add(tag);
@@ -143,15 +143,15 @@ function syncBalanceText(model) {
 
 function patchTooltips() {
 	const proto = MPLobbyDataModel.prototype;
-	wrapMethod(proto, 'getCivilizationTooltip', function (base, civilizationType, ...rest) {
+	wrapMethod(proto, "getCivilizationTooltip", function (base, civilizationType, ...rest) {
 		syncBalanceText(this);
-		const ability = abilityOf('civ', civilizationType);
+		const ability = abilityOf("civ", civilizationType);
 		const tooltip = withBalancedText(base(civilizationType, ...rest), civilizationType);
 		return withAbilityTitle(tooltip, balancedTag(ability?.title), balancedTag(ability?.text));
 	});
-	wrapMethod(proto, 'getLeaderTooltip', function (base, leaderType, ...rest) {
+	wrapMethod(proto, "getLeaderTooltip", function (base, leaderType, ...rest) {
 		syncBalanceText(this);
-		const ability = abilityOf('leader', leaderType);
+		const ability = abilityOf("leader", leaderType);
 		const tooltip = withBalancedText(base(leaderType, ...rest), leaderType);
 		return withAbilityTitle(tooltip, balancedTag(ability?.title), balancedTag(ability?.text));
 	});

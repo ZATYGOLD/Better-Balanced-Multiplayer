@@ -28,8 +28,8 @@
  * stands in for its 3D stage, a panel takes focus and Escape, a flow whose Back,
  * Confirm and Continue all close it, and the model of
  * ui/lobby/bbm-memento-select-model.js. It closes when the setup no longer
- * lets you change mementos. Hotseat, where the game skips this picker, and any
- * other setup keep the game's Choose Mementos.
+ * lets you change mementos. Hotseat and any other setup keep the game's Choose
+ * Mementos.
  */
 import { createComponent, onCleanup } from 'fs://game/core/vendor/solid-js/dist/solid.js';
 import { ContextManager } from 'fs://game/core/ui/context-manager/context-manager.js';
@@ -45,7 +45,7 @@ import { createLobbyMementoModel } from './bbm-memento-select-model.js';
 
 const log = createLogger('memento picker');
 const SCREEN_NAME = "bbm-memento-select";
-const GAME_EDITOR = "memento-editor";
+const GAME_PICKER = "memento-select";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
 let openingSlot = null;
 
@@ -127,7 +127,7 @@ defineLegacyComponent(SCREEN_NAME, { classNames: ["fullscreen"] }, () => createC
 /** Opens the local player's mementos, on the slot of a slot parameter when given. */
 function openMementoPicker(slotParam = null) {
 	if (!usesLobbyPickers()) {
-		ContextManager.push(GAME_EDITOR, { singleton: true, createMouseGuard: true, attributes: { blackOut: true } });
+		ContextManager.push(GAME_PICKER, { singleton: true, createMouseGuard: true });
 		return;
 	}
 	openingSlot = slotParam;

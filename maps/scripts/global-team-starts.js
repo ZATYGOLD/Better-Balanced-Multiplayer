@@ -1,14 +1,14 @@
 // Multiplayer Player Placement: a post-process of every map that places every
 // major player on a Fresh Water start at least START_MINIMUM_DISTANCE apart,
 // within East vs West team regions when the Match Type sets a team placement,
-// honouring strict start biases. Before it, Resource List All places the general
+// honoring strict start biases. Before it, Resource List All places the general
 // resources (each player region's dealt resources follow placement) and Standard
 // scales the game's own; Reefs are then added near coast-biased starts.
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
-import { g_CoastTerrain, g_OceanTerrain } from '../../../base-standard/maps/map-globals.js';
+import { g_CoastTerrain } from '../../../base-standard/maps/map-globals.js';
 import { generateGlobalResources, placeDealtResources, scaleGameResources } from '../bbm-global-resource-system.js';
 import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT, START_MINIMUM_DISTANCE } from '../bbm-placement.js';
-import { adjacentPlots } from '../bbm-plots.js';
+import { adjacentPlots, isLandPlot } from '../bbm-plots.js';
 import { adjustScoreByStartBias, resetStartBiasScores } from '../bbm-start-bias-score.js';
 import {
 	getPlayerStrictStartBias,
@@ -24,10 +24,13 @@ const JOINT_START_SEARCH_NODE_LIMIT = 750000;
 const JOINT_START_SEARCH_RESTARTS = 3;
 const PLACEMENT_NODE_LIMIT = 3000000;
 const COASTAL_REEFS_PER_START = 3;
+const COASTAL_REEF_RADIUS = 3;   // a settlement's own tiles
 
 // ============================ Reefs ============================
 
 function addCoastalStartReefs() {
+	// Only with Start Bias Multiplayer: the reefs back the strict ocean-coast bias.
+	if (!isStrictStartBiasEnabled()) return;
 	const reef = GameInfo.Features.lookup("FEATURE_REEF");
 	const coldReef = GameInfo.Features.lookup("FEATURE_COLD_REEF");
 	const marine = GameInfo.Biomes.lookup("BIOME_MARINE");
@@ -35,9 +38,6 @@ function addCoastalStartReefs() {
 		console.log("BBM coastal reefs: Reef or Marine definition unavailable; skipping");
 		return;
 	}
-
-	// Only with Start Bias Multiplayer: the reefs back the strict ocean-coast bias.
-	if (!isStrictStartBiasEnabled()) return;
 	const coastPlayers = Players.getAliveMajorIds().filter((playerId) =>
 		getPlayerStrictStartBias(playerId)?.rules.some((rule) => rule.id === "ocean-coast"));
 	if (coastPlayers.length === 0) return;
@@ -61,6 +61,7 @@ function addCoastalStartReefs() {
 		const start = GameplayMap.getLocationFromIndex(startIndex);
 		const candidates = coastTiles
 			.map((tile) => ({ ...tile, distance: GameplayMap.getPlotDistance(start.x, start.y, tile.x, tile.y) }))
+			.filter((tile) => tile.distance <= COASTAL_REEF_RADIUS)
 			.sort((a, b) => a.distance - b.distance || a.index - b.index);
 
 		let reefCount = 0;
@@ -182,11 +183,6 @@ function buildEastWestTeamRegions(playerCount, primaryLandmass) {
 	];
 }
 
-function isLand(x, y) {
-	const terrain = GameplayMap.getTerrainType(x, y);
-	return terrain !== g_OceanTerrain && terrain !== g_CoastTerrain;
-}
-
 function getPlayerLandBounds() {
 	const width = GameplayMap.getGridWidth();
 	const height = GameplayMap.getGridHeight();
@@ -226,7 +222,7 @@ function getPlayerLandBounds() {
 
 			for (const adjacent of adjacentPlots(location)) {
 				const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
-				if (!componentByPlot.has(adjacentIndex) && isLand(adjacent.x, adjacent.y)) {
+				if (!componentByPlot.has(adjacentIndex) && isLandPlot(adjacent.x, adjacent.y)) {
 					componentByPlot.set(adjacentIndex, componentId);
 					queue.push(adjacentIndex);
 				}
@@ -370,9 +366,9 @@ function buildJointStartCandidates(ctx, playerId, tiles, originalStart, allowLak
 		const { base, bias } = startScore(ctx, playerId, tile);
 		// A non-positive game score marks a poor start, not an invalid one: it may be the only way to meet a requirement.
 		let score = (!Number.isFinite(base) || base <= 0 ? 1 : base) + bias;
+		if (original != null) score /= 1 + GameplayMap.getPlotDistance(tile.x, tile.y, original.x, original.y) * 0.02;
 		// Lake matches are the coastal fallback: true ocean-coast matches stay ahead whenever both solve.
 		if (strict && !matchesExact(ctx, playerId, tile)) score -= 1000000;
-		if (original != null) score /= 1 + GameplayMap.getPlotDistance(tile.x, tile.y, original.x, original.y) * 0.02;
 		const plotIndex = plotKey(tile);
 		candidates.push({ plotIndex, x: tile.x, y: tile.y, score, order: ((plotIndex * 1103515245 + orderingSeed * 12345) >>> 0) });
 	}
@@ -617,7 +613,7 @@ function applyGlobalTeamStarts() {
 	let chosenAttempt = null;
 	for (const attempt of attempts) {
 		if (passExpired(ctx)) break;
-		console.log(`BBM MAPS PLAYER PLACEMENT: attempting ${attempt.label}`);
+		console.log(`BBM player placement: attempting ${attempt.label}`);
 		const candidateSolution = solveJointStartPositionsWithRestarts(
 			ctx,
 			aliveMajorIds,
@@ -639,7 +635,7 @@ function applyGlobalTeamStarts() {
 			chosenAttempt = attempt;
 			break;
 		}
-		console.log(`BBM MAPS PLAYER PLACEMENT: rejected ${attempt.label}: ${failures.join("; ")}`);
+		console.log(`BBM player placement: rejected ${attempt.label}: ${failures.join("; ")}`);
 	}
 
 	// If a genuinely impossible leader/civilization combination blocks the
@@ -656,15 +652,8 @@ function applyGlobalTeamStarts() {
 		let fewestCandidates = Number.POSITIVE_INFINITY;
 		for (const playerId of enforcedStrictPlayerIds) {
 			const playerIndex = aliveMajorIds.indexOf(playerId);
-			const candidateCount = buildJointStartCandidates(
-				ctx,
-				playerId,
-				tileSets[playerIndex],
-				originalStarts.get(playerId),
-				true,
-				enforcedStrictPlayerIds,
-				0
-			).length;
+			const candidateCount = tileSets[playerIndex]
+				.filter((tile) => isValidJointStartTile(ctx, tile, playerId, true, enforcedStrictPlayerIds)).length;
 			if (candidateCount < fewestCandidates) {
 				fewestCandidates = candidateCount;
 				playerToRelax = playerId;
@@ -783,7 +772,7 @@ function applyGlobalTeamStarts() {
 		}
 	}
 	console.log(
-		`BBM MAPS PLAYER PLACEMENT: applied ${chosenAttempt.label} with Fresh Water and ` +
+		`BBM player placement: applied ${chosenAttempt.label} with Fresh Water and ` +
 		`${START_MINIMUM_DISTANCE}-tile minimum spacing`
 	);
 }

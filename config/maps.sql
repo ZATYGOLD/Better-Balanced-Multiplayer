@@ -159,7 +159,7 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 --***************** CHOSEN MAP SIZE *********************
 --*******************************************************
 -- Hidden: the size the lobby chose when a Spectator slot made the host launch the
--- next size up (ui/maps/bbm-match-slots.js); the map is still built at the chosen size.
+-- next size up (ui/lobby/bbm-match-slots.js); the map is still built at the chosen size.
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, Hidden, Hash, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
         ('BBMChosenMapSize', 'LOC_BBM_MAPS_CHOSEN_MAP_SIZE', 'LOC_BBM_MAPS_CHOSEN_MAP_SIZE', 'BBMChosenMapSizes', 'BBM_MAPS_CHOSEN_SIZE_NONE', 'Map', 'BBMChosenMapSize', 'MapOptions', 1, 0, 0, 0, 9002);

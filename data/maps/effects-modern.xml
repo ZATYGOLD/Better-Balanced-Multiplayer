@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Resource List All: resource effects in Modern. -->
 <GameEffects xmlns="GameEffects">
 	<Modifier id="BBM_MAPS_M_COTTON_LAND_PRODUCTION" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_UNIT_PRODUCTION_PER_SLOTTED_RESOURCE"><Argument name="Percent">5</Argument><Argument name="Domain">DOMAIN_LAND</Argument><Argument name="ResourceType">RESOURCE_COTTON</Argument></Modifier>
 	<Modifier id="BBM_MAPS_M_COWRIE_CITY_GOLD" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_YIELD_PER_RESOURCE"><SubjectRequirements><Requirement type="REQUIREMENT_CITY_IS_CITY"/></SubjectRequirements><Argument name="Amount">8</Argument><Argument name="YieldType">YIELD_GOLD</Argument><Argument name="ResourceType">RESOURCE_COWRIE</Argument><Argument name="PercentMultiplier">false</Argument></Modifier>

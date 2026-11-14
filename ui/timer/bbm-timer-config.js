@@ -34,7 +34,7 @@ const CONFIG = {
 	flashStart: 15,           // red flash + per-second beeps begin here
 	warnEverySeconds: 5,      // orange-tier urgency beep cadence (30/25/20)
 	orangeColor: "rgb(255, 155, 40)",
-	steadyFlash: true,        // keep the flash colour on odd seconds (no white blink)
+	steadyFlash: true,        // keep the flash color on odd seconds (no white blink)
 	engineFlashHide: 21,      // perceived remaining while muzzling the engine (<20 triggers it)
 	guardianMs: 200,          // enforcement sweep interval
 	endRetryMs: 1000,         // gap between attempts to end an expired turn

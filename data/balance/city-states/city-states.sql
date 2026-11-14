@@ -8,8 +8,8 @@ WHERE ModifierId IN (
     SELECT DISTINCT ma.ModifierId
     FROM ModifierArguments ma
     JOIN TypeTags tt
-      ON tt.Type = ma.Value
-     AND tt.Tag = 'CITY_STATE_UNIQUE_IMPROVEMENT'
+        ON tt.Type = ma.Value
+        AND tt.Tag = 'CITY_STATE_UNIQUE_IMPROVEMENT'
     WHERE ma.Name = 'ConstructibleType'
 );
 
@@ -33,8 +33,8 @@ WHERE ID IN (
     SELECT ca.YieldChangeId
     FROM Constructible_Adjacencies ca
     JOIN TypeTags tt
-      ON tt.Type = ca.ConstructibleType
-     AND tt.Tag = 'CITY_STATE_UNIQUE_IMPROVEMENT'
+        ON tt.Type = ca.ConstructibleType
+        AND tt.Tag = 'CITY_STATE_UNIQUE_IMPROVEMENT'
 );
 
 -- Antiquity: Megalith, Step Pyramid, Age of Heroes, and Yakhchal.
@@ -51,7 +51,7 @@ WHERE ID = 'ZigguratScience';
 UPDATE ModifierArguments
 SET Value = 20
 WHERE ModifierId = 'ATTACH_COMMANDER_XP_PRODUCTION'
-  AND Name = 'Percent';
+    AND Name = 'Percent';
 
 DELETE FROM Constructible_ValidBiomes
 WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE';
@@ -66,7 +66,7 @@ WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMEN
 
 DELETE FROM ConstructibleModifiers
 WHERE ConstructibleType = 'IMPROVEMENT_ICE_HOUSE'
-  AND ModifierId = 'MOD_ICE_HOUSE_FOOD';
+    AND ModifierId = 'MOD_ICE_HOUSE_FOOD';
 
 INSERT OR IGNORE INTO ConstructibleModifiers (ConstructibleType, ModifierId)
 SELECT 'IMPROVEMENT_ICE_HOUSE', 'BBM_BALANCE_MOD_ICE_HOUSE_GROWTH'
@@ -76,17 +76,17 @@ WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMEN
 UPDATE Constructible_YieldChanges
 SET YieldChange = 2
 WHERE ConstructibleType = 'IMPROVEMENT_STONE_HEAD'
-  AND YieldType = 'YIELD_CULTURE';
+    AND YieldType = 'YIELD_CULTURE';
 
 UPDATE Constructible_YieldChanges
 SET YieldChange = 3
 WHERE ConstructibleType = 'IMPROVEMENT_MONASTERY'
-  AND YieldType = 'YIELD_SCIENCE';
+    AND YieldType = 'YIELD_SCIENCE';
 
 UPDATE ModifierArguments
 SET Value = 2
 WHERE ModifierId = 'MOD_MONASTERY_YIELD'
-  AND Name = 'Amount';
+    AND Name = 'Amount';
 
 DELETE FROM Constructible_ValidBiomes
 WHERE ConstructibleType = 'IMPROVEMENT_KASBAH';
@@ -121,7 +121,7 @@ WHERE EXISTS (SELECT 1 FROM Constructibles WHERE ConstructibleType = 'IMPROVEMEN
 
 DELETE FROM ConstructibleModifiers
 WHERE ConstructibleType = 'IMPROVEMENT_ABATTOIR'
-  AND ModifierId IN ('MOD_ABATTOIR_FOOD', 'MOD_ABATTOIR_UNHAPPINESS');
+    AND ModifierId IN ('MOD_ABATTOIR_FOOD', 'MOD_ABATTOIR_UNHAPPINESS');
 
 INSERT OR IGNORE INTO ConstructibleModifiers (ConstructibleType, ModifierId)
 SELECT 'IMPROVEMENT_ABATTOIR', 'BBM_BALANCE_MOD_ABATTOIR_PRODUCTION'

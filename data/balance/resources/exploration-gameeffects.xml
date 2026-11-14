@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: resource modifiers loaded in Exploration. -->
 <GameEffects xmlns="GameEffects">
 	<Modifier id="BBM_BALANCE_MOD_HORSES_CAVALRY_PRODUCTION" collection="COLLECTION_ALL_PLAYERS" effect="EFFECT_PLAYER_ADJUST_UNIT_PRODUCTION_PER_RESOURCE">
 		<Argument name="Percent">3</Argument>

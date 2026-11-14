@@ -183,7 +183,7 @@ class MultiplayerPauseManager {
 	}
 	toggleEnginePause() {
 		try { Network.toggleMultiplayerPause(); return true; }
-		catch (e) { log("toggleMultiplayerPause failed: " + e); return false; }
+		catch (e) { log(`toggleMultiplayerPause failed: ${e}`); return false; }
 	}
 	/** Connected participants: a dropped player is never part of the "everyone is ready" consensus. */
 	totalPlayers() { return Math.max(humanParticipantIds(true).filter(isConnected).length, 1); }
@@ -213,12 +213,12 @@ class MultiplayerPauseManager {
 	openPauseMenu() {
 		if (this.pauseMenuIsOpen()) return;
 		try { InterfaceMode.switchTo(PAUSE_MENU_MODE); }
-		catch (e) { log("openPauseMenu failed: " + e); }
+		catch (e) { log(`openPauseMenu failed: ${e}`); }
 	}
 	closePauseMenu() {
 		if (!this.pauseMenuIsOpen()) return;
 		try { InterfaceMode.switchToDefault(); }
-		catch (e) { log("closePauseMenu failed: " + e); }
+		catch (e) { log(`closePauseMenu failed: ${e}`); }
 	}
 
 	// ================================= Styles ==================================
@@ -330,7 +330,7 @@ class MultiplayerPauseManager {
 	renderFooter(el) {
 		const tally = this.footerTally();
 		const pausedBy = !this.disconnectNotices.length && !this.pauseReason ? this.pausedBy : [];
-		const key = tally.text + "\n" + pausedBy.join(",");
+		const key = `${tally.text}\n${pausedBy.join(",")}`;
 		if (el.dataset.bbmKey !== key) {
 			el.dataset.bbmKey = key;
 			el.textContent = tally.text;
@@ -391,7 +391,7 @@ class MultiplayerPauseManager {
 	/** Rebuild the hint only when its text changed (player names are set as text, never markup). */
 	renderHint(hint) {
 		const { reasons, status } = this.hintLines();
-		const key = reasons.join("\n") + "\n" + status;
+		const key = `${reasons.join("\n")}\n${status}`;
 		if (key === this.statusText) return;
 		this.statusText = key;
 		hint.textContent = "";
@@ -443,9 +443,9 @@ class MultiplayerPauseManager {
 				let allowed = true;
 				try { allowed = Network.canDirectKickPlayerNow(id); } catch (e) { allowed = true; }
 				if (allowed) { Network.directKickPlayer(id); kicked++; }
-			} catch (e) { log("directKickPlayer failed for " + id + ": " + e); }
+			} catch (e) { log(`directKickPlayer failed for ${id}: ${e}`); }
 		}
-		log("Host dropped " + kicked + " disconnected player(s) to break the pause deadlock.");
+		log(`Host dropped ${kicked} disconnected player(s) to break the pause deadlock.`);
 		// Clear every remaining connected player's flag too, so the game resumes the
 		// moment the kicked slots free up (kick alone only clears the dropped flags).
 		this.onRemoteResume();
@@ -627,7 +627,7 @@ class MultiplayerPauseManager {
 		try { if (document.querySelector("#screen-endgame")) return; } catch (e) {}
 		this.iHoldFlag = true;
 		this.toggleEnginePause();
-		log("Auto-paused before AI takeover: " + reason);
+		log(`Auto-paused before AI takeover: ${reason}`);
 	}
 
 	// Layer 1 - engine disconnect event.
