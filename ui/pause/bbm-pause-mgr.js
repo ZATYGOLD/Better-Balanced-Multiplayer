@@ -289,7 +289,6 @@ class MultiplayerPauseManager {
 			this.renderHint(hint);
 
 			// Players ready up with the game's own Resume button.
-			const isHost = this.amHost();
 			const viewBtn = this.makeButton(VIEW_MAP_BUTTON_ID, LOC.viewMap, (ev) => this.onViewMapClick(ev));
 
 			// Top of the menu, in order: hint, then View Map.
@@ -297,11 +296,7 @@ class MultiplayerPauseManager {
 			container.insertBefore(hint, first);
 			container.insertBefore(viewBtn, first);
 
-			// Host-only recovery: when a player has dropped while paused, their stuck
-			// want-pause flag can't be cleared by anyone else, so the game can't reach
-			// zero and resume. Offer the host a button to kick the disconnected
-			// player(s), which clears the flag and lets the resume complete.
-			if (isHost && this.canHostKick() && this.disconnectedIds().length > 0) {
+			if (this.dropResumeNeeded()) {
 				const dropBtn = this.makeButton(DROP_RESUME_BUTTON_ID, LOC.dropResume, (ev) => this.onDropDisconnectedClick(ev));
 				container.insertBefore(dropBtn, first);
 			}
@@ -424,6 +419,16 @@ class MultiplayerPauseManager {
 	disconnectedIds() {
 		return (this.watchedHumans.length ? this.watchedHumans : humanParticipantIds()).filter((id) => !isConnected(id));
 	}
+	/**
+	 * Host-only recovery, offered only while Resume is stuck: every connected player
+	 * is ready, yet a pause flag remains, held by a player who dropped while paused.
+	 * No one else can clear that flag; kicking the player does.
+	 */
+	dropResumeNeeded() {
+		if (!this.amHost() || !this.canHostKick() || this.disconnectedIds().length === 0) return false;
+		const connectedWaiting = humanParticipantIds(true).some((id) => isConnected(id) && Configuration.getPlayer(id)?.wantsPause);
+		return !connectedWaiting && this.numWantPause() > 0;
+	}
 	/** True when this client is allowed to direct-kick (i.e. is the host with the privilege). */
 	canHostKick() {
 		try { return !!Network.canPlayerEverDirectKick(GameContext.localPlayerID); } catch (e) { return false; }
@@ -520,10 +525,9 @@ class MultiplayerPauseManager {
 
 		// The pause menu is a reactive (SolidJS) screen; if a re-render dropped our
 		// injected buttons while it is open, put them back. Also re-inject when the
-		// "Drop Disconnected & Resume" button needs to appear/disappear (a player
-		// dropped or reconnected while the menu was already open).
+		// "Drop Disconnected & Resume" button needs to appear/disappear.
 		if (this.pauseMenuIsOpen()) {
-			const needDrop = this.amHost() && this.canHostKick() && this.disconnectedIds().length > 0;
+			const needDrop = this.dropResumeNeeded();
 			const haveDrop = !!document.getElementById(DROP_RESUME_BUTTON_ID);
 			const c = document.querySelector(PAUSE_MENU_CONTAINER);
 			if (c && (!document.getElementById(VIEW_MAP_BUTTON_ID) || needDrop !== haveDrop)) this.injectMenuButtons(c);

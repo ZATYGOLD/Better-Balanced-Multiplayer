@@ -81,7 +81,7 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 - **Pause** with the game's own **Pause** button in the Esc menu or its **Multiplayer Pause** key ([ by default). The pause menu opens for everyone, in place of the game's pause screen.
 - **While paused**, players press the game's **Resume** button when they are ready. The game's Pause / Resume button sits under Back to Game (under the status line while paused), and the footer shows the ready count and who paused. **View Map** lets players look around. Actions that advance the game are blocked.
 - **Resume** happens when every connected player is ready. A 5-second **UNPAUSING…** countdown runs, then play resumes together.
-- **Disconnects, host changes and rejoins** pause the game automatically. The host can **Drop Disconnected & Resume**.
+- **Disconnects, host changes and rejoins** pause the game automatically. If a player drops while the game is paused and Resume gets stuck, the host can **Drop Disconnected & Resume** (kicks them).
 
 ## Keybinds
 
@@ -210,6 +210,8 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 ### 0.7.6
 
 - Sea Level defaults to Low in multiplayer (was Standard).
+- The host's Drop Disconnected & Resume button shows only when Resume is stuck: every connected player is ready, but a player who dropped while paused still holds a pause flag. A normal disconnect pause resumes with Resume.
+- A player's disconnect is caught sooner: connections are checked every 0.05 s (was 0.5 s), so the pause starts earlier.
 - New multiplayer games open on Start Position Balanced (the game's multiplayer default); the Create Game screen used to keep the previous game's choice.
 - The 2v2 map is larger: Tiny is built on a 66x42 grid, between Tiny (60x38) and Small (74x46).
 - Resource Amount with Resource List All is closer to the game's density: Sparse 85%, Standard 100% and Abundant 115% of the game's density (were 65%, 100% and 135%). Resource List Standard is unchanged.
