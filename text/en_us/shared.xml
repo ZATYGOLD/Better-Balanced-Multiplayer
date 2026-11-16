@@ -61,7 +61,7 @@
 		<Row Tag="LOC_BBM_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 44x28 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
-		<Row Tag="LOC_BBM_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map built on a 68x42 grid. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_3V3_DESC"><Text>3v3 placement (teams 1-2-1-2-1-2 by slot), Balanced starts, Multiplayer Start Bias, Small map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_4V4_NAME"><Text>4v4</Text></Row>

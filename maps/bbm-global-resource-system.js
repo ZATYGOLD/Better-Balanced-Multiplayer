@@ -62,12 +62,18 @@ const WATER_REGION = -1;
 const ADJACENCY_PASSES = 3;
 
 // Resource Amount and Resource Clusters (config/maps.sql).
-// Amount scales the game's density; Clusters grow a share of deposits into
-// patches, with the seed count lowered so the amount stays the same.
+// Amount scales the game's density, lower with Resource List All, which deals
+// every resource; Clusters grow a share of deposits into patches, with the seed
+// count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
 	BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.65,
 	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 1,
 	BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1.35
+};
+const LIST_ALL_AMOUNTS = {
+	BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.7,
+	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 0.9,
+	BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1.1
 };
 const RESOURCE_CLUSTERS = {
 	BBM_MAPS_RESOURCE_CLUSTERS_NONE: { chance: 0, size: 1 },
@@ -81,7 +87,7 @@ const MAX_COPIES = 3;
 const TILES_PER_COPY = 100;
 const OTHER_PER_REGION = 3;
 const ISLAND_RESOURCES = 2;          // resources on every island without a start (Treasure in Exploration on island maps)
-const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT";
+const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_STANDARD";
 const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_NONE";
 const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbors accepting the resource
 const FILL_ROUNDS = 3;              // seed-and-grow rounds topping the map up to the target
@@ -101,10 +107,10 @@ function mapSetting(table, key, fallback) {
 	return { name: table[value] != null ? value : fallback, value: table[value] ?? table[fallback] };
 }
 
-/** Resource Amount and Resource Clusters as set up. */
-function resourceSettings() {
+/** Resource Amount (from the Resource List's table) and Resource Clusters as set up. */
+function resourceSettings(amounts) {
 	return {
-		amount: mapSetting(RESOURCE_AMOUNTS, "BBMResourceAmount", DEFAULT_AMOUNT),
+		amount: mapSetting(amounts, "BBMResourceAmount", DEFAULT_AMOUNT),
 		clusters: mapSetting(RESOURCE_CLUSTERS, "BBMResourceClusters", DEFAULT_CLUSTERS)
 	};
 }
@@ -406,7 +412,7 @@ function generateGlobalResources() {
 	for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "BBM MAPS guaranteed general resource");
 	const dealtEstimate = dealtCopies(buildPlayerRegions());   // the map's own starts; placement moves them only a little in size terms
 
-	const { amount, clusters } = resourceSettings();
+	const { amount, clusters } = resourceSettings(LIST_ALL_AMOUNTS);
 	// The amount covers every resource; general deposits fill what the dealt copies will take.
 	const target = Math.max(0, Math.round(placeablePlots.length * DENSITY_TARGET * amount.value) - dealtEstimate);
 	const grown = fillToTarget(target, seeds, counts, clusters.value, true, (limit, roundSeeds, round) =>
@@ -424,7 +430,7 @@ function generateGlobalResources() {
  * Island resources stay as the map placed them.
  */
 function scaleGameResources() {
-	const { amount, clusters } = resourceSettings();
+	const { amount, clusters } = resourceSettings(RESOURCE_AMOUNTS);
 	if (amount.value === 1 && clusters.value.chance <= 0) {
 		console.log(`BBM resources: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
 		return;

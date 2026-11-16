@@ -1,6 +1,6 @@
 # Better Balanced Multiplayer
 
-Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.4**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
+Better Balanced Multiplayer (BBM) is a set of multiplayer features for **Sid Meier's Civilization VII**: a competitive turn timer, synchronized pause, competitive balance, multiplayer maps, pacing and gameplay settings, and lobby improvements. Current version: **0.7.6**, by Zatygold. **Multiplayer only:** single player keeps the game's own settings, text, keys and data (the one exception is Advisors Council moving to Ctrl+B).
 
 ## Features
 
@@ -31,9 +31,10 @@ New multiplayer games start with these settings. The host can change any of them
 | End-of-Age countdown | None |
 | Age Transition Impact | Continuity |
 | Map / Map Size | Pangaea Ultima / Standard |
+| Sea Level | Low |
 | Game Balance | Multiplayer |
 | Start Bias | Multiplayer |
-| Resource List / Amount / Clusters | All / Abundant / None |
+| Resource List / Amount / Clusters | All / Standard / None |
 | Pace Set | Multiplayer (Trade Speed Instant) |
 | Victory Threshold | Low |
 | Crises | Disabled |
@@ -46,7 +47,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 |---|---|---|---|---|---|
 | Free for All | whole map | — | (host) | (host) | Standard |
 | 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (44x28 Duel map) |
-| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny |
+| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny (68x42 map) |
 | 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | Multiplayer | Small |
 | 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
 
@@ -109,7 +110,7 @@ Switching Game Balance also sets these settings (the host can change them afterw
 | Pace Set | Multiplayer | Standard |
 | Victory Threshold | Low | Standard |
 | Crises / Crisis Timing | Disabled | Enabled / Standard |
-| Resource List / Amount | All / Abundant | Standard / Standard |
+| Resource List / Amount | All / Standard | Standard / Standard |
 | Resource Clusters | None | (unchanged) |
 
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
@@ -131,7 +132,7 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
     - Military and construction resources come in even counts on each continent.
     - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbors get different resources.
   - **Standard** uses the game's own resources and rules.
-- **Resource Amount**: Sparse, Standard or Abundant (the default), which is 35% fewer, the game's own density or 35% more. Standard is the game's own density, as in Advanced Settings Pro.
+- **Resource Amount**: Sparse, Standard (the default) or Abundant. With Resource List Standard they are 65%, 100% (the game's own density, as in Advanced Settings Pro) and 135% of the game's density; with Resource List All, which already deals every resource, 70%, 90% and 110%.
 - **Resource Clusters**: None (the default), Standard or More. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
 - **Climate and terrain** (from Advanced Settings Pro) has two groups of settings. Choosing Standard for all of them generates the game's own maps.
   - **Map Settings**: Map Age, Map Temperature and **Map Zones**, which sets where the hot and cold regions lie: Standard, Hot Poles, Hot Edge, Hot Center, Cold Center, Warm Ring, Patchwork or Random.
@@ -203,6 +204,13 @@ Better-Balanced-Multiplayer/
 Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.6
+
+- Sea Level defaults to Low in multiplayer (was Standard).
+- The 2v2 map is larger: Tiny is built on a 68x42 grid, between Tiny (60x38) and Small (74x46).
+- Resource List All places fewer resources: Resource Amount Sparse 70%, Standard 90% and Abundant 110% of the game's density (were 65%, 100% and 135%). Resource List Standard is unchanged.
+- Resource Amount defaults to Standard in multiplayer (was Abundant).
 
 ### 0.7.5
 
