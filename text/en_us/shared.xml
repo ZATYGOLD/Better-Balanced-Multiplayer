@@ -51,7 +51,7 @@
 	<!-- Turn Timers -->
 		<Row Tag="LOC_BBM_TURNTIMER_DESC"><Text>Determines how long Players have to take their Turn.</Text></Row>
 		<Row Tag="LOC_BBM_TURNTIMER_COMPETITIVE"><Text>Competitive</Text></Row>
-		<Row Tag="LOC_BBM_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of human Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
+		<Row Tag="LOC_BBM_TURNTIMER_COMPETITIVE_DESC"><Text>Turn time scales with the Cities and Units in play, the number of Players, and the current Turn, tuned per Age. The first Turn is untimed, and the clock holds until you found a Settlement. Warning tones begin at 30 seconds; the Turn ends automatically at zero.</Text></Row>
 
 	<!-- Match Type -->
 		<Row Tag="LOC_BBM_MATCHTYPE_NAME"><Text>Match Type</Text></Row>
@@ -59,7 +59,7 @@
 		<Row Tag="LOC_BBM_MATCHTYPE_FFA_NAME"><Text>Free for All</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_FFA_DESC"><Text>Players start anywhere on the map (Fresh Water, 12 tiles apart), Standard map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_1V1_NAME"><Text>1v1</Text></Row>
-		<Row Tag="LOC_BBM_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 36x22 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
+		<Row Tag="LOC_BBM_MATCHTYPE_1V1_DESC"><Text>Duel placement (West vs East), Balanced starts, Multiplayer Start Bias, Tiny map built as the 44x28 Duel map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_2V2_NAME"><Text>2v2</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_2V2_DESC"><Text>2v2 placement (teams 1-2-1-2 by slot: backline, then frontline), Balanced starts, Multiplayer Start Bias, Tiny map. Every other setting returns to its default, with Online speed and the Competitive timer.</Text></Row>
 		<Row Tag="LOC_BBM_MATCHTYPE_3V3_NAME"><Text>3v3</Text></Row>

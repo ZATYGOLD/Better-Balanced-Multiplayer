@@ -45,7 +45,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 | Match Type | Player Placement | Teams by slot | Start Position | Start Bias | Map Size |
 |---|---|---|---|---|---|
 | Free for All | whole map | — | (host) | (host) | Standard |
-| 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (36x22 Duel map) |
+| 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (44x28 Duel map) |
 | 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny |
 | 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | Multiplayer | Small |
 | 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
@@ -60,10 +60,10 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 
 ```
 seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units any civ has)
-        + PerHuman × (living humans) + PerTurn × (turn number)
+        + PerPlayer × (living players, AI included) + PerTurn × (turn number)
 ```
 
-| Age | Base | PerCity | PerUnit | PerHuman | PerTurn | About (8 humans, turns 2-70) |
+| Age | Base | PerCity | PerUnit | PerPlayer | PerTurn | About (8 players, turns 2-70) |
 |---|---|---|---|---|---|---|
 | Antiquity | 20 | 1.30 | 1.30 | 1.30 | 1.30 | 37-141s |
 | Exploration | 40 | 2.30 | 1.40 | 2.30 | 1.40 | 85-204s |
@@ -209,7 +209,9 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 - Resource Amount is now Sparse (35% fewer), Standard or Abundant (35% more), and Abundant is the multiplayer default (was Multiplayer, 70%). With Resource List Standard, Abundant adds more of the map's own resources.
 - Resource Clusters is now None (the default), Standard or More (were Disabled, Small and Large).
 - The End-of-Age countdown defaults to None (was 10 turns).
-- The Competitive timer is retuned: Antiquity 20 / 1.30 / 1.30 / 1.30 / 1.30, Exploration 40 / 2.30 / 1.40 / 2.30 / 1.40, Modern 60 / 3.30 / 1.50 / 3.30 / 1.50 (Base / PerCity / PerUnit / PerHuman / PerTurn).
+- The Competitive timer is retuned: Antiquity 20 / 1.30 / 1.30 / 1.30 / 1.30, Exploration 40 / 2.30 / 1.40 / 2.30 / 1.40, Modern 60 / 3.30 / 1.50 / 3.30 / 1.50 (Base / PerCity / PerUnit / PerPlayer / PerTurn).
+- The Competitive timer counts every living player, AI included (PerPlayer; was PerHuman, humans only). The Spectator's Observer still adds no time.
+- The 1v1 Duel map is larger: 44x28 (was 36x22).
 - No turn timer shows while an Age is ending (the engine's Age transition timer showed and was broken).
 - A defeated Commander still waiting to return when an Age ends comes back on the Age's last turn; it was lost.
 - The engine no longer ends the first turn of each Age after 8 minutes: under Competitive its Extended Turn Time is held at an hour, like Turn Time, and the turn stays untimed.

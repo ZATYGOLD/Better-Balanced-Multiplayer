@@ -26,10 +26,10 @@
  * tables for the active Age (data/timers/):
  *
  *   seconds = Base + PerCity*cities + PerUnit*units
- *           + PerHuman*humanPlayers + PerTurn*turnNumber
+ *           + PerPlayer*players + PerTurn*turnNumber
  *
- * cities/units are the most any living major civ has; human players never
- * include a companion mod's Observer (isObserverPlayer). The first turn of each
+ * cities/units are the most any living major civ has; players are the living
+ * major civs, AI included, never a companion mod's Observer (isObserverPlayer). The first turn of each
  * Age (inGrace) and an ending Age are untimed and show no timer (isUntimed).
  *
  * Engine backstop: the engine times an unknown type by TurnTimerTime, which
@@ -73,11 +73,6 @@ let lastEndAttemptMs = 0;  // last time the sweep tried to end an expired turn
 
 // =============================== Helpers ==============================
 
-/** A living human major player who plays (Observers excluded). */
-function isHumanParticipant(player) {
-	return !!player?.isMajor && player.isHuman && !isObserverPlayer(player.id);
-}
-
 /** The configured timer type, or undefined while the configuration is unreadable. */
 function configuredTimerType() {
 	try { return Configuration.getGame().turnTimerType; } catch (e) { return undefined; }
@@ -119,25 +114,26 @@ function segmentLimits() {
 		`FROM BBM_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
 }
 
-/** PerHuman/PerTurn scaling for the active Age; zeros when absent. */
+/** PerPlayer/PerTurn scaling for the active Age; zeros when absent. */
 function scalingValues() {
-	return cachedRow("SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM BBM_TimerScaling") ?? { perHuman: 0, perTurn: 0 };
+	return cachedRow("SELECT PerPlayer AS perPlayer, PerTurn AS perTurn FROM BBM_TimerScaling") ?? { perPlayer: 0, perTurn: 0 };
 }
 
 /**
- * One pass over living major players: max cities/units and human count
- * (Observers excluded, synced), plus human Observers (they only count
- * toward the enforcement threshold).
+ * One pass over living major players: max cities/units, player count and
+ * human count (Observers excluded, synced), plus human Observers (humans and
+ * Observers only count toward the enforcement threshold).
  */
 function playerTallies() {
-	const tallies = { cities: 0, units: 0, humans: 0, observers: 0 };
+	const tallies = { cities: 0, units: 0, players: 0, humans: 0, observers: 0 };
 	try {
 		for (const player of Players.getAlive()) {
 			if (!player?.isMajor) continue;
 			if (isObserverPlayer(player.id)) { if (player.isHuman) tallies.observers++; continue; }
 			tallies.cities = Math.max(tallies.cities, player.Cities?.getCities()?.length ?? 0);
 			tallies.units = Math.max(tallies.units, player.Units?.getUnits()?.length ?? 0);
-			if (isHumanParticipant(player)) tallies.humans++;
+			tallies.players++;
+			if (player.isHuman) tallies.humans++;
 		}
 	} catch (e) { /* keep zeros */ }
 	return tallies;
@@ -151,13 +147,13 @@ function playerTallies() {
 function computeSeconds() {
 	const limit = segmentLimits();
 	if (!limit) return 0;
-	const { cities, units, humans, observers } = playerTallies();
+	const { cities, units, players, humans, observers } = playerTallies();
 	CLOCK.participants = humans + observers;
-	const { perHuman, perTurn } = scalingValues();
+	const { perPlayer, perTurn } = scalingValues();
 	const raw = limit.base
 		+ (limit.perCity * cities)
 		+ (limit.perUnit * units)
-		+ (perHuman * humans)
+		+ (perPlayer * players)
 		+ (perTurn * Math.max(0, currentTurn()));
 	if (raw <= 0) return 0;
 	const step = CONFIG.roundToNearest >= 1 ? CONFIG.roundToNearest : 1;

@@ -9,6 +9,6 @@ SET TimeLimit_Base = 60,
 WHERE TurnSegmentType = 'TURN_SEGMENT_SINGLEPHASE';
 
 UPDATE BBM_TimerScaling
-SET PerHuman = 3.30,
+SET PerPlayer = 3.30,
     PerTurn = 1.50
 WHERE ScalingId = 'DEFAULT';

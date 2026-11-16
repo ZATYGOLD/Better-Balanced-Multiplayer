@@ -8,7 +8,7 @@
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_BASE_NAME"><Text>Base</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_BASE_DESC"><Text>Search the whole eligible map for Fresh Water starts at least 12 tiles apart; retain all original starts if no complete solution exists.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_DUEL_NAME"><Text>Duel</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_PLACEMENT_DUEL_DESC"><Text>Two-player East vs West placement: Slot 1 starts anywhere across the western side and Slot 2 anywhere across the eastern side. On the Tiny Map Size the map is built as a 36x22 Duel map.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_PLACEMENT_DUEL_DESC"><Text>Two-player East vs West placement: Slot 1 starts anywhere across the western side and Slot 2 anywhere across the eastern side. On the Tiny Map Size the map is built as a 44x28 Duel map.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_2V2_NAME"><Text>2v2</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_2V2_DESC"><Text>Four-player East vs West placement: Slots 1/2 backline and Slots 3/4 frontline.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_PLACEMENT_3V3_NAME"><Text>3v3</Text></Row>
