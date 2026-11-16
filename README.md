@@ -32,6 +32,7 @@ New multiplayer games start with these settings. The host can change any of them
 | Age Transition Impact | Continuity |
 | Map / Map Size | Pangaea Ultima / Standard |
 | Sea Level | Low |
+| Start Position | Balanced |
 | Game Balance | Multiplayer |
 | Start Bias | Multiplayer |
 | Resource List / Amount / Clusters | All / Standard / None |
@@ -47,7 +48,7 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 |---|---|---|---|---|---|
 | Free for All | whole map | — | (host) | (host) | Standard |
 | 1v1 | Duel | 1-2 | Balanced | Multiplayer | Tiny (44x28 Duel map) |
-| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny (68x42 map) |
+| 2v2 | 2v2 | 1-2-1-2 | Balanced | Multiplayer | Tiny (66x42 map) |
 | 3v3 | 3v3 | 1-2-1-2-1-2 | Balanced | Multiplayer | Small |
 | 4v4 | 4v4 | 1-2-1-2-1-2-1-2 | Balanced | Multiplayer | Standard |
 
@@ -131,9 +132,10 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
   - **All** (the default) makes every resource valid in every Age and keeps it across Age transitions (Oil and Rubber arrive in Modern). It comes with custom yields and effects.
     - Military and construction resources come in even counts on each continent.
     - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbors get different resources.
+    - One copy of each of a player's resources lies 2 to 6 tiles from their start; extra copies on larger regions land farther out. That range also holds at least 4 other resources. Each player's region keeps the same density as the rest of the map.
   - **Standard** uses the game's own resources and rules.
-- **Resource Amount**: Sparse, Standard (the default) or Abundant. With Resource List Standard they are 65%, 100% (the game's own density, as in Advanced Settings Pro) and 135% of the game's density; with Resource List All, which already deals every resource, 70%, 90% and 110%.
-- **Resource Clusters**: None (the default), Standard or More. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
+- **Resource Amount**: Sparse, Standard (the default) or Abundant. With Resource List Standard they are 65%, 100% (the game's own density, as in Advanced Settings Pro) and 135% of the game's density; with Resource List All, which already deals every resource, 85%, 100% and 115%.
+- **Resource Clusters**: None (the default), Standard or More. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same. With None and Resource List All, no two resources touch.
 - **Climate and terrain** (from Advanced Settings Pro) has two groups of settings. Choosing Standard for all of them generates the game's own maps.
   - **Map Settings**: Map Age, Map Temperature and **Map Zones**, which sets where the hot and cold regions lie: Standard, Hot Poles, Hot Edge, Hot Center, Cold Center, Warm Ring, Patchwork or Random.
   - **Terrain Settings**: Lakes, Rivers, Mountains and Sea Level.
@@ -208,9 +210,13 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 ### 0.7.6
 
 - Sea Level defaults to Low in multiplayer (was Standard).
-- The 2v2 map is larger: Tiny is built on a 68x42 grid, between Tiny (60x38) and Small (74x46).
-- Resource List All places fewer resources: Resource Amount Sparse 70%, Standard 90% and Abundant 110% of the game's density (were 65%, 100% and 135%). Resource List Standard is unchanged.
+- New multiplayer games open on Start Position Balanced (the game's multiplayer default); the Create Game screen used to keep the previous game's choice.
+- The 2v2 map is larger: Tiny is built on a 66x42 grid, between Tiny (60x38) and Small (74x46).
+- Resource Amount with Resource List All is closer to the game's density: Sparse 85%, Standard 100% and Abundant 115% of the game's density (were 65%, 100% and 135%). Resource List Standard is unchanged.
 - Resource Amount defaults to Standard in multiplayer (was Abundant).
+- With Resource Clusters None, Resource List All no longer places resources touching each other (lines of 3 or more formed when tiles ran short). With Clusters on, only the clusters put the same resource side by side.
+- Resource List All guarantees resources near each start: one copy of each of the player's dealt resources within 2 to 6 tiles, and at least 4 other resources in that range. Extra copies on larger regions still land anywhere else in the region (before, every copy could land anywhere in the region).
+- Resource List All keeps the same density on every continent: small player regions no longer hold more resources per tile (every player got at least 7 dealt copies whatever their land, and the general fill was reduced across the whole map instead of in each region).
 
 ### 0.7.5
 

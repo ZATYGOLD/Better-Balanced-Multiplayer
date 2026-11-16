@@ -47,7 +47,8 @@ const MULTIPLAYER_DEFAULTS = [
 	["BBMGameplayCrisisTiming", "BBM_GAMEPLAY_CRISIS_TIMING_OFF"],
 	["Map", "{zatygolds-multiplayer-balance}maps/pangaea-ultima.js"],
 	["MapSize", "MAPSIZE_STANDARD"],
-	["MapSeaLevel", "SEA_LEVEL_LOW"]
+	["MapSeaLevel", "SEA_LEVEL_LOW"],
+	["StartPosition", "START_POSITION_BALANCED"]
 ];
 
 const setupReady = () => REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
