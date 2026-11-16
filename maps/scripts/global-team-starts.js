@@ -382,9 +382,20 @@ function buildJointStartCandidates(ctx, playerId, tiles, originalStart, allowLak
 
 // ============================ Solver ============================
 
-// Rows apart is a lower bound on the hex distance, so far-apart rows skip the distance call.
-const farEnough = (a, b) => Math.abs(a.y - b.y) >= START_MINIMUM_DISTANCE ||
-	GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
+/**
+ * Two candidates at least START_MINIMUM_DISTANCE apart. The hex distance is at least
+ * the rows apart, and at least the columns apart (the short way around a wrapping
+ * map) plus half the rows apart; it is at most columns plus rows apart. Only pairs
+ * between these bounds need the engine's distance, which the search would
+ * otherwise call for nearly every pair at every step.
+ */
+function farEnough(a, b, width) {
+	const dx = Math.abs(a.x - b.x);
+	const dy = Math.abs(a.y - b.y);
+	if (dx + dy < START_MINIMUM_DISTANCE) return false;
+	if (Math.max(dy, Math.min(dx, width - dx) + Math.floor(dy / 2)) >= START_MINIMUM_DISTANCE) return true;
+	return GameplayMap.getPlotDistance(a.x, a.y, b.x, b.y) >= START_MINIMUM_DISTANCE;
+}
 
 /**
  * Backtracking with forward checking: every remaining player keeps the
@@ -402,6 +413,7 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
 		domains.set(playerId, candidates);
 	}
 
+	const width = GameplayMap.getGridWidth();
 	const assigned = new Map();
 	let visitedNodes = 0;
 	let stopped = false;
@@ -425,7 +437,7 @@ function solveJointStartPositions(ctx, playerIds, tileSets, originalStarts, allo
 			let deadEnd = false;
 			for (const [playerId, domain] of remaining) {
 				if (playerId === chosenPlayer) continue;
-				const compatible = domain.filter((other) => farEnough(other, candidate));
+				const compatible = domain.filter((other) => farEnough(other, candidate, width));
 				if (compatible.length === 0) { deadEnd = true; break; }
 				next.set(playerId, compatible);
 			}

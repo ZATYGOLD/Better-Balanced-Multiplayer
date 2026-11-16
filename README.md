@@ -212,6 +212,7 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 - The Competitive timer is retuned: Antiquity 20 / 1.30 / 1.30 / 1.30 / 1.30, Exploration 40 / 2.30 / 1.40 / 2.30 / 1.40, Modern 60 / 3.30 / 1.50 / 3.30 / 1.50 (Base / PerCity / PerUnit / PerPlayer / PerTurn).
 - The Competitive timer counts every living player, AI included (PerPlayer; was PerHuman, humans only). The Spectator's Observer still adds no time.
 - The 1v1 Duel map is larger: 44x28 (was 36x22).
+- Faster map loading: start placement skips the engine's distance check for nearly every pair of candidate starts (the same starts are chosen).
 - No turn timer shows while an Age is ending (the engine's Age transition timer showed and was broken).
 - A defeated Commander still waiting to return when an Age ends comes back on the Age's last turn; it was lost.
 - The engine no longer ends the first turn of each Age after 8 minutes: under Competitive its Extended Turn Time is held at an hour, like Turn Time, and the turn stays untimed.
