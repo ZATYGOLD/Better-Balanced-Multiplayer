@@ -26,7 +26,7 @@
  * only once, so the host (in hotseat, the one machine) awards it through
  * Units.changeExperience. Game Balance Multiplayer only.
  */
-import { createLogger, isBalanceOn } from '../shared/bbm-util.js';
+import { createLogger, isBalanceOn, isGameAuthority } from '../shared/bbm-util.js';
 
 const log = createLogger('commander training');
 const TRAINING_XP = 2;   // once per Commander per turn, however many Military Buildings share its tile
@@ -34,11 +34,6 @@ const MILITARY_TAG = "MILITARY";
 
 let lastTurn = -1;   // one award per turn, even if TurnBegin repeats
 let militaryTypes = null;
-
-function isAuthority() {
-	if (!Configuration.getGame().isNetworkMultiplayer) return true;
-	return Network.getHostPlayerId() === GameContext.localPlayerID;
-}
 
 /** Constructible types tagged MILITARY (Military Buildings of every Age), read once. */
 function militaryConstructibleTypes() {
@@ -62,7 +57,7 @@ function isOnOwnMilitaryBuilding(unit) {
 }
 
 function awardTrainingXp() {
-	if (Game.turn === lastTurn || !isAuthority()) return;
+	if (Game.turn === lastTurn || !isGameAuthority()) return;
 	lastTurn = Game.turn;
 	for (const playerId of Players.getAliveMajorIds()) {
 		for (const unit of Players.get(playerId)?.Units?.getUnits() ?? []) {

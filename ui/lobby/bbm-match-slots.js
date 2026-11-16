@@ -26,13 +26,15 @@
  * the West, odd slots the East), plus a last slot for Zatygold's Spectator
  * when its Spectator Slot setting is on (published as BBMSpectatorSlot; the
  * Spectator makes its player the Observer).
- * Slots past the count are closed. A Spectator on Tiny or Small needs one slot
+ * Slots past the count are closed. At launch, a Spectator slot nobody took as
+ * the Spectator (a computer, an open slot, a hotseat player on another leader)
+ * is closed, so it starts no extra player. A Spectator on Tiny or Small needs one slot
  * more than the size allows, so the host launches the next size up and records
  * the chosen size (BBMChosenMapSize); the game data then builds the map at that
  * size (data/maps/chosen-size-*.sql).
  */
 import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-staging-new.js';
-import { COMPANION_MODS, createLogger, isModEnabled, wrapMethod } from '../shared/bbm-util.js';
+import { COMPANION_MODS, createLogger, isModEnabled, isObserverValue, wrapMethod } from '../shared/bbm-util.js';
 import { gameValue, sameValue } from '../shared/bbm-setup.js';
 import { PLACEMENT_SETTING_KEY, PLAYERS_BY_PLACEMENT } from '../../maps/bbm-placement.js';
 
@@ -150,6 +152,30 @@ function syncSlots() {
 	syncTeams(Configuration.getMap().maxMajorPlayers ?? 0);
 }
 
+/** A player another client controls: never closed from under them. */
+function isRemoteHuman(id) {
+	try { return !!Configuration.getPlayer(id)?.isHuman && !Configuration.getGame().isHotseat; } catch (e) { return false; }
+}
+
+/** Close the Spectator slot unless it holds the Spectator (or a remote human), and drop the count to the placement's. */
+function releaseSpectatorSlot() {
+	const slot = Number(gameValue(SPECTATOR_SLOT_PARAMETER) ?? NO_SLOT);
+	if (!(slot >= 0)) return false;
+	const player = Configuration.getPlayer(slot);
+	if (!player || player.slotStatus === SlotStatus.SS_CLOSED || isObserverValue(player.leaderTypeName) || isRemoteHuman(slot)) return false;
+	Configuration.editPlayer(slot)?.setSlotStatus(SlotStatus.SS_CLOSED);
+	Configuration.editMap()?.setMaxMajorPlayers?.(slot);
+	publishSpectatorSlot(NO_SLOT);
+	log(`Spectator slot ${slot} not taken by the Spectator: closed`);
+	return true;
+}
+
+/** Keep exactly the starting players' slots (the launch size must not add computer players). */
+function holdPlayerCount(players) {
+	Configuration.editMap()?.setMaxMajorPlayers?.(players);
+	fitSlots(players);
+}
+
 /** When more players than the size allows will start, launch the next size up and remember the chosen one. */
 function prepareLaunch() {
 	const chosen = Configuration.getMap().mapSizeTypeName ?? "";
@@ -172,11 +198,17 @@ wrapMethod(MPLobbyDataModel.prototype, "update", function (base, ...args) {
 const engineStartGame = Network.startGame;
 wrapMethod(Network, "startGame", (base, ...args) => {
 	if (launching || !hostOfNewGame()) return base(...args);
+	let released = false;
 	let switched = false;
+	try { released = releaseSpectatorSlot(); } catch (e) { log(`Spectator slot unchanged: ${e}`); }
 	try { switched = prepareLaunch(); } catch (e) { log(`launch size unchanged: ${e}`); }
-	if (!switched) return base(...args);
-	launching = true;   // the launch size must not get the extra slot back
-	setTimeout(() => base(...args), LAUNCH_DELAY_MS);
+	if (!released && !switched) return base(...args);
+	launching = true;   // the lobby sync must not reopen the slots before the load
+	const players = participants();
+	setTimeout(() => {
+		try { holdPlayerCount(players); } catch (e) { log(`player count not held: ${e}`); }
+		base(...args);
+	}, LAUNCH_DELAY_MS);
 	setTimeout(() => { if (MPLobbyDataModel.isNewGame) launching = false; }, RELAUNCH_RESET_MS);
 	return undefined;
 });

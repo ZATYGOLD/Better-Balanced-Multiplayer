@@ -1213,6 +1213,7 @@
 					<Item>ui/pause/bbm-pause-mgr.js</Item>
 					<Item>ui/advisor/bbm-advisor-popup.js</Item>
 					<Item>ui/gameplay/bbm-commander-training.js</Item>
+					<Item>ui/gameplay/bbm-commander-return.js</Item>
 					<Item>ui/gameplay/bbm-yields-preview.js</Item>
 					<Item>ui/keybind/bbm-keybind-config.js</Item>
 					<Item>ui/keybind/bbm-keybind.js</Item>
@@ -1489,6 +1490,7 @@
 				</UpdateDatabase>
 				<UpdateText>
 					<Item>text/en_us/maps-options.xml</Item>
+					<Item>text/en_us/maps-settings.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1831,6 +1833,16 @@
 				<UIScripts>
 					<Item>ui/pace/bbm-pace-rules.js</Item>
 				</UIScripts>
+			</Actions>
+		</ActionGroup>
+
+<!--*************************** GAME: PACE ************************************************-->
+		<ActionGroup id="bbm-pace-text" scope="game" criteria="always">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateText>
+					<Item>text/en_us/pace.xml</Item>
+				</UpdateText>
 			</Actions>
 		</ActionGroup>
 

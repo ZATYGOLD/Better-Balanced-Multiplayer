@@ -30,12 +30,12 @@
  *
  * cities/units are the most any living major civ has; human players never
  * include a companion mod's Observer (isObserverPlayer). The first turn of each
- * Age is untimed and shows no number (inGrace).
+ * Age (inGrace) and an ending Age are untimed and show no timer (isUntimed).
  *
  * Engine backstop: the engine times an unknown type by TurnTimerTime, which
  * config/timer.sql sets to an hour for Competitive. Whatever phase limit the
  * engine reports, this countdown is shown in its place and always ends the
- * turn first; only an Age transition's own phase shows as the engine has it.
+ * turn first.
  *
  * Architecture: instead of proxying the action panel's event listener, the
  * panel COMPONENT itself is replaced. Controls.define supports priority-based
@@ -227,6 +227,19 @@ const CLOCK = {
 /** Untimed opening turn(s) of each Age (Game.turn restarts at 1 every Age); an unreadable turn counts too. */
 function inGrace() {
 	return currentTurn() < CONFIG.firstTimedTurn;
+}
+
+/** Turns that show no timer: the grace turn(s) and an ending Age. */
+const isUntimed = () => inGrace() || isAgeEnding();
+
+let untimedLogTurn = null;
+
+/** Logs once per untimed turn the limit the engine itself reports for it. */
+function logUntimedTurn(data) {
+	const t = currentTurn();
+	if (t === untimedLogTurn) return;
+	untimedLogTurn = t;
+	log(`turn ${t} untimed${isAgeEnding() ? " (Age ending)" : ""}: engine limit ${Math.round(data?.phaseTimeLimit ?? 0)}s, backstop ${engineBackstop()}s`);
 }
 
 let settlementFounded = false;
@@ -439,10 +452,11 @@ function defineMptPanelAction(base) {
 		/** The timer override: feed the base renderer our clock. */
 		onTurnTimerUpdated(data) {
 			lastEventMs = Date.now();   // events are flowing
-			// Grace turn(s): hide the timer by handing the base renderer a zero limit (its own "no timer" path),
+			// Untimed turns: hide the timer by handing the base renderer a zero limit (its own "no timer" path),
 			// whatever the engine reports (it restarts its own phase on pause and unpause).
-			if (inGrace()) {
+			if (isUntimed()) {
 				this.bbmRing = null;
+				logUntimedTurn(data);
 				super.onTurnTimerUpdated({ ...data, phaseTimeLimit: 0 });
 				return;
 			}
@@ -460,7 +474,6 @@ function defineMptPanelAction(base) {
 		 * Null when the event should pass through to the base panel untouched.
 		 */
 		bbmContext(data) {
-			if ((data?.phaseTimeLimit ?? 0) > CONFIG.maxProxyLimit && isAgeEnding()) return null;
 			syncClockFrozen();
 			CLOCK.syncTurn();
 			if (clockHeld()) CLOCK.restart();   // show a full clock until the capital exists

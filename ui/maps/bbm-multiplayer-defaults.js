@@ -40,7 +40,7 @@ const COMPETITIVE = "BBM_TURNTIMER_COMPETITIVE";
 const MULTIPLAYER_DEFAULTS = [
 	["TurnTimerType", COMPETITIVE],
 	["GameSpeeds", "GAMESPEED_ONLINE"],
-	["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_STANDARD"],
+	["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_NONE"],
 	["AgeTransitionSetting", "AGE_TRANSITION_SETTING_KEEP_MORE"],
 	["BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_LOW"],
 	["BBMGameplayCrises", "BBM_GAMEPLAY_CRISES_OFF"],

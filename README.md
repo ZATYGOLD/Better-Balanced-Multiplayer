@@ -28,12 +28,12 @@ New multiplayer games start with these settings. The host can change any of them
 |---|---|
 | Turn Timer | Competitive |
 | Game Speed | Online |
-| End-of-Age countdown | 10 turns |
+| End-of-Age countdown | None |
 | Age Transition Impact | Continuity |
 | Map / Map Size | Pangaea Ultima / Standard |
 | Game Balance | Multiplayer |
 | Start Bias | Multiplayer |
-| Resource List / Amount / Clusters | All / Multiplayer / Disabled |
+| Resource List / Amount / Clusters | All / Abundant / None |
 | Pace Set | Multiplayer (Trade Speed Instant) |
 | Victory Threshold | Low |
 | Crises | Disabled |
@@ -65,13 +65,13 @@ seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units a
 
 | Age | Base | PerCity | PerUnit | PerHuman | PerTurn | About (8 humans, turns 2-70) |
 |---|---|---|---|---|---|---|
-| Antiquity | 30 | 1.00 | 1.00 | 1.00 | 1.00 | 43-123s |
-| Exploration | 35 | 2.00 | 1.00 | 2.50 | 1.25 | 76-180s |
-| Modern | 40 | 3.00 | 1.00 | 3.00 | 1.50 | 106-236s |
+| Antiquity | 20 | 1.30 | 1.30 | 1.30 | 1.30 | 37-141s |
+| Exploration | 40 | 2.30 | 1.40 | 2.30 | 1.40 | 85-204s |
+| Modern | 60 | 3.30 | 1.50 | 3.30 | 1.50 | 136-270s |
 
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
-- The first turn of each Age is untimed and shows no number; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused, through the unpause countdown, or while an Age is ending.
+- The first turn of each Age and the end of an Age are untimed and show no timer; every other turn shows the clock, including after a loaded save or a reconnect. The clock stops while the game is paused and through the unpause countdown.
 - To tune the timer, edit the per-Age values in `data/timers/<age>/competitive-timer.sql`. Tiers, colors and sounds are in `ui/timer/bbm-timer-config.js`.
 
 ## Synchronized Pause
@@ -109,8 +109,8 @@ Switching Game Balance also sets these settings (the host can change them afterw
 | Pace Set | Multiplayer | Standard |
 | Victory Threshold | Low | Standard |
 | Crises / Crisis Timing | Disabled | Enabled / Standard |
-| Resource List / Amount | All / Multiplayer | Standard / Standard |
-| Resource Clusters | Disabled | (unchanged) |
+| Resource List / Amount | All / Abundant | Standard / Standard |
+| Resource Clusters | None | (unchanged) |
 
 - The changes cover civilizations, leaders, units, governments, policies, traditions, wonders, buildings, resources, city-states, pantheons, mementos, Triumphs, diplomacy, happiness, razing and victories, in every Age.
 - Culture, Economic and Military victories follow a longer victory curve, scaled by Victory Threshold.
@@ -131,8 +131,8 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
     - Military and construction resources come in even counts on each continent.
     - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbors get different resources.
   - **Standard** uses the game's own resources and rules.
-- **Resource Amount**: Scarce, Limited, Multiplayer (the default) or Standard, which is 35%, 50%, 70% or 100% of the game's density. Standard is the game's own density, as in Advanced Settings Pro.
-- **Resource Clusters**: Disabled (the default), Small or Large. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
+- **Resource Amount**: Sparse, Standard or Abundant (the default), which is 35% fewer, the game's own density or 35% more. Standard is the game's own density, as in Advanced Settings Pro.
+- **Resource Clusters**: None (the default), Standard or More. Deposits grow into patches of 2 to 3 tiles, and the total amount stays the same.
 - **Climate and terrain** (from Advanced Settings Pro) has two groups of settings. Choosing Standard for all of them generates the game's own maps.
   - **Map Settings**: Map Age, Map Temperature and **Map Zones**, which sets where the hot and cold regions lie: Standard, Hot Poles, Hot Edge, Hot Center, Cold Center, Warm Ring, Patchwork or Random.
   - **Terrain Settings**: Lakes, Rivers, Mountains and Sea Level.
@@ -168,6 +168,7 @@ Most of these settings are carried over from Advanced Settings Pro. Settings wit
 
 - **Crises**: a single crisis list, as in single player. Setting Crises to Disabled excludes every crisis in the list.
 - **World Wonders: Carry Over**: World Wonders of earlier Ages that nobody built stay buildable in later Ages, with no unlock needed. There is still only one of each wonder per world. A few one-time effects tied to the wonder's original Age are not granted.
+- **Commanders**: a defeated Commander still waiting to return when an Age ends comes back on the Age's last turn, to its Capital (a Fleet Commander to open ocean), so it carries over to the next Age. Always on in multiplayer.
 
 ## Lobby
 
@@ -202,6 +203,18 @@ Better-Balanced-Multiplayer/
 Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Advanced Settings Pro; the copies in `maps/standard/` and `maps/scripts/` keep the base map names. The mod patches the base UI at runtime and replaces no base-game files. Diagnostics go to `UI.log`, tagged `BBM <feature>:`.
 
 ## Changelog
+
+### 0.7.5
+
+- Resource Amount is now Sparse (35% fewer), Standard or Abundant (35% more), and Abundant is the multiplayer default (was Multiplayer, 70%). With Resource List Standard, Abundant adds more of the map's own resources.
+- Resource Clusters is now None (the default), Standard or More (were Disabled, Small and Large).
+- The End-of-Age countdown defaults to None (was 10 turns).
+- The Competitive timer is retuned: Antiquity 20 / 1.30 / 1.30 / 1.30 / 1.30, Exploration 40 / 2.30 / 1.40 / 2.30 / 1.40, Modern 60 / 3.30 / 1.50 / 3.30 / 1.50 (Base / PerCity / PerUnit / PerHuman / PerTurn).
+- No turn timer shows while an Age is ending (the engine's Age transition timer showed and was broken).
+- A defeated Commander still waiting to return when an Age ends comes back on the Age's last turn; it was lost.
+- The engine no longer ends the first turn of each Age after 8 minutes: under Competitive its Extended Turn Time is held at an hour, like Turn Time, and the turn stays untimed.
+- The in-game game settings show the Map and Pace setting names and values instead of LOC_ tags (their text loaded only on the setup screens).
+- Resource Clusters None shows its name on the setup screen (it showed LOC_TERM_NONE).
 
 ### 0.7.4
 

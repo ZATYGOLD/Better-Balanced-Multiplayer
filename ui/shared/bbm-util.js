@@ -22,7 +22,7 @@
  * Better Balanced Multiplayer - shared helpers (shell and game scope).
  *
  * Logging, method wrapping, deferred patching and the decorator base used by
- * every feature, plus the multiplayer, Game Balance and Age transition checks and
+ * every feature, plus the multiplayer, host, Game Balance and Age transition checks and
  * companion-mod detection (Observer, enabled mods).
  */
 
@@ -86,6 +86,11 @@ function whenDefined(tag, callback) {
 /** True in a multiplayer game or setup (hotseat included); every mod feature acts only then. */
 function isMultiplayerGame() {
 	try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
+}
+
+/** True on the machine that applies game changes made by script: the host, or the one machine in hotseat. */
+function isGameAuthority() {
+	try { return !Configuration.getGame().isNetworkMultiplayer || Network.getHostPlayerId() === GameContext.localPlayerID; } catch (e) { return false; }
 }
 
 /** True when Game Balance is Multiplayer (game scope), so the mod's balance data is loaded. */
@@ -154,4 +159,4 @@ function isModEnabled(modId) {
 	try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isBalanceOn, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isBalanceOn, isGameAuthority, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };

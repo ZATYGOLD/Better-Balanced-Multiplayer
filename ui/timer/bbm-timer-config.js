@@ -40,7 +40,6 @@ const CONFIG = {
 	endRetryMs: 1000,         // gap between attempts to end an expired turn
 	staleEventMs: 1200,       // timer events silent this long (a panel is open): the sweep takes over the beeps
 	maxUnitSkips: 40,         // units skipped per sweep when idle units block the end of the turn
-	maxProxyLimit: 600,       // while an Age is ending, pass through bigger phases (age transition = 3000s)
 	ringDriftSeconds: 0.25,   // re-scrub the ring only when it is this far off the clock
 	debug: false
 };

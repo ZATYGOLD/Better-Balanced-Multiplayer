@@ -58,11 +58,14 @@ function isGarrisoned(unit) {
 	return !!district && GARRISON_DISTRICTS.has(GameInfo.Districts.lookup(district.type)?.DistrictType);
 }
 
+/** The leader the screen shows: the one Zatygold's Spectator shows its Observer, else the local player. */
+const shownPlayerID = () => globalThis.ZOMLeaderView?.playerID() ?? GameContext.localPlayerID;
+
 /** +1 of each garrison yield per level of every garrisoned Commander (a Promotion per level), as a YieldsPreviewResult. */
 function garrisonPreview() {
 	const cap = garrisonLevelCap();
 	let amount = 0;
-	for (const unit of Players.get(GameContext.localPlayerID)?.Units?.getUnits() ?? []) {
+	for (const unit of Players.get(shownPlayerID())?.Units?.getUnits() ?? []) {
 		if (unit.isCommanderUnit && isGarrisoned(unit)) amount += Math.min(Math.max(1, unit.Experience?.getNumPromotions ?? 0), cap);
 	}
 	const yields = {};
