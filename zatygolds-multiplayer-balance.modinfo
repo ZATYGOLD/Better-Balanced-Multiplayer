@@ -1330,6 +1330,10 @@
 					<Item>text/en_us/balance-antiquity.xml</Item>
 					<Item>text/en_us/balance-mementos.xml</Item>
 				</UpdateText>
+				<UpdateIcons>
+					<!-- Every Age: carried Pantheons keep their icons after Antiquity. -->
+					<Item>data/balance/icons/pantheons.xml</Item>
+				</UpdateIcons>
 			</Actions>
 		</ActionGroup>
 
@@ -1374,7 +1378,6 @@
 				</UpdateText>
 				<UpdateIcons>
 					<Item>data/balance/icons/units-antiquity.xml</Item>
-					<Item>data/balance/icons/pantheons.xml</Item>
 				</UpdateIcons>
 			</Actions>
 		</ActionGroup>
