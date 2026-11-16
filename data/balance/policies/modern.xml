@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Modern policy changes. -->
 <Database>
 	<Traditions>
 		<!-- Reclassify the requested Exploration cards as Modern cards after transition. -->

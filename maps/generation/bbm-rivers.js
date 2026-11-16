@@ -2,7 +2,7 @@
 //
 // One setting covers both halves of river generation. Every tier scales the
 // map script's own intensity, and the tiers that shift how much of the water is
-// navigable additionally re-run the base game's river finalisation with their
+// navigable additionally re-run the base game's river finalization with their
 // own large river share, above or below the base 25. Standard sets neither
 // field, so the default path is exactly what the base game produces.
 import { g_NavigableRiverTerrain } from '../../../base-standard/maps/map-globals.js';
@@ -10,7 +10,7 @@ import { settingTier } from './bbm-settings.js';
 
 const RIVERS_SETTING_KEY = "BBMMapRivers";
 // scale multiplies the map script's own river percent. The rest re-run the base
-// game's river finalisation, which decides which of those rivers become
+// game's river finalization, which decides which of those rivers become
 // navigable, and a tier that leaves them unset gets the base path untouched:
 //
 //   largeRiverPercent  share promoted to navigable, against the base 25

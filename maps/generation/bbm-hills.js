@@ -16,7 +16,7 @@ import { forEachTile, settingTier } from './bbm-settings.js';
 const MAP_AGE_SETTING_KEY = "BBMMapAge";
 
 // Port of {base-standard}maps/elevation-terrain-generator.js addHills, which
-// scores each land tile by how much its elevation differs from its neighbours
+// scores each land tile by how much its elevation differs from its neighbors
 // and roughens it wherever that score clears a threshold. A lower threshold
 // catches gentler ground, so it yields more rough tiles; Standard is the base
 // game's own 950 - 3 * 20.

@@ -25,21 +25,22 @@
  * Create Game screen resets the configuration as it attaches, so they are set
  * right after; a parameter the setup lacks is skipped. The screen keeps the
  * previous game's choices over the setup database's defaults, so the multiplayer
- * defaults the mod promises are written here; the Pace and Gameplay rules then
- * bring each setting's rows in line.
+ * defaults the mod promises are written here, then the Game Balance set
+ * (ui/setup/bbm-balance-rules.js); the Pace and Gameplay rules then bring each
+ * setting's rows in line.
  */
+import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
+import { applyBalanceSet } from '../setup/bbm-balance-rules.js';
 
 const log = createLogger('maps defaults');
 const SCREEN_TAG = "screen-mp-create-game";
-const RETRY_MS = 50;
-const MAX_ATTEMPTS = 20;
 const REQUIRED_PARAMETERS = ["GameSpeeds", "Map", "MapSize"];
 const COMPETITIVE = "BBM_TURNTIMER_COMPETITIVE";
 const MULTIPLAYER_DEFAULTS = [
 	["TurnTimerType", COMPETITIVE],
 	["GameSpeeds", "GAMESPEED_ONLINE"],
-	["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_STANDARD"],
+	["AgeCountdownTimer", "AGE_COUNTDOWN_LENGTH_NONE"],
 	["AgeTransitionSetting", "AGE_TRANSITION_SETTING_KEEP_MORE"],
 	["BBMPaceVictoryThresholdSet", "BBM_PACE_VICTORY_THRESHOLD_LOW"],
 	["BBMGameplayCrises", "BBM_GAMEPLAY_CRISES_OFF"],
@@ -47,41 +48,51 @@ const MULTIPLAYER_DEFAULTS = [
 	["Map", "{zatygolds-multiplayer-balance}maps/pangaea-ultima.js"],
 	["MapSize", "MAPSIZE_STANDARD"]
 ];
-const COMPETITIVE_BACKSTOP = 3600;
 
-/**
- * Competitive's engine backstop (Turn Time, config/timer.sql) comes from a
- * configuration update; if the default did not trigger it, writing the timer again does.
- */
-function ensureCompetitiveBackstop() {
-	if (GameSetup.findGameParameter("TurnTimerType")?.value?.value !== COMPETITIVE) return;
-	if (Number(Configuration.getGame()?.getValue("TurnTimerTime")) === COMPETITIVE_BACKSTOP) return;
-	GameSetup.setGameParameterValue("TurnTimerType", "TURNTIMER_STANDARD");
-	GameSetup.setGameParameterValue("TurnTimerType", COMPETITIVE);
-	log("rewrote the Competitive timer for its backstop");
-}
+const setupReady = () => REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
 
-function applyMultiplayerDefaults(attempt = 0) {
-	const ready = REQUIRED_PARAMETERS.every((parameterID) => GameSetup.findGameParameter(parameterID) != null);
-	if (!ready) {
-		if (attempt < MAX_ATTEMPTS) setTimeout(() => applyMultiplayerDefaults(attempt + 1), RETRY_MS);
-		return;
-	}
+function applyMultiplayerDefaults() {
 	try {
 		for (const [parameterID, value] of MULTIPLAYER_DEFAULTS) {
 			if (GameSetup.findGameParameter(parameterID) != null) GameSetup.setGameParameterValue(parameterID, value);
 		}
-		ensureCompetitiveBackstop();
+		applyBalanceSet();
 		log("applied the multiplayer defaults");
 	} catch (error) {
 		log(`failed to apply the multiplayer defaults: ${error?.stack ?? error}`);
 	}
 }
 
+/**
+ * The screen opens on the game's multiplayer map list, which drops the previous
+ * map, so its "Settings Changed" notice for Map stays off until the screen has
+ * caught up with the defaults.
+ */
 whenDefined(SCREEN_TAG, (definition) => {
-	wrapMethod(definition.createInstance.prototype, "onAttach", function (base, ...args) {
+	const proto = definition.createInstance.prototype;
+	wrapMethod(proto, "onAttach", function (base, ...args) {
 		const result = base(...args);
-		setTimeout(() => applyMultiplayerDefaults(), 0);
+		this.bbmTrackedParameters ??= this.trackedParameters;
+		this.trackedParameters = [];
+		this.bbmDefaultsRevision = null;
+		this.bbmStopDefaults = onSetupRevision("maps defaults", () => {
+			this.bbmStopDefaults();
+			applyMultiplayerDefaults();
+			this.bbmDefaultsRevision = GameSetup.currentRevision;
+		}, setupReady);
 		return result;
 	});
-}, { log });
+	// A screen closed before its setup was ready must not write the defaults into a later one.
+	wrapMethod(proto, "onDetach", function (base, ...args) {
+		this.bbmStopDefaults?.();
+		return base(...args);
+	});
+	wrapMethod(proto, "onUpdate", function (base, ...args) {
+		const result = base(...args);
+		if (this.bbmDefaultsRevision != null && this.gameSetupRevision >= this.bbmDefaultsRevision) {
+			this.trackedParameters = this.bbmTrackedParameters;
+			this.bbmDefaultsRevision = null;
+		}
+		return result;
+	});
+});

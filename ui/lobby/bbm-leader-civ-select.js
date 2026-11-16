@@ -222,6 +222,7 @@ function handOffAudioPanels() {
 				ended.unshift(name);
 			}
 			UI.panelStart(CREATE_GAME_PANEL, "", UIViewChangeMethod.Unknown, true);
+			log(`audio panels handed off: ${below.join(", ") || "none"} ended, ${CREATE_GAME_PANEL} started`);
 		} catch (error) {
 			log(`audio panels not handed off: ${error?.stack ?? error}`);
 		}

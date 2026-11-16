@@ -107,7 +107,7 @@ INSERT OR IGNORE INTO Warehouse_YieldChanges (ID, Age, YieldType, YieldChange, T
 UPDATE ModifierArguments
 SET Value = Value || ', BBMBalanceMOTownOceanTerrainFood'
 WHERE Name = 'WarehouseYieldChange'
-  AND ModifierId IN ('ATTACH_GRANARY_WAREHOUSE_FOOD_FROM_PROJECT', 'ATTACH_FISHING_WAREHOUSE_FOOD_FROM_PROJECT');
+    AND ModifierId IN ('ATTACH_GRANARY_WAREHOUSE_FOOD_FROM_PROJECT', 'ATTACH_FISHING_WAREHOUSE_FOOD_FROM_PROJECT');
 
 -- Wonders
 UPDATE Constructibles
@@ -144,10 +144,10 @@ WHERE ConstructibleType IN (
 UPDATE ModifierArguments
 SET Value = 10
 WHERE Name = 'Amount'
-  AND ModifierId IN ('MOD_DOI_SUTHEP_SUZERAIN_CULTURE', 'MOD_DOI_SUTHEP_SUZERAIN_GOLD');
+    AND ModifierId IN ('MOD_DOI_SUTHEP_SUZERAIN_CULTURE', 'MOD_DOI_SUTHEP_SUZERAIN_GOLD');
 
 -- Boudhanath
 UPDATE ModifierArguments
 SET Value = 50
 WHERE Name = 'FavorsAmount'
-  AND ModifierId = 'MOD_BOUDHANATH_INCREASED_RELATIONSHIP';
+    AND ModifierId = 'MOD_BOUDHANATH_INCREASED_RELATIONSHIP';

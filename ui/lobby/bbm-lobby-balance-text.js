@@ -89,7 +89,7 @@ function wrapLocale() {
 	return LOCALE_METHODS.map((name) => {
 		const base = gameLocale[name];
 		if (typeof base !== "function") return `${name} missing`;
-		const wrapper = (text, ...args) => (balancedNow() ? base.call(Locale, copyOf(text), ...args.map(copyOf)) : base.call(Locale, text, ...args));
+		const wrapper = (text, ...args) => (balancedNow() ? base.call(Locale, copyOf(text), ...(args.length ? args.map(copyOf) : args)) : base.call(Locale, text, ...args));
 		try { Locale[name] = wrapper; } catch (e) { /* read-only */ }
 		const descriptor = Object.getOwnPropertyDescriptor(Locale, name);
 		if (Locale[name] !== wrapper && descriptor?.configurable) {

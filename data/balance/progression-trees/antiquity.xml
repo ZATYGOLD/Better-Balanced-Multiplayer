@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Antiquity tech and civic tree changes. -->
 <Database>
 	<ProgressionTreeNodeUnlocks>
 		<!-- Pirates -->
@@ -10,10 +11,10 @@
 		<Row ProgressionTreeNodeType="NODE_TECH_AQ_CURRENCY" TargetKind="KIND_MODIFIER" TargetType="PIRATE_AQ_MOD_FREE_SETTLER" UnlockDepth="1" RequiredTraitType="TRAIT_PIRATE_REPUBLIC"/>
 		<!-- Iceland: Origins grants Reiði Guðanna I instead of Drottkvætt I -->
 		<Delete ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetType="TRADITION_DROTTKVAETT_I"/>
-		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_REIDI_GUDANNA_I" UnlockDepth="1"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_ICELAND_ORIGINS" TargetKind="KIND_TRADITION" TargetType="BBM_BALANCE_TRADITION_REIDI_GUDANNA_I" UnlockDepth="1"/>
 		<!-- Shawnee -->
 		<Delete TargetType="TRADITION_HELIKHILENAWEWIPE_I"/>
-		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_SHAWNEE_ORIGINS" TargetKind="KIND_TRADITION" TargetType="TRADITION_TAKESIYAKE_YEPEPOKI_I" />
+		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_SHAWNEE_ORIGINS" TargetKind="KIND_TRADITION" TargetType="BBM_BALANCE_TRADITION_TAKESIYAKE_YEPEPOKI_I" />
 		<!-- Joseon -->
 		<Row ProgressionTreeNodeType="NODE_CIVIC_AQ_FOUNDATION" TargetKind="KIND_MODIFIER" TargetType="MOD_PROGRESSION_TREE_JOSEON_CITY_LIMIT" UnlockDepth="1" RequiredTraitType="TRAIT_JOSEON"/>
 		<!-- Iron Working II -->

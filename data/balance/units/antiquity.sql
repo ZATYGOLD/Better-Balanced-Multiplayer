@@ -7,7 +7,7 @@ WHERE UnitType = 'UNIT_FLEET_COMMANDER';
 UPDATE ModifierArguments
 SET Value = 2
 WHERE Name = 'Amount'
-  AND ModifierId IN ('MEDJAY_MOD_COMBAT_FRIENDLY_TERRITORY', 'MEDJAY_MOD_COMBAT_URBAN_PLOT');
+    AND ModifierId IN ('MEDJAY_MOD_COMBAT_FRIENDLY_TERRITORY', 'MEDJAY_MOD_COMBAT_URBAN_PLOT');
 
 -- Khmer: normal Cavalry Movement, +3 Combat Strength over the replaced Unit.
 UPDATE Units
@@ -27,4 +27,4 @@ SET Cost = CASE UnitType
     WHEN 'UNIT_HWARANG_2' THEN 50
 END
 WHERE YieldType = 'YIELD_PRODUCTION'
-  AND UnitType IN ('UNIT_HWARANG', 'UNIT_HWARANG_2');
+    AND UnitType IN ('UNIT_HWARANG', 'UNIT_HWARANG_2');

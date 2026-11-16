@@ -28,17 +28,16 @@
  * in multiplayer games only). Loaded in both scopes: the screen opens from the
  * main menu and in game.
  */
-import { createLogger, whenDefined, wrapMethod } from '../shared/bbm-util.js';
+import { whenDefined, wrapMethod } from '../shared/bbm-util.js';
 import { KEYBIND_ACTIONS } from './bbm-keybind-config.js';
 
-const log = createLogger('keybind');
-const EDITOR_TAG = 'editor-keyboard-mapping';
+const EDITOR_TAG = "editor-keyboard-mapping";
 
 whenDefined(EDITOR_TAG, (definition) => {
 	const proto = definition.createInstance.prototype;
 	if (proto.bbmKeybindPatched) return;
 	proto.bbmKeybindPatched = true;
-	wrapMethod(proto, 'addActionsForContext', function (base, inputContext, ...rest) {
+	wrapMethod(proto, "addActionsForContext", function (base, inputContext, ...rest) {
 		const result = base(inputContext, ...rest);
 		for (const name of KEYBIND_ACTIONS) {
 			try {
@@ -50,4 +49,4 @@ whenDefined(EDITOR_TAG, (definition) => {
 		}
 		return result;
 	});
-}, { retries: 50, intervalMs: 300, log });
+});

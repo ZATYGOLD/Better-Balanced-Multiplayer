@@ -25,7 +25,7 @@
  * (Network.sendChat and the "MultiplayerChat" event). As in the Civ VI
  * "Multiplayer Helper" mod, small commands travel as prefixed chat lines that
  * every client parses, so one authorized player can drive an action on every
- * client (the host resuming the game for everyone). Handlers get
+ * client (the host's Drop Disconnected & Resume). Handlers get
  * { from, arg } and validate authority themselves (isFromHost).
  *
  * Command lines never reach the chat window: chat screens skip them (no
@@ -34,10 +34,9 @@
  * sound can still play until chat is first opened.
  */
 import { createLogger, isMultiplayerGame, whenDefined, wrapMethod } from '../shared/bbm-util.js';
-import { CONFIG } from './bbm-pause-config.js';
 
 const log = createLogger('pause net');
-const PREFIX = "\u200BMPTNET:";   // leading zero-width space: untypeable and inconspicuous
+const PREFIX = "\u200BBBMNET:";   // leading zero-width space: untypeable and inconspicuous
 const CHAT_TAG = "screen-mp-chat";
 const handlers = {};
 
@@ -46,8 +45,8 @@ const isCommand = (data) => typeof data?.text === "string" && data.text.startsWi
 const BBMNet = {
 	/** Broadcast a command (optionally with a string arg) to every player. */
 	send(cmd, arg) {
-		try { Network.sendChat(PREFIX + cmd + (arg != null ? ":" + String(arg) : ""), ChatTargetTypes.CHATTARGET_ALL, -1); }
-		catch (e) { log("send failed: " + e); }
+		try { Network.sendChat(`${PREFIX}${cmd}${arg != null ? `:${arg}` : ""}`, ChatTargetTypes.CHATTARGET_ALL, -1); }
+		catch (e) { log(`send failed: ${e}`); }
 	},
 	/** Register the handler for a command name. */
 	on(cmd, fn) { handlers[cmd] = fn; },
@@ -85,16 +84,14 @@ function hideCommandsFromChat() {
 			if (el?.style && isCommand(data)) el.style.display = "none";
 			return el;
 		});
-	}, { retries: 30, intervalMs: 300, log });
-}
-
-// The chat channel only serves host-authoritative resume in multiplayer; otherwise the chat screen is untouched.
-if (CONFIG.hostAuthoritativeResume !== false) {
-	engine.whenReady.then(() => {
-		if (!isMultiplayerGame()) return;
-		engine.on("MultiplayerChat", onChat);
-		hideCommandsFromChat();
 	});
 }
+
+// The chat channel serves the host's resume in multiplayer only; otherwise the chat screen is untouched.
+engine.whenReady.then(() => {
+	if (!isMultiplayerGame()) return;
+	engine.on("MultiplayerChat", onChat);
+	hideCommandsFromChat();
+});
 
 export default BBMNet;

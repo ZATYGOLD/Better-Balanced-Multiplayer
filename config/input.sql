@@ -6,7 +6,6 @@
 -- except B (Found Settlement), taken from the Advisors Council (now Ctrl+B).
 INSERT OR IGNORE INTO InputActions (ActionId, DeviceType, Name, Description, SortIndex)
     VALUES
-        ('bbm-pause-game', 'Keyboard', 'LOC_BBM_PAUSE_KEYBIND', 'LOC_BBM_PAUSE_KEYBIND_TT', 100),
         ('bbm-lens-trade', 'Keyboard', 'LOC_BBM_KEYBIND_LENS_TRADE', 'LOC_BBM_KEYBIND_LENS_TRADE_TT', 101),
         ('bbm-lens-continent', 'Keyboard', 'LOC_BBM_KEYBIND_LENS_CONTINENT', 'LOC_BBM_KEYBIND_LENS_CONTINENT_TT', 102),
         ('bbm-lens-appeal', 'Keyboard', 'LOC_BBM_KEYBIND_LENS_APPEAL', 'LOC_BBM_KEYBIND_LENS_APPEAL_TT', 103),
@@ -22,12 +21,11 @@ INSERT OR IGNORE INTO InputActions (ActionId, DeviceType, Name, Description, Sor
         ('bbm-city-capital', 'Keyboard', 'LOC_BBM_KEYBIND_CITY_CAPITAL', 'LOC_BBM_KEYBIND_CITY_CAPITAL_TT', 113),
         ('bbm-unit-search', 'Keyboard', 'LOC_BBM_KEYBIND_SEARCH', 'LOC_BBM_KEYBIND_SEARCH_TT', 114);
 
--- Number keys for the lenses, brackets and backslash for settlements, B for Found
--- Settlement (as in Civilization VI), Ctrl with a letter for Pause and the other
--- unit actions (Ctrl+P after Civilization VI's P, which the game uses).
+-- Number keys for the lenses, Page Up, Page Down and Home for settlements, B for Found
+-- Settlement (as in Civilization VI), Ctrl with a letter for the other unit actions.
+-- Pause is the game's own Multiplayer Pause key.
 INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType, GestureData)
     VALUES
-        ('bbm-pause-game', 0, 'KBMouse', 'KEY_P+KEY_CONTROL'),
         ('bbm-lens-trade', 0, 'KBMouse', 'KEY_1'),
         ('bbm-lens-continent', 0, 'KBMouse', 'KEY_2'),
         ('bbm-lens-appeal', 0, 'KBMouse', 'KEY_3'),
@@ -38,9 +36,9 @@ INSERT OR IGNORE INTO InputActionDefaultGestures (ActionId, "Index", GestureType
         ('bbm-unit-leave-commander', 0, 'KBMouse', 'KEY_X+KEY_CONTROL'),
         ('bbm-commander-pack', 0, 'KBMouse', 'KEY_Q+KEY_CONTROL'),
         ('bbm-commander-unpack', 0, 'KBMouse', 'KEY_W+KEY_CONTROL'),
-        ('bbm-city-previous', 0, 'KBMouse', 'KEY_LBRACKET'),
-        ('bbm-city-next', 0, 'KBMouse', 'KEY_RBRACKET'),
-        ('bbm-city-capital', 0, 'KBMouse', 'KEY_BACKSLASH'),
+        ('bbm-city-previous', 0, 'KBMouse', 'KEY_PAGEUP'),
+        ('bbm-city-next', 0, 'KBMouse', 'KEY_PAGEDOWN'),
+        ('bbm-city-capital', 0, 'KBMouse', 'KEY_HOME'),
         ('bbm-unit-search', 0, 'KBMouse', 'KEY_J+KEY_CONTROL');
 
 -- The Advisors Council moves from B to Ctrl+B. Default keys are global (the

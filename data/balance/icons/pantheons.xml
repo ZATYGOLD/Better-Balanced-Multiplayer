@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- Game Balance: icons for the added Pantheons. -->
 <Database>
 	<IconDefinitions>
 		<!-- Reuse fitting official Pantheon artwork for the two new choices. -->
-		<Row><ID>PANTHEON_BONUS_19</ID><Path>blp:pant_sea</Path></Row>
-		<Row><ID>PANTHEON_BONUS_20</ID><Path>blp:pant_stone</Path></Row>
+		<Row><ID>BBM_BALANCE_PANTHEON_BONUS_19</ID><Path>blp:pant_sea</Path></Row>
+		<Row><ID>BBM_BALANCE_PANTHEON_BONUS_20</ID><Path>blp:pant_stone</Path></Row>
 	</IconDefinitions>
 </Database>

@@ -4,6 +4,7 @@
 	<!-- Maps: Climate, Natural Wonder and Terrain settings -->
 		<Row Tag="LOC_GROUPID_BBM_TERRAINOPTIONS"><Text>Terrain Settings</Text></Row>
 		<Row Tag="LOC_GROUPID_BBM_NATURALWONDERSELECTIONOPTIONS"><Text>Natural Wonder Selection</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_NONE_NAME"><Text>None</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_LESS_NAME"><Text>Less</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MORE_NAME"><Text>More</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_HALF_NAME"><Text>Half</Text></Row>

@@ -94,8 +94,8 @@ INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
 --*******************************************************
 --***************** WONDER SETTINGS *********************
 --*******************************************************
--- World Wonders: Carry Over keeps an earlier Age's World Wonders buildable by the
--- players who unlocked them, until built (data/gameplay/world-wonders/).
+-- World Wonders: Carry Over keeps an earlier Age's unbuilt World Wonders
+-- buildable by everyone, until built (data/gameplay/world-wonders/).
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, Hash, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, SupportsSinglePlayer, ChangeableAfterGameStart, SortIndex)
     VALUES
         ('BBMGameplayWorldWonders', 'LOC_BBM_GAMEPLAY_WORLD_WONDERS_NAME', 'LOC_BBM_GAMEPLAY_WORLD_WONDERS_DESC', 'BBMGameplayWorldWondersValues', 0, 'BBM_GAMEPLAY_WORLD_WONDERS_STANDARD', 'Game', 'BBMGameplayWorldWonders', 'WonderOptions', 'MPAdvancedWonderOptions', 0, 0, 5000);

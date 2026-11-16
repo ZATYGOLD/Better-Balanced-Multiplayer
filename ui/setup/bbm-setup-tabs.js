@@ -31,7 +31,7 @@
  * A decorator runs after the screen's constructor and before onInitialize, which
  * builds the tabs from the index-aligned slotIDs and navControlButtonInfo.
  */
-import { Decorator, createLogger } from '../shared/bbm-util.js';
+import { Decorator, createLogger, wrapMethod } from '../shared/bbm-util.js';
 import { resolveString } from '../shared/bbm-setup.js';
 import { SETUP_TABS, TABS, baseGroupOf, tabIndexOfGroup } from './bbm-setup-layout.js';
 
@@ -117,6 +117,24 @@ class SetupTabs extends Decorator {
 		this.routeGroups();
 		this.orderTabs();
 		this.decorateRows();
+		this.showScriptedValues();
+	}
+
+	/**
+	 * The screen redraws a row only when its parameter changes shape, so a value
+	 * set by script (multiplayer defaults, Match Type, presets) is passed to the row.
+	 */
+	showScriptedValues() {
+		wrapMethod(this.component, "onUpdate", function (base, ...args) {
+			const before = this.gameSetupRevision;
+			const result = base(...args);
+			if (this.gameSetupRevision === before) return result;
+			for (const change of GameSetup.getParameterChanges(before) ?? []) {
+				if (change.playerID != null || !change.valueChanged) continue;
+				for (const option of this.activeGameParameters.get(change.parameterID) ?? []) option.processChange(change);
+			}
+			return result;
+		});
 	}
 
 	/** The tabs after Game Settings; Advanced and Add-Ons keep their panel ids, which the screen reads by index. */

@@ -8,14 +8,14 @@
 import { assignAdvancedStartRegions } from '../../base-standard/maps/assign-advanced-start-region.js';
 import { assignStartPositionsFromHexMap } from '../../base-standard/maps/assign-starting-plots.js';
 import { generateDiscoveries } from '../../base-standard/maps/discovery-generator.js';
-import { g_CoastTerrain, g_HillTerrain, g_MountainTerrain, g_OceanTerrain, g_PolarWaterRows } from '../../base-standard/maps/map-globals.js';
+import { g_HillTerrain, g_MountainTerrain, g_PolarWaterRows } from '../../base-standard/maps/map-globals.js';
 import { generateResources } from '../../base-standard/maps/resource-generator.js';
 import { GenerationContext, GenerationPhases } from '../../base-standard/scripts/common-generation.js';
 import { FeatureType, TerrainType } from '../../base-standard/scripts/voronoi-types.js';
 import { VoronoiPangaeaUltima } from './scripts/voronoi_maps/pangaea-ultima.js';
 import { generateMapFeatures } from './generation/bbm-map-features.js';
 import { generateSnow } from './generation/bbm-snow.js';
-import { adjacentPlots } from './bbm-plots.js';
+import { adjacentPlots, isLandPlot } from './bbm-plots.js';
 // Loads the multiplayer Player Placement pass with the map (it arms itself once).
 import './scripts/global-team-starts.js';
 
@@ -141,7 +141,7 @@ function fillEnclosedSeas(hexMap, tiles, primaryId) {
 	return filled;
 }
 
-/** The land tile of the continent nearest the map centre. */
+/** The land tile of the continent nearest the map center. */
 function centralTile(tiles, primaryId, isPrimaryLand) {
 	const centerX = (tiles[0].length - 1) * 0.5;
 	const centerY = (tiles.length - 1) * 0.5;
@@ -168,7 +168,7 @@ function joinAttachedLand(hexMap, tiles, primaryId) {
 	return joined;
 }
 
-/** Other land within DISTANT_LAND_GAP of the continent sinks, then every coast is rebuilt from the final shape. */
+/** Other land closer than DISTANT_LAND_GAP tiles to the continent sinks (DISTANT_LAND_GAP - 1 water tiles between), then every coast is rebuilt from the final shape. */
 function enforceDistantLandGap(hexMap, tiles, primaryId) {
 	const distance = new Map();
 	const queue = [];
@@ -198,11 +198,7 @@ function enforceDistantLandGap(hexMap, tiles, primaryId) {
 
 /** After terrain generation, land connected to the continent on the final map belongs to it. */
 function joinFinalAttachedLand(tiles, primaryId) {
-	const isGameplayLand = (x, y) => {
-		const terrain = GameplayMap.getTerrainType(x, y);
-		return terrain !== g_OceanTerrain && terrain !== g_CoastTerrain;
-	};
-	const seedTile = centralTile(tiles, primaryId, (tile) => tile.playerLandmassId === primaryId && isGameplayLand(tile.coord.x, tile.coord.y));
+	const seedTile = centralTile(tiles, primaryId, (tile) => tile.playerLandmassId === primaryId && isLandPlot(tile.coord.x, tile.coord.y));
 	if (seedTile == null) return 0;
 	const seed = { x: seedTile.coord.x, y: seedTile.coord.y };
 	const visited = new Set([GameplayMap.getIndexFromXY(seed.x, seed.y)]);
@@ -218,7 +214,7 @@ function joinFinalAttachedLand(tiles, primaryId) {
 		TerrainBuilder.removePlotTag(location.x, location.y, PlotTags.PLOT_TAG_ISLAND);
 		for (const adjacent of adjacentPlots(location)) {
 			const adjacentIndex = GameplayMap.getIndexFromXY(adjacent.x, adjacent.y);
-			if (!visited.has(adjacentIndex) && isGameplayLand(adjacent.x, adjacent.y)) {
+			if (!visited.has(adjacentIndex) && isLandPlot(adjacent.x, adjacent.y)) {
 				visited.add(adjacentIndex);
 				queue.push(adjacent);
 			}
@@ -242,21 +238,22 @@ function markDistantIslands(primaryId) {
 	const width = GameplayMap.getGridWidth();
 	const height = GameplayMap.getGridHeight();
 	let marked = 0;
-	let levelled = 0;
+	let leveled = 0;
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
 			if (!GameplayMap.hasPlotTag(x, y, PlotTags.PLOT_TAG_ISLAND) || GameplayMap.isWater(x, y)) continue;
 			TerrainBuilder.setLandmassRegionId(x, y, distantId);
 			marked++;
-			if (GameplayMap.getTerrainType(x, y) !== g_MountainTerrain || GameplayMap.isNaturalWonder(x, y)) continue;
+			// Volcanoes and Natural Wonders keep their mountain.
+			if (GameplayMap.getTerrainType(x, y) !== g_MountainTerrain || GameplayMap.getFeatureType(x, y) !== FeatureTypes.NO_FEATURE) continue;
 			const roll = TerrainBuilder.getRandomNumber(100, "Pangaea Ultima island mountain");
 			if (roll >= MOUNTAIN_KEEP_PERCENT) {
 				TerrainBuilder.setTerrainType(x, y, g_HillTerrain);
-				levelled++;
+				leveled++;
 			}
 		}
 	}
-	console.log(`BBM pangaea ultima: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${levelled}`);
+	console.log(`BBM pangaea ultima: Distant Lands region=${distantId} islandTiles=${marked} mountainsToRough=${leveled}`);
 }
 
 function requestMapData(initParams) {

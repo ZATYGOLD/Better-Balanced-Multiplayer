@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Antiquity government changes. -->
 <Database>
 	<GovernmentModifiers>
 		<Delete GovernmentType="GOVERNMENT_CLASSICAL_REPUBLIC" ModifierId="MOD_CLASSICAL_REPUBLIC_PASSIVE_HAPPY_CITIES"/>

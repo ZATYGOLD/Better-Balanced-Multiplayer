@@ -61,18 +61,13 @@ function resetStrictStartBiases() {
 	biasByPlayer.clear();
 }
 
-function lookupTypeName(table, value, propertyName) {
-	const entry = table.lookup(value);
-	return entry ? entry[propertyName] : null;
-}
-
 /** The player's leader and civilization rules (null when neither has one); cached per player. */
 function getPlayerStrictStartBias(playerId) {
 	if (biasByPlayer.has(playerId)) return biasByPlayer.get(playerId);
 	const player = Players.get(playerId);
 	if (player == null) return null;
-	const leaderType = lookupTypeName(GameInfo.Leaders, player.leaderType, "LeaderType");
-	const civilizationType = lookupTypeName(GameInfo.Civilizations, player.civilizationType, "CivilizationType");
+	const leaderType = GameInfo.Leaders.lookup(player.leaderType)?.LeaderType ?? null;
+	const civilizationType = GameInfo.Civilizations.lookup(player.civilizationType)?.CivilizationType ?? null;
 	const rules = [];
 	const leaderRule = STRICT_LEADER_RULES.get(leaderType);
 	const civilizationRule = STRICT_CIVILIZATION_RULES.get(civilizationType);

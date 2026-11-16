@@ -56,7 +56,7 @@ function abilityChoices(actionType) {
 function runUnitAction(actionType) {
 	const unitId = UI.Player.getHeadSelectedUnit();
 	if (!ComponentID.isValid(unitId)) return;
-	const requests = actionType.startsWith('UNITOPERATION_') ? Game.UnitOperations : Game.UnitCommands;
+	const requests = actionType.startsWith("UNITOPERATION_") ? Game.UnitOperations : Game.UnitCommands;
 	const args = abilityChoices(actionType)
 		.map((ability) => ({ X: -9999, Y: -9999, UnitAbilityType: ability }))   // no target plot
 		.find((choice) => requests.canStart(unitId, actionType, choice, false)?.Success);
@@ -73,7 +73,7 @@ function selectCity(which) {
 	const capital = Players.get(GameContext.localPlayerID)?.Cities?.getCapital()?.id;
 	const current = UI.Player.getHeadSelectedCity();
 	let target = capital;
-	if (which !== 'capital' && ComponentID.isValid(current)) target = which === 'next' ? GetNextCityID(current) : GetPrevCityID(current);
+	if (which !== "capital" && ComponentID.isValid(current)) target = which === "next" ? GetNextCityID(current) : GetPrevCityID(current);
 	if (!ComponentID.isValid(target)) return;
 	UI.Player.lookAtID(target, 0);
 	UI.Player.selectCity(target);

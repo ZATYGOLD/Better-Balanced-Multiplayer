@@ -24,7 +24,7 @@ UPDATE AdvancedStartCards
 SET CardEffectType2 = 'BBM_BALANCE_CARD_EFFECT_AT_MO_ECONOMIC_1_TOWN_GDP',
     CardEffectType3 = 'BBM_BALANCE_CARD_EFFECT_AT_MO_ECONOMIC_1_CITY_OFFSET'
 WHERE Age = 'AGE_MODERN'
-  AND CardID = 'CARD_AT_MO_ECONOMIC_1';
+    AND CardID = 'CARD_AT_MO_ECONOMIC_1';
 
 -- The all-settlement tracker also sees Cities. Cancel that additional City
 -- point so Abundance changes Town scoring without increasing normal City GDP.
@@ -40,10 +40,10 @@ UPDATE AdvancedStartCards
 SET CardEffectType2 = 'BBM_BALANCE_CARD_EFFECT_AT_EX_ECONOMIC_1_TOWN_GDP',
     CardEffectType3 = 'BBM_BALANCE_CARD_EFFECT_AT_EX_ECONOMIC_1_CITY_OFFSET'
 WHERE Age = 'AGE_EXPLORATION'
-  AND CardID = 'CARD_AT_EX_ECONOMIC_1';
+    AND CardID = 'CARD_AT_EX_ECONOMIC_1';
 
 -- To Fell a Giant: retain +1 War Support, but remove the Influence bonus.
 UPDATE AdvancedStartCards
 SET CardEffectType2 = NULL
 WHERE Age = 'AGE_EXPLORATION'
-  AND CardID = 'CARD_AT_EX_MILITARISTIC_2';
+    AND CardID = 'CARD_AT_EX_MILITARISTIC_2';

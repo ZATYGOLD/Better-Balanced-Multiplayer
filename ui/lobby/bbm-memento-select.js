@@ -28,8 +28,8 @@
  * stands in for its 3D stage, a panel takes focus and Escape, a flow whose Back,
  * Confirm and Continue all close it, and the model of
  * ui/lobby/bbm-memento-select-model.js. It closes when the setup no longer
- * lets you change mementos. Hotseat, where the game skips this picker, and any
- * other setup keep the game's Choose Mementos.
+ * lets you change mementos. Hotseat and any other setup keep the game's Choose
+ * Mementos.
  */
 import { createComponent, onCleanup } from 'fs://game/core/vendor/solid-js/dist/solid.js';
 import { ContextManager } from 'fs://game/core/ui/context-manager/context-manager.js';
@@ -37,14 +37,15 @@ import { MPLobbyDataModel } from 'fs://game/core/ui/shell/mp-staging/model-mp-st
 import { defineLegacyComponent } from 'fs://game/core/ui-next/components/fxs-solid-component.js';
 import { Panel } from 'fs://game/core/ui-next/components/panel.js';
 import { ScreenFlowContext } from 'fs://game/core/ui-next/components/screen-flow.js';
-import { MementoSelect } from 'fs://game/core/ui-next/screens/create-game/memento-select.js';
+import { MementoSelect, MementoSelectClosedEvent } from 'fs://game/core/ui-next/screens/create-game/memento-select.js';
 import { MementoSelectModelContext } from 'fs://game/core/ui-next/screens/create-game/memento-select-model.js';
-import { isMultiplayerGame } from '../shared/bbm-util.js';
+import { createLogger, isMultiplayerGame } from '../shared/bbm-util.js';
 import { onSetupRevision } from '../shared/bbm-setup.js';
 import { createLobbyMementoModel } from './bbm-memento-select-model.js';
 
+const log = createLogger('memento picker');
 const SCREEN_NAME = "bbm-memento-select";
-const GAME_EDITOR = "memento-editor";
+const GAME_PICKER = "memento-select";
 const BACKDROP_COLOR = "rgba(10, 11, 15, 0.96)";
 let openingSlot = null;
 
@@ -66,7 +67,12 @@ function canEditMementos() {
 function closeScreen(name) {
 	if (ContextManager.hasInstanceOf(name)) ContextManager.pop(name);
 }
-const close = () => closeScreen(SCREEN_NAME);
+/** Closes the picker and tells the lobby, which hides itself while Mementos is open (as the game's picker does). */
+function close() {
+	if (!ContextManager.hasInstanceOf(SCREEN_NAME)) return;
+	ContextManager.pop(SCREEN_NAME);
+	window.dispatchEvent(new MementoSelectClosedEvent());
+}
 
 // Only what the picker and its stage header read from a flow.
 const standaloneFlow = {
@@ -92,7 +98,9 @@ function backdrop() {
 }
 
 const MementoPicker = () => {
+	log(`opening on slot ${openingSlot?.ID ? GameSetup.resolveString(openingSlot.ID) : "none"}`);
 	const model = createLobbyMementoModel(openingSlot);
+	log(`${model.slots.length} slots, ${model.mementos.length} mementos`);
 	onCleanup(onSetupRevision("memento picker", () => (canEditMementos() ? model.refresh() : close())));
 	return [backdrop(), createComponent(Panel, {
 		id: SCREEN_NAME,
@@ -119,7 +127,7 @@ defineLegacyComponent(SCREEN_NAME, { classNames: ["fullscreen"] }, () => createC
 /** Opens the local player's mementos, on the slot of a slot parameter when given. */
 function openMementoPicker(slotParam = null) {
 	if (!usesLobbyPickers()) {
-		ContextManager.push(GAME_EDITOR, { singleton: true, createMouseGuard: true, attributes: { blackOut: true } });
+		ContextManager.push(GAME_PICKER, { singleton: true, createMouseGuard: true });
 		return;
 	}
 	openingSlot = slotParam;

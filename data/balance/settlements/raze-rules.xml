@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: a Settlement being razed does not count toward the Settlement Limit. -->
 <Database>
 	<TraitModifiers>
 		<Row TraitType="TRAIT_ANTIQUITY_CIV" ModifierId="BBM_BALANCE_MOD_RAZING_SETTLEMENT_CAP_OFFSET"/>

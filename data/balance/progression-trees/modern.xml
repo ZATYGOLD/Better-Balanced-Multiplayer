@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: Modern tech and civic tree changes. -->
 <Database>
 	<ProgressionTreeNodeUnlocks>
 		<Delete TargetType="TRADITION_NGATU_II"/>
-		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_MAIN_NATURAL_HISTORY" TargetKind="KIND_TRADITION" TargetType="TRADITION_EXPEDITIONS" UnlockDepth="2"/>
-		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_TONGA_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="TRADITION_TAKUAKA_II" UnlockDepth="1"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_MAIN_NATURAL_HISTORY" TargetKind="KIND_TRADITION" TargetType="BBM_BALANCE_TRADITION_EXPEDITIONS" UnlockDepth="2"/>
+		<Row ProgressionTreeNodeType="NODE_CIVIC_MO_TONGA_MODERNIZATION" TargetKind="KIND_TRADITION" TargetType="BBM_BALANCE_TRADITION_TAKUAKA_II" UnlockDepth="1"/>
 	</ProgressionTreeNodeUnlocks>
 
 	<ProgressionTreePrereqs>

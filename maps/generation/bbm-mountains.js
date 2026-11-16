@@ -7,7 +7,7 @@
 //
 // Voronoi maps take their mountains from the Voronoi simulation instead, so
 // adjustMountains scales them afterwards, picking tiles by how many mountain
-// neighbours they have: Less erodes the most isolated peaks and More grows
+// neighbors they have: Less erodes the most isolated peaks and More grows
 // existing ranges outward, which keeps ranges contiguous. The ordering is stable
 // and uses no random numbers, so a map seed still reproduces exactly.
 import { g_MountainFractal, g_HillFractal, g_MountainTerrain, g_HillTerrain, g_FlatTerrain } from '../../../base-standard/maps/map-globals.js';
@@ -50,7 +50,7 @@ export function addMountains(iWidth, iHeight) {
 	});
 }
 
-function countMountainNeighbours(location) {
+function countMountainNeighbors(location) {
 	return adjacentPlots(location).filter((adjacent) => GameplayMap.isMountain(adjacent.x, adjacent.y)).length;
 }
 
@@ -73,12 +73,12 @@ export function adjustMountains(iWidth, iHeight) {
 	});
 	// Counted once up front: the comparator runs many times, and using the
 	// pre-adjustment counts keeps the result independent of processing order.
-	const neighbourCount = new Map();
+	const neighborCount = new Map();
 	for (const tile of mountains.concat(rough)) {
-		neighbourCount.set(tile, countMountainNeighbours(tile));
+		neighborCount.set(tile, countMountainNeighbors(tile));
 	}
-	const byNeighbours = (ascending) => (a, b) => {
-		const diff = neighbourCount.get(a) - neighbourCount.get(b);
+	const byNeighbors = (ascending) => (a, b) => {
+		const diff = neighborCount.get(a) - neighborCount.get(b);
 		if (diff !== 0) {
 			return ascending ? diff : -diff;
 		}
@@ -87,13 +87,15 @@ export function adjustMountains(iWidth, iHeight) {
 	const target = Math.round(mountains.length * scale);
 	let changed = 0;
 	if (scale < 1) {
-		mountains.sort(byNeighbours(true));
-		changed = Math.max(0, mountains.length - target);
+		// Volcanoes and Natural Wonders keep their mountain.
+		const flattenable = mountains.filter((tile) => GameplayMap.getFeatureType(tile.x, tile.y) === FeatureTypes.NO_FEATURE);
+		flattenable.sort(byNeighbors(true));
+		changed = Math.min(flattenable.length, Math.max(0, mountains.length - target));
 		for (let i = 0; i < changed; i++) {
-			TerrainBuilder.setTerrainType(mountains[i].x, mountains[i].y, g_HillTerrain);
+			TerrainBuilder.setTerrainType(flattenable[i].x, flattenable[i].y, g_HillTerrain);
 		}
 	} else {
-		rough.sort(byNeighbours(false));
+		rough.sort(byNeighbors(false));
 		changed = Math.max(0, Math.min(rough.length, target - mountains.length));
 		for (let i = 0; i < changed; i++) {
 			TerrainBuilder.setTerrainType(rough[i].x, rough[i].y, g_MountainTerrain);

@@ -22,8 +22,8 @@
  * Better Balanced Multiplayer - shared helpers (shell and game scope).
  *
  * Logging, method wrapping, deferred patching and the decorator base used by
- * every feature, plus the multiplayer and Age transition checks and companion-mod
- * detection (Observer, enabled mods).
+ * every feature, plus the multiplayer, host, Game Balance and Age transition checks and
+ * companion-mod detection (Observer, enabled mods).
  */
 
 /** Logger that reaches UI.log (console.log output does not). */
@@ -38,7 +38,7 @@ function createLogger(tag) {
  */
 function wrapMethod(target, name, wrapper) {
 	const base = target?.[name];
-	if (typeof base !== 'function') return false;
+	if (typeof base !== "function") return false;
 	target[name] = function (...args) { return wrapper.call(this, (...a) => base.apply(this, a), ...args); };
 	return true;
 }
@@ -55,15 +55,47 @@ function whenAvailable(probe, callback, { retries = 50, intervalMs = 200, onGive
 	else onGiveUp?.();
 }
 
-/** Run callback(definition) once the UI component tag is defined, retrying a bounded number of times. */
-function whenDefined(tag, callback, { retries = 50, intervalMs = 200, log = null } = {}) {
-	const probe = () => { const definition = Controls.getDefinition(tag); return definition?.createInstance ? definition : null; };
-	whenAvailable(probe, callback, { retries, intervalMs, onGiveUp: () => log?.(`${tag} was never defined`) });
+const pendingDefinitions = new Map();   // tag -> callbacks waiting for the game to define it
+let defineWrapped = false;
+
+/**
+ * Run callback(definition) once the UI component tag is defined: now, or the
+ * moment the game's Controls.define call for it runs (before any element is built).
+ */
+function whenDefined(tag, callback) {
+	if (Controls.isDefined(tag)) {
+		callback(Controls.getDefinition(tag));
+		return;
+	}
+	if (!defineWrapped) {
+		defineWrapped = true;
+		wrapMethod(Controls, "define", (base, name, ...rest) => {
+			const result = base(name, ...rest);
+			const callbacks = pendingDefinitions.get(name);
+			if (callbacks) {
+				pendingDefinitions.delete(name);
+				callbacks.forEach((fn) => fn(Controls.getDefinition(name)));
+			}
+			return result;
+		});
+	}
+	if (!pendingDefinitions.has(tag)) pendingDefinitions.set(tag, []);
+	pendingDefinitions.get(tag).push(callback);
 }
 
 /** True in a multiplayer game or setup (hotseat included); every mod feature acts only then. */
 function isMultiplayerGame() {
 	try { return !!Configuration.getGame()?.isAnyMultiplayer; } catch (e) { return false; }
+}
+
+/** True on the machine that applies game changes made by script: the host, or the one machine in hotseat. */
+function isGameAuthority() {
+	try { return !Configuration.getGame().isNetworkMultiplayer || Network.getHostPlayerId() === GameContext.localPlayerID; } catch (e) { return false; }
+}
+
+/** True when Game Balance is Multiplayer (game scope), so the mod's balance data is loaded. */
+function isBalanceOn() {
+	try { return Configuration.getGame().getValue("BBMBalance") === "BBM_BALANCE_MULTIPLAYER"; } catch (e) { return false; }
 }
 
 /** True while an Age transition is in progress. */
@@ -89,7 +121,7 @@ function isAgeEnding() {
  * Observer leaders of companion mods (Zatygold's Spectator): real players
  * who watch instead of play, so the timer and the pause treat them apart.
  */
-const OBSERVER_LEADERS = new Set(['LEADER_ZOM_OBSERVER']);
+const OBSERVER_LEADERS = new Set(["LEADER_ZOM_OBSERVER"]);
 
 /** True for a companion mod's Observer; cached per player id (a player's leader is fixed for the life of the UI). */
 const observerById = new Map();
@@ -104,11 +136,11 @@ function isObserverPlayer(playerId) {
 	} catch (e) { return false; }
 }
 
-const OBSERVER_CIV_PREFIX = 'CIVILIZATION_ZOM_OBSERVER_';
+const OBSERVER_CIV_PREFIX = "CIVILIZATION_ZOM_OBSERVER_";
 
 /** True for a companion mod's Observer leader or civilization as a setup value. */
 function isObserverValue(value) {
-	return OBSERVER_LEADERS.has(value) || (typeof value === 'string' && value.startsWith(OBSERVER_CIV_PREFIX));
+	return OBSERVER_LEADERS.has(value) || (typeof value === "string" && value.startsWith(OBSERVER_CIV_PREFIX));
 }
 
 /** Base for Controls.decorate decorators: the panel calls all four hooks, so a decorator overrides only those it uses. */
@@ -120,11 +152,11 @@ class Decorator {
 }
 
 /** Mod ids of companion mods this one adapts to. */
-const COMPANION_MODS = { spectator: 'zatygolds-observer-mode' };
+const COMPANION_MODS = { spectator: "zatygolds-observer-mode" };
 
 /** True while the mod with this .modinfo id is enabled (shell scope). */
 function isModEnabled(modId) {
 	try { return Modding.getInstalledMods().some((mod) => mod.enabled && mod.id === modId); } catch (e) { return false; }
 }
 
-export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };
+export { COMPANION_MODS, Decorator, createLogger, isAgeEnding, isAgeTransition, isBalanceOn, isGameAuthority, isModEnabled, isMultiplayerGame, isObserverPlayer, isObserverValue, whenAvailable, whenDefined, wrapMethod };

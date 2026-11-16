@@ -49,16 +49,16 @@ WHERE ID IN (
     'Hawaii_ToT_MO_LotusFeatureCulture',
     'Hawaii_ToT_MO_ReefFeatureCulture',
     'Hawaii_ToT_MO_ColdReefFeatureCulture'
-  );
+    );
 
 -- Ho'okupu I/II: replace their Food on Marine Terrain with Culture.
 UPDATE ModifierArguments
 SET Value='YIELD_CULTURE'
 WHERE Name='YieldType'
-  AND ModifierId IN (
+    AND ModifierId IN (
     'HO_OKUPU_I_MOD_CULTURE_MARINE',
     'HO_OKUPU_II_MOD_CULTURE_MARINE_UPGRADED'
-  );
+    );
 
 -- Inca
 UPDATE ModifierArguments

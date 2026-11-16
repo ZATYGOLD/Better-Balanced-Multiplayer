@@ -1,5 +1,5 @@
 // Player Placement rules shared by the placement pass (maps/scripts/global-team-starts.js),
-// the lobby slots (ui/maps/bbm-match-slots.js) and the turn-1 check (ui/maps/bbm-start-bias-warning.js).
+// the lobby slots (ui/lobby/bbm-match-slots.js) and the turn-1 check (ui/maps/bbm-start-bias-warning.js).
 
 // The hidden Player Placement setting, set by the Match Type.
 export const PLACEMENT_SETTING_KEY = "BBMPlayerPlacement";

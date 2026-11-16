@@ -1,4 +1,3 @@
 -- Independent Spacing: the minimum spacing for independent powers is 3.
-UPDATE GlobalParameters
-SET Value = 3
-WHERE Name = 'INDEPENDENT_SPACING';
+INSERT OR REPLACE INTO GlobalParameters (Name, Value)
+    VALUES ('INDEPENDENT_SPACING', 3);

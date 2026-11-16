@@ -25,7 +25,7 @@
  * Fresh Water, spacing and, with Start Bias Multiplayer, strict start biases.
  * Failures show as a banner and a notification for every player.
  */
-import { createLogger, isMultiplayerGame } from '../shared/bbm-util.js';
+import { createLogger, isMultiplayerGame, isObserverPlayer } from '../shared/bbm-util.js';
 import { PLACEMENT_SETTING_KEY, START_MINIMUM_DISTANCE } from '../../maps/bbm-placement.js';
 import { getPlayerStrictStartBias, isStrictStartBiasEnabled, matchesRule, matchesRuleWithLakeFallback } from '../../maps/bbm-strict-start-biases.js';
 
@@ -173,7 +173,7 @@ function validateStarts() {
 	if (typeof Game === "undefined" || Game.turn == null) { retryValidation(); return; }
 	// Only a newly generated game's opening turn; the seed marker stops replays after a reload.
 	if (Game.turn !== 1 || validationAlreadyCompleted()) return;
-	const aliveMajorIds = Players.getAliveMajorIds();
+	const aliveMajorIds = Players.getAliveMajorIds().filter((id) => !isObserverPlayer(id));
 	if (aliveMajorIds.length === 0 && retryValidation()) return;
 	const strict = isStrictStartBiasEnabled();
 	const failures = [];

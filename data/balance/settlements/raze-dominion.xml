@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Game Balance: razing milestones (narrative records). -->
 <Database>
 	<Types>
 		<Row Type="NARRATIVE_BBM_BALANCE_RAZED_SETTLEMENT_DOMINION_01" Kind="KIND_NARRATIVE_STORY"/>

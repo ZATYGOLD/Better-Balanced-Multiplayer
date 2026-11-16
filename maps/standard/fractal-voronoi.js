@@ -1,5 +1,5 @@
 // Copy of {base-standard}maps/fractal-voronoi.js for multiplayer: the terrain pass
-// comes from ../generation/map-features.js (Map and Terrain Settings);
+// comes from ../generation/bbm-map-features.js (Map and Terrain Settings);
 // Resource Settings apply afterwards (maps/scripts/global-team-starts.js).
 import { generateMapFeatures } from '../generation/bbm-map-features.js';
 import { assignAdvancedStartRegions } from '../../../base-standard/maps/assign-advanced-start-region.js';
@@ -25,7 +25,7 @@ function requestMapData(initParams) {
 async function generateMap() {
 	console.log("Generating a map!");
 	console.log(`Age - ${GameInfo.Ages.lookup(Game.age).AgeType}`);
-	const voronoiScope = new profileScope("Fratal Voronoi Generation");
+	const voronoiScope = new profileScope("Fractal Voronoi Generation");
 	const iWidth = GameplayMap.getGridWidth();
 	const iHeight = GameplayMap.getGridHeight();
 	const uiMapSize = GameplayMap.getMapSize();

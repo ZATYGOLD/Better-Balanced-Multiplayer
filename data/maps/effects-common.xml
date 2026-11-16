@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Resource List All: resource effects in every Age. -->
 <GameEffects xmlns="GameEffects">
 	<Modifier id="BBM_MAPS_RES_CLAY_WAREHOUSE_PRODUCTION" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_YIELD_PER_RESOURCE"><Argument name="ResourceType">RESOURCE_CLAY</Argument><Argument name="Tag">WAREHOUSE</Argument><Argument name="YieldType">YIELD_PRODUCTION</Argument><Argument name="Amount">1</Argument></Modifier>
 	<Modifier id="BBM_MAPS_RES_LIMESTONE_WONDER_PRODUCTION" collection="COLLECTION_ALL_CITIES" effect="EFFECT_CITY_ADJUST_CONSTRUCTIBLE_PRODUCTION_PER_RESOURCE"><SubjectRequirements><Requirement type="REQUIREMENT_CITY_HAS_BUILD_QUEUE"/></SubjectRequirements><Argument name="Amount">5</Argument><Argument name="ResourceType">RESOURCE_LIMESTONE</Argument><Argument name="Empire">true</Argument><Argument name="ConstructibleClass">WONDER</Argument></Modifier>

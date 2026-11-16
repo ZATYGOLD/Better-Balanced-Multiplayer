@@ -26,16 +26,16 @@
  * tables for the active Age (data/timers/):
  *
  *   seconds = Base + PerCity*cities + PerUnit*units
- *           + PerHuman*humanPlayers + PerTurn*turnNumber
+ *           + PerPlayer*players + PerTurn*turnNumber
  *
- * cities/units are the most any living major civ has; human players never
- * include a companion mod's Observer (isObserverPlayer). The first turn of each
- * session is untimed (inGrace).
+ * cities/units are the most any living major civ has; players are the living
+ * major civs, AI included, never a companion mod's Observer (isObserverPlayer). The first turn of each
+ * Age (inGrace) and an ending Age are untimed and show no timer (isUntimed).
  *
  * Engine backstop: the engine times an unknown type by TurnTimerTime, which
  * config/timer.sql sets to an hour for Competitive. Whatever phase limit the
  * engine reports, this countdown is shown in its place and always ends the
- * turn first; only an Age transition's own phase shows as the engine has it.
+ * turn first.
  *
  * Architecture: instead of proxying the action panel's event listener, the
  * panel COMPONENT itself is replaced. Controls.define supports priority-based
@@ -62,6 +62,7 @@
  */
 import { ComponentID } from 'fs://game/core/ui/utilities/utilities-component-id.js';
 import { createLogger, isAgeEnding, isMultiplayerGame, isObserverPlayer, whenAvailable, whenDefined } from '../shared/bbm-util.js';
+import MultiplayerPause from '../pause/bbm-pause-mgr.js';
 import { COMPETITIVE_HASH, CONFIG, ENGINE } from './bbm-timer-config.js';
 
 const log = createLogger('timer');
@@ -72,11 +73,6 @@ let lastEndAttemptMs = 0;  // last time the sweep tried to end an expired turn
 
 // =============================== Helpers ==============================
 
-/** A living human major player who plays (Observers excluded). */
-function isHumanParticipant(player) {
-	return !!player?.isMajor && player.isHuman && !isObserverPlayer(player.id);
-}
-
 /** The configured timer type, or undefined while the configuration is unreadable. */
 function configuredTimerType() {
 	try { return Configuration.getGame().turnTimerType; } catch (e) { return undefined; }
@@ -84,7 +80,7 @@ function configuredTimerType() {
 
 /** The engine's own limit for Competitive turns (config/timer.sql), or 0 when unset. */
 function engineBackstop() {
-	try { return Number(Configuration.getGame().getValue('TurnTimerTime')) || 0; } catch (e) { return 0; }
+	try { return Number(Configuration.getGame().getValue("TurnTimerTime")) || 0; } catch (e) { return 0; }
 }
 
 function currentTurn() {
@@ -103,7 +99,7 @@ const queryCache = new Map();
 function cachedRow(sql) {
 	if (queryCache.has(sql)) return queryCache.get(sql);
 	let row = null;
-	try { row = Database.query('gameplay', sql)?.[0] ?? null; } catch (e) { row = null; }
+	try { row = Database.query("gameplay", sql)?.[0] ?? null; } catch (e) { row = null; }
 	if (row) queryCache.set(sql, row);
 	return row;
 }
@@ -118,25 +114,26 @@ function segmentLimits() {
 		`FROM BBM_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
 }
 
-/** PerHuman/PerTurn scaling for the active Age; zeros when absent. */
+/** PerPlayer/PerTurn scaling for the active Age; zeros when absent. */
 function scalingValues() {
-	return cachedRow("SELECT PerHuman AS perHuman, PerTurn AS perTurn FROM BBM_TimerScaling") ?? { perHuman: 0, perTurn: 0 };
+	return cachedRow("SELECT PerPlayer AS perPlayer, PerTurn AS perTurn FROM BBM_TimerScaling") ?? { perPlayer: 0, perTurn: 0 };
 }
 
 /**
- * One pass over living major players: max cities/units and human count
- * (Observers excluded, synced), plus human Observers (they only count
- * toward the enforcement threshold).
+ * One pass over living major players: max cities/units, player count and
+ * human count (Observers excluded, synced), plus human Observers (humans and
+ * Observers only count toward the enforcement threshold).
  */
 function playerTallies() {
-	const tallies = { cities: 0, units: 0, humans: 0, observers: 0 };
+	const tallies = { cities: 0, units: 0, players: 0, humans: 0, observers: 0 };
 	try {
 		for (const player of Players.getAlive()) {
 			if (!player?.isMajor) continue;
 			if (isObserverPlayer(player.id)) { if (player.isHuman) tallies.observers++; continue; }
 			tallies.cities = Math.max(tallies.cities, player.Cities?.getCities()?.length ?? 0);
 			tallies.units = Math.max(tallies.units, player.Units?.getUnits()?.length ?? 0);
-			if (isHumanParticipant(player)) tallies.humans++;
+			tallies.players++;
+			if (player.isHuman) tallies.humans++;
 		}
 	} catch (e) { /* keep zeros */ }
 	return tallies;
@@ -150,13 +147,13 @@ function playerTallies() {
 function computeSeconds() {
 	const limit = segmentLimits();
 	if (!limit) return 0;
-	const { cities, units, humans, observers } = playerTallies();
+	const { cities, units, players, humans, observers } = playerTallies();
 	CLOCK.participants = humans + observers;
-	const { perHuman, perTurn } = scalingValues();
+	const { perPlayer, perTurn } = scalingValues();
 	const raw = limit.base
 		+ (limit.perCity * cities)
 		+ (limit.perUnit * units)
-		+ (perHuman * humans)
+		+ (perPlayer * players)
 		+ (perTurn * Math.max(0, currentTurn()));
 	if (raw <= 0) return 0;
 	const step = CONFIG.roundToNearest >= 1 ? CONFIG.roundToNearest : 1;
@@ -223,19 +220,22 @@ const CLOCK = {
 	}
 };
 
-/**
- * Grace for the opening turn(s) of a session, measured from the first turn
- * this session actually sees rather than an absolute turn number. A new game
- * starting at turn 1 behaves exactly as before; a game that begins at a later
- * turn (a loaded save, a later-age start, or a patch that renumbers turns) still
- * gets its untimed setup turn instead of being timed from the very first turn.
- */
-let firstTurnSeen = -1;
+/** Untimed opening turn(s) of each Age (Game.turn restarts at 1 every Age); an unreadable turn counts too. */
 function inGrace() {
+	return currentTurn() < CONFIG.firstTimedTurn;
+}
+
+/** Turns that show no timer: the grace turn(s) and an ending Age. */
+const isUntimed = () => inGrace() || isAgeEnding();
+
+let untimedLogTurn = null;
+
+/** Logs once per untimed turn the limit the engine itself reports for it. */
+function logUntimedTurn(data) {
 	const t = currentTurn();
-	if (t < 1) return true;                  // turn not readable yet: treat as grace
-	if (firstTurnSeen < 1) firstTurnSeen = t;
-	return t < firstTurnSeen + Math.max(0, CONFIG.firstTimedTurn - 1);
+	if (t === untimedLogTurn) return;
+	untimedLogTurn = t;
+	log(`turn ${t} untimed${isAgeEnding() ? " (Age ending)" : ""}: engine limit ${Math.round(data?.phaseTimeLimit ?? 0)}s, backstop ${engineBackstop()}s`);
 }
 
 let settlementFounded = false;
@@ -254,8 +254,9 @@ function clockHeld() {
 	return !settlementFounded;
 }
 
-/** The clock stands still while the game is paused or an Age transition is under way. */
+/** The clock stands still while the game is paused (through its unpause countdown) or an Age transition is under way. */
 function clockFrozen() {
+	if (MultiplayerPause.isPaused()) return true;
 	try { if (Configuration.getGame().isPaused) return true; } catch (e) { /* unknown: not paused */ }
 	return isAgeEnding();
 }
@@ -395,7 +396,7 @@ function enforceTick() {
 
 /** Start the enforcement sweep and pause accounting (once, when the Competitive timer is selected). */
 function startEnforcement() {
-	engine.on('GamePauseStateChanged', syncClockFrozen);
+	engine.on("GamePauseStateChanged", syncClockFrozen);
 	setInterval(enforceTick, CONFIG.guardianMs);
 }
 
@@ -409,9 +410,9 @@ function setStyledNumber(el, styleClass, n) {
 
 /** Ring element class -> [stylesheet keyframes, identical clone] (panel-action.css). */
 const RING_ANIMATIONS = [
-	{ className: 'action_panel__mp-timer-left-circle', names: ['rotate-timer-first', 'bbm-rotate-timer-first'] },
-	{ className: 'action_panel__mp-timer-right-circle', names: ['rotate-timer-second', 'bbm-rotate-timer-second'] },
-	{ className: 'action_panel__mp-timer-left-bk-circle', names: ['fade-in-bg', 'bbm-fade-in-bg'] }
+	{ className: "action_panel__mp-timer-left-circle", names: ["rotate-timer-first", "bbm-rotate-timer-first"] },
+	{ className: "action_panel__mp-timer-right-circle", names: ["rotate-timer-second", "bbm-rotate-timer-second"] },
+	{ className: "action_panel__mp-timer-left-bk-circle", names: ["fade-in-bg", "bbm-fade-in-bg"] }
 ];
 
 function ringAnimationNames(el) {
@@ -424,7 +425,7 @@ function ringAnimationNames(el) {
  * animationDelay take effect (see bbmSyncRing).
  */
 function injectRingKeyframes() {
-	const style = document.createElement('style');
+	const style = document.createElement("style");
 	style.textContent = `
 @keyframes bbm-rotate-timer-first { 0% { transform: rotate(0deg); } 50% { transform: rotate(-180deg); } 100% { transform: rotate(-180deg); } }
 @keyframes bbm-rotate-timer-second { 0% { transform: rotate(180deg); } 50% { transform: rotate(180deg); } 100% { transform: rotate(0deg); } }
@@ -447,10 +448,11 @@ function defineMptPanelAction(base) {
 		/** The timer override: feed the base renderer our clock. */
 		onTurnTimerUpdated(data) {
 			lastEventMs = Date.now();   // events are flowing
-			// Grace turn(s): hide the timer by handing the base renderer a zero limit (its own "no timer" path),
+			// Untimed turns: hide the timer by handing the base renderer a zero limit (its own "no timer" path),
 			// whatever the engine reports (it restarts its own phase on pause and unpause).
-			if (inGrace()) {
+			if (isUntimed()) {
 				this.bbmRing = null;
+				logUntimedTurn(data);
 				super.onTurnTimerUpdated({ ...data, phaseTimeLimit: 0 });
 				return;
 			}
@@ -468,8 +470,6 @@ function defineMptPanelAction(base) {
 		 * Null when the event should pass through to the base panel untouched.
 		 */
 		bbmContext(data) {
-			const limit = data?.phaseTimeLimit ?? 0;
-			if (limit <= 0 || (limit > CONFIG.maxProxyLimit && isAgeEnding())) return null;
 			syncClockFrozen();
 			CLOCK.syncTurn();
 			if (clockHeld()) CLOCK.restart();   // show a full clock until the capital exists
@@ -527,7 +527,7 @@ function defineMptPanelAction(base) {
 				if (!names) continue;
 				el.style.animationDuration = `${total}s`;
 				el.style.animationDelay = `${-position}s`;
-				el.style.animationFillMode = 'forwards';
+				el.style.animationFillMode = "forwards";
 				el.style.animationName = el.style.animationName === names[1] ? names[0] : names[1];
 			}
 			this.bbmFreezeRing();
@@ -536,8 +536,8 @@ function defineMptPanelAction(base) {
 		/**
 		 * Tier styling on top of the inherited render. While the engine view is
 		 * muzzled (16..20s shows its clamped number) the text is always rewritten;
-		 * the orange tier uses an inline colour, and the red tier keeps a steady
-		 * flash colour.
+		 * the orange tier uses an inline color, and the red tier keeps a steady
+		 * flash color.
 		 */
 		bbmDecorateText(n) {
 			const el = this.turnTimerElement ?? document.getElementById(ENGINE.timerTextId);
@@ -549,7 +549,7 @@ function defineMptPanelAction(base) {
 				if (el.textContent !== String(n) || el.firstElementChild) el.textContent = String(n);
 				return;
 			}
-			if (el.style.color) el.style.color = '';
+			if (el.style.color) el.style.color = "";
 			const engineShowsClamp = beforeExpiry && n > CONFIG.flashStart && n < CONFIG.engineFlashHide;
 			if (!active && engineShowsClamp) {
 				setStyledNumber(el, ENGINE.styleInactive, n);
@@ -588,24 +588,26 @@ function defineMptPanelAction(base) {
 		}
 
 		bbmFreezeRing() {
-			const state = ringFrozen() ? 'paused' : 'running';
+			const state = ringFrozen() ? "paused" : "running";
 			for (const el of this.timerAnimationElements ?? []) el.style.animationPlayState = state;
 		}
 	}
 
-	Controls.define('panel-action', {
+	Controls.define("panel-action", {
 		...base,
 		createInstance: BBM_PanelAction,
-		description: (base.description ?? '') + ' (Better Balanced Multiplayer competitive timer)',
+		description: (base.description ?? "") + " (Better Balanced Multiplayer competitive timer)",
 		priority: (base.priority ?? 0) + 1
 	});
 	// The subclass only applies to panels created from now on.
-	const existing = document.querySelector('panel-action')?.maybeComponent;
-	if (existing && !(existing instanceof BBM_PanelAction)) log('a panel-action predates the redefinition; timer inactive until it is recreated');
+	const existing = document.querySelector("panel-action")?.maybeComponent;
+	if (existing && !(existing instanceof BBM_PanelAction)) log("a panel-action predates the redefinition; timer inactive until it is recreated");
 }
 
 whenAvailable(configuredTimerType, (configured) => {
 	if (configured !== COMPETITIVE_HASH || !isMultiplayerGame()) return;   // any other timer keeps the game's own panel
-	log(`engine backstop (TurnTimerTime): ${engineBackstop() || 'unset'}s`);
-	whenDefined('panel-action', defineMptPanelAction, { log });
-}, { onGiveUp: () => log('game configuration never became readable; competitive timer inactive') });
+	const backstop = engineBackstop();
+	if (backstop === ENGINE.backstopSeconds) log(`engine backstop (TurnTimerTime): ${backstop}s`);
+	else log(`WARNING: engine backstop (TurnTimerTime) is ${backstop || 'unset'}, expected ${ENGINE.backstopSeconds}s; the engine may end turns early`);
+	whenDefined("panel-action", defineMptPanelAction);
+}, { onGiveUp: () => log("game configuration never became readable; competitive timer inactive") });

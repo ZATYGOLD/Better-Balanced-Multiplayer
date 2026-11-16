@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="zatygolds-multiplayer-balance" version="00720" xmlns="ModInfo">
+<Mod id="zatygolds-multiplayer-balance" version="00740" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_BBM_NAME</Name>
 		<Description>LOC_MODULE_BBM_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.7.2</Version>
+		<Version>0.7.4</Version>
 		<Package>Mod</Package>
-		<LastUpdated>2026-11-08</LastUpdated>
+		<LastUpdated>2026-11-14</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
 		<AffectsSavedGames>1</AffectsSavedGames>
 	</Properties>
@@ -50,6 +50,7 @@
 <!--*************************** CRITERIA: RESOURCES ****************************************************-->
 		<Criteria id="maps-resource-list-all">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-duel-placement">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMPlayerPlacement</ConfigurationId><Value>BBM_MAPS_PLACEMENT_DUEL</Value></ConfigurationValueMatches>
@@ -63,14 +64,17 @@
 		<Criteria id="maps-resource-list-all-antiquity">
 			<AgeInUse>AGE_ANTIQUITY</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-resource-list-all-exploration">
 			<AgeInUse>AGE_EXPLORATION</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-resource-list-all-modern">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceList</ConfigurationId><Value>BBM_MAPS_RESOURCE_LIST_ALL</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMResourceMap</ConfigurationId><Value>BBM_MAPS_RESOURCE_MAP_SUPPORTED</Value></ConfigurationValueMatches>
 		</Criteria>
 
 <!--*************************** CRITERIA: NATURAL WONDERS ****************************************************-->
@@ -609,6 +613,21 @@
 		<Criteria id="pace-trade-speed-modern-plus-50">
 			<AgeInUse>AGE_MODERN</AgeInUse>
 			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_PLUS_50</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant-swift">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_SWIFT</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="pace-trade-speed-modern-instant-custom">
+			<AgeInUse>AGE_MODERN</AgeInUse>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeedModern</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_INSTANT</Value></ConfigurationValueMatches>
+			<ConfigurationValueMatches><Group>Game</Group><ConfigurationId>BBMPaceTradeSpeed</ConfigurationId><Value>BBM_PACE_TRADE_SPEED_CUSTOM</Value></ConfigurationValueMatches>
 		</Criteria>
 
 <!--*************************** CRITERIA: RAZE SPEED ****************************************************-->
@@ -1156,8 +1175,10 @@
 					<Item>ui/lobby/bbm-memento-select.js</Item>
 					<Item>ui/lobby/bbm-lobby-mementos.js</Item>
 					<Item>ui/lobby/bbm-leader-civ-select.js</Item>
+					<Item>ui/lobby/bbm-match-slots.js</Item>
 					<Item>ui/setup/bbm-setup-layout.js</Item>
 					<Item>ui/setup/bbm-setup-tabs.js</Item>
+					<Item>ui/setup/bbm-balance-rules.js</Item>
 					<Item>ui/setup/bbm-match-type-rules.js</Item>
 					<Item>ui/timer/bbm-timer-config.js</Item>
 					<Item>ui/timer/bbm-timer-lobby.js</Item>
@@ -1192,6 +1213,8 @@
 					<Item>ui/pause/bbm-pause-mgr.js</Item>
 					<Item>ui/advisor/bbm-advisor-popup.js</Item>
 					<Item>ui/gameplay/bbm-commander-training.js</Item>
+					<Item>ui/gameplay/bbm-commander-return.js</Item>
+					<Item>ui/gameplay/bbm-yields-preview.js</Item>
 					<Item>ui/keybind/bbm-keybind-config.js</Item>
 					<Item>ui/keybind/bbm-keybind.js</Item>
 					<Item>ui/keybind/bbm-hotkeys.js</Item>
@@ -1448,7 +1471,6 @@
 				</UpdateText>
 				<UIScripts>
 					<Item>ui/maps/bbm-multiplayer-defaults.js</Item>
-					<Item>ui/maps/bbm-match-slots.js</Item>
 				</UIScripts>
 			</Actions>
 		</ActionGroup>
@@ -1468,6 +1490,7 @@
 				</UpdateDatabase>
 				<UpdateText>
 					<Item>text/en_us/maps-options.xml</Item>
+					<Item>text/en_us/maps-settings.xml</Item>
 				</UpdateText>
 			</Actions>
 		</ActionGroup>
@@ -1810,6 +1833,16 @@
 				<UIScripts>
 					<Item>ui/pace/bbm-pace-rules.js</Item>
 				</UIScripts>
+			</Actions>
+		</ActionGroup>
+
+<!--*************************** GAME: PACE ************************************************-->
+		<ActionGroup id="bbm-pace-text" scope="game" criteria="always">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateText>
+					<Item>text/en_us/pace.xml</Item>
+				</UpdateText>
 			</Actions>
 		</ActionGroup>
 
@@ -2680,6 +2713,30 @@
 				<UpdateDatabase>
 					<Item>data/pace/trade-speed/travel.sql</Item>
 					<Item>data/pace/trade-speed/plus-50.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant" scope="game" criteria="pace-trade-speed-modern-instant">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant-swift" scope="game" criteria="pace-trade-speed-modern-instant-swift">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+		<ActionGroup id="bbm-pace-trade-speed-modern-instant-custom" scope="game" criteria="pace-trade-speed-modern-instant-custom">
+			<Properties><LoadOrder>400</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/pace/trade-speed/instant.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>

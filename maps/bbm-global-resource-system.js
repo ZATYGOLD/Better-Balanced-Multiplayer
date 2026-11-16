@@ -36,7 +36,7 @@ const GENERAL_RESOURCES = [
 
 const MODERN_GENERAL_RESOURCES = ["RESOURCE_RUBBER", "RESOURCE_OIL"];
 
-// Each player region is dealt one from each pool (neighbours get different ones).
+// Each player region is dealt one from each pool (neighbors get different ones).
 // Options within a pool are matched (comparable value, a different yield), so no
 // draw is worse than another.
 const REGION_POOLS = [
@@ -65,15 +65,14 @@ const ADJACENCY_PASSES = 3;
 // Amount scales the game's density; Clusters grow a share of deposits into
 // patches, with the seed count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
-	BBM_MAPS_RESOURCE_AMOUNT_SCARCE: 0.35,
-	BBM_MAPS_RESOURCE_AMOUNT_LIMITED: 0.5,
-	BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER: 0.7,
-	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 1
+	BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.65,
+	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 1,
+	BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1.35
 };
 const RESOURCE_CLUSTERS = {
-	BBM_MAPS_RESOURCE_CLUSTERS_OFF: { chance: 0, size: 1 },
-	BBM_MAPS_RESOURCE_CLUSTERS_SMALL: { chance: 50, size: 2 },
-	BBM_MAPS_RESOURCE_CLUSTERS_LARGE: { chance: 75, size: 3 }
+	BBM_MAPS_RESOURCE_CLUSTERS_NONE: { chance: 0, size: 1 },
+	BBM_MAPS_RESOURCE_CLUSTERS_STANDARD: { chance: 50, size: 2 },
+	BBM_MAPS_RESOURCE_CLUSTERS_MORE: { chance: 75, size: 3 }
 };
 // Copies of each dealt resource scale with the region's land: one per
 // TILES_PER_COPY tiles, from 1 up to MAX_COPIES; land in no player's region
@@ -82,9 +81,9 @@ const MAX_COPIES = 3;
 const TILES_PER_COPY = 100;
 const OTHER_PER_REGION = 3;
 const ISLAND_RESOURCES = 2;          // resources on every island without a start (Treasure in Exploration on island maps)
-const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_MULTIPLAYER";
-const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_OFF";
-const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbours accepting the resource
+const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT";
+const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_NONE";
+const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbors accepting the resource
 const FILL_ROUNDS = 3;              // seed-and-grow rounds topping the map up to the target
 
 // ============================ Shared helpers ============================
@@ -144,7 +143,7 @@ function regionOf(x, y) {
 /**
  * Each player's region: the land on their start's continent closer to their start
  * than to any other start there, with its copies per dealt resource and its
- * neighbouring regions.
+ * neighboring regions.
  */
 function buildPlayerRegions() {
 	const width = GameplayMap.getGridWidth();
@@ -155,7 +154,7 @@ function buildPlayerRegions() {
 		.map((start) => ({ ...start, ...GameplayMap.getLocationFromIndex(start.plotIndex) }))
 		.map((start) => ({ ...start, continent: regionOf(start.x, start.y) }));
 	const owner = new Int32Array(width * height).fill(-1);
-	const regions = starts.map((start) => ({ ...start, plots: [], neighbours: new Set(), copies: 0 }));
+	const regions = starts.map((start) => ({ ...start, plots: [], neighbors: new Set(), copies: 0 }));
 	const regionsByContinent = new Map();
 	regions.forEach((region, index) => {
 		if (!regionsByContinent.has(region.continent)) regionsByContinent.set(region.continent, []);
@@ -182,14 +181,14 @@ function buildPlayerRegions() {
 		for (const plotIndex of region.plots) {
 			for (const next of adjacentPlots(GameplayMap.getLocationFromIndex(plotIndex))) {
 				const other = owner[GameplayMap.getIndexFromXY(next.x, next.y)];
-				if (other >= 0 && other !== index) region.neighbours.add(other);
+				if (other >= 0 && other !== index) region.neighbors.add(other);
 			}
 		}
 	}
 	return regions;
 }
 
-/** Deal each region one option per pool (a different one from its dealt neighbours where possible) and OTHER_PER_REGION others. */
+/** Deal each region one option per pool (a different one from its dealt neighbors where possible) and OTHER_PER_REGION others. */
 function dealRegionResources(regions) {
 	const dealt = regions.map(() => []);
 	REGION_POOLS.forEach((pool, poolIndex) => {
@@ -197,7 +196,7 @@ function dealRegionResources(regions) {
 		const label = `BBM MAPS pool ${poolIndex + 1}`;
 		regions.forEach((region, index) => {
 			if (bag.length === 0) bag = shuffleInPlace([...pool], label);
-			const taken = new Set([...region.neighbours].map((other) => dealt[other][poolIndex]));
+			const taken = new Set([...region.neighbors].map((other) => dealt[other][poolIndex]));
 			const pick = bag.findIndex((name) => !taken.has(name));
 			dealt[index][poolIndex] = bag.splice(pick >= 0 ? pick : 0, 1)[0];
 		});
@@ -293,15 +292,39 @@ function fillEvenly(plots, candidatesByPlot, counts, limit, seeds, label) {
 	}, counts, seeds, label);
 }
 
+/** Plots where any of the resources can go, except where skip(x, y): { plots, candidatesByPlot, plotsByResource }. */
+function candidatePlots(resourceIndices, skip) {
+	const width = GameplayMap.getGridWidth();
+	const height = GameplayMap.getGridHeight();
+	const plots = [];
+	const candidatesByPlot = new Map();
+	const plotsByResource = new Map();
+	for (let y = 0; y < height; y++) {
+		for (let x = 0; x < width; x++) {
+			if (GameplayMap.isNaturalWonder(x, y) || skip(x, y)) continue;
+			const fits = resourceIndices.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true));
+			if (fits.length === 0) continue;
+			const plotIndex = GameplayMap.getIndexFromXY(x, y);
+			for (const resourceIndex of fits) {
+				if (!plotsByResource.has(resourceIndex)) plotsByResource.set(resourceIndex, []);
+				plotsByResource.get(resourceIndex).push(plotIndex);
+			}
+			candidatesByPlot.set(plotIndex, fits);
+			plots.push(plotIndex);
+		}
+	}
+	return { plots, candidatesByPlot, plotsByResource };
+}
+
 /** Place up to `copies` of one resource on the given plots. */
 function placeCopies(resourceIndex, plots, copies, counts, seeds, label) {
 	const placed = spreadResources(plots, copies, () => resourceIndex, counts, seeds, label);
-	if (placed < copies) console.log(`BBM MAPS RESOURCES: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
+	if (placed < copies) console.log(`BBM resources: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed ${placed}/${copies} (${label})`);
 	return placed;
 }
 
 /**
- * Grow a share of seeds into patches of their resource on empty neighbours in the
+ * Grow a share of seeds into patches of their resource on empty neighbors in the
  * same region, up to `limit` deposits; with evenCounts, only while its count is
  * within the region's share.
  */
@@ -377,23 +400,7 @@ function generateGlobalResources() {
 
 	const removed = clearGeneratedResources(width, height);
 	const counts = new RegionCounts();
-	const candidatesByPlot = new Map();
-	const plotsByResource = new Map();
-	const placeablePlots = [];
-	for (let y = 0; y < height; y++) {
-		for (let x = 0; x < width; x++) {
-			if (GameplayMap.isNaturalWonder(x, y)) continue;
-			const plotIndex = GameplayMap.getIndexFromXY(x, y);
-			const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true));
-			if (fits.length === 0) continue;
-			for (const resourceIndex of fits) {
-				if (!plotsByResource.has(resourceIndex)) plotsByResource.set(resourceIndex, []);
-				plotsByResource.get(resourceIndex).push(plotIndex);
-			}
-			candidatesByPlot.set(plotIndex, fits);
-			placeablePlots.push(plotIndex);
-		}
-	}
+	const { plots: placeablePlots, candidatesByPlot, plotsByResource } = candidatePlots(general, () => false);
 
 	const seeds = [];
 	for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "BBM MAPS guaranteed general resource");
@@ -413,11 +420,12 @@ function generateGlobalResources() {
  * off the islands is lifted; one of each resource per continent (and in the
  * water) returns, as the game guarantees, then the rest return in random order,
  * with clusters grown where the game allows the resource, until the amount is met.
+ * An amount above the game's own adds more of the map's resources on empty plots.
  * Island resources stay as the map placed them.
  */
 function scaleGameResources() {
 	const { amount, clusters } = resourceSettings();
-	if (amount.value >= 1 && clusters.value.chance <= 0) {
+	if (amount.value === 1 && clusters.value.chance <= 0) {
 		console.log(`BBM resources: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
 		return;
 	}
@@ -445,13 +453,19 @@ function scaleGameResources() {
 		placeResource(deposit.x, deposit.y, deposit.resourceIndex, counts, seeds);
 	}
 	let next = 0;
-	const grown = fillToTarget(target, seeds, counts, clusters.value, false, (limit, roundSeeds) => {
+	let extra = null;   // empty plots for deposits past the game's own, found when first needed
+	const grown = fillToTarget(target, seeds, counts, clusters.value, false, (limit, roundSeeds, round) => {
 		let placed = 0;
 		while (placed < limit && next < queue.length) {
 			const { x, y, resourceIndex } = queue[next++];
 			if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE) continue;   // taken by a cluster
 			placeResource(x, y, resourceIndex, counts, roundSeeds);
 			placed++;
+		}
+		if (placed < limit && next >= queue.length) {
+			extra ??= candidatePlots([...new Set(deposits.map((deposit) => deposit.resourceIndex))],
+				(x, y) => isIslandLand(x, y) || GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE);
+			placed += fillEvenly(extra.plots, extra.candidatesByPlot, counts, limit - placed, roundSeeds, `BBM MAPS game resource extra order ${round + 1}`);
 		}
 		return placed;
 	});
