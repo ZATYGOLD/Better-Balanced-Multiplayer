@@ -7,7 +7,7 @@
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_LIMESTONE_TOOLTIP"><Text>+5% [icon:YIELD_PRODUCTION] Production toward [icon:WONDER] Wonders.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_HARDWOOD_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Naval and Civilian units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_SALT_TOOLTIP"><Text>+15% [icon:YIELD_PRODUCTION] Production toward all units.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_RICE_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_RICE_TOOLTIP"><Text>+2 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_TURTLES_TOOLTIP"><Text>+1 [icon:YIELD_CULTURE] Culture on [icon:YIELD_WAREHOUSE] Warehouse Buildings.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Ranged and Siege units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_JADE_TOOLTIP"><Text>+10% [icon:YIELD_GOLD] Gold.</Text></Row>
@@ -43,7 +43,7 @@
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_TRUFFLES_TOOLTIP"><Text>+3 [icon:YIELD_FOOD] Food.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_SILVER_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_RUBIES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital and +2 [icon:YIELD_SCIENCE] Science while in a Celebration.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital, and +5 more while in a Celebration.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_SPICES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_TEA_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_SCIENCE] Science in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_ANT_RESOURCE_CITRUS_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_GOLD] Gold in all Settlements.</Text></Row>
@@ -55,7 +55,7 @@
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_LIMESTONE_TOOLTIP"><Text>+5% [icon:YIELD_PRODUCTION] Production toward [icon:WONDER] Wonders.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_HARDWOOD_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Naval and Civilian units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_SALT_TOOLTIP"><Text>+15% [icon:YIELD_PRODUCTION] Production toward all units.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_RICE_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_RICE_TOOLTIP"><Text>+2 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_TURTLES_TOOLTIP"><Text>+1 [icon:YIELD_CULTURE] Culture on [icon:YIELD_WAREHOUSE] Warehouse Buildings.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Ranged and Siege units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_JADE_TOOLTIP"><Text>+10% [icon:YIELD_GOLD] Gold.</Text></Row>
@@ -91,7 +91,7 @@
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_TRUFFLES_TOOLTIP"><Text>+5 [icon:YIELD_FOOD] Food.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_SILVER_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_RUBIES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital and +2 [icon:YIELD_SCIENCE] Science while in a Celebration.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital, and +5 more while in a Celebration.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_SPICES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_TEA_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_SCIENCE] Science in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_EXP_RESOURCE_CITRUS_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_GOLD] Gold in all Settlements.</Text></Row>
@@ -103,7 +103,7 @@
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_LIMESTONE_TOOLTIP"><Text>+5% [icon:YIELD_PRODUCTION] Production toward [icon:WONDER] Wonders.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_HARDWOOD_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Naval and Civilian units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_SALT_TOOLTIP"><Text>+15% [icon:YIELD_PRODUCTION] Production toward all units.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_RICE_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_RICE_TOOLTIP"><Text>+2 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_TURTLES_TOOLTIP"><Text>+1 [icon:YIELD_CULTURE] Culture on [icon:YIELD_WAREHOUSE] Warehouse Buildings.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_NITER_TOOLTIP"><Text>+3% [icon:YIELD_PRODUCTION] Production toward Ranged and Siege units.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_JADE_TOOLTIP"><Text>+10% [icon:YIELD_GOLD] Gold.</Text></Row>
@@ -139,7 +139,7 @@
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_TRUFFLES_TOOLTIP"><Text>+8 [icon:YIELD_FOOD] Food.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_SILVER_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_FOOD] Food in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_RUBIES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_PRODUCTION] Production in all Settlements.</Text></Row>
-		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital and +2 [icon:YIELD_SCIENCE] Science while in a Celebration.</Text></Row>
+		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_COCOA_TOOLTIP"><Text>+2 [icon:YIELD_HAPPINESS] Happiness in the [icon:NOTIFICATION_SELECT_CAPITAL] Capital, and +5 more while in a Celebration.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_SPICES_TOOLTIP"><Text>+1 [icon:YIELD_GOLD] Gold and +1 [icon:YIELD_CULTURE] Culture in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_TEA_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_SCIENCE] Science in all Settlements.</Text></Row>
 		<Row Tag="LOC_BBM_MAPS_MOD_RESOURCE_CITRUS_TOOLTIP"><Text>+1 [icon:YIELD_FOOD] Food and +1 [icon:YIELD_GOLD] Gold in all Settlements.</Text></Row>

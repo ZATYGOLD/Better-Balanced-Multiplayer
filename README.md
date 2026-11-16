@@ -228,6 +228,8 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 - The Competitive timer is retuned: Antiquity 20 / 1.30 / 1.30 / 1.30 / 1.30, Exploration 40 / 2.30 / 1.40 / 2.30 / 1.40, Modern 60 / 3.30 / 1.50 / 3.30 / 1.50 (Base / PerCity / PerUnit / PerPlayer / PerTurn).
 - The Competitive timer counts every living player, AI included (PerPlayer; was PerHuman, humans only). The Spectator's Observer still adds no time.
 - The 1v1 Duel map is larger: 44x28 (was 36x22).
+- Cocoa (Resource List All) gives +5 Happiness in the Capital while in a Celebration, on top of its +2 Capital Happiness (was +2 Science, the same as Quinine).
+- Rice (Resource List All) gives +2 Food in all Settlements again, as in the base game (was +1 Food and +1 Production).
 - Faster map loading: start placement skips the engine's distance check for nearly every pair of candidate starts (the same starts are chosen).
 - No turn timer shows while an Age is ending (the engine's Age transition timer showed and was broken).
 - A defeated Commander still waiting to return when an Age ends comes back on the Age's last turn; it was lost.
