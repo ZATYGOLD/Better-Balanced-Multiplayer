@@ -62,12 +62,18 @@ const WATER_REGION = -1;
 const ADJACENCY_PASSES = 3;
 
 // Resource Amount and Resource Clusters (config/maps.sql).
-// Amount scales the game's density; Clusters grow a share of deposits into
-// patches, with the seed count lowered so the amount stays the same.
+// Amount scales the game's density, lower with Resource List All, which deals
+// every resource; Clusters grow a share of deposits into patches, with the seed
+// count lowered so the amount stays the same.
 const RESOURCE_AMOUNTS = {
 	BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.65,
 	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 1,
 	BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1.35
+};
+const LIST_ALL_AMOUNTS = {
+	BBM_MAPS_RESOURCE_AMOUNT_SPARSE: 0.85,
+	BBM_MAPS_RESOURCE_AMOUNT_STANDARD: 1,
+	BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT: 1.15
 };
 const RESOURCE_CLUSTERS = {
 	BBM_MAPS_RESOURCE_CLUSTERS_NONE: { chance: 0, size: 1 },
@@ -76,12 +82,17 @@ const RESOURCE_CLUSTERS = {
 };
 // Copies of each dealt resource scale with the region's land: one per
 // TILES_PER_COPY tiles, from 1 up to MAX_COPIES; land in no player's region
-// (islands without a start) is dealt nothing.
+// (islands without a start) is dealt nothing. The first copy lies within
+// NEAR_RANGE of the start, the others farther out in the region, and the range
+// holds at least NEAR_GENERAL general resources. General resources are then
+// trimmed so each region keeps the map's density.
 const MAX_COPIES = 3;
 const TILES_PER_COPY = 100;
+const NEAR_RANGE = { min: 2, max: 6 };
+const NEAR_GENERAL = 4;
 const OTHER_PER_REGION = 3;
 const ISLAND_RESOURCES = 2;          // resources on every island without a start (Treasure in Exploration on island maps)
-const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT";
+const DEFAULT_AMOUNT = "BBM_MAPS_RESOURCE_AMOUNT_STANDARD";
 const DEFAULT_CLUSTERS = "BBM_MAPS_RESOURCE_CLUSTERS_NONE";
 const CLUSTER_SUCCESS_RATE = 0.6;   // first estimate of a patch's neighbors accepting the resource
 const FILL_ROUNDS = 3;              // seed-and-grow rounds topping the map up to the target
@@ -101,10 +112,10 @@ function mapSetting(table, key, fallback) {
 	return { name: table[value] != null ? value : fallback, value: table[value] ?? table[fallback] };
 }
 
-/** Resource Amount and Resource Clusters as set up. */
-function resourceSettings() {
+/** Resource Amount (from the Resource List's table) and Resource Clusters as set up. */
+function resourceSettings(amounts) {
 	return {
-		amount: mapSetting(RESOURCE_AMOUNTS, "BBMResourceAmount", DEFAULT_AMOUNT),
+		amount: mapSetting(amounts, "BBMResourceAmount", DEFAULT_AMOUNT),
 		clusters: mapSetting(RESOURCE_CLUSTERS, "BBMResourceClusters", DEFAULT_CLUSTERS)
 	};
 }
@@ -123,6 +134,11 @@ function resolveResourceTypes(typeNames) {
 }
 
 const currentAgeType = () => GameInfo.Ages.lookup(Game.age)?.AgeType;
+
+// Kept from generateGlobalResources for placeDealtResources: the plots a general
+// resource can take, and those holding the one guaranteed copy of each.
+let placeablePlotSet = new Set();
+let guaranteedPlotSet = new Set();
 
 /** The general pool for this Age (Oil and Rubber from Modern). */
 function generalResourceTypes(ageType) {
@@ -209,10 +225,6 @@ function dealRegionResources(regions) {
 	return dealt.map(resolveResourceTypes);
 }
 
-function dealtCopies(regions) {
-	return regions.reduce((total, region) => total + region.copies * (REGION_POOLS.length + OTHER_PER_REGION), 0);
-}
-
 // ============================ Placement ============================
 
 /** More than `maximumAllowed` adjacent plots already hold a resource. */
@@ -222,6 +234,17 @@ function hasAdjacentResource(x, y, maximumAllowed) {
 		if (GameplayMap.getResourceType(next.x, next.y) !== ResourceTypes.NO_RESOURCE && ++adjacent > maximumAllowed) return true;
 	}
 	return false;
+}
+
+// With Resource Clusters None no resource touches another; with Clusters on,
+// only the clusters themselves put the same resource side by side.
+let spacedOut = true;
+const readSpacing = () => { spacedOut = resourceSettings(RESOURCE_AMOUNTS).clusters.value.chance <= 0; };
+
+/** Placing this resource here would touch another resource (spaced out) or the same resource. */
+function touchesResource(x, y, resourceIndex) {
+	if (spacedOut) return hasAdjacentResource(x, y, 0);
+	return adjacentPlots({ x, y }).some((next) => GameplayMap.getResourceType(next.x, next.y) === resourceIndex);
 }
 
 /** Placed copies per continent (and the water) and resource: general resources keep even counts within each. */
@@ -264,19 +287,21 @@ function placeResource(x, y, resourceIndex, counts, seeds) {
 }
 
 /**
- * Place up to `limit` resources on empty plots in random order, spread out (each
- * pass allows one more adjacent resource); `pick` chooses a plot's resource (-1: none).
+ * Place up to `limit` resources on empty plots in random order, spread out (with
+ * Resource Clusters on, each pass allows one more adjacent resource); `pick`
+ * chooses a plot's resource (-1: none).
  */
 function spreadResources(plots, limit, pick, counts, seeds, label) {
 	shuffleInPlace(plots, label);
 	let placed = 0;
-	for (let pass = 0; pass < ADJACENCY_PASSES && placed < limit; pass++) {
+	const passes = spacedOut ? 1 : ADJACENCY_PASSES;
+	for (let pass = 0; pass < passes && placed < limit; pass++) {
 		for (const plotIndex of plots) {
 			if (placed >= limit) break;
 			const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
 			if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || hasAdjacentResource(x, y, pass)) continue;
 			const resourceIndex = pick(plotIndex, x, y);
-			if (resourceIndex < 0) continue;
+			if (resourceIndex < 0 || touchesResource(x, y, resourceIndex)) continue;
 			placeResource(x, y, resourceIndex, counts, seeds);
 			placed++;
 		}
@@ -287,7 +312,7 @@ function spreadResources(plots, limit, pick, counts, seeds, label) {
 /** Fill up to `limit` empty plots with their candidates, keeping counts even (recorded as seeds). */
 function fillEvenly(plots, candidatesByPlot, counts, limit, seeds, label) {
 	return spreadResources(plots, limit, (plotIndex, x, y) => {
-		const candidates = candidatesByPlot.get(plotIndex);
+		const candidates = candidatesByPlot.get(plotIndex)?.filter((resourceIndex) => !touchesResource(x, y, resourceIndex));
 		return candidates?.length ? pickEvenly(candidates, regionOf(x, y), counts) : -1;
 	}, counts, seeds, label);
 }
@@ -389,10 +414,11 @@ function clearGeneratedResources(width, height) {
  * Resource List All: replace the map's resources with the general pool (every
  * pooled resource in every Age; Oil and Rubber from Modern): every general
  * resource at least once, then up to the Resource Amount with even counts per
- * region, leaving room for the dealt resources placed after Player Placement
- * (placeDealtResources).
+ * region; player regions make room for their dealt resources after Player
+ * Placement (placeDealtResources).
  */
 function generateGlobalResources() {
+	readSpacing();
 	const width = GameplayMap.getGridWidth();
 	const height = GameplayMap.getGridHeight();
 	const ageType = currentAgeType();
@@ -404,14 +430,15 @@ function generateGlobalResources() {
 
 	const seeds = [];
 	for (const resourceIndex of general) placeCopies(resourceIndex, [...(plotsByResource.get(resourceIndex) ?? [])], 1, counts, seeds, "BBM MAPS guaranteed general resource");
-	const dealtEstimate = dealtCopies(buildPlayerRegions());   // the map's own starts; placement moves them only a little in size terms
+	placeablePlotSet = new Set(placeablePlots);
+	guaranteedPlotSet = new Set(seeds.map((seed) => GameplayMap.getIndexFromXY(seed.x, seed.y)));
 
-	const { amount, clusters } = resourceSettings();
-	// The amount covers every resource; general deposits fill what the dealt copies will take.
-	const target = Math.max(0, Math.round(placeablePlots.length * DENSITY_TARGET * amount.value) - dealtEstimate);
+	const { amount, clusters } = resourceSettings(LIST_ALL_AMOUNTS);
+	// Each player region is trimmed back to this density once its resources are dealt (trimToDensity).
+	const target = Math.round(placeablePlots.length * DENSITY_TARGET * amount.value);
 	const grown = fillToTarget(target, seeds, counts, clusters.value, true, (limit, roundSeeds, round) =>
 		fillEvenly(placeablePlots, candidatesByPlot, counts, limit, roundSeeds, `BBM MAPS resource plot order ${round + 1}`));
-	console.log(`BBM resources: age=${ageType} amount=${amount.name} clusters=${clusters.name} candidates=${placeablePlots.length} dealtEstimate=${dealtEstimate} general=${seeds.length + grown}/${target} (${seeds.length} seeds, ${grown} grown) replaced=${removed}`);
+	console.log(`BBM resources: age=${ageType} amount=${amount.name} clusters=${clusters.name} candidates=${placeablePlots.length} general=${seeds.length + grown}/${target} (${seeds.length} seeds, ${grown} grown) replaced=${removed}`);
 }
 
 /**
@@ -424,7 +451,8 @@ function generateGlobalResources() {
  * Island resources stay as the map placed them.
  */
 function scaleGameResources() {
-	const { amount, clusters } = resourceSettings();
+	readSpacing();
+	const { amount, clusters } = resourceSettings(RESOURCE_AMOUNTS);
 	if (amount.value === 1 && clusters.value.chance <= 0) {
 		console.log(`BBM resources: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
 		return;
@@ -472,27 +500,120 @@ function scaleGameResources() {
 	console.log(`BBM resources: game resources amount=${amount.name} clusters=${clusters.name} placed=${seeds.length + grown}/${target} of ${deposits.length} (${seeds.length} seeds, ${grown} grown)`);
 }
 
+/** A region's land by distance from its start (nearest first), split at NEAR_RANGE; the start's own ring is left out. */
+function splitRegion(region) {
+	const byDistance = [];
+	for (const plotIndex of region.plots) {
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		const distance = GameplayMap.getPlotDistance(x, y, region.x, region.y);
+		if (distance >= NEAR_RANGE.min && !GameplayMap.isNaturalWonder(x, y)) byDistance.push({ plotIndex, distance });
+	}
+	byDistance.sort((a, b) => a.distance - b.distance);
+	const plots = byDistance.map((entry) => entry.plotIndex);
+	const nearCount = byDistance.filter((entry) => entry.distance <= NEAR_RANGE.max).length;
+	return { plots, near: plots.slice(0, nearCount), far: plots.slice(nearCount) };
+}
+
+function fitting(plots, resourceIndex) {
+	return plots.filter((plotIndex) => {
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		return ResourceBuilder.canHaveResource(x, y, resourceIndex, true);
+	});
+}
+
+/** One copy within NEAR_RANGE of the start, else on the nearest free plot of the region that takes it. */
+function placeNear(resourceIndex, split, counts, seeds, label) {
+	if (spreadResources(fitting(split.near, resourceIndex), 1, () => resourceIndex, counts, seeds, label) > 0) return 1;
+	for (const plotIndex of fitting(split.far, resourceIndex)) {
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || touchesResource(x, y, resourceIndex)) continue;
+		placeResource(x, y, resourceIndex, counts, seeds);
+		console.log(`BBM resources: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed beyond range (${label})`);
+		return 1;
+	}
+	console.log(`BBM resources: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed 0/1 (${label})`);
+	return 0;
+}
+
+/** Top the start's range up to NEAR_GENERAL general resources, preferring those it lacks. */
+function topUpGeneral(general, near, counts, seeds, label) {
+	const nearCounts = new RegionCounts();
+	for (const plotIndex of near) {
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		const resourceIndex = GameplayMap.getResourceType(x, y);
+		if (general.includes(resourceIndex)) nearCounts.add(0, resourceIndex);
+	}
+	const needed = NEAR_GENERAL - (nearCounts.regions.get(0)?.tiles ?? 0);
+	if (needed <= 0) return 0;
+	return spreadResources([...near], needed, (plotIndex, x, y) => {
+		const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true) && !touchesResource(x, y, resourceIndex));
+		if (fits.length === 0) return -1;
+		const resourceIndex = pickEvenly(fits, 0, nearCounts);
+		nearCounts.add(0, resourceIndex);
+		return resourceIndex;
+	}, counts, seeds, label);
+}
+
+const plotsOf = (seeds) => new Set(seeds.map((seed) => GameplayMap.getIndexFromXY(seed.x, seed.y)));
+const hasResource = (plotIndex) => {
+	const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+	return GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE;
+};
+
+/**
+ * Remove general resources until the region holds the map's density: far plots
+ * first, then near ones above NEAR_GENERAL; dealt, topped-up and guaranteed
+ * copies and the start's own ring stay.
+ */
+function trimToDensity(region, split, dealtPlots, toppedPlots, amount, label) {
+	const placeable = region.plots.filter((plotIndex) => placeablePlotSet.has(plotIndex)).length;
+	let excess = region.plots.filter(hasResource).length - Math.round(placeable * DENSITY_TARGET * amount);
+	if (excess <= 0) return 0;
+	const removable = (plots) => plots.filter((plotIndex) => hasResource(plotIndex) && !dealtPlots.has(plotIndex) && !toppedPlots.has(plotIndex) && !guaranteedPlotSet.has(plotIndex));
+	const nearGeneral = split.near.filter((plotIndex) => hasResource(plotIndex) && !dealtPlots.has(plotIndex)).length;
+	const far = shuffleInPlace(removable(split.far), `${label} far`);
+	const near = shuffleInPlace(removable(split.near), `${label} near`).slice(0, Math.max(0, nearGeneral - NEAR_GENERAL));
+	let removed = 0;
+	for (const plotIndex of [...far, ...near]) {
+		if (excess <= 0) break;
+		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
+		ResourceBuilder.setResourceType(x, y, ResourceTypes.NO_RESOURCE);
+		excess--;
+		removed++;
+	}
+	return removed;
+}
+
 /**
  * After Player Placement: each player region is dealt one resource from every pool
- * and OTHER_PER_REGION others, its copies placed on empty land in the region
- * (never the start plot); then the islands are stocked (stockIslands).
+ * and OTHER_PER_REGION others. Its first copy lies within NEAR_RANGE of the start,
+ * the others farther out in the region, the range is topped up to NEAR_GENERAL
+ * general resources, and the region is trimmed to the map's density
+ * (trimToDensity); then the islands are stocked (stockIslands).
  */
 function placeDealtResources() {
+	readSpacing();
 	const regions = buildPlayerRegions();
 	const dealt = dealRegionResources(regions);
+	const general = generalResourceTypes(currentAgeType());
+	const { amount } = resourceSettings(LIST_ALL_AMOUNTS);
 	const counts = new RegionCounts();
 	let placed = 0;
+	let topped = 0;
+	let trimmed = 0;
 	regions.forEach((region, index) => {
+		const split = splitRegion(region);
+		const label = `BBM MAPS player ${region.playerId} resource`;
+		const dealtSeeds = [];
+		const toppedSeeds = [];
 		for (const resourceIndex of dealt[index]) {
-			const plots = region.plots.filter((plotIndex) => {
-				if (plotIndex === region.plotIndex) return false;
-				const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
-				return !GameplayMap.isNaturalWonder(x, y) && ResourceBuilder.canHaveResource(x, y, resourceIndex, true);
-			});
-			placed += placeCopies(resourceIndex, plots, region.copies, counts, null, `BBM MAPS player ${region.playerId} resource`);
+			placed += placeNear(resourceIndex, split, counts, dealtSeeds, label);
+			if (region.copies > 1) placed += placeCopies(resourceIndex, fitting(split.far, resourceIndex), region.copies - 1, counts, dealtSeeds, label);
 		}
+		topped += topUpGeneral(general, split.near, counts, toppedSeeds, `BBM MAPS player ${region.playerId} general`);
+		trimmed += trimToDensity(region, split, plotsOf(dealtSeeds), plotsOf(toppedSeeds), amount.value, `BBM MAPS player ${region.playerId} trim`);
 	});
-	console.log(`BBM resources: dealt ${placed} copies to ${regions.length} player regions`);
+	console.log(`BBM resources: dealt ${placed} copies to ${regions.length} player regions; ${topped} general resources added near starts, ${trimmed} trimmed to the map's density`);
 	stockIslands(new Set(regions.map((region) => region.plotIndex)));
 }
 
@@ -544,7 +665,7 @@ function stockIslands(startPlots) {
 			if (needed <= 0) break;
 			const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
 			if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || GameplayMap.isNaturalWonder(x, y)) continue;
-			const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true));
+			const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true) && !touchesResource(x, y, resourceIndex));
 			if (fits.length === 0) continue;
 			placeResource(x, y, pickEvenly(fits, regionOf(x, y), counts), counts, null);
 			needed--;

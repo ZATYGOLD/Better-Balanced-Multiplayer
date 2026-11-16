@@ -36,7 +36,7 @@ const CONFIG = {
 	pollMs: 250,                 // tally / condition evaluation interval
 	convergenceDelayMs: 2000,    // wait for all clients to flag in before evaluating readiness
 	finalizeBackstopMs: 4000,    // fallback idle if the unpause event is missed
-	connectionWatchMs: 500       // how often to poll player connections for drops
+	connectionWatchMs: 50        // how often to poll player connections for drops
 };
 
 /**

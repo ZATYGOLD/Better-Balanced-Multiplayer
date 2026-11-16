@@ -97,7 +97,7 @@ INSERT OR IGNORE INTO ParameterGroups (GroupId, Name)
 INSERT OR IGNORE INTO Parameters (ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, UxHint, Hash, SupportsSinglePlayer, SortIndex)
     VALUES
         ('BBMResourceList', 'LOC_BBM_MAPS_RESOURCE_LIST_NAME', 'LOC_BBM_MAPS_RESOURCE_LIST_DESC', 'BBMResourceLists', 'BBM_MAPS_RESOURCE_LIST_ALL', 'Map', 'BBMResourceList', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 10),
-        ('BBMResourceAmount', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_DESC', 'BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_ABUNDANT', 'Map', 'BBMResourceAmount', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 20),
+        ('BBMResourceAmount', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_NAME', 'LOC_BBM_MAPS_RESOURCE_AMOUNT_DESC', 'BBMResourceAmounts', 'BBM_MAPS_RESOURCE_AMOUNT_STANDARD', 'Map', 'BBMResourceAmount', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 20),
         ('BBMResourceClusters', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_NAME', 'LOC_BBM_MAPS_RESOURCE_CLUSTERS_DESC', 'BBMResourceClusterOptions', 'BBM_MAPS_RESOURCE_CLUSTERS_NONE', 'Map', 'BBMResourceClusters', 'ResourceOptions', 'SimpleSelectWindow', 0, 0, 30);
 
 INSERT OR IGNORE INTO DomainValues (Domain, Value, Name, Description, SortIndex)
@@ -304,13 +304,13 @@ UPDATE Parameters SET GroupIDMultiplayerOverride = 'MPAdvancedTerrainOptions' WH
 
 -- The game defines Sea Level per map script; Pangaea Ultima and the multiplayer
 -- copies of the standard maps that have it (multiplayer only) get the same row,
--- sorted after Mountains.
+-- sorted after Mountains, with Low as the default.
 INSERT OR IGNORE INTO Parameters (Key1, Key2, ParameterID, Name, Description, Domain, DefaultValue, ConfigurationGroup, ConfigurationKey, GroupId, GroupIDMultiplayerOverride, Hash, SupportsSinglePlayer, SortIndex)
     VALUES
-        ('Map', '{zatygolds-multiplayer-balance}maps/pangaea-ultima.js', 'MapSeaLevel', 'LOC_MAP_SEA_LEVEL_NAME', 'LOC_MAP_SEA_LEVEL_DESCRIPTION', 'SeaLevels', 'SEA_LEVEL_STANDARD', 'Map', 'SeaLevel', 'TerrainOptions', 'MPAdvancedTerrainOptions', 0, 0, 153);
+        ('Map', '{zatygolds-multiplayer-balance}maps/pangaea-ultima.js', 'MapSeaLevel', 'LOC_MAP_SEA_LEVEL_NAME', 'LOC_MAP_SEA_LEVEL_DESCRIPTION', 'SeaLevels', 'SEA_LEVEL_LOW', 'Map', 'SeaLevel', 'TerrainOptions', 'MPAdvancedTerrainOptions', 0, 0, 153);
 
 INSERT OR IGNORE INTO Parameters (Key1, Key2, ParameterID, Name, Description, Domain, Hash, Array, DefaultValue, ConfigurationGroup, ConfigurationKey, DomainConfigurationKey, PossibleValuesConfigurationKey, ValueConfigurationKey, ValueNameConfigurationKey, ValueHashConfigurationKey, ValueDomainConfigurationKey, NameArrayConfigurationKey, GroupID, GroupIDMultiplayerOverride, Hidden, ReadOnly, SupportsSinglePlayer, SupportsLANMultiplayer, SupportsInternetMultiplayer, SupportsHotseatMultiplayer, IsUGC, ChangeableAfterGameStart, ChangeableAfterAgeTransition, UxHint, SortIndex)
-SELECT Key1, REPLACE(Key2, '{base-standard}maps/', '{zatygolds-multiplayer-balance}maps/standard/'), ParameterID, Name, Description, Domain, Hash, Array, DefaultValue, ConfigurationGroup, ConfigurationKey, DomainConfigurationKey, PossibleValuesConfigurationKey, ValueConfigurationKey, ValueNameConfigurationKey, ValueHashConfigurationKey, ValueDomainConfigurationKey, NameArrayConfigurationKey, 'TerrainOptions', 'MPAdvancedTerrainOptions', Hidden, ReadOnly, 0, SupportsLANMultiplayer, SupportsInternetMultiplayer, SupportsHotseatMultiplayer, IsUGC, ChangeableAfterGameStart, ChangeableAfterAgeTransition, UxHint, 153
+SELECT Key1, REPLACE(Key2, '{base-standard}maps/', '{zatygolds-multiplayer-balance}maps/standard/'), ParameterID, Name, Description, Domain, Hash, Array, 'SEA_LEVEL_LOW', ConfigurationGroup, ConfigurationKey, DomainConfigurationKey, PossibleValuesConfigurationKey, ValueConfigurationKey, ValueNameConfigurationKey, ValueHashConfigurationKey, ValueDomainConfigurationKey, NameArrayConfigurationKey, 'TerrainOptions', 'MPAdvancedTerrainOptions', Hidden, ReadOnly, 0, SupportsLANMultiplayer, SupportsInternetMultiplayer, SupportsHotseatMultiplayer, IsUGC, ChangeableAfterGameStart, ChangeableAfterAgeTransition, UxHint, 153
 FROM Parameters
 WHERE ParameterID = 'MapSeaLevel' AND Key1 = 'Map'
 AND Key2 IN (SELECT REPLACE(File, '{zatygolds-multiplayer-balance}maps/standard/', '{base-standard}maps/') FROM Maps WHERE File LIKE '{zatygolds-multiplayer-balance}maps/standard/%');

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Mod id="zatygolds-multiplayer-balance" version="00740" xmlns="ModInfo">
+<Mod id="zatygolds-multiplayer-balance" version="00760" xmlns="ModInfo">
 	<Properties>
 		<Name>LOC_MODULE_BBM_NAME</Name>
 		<Description>LOC_MODULE_BBM_DESCRIPTION</Description>
 		<Authors>Zatygold</Authors>
-		<Version>0.7.4</Version>
+		<Version>0.7.6</Version>
 		<Package>Mod</Package>
 		<LastUpdated>2026-11-14</LastUpdated>
 		<ShowInBrowser>1</ShowInBrowser>
@@ -54,6 +54,9 @@
 		</Criteria>
 		<Criteria id="maps-duel-placement">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMPlayerPlacement</ConfigurationId><Value>BBM_MAPS_PLACEMENT_DUEL</Value></ConfigurationValueMatches>
+		</Criteria>
+		<Criteria id="maps-2v2-placement">
+			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMPlayerPlacement</ConfigurationId><Value>BBM_MAPS_PLACEMENT_2V2</Value></ConfigurationValueMatches>
 		</Criteria>
 		<Criteria id="maps-chosen-size-tiny">
 			<ConfigurationValueMatches><Group>Map</Group><ConfigurationId>BBMChosenMapSize</ConfigurationId><Value>MAPSIZE_TINY</Value></ConfigurationValueMatches>
@@ -1501,6 +1504,16 @@
 			<Actions>
 				<UpdateDatabase>
 					<Item>data/maps/duel-map.sql</Item>
+				</UpdateDatabase>
+			</Actions>
+		</ActionGroup>
+
+<!--*************************** GAME: 2V2 MAP *************************************************-->
+		<ActionGroup id="bbm-maps-2v2-map" scope="game" criteria="maps-2v2-placement">
+			<Properties><LoadOrder>304</LoadOrder></Properties>
+			<Actions>
+				<UpdateDatabase>
+					<Item>data/maps/2v2-map.sql</Item>
 				</UpdateDatabase>
 			</Actions>
 		</ActionGroup>
