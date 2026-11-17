@@ -238,11 +238,67 @@ function hasAdjacentResource(x, y, maximumAllowed) {
 
 // With Resource Clusters None no resource touches another; with Clusters on,
 // only the clusters themselves put the same resource side by side.
+// Resource List All: Coal forms in wet ground at the edge of vegetation, so its
+// tiles (data/maps/resource-system.sql) must lie within WATER_RANGE of water, with
+// at most EDGE_VEGETATION vegetated neighbors, preferably at least one.
+const WATER_BOUND_RESOURCES = ["RESOURCE_COAL"];
+const WATER_RANGE = 2;
+const EDGE_VEGETATION = 2;
+// Resource List All: the fewest tiles between two copies of a resource (it never clusters).
+const TILES_BETWEEN = { RESOURCE_COAL: 5 };
 let spacedOut = true;
-const readSpacing = () => { spacedOut = resourceSettings(RESOURCE_AMOUNTS).clusters.value.chance <= 0; };
+let waterBound = new Set();
+let vegetated = new Set();
+let tilesBetween = new Map();   // resource index -> tiles between copies
+let spacedCopies = new Map();   // resource index -> placed copies { x, y }
 
-/** Placing this resource here would touch another resource (spaced out) or the same resource. */
-function touchesResource(x, y, resourceIndex) {
+/** Read once per pass, after the map's own resources are cleared: spacing, the water rule and the spaced copies already placed (Resource List All only). */
+function readSettings(listAll) {
+	spacedOut = resourceSettings(RESOURCE_AMOUNTS).clusters.value.chance <= 0;
+	waterBound = new Set(listAll ? resolveResourceTypes(WATER_BOUND_RESOURCES) : []);
+	vegetated = new Set();
+	for (const feature of GameInfo.Features) {
+		if (feature.FeatureClassType === "FEATURE_CLASS_VEGETATED") vegetated.add(feature.$index);
+	}
+	tilesBetween = new Map(listAll ? Object.entries(TILES_BETWEEN).map(([type, tiles]) => [GameInfo.Resources.lookup(type)?.$index, tiles]).filter(([index]) => index != null) : []);
+	spacedCopies = new Map([...tilesBetween.keys()].map((index) => [index, []]));
+	if (spacedCopies.size === 0) return;
+	for (let y = 0; y < GameplayMap.getGridHeight(); y++) {
+		for (let x = 0; x < GameplayMap.getGridWidth(); x++) spacedCopies.get(GameplayMap.getResourceType(x, y))?.push({ x, y });
+	}
+}
+
+/** Another copy of a spaced resource lies within its tiles between. */
+function tooClose(x, y, resourceIndex) {
+	const tiles = tilesBetween.get(resourceIndex);
+	return tiles != null && spacedCopies.get(resourceIndex).some((copy) => GameplayMap.getPlotDistance(x, y, copy.x, copy.y) <= tiles);
+}
+
+/** A river, or a water tile (coast, lake, navigable river), within WATER_RANGE. */
+function byWater(x, y) {
+	if (GameplayMap.isRiver(x, y) || GameplayMap.isAdjacentToRivers(x, y, WATER_RANGE)) return true;
+	const plots = GameplayMap.getPlotIndicesInRadius(x, y, WATER_RANGE);
+	for (let i = 0; i < plots.length; i++) {
+		const plot = GameplayMap.getLocationFromIndex(plots[i]);
+		if (GameplayMap.isWater(plot.x, plot.y)) return true;
+	}
+	return false;
+}
+
+const vegetatedNeighbors = (x, y) => adjacentPlots({ x, y }).filter((next) => vegetated.has(GameplayMap.getFeatureType(next.x, next.y))).length;
+
+/** The game allows the resource here, and a water-bound resource has water and lies at the edge of vegetation. */
+function canPlace(x, y, resourceIndex) {
+	return ResourceBuilder.canHaveResource(x, y, resourceIndex, true)
+		&& (!waterBound.has(resourceIndex) || (byWater(x, y) && vegetatedNeighbors(x, y) <= EDGE_VEGETATION));
+}
+
+/** A water-bound resource away from vegetation counts one copy more, so it goes to a vegetation edge when one is free. */
+const placementPenalty = (x, y, resourceIndex) => (waterBound.has(resourceIndex) && vegetatedNeighbors(x, y) === 0 ? 1 : 0);
+
+/** Placing this resource here would crowd it: too close to its own copies, touching another resource (spaced out) or the same resource. */
+function isCrowded(x, y, resourceIndex) {
+	if (tooClose(x, y, resourceIndex)) return true;
 	if (spacedOut) return hasAdjacentResource(x, y, 0);
 	return adjacentPlots({ x, y }).some((next) => GameplayMap.getResourceType(next.x, next.y) === resourceIndex);
 }
@@ -266,12 +322,12 @@ class RegionCounts {
 	}
 }
 
-/** The candidate with the fewest copies in this region (random tie-break). */
-function pickEvenly(candidates, region, counts) {
+/** The candidate with the fewest copies in this region, for the plot at x, y (random tie-break). */
+function pickEvenly(candidates, region, counts, x, y) {
 	let best = -1;
 	let bestScore = Number.POSITIVE_INFINITY;
 	for (const resourceIndex of candidates) {
-		const score = counts.get(region, resourceIndex) + TerrainBuilder.getRandomNumber(1000, "BBM MAPS resource balance") / 1000;
+		const score = counts.get(region, resourceIndex) + placementPenalty(x, y, resourceIndex) + TerrainBuilder.getRandomNumber(1000, "BBM MAPS resource balance") / 1000;
 		if (score < bestScore) {
 			bestScore = score;
 			best = resourceIndex;
@@ -282,6 +338,7 @@ function pickEvenly(candidates, region, counts) {
 
 function placeResource(x, y, resourceIndex, counts, seeds) {
 	ResourceBuilder.setResourceType(x, y, resourceIndex);
+	spacedCopies.get(resourceIndex)?.push({ x, y });
 	counts.add(regionOf(x, y), resourceIndex);
 	seeds?.push({ x, y, resourceIndex });
 }
@@ -301,7 +358,7 @@ function spreadResources(plots, limit, pick, counts, seeds, label) {
 			const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
 			if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || hasAdjacentResource(x, y, pass)) continue;
 			const resourceIndex = pick(plotIndex, x, y);
-			if (resourceIndex < 0 || touchesResource(x, y, resourceIndex)) continue;
+			if (resourceIndex < 0 || isCrowded(x, y, resourceIndex)) continue;
 			placeResource(x, y, resourceIndex, counts, seeds);
 			placed++;
 		}
@@ -312,8 +369,8 @@ function spreadResources(plots, limit, pick, counts, seeds, label) {
 /** Fill up to `limit` empty plots with their candidates, keeping counts even (recorded as seeds). */
 function fillEvenly(plots, candidatesByPlot, counts, limit, seeds, label) {
 	return spreadResources(plots, limit, (plotIndex, x, y) => {
-		const candidates = candidatesByPlot.get(plotIndex)?.filter((resourceIndex) => !touchesResource(x, y, resourceIndex));
-		return candidates?.length ? pickEvenly(candidates, regionOf(x, y), counts) : -1;
+		const candidates = candidatesByPlot.get(plotIndex)?.filter((resourceIndex) => !isCrowded(x, y, resourceIndex));
+		return candidates?.length ? pickEvenly(candidates, regionOf(x, y), counts, x, y) : -1;
 	}, counts, seeds, label);
 }
 
@@ -327,7 +384,7 @@ function candidatePlots(resourceIndices, skip) {
 	for (let y = 0; y < height; y++) {
 		for (let x = 0; x < width; x++) {
 			if (GameplayMap.isNaturalWonder(x, y) || skip(x, y)) continue;
-			const fits = resourceIndices.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true));
+			const fits = resourceIndices.filter((resourceIndex) => canPlace(x, y, resourceIndex));
 			if (fits.length === 0) continue;
 			const plotIndex = GameplayMap.getIndexFromXY(x, y);
 			for (const resourceIndex of fits) {
@@ -366,7 +423,7 @@ function growClusters(seeds, counts, clusters, evenCounts, limit) {
 			const next = adjacentPlot(seed, (start + step) % DirectionTypes.NUM_DIRECTION_TYPES);
 			if (next == null) continue;
 			if (GameplayMap.getResourceType(next.x, next.y) !== ResourceTypes.NO_RESOURCE || GameplayMap.isNaturalWonder(next.x, next.y)) continue;
-			if (regionOf(next.x, next.y) !== region || !ResourceBuilder.canHaveResource(next.x, next.y, seed.resourceIndex, true)) continue;
+			if (regionOf(next.x, next.y) !== region || !canPlace(next.x, next.y, seed.resourceIndex) || tooClose(next.x, next.y, seed.resourceIndex)) continue;
 			if (evenCounts && counts.get(region, seed.resourceIndex) > counts.average(region)) break;   // no patch past the region's share
 			placeResource(next.x, next.y, seed.resourceIndex, counts, null);
 			size++;
@@ -418,13 +475,13 @@ function clearGeneratedResources(width, height) {
  * Placement (placeDealtResources).
  */
 function generateGlobalResources() {
-	readSpacing();
 	const width = GameplayMap.getGridWidth();
 	const height = GameplayMap.getGridHeight();
 	const ageType = currentAgeType();
 	const general = generalResourceTypes(ageType);
 
 	const removed = clearGeneratedResources(width, height);
+	readSettings(true);
 	const counts = new RegionCounts();
 	const { plots: placeablePlots, candidatesByPlot, plotsByResource } = candidatePlots(general, () => false);
 
@@ -451,7 +508,7 @@ function generateGlobalResources() {
  * Island resources stay as the map placed them.
  */
 function scaleGameResources() {
-	readSpacing();
+	readSettings(false);
 	const { amount, clusters } = resourceSettings(RESOURCE_AMOUNTS);
 	if (amount.value === 1 && clusters.value.chance <= 0) {
 		console.log(`BBM resources: game resources kept (amount=${amount.name} clusters=${clusters.name})`);
@@ -517,7 +574,7 @@ function splitRegion(region) {
 function fitting(plots, resourceIndex) {
 	return plots.filter((plotIndex) => {
 		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
-		return ResourceBuilder.canHaveResource(x, y, resourceIndex, true);
+		return canPlace(x, y, resourceIndex);
 	});
 }
 
@@ -526,7 +583,7 @@ function placeNear(resourceIndex, split, counts, seeds, label) {
 	if (spreadResources(fitting(split.near, resourceIndex), 1, () => resourceIndex, counts, seeds, label) > 0) return 1;
 	for (const plotIndex of fitting(split.far, resourceIndex)) {
 		const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
-		if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || touchesResource(x, y, resourceIndex)) continue;
+		if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || isCrowded(x, y, resourceIndex)) continue;
 		placeResource(x, y, resourceIndex, counts, seeds);
 		console.log(`BBM resources: ${GameInfo.Resources[resourceIndex]?.ResourceType} placed beyond range (${label})`);
 		return 1;
@@ -546,9 +603,9 @@ function topUpGeneral(general, near, counts, seeds, label) {
 	const needed = NEAR_GENERAL - (nearCounts.regions.get(0)?.tiles ?? 0);
 	if (needed <= 0) return 0;
 	return spreadResources([...near], needed, (plotIndex, x, y) => {
-		const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true) && !touchesResource(x, y, resourceIndex));
+		const fits = general.filter((resourceIndex) => canPlace(x, y, resourceIndex) && !isCrowded(x, y, resourceIndex));
 		if (fits.length === 0) return -1;
-		const resourceIndex = pickEvenly(fits, 0, nearCounts);
+		const resourceIndex = pickEvenly(fits, 0, nearCounts, x, y);
 		nearCounts.add(0, resourceIndex);
 		return resourceIndex;
 	}, counts, seeds, label);
@@ -592,7 +649,7 @@ function trimToDensity(region, split, dealtPlots, toppedPlots, amount, label) {
  * (trimToDensity); then the islands are stocked (stockIslands).
  */
 function placeDealtResources() {
-	readSpacing();
+	readSettings(true);
 	const regions = buildPlayerRegions();
 	const dealt = dealRegionResources(regions);
 	const general = generalResourceTypes(currentAgeType());
@@ -665,9 +722,9 @@ function stockIslands(startPlots) {
 			if (needed <= 0) break;
 			const { x, y } = GameplayMap.getLocationFromIndex(plotIndex);
 			if (GameplayMap.getResourceType(x, y) !== ResourceTypes.NO_RESOURCE || GameplayMap.isNaturalWonder(x, y)) continue;
-			const fits = general.filter((resourceIndex) => ResourceBuilder.canHaveResource(x, y, resourceIndex, true) && !touchesResource(x, y, resourceIndex));
+			const fits = general.filter((resourceIndex) => canPlace(x, y, resourceIndex) && !isCrowded(x, y, resourceIndex));
 			if (fits.length === 0) continue;
-			placeResource(x, y, pickEvenly(fits, regionOf(x, y), counts), counts, null);
+			placeResource(x, y, pickEvenly(fits, regionOf(x, y), counts, x, y), counts, null);
 			needed--;
 			added++;
 		}

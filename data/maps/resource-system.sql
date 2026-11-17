@@ -157,7 +157,7 @@ SELECT ResourceType, BiomeType
 FROM (
     SELECT 'RESOURCE_CLAY' ResourceType UNION ALL SELECT 'RESOURCE_LIMESTONE' UNION ALL
     SELECT 'RESOURCE_IRON' UNION ALL SELECT 'RESOURCE_SALT' UNION ALL SELECT 'RESOURCE_TIN' UNION ALL
-    SELECT 'RESOURCE_WOOL' UNION ALL SELECT 'RESOURCE_COAL' UNION ALL SELECT 'RESOURCE_NITER' UNION ALL
+    SELECT 'RESOURCE_WOOL' UNION ALL SELECT 'RESOURCE_NITER' UNION ALL
     SELECT 'RESOURCE_OIL'
 )
 CROSS JOIN (
@@ -212,6 +212,18 @@ SELECT targets.ResourceType, targets.BiomeType, original.TerrainType, original.F
 FROM BBM_ResourceBiomeTargets targets
 JOIN BBM_OriginalResourceBiomes original ON original.ResourceType = targets.ResourceType
 WHERE (targets.BiomeType = 'BIOME_MARINE') = (original.TerrainType IN ('TERRAIN_COAST','TERRAIN_OCEAN'));
+
+-- Coal: open Hills only (the map script keeps it by water at the edge of
+-- vegetation), never vegetation, whose trees its rocks would hide.
+DELETE FROM Resource_ValidBiomes WHERE ResourceType = 'RESOURCE_COAL';
+
+INSERT OR IGNORE INTO Resource_ValidBiomes (ResourceType, BiomeType, TerrainType, FeatureType, Weight)
+    VALUES
+        ('RESOURCE_COAL', 'BIOME_GRASSLAND', 'TERRAIN_HILL', NULL, 1.0),
+        ('RESOURCE_COAL', 'BIOME_PLAINS', 'TERRAIN_HILL', NULL, 1.0),
+        ('RESOURCE_COAL', 'BIOME_TUNDRA', 'TERRAIN_HILL', NULL, 1.0),
+        ('RESOURCE_COAL', 'BIOME_TROPICAL', 'TERRAIN_HILL', NULL, 1.0),
+        ('RESOURCE_COAL', 'BIOME_DESERT', 'TERRAIN_HILL', NULL, 1.0);
 
 -- Crabs and Oil explicitly support ordinary Marine coast tiles. Crabs retain
 -- their navigable-river rules as an additional placement option.

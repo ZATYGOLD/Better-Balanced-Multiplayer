@@ -131,6 +131,7 @@ The Create Game screen gets a **Map** tab after the Pace tab. Every option below
 - **Resource List** (Resource Settings) has two options:
   - **All** (the default) makes every resource valid in every Age and keeps it across Age transitions (Oil and Rubber arrive in Modern). It comes with custom yields and effects.
     - Military and construction resources come in even counts on each continent.
+    - Coal spawns only on open Hills within 2 tiles of a river, lake or coast, never on vegetation, with at most 2 vegetated neighbors (preferably 1 or 2). At least 5 tiles lie between two Coal, and Coal never clusters.
     - Each player's region gets one resource from each pool: Wealth (Gold, Silver, Rubies, Spices), Harvest (Sugar, Tea, Citrus, Rice) and Comfort (Wine, Quinine, Cocoa, Furs). Neighbors get different resources.
     - One copy of each of a player's resources lies 2 to 6 tiles from their start; extra copies on larger regions land farther out. That range also holds at least 4 other resources. Each player's region keeps the same density as the rest of the map.
   - **Standard** uses the game's own resources and rules.
@@ -219,6 +220,7 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 - With Resource Clusters None, Resource List All no longer places resources touching each other (lines of 3 or more formed when tiles ran short). With Clusters on, only the clusters put the same resource side by side.
 - Resource List All guarantees resources near each start: one copy of each of the player's dealt resources within 2 to 6 tiles, and at least 4 other resources in that range. Extra copies on larger regions still land anywhere else in the region (before, every copy could land anywhere in the region).
 - Resource List All keeps the same density on every continent: small player regions no longer hold more resources per tile (every player got at least 7 dealt copies whatever their land, and the general fill was reduced across the whole map instead of in each region).
+- Coal (Resource List All) spawns only on open Hills (no vegetation) within 2 tiles of a river, lake or coast, with at most 2 vegetated neighbors (preferably 1 or 2), at the edge of the river lowlands and swamps where real coal formed; never on vegetation, whose trees its rocks hid (was almost any land tile). At least 5 tiles lie between two Coal, and Coal never clusters.
 
 ### 0.7.5
 
