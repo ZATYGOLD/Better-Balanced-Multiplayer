@@ -5,7 +5,7 @@
 -- data/timers/<age>/competitive-timer.sql overrides them (loaded only in that Age).
 --   seconds = Base + PerCity * (most cities) + PerUnit * (most units)
 --           + PerPlayer * (living major players, AI included, Observers excluded)
---           + PerTurn  * (current turn number)
+--           + PerTurn  * (current turn number), at most Max (0 = no cap)
 -- Decimal values (e.g. 1.25) are supported.
 CREATE TABLE IF NOT EXISTS BBM_TimerScaling
     (
@@ -30,9 +30,10 @@ CREATE TABLE IF NOT EXISTS BBM_TurnSegments
         TimeLimit_Base REAL NOT NULL DEFAULT 0,
         TimeLimit_PerCity REAL NOT NULL DEFAULT 0,
         TimeLimit_PerUnit REAL NOT NULL DEFAULT 0,
+        TimeLimit_Max REAL NOT NULL DEFAULT 0,
         PRIMARY KEY(TurnSegmentType)
     );
 
-INSERT OR IGNORE INTO BBM_TurnSegments (TurnSegmentType, TimeLimit_Base, TimeLimit_PerCity, TimeLimit_PerUnit)
+INSERT OR IGNORE INTO BBM_TurnSegments (TurnSegmentType, TimeLimit_Base, TimeLimit_PerCity, TimeLimit_PerUnit, TimeLimit_Max)
     VALUES
-        ('TURN_SEGMENT_SINGLEPHASE', 20, 1, 1);
+        ('TURN_SEGMENT_SINGLEPHASE', 20, 1, 1, 0);

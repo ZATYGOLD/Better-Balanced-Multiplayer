@@ -62,14 +62,14 @@ The Match Type setting is under Game Settings → Multiplayer Settings. Free for
 
 ```
 seconds = Base + PerCity × (most cities any civ has) + PerUnit × (most units any civ has)
-        + PerPlayer × (living players, AI included) + PerTurn × (turn number)
+        + PerPlayer × (living players, AI included) + PerTurn × (turn number), at most Max
 ```
 
-| Age | Base | PerCity | PerUnit | PerPlayer | PerTurn | About (8 players, turns 2-70) |
+| Age | Base | PerCity | PerUnit | PerPlayer | PerTurn | Max |
 |---|---|---|---|---|---|---|
-| Antiquity | 20 | 1.30 | 1.30 | 1.30 | 1.30 | 37-141s |
-| Exploration | 40 | 2.30 | 1.40 | 2.30 | 1.40 | 85-204s |
-| Modern | 60 | 3.30 | 1.50 | 3.30 | 1.50 | 136-270s |
+| Antiquity | 35 | 3.00 | 1.50 | 2.00 | 1.00 | 2:00 |
+| Exploration | 50 | 3.00 | 2.00 | 3.00 | 1.40 | 2:30 |
+| Modern | 60 | 3.00 | 1.50 | 4.00 | 1.00 | 3:00 |
 
 - When the clock hits zero, the turn ends.
 - At 30 seconds left, the clock turns orange and beeps every 5 seconds. At 15 seconds, it flashes red and beeps every second.
@@ -211,6 +211,7 @@ Every script the mod adds is named `bbm-*.js` and indented with tabs, as in Adva
 ### 0.7.6
 
 - Sea Level defaults to Low in multiplayer (was Standard).
+- The Competitive timer is retuned and capped per Age: Antiquity 35 / 3.00 / 1.50 / 2.00 / 1.00 up to 2:00, Exploration 50 / 3.00 / 2.00 / 3.00 / 1.40 up to 2:30, Modern 60 / 3.00 / 1.50 / 4.00 / 1.00 up to 3:00 (Base / PerCity / PerUnit / PerPlayer / PerTurn; was 20 / 1.30 / 1.30 / 1.30 / 1.30, 40 / 2.30 / 1.40 / 2.30 / 1.40 and 60 / 3.30 / 1.50 / 3.30 / 1.50, uncapped).
 - The host's Drop Disconnected & Resume button shows only when Resume is stuck: every connected player is ready, but a player who dropped while paused still holds a pause flag. A normal disconnect pause resumes with Resume.
 - A player's disconnect is caught sooner: connections are checked every 0.05 s (was 0.5 s), so the pause starts earlier.
 - New multiplayer games open on Start Position Balanced (the game's multiplayer default); the Create Game screen used to keep the previous game's choice.

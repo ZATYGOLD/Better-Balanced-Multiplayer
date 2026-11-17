@@ -26,7 +26,7 @@
  * tables for the active Age (data/timers/):
  *
  *   seconds = Base + PerCity*cities + PerUnit*units
- *           + PerPlayer*players + PerTurn*turnNumber
+ *           + PerPlayer*players + PerTurn*turnNumber, at most Max (0 = no cap)
  *
  * cities/units are the most any living major civ has; players are the living
  * major civs, AI included, never a companion mod's Observer (isObserverPlayer). The first turn of each
@@ -105,12 +105,12 @@ function cachedRow(sql) {
 }
 
 /**
- * TimeLimit_Base/PerCity/PerUnit from the mod-owned BBM_TurnSegments table,
+ * TimeLimit_Base/PerCity/PerUnit/Max from the mod-owned BBM_TurnSegments table,
  * keeping the Competitive numbers fully separate from the Dynamic timer's
  * (the game's TurnSegments is never modified).
  */
 function segmentLimits() {
-	return cachedRow("SELECT TimeLimit_Base AS base, TimeLimit_PerCity AS perCity, TimeLimit_PerUnit AS perUnit " +
+	return cachedRow("SELECT TimeLimit_Base AS base, TimeLimit_PerCity AS perCity, TimeLimit_PerUnit AS perUnit, TimeLimit_Max AS max " +
 		`FROM BBM_TurnSegments WHERE TurnSegmentType = '${ENGINE.segmentType}'`);
 }
 
@@ -156,8 +156,9 @@ function computeSeconds() {
 		+ (perPlayer * players)
 		+ (perTurn * Math.max(0, currentTurn()));
 	if (raw <= 0) return 0;
+	const capped = limit.max > 0 ? Math.min(raw, limit.max) : raw;
 	const step = CONFIG.roundToNearest >= 1 ? CONFIG.roundToNearest : 1;
-	return Math.max(step, Math.round(raw / step) * step);
+	return Math.max(step, Math.round(capped / step) * step);
 }
 
 // ======================= Wall-clock turn timer ========================
